@@ -39,7 +39,7 @@ public abstract class ChromaticPatternStep(
 	/// </summary>
 	public Mask DigitsMask { get; } = digitsMask;
 
-	private protected string BlocksStr => Options.Converter.HouseConverter(Blocks.Aggregate(@delegate.BitMerger));
+	private protected string BlocksStr => Options.Converter.HouseConverter(HouseMask.Create(Blocks));
 
 	private protected string CellsStr => Options.Converter.CellConverter(Pattern);
 

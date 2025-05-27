@@ -173,9 +173,6 @@ public sealed class AlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void GetLoopConclusions(in Grid grid, ReadOnlySpan<Link> links, ref ConclusionSet conclusions)
 	{
-		// An example with 19 eliminations:
-		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
-
 		// VARIABLE_DECLARATION_BEGIN
 		_ = grid is { CandidatesMap: var __CandidatesMap };
 		// VARIABLE_DECLARATION_END

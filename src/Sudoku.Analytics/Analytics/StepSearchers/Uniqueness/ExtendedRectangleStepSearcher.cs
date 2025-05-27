@@ -272,11 +272,6 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		bool isFatType
 	)
 	{
-		// Test examples:
-		// Cannibalism
-		// .3.1....+21...5...9..4..8..+1+3+15.2.8.+6+46.+8+1..+232..36..1.7.+1....6..9+3..12...+42.7.+1.8:611 913 517 418 428 631 537 338 467 569 576 477 577 581 588 596 996 598
-		// +53..4+9.6.84.+6.+7.95...2.5..+4..43.85..3..+5.+4..9.+589.14+3.+4+2.7.3.+5.78+5+4.+6.23.6+3.5+2.4.:113 117 133 135 137 142 153 253 157 177 179 197 897
-
 		foreach (var isCannibalism in (false, true))
 		{
 			// Iterate on each shared house.

@@ -227,9 +227,6 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		// Test examples:
-		// .5.+1+2+6+39+81+6+9+3+5+8+2+74+3+824796+1+5..+8735..+6.3.6+41.8.+6..+9+8+2.+5+38...6...9..6.1.8...23+89.56+1:441 751 773 476 481 781
-
 		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
 		if (!BitOperations.IsPow2(mask))
 		{
@@ -294,9 +291,6 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		// Test examples:
-		// .1..69+2...8.153.+4.....+7.1......4+1.25+17..28+493...3+9..6+152+7+9+1+6+3+8+4.31.8..724.8.+3.+5+1.:727 231 632 932 233 333 533
-
 		var notSatisfiedType3 = false;
 		foreach (var cell in extraCellsMap)
 		{

@@ -42,13 +42,6 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	[InterceptorMethodCaller]
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
-		// Test examples:
-		// Normal type
-		// 8+7+14..6..5+42...7..+93+6+8+57+42+1.28.7.+3.....3.6+2....+3+21.54..1.7..+93.+3.9...8+72.+87..3+1.4:915 919 924 929 641 946 948 958 959 669 475 675 476 584 694
-		//
-		// A^nLS Blossom
-		// 65.9....4..2.......18..63...957.........6......+6..125..+643..59.+5.+1+6..7..3+7+9..2.86:129 239 845 847 751 352 856 465 865 869 288
-
 		if (Solution.IsUndefined)
 		{
 			return null;

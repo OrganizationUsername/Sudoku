@@ -320,7 +320,7 @@
 8+2+6.374+1...5...+6.8...6...2+3+41..2..5+6..8+1693+4..+63..+4.+816+8.........4..+68...9+2..5+1+64:921 135 935 937 744 561 761 767 974 977 779 381 781 785 589
 
 #
-# Grouped Continuous Nice Loop + Almost Unique Rectangle, with extra eliminations
+# Grouped Continuous Nice Loop + Almost Unique Rectangle (Single-side external strong link), with extra eliminations
 #
 4.........2..5...6..8..23...9..8.7....59.+7.6.7+8.3.4..2.7..4.6....3..1..91......8.:548 549 167 168 695
 

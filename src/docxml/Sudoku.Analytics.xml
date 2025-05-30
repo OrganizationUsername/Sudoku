@@ -7977,6 +7977,53 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.Hub.EliminationCalculator.UniqueRectangle.GetConclusions2(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+            </summary>
+            <param name="cells">Indicates the cells to be checked.</param>
+            <param name="map1">Indicates the map 1 in the node.</param>
+            <param name="map2">Indicates the map 2 in the node.</param>
+            <param name="comparer">Digits used in pattern.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances found.</returns>
+            <remarks>
+            <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+            <para>
+            Suppose the pattern:
+            <code><![CDATA[
+            ab  | abx
+            abc | aby   a
+            ]]></code>
+            (suppose digit <c>a</c> can only be filled in 3 cells in the second block,
+            digit <c>b</c> can only be filled in 2 cells in the second block,
+            and <c>x</c> and <c>y</c> are extra digits, no matter what digits are here, but not <c>c</c>)
+            The two cases are:
+            <code><![CDATA[
+            .------------------------------.     .-------------------------------.
+            |         Missing  (c)         |     |         Missing  (a)          |
+            |----------.---------.---------|     |----------.----------.---------|
+            | a  .  .  | b  .  . | .  .  . |     | ab .  .  | ab  .  . | .  .  . |
+            | b  .  .  | y  .  a | .  .  . |     | c  .  .  | ab  .  . | .  .  . |
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+            |----------+---------+---------|     |----------+----------+---------|
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . | 
+            | .  .  .  | .  .  . | .  .  . |  &  | .  .  .  | .   .  . | .  .  . |
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+            |----------+---------+---------|     |----------+----------+---------|
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+            | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+            '----------'---------'---------'     '----------'----------'---------'
+            ]]></code>
+            For the first case, <c>b</c> must be filled into cell <c>abx</c>, and the pattern will be generalized;
+            while for the second case, a hidden pair will be found in cells <c>abx</c> and <c>aby</c>.
+            </para>
+            <para>
+            Therefore, both cases can eliminate <c>x</c> digits appeared in cell <c>abx</c>.
+            </para>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Hub.EmptyRectangle">
             <summary>
             Represents empty rectangle rule.
@@ -33902,6 +33949,15 @@
             </summary>
         </member>
         <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleDifferentDigitChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleDifferentDigitChainingRule,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Construction.Components.Link},Sudoku.Concepts.ConclusionSet@)">
+            <inheritdoc/>
+            <!-- Nothing inserts here -->
+        </member>
+        <member name="T:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSingleSideExternalChainingRule_GetLoopConclusions_Intercepted">
+            <summary>
+            Interceptor method that will replace implementation on such referenced method invocation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Runtime.InterceptorServices.Generated.__UniqueRectangleSingleSideExternalChainingRule_GetLoopConclusions_Intercepted.GetLoopConclusions(Sudoku.Analytics.Construction.Chaining.Rules.UniqueRectangleSingleSideExternalChainingRule,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Construction.Components.Link},Sudoku.Concepts.ConclusionSet@)">
             <inheritdoc/>
             <!-- Nothing inserts here -->
         </member>

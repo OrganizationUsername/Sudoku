@@ -114,6 +114,209 @@ public partial class Hub
 				}
 				return result.AsSpan();
 			}
+
+			/// <summary>
+			/// Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+			/// </summary>
+			/// <param name="cells">Indicates the cells to be checked.</param>
+			/// <param name="map1">Indicates the map 1 in the node.</param>
+			/// <param name="map2">Indicates the map 2 in the node.</param>
+			/// <param name="comparer">Digits used in pattern.</param>
+			/// <param name="grid">The grid to be checked.</param>
+			/// <returns>A list of <see cref="Conclusion"/> instances found.</returns>
+			/// <remarks>
+			/// <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+			/// <para>
+			/// Suppose the pattern:
+			/// <code><![CDATA[
+			/// ab  | abx
+			/// abc | aby   a
+			/// ]]></code>
+			/// (suppose digit <c>a</c> can only be filled in 3 cells in the second block,
+			/// digit <c>b</c> can only be filled in 2 cells in the second block,
+			/// and <c>x</c> and <c>y</c> are extra digits, no matter what digits are here, but not <c>c</c>)
+			/// The two cases are:
+			/// <code><![CDATA[
+			/// .------------------------------.     .-------------------------------.
+			/// |         Missing  (c)         |     |         Missing  (a)          |
+			/// |----------.---------.---------|     |----------.----------.---------|
+			/// | a  .  .  | b  .  . | .  .  . |     | ab .  .  | ab  .  . | .  .  . |
+			/// | b  .  .  | y  .  a | .  .  . |     | c  .  .  | ab  .  . | .  .  . |
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+			/// |----------+---------+---------|     |----------+----------+---------|
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . | 
+			/// | .  .  .  | .  .  . | .  .  . |  &  | .  .  .  | .   .  . | .  .  . |
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+			/// |----------+---------+---------|     |----------+----------+---------|
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+			/// | .  .  .  | .  .  . | .  .  . |     | .  .  .  | .   .  . | .  .  . |
+			/// '----------'---------'---------'     '----------'----------'---------'
+			/// ]]></code>
+			/// For the first case, <c>b</c> must be filled into cell <c>abx</c>, and the pattern will be generalized;
+			/// while for the second case, a hidden pair will be found in cells <c>abx</c> and <c>aby</c>.
+			/// </para>
+			/// <para>
+			/// Therefore, both cases can eliminate <c>x</c> digits appeared in cell <c>abx</c>.
+			/// </para>
+			/// </remarks>
+			public static ReadOnlySpan<Conclusion> GetConclusions2(
+				in CellMap cells,
+				in CandidateMap map1,
+				in CandidateMap map2,
+				Mask comparer,
+				in Grid grid
+			)
+			{
+				// Check whether the extra node is inside the block of one pair of UR cells.
+				// If in line, no eliminations can be found because there's not an intersection can be created.
+				var pairs = from cell in cells group cell by cell.ToHouse(HouseType.Block);
+
+				// Iterate two states.
+				var result = new HashSet<Conclusion>();
+				foreach (ref readonly var mapPair in ((map1, map2), (map2, map1)))
+				{
+					ref readonly var internalSide = ref mapPair.Item1;
+					ref readonly var externalSide = ref mapPair.Item2;
+
+					// Check whether two maps only hold one digit for each.
+					var internalSideDigit = BitOperations.TrailingZeroCount(internalSide.Digits);
+					var externalSideDigit = BitOperations.TrailingZeroCount(externalSide.Digits);
+					if (internalSideDigit == FallbackConstants.@int || externalSideDigit == FallbackConstants.@int)
+					{
+						continue;
+					}
+
+					// Check whether the first map is inside one pair of UR cells, and the other map is not.
+					var internalSideCells = internalSide.Cells;
+					var externalSideCells = externalSide.Cells;
+					var internalSideCellPair = CellMap.Empty;
+					var externalSideCellPair = CellMap.Empty;
+					foreach (ref readonly var pair in pairs)
+					{
+						var pairCells = pair.Values;
+						if ((pair.Values & internalSideCells) == internalSideCells)
+						{
+							internalSideCellPair = pairCells;
+						}
+						if ((pair.Values & externalSideCells) == externalSideCells)
+						{
+							externalSideCellPair = pairCells;
+						}
+					}
+					if (!internalSideCellPair || !!externalSideCellPair)
+					{
+						// Invalid pair.
+						continue;
+					}
+
+					// Now 'internalSideCellPair' is the pair of cells in UR cells, which are in a same block,
+					// including all cells from 'internalSide.Values'.
+					// Now we should assume two sides, to determine the eliminations can be raised.
+
+					// Case 1: Assign internal node with true, and determine which cells form hidden pairs.
+					var internalNodeElims = CandidateMap.Empty;
+					foreach (var cell in cells & ~internalSideCells)
+					{
+						foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~comparer))
+						{
+							internalNodeElims.Add(cell * 9 + digit);
+						}
+					}
+
+					// Case 2: Assign external node with true, and determine which cells are naked singles.
+					var externalNodeElims = CandidateMap.Empty;
+					foreach (var candidate in externalSide)
+					{
+						var cell = candidate / 9;
+						var digit = candidate % 9;
+
+						// Check intersection of peers of 'cell' and 'internalSideCells', to know which cell is filled with 'a'.
+						switch (internalSideCells & PeersMap[cell])
+						{
+							// No intersection found. Sketch:
+							//
+							//  abc | abX
+							//  abc | abY
+							// -----+-----
+							//      | a
+							//
+							// The pattern doesn't contain eliminations.
+							case []:
+							// There's more intersection cells. Sketch:
+							//
+							//  abc | ab
+							//  abc | ab
+							// -----+----
+							//  a   |
+							//
+							// The pattern doesn't consider for eliminations now due to complexity.
+							default:
+							{
+								goto FastFail;
+							}
+
+							// There's one intersection cell. Sketch:
+							//
+							//  abc | abX
+							//  abc | abY  a
+							// -----'--------
+							//
+							// The pattern can form elimination.
+							case [var abcCellCanSeeExternalCell]:
+							{
+								// Check whether the intersection cell 'abcCellCanSeeExternalCell' only contains one extra digit.
+								var digitsMaskOnAbcCell = (Mask)(grid.GetCandidates(abcCellCanSeeExternalCell) & ~comparer);
+								if (BitOperations.TrailingZeroCount(digitsMaskOnAbcCell) == digit)
+								{
+									// Invalid.
+									goto FastFail;
+								}
+
+								// We can know that the cell can be filled only 'b' now.
+								// Therefore, the other cell in 'internalSideCells' can only be filled with 'a'.
+								// Now check for the other two cells 'abX' and 'abY'.
+								var theOtherTwoCells = cells & ~internalSideCellPair;
+								var abyCells = theOtherTwoCells & PeersMap[abcCellCanSeeExternalCell];
+								var abxCells = theOtherTwoCells & ~abyCells;
+
+								// Because of assigning 'b' into 'abcCellCanSeeExternalCell',
+								// we can know that two cells 'abcCellCanSeeExternalCell' and external cell form a hidden pair now.
+								// Therefore, the house of those two cells cannot fill with digits 'a' and 'b',
+								// and the two cells cannot be filled with the other digits of 'a' or 'b'.
+								if (abxCells is not [var abxCell])
+								{
+									goto FastFail;
+								}
+
+								foreach (var otherDigit in (Mask)(grid.GetCandidates(abxCell) & ~comparer))
+								{
+									externalNodeElims.Add(abxCell * 9 + otherDigit);
+								}
+								break;
+							}
+						}
+					}
+
+					// Determine intersection of eliminations, to know which candidates can be eliminated from both cases.
+					var elimMap = internalNodeElims & externalNodeElims;
+					if (!elimMap)
+					{
+						continue;
+					}
+
+					// Whoa! What a good message!
+					foreach (var candidate in elimMap)
+					{
+						result.Add(new(Elimination, candidate));
+					}
+
+				FastFail:
+					;
+				}
+
+				return result.AsReadOnlySpan();
+			}
 		}
 	}
 }

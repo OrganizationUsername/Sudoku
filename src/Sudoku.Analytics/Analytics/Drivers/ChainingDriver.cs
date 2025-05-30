@@ -364,6 +364,7 @@ internal static partial class ChainingDriver
 		typeof(LockedCandidatesChainingRule),
 		typeof(UniqueRectangleSameDigitChainingRule),
 		typeof(UniqueRectangleDifferentDigitChainingRule),
+		typeof(UniqueRectangleSingleSideExternalChainingRule),
 		DefaultBehavior = InterceptorPolymorphicBehavior.DoNothingOrReturnDefault)]
 	private static Conclusion[] CollectChainConclusions(NamedChain pattern, in Grid grid, ChainingRuleCollection supportedRules)
 	{

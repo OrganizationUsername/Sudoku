@@ -317,6 +317,60 @@ public partial class Hub
 
 				return result.AsReadOnlySpan();
 			}
+
+			/// <summary>
+			/// Try to get extra eliminations produced by strong links inside a Unique Rectangle pattern, in a loop.
+			/// </summary>
+			/// <param name="cells">Indicates the cells to be checked.</param>
+			/// <param name="map1">Indicates the map 1 in the node.</param>
+			/// <param name="map2">Indicates the map 2 in the node.</param>
+			/// <param name="comparer">Digits used in pattern.</param>
+			/// <param name="grid">The grid to be checked.</param>
+			/// <returns>A list of <see cref="Conclusion"/> instances found.</returns>
+			/// <remarks>
+			/// <para>Checking this would be tough. The basic rule is to assume both sides, and find intersection.</para>
+			/// <para>
+			/// Suppose the pattern:
+			/// <code><![CDATA[
+			/// a  abw | aby
+			///    abx | abz  b
+			/// ]]></code>
+			/// (strong links of <c>b</c> in block 1, and <c>a</c> in block 2)
+			/// The two cases are:
+			/// <code><![CDATA[
+			/// .-----------------------------.     .-----------------------------.
+			/// |         Missing (a)         |     |         Missing (b)         |
+			/// |---------.---------.---------|     |---------.---------.---------|
+			/// | .  .  b | a  .  . | .  .  . |     | a  .  w | b  .  . | .  .  . |
+			/// | .  .  a | z  .  b | .  .  . |     | .  .  b | a  .  . | .  .  . |
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// |---------+---------+---------|     |---------+---------+---------|
+			/// | .  .  . | .  .  . | .  .  . |  &  | .  .  . | .  .  . | .  .  . | 
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// |---------+---------+---------|     |---------+---------+---------|
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// | .  .  . | .  .  . | .  .  . |     | .  .  . | .  .  . | .  .  . |
+			/// '---------'---------'---------'     '---------'---------'---------'
+			/// ]]></code>
+			/// Because both cases don't cover other digits (not <c>a</c> or <c>b</c>) from <c>abx</c> and <c>aby</c>,
+			/// so they can be eliminated.
+			/// </para>
+			/// <para>
+			/// 
+			/// </para>
+			/// </remarks>
+			public static ReadOnlySpan<Conclusion> GetConclusions3(
+				in CellMap cells,
+				in CandidateMap map1,
+				in CandidateMap map2,
+				Mask comparer,
+				in Grid grid
+			)
+			{
+				throw new NotImplementedException();
+			}
 		}
 	}
 }

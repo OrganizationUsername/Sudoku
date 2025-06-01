@@ -7,7 +7,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Fat Ring</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_FatRingStepSearcher", Technique.FatRing)]
+[StepSearcher(
+	"StepSearcherName_FatRingStepSearcher",
+	Technique.FatRing, Technique.XyzLoop, Technique.GroupedXyzLoop)]
 public sealed partial class FatRingStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -157,7 +159,8 @@ public sealed partial class FatRingStepSearcher : StepSearcher
 									column,
 									0,
 									allDigitsMask,
-									0
+									0,
+									Technique.None
 								);
 								if (context.OnlyFindOne)
 								{
@@ -247,9 +250,18 @@ public sealed partial class FatRingStepSearcher : StepSearcher
 									context.Options,
 									row,
 									column,
-									canceledHousesDictionary.Values.Aggregate(static (interim, next) => interim | next),
+									Mask.Create(canceledHousesDictionary.Values),
 									allDigitsMask,
-									digitsCanAppearTwiceOrMoreMask
+									digitsCanAppearTwiceOrMoreMask,
+									(allCells, canceledHousesDictionary.First()) switch
+									{
+										({ Count: not 3 }, _) => Technique.None,
+										(_, var (d, c)) => (HousesMap[c] & CandidatesMap[d]).Count switch
+										{
+											> 2 => Technique.GroupedXyzLoop,
+											_ => Technique.XyzLoop
+										}
+									}
 								);
 								if (context.OnlyFindOne)
 								{

@@ -13514,8 +13514,13 @@
             <param name="blocks"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.Blocks" path="/summary"/></param>
             <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.DigitsMask" path="/summary"/></param>
             <param name="digitsCanAppearTwiceOrMore"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.DigitsCanAppearTwiceOrMore" path="/summary"/></param>
+            <param name="_xyzLoopReinterpretedTechnique">
+            Indicates the technique that the current fat ring can be reinterpreted.
+            If the fat ring cannot be reinterpreted as an XYZ-Loop or its grouped version,
+            this value should be <see cref="F:Sudoku.Categorization.Technique.None"/>.
+            </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FatRingStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.FatRingStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Int16,System.Int16,Sudoku.Categorization.Technique)">
             <summary>
             Provides with a step that is a <b>Fat Ring</b> technique.
             </summary>
@@ -13527,6 +13532,11 @@
             <param name="blocks"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.Blocks" path="/summary"/></param>
             <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.DigitsMask" path="/summary"/></param>
             <param name="digitsCanAppearTwiceOrMore"><inheritdoc cref="P:Sudoku.Analytics.Steps.FatRingStep.DigitsCanAppearTwiceOrMore" path="/summary"/></param>
+            <param name="_xyzLoopReinterpretedTechnique">
+            Indicates the technique that the current fat ring can be reinterpreted.
+            If the fat ring cannot be reinterpreted as an XYZ-Loop or its grouped version,
+            this value should be <see cref="F:Sudoku.Categorization.Technique.None"/>.
+            </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FatRingStep.BaseDifficulty">
             <inheritdoc/>

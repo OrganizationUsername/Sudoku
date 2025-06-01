@@ -830,6 +830,11 @@
             <param name="bottomRight">The bottom-right point.</param>
             <returns>The rectangle.</returns>
         </member>
+        <member name="T:System.Drawing.RectangleOrRectangleFExtensions.">
+            <summary>
+            Provides extension members on <see cref="T:System.Drawing.RectangleF"/>.
+            </summary>
+        </member>
         <member name="M:System.Drawing.RectangleOrRectangleFExtensions..Zoom(System.Single)">
             <summary>
             Zoom in or out the rectangle by the specified offset.

@@ -5,7 +5,7 @@ namespace System.Drawing;
 /// </summary>
 /// <seealso cref="Point"/>
 /// <seealso cref="PointF"/>
-internal static class PointOrPointFExtensions
+public static class PointOrPointFExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Point"/>.

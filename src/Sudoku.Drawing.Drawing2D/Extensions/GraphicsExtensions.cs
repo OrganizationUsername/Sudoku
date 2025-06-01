@@ -4,7 +4,7 @@ namespace System.Drawing;
 /// Provides with extension methods on <see cref="Graphics"/>.
 /// </summary>
 /// <seealso cref="Graphics"/>
-internal static class GraphicsExtensions
+public static class GraphicsExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Graphics"/>.

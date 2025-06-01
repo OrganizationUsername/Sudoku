@@ -4,7 +4,7 @@ namespace System.Drawing;
 /// Provides with extension methods on <see cref="Color"/>.
 /// </summary>
 /// <seealso cref="Color"/>
-internal static class ColorExtensions
+public static class ColorExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Color"/>.

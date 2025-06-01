@@ -5,7 +5,7 @@ namespace System.Drawing;
 /// </summary>
 /// <seealso cref="Rectangle"/>
 /// <seealso cref="RectangleF"/>
-internal static class RectangleOrRectangleFExtensions
+public static class RectangleOrRectangleFExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Rectangle"/>.
@@ -67,6 +67,9 @@ internal static class RectangleOrRectangleFExtensions
 		}
 	}
 
+	/// <summary>
+	/// Provides extension members on <see cref="RectangleF"/>.
+	/// </summary>
 	extension(RectangleF @this)
 	{
 		/// <summary>

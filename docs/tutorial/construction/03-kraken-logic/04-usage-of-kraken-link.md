@@ -34,7 +34,7 @@ description: Usage of Kraken Link
 
 ## 例子 2：毛边摩天楼构造链 <a href="#example-2" id="example-2"></a>
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>毛边摩天楼构造删数并延长</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0460.png" alt=""><figcaption><p>毛边摩天楼构造删数并延长</p></figcaption></figure>
 
 如左图所示。当 `r2c36(3)` 同为假的时候，我们会有摩天楼，并得到 `r9c1 <> 3` 的结论。得到这个删数因为无法用于后续的结论析取（联立后得出删数结论），所以我们继续延长，和前面分步那样继续延伸一下。
 
@@ -42,7 +42,7 @@ description: Usage of Kraken Link
 
 也就是说，当毛刺 `r2c36(3)` 同假时，有摩天楼成立并最终产生 `r5c2(1)` 的删数结论。这是这一个情况。下面我们来看毛刺不同假的情况。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>强毛边构造出异数链</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0461.png" alt="" width="375"><figcaption><p>强毛边构造出异数链</p></figcaption></figure>
 
 如图所示。当强毛边成立时有这么一条链：
 
@@ -56,33 +56,33 @@ description: Usage of Kraken Link
 
 ## 例子 3：毛边伪数组构造链 <a href="#example-3" id="example-3"></a>
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>毛边伪数组</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0462.png" alt="" width="375"><figcaption><p>毛边伪数组</p></figcaption></figure>
 
 如图所示。如果我们忽略 `r3c6(4)` 和 `r6c6(9)` 两个候选数的话，此时 1、2、3、7 四个数字在 `r356c6` 和 `r5c5` 四个单元格里将构成伪数组结构，但是不能用于删数，因为 7 这个数字的摆放实在是有点“毒辣”。于是我们还是借用前一个例子那样，延长推理。将数字 7 考虑用强链串起来。
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption><p>伪数组构造强链关系，引出连续环</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0463.png" alt="" width="375"><figcaption><p>伪数组构造强链关系，引出连续环</p></figcaption></figure>
 
 如图所示。于是我们就有这样一条链结构，头尾成环。此环可以删除 `r2c5(7)`。
 
 这是当两个毛刺同为假的情况。如果毛刺不同假，则构造强链毛边关系，于是我们又可以找到这么一条链：
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption><p>强毛边构造的毛刺数组链</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0464.png" alt="" width="375"><figcaption><p>强毛边构造的毛刺数组链</p></figcaption></figure>
 
 如图所示。当不同假时我们有这个链构成，于是删数仍然囊括 `r2c5(7)`。所以这个题的结论就是 `r2c5 <> 7`。
 
 ## 例子 4：毛边对交空矩形构造链 <a href="#example-4" id="example-4"></a>
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt="" width="375"><figcaption><p>毛边对交空矩形</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0465.png" alt="" width="375"><figcaption><p>毛边对交空矩形</p></figcaption></figure>
 
 如图所示。如果我们忽略 `r8c5(8)` 和 `r9c9(4)` 的话，此时我们可以利用 `r6c7(49)` 和 `r8c5(49)` 配合 `b9` 将构成对交空矩形结构。还记得这个技巧吗？在之前我们介绍过，它的本质逻辑是串起来的区块环。所以这个技巧可以产生的删数是 `r8c2(4)`。
 
 不过这个删数没有用，后续推理无法用这个数。所以我们需要延长。
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="375"><figcaption><p>利用待定数组延长</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0466.png" alt="" width="375"><figcaption><p>利用待定数组延长</p></figcaption></figure>
 
 如图所示。于是我们可以得到 `r2c2 <> 1` 的结论。这是毛刺 `r8c5(8)` 和 `r9c9(4)` 同假的情况。
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt="" width="375"><figcaption><p>强毛边构造异数链</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0467.png" alt="" width="375"><figcaption><p>强毛边构造异数链</p></figcaption></figure>
 
 如图所示。当毛刺不同假时，我们可以构造出强毛边并得到这个异数链。这个异数链头尾也可以删除 `r2c2(1)`。
 

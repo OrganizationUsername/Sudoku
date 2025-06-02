@@ -88,4 +88,12 @@ description: Usage of Kraken Link
 
 所以，这个两个情况均可删除 `r2c2(1)`，因此题的结论就是 `r2c2 <> 1`。
 
-至此，我们就把毛边的基础内容也全部介绍完了。下一节我们将探讨毛刺环和毛边环的删数。
+## 例子 5：毛边显性数对构造链 <a href="#example-5" id="example-5"></a>
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption><p>毛刺同假的情况</p></figcaption></figure>
+
+如图所示，我们把 `r8c2(6)` 和 `r9c2(7)` 视为毛刺时，同假则形成 3 和 8 的显性数对，于是可以找到这么一条链，并得到最终 `r9c5(7)` 为真的结果。
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>毛刺不同假的情况</p></figcaption></figure>
+
+如图所示。当毛刺不同假时引出强链关系，于是我们可以构造出图中的环结构，也可以删除 `r9c3(7)`。所以这个题的结论就是 `r9c3 <> 7`。

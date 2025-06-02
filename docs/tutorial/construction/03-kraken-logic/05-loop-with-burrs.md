@@ -66,7 +66,7 @@ description: Loop with Burrs
 
 我记得我在讲环的时候说过一点。欠一数对其实是一个区块环的结构。这里欠一数对的完整连接方式被我们省略了（我们只保留了图中的异数弱链关系），所以才导致看不懂的。其实他的完整走法是这样的：
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>弱链关系可以这么展开</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0474.png" alt="" width="375"><figcaption><p>弱链关系可以这么展开</p></figcaption></figure>
 
 如图所示。当这么展开后我们就知道弱链多出来了哪里：`r1c1(1)` 此时为真，所以 `r1c1(5)` 为假，所以弱链关系经过了 `r1c1`；而 `r2c7(1)` 为真时，可以得到 `r2c1(1)` 为假，所以弱链关系用到了 `r2`。这便是为什么删数多了两个看起来不太好懂的地方。
 

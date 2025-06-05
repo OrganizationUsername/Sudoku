@@ -107,6 +107,9 @@
   * [毛刺的基本推理](construction/03-kraken-logic/01-reasoning-of-burr.md)
   * [毛刺的使用](construction/03-kraken-logic/02-usages-of-burr.md)
   * [毛边的基本推理](construction/03-kraken-logic/03-reasoning-of-kraken-link.md)
+  * [毛边的使用](construction/03-kraken-logic/04-usage-of-kraken-link.md)
+  * [毛刺环和毛边环](construction/03-kraken-logic/05-kraken-burred-loop-and-kraken-linked-loop.md)
+  * [毛刺、毛边的由来历史和翻译](construction/03-kraken-logic/06-naming-and-history-of-kraken-logic.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

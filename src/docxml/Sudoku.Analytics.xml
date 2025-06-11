@@ -2421,13 +2421,13 @@
             <summary>
             Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
             </summary>
-            <param name="lastNode"><inheritdoc/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.NamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)" path="/param[@name='lastNode']"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.#ctor(Sudoku.Analytics.Construction.Components.Node)">
             <summary>
             Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
             </summary>
-            <param name="lastNode"><inheritdoc/></param>
+            <param name="lastNode"><inheritdoc cref="M:Sudoku.Analytics.Construction.Components.NamedChain.#ctor(Sudoku.Analytics.Construction.Components.Node,System.Boolean)" path="/param[@name='lastNode']"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.IsWoodsWing">
             <summary>

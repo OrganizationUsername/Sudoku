@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
 /// </summary>
-/// <param name="lastNode"><inheritdoc/></param>
+/// <param name="lastNode"><inheritdoc cref="NamedChain(Node, bool)" path="/param[@name='lastNode']"/></param>
 [TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
 public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNode, false)
 {
@@ -81,7 +81,7 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 		&& Links is [
 			var a and ({ GroupedLinkPattern: AlmostLockedSetPattern } or { IsBivalueCellLink: true }),
 			_,
-			{ IsStrictlyGrouped: true },
+		{ IsStrictlyGrouped: true },
 			_,
 			var b and ({ GroupedLinkPattern: AlmostLockedSetPattern } or { IsBivalueCellLink: true })
 		]

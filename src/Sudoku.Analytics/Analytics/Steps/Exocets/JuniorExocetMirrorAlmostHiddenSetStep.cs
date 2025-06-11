@@ -47,7 +47,7 @@ public sealed class JuniorExocetMirrorAlmostHiddenSetStep(
 				"Factor_ExocetAlmostHiddenSetSizeFactor",
 				[nameof(SubsetSize)],
 				GetType(),
-				static args => OeisSequences.A002024((int)args![0]!)
+				static args => DifficultyCalculator.OeisSequences.A002024((int)args![0]!)
 			)
 		];
 

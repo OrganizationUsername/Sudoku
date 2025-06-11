@@ -46,7 +46,7 @@ public sealed class BivalueUniversalGraveType2Step(
 				"Factor_BivalueUniversalGraveType2TrueCandidateFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
-				static args => OeisSequences.A002024((int)args![0]!)
+				static args => DifficultyCalculator.OeisSequences.A002024((int)args![0]!)
 			)
 		];
 

@@ -45,7 +45,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 				"Factor_BivalueUniversalGraveMultipleTrueCandidateFactor",
 				[nameof(ICandidateListTrait.CandidateSize)],
 				GetType(),
-				static args => OeisSequences.A002024((int)args![0]!)
+				static args => DifficultyCalculator.OeisSequences.A002024((int)args![0]!)
 			)
 		];
 

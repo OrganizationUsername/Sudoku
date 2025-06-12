@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics.Ranking</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Analytics.Ranking.CellLink">
+            <summary>
+            Represents a cell link.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.CellLink"/> instance.
+            </summary>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.CellLink.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.CellLink.Cell">
+            <summary>
+            Indicates the cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.Equals(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.CellTruth">
+            <summary>
+            Represents a cell truth.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.CellTruth"/> instance.
+            </summary>
+            <param name="cell">The cell.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.CellTruth.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.CellTruth.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.Equals(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.HouseLink">
+            <summary>
+            Represents a house truth.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseLink"/> instance.
+            </summary>
+            <param name="house">Indicataes the house.</param>
+            <param name="digit">Indicates the digit.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseLink.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseLink.House">
+            <summary>
+            Indicates the house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseLink.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.Equals(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.HouseTruth">
+            <summary>
+            Represents a house truth.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseTruth"/> instance.
+            </summary>
+            <param name="house">Indicataes the house.</param>
+            <param name="digit">Indicates the digit.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseTruth.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseTruth.House">
+            <summary>
+            Indicates the house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.HouseTruth.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.Equals(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.PredefinedRankSet">
+            <summary>
+            Represents predefined rank set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.CellTruths">
+            <summary>
+            Indicates all cell truths.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.CellLinks">
+            <summary>
+            Indicates all cell links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.HouseTruths">
+            <summary>
+            Indicates all house truths.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.HouseLinks">
+            <summary>
+            Indicates all house links.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.PredefinedRankSet.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.RankSet">
+            <summary>
+            Represents a rank set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSet.IsTruth">
+            <summary>
+            Indicates whether the rank set is truth. Generally the value is negated from <see cref="P:Sudoku.Analytics.Ranking.RankSet.IsLink"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Ranking.RankSet.IsLink"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSet.IsLink">
+            <summary>
+            Indicates whether the rank set is link. Generally the value is negated from <see cref="P:Sudoku.Analytics.Ranking.RankSet.IsTruth"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Ranking.RankSet.IsTruth"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSet.Type">
+            <summary>
+            Indicates the type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.Equals(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_Equality(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_Inequality(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_GreaterThan(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_LessThan(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_GreaterThanOrEqual(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.op_LessThanOrEqual(Sudoku.Analytics.Ranking.RankSet,Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.RankSetCollection">
+            <summary>
+            Represents a collection of rank sets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetCollection._sets">
+            <summary>
+            Indicates the backing sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Min">
+            <summary>
+            Indicates the minimal rank set.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when there's no elements in the collection.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Max">
+            <summary>
+            Indicates the maximal rank set.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when there's no elements in the collection.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ICollection{Sudoku#Analytics#Ranking#RankSet}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Comparer">
+            <summary>
+            Represents the comparer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.CopyTo(Sudoku.Analytics.Ranking.RankSet[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Add(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Add(`0)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Remove(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Contains(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Equals(Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.CompareTo(Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ICollection{Sudoku#Analytics#Ranking#RankSet}#Add(Sudoku.Analytics.Ranking.RankSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#ExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#IntersectWith(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#UnionWith(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ISet{Sudoku#Analytics#Ranking#RankSet}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Ranking#RankSet}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Ranking.RankSet})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Ranking#RankSet}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#IInfiniteSet{Sudoku#Analytics#Ranking#RankSetCollection,Sudoku#Analytics#Ranking#RankSet}#ExceptWith(Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_BitwiseAnd(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_BitwiseOr(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_ExclusiveOr(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator">
+            <summary>
+            Represents an enumerator object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.#ctor(System.Collections.Generic.SortedSet{Sudoku.Analytics.Ranking.RankSet})">
+            <summary>
+            Represents an enumerator object.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator._enumerator">
+            <summary>
+            Indicates the backing enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_Equality(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_Inequality(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_GreaterThan(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_LessThan(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_GreaterThanOrEqual(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_LessThanOrEqual(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.RankSetType">
+            <summary>
+            Represents a rank set type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetType.CellTruth">
+            <summary>
+            Indicates the cell truth.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetType.HouseTruth">
+            <summary>
+            Indicates the house truth.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetType.CellLink">
+            <summary>
+            Indicates the cell link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetType.HouseLink">
+            <summary>
+            Indicates the house link.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
+            <summary>
+            <para>
+            Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
+            The feature may be subject to breaking changes or removal in a future release.
+            </para>
+            <para>
+            An interceptor is a method which can declaratively substitute a call to an intercept-able method with a call
+            to itself at compile time.
+            This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
+            This provides a limited facility to change the semantics of existing code
+            by adding new code to a compilation (e.g. in a source generator).
+            </para>
+            </summary>
+            <param name="filePath">The required file path.</param>
+            <param name="line">The line.</param>
+            <param name="character">The character position.</param>
+        </member>
+        <member name="M:System.Runtime.CompilerServices.InterceptsLocationAttribute.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            <para>
+            Interceptors are an experimental compiler feature planned to ship in .NET 8 (with support for C# only).
+            The feature may be subject to breaking changes or removal in a future release.
+            </para>
+            <para>
+            An interceptor is a method which can declaratively substitute a call to an intercept-able method with a call
+            to itself at compile time.
+            This substitution occurs by having the interceptor declare the source locations of the calls that it intercepts.
+            This provides a limited facility to change the semantics of existing code
+            by adding new code to a compilation (e.g. in a source generator).
+            </para>
+            </summary>
+            <param name="filePath">The required file path.</param>
+            <param name="line">The line.</param>
+            <param name="character">The character position.</param>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.InterceptsLocationAttribute.FilePath">
+            <summary>
+            Indicates the target file path.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.InterceptsLocationAttribute.Line">
+            <summary>
+            Indicates the line number.
+            </summary>
+        </member>
+        <member name="P:System.Runtime.CompilerServices.InterceptsLocationAttribute.Character">
+            <summary>
+            Indicates the character number.
+            </summary>
+        </member>
+    </members>
+</doc>

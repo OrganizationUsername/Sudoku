@@ -38,7 +38,7 @@ public sealed class NormalDeathBlossomStep(
 				"Factor_BasicDeathBlossomPetalsCountFactor",
 				[nameof(IBranchTrait.BranchesCount)],
 				GetType(),
-				static args => DifficultyCalculator.OeisSequences.A002024((int)args![0]!)
+				static args => DifficultyCalculator.OeisSequences.A002024((int)args[0]!)
 			)
 		];
 

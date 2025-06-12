@@ -52,7 +52,7 @@ public sealed class UniqueMatrixType3Step(
 				"Factor_UniqueMatrixSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

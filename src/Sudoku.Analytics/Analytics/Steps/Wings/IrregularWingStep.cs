@@ -26,7 +26,7 @@ public abstract class IrregularWingStep(ReadOnlyMemory<Conclusion> conclusions, 
 				"Factor_IrregularWingIsGroupedFactor",
 				[nameof(IsGrouped)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 }

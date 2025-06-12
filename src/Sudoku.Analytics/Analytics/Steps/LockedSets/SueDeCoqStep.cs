@@ -120,13 +120,13 @@ public sealed class SueDeCoqStep(
 				"Factor_SueDeCoqIsolatedFactor",
 				[nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)],
 				GetType(),
-				static args => (bool)args![0]! ? 2 : 0
+				static args => (bool)args[0]! ? 2 : 0
 			),
 			Factor.Create(
 				"Factor_SueDeCoqCannibalismFactor",
 				[nameof(IsCannibalism)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

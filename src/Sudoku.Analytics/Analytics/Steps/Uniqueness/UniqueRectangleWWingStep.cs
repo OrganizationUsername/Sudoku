@@ -72,7 +72,7 @@ public sealed class UniqueRectangleWWingStep(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

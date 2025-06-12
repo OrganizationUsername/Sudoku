@@ -88,13 +88,13 @@ public sealed class UniqueRectangleType3Step(
 				"Factor_UniqueRectangleSubsetIsHiddenFactor",
 				[nameof(IPatternType3StepTrait<>.IsHidden)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

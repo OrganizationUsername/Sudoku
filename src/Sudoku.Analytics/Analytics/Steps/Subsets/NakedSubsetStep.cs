@@ -64,13 +64,13 @@ public sealed class NakedSubsetStep(
 				"Factor_NakedSubsetSizeFactor",
 				[nameof(Size)],
 				GetType(),
-				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 }
+				static args => (int)args[0]! switch { 2 => 0, 3 => 6, 4 => 20 }
 			),
 			Factor.Create(
 				"Factor_NakedSubsetIsLockedFactor",
 				[nameof(IsLocked), nameof(Size)],
 				GetType(),
-				static args => ((bool?)args![0]!, (int)args![1]!) switch
+				static args => ((bool?)args[0]!, (int)args[1]!) switch
 				{
 					(true, 2) => -10,
 					(true, 3) => -11,

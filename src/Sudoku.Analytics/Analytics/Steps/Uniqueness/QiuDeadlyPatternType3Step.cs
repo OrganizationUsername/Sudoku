@@ -63,7 +63,7 @@ public sealed class QiuDeadlyPatternType3Step(
 				"Factor_QiuDeadlyPatternSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

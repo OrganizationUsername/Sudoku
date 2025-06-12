@@ -73,13 +73,13 @@ public sealed class UniqueRectangleExternalType4Step(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleExternalType4IsIncompleteFactor",
 				[nameof(IsIncomplete)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

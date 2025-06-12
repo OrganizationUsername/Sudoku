@@ -44,7 +44,7 @@ public sealed class BlossomLoopStep(ReadOnlyMemory<Conclusion> conclusions, View
 				"Factor_BlossomLoopGroupedFactor",
 				[nameof(IsGrouped)],
 				GetType(),
-				static args => (bool)args![0]! ? 2 : 0
+				static args => (bool)args[0]! ? 2 : 0
 			),
 			Factor.Create(
 				"Factor_BlossomLoopGroupedNodeFactor",
@@ -53,7 +53,7 @@ public sealed class BlossomLoopStep(ReadOnlyMemory<Conclusion> conclusions, View
 				static args =>
 				{
 					var result = 0;
-					foreach (var branch in ((BlossomLoop)args![0]!).Values)
+					foreach (var branch in ((BlossomLoop)args[0]!).Values)
 					{
 						foreach (var link in branch.Links)
 						{
@@ -76,7 +76,7 @@ public sealed class BlossomLoopStep(ReadOnlyMemory<Conclusion> conclusions, View
 				"Factor_BlossomLoopLengthFactor",
 				[nameof(Complexity)],
 				GetType(),
-				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args![0]!)
+				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args[0]!)
 			)
 		];
 

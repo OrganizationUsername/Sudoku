@@ -38,7 +38,7 @@ public sealed class ExtendedSubsetPrincipleStep(
 				"Factor_ExtendedSubsetPrincipleSizeFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
-				static args => (int)args![0]! switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 }
+				static args => (int)args[0]! switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 }
 			)
 		];
 

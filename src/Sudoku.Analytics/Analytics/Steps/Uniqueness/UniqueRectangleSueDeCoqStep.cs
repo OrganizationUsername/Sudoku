@@ -125,19 +125,19 @@ public sealed class UniqueRectangleSueDeCoqStep(
 				"Factor_RectangleSueDeCoqIsolatedFactor",
 				[nameof(IsCannibalism), nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)],
 				GetType(),
-				static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0
+				static args => !(bool)args[0]! && (bool)args[1]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_RectangleSueDeCoqCannibalismFactor",
 				[nameof(IsCannibalism)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

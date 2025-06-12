@@ -62,7 +62,7 @@ public sealed class AnonymousDeadlyPatternType3Step(
 				"Factor_AnonymousDeadlyPatternSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

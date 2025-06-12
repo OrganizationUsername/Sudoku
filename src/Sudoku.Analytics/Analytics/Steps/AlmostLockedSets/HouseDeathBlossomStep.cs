@@ -43,7 +43,7 @@ public sealed class HouseDeathBlossomStep(
 				"Factor_HouseDeathBlossomPetalsCountFactor",
 				[nameof(IBranchTrait.BranchesCount)],
 				GetType(),
-				static args => DifficultyCalculator.OeisSequences.A002024((int)args![0]!)
+				static args => DifficultyCalculator.OeisSequences.A002024((int)args[0]!)
 			)
 		];
 

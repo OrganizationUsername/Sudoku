@@ -62,13 +62,13 @@ public sealed class UniqueRectangleRegularWingStep(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleWingSizeFactor",
 				[nameof(Code)],
 				GetType(),
-				static args => (Technique)args![0]! switch
+				static args => (Technique)args[0]! switch
 				{
 					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => 2,
 					Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => 3,

@@ -70,13 +70,13 @@ public sealed class ExtendedRectangleType3Step(
 				"Factor_ExtendedRectangleSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			),
 			Factor.Create(
 				"Factor_ExtendedRectangleCannibalismFactor",
 				[nameof(IsCannibalism)],
 				GetType(),
-				static args => (bool)args![0]! ? 2 : 0
+				static args => (bool)args[0]! ? 2 : 0
 			)
 		];
 

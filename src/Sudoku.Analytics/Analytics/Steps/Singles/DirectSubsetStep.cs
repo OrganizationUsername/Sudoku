@@ -132,13 +132,13 @@ public sealed class DirectSubsetStep(
 				"Factor_DirectSubsetSizeFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
-				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 }
+				static args => (int)args[0]! switch { 2 => 0, 3 => 6, 4 => 20 }
 			),
 			Factor.Create(
 				"Factor_DirectSubsetIsLockedFactor",
 				[nameof(IsNaked), nameof(IsLocked), nameof(Size)],
 				GetType(),
-				static args => (bool)args![0]!
+				static args => (bool)args[0]!
 					? (bool?)args[1]! switch { true => (int)args[2]! switch { 2 => -10, 3 => -11 }, false => 1, _ => 0 }
 					: (bool?)args[1]! switch { true => (int)args[2]! switch { 2 => -12, 3 => -13 }, _ => 0 }
 			)

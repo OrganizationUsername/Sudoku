@@ -77,13 +77,13 @@ public sealed class UniqueRectangleAlmostLockedSetsXzStep(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleAlmostLockedSetsXzIsIncompleteFactor",
 				[nameof(IsIncomplete)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

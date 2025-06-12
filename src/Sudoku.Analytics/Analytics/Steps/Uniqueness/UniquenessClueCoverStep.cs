@@ -61,7 +61,7 @@ public sealed class UniquenessClueCoverStep(
 				"Factor_UniquenessClueCoverExtraCellsFactor",
 				[nameof(IExtraCellListTrait.ExtraCellSize)],
 				GetType(),
-				static args => (int)args![0]! >> 1
+				static args => (int)args[0]! >> 1
 			)
 		];
 

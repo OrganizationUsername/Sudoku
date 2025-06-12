@@ -65,7 +65,7 @@ public abstract class UniqueLoopStep(
 				"Factor_UniqueLoopLengthFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
-				static args => ((int)args![0]! >> 1) - 3
+				static args => ((int)args[0]! >> 1) - 3
 			)
 		];
 

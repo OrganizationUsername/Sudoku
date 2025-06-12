@@ -73,7 +73,7 @@ public sealed class UniqueRectangleBurredSubsetStep(
 				"Factor_UniqueRectangleBurredSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

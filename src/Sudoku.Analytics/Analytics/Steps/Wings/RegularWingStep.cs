@@ -102,13 +102,13 @@ public sealed class RegularWingStep(
 				"Factor_RegularWingSizeFactor",
 				[nameof(Size)],
 				GetType(),
-				static args => (int)args![0]! switch { 3 => 0, 4 => 2, 5 => 4, 6 => 7, 7 => 10, 8 => 13, 9 => 16, _ => 20 }
+				static args => (int)args[0]! switch { 3 => 0, 4 => 2, 5 => 4, 6 => 7, 7 => 10, 8 => 13, 9 => 16, _ => 20 }
 			),
 			Factor.Create(
 				"Factor_RegularWingIncompletenessFactor",
 				[nameof(Code), nameof(IsIncomplete)],
 				GetType(),
-				static args => ((Technique)args![0]!, (bool)args![1]!) switch
+				static args => ((Technique)args[0]!, (bool)args[1]!) switch
 				{
 					(Technique.XyWing, _) => 0,
 					(Technique.XyzWing, _) => 2,

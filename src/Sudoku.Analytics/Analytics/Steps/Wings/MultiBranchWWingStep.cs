@@ -69,7 +69,7 @@ public sealed class MultiBranchWWingStep(
 				"Factor_MultiBranchWWingBranchesCountFactor",
 				[nameof(Size)],
 				GetType(),
-				static args => (int)args![0]! == 3 ? 3 : 0
+				static args => (int)args[0]! == 3 ? 3 : 0
 			)
 		];
 

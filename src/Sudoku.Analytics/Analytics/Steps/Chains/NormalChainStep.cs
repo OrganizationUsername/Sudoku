@@ -68,13 +68,13 @@ public class NormalChainStep(
 				"Factor_ChainLengthFactor",
 				[nameof(Complexity)],
 				GetType(),
-				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args![0]!)
+				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args[0]!)
 			),
 			Factor.Create(
 				"Factor_ChainGroupedFactor",
 				[nameof(IsGrouped)],
 				GetType(),
-				static args => (bool)args![0]! ? 2 : 0
+				static args => (bool)args[0]! ? 2 : 0
 			),
 			Factor.Create(
 				"Factor_ChainGroupedNodeFactor",
@@ -83,7 +83,7 @@ public class NormalChainStep(
 				static args =>
 				{
 					var result = 0;
-					var p = (Chain)args![0]!;
+					var p = (Chain)args[0]!;
 					foreach (var link in p.Links)
 					{
 						result += link.GroupedLinkPattern switch

@@ -69,19 +69,19 @@ public sealed class UniqueRectangleExternalWWingStep(
 				"Factor_UniqueRectangleExternalWWingGuardianFactor",
 				[nameof(IGuardianTrait.GuardianCellsCount)],
 				GetType(),
-				static args => (int)args![0]! >> 1
+				static args => (int)args[0]! >> 1
 			),
 			Factor.Create(
 				"Factor_RectangleIsAvoidableFactor",
 				[nameof(IsAvoidable)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			),
 			Factor.Create(
 				"Factor_UniqueRectangleExternalWWingIsCompleteFactor",
 				[nameof(IsIncomplete)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

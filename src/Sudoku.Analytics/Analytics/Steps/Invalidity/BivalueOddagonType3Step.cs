@@ -53,7 +53,7 @@ public sealed class BivalueOddagonType3Step(
 				"Factor_BivalueOddagonSubsetSizeFactor",
 				[nameof(IExtraCellListTrait.ExtraCellSize)],
 				GetType(),
-				static args => (int)args![0]! >> 1
+				static args => (int)args[0]! >> 1
 			)
 		];
 

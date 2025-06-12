@@ -60,13 +60,13 @@ public sealed class HiddenSubsetStep(
 				"Factor_HiddenSubsetSizeFactor",
 				[nameof(Size)],
 				GetType(),
-				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 }
+				static args => (int)args[0]! switch { 2 => 0, 3 => 6, 4 => 20 }
 			),
 			Factor.Create(
 				"Factor_HiddenSubsetIsLockedFactor",
 				[nameof(IsLocked), nameof(Size)],
 				GetType(),
-				static args => (bool)args![0]! ? (int)args![1]! switch { 2 => -12, 3 => -13 } : 0
+				static args => (bool)args[0]! ? (int)args[1]! switch { 2 => -12, 3 => -13 } : 0
 			)
 		];
 

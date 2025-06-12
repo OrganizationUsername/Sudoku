@@ -53,7 +53,7 @@ public sealed class MultipleForcingChainsStep(
 				"Factor_MultipleForcingChainsGroupedFactor",
 				[nameof(IsGrouped)],
 				GetType(),
-				static args => (bool)args![0]! ? 2 : 0
+				static args => (bool)args[0]! ? 2 : 0
 			),
 			Factor.Create(
 				"Factor_MultipleForcingChainsGroupedNodeFactor",
@@ -62,7 +62,7 @@ public sealed class MultipleForcingChainsStep(
 				static args =>
 				{
 					var result = 0;
-					foreach (var branch in ((MultipleForcingChains)args![0]!).Values)
+					foreach (var branch in ((MultipleForcingChains)args[0]!).Values)
 					{
 						foreach (var link in branch.Links)
 						{
@@ -85,7 +85,7 @@ public sealed class MultipleForcingChainsStep(
 				"Factor_MultipleForcingChainsLengthFactor",
 				[nameof(Complexity)],
 				GetType(),
-				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args![0]!)
+				static args => DifficultyCalculator.Chaining.GetLengthDifficulty((int)args[0]!)
 			)
 		];
 

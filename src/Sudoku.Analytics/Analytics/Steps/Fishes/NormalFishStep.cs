@@ -56,13 +56,13 @@ public sealed class NormalFishStep(
 				"Factor_NormalFishSizeFactor",
 				[nameof(Size)],
 				GetType(),
-				static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 }
+				static args => (int)args[0]! switch { 2 => 0, 3 => 6, 4 => 20 }
 			),
 			Factor.Create(
 				"Factor_NormalFishIsSashimiFactor",
 				[nameof(IsSashimi), nameof(Size)],
 				GetType(),
-				static args => (bool?)args![0]! switch { true => (int)args![1]! switch { 2 or 3 => 3, 4 => 4 }, false => 2, _ => 0 }
+				static args => (bool?)args[0]! switch { true => (int)args[1]! switch { 2 or 3 => 3, 4 => 4 }, false => 2, _ => 0 }
 			)
 		];
 

@@ -65,13 +65,13 @@ public sealed class BivalueUniversalGraveType3Step(
 				"Factor_BivalueUniversalGraveSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			),
 			Factor.Create(
 				"Factor_BivalueUniversalGraveSubsetIsHiddenFactor",
 				[nameof(IPatternType3StepTrait<>.IsHidden)],
 				GetType(),
-				static args => (bool)args![0]! ? 1 : 0
+				static args => (bool)args[0]! ? 1 : 0
 			)
 		];
 

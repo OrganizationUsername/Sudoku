@@ -48,7 +48,7 @@ public abstract class ExtendedRectangleStep(
 				"Factor_ExtendedRectangleSizeFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
-				static args => ((int)args![0]! >> 1) - 2
+				static args => ((int)args[0]! >> 1) - 2
 			)
 		];
 

@@ -52,7 +52,7 @@ public sealed class BorescoperDeadlyPatternType3Step(
 				"Factor_BorescoperDeadlyPatternSubsetSizeFactor",
 				[nameof(IPatternType3StepTrait<>.SubsetSize)],
 				GetType(),
-				static args => (int)args![0]!
+				static args => (int)args[0]!
 			)
 		];
 

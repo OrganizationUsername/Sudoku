@@ -173,31 +173,34 @@ public sealed partial class RankSetCollection :
 				}
 			}
 
-			var rnParts = new List<string>();
-			var cnParts = new List<string>();
-			var bnParts = new List<string>();
-			var rcParts = new List<string>();
-			foreach (var (n, values) in rn)
-			{
-				rnParts.Add($"{n + 1}r{string.Concat([.. from r in values select r + 1])}");
-			}
-			foreach (var (n, values) in cn)
-			{
-				cnParts.Add($"{n + 1}c{string.Concat([.. from c in values select c + 1])}");
-			}
-			foreach (var (n, values) in bn)
-			{
-				bnParts.Add($"{n + 1}b{string.Concat([.. from b in values select b + 1])}");
-			}
-			foreach (var (c, values) in rc)
-			{
-				rcParts.Add($"{c + 1}n{string.Concat([.. from r in values select r + 1])}");
-			}
-
-			var t1 = (string.Join(' ', rcParts) is { Length: not 0 } s ? s : null) is { } w ? $"{w} " : string.Empty;
-			var t2 = (string.Join(' ', bnParts) is { Length: not 0 } t ? t : null) is { } x ? $"{x} " : string.Empty;
-			var t3 = (string.Join(' ', rnParts) is { Length: not 0 } u ? u : null) is { } y ? $"{y} " : string.Empty;
-			var t4 = (string.Join(' ', cnParts) is { Length: not 0 } v ? v : null) is { } z ? $"{z} " : string.Empty;
+			var t1 = (
+				(
+					from pair in rc.ToArray()
+					let c = pair.Key
+					let values = pair.Value
+					select $"{c + 1}n{string.Concat([.. from r in values select r + 1])}"
+				) is { Length: not 0 } rcParts ? string.Join(' ', rcParts) : null) is { } w ? $"{w} " : string.Empty;
+			var t2 = (
+				(
+					from pair in bn.ToArray()
+					let n = pair.Key
+					let values = pair.Value
+					select $"{n + 1}b{string.Concat([.. from b in values select b + 1])}"
+				) is { Length: not 0 } bnParts ? string.Join(' ', bnParts) : null) is { } x ? $"{x} " : string.Empty;
+			var t3 = (
+				(
+					from pair in rn.ToArray()
+					let n = pair.Key
+					let values = pair.Value
+					select $"{n + 1}r{string.Concat([.. from r in values select r + 1])}"
+				) is { Length: not 0 } rnParts ? string.Join(' ', rnParts) : null) is { } y ? $"{y} " : string.Empty;
+			var t4 = (
+				(
+					from pair in cn.ToArray()
+					let n = pair.Key
+					let values = pair.Value
+					select $"{n + 1}c{string.Concat([.. from c in values select c + 1])}"
+				) is { Length: not 0 } cnParts ? string.Join(' ', cnParts) : null) is { } z ? $"{z} " : string.Empty;
 			return $"{t1}{t2}{t3}{t4}".TrimEnd();
 		}
 	}

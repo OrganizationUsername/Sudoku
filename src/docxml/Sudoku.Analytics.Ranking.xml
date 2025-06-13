@@ -625,6 +625,57 @@
             Represents a truth (a set of 9 positions which requires 1 digit can be filled).
             </summary>
         </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Resources.AnalyticsRankingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.ErrorInfo_LinkNotSupportedToFindAvailableRange">
+            <summary>
+              Looks up a localized string similar to Links are not supported to calculate available range..
+            </summary>
+        </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
             <summary>
             <para>

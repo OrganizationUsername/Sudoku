@@ -12,5 +12,5 @@ public abstract class Link : RankSet
 	/// <returns>The candidates.</returns>
 	[DoesNotReturn]
 	public sealed override CandidateMap GetAvailableRange(in Grid grid)
-		=> throw new NotSupportedException("Links are not supported to calculate available range.");
+		=> throw new NotSupportedException(SR.ExceptionMessage("LinkNotSupportedToFindAvailableRange"));
 }

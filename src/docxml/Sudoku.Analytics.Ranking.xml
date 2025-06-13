@@ -200,6 +200,11 @@
             Indicates all cells used.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankPattern.Eliminations">
+            <summary>
+            Indicates eliminations can be found in the current pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankPattern.Candidates">
             <summary>
             Indicates the candidates.

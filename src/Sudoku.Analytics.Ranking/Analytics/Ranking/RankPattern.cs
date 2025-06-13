@@ -42,6 +42,46 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection rankSets)
 	public CellMap Cells => _candidates.Cells;
 
 	/// <summary>
+	/// Indicates eliminations can be found in the current pattern.
+	/// </summary>
+	public CandidateMap Eliminations
+	{
+		get
+		{
+			var result = CandidateMap.Empty;
+			var i = 0;
+			var candidatesMap = _grid.CandidatesMap;
+			foreach (var assignmentGroup in Assignments)
+			{
+				var current = CandidateMap.Empty;
+				foreach (var assignment in assignmentGroup)
+				{
+					var cell = assignment / 9;
+					var digit = assignment % 9;
+					foreach (var otherDigit in (Mask)(_grid.GetCandidates(cell) & ~(1 << digit)))
+					{
+						current.Add(cell * 9 + otherDigit);
+					}
+					foreach (var otherCell in PeersMap[cell] & candidatesMap[digit])
+					{
+						current.Add(otherCell * 9 + digit);
+					}
+				}
+
+				if (i++ == 0)
+				{
+					result |= current;
+				}
+				else
+				{
+					result &= current;
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the candidates.
 	/// </summary>
 	public ref readonly CandidateMap Candidates => ref _candidates;

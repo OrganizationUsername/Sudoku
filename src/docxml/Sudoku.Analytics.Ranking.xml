@@ -200,13 +200,6 @@
             The backing grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Ranking.RankPattern.Rank">
-            <summary>
-            Indicates the rank of the current pattern. If the pattern is unstable
-            (sometimes assignments certain times of digits in the pattern but sometimes not),
-            this property will return <see langword="null"/>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankPattern.Cells">
             <summary>
             Indicates all cells used.
@@ -230,6 +223,13 @@
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0Pattern">
             <summary>
             Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank">
+            <summary>
+            Indicates the rank of the current pattern. If the pattern is unstable
+            (sometimes assignments certain times of digits in the pattern but sometimes not),
+            this property will return <see langword="null"/>.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
@@ -257,6 +257,21 @@
             </summary>
             <param name="grid">The grid.</param>
             <param name="rankSets">The rank sets.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.op_Equality(Sudoku.Analytics.Ranking.RankPattern,Sudoku.Analytics.Ranking.RankPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.op_Inequality(Sudoku.Analytics.Ranking.RankPattern,Sudoku.Analytics.Ranking.RankPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(Sudoku.Analytics.Ranking.RankPattern)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Ranking.RankSet">
             <summary>

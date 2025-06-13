@@ -5,7 +5,10 @@ namespace Sudoku.Analytics.Ranking;
 /// </summary>
 /// <param name="grid">The grid.</param>
 /// <param name="sets">The rank sets.</param>
-public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
+public sealed partial class RankPattern(in Grid grid, params RankSetCollection sets) :
+	IEquatable<RankPattern>,
+	IEqualityOperators<RankPattern, RankPattern, bool>
 {
 	/// <summary>
 	/// Represents candidates.
@@ -15,26 +18,10 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 	/// <summary>
 	/// The backing grid.
 	/// </summary>
+	[EquatableMember]
+	[HashCodeMember]
 	private readonly Grid _grid = grid;
 
-
-	/// <summary>
-	/// Indicates the rank of the current pattern. If the pattern is unstable
-	/// (sometimes assignments certain times of digits in the pattern but sometimes not),
-	/// this property will return <see langword="null"/>.
-	/// </summary>
-	public int? Rank
-	{
-		get
-		{
-			var factAssignmentCountValues = new HashSet<int>();
-			foreach (var l in from assignment in GetAssignments() select assignment.Length)
-			{
-				factAssignmentCountValues.Add(l);
-			}
-			return factAssignmentCountValues.Count == 1 ? Sets.Links.Count - factAssignmentCountValues.First() : null;
-		}
-	}
 
 	/// <summary>
 	/// Indicates all cells used.
@@ -54,6 +41,8 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 	/// <summary>
 	/// Indicates the rank sets.
 	/// </summary>
+	[EquatableMember]
+	[HashCodeMember]
 	public RankSetCollection Sets { get; } = sets;
 
 
@@ -61,6 +50,21 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 	/// Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
 	/// </summary>
 	public bool GetIsRank0Pattern() => GetRank0Sets() == Sets.Links;
+
+	/// <summary>
+	/// Indicates the rank of the current pattern. If the pattern is unstable
+	/// (sometimes assignments certain times of digits in the pattern but sometimes not),
+	/// this property will return <see langword="null"/>.
+	/// </summary>
+	public int? GetRank()
+	{
+		var factAssignmentCountValues = new HashSet<int>();
+		foreach (var l in from assignment in GetAssignments() select assignment.Length)
+		{
+			factAssignmentCountValues.Add(l);
+		}
+		return factAssignmentCountValues.Count == 1 ? Sets.Links.Count - factAssignmentCountValues.First() : null;
+	}
 
 	/// <inheritdoc/>
 	public override string ToString()

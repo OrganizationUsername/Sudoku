@@ -16,6 +16,7 @@ public sealed partial class RankSetCollection :
 	IReadOnlyCollection<RankSet>,
 	IReadOnlySet<RankSet>,
 	ISet<RankSet>,
+	ISelectMethod<RankSetCollection, RankSet>,
 	IToArrayMethod<RankSetCollection, RankSet>
 {
 	/// <summary>
@@ -226,6 +227,19 @@ public sealed partial class RankSetCollection :
 	/// <returns>Links.</returns>
 	public Enumerator EnumerateLinks() => new(_links);
 
+	/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, TResult})"/>
+	public ReadOnlySpan<TResult> Select<TResult>(Func<RankSet, TResult> selector)
+	{
+		var count = Count;
+		var result = new TResult[count];
+		var i = 0;
+		foreach (var set in this)
+		{
+			result[i++] = selector(set);
+		}
+		return result;
+	}
+
 	/// <inheritdoc/>
 	public RankSet[] ToArray() => [.. _truths, .. _links];
 
@@ -324,6 +338,25 @@ public sealed partial class RankSetCollection :
 		foreach (var link in _links)
 		{
 			yield return link;
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<RankSetCollection, RankSet>.Select<TResult>(Func<RankSet, TResult> selector)
+	{
+		foreach (var set in ToArray())
+		{
+			yield return selector(set);
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<RankSetCollection, RankSet>.Select<TResult>(Func<RankSet, int, TResult> selector)
+	{
+		var i = 0;
+		foreach (var set in ToArray())
+		{
+			yield return selector(set, i++);
 		}
 	}
 

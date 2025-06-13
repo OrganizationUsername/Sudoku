@@ -200,11 +200,6 @@
             The backing grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Ranking.RankPattern.IsRank0Pattern">
-            <summary>
-            Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankPattern.Rank">
             <summary>
             Indicates the rank of the current pattern. If the pattern is unstable
@@ -217,11 +212,6 @@
             Indicates all cells used.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Ranking.RankPattern.Eliminations">
-            <summary>
-            Indicates eliminations can be found in the current pattern.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankPattern.Candidates">
             <summary>
             Indicates the candidates.
@@ -232,24 +222,34 @@
             Indicates the grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Ranking.RankPattern.Assignments">
-            <summary>
-            Returns a list of <see cref="T:System.Int32"/> group that describes the valid assignments.
-            </summary>
-            <returns>Valid assignments.</returns>
-        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankPattern.Sets">
             <summary>
             Indicates the rank sets.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Ranking.RankPattern.Rank0Sets">
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0Pattern">
             <summary>
-            Try to find all rank-0 sets.
+            Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminations">
+            <summary>
+            Indicates eliminations can be found in the current pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignments">
+            <summary>
+            Returns a list of <see cref="T:System.Int32"/> group that describes the valid assignments.
+            </summary>
+            <returns>Valid assignments.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0Sets">
+            <summary>
+            Try to find all rank-0 sets.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.BuildCandidates(Sudoku.Concepts.Grid@,Sudoku.Analytics.Ranking.RankSetCollection)">
             <summary>

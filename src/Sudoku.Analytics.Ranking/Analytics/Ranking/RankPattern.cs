@@ -19,11 +19,6 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 
 
 	/// <summary>
-	/// Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
-	/// </summary>
-	public bool IsRank0Pattern => Rank0Sets == Sets.Links;
-
-	/// <summary>
 	/// Indicates the rank of the current pattern. If the pattern is unstable
 	/// (sometimes assignments certain times of digits in the pattern but sometimes not),
 	/// this property will return <see langword="null"/>.
@@ -33,7 +28,7 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 		get
 		{
 			var factAssignmentCountValues = new HashSet<int>();
-			foreach (var l in from assignment in Assignments select assignment.Length)
+			foreach (var l in from assignment in GetAssignments() select assignment.Length)
 			{
 				factAssignmentCountValues.Add(l);
 			}
@@ -47,46 +42,6 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 	public CellMap Cells => _candidates.Cells;
 
 	/// <summary>
-	/// Indicates eliminations can be found in the current pattern.
-	/// </summary>
-	public CandidateMap Eliminations
-	{
-		get
-		{
-			var result = CandidateMap.Empty;
-			var i = 0;
-			var candidatesMap = _grid.CandidatesMap;
-			foreach (var assignmentGroup in Assignments)
-			{
-				var current = CandidateMap.Empty;
-				foreach (var assignment in assignmentGroup)
-				{
-					var cell = assignment / 9;
-					var digit = assignment % 9;
-					foreach (var otherDigit in (Mask)(_grid.GetCandidates(cell) & ~(1 << digit)))
-					{
-						current.Add(cell * 9 + otherDigit);
-					}
-					foreach (var otherCell in PeersMap[cell] & candidatesMap[digit])
-					{
-						current.Add(otherCell * 9 + digit);
-					}
-				}
-
-				if (i++ == 0)
-				{
-					result |= current;
-				}
-				else
-				{
-					result &= current;
-				}
-			}
-			return result;
-		}
-	}
-
-	/// <summary>
 	/// Indicates the candidates.
 	/// </summary>
 	public ref readonly CandidateMap Candidates => ref _candidates;
@@ -97,89 +52,15 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 	public ref readonly Grid Grid => ref _grid;
 
 	/// <summary>
-	/// Returns a list of <see cref="Candidate"/> group that describes the valid assignments.
-	/// </summary>
-	/// <returns>Valid assignments.</returns>
-	public ReadOnlySpan<ReadOnlyMemory<Candidate>> Assignments
-	{
-		get
-		{
-			var result = new List<ReadOnlyMemory<Candidate>>();
-
-			var assignments = CandidateMap.Empty;
-			var fullMap = (Candidate[][])[.. from set in Sets.Truths select set.GetAvailableRange(_grid).ToArray()];
-			var combinations = fullMap.GetExtractedCombinations();
-			foreach (var combination in combinations)
-			{
-				var candidates = combination.AsCandidateMap();
-
-				// Check satisfiability.
-				var areAllRankSetsSatisfied = true;
-				foreach (var rankSet in Sets)
-				{
-					if (!rankSet.IsSatisfied(candidates))
-					{
-						areAllRankSetsSatisfied = false;
-						break;
-					}
-				}
-				if (!areAllRankSetsSatisfied)
-				{
-					continue;
-				}
-
-				// The combination is okay to be added.
-				result.Add(combination);
-			}
-
-			return result.AsSpan();
-		}
-	}
-
-	/// <summary>
 	/// Indicates the rank sets.
 	/// </summary>
 	public RankSetCollection Sets { get; } = sets;
 
+
 	/// <summary>
-	/// Try to find all rank-0 sets.
+	/// Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 sets.
 	/// </summary>
-	public RankSetCollection Rank0Sets
-	{
-		get
-		{
-			RankSetCollection result = [.. Sets.Links];
-			var links = result.Clone();
-
-			var i = 0;
-			foreach (var assignmentGroup in Assignments)
-			{
-				var lightUpLinks = new RankSetCollection();
-				foreach (var assignment in assignmentGroup)
-				{
-					foreach (var set in links)
-					{
-						if (set.ContainsAssignment(assignment))
-						{
-							lightUpLinks.Add(set);
-						}
-					}
-				}
-
-				if (i++ == 0)
-				{
-					result |= lightUpLinks;
-				}
-				else
-				{
-					result &= lightUpLinks;
-				}
-			}
-
-			return result;
-		}
-	}
-
+	public bool GetIsRank0Pattern() => GetRank0Sets() == Sets.Links;
 
 	/// <inheritdoc/>
 	public override string ToString()
@@ -189,6 +70,116 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection sets)
 		var truthsString = string.Join(' ', from truth in truths select truth.ToString());
 		var linksString = string.Join(' ', from link in links select link.ToString());
 		return $"T{truths.Count} = {truthsString}, L{links.Count} = {linksString}";
+	}
+
+	/// <summary>
+	/// Indicates eliminations can be found in the current pattern.
+	/// </summary>
+	public CandidateMap GetEliminations()
+	{
+		var result = CandidateMap.Empty;
+		var i = 0;
+		var candidatesMap = _grid.CandidatesMap;
+		foreach (var assignmentGroup in GetAssignments())
+		{
+			var current = CandidateMap.Empty;
+			foreach (var assignment in assignmentGroup)
+			{
+				var cell = assignment / 9;
+				var digit = assignment % 9;
+				foreach (var otherDigit in (Mask)(_grid.GetCandidates(cell) & ~(1 << digit)))
+				{
+					current.Add(cell * 9 + otherDigit);
+				}
+				foreach (var otherCell in PeersMap[cell] & candidatesMap[digit])
+				{
+					current.Add(otherCell * 9 + digit);
+				}
+			}
+
+			if (i++ == 0)
+			{
+				result |= current;
+			}
+			else
+			{
+				result &= current;
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Returns a list of <see cref="Candidate"/> group that describes the valid assignments.
+	/// </summary>
+	/// <returns>Valid assignments.</returns>
+	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignments()
+	{
+		var result = new List<ReadOnlyMemory<Candidate>>();
+
+		var assignments = CandidateMap.Empty;
+		var fullMap = (Candidate[][])[.. from set in Sets.Truths select set.GetAvailableRange(_grid).ToArray()];
+		var combinations = fullMap.GetExtractedCombinations();
+		foreach (var combination in combinations)
+		{
+			var candidates = combination.AsCandidateMap();
+
+			// Check satisfiability.
+			var areAllRankSetsSatisfied = true;
+			foreach (var rankSet in Sets)
+			{
+				if (!rankSet.IsSatisfied(candidates))
+				{
+					areAllRankSetsSatisfied = false;
+					break;
+				}
+			}
+			if (!areAllRankSetsSatisfied)
+			{
+				continue;
+			}
+
+			// The combination is okay to be added.
+			result.Add(combination);
+		}
+
+		return result.AsSpan();
+	}
+
+	/// <summary>
+	/// Try to find all rank-0 sets.
+	/// </summary>
+	public RankSetCollection GetRank0Sets()
+	{
+		RankSetCollection result = [.. Sets.Links];
+		var links = result.Clone();
+
+		var i = 0;
+		foreach (var assignmentGroup in GetAssignments())
+		{
+			var lightUpLinks = new RankSetCollection();
+			foreach (var assignment in assignmentGroup)
+			{
+				foreach (var set in links)
+				{
+					if (set.ContainsAssignment(assignment))
+					{
+						lightUpLinks.Add(set);
+					}
+				}
+			}
+
+			if (i++ == 0)
+			{
+				result |= lightUpLinks;
+			}
+			else
+			{
+				result &= lightUpLinks;
+			}
+		}
+
+		return result;
 	}
 
 

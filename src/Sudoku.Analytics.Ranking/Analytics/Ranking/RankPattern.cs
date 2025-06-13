@@ -153,7 +153,7 @@ public sealed partial class RankPattern(in Grid grid, params RankSetCollection s
 	/// </summary>
 	public RankSetCollection GetRank0Sets()
 	{
-		RankSetCollection result = [.. Sets.Links];
+		var result = Sets.Links;
 		var links = result.Clone();
 
 		var i = 0;

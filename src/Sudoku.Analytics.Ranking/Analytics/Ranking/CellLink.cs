@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Ranking;
 /// </summary>
 /// <param name="cell">The cell.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class CellLink(Cell cell) : RankSet
+public sealed partial class CellLink(Cell cell) : Link
 {
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.CellLink;

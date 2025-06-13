@@ -192,6 +192,18 @@
         <member name="M:Sudoku.Analytics.Ranking.HouseTruth.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.Analytics.Ranking.Link">
+            <summary>
+            Represents a link (a set of 9 positions which allows at most 1 digit can be filled).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.Link.GetAvailableRange(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find all possible candidates in the current rank set.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The candidates.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Ranking.RankPattern">
             <summary>
             Represents an object that can calculate rank-related information via the specified data.
@@ -617,6 +629,11 @@
         <member name="F:Sudoku.Analytics.Ranking.RankSetType.HouseLink">
             <summary>
             Indicates the house link.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.Truth">
+            <summary>
+            Represents a truth (a set of 9 positions which requires 1 digit can be filled).
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">

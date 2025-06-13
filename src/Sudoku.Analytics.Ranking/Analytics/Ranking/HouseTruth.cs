@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Ranking;
 /// <param name="house">Indicataes the house.</param>
 /// <param name="digit">Indicates the digit.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class HouseTruth(House house, Digit digit) : RankSet
+public sealed partial class HouseTruth(House house, Digit digit) : Truth
 {
 	/// <summary>
 	/// Initializes a <see cref="HouseTruth"/> instance via the specified type, index and digit.

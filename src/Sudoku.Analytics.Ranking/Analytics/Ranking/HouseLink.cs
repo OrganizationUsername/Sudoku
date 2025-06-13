@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Ranking;
 /// <param name="house">Indicataes the house.</param>
 /// <param name="digit">Indicates the digit.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class HouseLink(House house, Digit digit) : RankSet
+public sealed partial class HouseLink(House house, Digit digit) : Link
 {
 	/// <summary>
 	/// Initializes a <see cref="HouseLink"/> instance via the specified type, index and digit.

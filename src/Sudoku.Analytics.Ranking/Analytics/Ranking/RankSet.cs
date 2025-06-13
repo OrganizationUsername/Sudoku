@@ -50,7 +50,7 @@ public abstract partial class RankSet :
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The candidates.</returns>
-	public virtual CandidateMap GetAvailableRange(in Grid grid) => CandidateMap.Empty;
+	public abstract CandidateMap GetAvailableRange(in Grid grid);
 
 	/// <summary>
 	/// Determine whether the specified assignment combination can satisfy the current rank set.

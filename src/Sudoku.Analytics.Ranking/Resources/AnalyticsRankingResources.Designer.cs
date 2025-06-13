@@ -68,5 +68,49 @@ namespace Sudoku.Resources {
                 return ResourceManager.GetString("ErrorInfo_LinkNotSupportedToFindAvailableRange", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string IsNotRank0Pattern {
+            get {
+                return ResourceManager.GetString("IsNotRank0Pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string IsRank0Pattern {
+            get {
+                return ResourceManager.GetString("IsRank0Pattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid:
+        ///{0}
+        ///---
+        ///Pattern: {1}
+        ///Permutation cases count: {2}
+        ///Rank: {3}
+        ///Eliminations: {4}
+        ///Rank-0 sets: {5}
+        ///Is pattern rank-0: {6}.
+        /// </summary>
+        internal static string RankInfo {
+            get {
+                return ResourceManager.GetString("RankInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;Unstable&gt;.
+        /// </summary>
+        internal static string UnstableRank {
+            get {
+                return ResourceManager.GetString("UnstableRank", resourceCulture);
+            }
+        }
     }
 }

@@ -75,6 +75,22 @@ public sealed partial class RankPattern(in Grid grid, params RankSetCollection s
 	}
 
 	/// <summary>
+	/// Gets the full string of the current pattern, including its details (rank, eliminations and so on).
+	/// </summary>
+	/// <returns>The string.</returns>
+	public string ToFullString()
+		=> string.Format(
+			SR.Get("RankInfo"),
+			_grid.ToString("@:"),
+			ToString(),
+			GetAssignments().Length,
+			GetRank()?.ToString() ?? SR.Get("UnstableRank"),
+			GetEliminations().ToString(),
+			GetRank0Sets().ToString(),
+			SR.Get(GetIsRank0Pattern() ? "IsRank0Pattern" : "IsNotRank0Pattern")
+		);
+
+	/// <summary>
 	/// Indicates eliminations can be found in the current pattern.
 	/// </summary>
 	public CandidateMap GetEliminations()

@@ -264,6 +264,12 @@
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToFullString">
+            <summary>
+            Gets the full string of the current pattern, including its details (rank, eliminations and so on).
+            </summary>
+            <returns>The string.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminations">
             <summary>
             Indicates eliminations can be found in the current pattern.
@@ -686,6 +692,34 @@
         <member name="P:Sudoku.Resources.AnalyticsRankingResources.ErrorInfo_LinkNotSupportedToFindAvailableRange">
             <summary>
               Looks up a localized string similar to Links are not supported to calculate available range..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.IsNotRank0Pattern">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.IsRank0Pattern">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.RankInfo">
+             <summary>
+               Looks up a localized string similar to Grid:
+            {0}
+            ---
+            Pattern: {1}
+            Permutation cases count: {2}
+            Rank: {3}
+            Eliminations: {4}
+            Rank-0 sets: {5}
+            Is pattern rank-0: {6}.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsRankingResources.UnstableRank">
+            <summary>
+              Looks up a localized string similar to &lt;Unstable&gt;.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">

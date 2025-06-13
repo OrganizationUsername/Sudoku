@@ -8,6 +8,17 @@ namespace Sudoku.Analytics.Ranking;
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class HouseLink(House house, Digit digit) : RankSet
 {
+	/// <summary>
+	/// Initializes a <see cref="HouseLink"/> instance via the specified type, index and digit.
+	/// </summary>
+	/// <param name="type">The type.</param>
+	/// <param name="index">The index.</param>
+	/// <param name="digit">The digit.</param>
+	public HouseLink(HouseType type, Digit index, Digit digit) : this((int)type * 9 + index, digit)
+	{
+	}
+
+
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.HouseLink;
 

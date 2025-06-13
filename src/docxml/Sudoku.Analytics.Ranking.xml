@@ -97,6 +97,14 @@
             <param name="house">Indicataes the house.</param>
             <param name="digit">Indicates the digit.</param>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.#ctor(Sudoku.Concepts.HouseType,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseLink"/> instance via the specified type, index and digit.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="index">The index.</param>
+            <param name="digit">The digit.</param>
+        </member>
         <member name="P:Sudoku.Analytics.Ranking.HouseLink.Type">
             <inheritdoc/>
         </member>
@@ -141,6 +149,14 @@
             </summary>
             <param name="house">Indicataes the house.</param>
             <param name="digit">Indicates the digit.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.#ctor(Sudoku.Concepts.HouseType,System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseTruth"/> instance via the specified type, index and digit.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="index">The index.</param>
+            <param name="digit">The digit.</param>
         </member>
         <member name="P:Sudoku.Analytics.Ranking.HouseTruth.Type">
             <inheritdoc/>

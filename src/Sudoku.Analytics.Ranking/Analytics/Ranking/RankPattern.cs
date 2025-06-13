@@ -32,12 +32,7 @@ public sealed class RankPattern(in Grid grid, params RankSetCollection rankSets)
 			{
 				factAssignmentCountValues.Add(l);
 			}
-
-			if (factAssignmentCountValues.Count == 1)
-			{
-				return RankSets.Links.Count - factAssignmentCountValues.First();
-			}
-			return null;
+			return factAssignmentCountValues.Count == 1 ? RankSets.Links.Count - factAssignmentCountValues.First() : null;
 		}
 	}
 

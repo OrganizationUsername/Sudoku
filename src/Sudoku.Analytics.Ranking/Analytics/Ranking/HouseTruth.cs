@@ -3,17 +3,11 @@ namespace Sudoku.Analytics.Ranking;
 /// <summary>
 /// Represents a house truth.
 /// </summary>
+/// <param name="house">Indicataes the house.</param>
+/// <param name="digit">Indicates the digit.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class HouseTruth : RankSet
+public sealed partial class HouseTruth(House house, Digit digit) : RankSet
 {
-	/// <summary>
-	/// Initializes a <see cref="HouseTruth"/> instance.
-	/// </summary>
-	/// <param name="house">Indicataes the house.</param>
-	/// <param name="digit">Indicates the digit.</param>
-	internal HouseTruth(House house, Digit digit) => (House, Digit) = (house, digit);
-
-
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.HouseTruth;
 
@@ -21,13 +15,13 @@ public sealed partial class HouseTruth : RankSet
 	/// Indicates the house.
 	/// </summary>
 	[HashCodeMember]
-	public House House { get; }
+	public House House { get; } = house;
 
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
 	[HashCodeMember]
-	public Digit Digit { get; }
+	public Digit Digit { get; } = digit;
 
 
 	/// <inheritdoc/>
@@ -58,8 +52,26 @@ public sealed partial class HouseTruth : RankSet
 			House switch
 			{
 				< 9 => Space.BlockNumber(House, Digit),
-				< 18 => Space.RowNumber(House, Digit),
-				_ => Space.ColumnNumber(House, Digit)
+				< 18 => Space.RowNumber(House - 9, Digit),
+				_ => Space.ColumnNumber(House - 18, Digit)
 			}
 		).ToString();
+
+	/// <inheritdoc/>
+	public override CandidateMap GetAvailableRange(in Grid grid)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var cell in HousesMap[House])
+		{
+			if (grid.Exists(cell, Digit) is true)
+			{
+				result.Add(cell * 9 + Digit);
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc/>
+	protected internal override bool IsSatisfied(in CandidateMap assignments)
+		=> BitOperations.IsPow2(assignments.GetPositionsFor(House, Digit));
 }

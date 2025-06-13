@@ -860,10 +860,18 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetDigitsFor(System.Int32)">
             <summary>
-            Try to get digits that is in the current collection.
+            Try to get digits that are in the current collection.
             </summary>
             <param name="cell">The desired cell.</param>
             <returns>The digits.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.GetPositionsFor(System.Int32,System.Int32)">
+            <summary>
+            Try to get positions that are in the current collection.
+            </summary>
+            <param name="house">The desired house.</param>
+            <param name="digit">The desired digit.</param>
+            <returns>The positions.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>

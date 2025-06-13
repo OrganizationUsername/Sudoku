@@ -3,16 +3,10 @@ namespace Sudoku.Analytics.Ranking;
 /// <summary>
 /// Represents a cell link.
 /// </summary>
+/// <param name="cell">The cell.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class CellLink : RankSet
+public sealed partial class CellLink(Cell cell) : RankSet
 {
-	/// <summary>
-	/// Initializes a <see cref="CellLink"/> instance.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	internal CellLink(Cell cell) => Cell = cell;
-
-
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.CellLink;
 
@@ -20,7 +14,7 @@ public sealed partial class CellLink : RankSet
 	/// Indicates the cell.
 	/// </summary>
 	[HashCodeMember]
-	public Cell Cell { get; }
+	public Cell Cell { get; } = cell;
 
 
 	/// <inheritdoc/>
@@ -38,9 +32,13 @@ public sealed partial class CellLink : RankSet
 		{
 			return r1;
 		}
-		return Cell.CompareTo(((CellTruth)other).Cell);
+		return Cell.CompareTo(((CellLink)other).Cell);
 	}
 
 	/// <inheritdoc/>
 	public override string ToString() => Space.RowColumn(Cell / 9, Cell % 9).ToString();
+
+	/// <inheritdoc/>
+	protected internal override bool IsSatisfied(in CandidateMap assignments)
+		=> BitOperations.PopCount(assignments.GetDigitsFor(Cell)) is 0 or 1;
 }

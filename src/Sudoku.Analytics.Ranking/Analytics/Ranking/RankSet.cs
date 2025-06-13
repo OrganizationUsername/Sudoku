@@ -37,4 +37,18 @@ public abstract partial class RankSet :
 
 	/// <inheritdoc/>
 	public abstract int CompareTo(RankSet? other);
+
+	/// <summary>
+	/// Try to find all possible candidates in the current rank set.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>The candidates.</returns>
+	public virtual CandidateMap GetAvailableRange(in Grid grid) => CandidateMap.Empty;
+
+	/// <summary>
+	/// Determine whether the specified assignment combination can satisfy the current rank set.
+	/// </summary>
+	/// <param name="assignments">The assignments.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	protected internal abstract bool IsSatisfied(in CandidateMap assignments);
 }

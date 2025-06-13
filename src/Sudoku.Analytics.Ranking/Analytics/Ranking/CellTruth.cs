@@ -3,16 +3,10 @@ namespace Sudoku.Analytics.Ranking;
 /// <summary>
 /// Represents a cell truth.
 /// </summary>
+/// <param name="cell">The cell.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class CellTruth : RankSet
+public sealed partial class CellTruth(Cell cell) : RankSet
 {
-	/// <summary>
-	/// Initializes a <see cref="CellTruth"/> instance.
-	/// </summary>
-	/// <param name="cell">The cell.</param>
-	internal CellTruth(Cell cell) => Cell = cell;
-
-
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.CellTruth;
 
@@ -20,7 +14,7 @@ public sealed partial class CellTruth : RankSet
 	/// Indicates the target cell.
 	/// </summary>
 	[HashCodeMember]
-	public Cell Cell { get; }
+	public Cell Cell { get; } = cell;
 
 
 	/// <inheritdoc/>
@@ -43,4 +37,19 @@ public sealed partial class CellTruth : RankSet
 
 	/// <inheritdoc/>
 	public override string ToString() => Space.RowColumn(Cell / 9, Cell % 9).ToString();
+
+	/// <inheritdoc/>
+	public override CandidateMap GetAvailableRange(in Grid grid)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var digit in grid.GetCandidates(Cell))
+		{
+			result.Add(Cell * 9 + digit);
+		}
+		return result;
+	}
+
+	/// <inheritdoc/>
+	protected internal override bool IsSatisfied(in CandidateMap assignments)
+		=> BitOperations.IsPow2(assignments.GetDigitsFor(Cell));
 }

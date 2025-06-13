@@ -3,17 +3,11 @@ namespace Sudoku.Analytics.Ranking;
 /// <summary>
 /// Represents a house truth.
 /// </summary>
+/// <param name="house">Indicataes the house.</param>
+/// <param name="digit">Indicates the digit.</param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class HouseLink : RankSet
+public sealed partial class HouseLink(House house, Digit digit) : RankSet
 {
-	/// <summary>
-	/// Initializes a <see cref="HouseLink"/> instance.
-	/// </summary>
-	/// <param name="house">Indicataes the house.</param>
-	/// <param name="digit">Indicates the digit.</param>
-	internal HouseLink(House house, Digit digit) => (House, Digit) = (house, digit);
-
-
 	/// <inheritdoc/>
 	public override RankSetType Type => RankSetType.HouseLink;
 
@@ -21,13 +15,13 @@ public sealed partial class HouseLink : RankSet
 	/// Indicates the house.
 	/// </summary>
 	[HashCodeMember]
-	public House House { get; }
+	public House House { get; } = house;
 
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
 	[HashCodeMember]
-	public Digit Digit { get; }
+	public Digit Digit { get; } = digit;
 
 
 	/// <inheritdoc/>
@@ -45,11 +39,11 @@ public sealed partial class HouseLink : RankSet
 		{
 			return r1;
 		}
-		if (House.CompareTo(((HouseTruth)other).House) is var r2 and not 0)
+		if (House.CompareTo(((HouseLink)other).House) is var r2 and not 0)
 		{
 			return r2;
 		}
-		return Digit.CompareTo(((HouseTruth)other).Digit);
+		return Digit.CompareTo(((HouseLink)other).Digit);
 	}
 
 	/// <inheritdoc/>
@@ -58,8 +52,12 @@ public sealed partial class HouseLink : RankSet
 			House switch
 			{
 				< 9 => Space.BlockNumber(House, Digit),
-				< 18 => Space.RowNumber(House, Digit),
-				_ => Space.ColumnNumber(House, Digit)
+				< 18 => Space.RowNumber(House - 9, Digit),
+				_ => Space.ColumnNumber(House - 18, Digit)
 			}
 		).ToString();
+
+	/// <inheritdoc/>
+	protected internal override bool IsSatisfied(in CandidateMap assignments)
+		=> BitOperations.PopCount(assignments.GetPositionsFor(House, Digit)) is 0 or 1;
 }

@@ -8,10 +8,11 @@
             <summary>
             Represents a cell link.
             </summary>
+            <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.CellLink.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Ranking.CellLink"/> instance.
+            Represents a cell link.
             </summary>
             <param name="cell">The cell.</param>
         </member>
@@ -32,6 +33,9 @@
         <member name="M:Sudoku.Analytics.Ranking.CellLink.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellLink.IsSatisfied(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.CellLink.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -39,10 +43,11 @@
             <summary>
             Represents a cell truth.
             </summary>
+            <param name="cell">The cell.</param>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.CellTruth.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Ranking.CellTruth"/> instance.
+            Represents a cell truth.
             </summary>
             <param name="cell">The cell.</param>
         </member>
@@ -63,6 +68,12 @@
         <member name="M:Sudoku.Analytics.Ranking.CellTruth.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.GetAvailableRange(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.CellTruth.IsSatisfied(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.CellTruth.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -70,10 +81,12 @@
             <summary>
             Represents a house truth.
             </summary>
+            <param name="house">Indicataes the house.</param>
+            <param name="digit">Indicates the digit.</param>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.HouseLink.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseLink"/> instance.
+            Represents a house truth.
             </summary>
             <param name="house">Indicataes the house.</param>
             <param name="digit">Indicates the digit.</param>
@@ -100,6 +113,9 @@
         <member name="M:Sudoku.Analytics.Ranking.HouseLink.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseLink.IsSatisfied(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.HouseLink.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -107,10 +123,12 @@
             <summary>
             Represents a house truth.
             </summary>
+            <param name="house">Indicataes the house.</param>
+            <param name="digit">Indicates the digit.</param>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.HouseTruth.#ctor(System.Int32,System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Ranking.HouseTruth"/> instance.
+            Represents a house truth.
             </summary>
             <param name="house">Indicataes the house.</param>
             <param name="digit">Indicates the digit.</param>
@@ -137,46 +155,14 @@
         <member name="M:Sudoku.Analytics.Ranking.HouseTruth.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.GetAvailableRange(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.HouseTruth.IsSatisfied(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.HouseTruth.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Ranking.PredefinedRankSet">
-            <summary>
-            Represents predefined rank set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.CellTruths">
-            <summary>
-            Indicates all cell truths.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.CellLinks">
-            <summary>
-            Indicates all cell links.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.HouseTruths">
-            <summary>
-            Indicates all house truths.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Ranking.PredefinedRankSet.HouseLinks">
-            <summary>
-            Indicates all house links.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.PredefinedRankSet.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="T:Sudoku.Analytics.Ranking.RankSet">
             <summary>
@@ -205,6 +191,20 @@
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSet.CompareTo(Sudoku.Analytics.Ranking.RankSet)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.GetAvailableRange(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find all possible candidates in the current rank set.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSet.IsSatisfied(Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Determine whether the specified assignment combination can satisfy the current rank set.
+            </summary>
+            <param name="assignments">The assignments.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -258,6 +258,16 @@
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when there's no elements in the collection.</exception>
         </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Truths">
+            <summary>
+            Indicates all truths.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Links">
+            <summary>
+            Indicates all links.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.System#Collections#Generic#ICollection{Sudoku#Analytics#Ranking#RankSet}#IsReadOnly">
             <inheritdoc/>
         </member>
@@ -295,6 +305,18 @@
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.EnumerateTruths">
+            <summary>
+            Enumerates all truths.
+            </summary>
+            <returns>Truths.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.EnumerateLinks">
+            <summary>
+            Enumerates all links.
+            </summary>
+            <returns>Links.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.ToArray">
             <inheritdoc/>
@@ -378,11 +400,17 @@
             <summary>
             Represents an enumerator object.
             </summary>
+            <param name="_set">Indicates the set.</param>
+            <param name="_skipTruths">Indicates whether the enumerator skips for checking truths.</param>
+            <param name="_skipLinks">Indicates whether the enumerator skips for checking links.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.#ctor(System.Collections.Generic.SortedSet{Sudoku.Analytics.Ranking.RankSet})">
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.#ctor(System.Collections.Generic.SortedSet{Sudoku.Analytics.Ranking.RankSet},System.Boolean,System.Boolean)">
             <summary>
             Represents an enumerator object.
             </summary>
+            <param name="_set">Indicates the set.</param>
+            <param name="_skipTruths">Indicates whether the enumerator skips for checking truths.</param>
+            <param name="_skipLinks">Indicates whether the enumerator skips for checking links.</param>
         </member>
         <member name="F:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator._enumerator">
             <summary>
@@ -395,6 +423,9 @@
         <member name="P:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.MoveNext">
             <inheritdoc/>
         </member>
@@ -402,6 +433,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Enumerator.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Ranking#RankSet}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.Equals(System.Object)">
@@ -424,6 +461,63 @@
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankSetCollection.op_LessThanOrEqual(Sudoku.Analytics.Ranking.RankSetCollection,Sudoku.Analytics.Ranking.RankSetCollection)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Ranking.RankSetInfo">
+            <summary>
+            Represents an object that can calculate rank-related information via the specified data.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="rankSets">The rank sets.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetInfo.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <summary>
+            Represents an object that can calculate rank-related information via the specified data.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="rankSets">The rank sets.</param>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetInfo._candidates">
+            <summary>
+            Represents candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Ranking.RankSetInfo._grid">
+            <summary>
+            The backing grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetInfo.Cells">
+            <summary>
+            Indicates all cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetInfo.Candidates">
+            <summary>
+            Indicates the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetInfo.Grid">
+            <summary>
+            Indicates the grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetInfo.Assignments">
+            <summary>
+            Returns a list of <see cref="T:System.Int32"/> group that describes the valid assignments.
+            </summary>
+            <returns>Valid assignments.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Ranking.RankSetInfo.RankSets">
+            <summary>
+            Indicates the rank sets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankSetInfo.BuildCandidates(Sudoku.Concepts.Grid@,Sudoku.Analytics.Ranking.RankSetCollection)">
+            <summary>
+            Build candidates.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="rankSets">The rank sets.</param>
         </member>
         <member name="T:Sudoku.Analytics.Ranking.RankSetType">
             <summary>

@@ -387,7 +387,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public readonly Candidate[] ToArrayUnsafe() => Offsets;
 
 	/// <summary>
-	/// Try to get digits that is in the current collection.
+	/// Try to get digits that are in the current collection.
 	/// </summary>
 	/// <param name="cell">The desired cell.</param>
 	/// <returns>The digits.</returns>
@@ -399,6 +399,25 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 			if (Contains(candidate))
 			{
 				result |= (Mask)(1 << digit);
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Try to get positions that are in the current collection.
+	/// </summary>
+	/// <param name="house">The desired house.</param>
+	/// <param name="digit">The desired digit.</param>
+	/// <returns>The positions.</returns>
+	public readonly Mask GetPositionsFor(House house, Digit digit)
+	{
+		var result = (Mask)0;
+		for (var i = 0; i < 9; i++)
+		{
+			if (Contains(HousesCells[house][i] * 9 + digit))
+			{
+				result |= (Mask)(1 << i);
 			}
 		}
 		return result;

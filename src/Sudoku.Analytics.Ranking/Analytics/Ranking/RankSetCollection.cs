@@ -39,6 +39,16 @@ public sealed partial class RankSetCollection :
 	/// <exception cref="InvalidOperationException">Throws when there's no elements in the collection.</exception>
 	public RankSet Max => _sets.Max ?? throw new InvalidOperationException("There's no elements in the collection.");
 
+	/// <summary>
+	/// Indicates all truths.
+	/// </summary>
+	internal RankSetCollection Truths => [.. from set in _sets where set.IsTruth select set];
+
+	/// <summary>
+	/// Indicates all links.
+	/// </summary>
+	internal RankSetCollection Links => [.. from set in _sets where set.IsLink select set];
+
 	/// <inheritdoc/>
 	bool ICollection<RankSet>.IsReadOnly => false;
 
@@ -100,10 +110,27 @@ public sealed partial class RankSetCollection :
 	}
 
 	/// <inheritdoc/>
-	public override string ToString() => string.Join(' ', from set in _sets select set.ToString());
+	public override string ToString()
+	{
+		var truths = string.Join(' ', from set in _sets where set.IsTruth select set);
+		var links = string.Join(' ', from set in _sets where set.IsLink select set);
+		return $"""{truths}\{links}""";
+	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public Enumerator GetEnumerator() => new(_sets);
+
+	/// <summary>
+	/// Enumerates all truths.
+	/// </summary>
+	/// <returns>Truths.</returns>
+	public Enumerator EnumerateTruths() => new(_sets, false, true);
+
+	/// <summary>
+	/// Enumerates all links.
+	/// </summary>
+	/// <returns>Links.</returns>
+	public Enumerator EnumerateLinks() => new(_sets, true, false);
 
 	/// <inheritdoc/>
 	public RankSet[] ToArray() => [.. _sets];

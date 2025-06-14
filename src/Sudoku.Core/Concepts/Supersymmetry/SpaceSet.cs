@@ -146,11 +146,7 @@ public partial struct SpaceSet :
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString()
-	{
-		var values = ToArray();
-		return string.Join(' ', from element in values select element.ToString());
-	}
+	public override readonly string ToString() => new RxCyConverter().SpaceConverter(this);
 
 	/// <inheritdoc/>
 	readonly bool IReadOnlySet<Space>.IsProperSubsetOf(IEnumerable<Space> other)

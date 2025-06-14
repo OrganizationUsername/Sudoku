@@ -12,6 +12,11 @@ public enum SpaceType : byte
 	RowColumn,
 
 	/// <summary>
+	/// Indicates block-number space (BN space). The notation will be <c>XbY</c>, meaning digit X in block Y.
+	/// </summary>
+	BlockNumber,
+
+	/// <summary>
 	/// Indicates row-number space (RN space). The notation will be <c>XrY</c>, meaning digit X in row Y.
 	/// </summary>
 	RowNumber,
@@ -19,10 +24,5 @@ public enum SpaceType : byte
 	/// <summary>
 	/// Indicates column-number space (CN space). The notation will be <c>XcY</c>, meaning digit X in column Y.
 	/// </summary>
-	ColumnNumber,
-
-	/// <summary>
-	/// Indicates block-number space (BN space). The notation will be <c>XbY</c>, meaning digit X in block Y.
-	/// </summary>
-	BlockNumber
+	ColumnNumber
 }

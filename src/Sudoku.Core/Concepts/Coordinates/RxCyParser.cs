@@ -265,6 +265,47 @@ public sealed partial record RxCyParser : CoordinateParser
 			return result.AsSpan();
 		};
 
+	/// <summary>
+	/// The parser method that can creates a list of <see cref="Space"/> instances via the specified text to be parsed.
+	/// </summary>
+	public Func<string, SpaceSet> SpaceParser
+		=> static str =>
+		{
+			var result = SpaceSet.Empty;
+			foreach (var segment in str.Split(' '))
+			{
+				if ((from c in SpaceSegmentPattern.Match(segment).Groups select c.Value) is not [
+					_,
+					var secondaryDigitsString,
+					[var letterChar and ('r' or 'c' or 'b' or 'n' or 'R' or 'C' or 'B' or 'N')],
+					var primaryDigitsString
+				])
+				{
+					// Invalid string.
+					throw new FormatException();
+				}
+
+				var secondary = from ch in secondaryDigitsString select ch - '1';
+				var primary = from ch in primaryDigitsString select ch - '1';
+				foreach (var p in primary)
+				{
+					foreach (var q in secondary)
+					{
+						result.Add(
+							letterChar switch
+							{
+								'R' or 'r' => Space.RowNumber(p, q),
+								'C' or 'c' => Space.ColumnNumber(p, q),
+								'B' or 'b' => Space.BlockNumber(p, q),
+								'N' or 'n' => Space.RowColumn(p, q)
+							}
+						);
+					}
+				}
+			}
+			return result;
+		};
+
 
 	[GeneratedRegex("""r[1-9]+c[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitCellGroupPattern { get; }
@@ -292,6 +333,9 @@ public sealed partial record RxCyParser : CoordinateParser
 
 	[GeneratedRegex("""\d""", RegexOptions.Compiled)]
 	private static partial Regex DigitPattern { get; }
+
+	[GeneratedRegex("""(\d+)([rcbn])(\d+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+	private static partial Regex SpaceSegmentPattern { get; }
 
 
 	/// <inheritdoc/>

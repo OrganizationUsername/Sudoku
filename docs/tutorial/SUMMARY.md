@@ -111,7 +111,9 @@
   * [毛刺环和毛边环](construction/03-kraken-logic/05-kraken-burred-loop-and-kraken-linked-loop.md)
   * [毛刺、毛边的由来历史和翻译](construction/03-kraken-logic/06-naming-and-history-of-kraken-logic.md)
 * [鱼构造](construction/04-fish-construction.md)
-* [绽放环和绽放视角](construction/05-blossom-loop-and-its-view.md)
+* [绽放](construction/05-blossoming.md)
+* [牺牲](construction/06-sacrifice/README.md)
+  * [牺牲的基本推理](construction/06-sacrifice/01-reasoning-of-sacrifice.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

@@ -1,8 +1,8 @@
 ---
-description: Blossom Loop & Its View
+description: Blossoming
 ---
 
-# 绽放环和绽放视角
+# 绽放
 
 今天我们要介绍一个全新的概念。这个概念其实早在之前就有所提及，但因为当初的难度较高，因此并未详细展开进行说明。
 

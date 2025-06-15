@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Ranking;
 /// <param name="truths">The truths.</param>
 /// <param name="links">The links.</param>
 [TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public sealed partial class RankPattern(in Grid grid, SpaceSet truths, SpaceSet links) :
+public sealed partial class RankPattern(in Grid grid, in SpaceSet truths, in SpaceSet links) :
 	IEquatable<RankPattern>,
 	IEqualityOperators<RankPattern, RankPattern, bool>
 {
@@ -135,41 +135,23 @@ public sealed partial class RankPattern(in Grid grid, SpaceSet truths, SpaceSet 
 	/// </summary>
 	/// <returns>Valid assignments.</returns>
 	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinations()
-	{
-		var result = new List<ReadOnlyMemory<Candidate>>();
-
-		var assignments = CandidateMap.Empty;
-		var fullMap = from set in Truths.ToArray() select set.GetAvailableRange(_grid).ToArray();
-		var combinations = fullMap.GetExtractedCombinations();
-		foreach (var combination in combinations)
-		{
-			var candidates = combination.AsCandidateMap();
-
-			// Check satisfiability.
-			var areAllRankSetsSatisfied = true;
-			foreach (var (rankSets, isTruth) in ((Truths, true), (Links, false)))
+		=> (
+			from set in Truths.ToArray()
+			select set.GetAvailableRange(_grid).ToArray()
+		).GetExtractedCombinations2(
+			combination =>
 			{
-				foreach (var rankSet in rankSets)
+				var candidates = combination.AsCandidateMap();
+				foreach (var link in Links)
 				{
-					if (!rankSet.IsSatisfied(candidates, isTruth))
+					if (!link.IsSatisfied(candidates, false))
 					{
-						areAllRankSetsSatisfied = false;
-						goto CheckFlag;
+						return false;
 					}
 				}
+				return true;
 			}
-		CheckFlag:
-			if (!areAllRankSetsSatisfied)
-			{
-				continue;
-			}
-
-			// The combination is okay to be added.
-			result.Add(combination);
-		}
-
-		return result.AsSpan();
-	}
+		);
 
 	/// <summary>
 	/// Try to find all rank-0 sets.
@@ -243,5 +225,58 @@ public sealed partial class RankPattern(in Grid grid, SpaceSet truths, SpaceSet 
 		}
 
 		return result;
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Provides extension members on <typeparamref name="T"/>[][].
+	/// </summary>
+	extension<T>(T[][] @this)
+	{
+		/// <summary>
+		/// Get all combinations that each sub-array only choose one.
+		/// </summary>
+		public ReadOnlySpan<ReadOnlyMemory<T>> GetExtractedCombinations2(Func<ReadOnlySpan<T>, bool> predicate)
+		{
+			var length = @this.Length;
+			var tempArray = (stackalloc int[length]);
+			tempArray.Fill(-1);
+
+			var result = new List<ReadOnlyMemory<T>>();
+			var marker = -1;
+			do
+			{
+				if (marker < length - 1)
+				{
+					marker++;
+				}
+
+				ref var value = ref tempArray[marker];
+				value++;
+				if (value > @this[marker].Length - 1)
+				{
+					value = -1;
+					marker -= 2; // Backtrack.
+				}
+
+				if (marker == length - 1)
+				{
+					var r = new T[marker + 1];
+					for (var i = 0; i <= marker; i++)
+					{
+						r[i] = @this[i][tempArray[i]];
+					}
+					if (predicate(r))
+					{
+						result.Add(r);
+					}
+				}
+			} while (marker >= -1);
+
+			return result.AsSpan();
+		}
 	}
 }

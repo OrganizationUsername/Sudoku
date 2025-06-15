@@ -7893,7 +7893,7 @@
         <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Supersymmetry#Space}#IsReadOnly">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IReadOnlyList{Sudoku#Concepts#Supersymmetry#Space}#Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.CopyTo(Sudoku.Concepts.Supersymmetry.Space[],System.Int32)">

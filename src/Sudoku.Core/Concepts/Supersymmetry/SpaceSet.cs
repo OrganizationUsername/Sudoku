@@ -44,7 +44,32 @@ public partial struct SpaceSet :
 
 
 	/// <inheritdoc/>
-	readonly Space IReadOnlyList<Space>.this[int index] => ToArray()[index];
+	public readonly Space this[int index]
+	{
+		get
+		{
+			var currentIndex = -1;
+			for (var i = 0; i < 4; i++)
+			{
+				foreach (var bit in _field[i])
+				{
+					if (++currentIndex == index)
+					{
+						var a = bit / 9;
+						var b = bit % 9;
+						return i switch
+						{
+							0 => Space.RowColumn(a, b),
+							1 => Space.BlockDigit(a, b),
+							2 => Space.RowDigit(a, b),
+							_ => Space.ColumnDigit(a, b)
+						};
+					}
+				}
+			}
+			throw new IndexOutOfRangeException();
+		}
+	}
 
 
 	/// <inheritdoc/>

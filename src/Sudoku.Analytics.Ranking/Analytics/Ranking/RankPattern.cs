@@ -143,8 +143,20 @@ public sealed partial class RankPattern(in Grid grid, in SpaceSet truths, in Spa
 		queue.AddLast(([], [.. SpanEnumerable.Range(Truths.Count)]));
 
 		// Iterate the whole queue until the queue becomes empty.
+
+#if DEBUG
+		// Provides a way to view max capacity while queuing.
+		var max = 0;
+#endif
 		while (queue.Count != 0)
 		{
+#if DEBUG
+			if (queue.Count >= max)
+			{
+				max = queue.Count;
+			}
+#endif
+
 			// Dequeue a node.
 			var (currentState, remainingTruths) = queue.RemoveFirstNode();
 

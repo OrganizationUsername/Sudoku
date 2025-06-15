@@ -35,13 +35,13 @@ public readonly partial struct Space(Mask mask) : IEquatable<Space>, IEqualityOp
 	/// Indicates the row value,
 	/// or -1 if <see cref="Type"/> is not <see cref="SpaceType.RowColumn"/> or <see cref="SpaceType.RowNumber"/>.
 	/// </summary>
-	public RowIndex Row => Type switch { SpaceType.RowColumn or SpaceType.RowNumber => Primary, _ => -1 };
+	public RowIndex Row => Type switch { SpaceType.RowColumn => Secondary, SpaceType.RowNumber => Primary, _ => -1 };
 
 	/// <summary>
 	/// Indicates the column value,
 	/// or -1 if <see cref="Type"/> is not <see cref="SpaceType.RowColumn"/> or <see cref="SpaceType.ColumnNumber"/>.
 	/// </summary>
-	public ColumnIndex Column => Type switch { SpaceType.RowColumn => Secondary, SpaceType.ColumnNumber => Primary, _ => -1 };
+	public ColumnIndex Column => Type switch { SpaceType.ColumnNumber => Primary, _ => -1 };
 
 	/// <summary>
 	/// Indicates the block value, or -1 if <see cref="Type"/> is not <see cref="SpaceType.BlockNumber"/>.
@@ -51,7 +51,7 @@ public readonly partial struct Space(Mask mask) : IEquatable<Space>, IEqualityOp
 	/// <summary>
 	/// Indicates the target cell, or -1 if <see cref="Type"/> is not <see cref="SpaceType.RowColumn"/>.
 	/// </summary>
-	public Cell Cell => Type switch { SpaceType.RowColumn => Row * 9 + Column, _ => -1 };
+	public Cell Cell => Type switch { SpaceType.RowColumn => Secondary * 9 + Primary, _ => -1 };
 
 	/// <summary>
 	/// Indicates the target digit, or -1 if <see cref="Type"/> is <see cref="SpaceType.RowColumn"/>.
@@ -170,6 +170,6 @@ public readonly partial struct Space(Mask mask) : IEquatable<Space>, IEqualityOp
 		ArgumentOutOfRangeException.ThrowIfLessThan(row, 0);
 		ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(column, 9);
 		ArgumentOutOfRangeException.ThrowIfLessThan(column, 0);
-		return new((Mask)(row | column << 4 | (int)SpaceType.RowColumn << 8));
+		return new((Mask)(column | row << 4 | (int)SpaceType.RowColumn << 8));
 	}
 }

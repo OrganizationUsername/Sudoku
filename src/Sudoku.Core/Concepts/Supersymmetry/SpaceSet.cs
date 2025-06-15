@@ -59,7 +59,7 @@ public partial struct SpaceSet :
 						var b = bit % 9;
 						return i switch
 						{
-							0 => Space.RowColumn(a, b),
+							0 => Space.RowColumn(b, a),
 							1 => Space.BlockDigit(a, b),
 							2 => Space.RowDigit(a, b),
 							_ => Space.ColumnDigit(a, b)
@@ -107,7 +107,7 @@ public partial struct SpaceSet :
 	/// <returns>An array of <see cref="Space"/> instances.</returns>
 	public readonly Space[] ToArray()
 		=> [
-			.. from id in _field[0] select Space.RowColumn(id / 9, id % 9),
+			.. from id in _field[0] select Space.RowColumn(id % 9, id / 9),
 			.. from id in _field[1] select Space.BlockDigit(id / 9, id % 9),
 			.. from id in _field[2] select Space.RowDigit(id / 9, id % 9),
 			.. from id in _field[3] select Space.ColumnDigit(id / 9, id % 9)

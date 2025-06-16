@@ -77,7 +77,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		return factAssignmentCountValues.Count == 1 ? Links.Count - factAssignmentCountValues.First() : null;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => $"T{Truths.Count} = {Truths}, L{Links.Count} = {Links}";
 
 	/// <summary>

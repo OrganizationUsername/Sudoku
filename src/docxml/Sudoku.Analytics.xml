@@ -8552,7 +8552,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToFullString">
             <summary>

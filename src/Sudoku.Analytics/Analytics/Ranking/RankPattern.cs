@@ -94,6 +94,10 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// <summary>
 	/// Indicates eliminations can be found in the current pattern.
 	/// </summary>
+	/// <remarks>
+	/// In theory, eliminations may not require any links. All conclusions come from valid combinations of truths,
+	/// keeping one valid digit filling into each truth, and find intersections of eliminations can be found from all cases.
+	/// </remarks>
 	public CandidateMap GetEliminations()
 	{
 		var result = CandidateMap.Empty;
@@ -140,12 +144,11 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		var queue = new LinkedList<(CandidateMap State, int[] RemainingTruthIndices)>();
 		queue.AddLast(([], [.. SpanEnumerable.Range(Truths.Count)]));
 
-		// Iterate the whole queue until the queue becomes empty.
-
 #if DEBUG
 		// Provides a way to view max capacity while queuing.
 		var max = 0;
 #endif
+		// Iterate the whole queue until the queue becomes empty.
 		while (queue.Count != 0)
 		{
 #if DEBUG

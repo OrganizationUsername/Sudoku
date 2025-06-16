@@ -8564,6 +8564,10 @@
             <summary>
             Indicates eliminations can be found in the current pattern.
             </summary>
+            <remarks>
+            In theory, eliminations may not require any links. All conclusions come from valid combinations of truths,
+            keeping one valid digit filling into each truth, and find intersections of eliminations can be found from all cases.
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignmentCombinations">
             <summary>

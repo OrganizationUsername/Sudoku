@@ -68,6 +68,11 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		foreach (var l in from assignment in GetAssignmentCombinations() select assignment.Length)
 		{
 			factAssignmentCountValues.Add(l);
+			if (factAssignmentCountValues.Count >= 2)
+			{
+				// Invalid, fast fail.
+				return null;
+			}
 		}
 		return factAssignmentCountValues.Count == 1 ? Links.Count - factAssignmentCountValues.First() : null;
 	}

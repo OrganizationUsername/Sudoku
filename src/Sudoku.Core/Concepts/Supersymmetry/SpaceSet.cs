@@ -3,6 +3,9 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// <summary>
 /// Represents a set of <see cref="Space"/> instances.
 /// </summary>
+/// <remarks>
+/// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
+/// </remarks>
 /// <seealso cref="Space"/>
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.Equatable

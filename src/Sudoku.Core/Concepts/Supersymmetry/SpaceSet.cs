@@ -10,6 +10,7 @@ namespace Sudoku.Concepts.Supersymmetry;
 	IsLargeStructure = true)]
 public partial struct SpaceSet :
 	IAdditionOperators<SpaceSet, Space, SpaceSet>,
+	IAnyAllMethod<SpaceSet, Space>,
 	IBitwiseOperators<SpaceSet, SpaceSet, SpaceSet>,
 	ICollection<Space>,
 	IEnumerable<Space>,
@@ -88,6 +89,32 @@ public partial struct SpaceSet :
 		var (type, primary, secondary) = space;
 		var id = primary * 9 + secondary;
 		return _field[(int)type].Contains(id);
+	}
+
+	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.Any(Func{TSource, bool})"/>
+	public readonly bool Exists(Func<Space, bool> predicate)
+	{
+		foreach (var space in this)
+		{
+			if (predicate(space))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.All(Func{TSource, bool})"/>
+	public readonly bool TrueForAll(Func<Space, bool> predicate)
+	{
+		foreach (var space in this)
+		{
+			if (!predicate(space))
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/// <inheritdoc/>
@@ -248,6 +275,12 @@ public partial struct SpaceSet :
 
 	/// <inheritdoc/>
 	readonly bool ISet<Space>.SetEquals(IEnumerable<Space> other) => this == [.. other];
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<SpaceSet, Space>.Any(Func<Space, bool> predicate) => Exists(predicate);
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<SpaceSet, Space>.All(Func<Space, bool> predicate) => TrueForAll(predicate);
 
 	/// <inheritdoc/>
 	readonly SpaceSet IFiniteSet<SpaceSet, Space>.Negate() => ~this;

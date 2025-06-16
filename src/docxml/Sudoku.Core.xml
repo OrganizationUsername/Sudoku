@@ -7821,6 +7821,12 @@
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Contains(Sudoku.Concepts.Supersymmetry.Space)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Exists(System.Func{Sudoku.Concepts.Supersymmetry.Space,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.TrueForAll(System.Func{Sudoku.Concepts.Supersymmetry.Space,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.All(System.Func{`1,System.Boolean})"/>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.GetHashCode">
             <inheritdoc/>
         </member>
@@ -7897,6 +7903,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#ISet{Sudoku#Concepts#Supersymmetry#Space}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#Any(System.Func{Sudoku.Concepts.Supersymmetry.Space,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#All(System.Func{Sudoku.Concepts.Supersymmetry.Space,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IFiniteSet{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#Negate">

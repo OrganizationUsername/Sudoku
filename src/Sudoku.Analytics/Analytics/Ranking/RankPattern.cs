@@ -218,7 +218,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			foreach (var candidate in candidates)
 			{
 				var nextState = currentState + candidate;
-				if (Links.All(link => link.IsSatisfied(nextState, false)))
+				if (Links.TrueForAll(link => link.IsSatisfied(nextState, false)))
 				{
 					// Check whether the remaining truths, preventing truth overlapped cases.
 					var overlapped = new List<int>();

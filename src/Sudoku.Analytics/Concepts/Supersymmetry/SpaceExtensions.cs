@@ -40,10 +40,8 @@ public static class SpaceExtensions
 		public bool ContainsAssignment(Candidate assignment)
 			=> @this switch
 			{
-				{ Cell: var cell and not -1 }
-					=> assignment / 9 == cell,
-				{ House: var house, Digit: var digit }
-					=> assignment % 9 == digit && HousesMap[house].Contains(assignment / 9)
+				{ Cell: var cell and not -1 } => assignment / 9 == cell,
+				{ House: var house, Digit: var digit } => assignment % 9 == digit && HousesMap[house].Contains(assignment / 9)
 			};
 
 		/// <summary>

@@ -260,7 +260,8 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	}
 
 	/// <summary>
-	/// Try to find all rank-0 sets.
+	/// Try to find all rank-0 sets. A rank-0 set is a link that will become truth
+	/// because all valid combinations lead to a same result that the link must hold one correct digit.
 	/// </summary>
 	public SpaceSet GetRank0Sets()
 	{

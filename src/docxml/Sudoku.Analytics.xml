@@ -8577,7 +8577,8 @@
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0Sets">
             <summary>
-            Try to find all rank-0 sets.
+            Try to find all rank-0 sets. A rank-0 set is a link that will become truth
+            because all valid combinations lead to a same result that the link must hold one correct digit.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.System#IEquatable{Sudoku#Analytics#Ranking#RankPattern}#Equals(Sudoku.Analytics.Ranking.RankPattern)">

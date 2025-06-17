@@ -3257,8 +3257,9 @@ Pattern: {1}
 Permutation cases count: {2}
 Rank: {3}
 Eliminations: {4}
-Rank-0 sets: {5}
-Is pattern rank-0: {6}</value>
+Elimination zone: {5}
+Rank-0 sets: {6}
+Is pattern rank-0: {7}</value>
   </data>
   <data name="UnstableRank" xml:space="preserve">
     <value>&lt;Unstable&gt;</value>

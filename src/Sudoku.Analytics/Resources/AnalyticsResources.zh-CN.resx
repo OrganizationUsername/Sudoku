@@ -3300,8 +3300,9 @@
 总排列情况数：{2}
 秩：{3}
 删数：{4}
-零秩区域：{5}
-是否为零秩结构：{6}</value>
+删数范围：{5}
+零秩区域：{6}
+是否为零秩结构：{7}</value>
   </data>
   <data name="UnstableRank" xml:space="preserve">
     <value>&lt;不存在稳定秩值&gt;</value>

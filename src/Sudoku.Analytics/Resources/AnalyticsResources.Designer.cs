@@ -4337,8 +4337,9 @@ namespace Sudoku.Resources {
         ///Permutation cases count: {2}
         ///Rank: {3}
         ///Eliminations: {4}
-        ///Rank-0 sets: {5}
-        ///Is pattern rank-0: {6}.
+        ///Elimination zone: {5}
+        ///Rank-0 sets: {6}
+        ///Is pattern rank-0: {7}.
         /// </summary>
         public static string RankInfo {
             get {

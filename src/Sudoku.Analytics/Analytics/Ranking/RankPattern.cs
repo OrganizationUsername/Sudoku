@@ -71,7 +71,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// Gets the full string of the current pattern, including its details (rank, eliminations and so on).
 	/// </summary>
 	/// <returns>The string.</returns>
-	public string ToFullString()
+	public unsafe string ToFullString()
 	{
 		var combinations = GetAssignmentCombinations();
 		return string.Format(
@@ -81,6 +81,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			combinations.Length,
 			GetRankCore(combinations)?.ToString() ?? SR.Get("UnstableRank"),
 			GetEliminationsCore(combinations).ToString(),
+			GetEliminationZoneCore(combinations).ToString(),
 			GetRank0LinksCore(combinations).ToString(),
 			SR.Get(GetIsRank0PatternCore(combinations) ? "IsRank0Pattern" : "IsNotRank0Pattern")
 		);
@@ -93,7 +94,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// In theory, eliminations may not require any links. All conclusions come from valid combinations of truths,
 	/// keeping one valid digit filling into each truth, and find intersections of eliminations can be found from all cases.
 	/// </remarks>
-	public CandidateMap GetEliminations() => GetEliminationsCore(GetAssignmentCombinations());
+	public unsafe CandidateMap GetEliminations() => GetEliminationsCore(GetAssignmentCombinations());
 
 	/// <summary>
 	/// Returns a list of <see cref="Candidate"/> group that describes the valid assignments.
@@ -221,11 +222,20 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// Try to find all rank-0 links. A rank-0 link is a link that will become truth
 	/// because all valid combinations lead to a same result that the link must hold one correct digit.
 	/// </summary>
+	/// <returns>A list of links that are determined as rank-0 links.</returns>
 	public SpaceSet GetRank0Links() => GetRank0LinksCore(GetAssignmentCombinations());
+
+	/// <summary>
+	/// Find elimination zones, indicating a list of candidates that can be eliminated,
+	/// no matter whether they exist or not.
+	/// </summary>
+	/// <returns>A list of candidates.</returns>
+	public CandidateMap GetEliminationZone() => GetEliminationZoneCore(GetAssignmentCombinations());
 
 	/// <inheritdoc/>
 	bool IEquatable<RankPattern>.Equals(RankPattern other) => Equals(other);
 
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool GetIsRank0PatternCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 		=> GetRank0LinksCore(combinations) == Links;
 
@@ -244,11 +254,23 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		return factAssignmentCountValues.Count == 1 ? Links.Count - factAssignmentCountValues.First() : null;
 	}
 
-	private CandidateMap GetEliminationsCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
+	private unsafe CandidateMap GetEliminationsCore(
+		ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations,
+		delegate*<ref readonly Grid, Cell, Digit, Mask> otherDigitCalculator = null,
+		delegate*<ref readonly Grid, Cell, Digit, CellMap> otherCellsCalculator = null
+	)
 	{
+		if (otherDigitCalculator == null)
+		{
+			otherDigitCalculator = &otherDigitsCalc;
+		}
+		if (otherCellsCalculator == null)
+		{
+			otherCellsCalculator = &otherCellsCalc;
+		}
+
 		var result = CandidateMap.Empty;
 		var i = 0;
-		var candidatesMap = Grid.CandidatesMap;
 		foreach (var assignmentGroup in combinations)
 		{
 			var current = CandidateMap.Empty;
@@ -256,11 +278,11 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			{
 				var cell = assignment / 9;
 				var digit = assignment % 9;
-				foreach (var otherDigit in (Mask)(Grid.GetCandidates(cell) & ~(1 << digit)))
+				foreach (var otherDigit in otherDigitCalculator(in Grid, cell, digit))
 				{
 					current.Add(cell * 9 + otherDigit);
 				}
-				foreach (var otherCell in PeersMap[cell] & candidatesMap[digit])
+				foreach (var otherCell in otherCellsCalculator(in Grid, cell, digit))
 				{
 					current.Add(otherCell * 9 + digit);
 				}
@@ -275,7 +297,21 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				result &= current;
 			}
 		}
+
+		// Remove candidates from truths.
+		foreach (var truth in Truths)
+		{
+			result &= ~truth.GetRange();
+		}
+
 		return result;
+
+
+		static Mask otherDigitsCalc(ref readonly Grid grid, Cell cell, Digit digit)
+			=> (Mask)(grid.GetCandidates(cell) & ~(1 << digit));
+
+		static CellMap otherCellsCalc(ref readonly Grid grid, Cell cell, Digit digit)
+			=> PeersMap[cell] & grid.CandidatesMap[digit];
 	}
 
 	private SpaceSet GetRank0LinksCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
@@ -309,6 +345,17 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		}
 
 		return result;
+	}
+
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private unsafe CandidateMap GetEliminationZoneCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
+	{
+		return GetEliminationsCore(combinations, &otherDigitsCalc, &otherCellsCalc);
+
+
+		static Mask otherDigitsCalc(ref readonly Grid grid, Cell cell, Digit digit) => grid.GetCandidates(cell);
+
+		static CellMap otherCellsCalc(ref readonly Grid grid, Cell cell, Digit digit) => PeersMap[cell] & grid.EmptyCells;
 	}
 
 

@@ -45,11 +45,39 @@ public static class SpaceExtensions
 			};
 
 		/// <summary>
-		/// Try to find all possible candidates in the current rank set.
+		/// Returns a list of candidates that are in the current set.
+		/// </summary>
+		/// <returns>The candidates.</returns>
+		public CandidateMap GetRange()
+		{
+			switch (@this)
+			{
+				case { Cell: var cell and not -1 }:
+				{
+					var result = CandidateMap.Empty;
+					for (var digit = 0; digit < 9; digit++)
+					{
+						result.Add(cell * 9 + digit);
+					}
+					return result;
+				}
+				case { House: var house, Digit: var digit }:
+				{
+					var result = CandidateMap.Empty;
+					foreach (var cell in HousesMap[house])
+					{
+						result.Add(cell * 9 + digit);
+					}
+					return result;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Try to find all possible candidates in the current set.
 		/// </summary>
 		/// <param name="grid">The grid.</param>
 		/// <returns>The candidates.</returns>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public CandidateMap GetAvailableRange(in Grid grid)
 		{
 			switch (@this)

@@ -5,8 +5,12 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// defined in another project called <see href="https://sudoku.allanbarker.com/index.html">XSudo</see>.
 /// </summary>
 /// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
-public readonly partial struct Space(Mask mask) : IEquatable<Space>, IEqualityOperators<Space, Space, bool>
+[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.AllEqualityComparisonOperators)]
+public readonly partial struct Space(Mask mask) :
+	IComparable<Space>,
+	IComparisonOperators<Space, Space, bool>,
+	IEquatable<Space>,
+	IEqualityOperators<Space, Space, bool>
 {
 	/// <summary>
 	/// Indicates the backing mask.
@@ -103,6 +107,14 @@ public readonly partial struct Space(Mask mask) : IEquatable<Space>, IEqualityOp
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out SpaceType type, out int primary, out int secondary) => (type, (primary, secondary)) = (Type, this);
+
+	/// <inheritdoc/>
+	public int CompareTo(Space other)
+		=> Type.CompareTo(other.Type) is var r1 and not 0
+			? r1
+			: IsCellRelated
+				? Secondary.CompareTo(other.Secondary) is var r2 ? r2 : Primary.CompareTo(other.Primary)
+				: Primary.CompareTo(other.Primary) is var r3 ? r3 : Secondary.CompareTo(other.Secondary);
 
 
 	/// <summary>

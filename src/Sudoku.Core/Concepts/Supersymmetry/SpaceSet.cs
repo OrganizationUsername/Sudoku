@@ -9,13 +9,16 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// <seealso cref="Space"/>
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.Equatable
-		| TypeImplFlags.EqualityOperators | TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator,
+		| TypeImplFlags.AllEqualityComparisonOperators
+		| TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator,
 	IsLargeStructure = true)]
 public partial struct SpaceSet :
 	IAdditionOperators<SpaceSet, Space, SpaceSet>,
 	IAnyAllMethod<SpaceSet, Space>,
 	IBitwiseOperators<SpaceSet, SpaceSet, SpaceSet>,
 	ICollection<Space>,
+	IComparable<SpaceSet>,
+	IComparisonOperators<SpaceSet, SpaceSet, bool>,
 	IEnumerable<Space>,
 	IEquatable<SpaceSet>,
 	IEqualityOperators<SpaceSet, SpaceSet, bool>,
@@ -122,6 +125,23 @@ public partial struct SpaceSet :
 
 	/// <inheritdoc/>
 	public override readonly int GetHashCode() => HashCode.Combine(_field[0], _field[1], _field[2], _field[3]);
+
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
+	public readonly int CompareTo(in SpaceSet other)
+	{
+		var e1 = new AnonymousSpanEnumerator<Space>(ToArray());
+		var e2 = new AnonymousSpanEnumerator<Space>(other.ToArray());
+		while (e1.MoveNext() && e2.MoveNext())
+		{
+			var c1 = e1.Current;
+			var c2 = e2.Current;
+			if (c1.CompareTo(c2) is var r1 and not 0)
+			{
+				return r1;
+			}
+		}
+		return 0;
+	}
 
 	/// <summary>
 	/// Returns a <see cref="BitmapEnumerator"/> instance that can iterate on each bit state.
@@ -284,6 +304,9 @@ public partial struct SpaceSet :
 
 	/// <inheritdoc/>
 	readonly bool IAnyAllMethod<SpaceSet, Space>.All(Func<Space, bool> predicate) => TrueForAll(predicate);
+
+	/// <inheritdoc/>
+	readonly int IComparable<SpaceSet>.CompareTo(SpaceSet other) => CompareTo(other);
 
 	/// <inheritdoc/>
 	readonly SpaceSet IFiniteSet<SpaceSet, Space>.Negate() => ~this;

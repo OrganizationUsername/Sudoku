@@ -7675,6 +7675,9 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.CompareTo(Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.RowDigit(System.Int32,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/> for row-digit space.
@@ -7725,6 +7728,18 @@
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_Inequality(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_GreaterThan(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_LessThan(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_GreaterThanOrEqual(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.Space.op_LessThanOrEqual(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.Supersymmetry.Space)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.Equals(Sudoku.Concepts.Supersymmetry.Space)">
             <inheritdoc/>
@@ -7841,6 +7856,9 @@
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.GetHashCode">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.CompareTo(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.EnumerateBitStates">
             <summary>
             Returns a <see cref="T:Sudoku.Concepts.Supersymmetry.SpaceSet.BitmapEnumerator"/> instance that can iterate on each bit state.
@@ -7920,6 +7938,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#All(System.Func{Sudoku.Concepts.Supersymmetry.Space,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#IComparable{Sudoku#Concepts#Supersymmetry#SpaceSet}#CompareTo(Sudoku.Concepts.Supersymmetry.SpaceSet)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IFiniteSet{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#Negate">
@@ -8035,6 +8056,27 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IEqualityOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_Inequality(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_GreaterThan(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_LessThan(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_GreaterThanOrEqual(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_LessThanOrEqual(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IComparisonOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_GreaterThan(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IComparisonOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_LessThan(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Numerics#IComparisonOperators{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#SpaceSet,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Supersymmetry.SpaceSet,Sudoku.Concepts.Supersymmetry.SpaceSet)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_True(Sudoku.Concepts.Supersymmetry.SpaceSet@)">

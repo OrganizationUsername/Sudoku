@@ -385,10 +385,20 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// <inheritdoc/>
 	bool IEquatable<RankPattern>.Equals(RankPattern other) => Equals(other);
 
+	/// <summary>
+	/// Determine whether the pattern is rank-0 pattern via cached combinations.
+	/// </summary>
+	/// <param name="combinations">The combinations.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool GetIsRank0PatternCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 		=> GetRank0LinksCore(combinations) == Links;
 
+	/// <summary>
+	/// Calculate rank value via cached combinations.
+	/// </summary>
+	/// <param name="combinations">The combinations.</param>
+	/// <returns>The rank value.</returns>
 	private int? GetRankCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 	{
 		var factAssignmentCountValues = new HashSet<int>();
@@ -404,6 +414,17 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		return factAssignmentCountValues.Count == 1 ? Links.Count - factAssignmentCountValues.First() : null;
 	}
 
+	/// <summary>
+	/// Calculate eliminations via cached combinations.
+	/// </summary>
+	/// <param name="combinations">The combinations.</param>
+	/// <param name="otherDigitCalculator">
+	/// The calculator function that gets a range of other digits of cell-assignment eliminations.
+	/// </param>
+	/// <param name="otherCellsCalculator">
+	/// The calculator function that gets a range of other cells of house-assignment eliminations.
+	/// </param>
+	/// <returns>A list of candidates.</returns>
 	private unsafe CandidateMap GetEliminationsCore(
 		ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations,
 		delegate*<ref readonly Grid, Cell, Digit, Mask> otherDigitCalculator = null,
@@ -464,6 +485,11 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			=> PeersMap[cell] & grid.CandidatesMap[digit];
 	}
 
+	/// <summary>
+	/// Gets rank-0 links via cached combinations.
+	/// </summary>
+	/// <param name="combinations">The combinations.</param>
+	/// <returns>Rank-0 links.</returns>
 	private SpaceSet GetRank0LinksCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 	{
 		var result = SpaceSet.Empty;
@@ -497,7 +523,15 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		return result;
 	}
 
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <summary>
+	/// Calculates elimination zones via the specified ignoring options and cached combinations.
+	/// </summary>
+	/// <param name="combinations">The combinations.</param>
+	/// <param name="options">The ignoring options.</param>
+	/// <returns>The candidates.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="options"/> is out of range.
+	/// </exception>
 	private unsafe CandidateMap GetEliminationZoneCore(
 		ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations,
 		EliminationZoneIgnoringOptions options

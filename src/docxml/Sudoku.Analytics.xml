@@ -8673,6 +8673,51 @@
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.System#IEquatable{Sudoku#Analytics#Ranking#RankPattern}#Equals(Sudoku.Analytics.Ranking.RankPattern)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0PatternCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
+            <summary>
+            Determine whether the pattern is rank-0 pattern via cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRankCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
+            <summary>
+            Calculate rank value via cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>The rank value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationsCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},,)">
+            <summary>
+            Calculate eliminations via cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <param name="otherDigitCalculator">
+            The calculator function that gets a range of other digits of cell-assignment eliminations.
+            </param>
+            <param name="otherCellsCalculator">
+            The calculator function that gets a range of other cells of house-assignment eliminations.
+            </param>
+            <returns>A list of candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0LinksCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
+            <summary>
+            Gets rank-0 links via cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>Rank-0 links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationZoneCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions)">
+            <summary>
+            Calculates elimination zones via the specified ignoring options and cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <param name="options">The ignoring options.</param>
+            <returns>The candidates.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="options"/> is out of range.
+            </exception>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.BuildCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
             <summary>
             Build candidates.

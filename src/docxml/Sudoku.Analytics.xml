@@ -8541,31 +8541,20 @@
         </member>
         <member name="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.None">
             <summary>
-            Indicates the placeholder of the pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.All">
-            <summary>
             Indicates all elimination zones should be checked,
             including eliminations from sub-patterns and some invalid places (candidates not on links).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.IgnoreExternal">
             <summary>
-            <para>
             Indicates elimination zones will ignore external ones (i.e. candidates not on links).
-            </para>
-            <para>If this option is specified, it'll be okay to ignore specifying field <see cref="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.All"/>.</para>
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.IgnoreSubpatterns">
             <summary>
-            <para>
             Indicates elimination zones will ignore ones produced by subpatterns of the pattern.
             For example, if a pattern contains a locked candidates, eliminations produced by this locked candidates
             can also be included.
-            </para>
-            <para>If this option is specified, it'll be okay to ignore specifying field <see cref="F:Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions.All"/>.</para>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Ranking.RankPattern">

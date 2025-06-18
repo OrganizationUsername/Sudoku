@@ -505,7 +505,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	{
 		if (options
 			is < EliminationZoneIgnoringOptions.None
-			or > (EliminationZoneIgnoringOptions.All | EliminationZoneIgnoringOptions.IgnoreExternal | EliminationZoneIgnoringOptions.IgnoreSubpatterns))
+			or > (EliminationZoneIgnoringOptions.IgnoreExternal | EliminationZoneIgnoringOptions.IgnoreSubpatterns))
 		{
 			throw new ArgumentOutOfRangeException(nameof(options));
 		}
@@ -516,7 +516,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		}
 
 		var result = GetEliminationsCore(combinations, &otherDigitsCalc, &otherCellsCalc);
-		if (options == EliminationZoneIgnoringOptions.All)
+		if (options == EliminationZoneIgnoringOptions.None)
 		{
 			return result;
 		}
@@ -540,7 +540,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				foreach (var truthCombination in truthsArray.GetSubsets(i))
 				{
 					var subpattern = new RankPattern(Grid, [.. truthCombination], SpaceSet.Empty);
-					var subpatternElims = subpattern.GetEliminationZone(EliminationZoneIgnoringOptions.All);
+					var subpatternElims = subpattern.GetEliminationZone(EliminationZoneIgnoringOptions.None);
 					result &= ~subpatternElims;
 				}
 			}

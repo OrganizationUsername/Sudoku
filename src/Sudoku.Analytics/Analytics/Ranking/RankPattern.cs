@@ -510,11 +510,6 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			throw new ArgumentOutOfRangeException(nameof(options));
 		}
 
-		if (options == EliminationZoneIgnoringOptions.None)
-		{
-			return CandidateMap.Empty;
-		}
-
 		var result = GetEliminationsCore(combinations, &otherDigitsCalc, &otherCellsCalc);
 		if (options == EliminationZoneIgnoringOptions.None)
 		{

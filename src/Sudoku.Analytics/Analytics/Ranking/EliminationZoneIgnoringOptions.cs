@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Ranking;
 /// Represents an option that checks for elimination zones.
 /// </summary>
 [Flags]
-public enum EliminationZoneOptions
+public enum EliminationZoneIgnoringOptions
 {
 	/// <summary>
 	/// Indicates the placeholder of the pattern.

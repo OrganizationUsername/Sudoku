@@ -251,6 +251,10 @@ public partial struct CellMap : CellMapBase
 	/// <summary>
 	/// Indicates the shared block.
 	/// </summary>
+	/// <remarks><b>
+	/// Please note that the result value may be invalid if no shared houses can be found.
+	/// In such case, the return value will be <see cref="FallbackConstants.@int"/> (32, not -1).
+	/// </b></remarks>
 	public readonly House SharedBlock
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

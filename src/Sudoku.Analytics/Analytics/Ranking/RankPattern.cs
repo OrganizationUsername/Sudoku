@@ -275,7 +275,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// (sometimes assignments certain times of digits in the pattern but sometimes not),
 	/// this property will return <see langword="null"/>.
 	/// </summary>
-	public int? GetRank() => GetRankCore(GetAssignmentCombinations());
+	public int? GetRank() => GetRankCore(GetAssignmentCombinations(out _));
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => $"T{Truths.Count} = {Truths}, L{Links.Count} = {Links}";
@@ -286,7 +286,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// <returns>The string.</returns>
 	public unsafe string ToFullString()
 	{
-		var combinations = GetAssignmentCombinations();
+		var combinations = GetAssignmentCombinations(out _);
 		return string.Format(
 			SR.Get("RankInfo"),
 			Grid.ToString("@:"),
@@ -307,19 +307,19 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// In theory, eliminations may not require any links. All conclusions come from valid combinations of truths,
 	/// keeping one valid digit filling into each truth, and find intersections of eliminations can be found from all cases.
 	/// </remarks>
-	public unsafe CandidateMap GetEliminations() => GetEliminationsCore(GetAssignmentCombinations());
+	public unsafe CandidateMap GetEliminations() => GetEliminationsCore(GetAssignmentCombinations(out _));
 
 	/// <summary>
 	/// Returns a list of <see cref="Candidate"/> group that describes the valid assignments.
 	/// </summary>
 	/// <returns>Valid assignments.</returns>
-	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinations()
+	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinations(out SpaceSet links)
 	{
-		var result = new List<ReadOnlyMemory<Candidate>>();
+		(links, var result) = (SpaceSet.Empty, new List<ReadOnlyMemory<Candidate>>());
 
 		// Create a queue to record all possible cases, in BFS way.
 		var queue = new LinkedList<CombinationQueueNode>();
-		queue.AddLast(new CombinationQueueNode([], [.. SpanEnumerable.Range(Truths.Count)]));
+		queue.AddLast(new CombinationQueueNode(-1, [.. SpanEnumerable.Range(Truths.Count)], null));
 
 #if DEBUG
 		// Provides a way to view max capacity while queuing.
@@ -336,7 +336,13 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 #endif
 
 			// Dequeue a node.
-			var (currentState, remainingTruths) = queue.RemoveFirstNode();
+			// There're the following values can be used:
+			//   * currentState: The current candidates applied. To combine all of them it will be the current assignment combination.
+			//   * remainingTruths: The remaining truth, as corresponding indices of truth space set.
+			//   * parent: The parent node.
+			var currentNode = queue.RemoveFirstNode();
+			var (_, remainingTruths, parent) = currentNode;
+			var currentState = currentNode.State;
 
 			// Check whether the node has already finished.
 			if (remainingTruths.Length == 0)
@@ -386,7 +392,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			}
 
 			// Valid. Now add children nodes.
-			var (selectedIndex, candidates) = sorted[0];
+			var (selectedIndex, remainingCandidates) = sorted[0];
 			var newRemainingTruths = new List<int>();
 			foreach (var truthIndex in remainingTruths)
 			{
@@ -395,9 +401,9 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 					newRemainingTruths.Add(truthIndex);
 				}
 			}
-			foreach (var candidate in candidates)
+			foreach (var remainingCandidate in remainingCandidates)
 			{
-				var nextState = currentState + candidate;
+				var nextState = currentState + remainingCandidate;
 				if (Links.TrueForAll(link => link.IsSatisfied(nextState, false)))
 				{
 					// Check whether the remaining truths, preventing truth overlapped cases.
@@ -423,7 +429,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 						newRemainingTruths.Remove(truthIndex);
 					}
 
-					queue.AddLast(new CombinationQueueNode(nextState, [.. newRemainingTruths]));
+					queue.AddLast(new CombinationQueueNode(remainingCandidate, [.. newRemainingTruths], currentNode));
 				}
 			}
 		}
@@ -436,7 +442,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// because all valid combinations lead to a same result that the link must hold one correct digit.
 	/// </summary>
 	/// <returns>A list of links that are determined as rank-0 links.</returns>
-	public SpaceSet GetRank0Links() => GetRank0LinksCore(GetAssignmentCombinations());
+	public SpaceSet GetRank0Links() => GetRank0LinksCore(GetAssignmentCombinations(out _));
 
 	/// <summary>
 	/// Find elimination zones, indicating a list of candidates that can be eliminated,
@@ -445,7 +451,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// <param name="options">The options that determines and filters the elimination zones.</param>
 	/// <returns>A list of candidates.</returns>
 	public CandidateMap GetEliminationZone(EliminationZoneIgnoringOptions options)
-		=> GetEliminationZoneCore(GetAssignmentCombinations(), options);
+		=> GetEliminationZoneCore(GetAssignmentCombinations(out _), options);
 
 	/// <inheritdoc/>
 	bool IEquatable<RankPattern>.Equals(RankPattern other) => Equals(other);
@@ -534,11 +540,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			}
 		}
 
-		// Remove candidates from truths.
-		foreach (var truth in Truths)
-		{
-			result &= ~truth.GetRange();
-		}
+		// TODO: Remove fake eliminations from truths.
 
 		return result;
 

@@ -8617,9 +8617,11 @@
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.TryInferLinks(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
             <summary>
             Infers links that will cover all candidates from the truths and eliminations, if links are unknown.
+            This method doesn't use field <see cref="F:Sudoku.Analytics.Ranking.RankPattern.Links"/>.
             </summary>
             <param name="result">The result links found.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether a combination is found.</returns>
+            <seealso cref="F:Sudoku.Analytics.Ranking.RankPattern.Links"/>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetHashCode">
             <inheritdoc/>

@@ -56,150 +56,215 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 
 	/// <summary>
 	/// Infers links that will cover all candidates from the truths and eliminations, if links are unknown.
+	/// This method doesn't use field <see cref="Links"/>.
 	/// </summary>
 	/// <param name="result">The result links found.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether a combination is found.</returns>
+	/// <seealso cref="Links"/>
 	public unsafe bool TryInferLinks(out SpaceSet result)
 	{
-		// Collect all candidates to be covered.
+		var availableTruthCandidates = _candidates;
 		var eliminations = GetEliminations();
-		var allCandidatesToCover = CandidateMap.Empty;
-		foreach (var truth in Truths)
-		{
-			allCandidatesToCover |= truth.GetAvailableRange(Grid);
-		}
 
-		// Collect covering states that describes which candidates in truths can eliminate candidates in links.
-		var baseLinks = SpaceSet.Empty;
-		foreach (var elimination in eliminations)
+		// Iterate candidates to cover.
+		result = SpaceSet.Empty;
+		var isChanged = true;
+		while (!!availableTruthCandidates && isChanged)
 		{
-			var targetCell = elimination / 9;
-			var targetDigit = elimination % 9;
-
-			// Iterate combinations to find which digits can cause this elimination.
-			foreach (var truth in Truths)
+			isChanged = false;
+			foreach (var candidateToCover in availableTruthCandidates)
 			{
-				foreach (var candidateInTruth in truth.GetAvailableRange(Grid))
+				var cell = candidateToCover / 9;
+				var digit = candidateToCover % 9;
+
+				var validSpaces = new List<Space>(4);
+				var isFallbackChecked = false;
+
+				// Check for valid links to connect.
+				if (Space.RowColumn(cell / 9, cell % 9) is var cellLink
+					&& isLinkValid(this, cellLink, availableTruthCandidates, eliminations))
 				{
-					var cell = candidateInTruth / 9;
-					var digit = candidateInTruth % 9;
-					if (cell == targetCell)
+					validSpaces.Add(cellLink);
+				}
+				if (Space.BlockDigit(cell.ToHouse(HouseType.Block), digit) is var blockLink
+					&& isLinkValid(this, blockLink, availableTruthCandidates, eliminations))
+				{
+					validSpaces.Add(blockLink);
+				}
+				if (Space.RowDigit(cell.ToHouse(HouseType.Row) - 9, digit) is var rowLink
+					&& isLinkValid(this, rowLink, availableTruthCandidates, eliminations))
+				{
+					validSpaces.Add(rowLink);
+				}
+				if (Space.ColumnDigit(cell.ToHouse(HouseType.Column) - 18, digit) is var columnLink
+					&& isLinkValid(this, columnLink, availableTruthCandidates, eliminations))
+				{
+					validSpaces.Add(columnLink);
+				}
+				goto CheckStateOfValidSpaces;
+
+			LinkTripletFallback:
+				if (!isFallbackChecked)
+				{
+					isFallbackChecked = true;
+
+					// Fallback to include all candidates to cover.
+					if (isLinkValid(this, cellLink, _candidates, eliminations))
 					{
-						baseLinks.Add(Space.RowColumn(cell / 9, cell % 9));
-						allCandidatesToCover.Remove(candidateInTruth);
+						validSpaces.Add(cellLink);
 					}
-					else if (PeersMap[cell].Contains(targetCell) && digit == targetDigit)
+					if (isLinkValid(this, blockLink, _candidates, eliminations))
 					{
-						var house = (cell.AsCellMap() + targetCell).FirstSharedHouse;
-						baseLinks.Add(
-							house.HouseType switch
+						validSpaces.Add(blockLink);
+					}
+					if (isLinkValid(this, rowLink, _candidates, eliminations))
+					{
+						validSpaces.Add(rowLink);
+					}
+					if (isLinkValid(this, columnLink, _candidates, eliminations))
+					{
+						validSpaces.Add(columnLink);
+					}
+				}
+
+			CheckStateOfValidSpaces:
+				switch (validSpaces)
+				{
+					// No valid links can be found.
+					// This case can be triggered if two links connect to a same candidate (a link triplet).
+					case []:
+					{
+						if (isFallbackChecked)
+						{
+							goto default;
+						}
+						else
+						{
+							goto LinkTripletFallback;
+						}
+					}
+
+					// If there's only one valid link to be connected, connect directly.
+					case [var space]:
+					{
+						result.Add(space);
+						availableTruthCandidates &= ~space.GetAvailableRange(Grid);
+						isChanged = true;
+						goto OuterWhileLoop;
+					}
+
+					// We should connect to the only link that connects to a truth.
+					// If at least 2 links connect to 2 different available candidates in truths,
+					// we cannot determine the target connecting state.
+					case { Count: >= 2 }:
+					{
+						var validLinks = new List<Space>();
+						foreach (var space in validSpaces)
+						{
+							if (space.GetAvailableRange(Grid) & availableTruthCandidates - candidateToCover)
 							{
-								HouseType.Block => Space.BlockDigit(house, digit),
-								HouseType.Row => Space.RowDigit(house - 9, digit),
-								HouseType.Column => Space.ColumnDigit(house - 18, digit)
+								validLinks.Add(space);
 							}
-						);
-						allCandidatesToCover.Remove(candidateInTruth);
+						}
+
+						switch (validLinks)
+						{
+							case []:
+							{
+								continue;
+							}
+							case [var onlyValidLink]:
+							{
+								// Valid.
+								result.Add(onlyValidLink);
+								availableTruthCandidates &= ~onlyValidLink.GetAvailableRange(Grid);
+								isChanged = true;
+								goto OuterWhileLoop;
+							}
+							default:
+							{
+								// Multiple choosing ways can be selected.
+								// We should select a best one, which covers more candidates from truths.
+								var gridCopied = Grid;
+								validLinks.Sort(
+									(left, right) =>
+									{
+										var a = left.GetAvailableRange(gridCopied) & availableTruthCandidates - candidateToCover;
+										var b = right.GetAvailableRange(gridCopied) & availableTruthCandidates - candidateToCover;
+										return b.Count - a.Count;
+									}
+								);
+
+								var bestLink = validLinks[0];
+								result.Add(bestLink);
+								availableTruthCandidates &= ~bestLink.GetAvailableRange(Grid);
+								isChanged = true;
+								goto OuterWhileLoop;
+							}
+						}
+					}
+
+					// Otherwise, we should do BFS to perform valid connection.
+					default:
+					{
+						// TODO: Implement later.
+						continue;
 					}
 				}
 			}
+
+		OuterWhileLoop:
+			;
 		}
 
-		// Find a way to fully cover all candidates.
-		var queue = new LinkedList<CoverQueueNode>();
-		queue.AddLast(new CoverQueueNode(default, allCandidatesToCover, null));
+		// Return true if there's no left candidates.
+		return !availableTruthCandidates;
 
-		// Iterate nodes.
-		while (queue.Count != 0)
+
+		static bool isLinkValid(
+			in RankPattern @this,
+			Space link,
+			in CandidateMap availableTruthCandidates,
+			in CandidateMap eliminations
+		)
 		{
-			// Dequeue a node.
-			var currentNode = queue.RemoveFirstNode();
-			var (link, uncovered, parent) = currentNode;
-
-			if (!uncovered)
+			if (@this.Truths.Contains(link))
 			{
-				// All candidates are covered.
-				// Check whether the combination follows the eliminations.
-				result = baseLinks | currentNode.Links;
-				return true;
+				return false;
 			}
 
-			// Calculate for covered candidates.
-			var covered = allCandidatesToCover & ~uncovered;
-
-			// Find for remaining cases.
-			var cases = new List<(Space Space, CandidateMap UncoveredCandidates)>();
-			foreach (var candidate in uncovered)
+			ref readonly var grid = ref @this.Grid;
+			var linkCovered = link.GetAvailableRange(grid);
+			var covered = availableTruthCandidates & linkCovered;
+			if (covered.Count == 1 && !((availableTruthCandidates | eliminations) & linkCovered & eliminations))
 			{
-				var cell = candidate / 9;
-				var digit = candidate % 9;
+				// If the current link can only cover one candidate of the available candidates,
+				// we should check for eliminations coverage.
+				// If the link cannot cover any eliminations, invalid.
+				return false;
+			}
 
-				var cellLink = Space.RowColumn(cell / 9, cell % 9);
-				if (!Truths.Contains(cellLink) && !cases.Exists(@case => @case.Space == cellLink))
+			if (covered.Count >= 2)
+			{
+				var isFullyCoveredByOneTruth = false;
+				foreach (var truth in @this.Truths)
 				{
-					var nextUncovered = remainingMap(uncovered, cellLink, Grid);
-					var nextCovered = uncovered & ~nextUncovered;
-					if (nextCovered.Count >= 2 || !!(nextCovered & eliminations)
-						|| covered.Any(candidate => cellLink.ContainsAssignment(candidate)))
+					if ((truth.GetAvailableRange(grid) & covered) == covered)
 					{
-						cases.Add((cellLink, nextUncovered));
+						isFullyCoveredByOneTruth = true;
+						break;
 					}
 				}
-
-				var blockLink = Space.BlockDigit(cell.ToHouse(HouseType.Block), digit);
-				if (!Truths.Contains(blockLink) && !cases.Exists(@case => @case.Space == blockLink))
+				if (isFullyCoveredByOneTruth)
 				{
-					var nextUncovered = remainingMap(uncovered, blockLink, Grid);
-					var nextCovered = uncovered & ~nextUncovered;
-					if (nextCovered.Count >= 2 || !!(nextCovered & eliminations)
-						|| covered.Any(candidate => blockLink.ContainsAssignment(candidate)))
-					{
-						cases.Add((blockLink, nextUncovered));
-					}
-				}
-
-				var rowLink = Space.RowDigit(cell.ToHouse(HouseType.Row) - 9, digit);
-				if (!Truths.Contains(rowLink) && !cases.Exists(@case => @case.Space == rowLink))
-				{
-					var nextUncovered = remainingMap(uncovered, rowLink, Grid);
-					var nextCovered = uncovered & ~nextUncovered;
-					if (nextCovered.Count >= 2 || !!(nextCovered & eliminations)
-						|| covered.Any(candidate => rowLink.ContainsAssignment(candidate)))
-					{
-						cases.Add((rowLink, nextUncovered));
-					}
-				}
-
-				var columnLink = Space.ColumnDigit(cell.ToHouse(HouseType.Column) - 18, digit);
-				if (!Truths.Contains(columnLink) && !cases.Exists(@case => @case.Space == columnLink))
-				{
-					var nextUncovered = remainingMap(uncovered, columnLink, Grid);
-					var nextCovered = uncovered & ~nextUncovered;
-					if (nextCovered.Count >= 2 || !!(nextCovered & eliminations)
-						|| covered.Any(candidate => columnLink.ContainsAssignment(candidate)))
-					{
-						cases.Add((columnLink, nextUncovered));
-					}
+					// If all the covered candidates belong to a same truth, it'll be redundant.
+					return false;
 				}
 			}
 
-			// Sort by descending order.
-			cases.Sort(static (left, right) => left.UncoveredCandidates.Count - right.UncoveredCandidates.Count);
-
-			// Iterate on the next connection.
-			foreach (var (nextSpace, nextUncovered) in cases)
-			{
-				queue.AddLast(new CoverQueueNode(nextSpace, nextUncovered, currentNode));
-			}
+			// Seems good.
+			return true;
 		}
-
-		result = default;
-		return false;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static CandidateMap remainingMap(in CandidateMap currentMap, Space space, in Grid grid)
-			=> currentMap & ~space.GetAvailableRange(grid);
 	}
 
 	/// <inheritdoc/>
@@ -229,7 +294,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			combinations.Length,
 			GetRankCore(combinations)?.ToString() ?? SR.Get("UnstableRank"),
 			GetEliminationsCore(combinations).ToString(),
-			GetEliminationZoneCore(combinations, EliminationZoneIgnoringOptions.IgnoreExternal | EliminationZoneIgnoringOptions.IgnoreSubpatterns).ToString(),
+			GetEliminationZoneCore(combinations, EliminationZoneIgnoringOptions.None).ToString(),
 			GetRank0LinksCore(combinations).ToString(),
 			SR.Get(GetIsRank0PatternCore(combinations) ? "IsRank0Pattern" : "IsNotRank0Pattern")
 		);

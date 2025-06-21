@@ -49,7 +49,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	/// Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 links.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool GetIsRank0Pattern() => GetRank0Links() == Links;
+	public bool GetIsRank0Pattern() => GetRank0Links().Count == Truths.Count;
 
 	/// <inheritdoc/>
 	[Obsolete($"This method always return false. Ref structs cannot be boxed so argument '{nameof(obj)}' must be a different instance.", false)]
@@ -96,15 +96,29 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		foreach (var link in fullLinks)
 		{
 			var isLinkRedundant = true;
-			foreach (ref readonly var combination in _candidates & link.GetAvailableRange(Grid) & 2)
+
+			var combinationCandidates = _candidates & link.GetAvailableRange(Grid);
+			foreach (ref readonly var combination in combinationCandidates & 2)
 			{
-				var first = combination[0];
-				var second = combination[1];
-				ref readonly var sets1 = ref truthDictionary.GetValueRef(first);
-				ref readonly var sets2 = ref truthDictionary.GetValueRef(second);
+				var setsIntersected = SpaceSet.Empty;
+				var setsUnioned = SpaceSet.Empty;
+				var isFirstAssigned = true;
+				foreach (var assigned in combination)
+				{
+					ref readonly var set = ref truthDictionary.GetValueRef(assigned);
+					setsUnioned |= set;
+
+					if (isFirstAssigned)
+					{
+						isFirstAssigned = false;
+						setsIntersected |= set;
+						continue;
+					}
+					setsIntersected &= set;
+				}
 
 				// Check whether they are in a same truth.
-				if (sets1 & sets2)
+				if (setsIntersected)
 				{
 					// This combination disobeys the rule of truth, invalid.
 					// Skip for the current combination.
@@ -119,8 +133,10 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				// to clear irrelevant candidates.
 				// Although the grid becomes invalid, we know that this type won't check validity of the grid.
 				var subgrid = Grid;
-				subgrid.SetDigit(first / 9, first % 9);
-				subgrid.SetDigit(second / 9, second % 9);
+				foreach (var assigned in combination)
+				{
+					subgrid.SetDigit(assigned / 9, assigned % 9);
+				}
 
 				// Create a pattern.
 				// Note that link can be empty because here we don't use any links as necessary data -
@@ -132,9 +148,9 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				// The backing implementation algorithm will automatically skip invalid combinations
 				// to keep the pattern valid;
 				// for example, it directly ignores same digit are filled into a same house with different cells.
-				var subpattern = new RankPattern(subgrid, Truths & ~(sets1 | sets2), SpaceSet.Empty);
+				var subpattern = new RankPattern(subgrid, Truths & ~setsUnioned, SpaceSet.Empty);
 				var subpatternCombinations = subpattern.GetAssignmentCombinations();
-				var subpatternEliminations = subpattern.GetEliminationsCore(subpatternCombinations/*, &otherDigitsCalc, &otherCellsCalc*/);
+				var subpatternEliminations = subpattern.GetEliminationsCore(subpatternCombinations);
 
 				// If there's a link from candidate to elimination,
 				// we will get an information "those two cannot be both true".
@@ -172,9 +188,10 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 					// If we removed the link and can get a same elimination set or a subset,
 					// we can know that the link is redundant.
 					isLinkRedundant = false;
-					break;
+					goto CheckRedudancy;
 				}
 			}
+		CheckRedudancy:
 			if (!isLinkRedundant)
 			{
 				// Otherwise, the link is required.

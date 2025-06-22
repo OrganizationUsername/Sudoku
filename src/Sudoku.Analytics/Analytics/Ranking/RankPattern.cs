@@ -688,7 +688,9 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			{
 				if (!result.TryAdd(candidate, [truth]))
 				{
-					result[candidate].Add(truth);
+					var original = result[candidate];
+					original.Add(truth);
+					result[candidate] = original;
 				}
 			}
 		}

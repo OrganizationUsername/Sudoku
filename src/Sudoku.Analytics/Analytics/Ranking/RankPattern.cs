@@ -102,6 +102,17 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			var combinationCandidates = _candidates & link.GetAvailableRange(Grid);
 			foreach (ref readonly var combination in combinationCandidates & 2)
 			{
+				// Special check on space relations between two assignments.
+				// Sometimes the pairs of combination can be appeared in a line, which would be already checked by line links.
+				// We should ignore the pairs.
+				if (link.House is < 9 and not -1
+					&& BitOperations.IsPow2(combination.Digits)
+					&& combination.Cells is { Count: 2, SharedLine: not FallbackConstants.@int } pairCells)
+				{
+					// Skip for the pair.
+					continue;
+				}
+
 				var setsIntersected = SpaceSet.Empty;
 				var setsUnioned = SpaceSet.Empty;
 				var isFirstAssigned = true;
@@ -195,6 +206,30 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 							// They are in a same link, but the link is supposed to be disappeared.
 							// So we cannot link they up and remove the elimination.
 							subpatternEliminations.Remove(eliminationToCheck);
+						}
+
+						// Here is a rescue:
+						// The assignment and elimination can see each other, but they are in a same line and block,
+						// just like two cells in a locked candidates pattern.
+						// Even if block link can remove it, we can also remove that candidate because it can be treated
+						// as a row and column link.
+						var rescueFlag = false;
+						foreach (var nestedAssignedCell in combination)
+						{
+							var canAssignedCellSeeElimination = link.House is <= 9 and not -1
+								&& (nestedAssignedCell / 9, nestedAssignedCell % 9) is var (assignedCell, assignedDigit)
+								&& (eliminationToCheck / 9, eliminationToCheck % 9) is var (eliminatedCell, eliminatedDigit)
+								&& assignedDigit == eliminatedDigit
+								&& (assignedCell.AsCellMap() + eliminatedCell).SharedLine != FallbackConstants.@int;
+							if (canAssignedCellSeeElimination)
+							{
+								rescueFlag = true;
+								break;
+							}
+						}
+						if (rescueFlag)
+						{
+							subpatternEliminations.Add(eliminationToCheck);
 						}
 					}
 				}

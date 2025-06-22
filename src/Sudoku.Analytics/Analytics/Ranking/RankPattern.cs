@@ -1,3 +1,5 @@
+#define SKIP_ZERO_RANK_FULL_REDUNDANCY_CHECK
+
 namespace Sudoku.Analytics.Ranking;
 
 /// <summary>
@@ -69,27 +71,26 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	{
 		// Find for all links, passing eliminations.
 		var combinations = GetAssignmentCombinationsCore(out var fullLinks);
-		//var rank0Links = GetRank0LinksCore(combinations);
-		//if (rank0Links.Count == Truths.Count)
-		//{
-		//	// Rank-0 pattern.
-		//	return rank0Links;
-		//}
 
+#if SKIP_ZERO_RANK_FULL_REDUNDANCY_CHECK
+		// Check whether the pattern is rank-0. If so, all links can be used as elimination one,
+		// meaning there's no redundant links. Just treat them as result.
+		if (GetRank0LinksCore(combinations) is var rank0Links && rank0Links.Count == Truths.Count)
+		{
+			return rank0Links;
+		}
+#endif
+
+		// Otherwise, non-rank-0 pattern.
+		// We should do a full check on compatibility of pairs on links, to know which are necessary and which are not.
+
+		// Get eliminations as original one.
+		// If there's no valid eliminations, we cannot know any extra information,
+		// even validity of pattern (truths selection, etc.).
 		var originalEliminations = GetEliminationsCore(combinations);
 
 		// Create a dictionary to record distribution of each candidate and its containing truth.
-		var truthDictionary = new Dictionary<Candidate, SpaceSet>();
-		foreach (var truth in Truths)
-		{
-			foreach (var candidate in truth.GetAvailableRange(Grid))
-			{
-				if (!truthDictionary.TryAdd(candidate, [truth]))
-				{
-					truthDictionary[candidate].Add(truth);
-				}
-			}
-		}
+		var truthDistributionLookup = CreateTruthsDistributionDictionary();
 
 		// Iterate on each link, to check whether it is redundant or not.
 		var result = SpaceSet.Empty;
@@ -105,7 +106,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				var isFirstAssigned = true;
 				foreach (var assigned in combination)
 				{
-					ref readonly var set = ref truthDictionary.GetValueRef(assigned);
+					ref readonly var set = ref truthDistributionLookup.GetValueRef(assigned);
 					setsUnioned |= set;
 
 					if (isFirstAssigned)
@@ -627,6 +628,26 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 		static Mask otherDigitsCalc(ref readonly Grid grid, Cell cell, Digit digit) => (Mask)(Grid.MaxCandidatesMask & ~(1 << digit));
 
 		static CellMap otherCellsCalc(ref readonly Grid grid, Cell cell, Digit digit) => PeersMap[cell] & grid.EmptyCells;
+	}
+
+	/// <summary>
+	/// Creates a dictionary as lookup table on all pattern candidates and their containing truths.
+	/// </summary>
+	/// <returns>A dictionary that records each candidate appeared in pattern and its containing truths.</returns>
+	private Dictionary<Candidate, SpaceSet> CreateTruthsDistributionDictionary()
+	{
+		var result = new Dictionary<Candidate, SpaceSet>();
+		foreach (var truth in Truths)
+		{
+			foreach (var candidate in truth.GetAvailableRange(Grid))
+			{
+				if (!result.TryAdd(candidate, [truth]))
+				{
+					result[candidate].Add(truth);
+				}
+			}
+		}
+		return result;
 	}
 
 

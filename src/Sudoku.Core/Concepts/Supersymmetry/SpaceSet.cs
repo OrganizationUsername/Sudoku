@@ -25,6 +25,7 @@ public partial struct SpaceSet :
 	IFiniteSet<SpaceSet, Space>,
 	IInfiniteSet<SpaceSet, Space>,
 	ILogicalOperators<SpaceSet>,
+	IParsable<SpaceSet>,
 	IReadOnlyList<Space>,
 	IReadOnlySet<Space>,
 	ISet<Space>,
@@ -350,6 +351,37 @@ public partial struct SpaceSet :
 
 	/// <inheritdoc/>
 	SpaceSet IInfiniteSet<SpaceSet, Space>.ExceptWith(SpaceSet other) => this &= ~other;
+
+
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
+	public static bool TryParse(string? s, out SpaceSet result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = default;
+				return false;
+			}
+
+			result = Parse(s);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	public static SpaceSet Parse(string s) => new RxCyParser().SpaceParser(s);
+
+	/// <inheritdoc/>
+	static bool IParsable<SpaceSet>.TryParse(string? s, IFormatProvider? provider, out SpaceSet result) => TryParse(s, out result);
+
+	/// <inheritdoc/>
+	static SpaceSet IParsable<SpaceSet>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 
 	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_OnesComplement(TSelf)"/>

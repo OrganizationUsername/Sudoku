@@ -297,7 +297,7 @@ public sealed partial record RxCyParser : CoordinateParser
 								'R' or 'r' => Space.RowDigit(p, q),
 								'C' or 'c' => Space.ColumnDigit(p, q),
 								'B' or 'b' => Space.BlockDigit(p, q),
-								'N' or 'n' => Space.RowColumn(p, q)
+								'N' or 'n' => Space.RowColumn(q, p)
 							}
 						);
 					}

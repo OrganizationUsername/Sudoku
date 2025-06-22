@@ -8055,6 +8055,18 @@
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#Collections#Generic#IInfiniteSet{Sudoku#Concepts#Supersymmetry#SpaceSet,Sudoku#Concepts#Supersymmetry#Space}#ExceptWith(Sudoku.Concepts.Supersymmetry.SpaceSet)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.TryParse(System.String,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.Parse(System.String)">
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#IParsable{Sudoku#Concepts#Supersymmetry#SpaceSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.System#IParsable{Sudoku#Concepts#Supersymmetry#SpaceSet}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.op_OnesComplement(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
             <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
         </member>

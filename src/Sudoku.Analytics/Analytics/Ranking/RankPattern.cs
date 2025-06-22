@@ -1,4 +1,4 @@
-#define SKIP_ZERO_RANK_FULL_REDUNDANCY_CHECK
+#undef SKIP_ZERO_RANK_FULL_REDUNDANCY_CHECK
 #define SKIP_VERIFY_SATISFIABILITY_ON_LINKS
 
 namespace Sudoku.Analytics.Ranking;
@@ -476,11 +476,9 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			// Check whether the node has already finished.
 			if (remainingTruths.Length == 0)
 			{
-#if SKIP_VERIFY_SATISFIABILITY_ON_LINKS
-				result.Add(currentState.ToArray());
-#else
 				// Verify links.
 				var flag = true;
+#if !SKIP_VERIFY_SATISFIABILITY_ON_LINKS
 				foreach (var link in Links)
 				{
 					if (!link.IsSatisfied(currentState, false))
@@ -489,11 +487,11 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 						break;
 					}
 				}
+#endif
 				if (flag)
 				{
 					result.Add(currentState.ToArray());
 				}
-#endif
 
 				links |= currentNode.GetProducedLinks(Grid, Truths);
 				continue;

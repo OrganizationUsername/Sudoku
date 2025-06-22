@@ -119,7 +119,9 @@
 
 ## 秩理论 <a href="#rank-theory" id="rank-theory"></a>
 
-* [秩的定义](rank-theory/01-definition-of-rank.md)
+* [秩理论初步](rank-theory/01-introduction-to-rank-theory.md)
+* [秩的三种取值](rank-theory/02-range-of-rank/README.md)
+  * [零秩结构](rank-theory/02-range-of-rank/01-rank-0-pattern.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

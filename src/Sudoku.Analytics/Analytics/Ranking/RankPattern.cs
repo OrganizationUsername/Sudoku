@@ -569,6 +569,12 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 					}
 
 					queue.AddLast(new CombinationQueueNode(remainingCandidate, [.. newRemainingTruths], currentNode));
+
+					// Backtrack: Revert operation on removing on overlapped truths.
+					foreach (var truthIndex in overlapped)
+					{
+						newRemainingTruths.Add(truthIndex);
+					}
 				}
 			}
 		}

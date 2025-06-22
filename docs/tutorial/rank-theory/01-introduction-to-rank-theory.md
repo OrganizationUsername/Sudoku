@@ -1,8 +1,8 @@
 ---
-description: Definition of Rank
+description: Introduction to Rank Theory
 ---
 
-# 秩的定义
+# 秩理论初步
 
 欢迎各位来到新的板块。这个板块你将会学习到数独里另外一个复杂的内容：**秩**（Rank）。
 

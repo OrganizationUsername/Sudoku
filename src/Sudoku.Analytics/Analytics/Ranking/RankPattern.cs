@@ -69,12 +69,12 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 	{
 		// Find for all links, passing eliminations.
 		var combinations = GetAssignmentCombinationsCore(out var fullLinks);
-		var rank0Links = GetRank0LinksCore(combinations);
-		if (rank0Links.Count == Truths.Count)
-		{
-			// Rank-0 pattern.
-			return rank0Links;
-		}
+		//var rank0Links = GetRank0LinksCore(combinations);
+		//if (rank0Links.Count == Truths.Count)
+		//{
+		//	// Rank-0 pattern.
+		//	return rank0Links;
+		//}
 
 		var originalEliminations = GetEliminationsCore(combinations);
 
@@ -150,6 +150,12 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 				// for example, it directly ignores same digit are filled into a same house with different cells.
 				var subpattern = new RankPattern(subgrid, Truths & ~setsUnioned, SpaceSet.Empty);
 				var subpatternCombinations = subpattern.GetAssignmentCombinations();
+				if (subpatternCombinations.Length == 0)
+				{
+					// There's no valid combinations in this subpattern, meaning the pair cannot be compatible.
+					continue;
+				}
+
 				var subpatternEliminations = subpattern.GetEliminationsCore(subpatternCombinations);
 
 				// If there's a link from candidate to elimination,
@@ -161,14 +167,22 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 					var digit = assignmentToCheck % 9;
 
 					// Check whether the candidate can see at least one elimination.
-					var assignmentToCheckPeerCandidates = (Grid.CandidatesMap[digit] & PeersMap[cell]) * digit;
-					foreach (var d in (Mask)(Grid.GetCandidates(cell) & ~(1 << digit)))
+					var assignmentToCheckPeerCandidates = CandidateMap.Empty;
+					foreach (var c in Grid.CandidatesMap[digit] & PeersMap[cell])
 					{
+						assignmentToCheckPeerCandidates.Add(c * 9 + digit);
+						if (!_candidates.Contains(c * 9 + digit))
+						{
+							subpatternEliminations.Add(c * 9 + digit);
+						}
+					}
+					foreach (var d in Grid.GetCandidates(cell))
+					{
+						assignmentToCheckPeerCandidates.Add(cell * 9 + d);
 						if (!_candidates.Contains(cell * 9 + d))
 						{
 							subpatternEliminations.Add(cell * 9 + d);
 						}
-						assignmentToCheckPeerCandidates.Add(cell * 9 + d);
 					}
 
 					foreach (var eliminationToCheck in assignmentToCheckPeerCandidates & originalEliminations)
@@ -231,7 +245,6 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			combinations.Length,
 			GetRankCore(combinations)?.ToString() ?? SR.Get("UnstableRank"),
 			GetEliminationsCore(combinations).ToString(),
-			GetEliminationZoneCore(combinations, EliminationZoneIgnoringOptions.None).ToString(),
 			GetRank0LinksCore(combinations).ToString(),
 			SR.Get(GetIsRank0PatternCore(combinations) ? "IsRank0Pattern" : "IsNotRank0Pattern")
 		);

@@ -75,6 +75,38 @@ public readonly partial struct Space(Mask mask) :
 		};
 
 	/// <summary>
+	/// Returns a list of candidates that are in the current set.
+	/// </summary>
+	/// <returns>The candidates.</returns>
+	public CandidateMap Range
+	{
+		get
+		{
+			switch (this)
+			{
+				case { Cell: var cell and not -1 }:
+				{
+					var result = CandidateMap.Empty;
+					for (var digit = 0; digit < 9; digit++)
+					{
+						result.Add(cell * 9 + digit);
+					}
+					return result;
+				}
+				case { House: var house, Digit: var digit }:
+				{
+					var result = CandidateMap.Empty;
+					foreach (var cell in HousesMap[house])
+					{
+						result.Add(cell * 9 + digit);
+					}
+					return result;
+				}
+			}
+		}
+	}
+
+	/// <summary>
 	/// Indicates the represented letter.
 	/// </summary>
 	private char Letter
@@ -115,6 +147,52 @@ public readonly partial struct Space(Mask mask) :
 			: IsCellRelated
 				? Secondary.CompareTo(other.Secondary) is var r2 ? r2 : Primary.CompareTo(other.Primary)
 				: Primary.CompareTo(other.Primary) is var r3 ? r3 : Secondary.CompareTo(other.Secondary);
+
+	/// <summary>
+	/// Determine whether the specified assignment is inside the set.
+	/// </summary>
+	/// <param name="assignment">The assignment.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool ContainsAssignment(Candidate assignment)
+		=> this switch
+		{
+			{ Cell: var cell and not -1 } => assignment / 9 == cell,
+			{ House: var house, Digit: var digit } => assignment % 9 == digit && HousesMap[house].Contains(assignment / 9)
+		};
+
+	/// <summary>
+	/// Try to find all possible candidates in the current set.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>The candidates.</returns>
+	public CandidateMap GetAvailableRange(in Grid grid)
+	{
+		switch (this)
+		{
+			case { Cell: var cell and not -1 }:
+			{
+				var result = CandidateMap.Empty;
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					result.Add(cell * 9 + digit);
+				}
+				return result;
+			}
+			case { House: var house, Digit: var digit }:
+			{
+				var result = CandidateMap.Empty;
+				foreach (var cell in HousesMap[house])
+				{
+					if (grid.Exists(cell, digit) is true)
+					{
+						result.Add(cell * 9 + digit);
+					}
+				}
+				return result;
+			}
+		}
+	}
 
 
 	/// <summary>

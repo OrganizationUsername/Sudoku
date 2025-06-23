@@ -652,7 +652,7 @@ public readonly ref partial struct RankPattern(in Grid grid, in SpaceSet truths,
 			var candidatesSet = CandidateMap.Empty;
 			foreach (var link in Links)
 			{
-				candidatesSet |= link.GetRange();
+				candidatesSet |= link.Range;
 			}
 			result &= candidatesSet;
 		}

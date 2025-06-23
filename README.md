@@ -166,7 +166,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Almost Locked Sets XY-Wing (*ALS-XY-Wing*)
       * Almost Locked Sets W-Wing (*ALS-W-Wing*)
     * Extended Subset Principle (*ESP*)
-    * Fat Ring
+    * Fit Ring & Fat Ring
     * Empty Rectangle Intersection Pair (*ERIP*)
     * Death Blossom
   * Rank Logic

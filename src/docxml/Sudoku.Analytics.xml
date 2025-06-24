@@ -8610,6 +8610,61 @@
             if links are unavailable, invalid or unknown.
             </summary>
             <returns>The spaces that represent links.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>
+            Because the algorithm design differs from that of the XSudo software,
+            we need special handling to support this feature.
+            </para>
+            <para>
+            First, we must identify all possible assignment combinations in the entire sequence,
+            then determine how many times values are filled, and compute the rank of pattern.
+            Thus, the rank of the pattern falls into two cases: rank equals 0, or rank is a positive integer
+            (Note: a valid rank of pattern cannot be negative).
+            </para>
+            <para>
+            At the same time, when obtaining assignment combinations, we also record the exclusion effects generated
+            by those assignments, and convert these into links.
+            When the rank is 0, all computed links are treated as valid and can be returned directly.
+            But when the rank is non-zero, we must test each link individually.
+            </para>
+            <para>
+            We iterate over every link. For each link, we perform the following test:
+            find all candidates under this link, and pair them in every possible two-candidate combination
+            (i.e., the total number of pairs equals <c>C(n, 2)</c>, where <c>n</c> is the total number of candidates).
+            </para>
+            <para>
+            By definition of a link, no pair of candidates within it can both be true simultaneously.
+            Therefore, for each such candidate pair, we temporarily force both to be true, and exclude all truths
+            that contain either of these two candidates as true simultaneously, as well as exclude the link itself.
+            We then treat the remaining truths and links as a subpattern,
+            compute all assignment combinations for this subpattern, and use them to determine its elimination results.
+            </para>
+            <para>
+            Because the subpattern has fewer truths, it may produce more elimination combinations,
+            and the total eliminations may even exceed those of the original pattern.
+            </para>
+            <para>
+            Since eliminations may increase, we check whether the set of eliminations for the subpattern is equal to or fully contains
+            the original pattern's elimination set.
+            If it does, this indicates that under the violation of the link rule for this candidate pair,
+            we can still achieve those eliminations - at least for this pair.
+            </para>
+            <para>
+            We must repeat this check for all candidate pairs: if every pair yields eliminations equal to
+            or containing the original set, then the link is indeed redundant and can be removed.
+            Conversely, if there is at least one pair for which the eliminations are neither equal to
+            nor a superset of the original eliminations, the link is "worthy" and cannot be removed.
+            </para>
+            <para>
+            Apply this algorithm to check all links once, identify and remove all redundant ones;
+            the remaining sets are the correct links.
+            </para>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.CreateTruthsDistributionDictionary">
             <summary>

@@ -9573,6 +9573,51 @@
 				</summary>
 			</target>
         </member>
+        <member name="T:Sudoku.Drawing.Nodes.LinkSpaceViewNode">
+            <summary>
+            Represents link view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='identifier']"/></param>
+            <param name="space"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='space']"/></param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.LinkSpaceViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Represents link view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='identifier']"/></param>
+            <param name="space"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='space']"/></param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.LinkSpaceViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.LinkSpaceViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Nodes.SetViewNode">
+            <summary>
+            Represents a set (truth or link) view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="P:Sudoku.Drawing.ViewNode.Identifier" path="/summary"/></param>
+            <param name="space"><inheritdoc cref="P:Sudoku.Drawing.Nodes.SetViewNode.Space" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Represents a set (truth or link) view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="P:Sudoku.Drawing.ViewNode.Identifier" path="/summary"/></param>
+            <param name="space"><inheritdoc cref="P:Sudoku.Drawing.Nodes.SetViewNode.Space" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.SetViewNode.Space">
+            <summary>
+            Indicates the space.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.SetViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.SetViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Drawing.Nodes.SquareViewNode">
             <summary>
             Defines a square view node.
@@ -9622,6 +9667,26 @@
             <param name="cell"><inheritdoc cref="M:Sudoku.Drawing.Nodes.IconViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,System.Int32)" path="/param[@name='cell']"/></param>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.TriangleViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Nodes.TruthSpaceViewNode">
+            <summary>
+            Represents truth view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='identifier']"/></param>
+            <param name="space"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='space']"/></param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.TruthSpaceViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Represents truth view node.
+            </summary>
+            <param name="identifier"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='identifier']"/></param>
+            <param name="space"><inheritdoc cref="M:Sudoku.Drawing.Nodes.SetViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Supersymmetry.Space)" path="/param[@name='space']"/></param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.TruthSpaceViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.TruthSpaceViewNode.Clone">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.PaletteIdColorIdentifier">

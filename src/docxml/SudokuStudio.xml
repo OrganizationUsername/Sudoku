@@ -13044,6 +13044,26 @@
             Indicates the feedback color when a house is completed.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellTruthColor">
+            <summary>
+            Indicates the cell truth color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.RowTruthColor">
+            <summary>
+            Indicates the row truth color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ColumnTruthColor">
+            <summary>
+            Indicates the column truth color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.BlockTruthColor">
+            <summary>
+            Indicates the block truth color.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
             <summary>
             Indicates the dash style of the strong links.
@@ -13592,6 +13612,30 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellTruthColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellTruthColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellTruthColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.RowTruthColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.RowTruthColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.RowTruthColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ColumnTruthColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ColumnTruthColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ColumnTruthColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.BlockTruthColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BlockTruthColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BlockTruthColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
             <summary>

@@ -75,6 +75,18 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
+	private static readonly Color CellTruthColorDefaultValue = Color.FromArgb(255, 64, 128, 192);
+
+	[Default]
+	private static readonly Color RowTruthColorDefaultValue = Color.FromArgb(255, 187, 62, 125);
+
+	[Default]
+	private static readonly Color ColumnTruthColorDefaultValue = Color.FromArgb(255, 46, 138, 92);
+
+	[Default]
+	private static readonly Color BlockTruthColorDefaultValue = Color.FromArgb(255, 172, 126, 113);
+
+	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]
@@ -528,6 +540,30 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[DependencyProperty]
 	public partial Color HouseCompletedFeedbackColor { get; set; }
+
+	/// <summary>
+	/// Indicates the cell truth color.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color CellTruthColor { get; set; }
+
+	/// <summary>
+	/// Indicates the row truth color.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color RowTruthColor { get; set; }
+
+	/// <summary>
+	/// Indicates the column truth color.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color ColumnTruthColor { get; set; }
+
+	/// <summary>
+	/// Indicates the block truth color.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color BlockTruthColor { get; set; }
 
 	/// <summary>
 	/// Indicates the dash style of the strong links.

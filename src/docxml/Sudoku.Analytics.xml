@@ -8596,6 +8596,19 @@
             </para>
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.CorrectLinks">
+            <summary>
+            Correct links that will cover all candidates from the truths and eliminations,
+            if links are unavailable, invalid or unknown.
+            </summary>
+            <returns>The spaces that represent links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.CreateTruthsDistributionDictionary">
+            <summary>
+            Creates a dictionary as lookup table on all pattern candidates and their containing truths.
+            </summary>
+            <returns>A dictionary that records each candidate appeared in pattern and its containing truths.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
             <summary>
             Represents an object that can calculate rank-related information via the specified grid, truths and links.
@@ -8650,42 +8663,13 @@
             Indicates the candidates.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0Pattern">
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.BuildCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
             <summary>
-            Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 links.
+            Build candidates.
             </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(System.Object)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(Sudoku.Analytics.Ranking.RankPattern@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.CorrectLinks">
-            <summary>
-            Correct links that will cover all candidates from the truths and eliminations,
-            if links are unavailable, invalid or unknown.
-            </summary>
-            <returns>The spaces that represent links.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank">
-            <summary>
-            Indicates the rank of the current pattern. If the pattern is unstable
-            (sometimes assignments certain times of digits in the pattern but sometimes not),
-            this property will return <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToFullString">
-            <summary>
-            Gets the full string of the current pattern, including its details (rank, eliminations and so on).
-            </summary>
-            <returns>The string.</returns>
+            <param name="grid">The grid.</param>
+            <param name="truths">The truths.</param>
+            <param name="links">The links.</param>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminations">
             <summary>
@@ -8696,25 +8680,6 @@
             keeping one valid digit filling into each truth, and find intersections of eliminations can be found from all cases.
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignmentCombinations">
-            <summary>
-            Returns a list of <see cref="T:System.Int32"/> group that describes the valid assignments.
-            </summary>
-            <returns>Valid assignments.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetFullLinks">
-            <summary>
-            Returns a list of links indicating the connection on hatching.
-            </summary>
-            <returns>Links.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0Links">
-            <summary>
-            Try to find all rank-0 links. A rank-0 link is a link that will become truth
-            because all valid combinations lead to a same result that the link must hold one correct digit.
-            </summary>
-            <returns>A list of links that are determined as rank-0 links.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationZone(Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions)">
             <summary>
             Find elimination zones, indicating a list of candidates that can be eliminated,
@@ -8723,8 +8688,79 @@
             <param name="options">The options that determines and filters the elimination zones.</param>
             <returns>A list of candidates.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationsCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},,)">
+            <summary>
+            Calculate eliminations via cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <param name="otherDigitCalculator">
+            The calculator function that gets a range of other digits of cell-assignment eliminations.
+            </param>
+            <param name="otherCellsCalculator">
+            The calculator function that gets a range of other cells of house-assignment eliminations.
+            </param>
+            <returns>A list of candidates.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationZoneCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions)">
+            <summary>
+            Calculates elimination zones via the specified ignoring options and cached combinations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <param name="options">The ignoring options.</param>
+            <returns>The candidates.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="options"/> is out of range.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.Equals(Sudoku.Analytics.Ranking.RankPattern@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.System#IEquatable{Sudoku#Analytics#Ranking#RankPattern}#Equals(Sudoku.Analytics.Ranking.RankPattern)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignmentCombinations">
+            <summary>
+            Returns a list of <see cref="T:System.Int32"/> group that describes the valid assignments.
+            </summary>
+            <returns>Valid assignments.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignmentCombinationsCore(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <summary>
+            Gets assignment combinations with full links.
+            </summary>
+            <param name="links">The full links.</param>
+            <returns>Assignment combinations.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetFullLinks">
+            <summary>
+            Returns a list of links indicating the connection on hatching.
+            </summary>
+            <returns>Links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0Pattern">
+            <summary>
+            Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 links.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank">
+            <summary>
+            Indicates the rank of the current pattern. If the pattern is unstable
+            (sometimes assignments certain times of digits in the pattern but sometimes not),
+            this property will return <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0Links">
+            <summary>
+            Try to find all rank-0 links. A rank-0 link is a link that will become truth
+            because all valid combinations lead to a same result that the link must hold one correct digit.
+            </summary>
+            <returns>A list of links that are determined as rank-0 links.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetIsRank0PatternCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
             <summary>
@@ -8740,26 +8776,6 @@
             <param name="combinations">The combinations.</param>
             <returns>The rank value.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationsCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},,)">
-            <summary>
-            Calculate eliminations via cached combinations.
-            </summary>
-            <param name="combinations">The combinations.</param>
-            <param name="otherDigitCalculator">
-            The calculator function that gets a range of other digits of cell-assignment eliminations.
-            </param>
-            <param name="otherCellsCalculator">
-            The calculator function that gets a range of other cells of house-assignment eliminations.
-            </param>
-            <returns>A list of candidates.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetAssignmentCombinationsCore(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
-            <summary>
-            Gets assignment combinations with full links.
-            </summary>
-            <param name="links">The full links.</param>
-            <returns>Assignment combinations.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetRank0LinksCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
             <summary>
             Gets rank-0 links via cached combinations.
@@ -8767,30 +8783,14 @@
             <param name="combinations">The combinations.</param>
             <returns>Rank-0 links.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.GetEliminationZoneCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}},Sudoku.Analytics.Ranking.EliminationZoneIgnoringOptions)">
-            <summary>
-            Calculates elimination zones via the specified ignoring options and cached combinations.
-            </summary>
-            <param name="combinations">The combinations.</param>
-            <param name="options">The ignoring options.</param>
-            <returns>The candidates.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="options"/> is out of range.
-            </exception>
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.CreateTruthsDistributionDictionary">
+        <member name="M:Sudoku.Analytics.Ranking.RankPattern.ToFullString">
             <summary>
-            Creates a dictionary as lookup table on all pattern candidates and their containing truths.
+            Gets the full string of the current pattern, including its details (rank, eliminations and so on).
             </summary>
-            <returns>A dictionary that records each candidate appeared in pattern and its containing truths.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Ranking.RankPattern.BuildCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
-            <summary>
-            Build candidates.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="truths">The truths.</param>
-            <param name="links">The links.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Ranking.RankPattern.op_Equality(Sudoku.Analytics.Ranking.RankPattern,Sudoku.Analytics.Ranking.RankPattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

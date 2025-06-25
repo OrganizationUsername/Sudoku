@@ -63,7 +63,7 @@ public partial struct RankPattern
 	public unsafe SpaceSet CorrectLinks()
 	{
 		// Find for all links, passing eliminations.
-		var combinations = GetAssignmentCombinationsCore(out var fullLinks);
+		var combinations = GetAssignmentCombinationsCore(out var fullLinks, out _);
 
 #if SKIP_ZERO_RANK_FULL_REDUNDANCY_CHECK
 		// Check whether the pattern is rank-0. If so, all links can be used as elimination one,

@@ -28725,18 +28725,13 @@
             </summary>
             <returns>Valid assignments.</returns>
         </member>
-        <member name="M:Sudoku.Ranking.RankPattern.GetAssignmentCombinationsCore(Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+        <member name="M:Sudoku.Ranking.RankPattern.GetAssignmentCombinationsCore(Sudoku.Concepts.Supersymmetry.SpaceSet@,System.ReadOnlySpan{Sudoku.Ranking.VirtualSpace}@)">
             <summary>
             Gets assignment combinations with full links.
             </summary>
             <param name="links">The full links.</param>
+            <param name="virtualLinks">The virtual links.</param>
             <returns>Assignment combinations.</returns>
-        </member>
-        <member name="M:Sudoku.Ranking.RankPattern.GetFullLinks">
-            <summary>
-            Returns a list of links indicating the connection on hatching.
-            </summary>
-            <returns>Links.</returns>
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.GetHashCode">
             <inheritdoc/>

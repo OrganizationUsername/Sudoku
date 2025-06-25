@@ -538,7 +538,7 @@ internal partial class DrawableFactory
 		};
 
 		var digit = candidate % 9;
-		control.Margin = rotatingMode == GridCandidateRotating.XSudoRotating ? App.RotatedMarginTable[digit] : default;
+		control.Margin = rotatingMode == GridCandidateRotating.XSudoRotating ? App.RotatedCandidateBasedControlTable[digit] : default;
 
 		GridLayout.SetRow(control, digit / 3);
 		GridLayout.SetColumn(control, digit % 3);

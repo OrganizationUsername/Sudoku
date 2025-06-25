@@ -88,6 +88,21 @@ public partial class App : Application
 	];
 
 	/// <summary>
+	/// Represents rotated candidate-based controls table.
+	/// </summary>
+	public static Thickness[] RotatedCandidateBasedControlTable => [
+		new(-6,  6, 0, 0),
+		new(-6,  0, 0, 0),
+		new(-6, -6, 0, 0),
+		new( 0,  6, 0, 0),
+		new( 0,  0, 0, 0),
+		new( 0, -6, 0, 0),
+		new( 6,  6, 0, 0),
+		new( 6,  0, 0, 0),
+		new( 6, -6, 0, 0)
+	];
+
+	/// <summary>
 	/// Indicates the configured application theme.
 	/// </summary>
 	internal static ApplicationTheme CurrentTheme

@@ -91,15 +91,15 @@ public partial class App : Application
 	/// Represents rotated candidate-based controls table.
 	/// </summary>
 	public static Thickness[] RotatedCandidateBasedControlTable => [
-		new(-6,  6, 0, 0),
-		new(-6,  0, 0, 0),
-		new(-6, -6, 0, 0),
+		new(-5,  5, 0, 0),
+		new(-5,  0, 0, 0),
+		new(-5, -5, 0, 0),
 		new( 0,  6, 0, 0),
 		new( 0,  0, 0, 0),
 		new( 0, -6, 0, 0),
-		new( 6,  6, 0, 0),
-		new( 6,  0, 0, 0),
-		new( 6, -6, 0, 0)
+		new( 4,  5, 0, 0),
+		new( 4,  0, 0, 0),
+		new( 4, -6, 0, 0)
 	];
 
 	/// <summary>

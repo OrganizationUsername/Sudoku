@@ -59,7 +59,7 @@ internal sealed class PathCreator(
 						{
 							var digit = s % 9;
 							var margin = App.RotatedCandidateBasedControlTable[digit];
-							tempPoint1 = new(tempPoint1.X + margin.Left / 2, tempPoint1.Y + margin.Top / 2);
+							tempPoint1 = new(tempPoint1.X + margin.X, tempPoint1.Y + margin.Y);
 						}
 
 						foreach (var e in endCandidates)
@@ -69,7 +69,7 @@ internal sealed class PathCreator(
 							{
 								var digit = e % 9;
 								var margin = App.RotatedCandidateBasedControlTable[digit];
-								tempPoint2 = new(tempPoint2.X + margin.Left / 2, tempPoint2.Y + margin.Top / 2);
+								tempPoint2 = new(tempPoint2.X + margin.X, tempPoint2.Y + margin.Y);
 							}
 
 							var d = tempPoint1.DistanceTo(tempPoint2);

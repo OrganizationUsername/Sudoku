@@ -13791,7 +13791,7 @@
             This method returns <see langword="void"/> on purpose because we do not want to make the method wait-able by user.
             </i></remarks>
         </member>
-        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.SetRotating(Microsoft.UI.Xaml.Thickness[])">
+        <member name="M:SudokuStudio.Views.Controls.SudokuPaneCell.SetRotating(System.Numerics.Vector3[])">
             <summary>
             Try to set rotating.
             </summary>

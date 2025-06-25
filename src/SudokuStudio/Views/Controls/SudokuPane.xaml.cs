@@ -392,7 +392,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the rotating mode of candidates.
 	/// </summary>
-	[DependencyProperty(DefaultValue = GridCandidateRotating.None)]
+	[DependencyProperty(DefaultValue = GridCandidateRotating.XSudoRotating)]
 	public partial GridCandidateRotating CandidateRotating { get; set; }
 
 	/// <summary>

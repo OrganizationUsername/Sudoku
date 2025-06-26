@@ -7639,9 +7639,10 @@
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.HamiltonianPathFinder.FindPath">
             <summary>
-            Try to find a path; if none found, an empty array will be returned.
+            Try to find a path that can cover all candidates in the block specified.
+            This method will be used in rendering block truths and links.
             </summary>
-            <returns>A path with cells connected; if failed to find, an empty array will be returned.</returns>
+            <returns>A path with cells connected.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.Extensions">
             <target name="class" when="extension">

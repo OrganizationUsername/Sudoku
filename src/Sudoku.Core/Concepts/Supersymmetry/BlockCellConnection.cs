@@ -41,9 +41,10 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 
 
 	/// <summary>
-	/// Try to find a path; if none found, an empty array will be returned.
+	/// Try to find a path that can cover all candidates in the block specified.
+	/// This method will be used in rendering block truths and links.
 	/// </summary>
-	/// <returns>A path with cells connected; if failed to find, an empty array will be returned.</returns>
+	/// <returns>A path with cells connected.</returns>
 	public ReadOnlySpan<Cell> FindPath()
 	{
 		var spiritCells = HousesMap[_originalPoints.SharedBlock] & ~_originalPoints;
@@ -80,7 +81,7 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 				_allPoints = original;
 			}
 		}
-		return isDefault ? [] : result;
+		return isDefault ? throw new("Impossible here") : result;
 
 
 		static CellMap bfs_GetReachableCells(Cell start, in CellMap available)

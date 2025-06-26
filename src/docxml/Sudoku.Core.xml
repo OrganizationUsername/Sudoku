@@ -8846,6 +8846,35 @@
         <member name="M:Sudoku.Drawing.Parsing.LinkArgumentParser.Parse(System.ReadOnlySpan{System.String},Sudoku.Concepts.Grid@,Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Coordinates.CoordinateParser)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Drawing.Parsing.LinkSetArgumentParser">
+            <summary>
+            Represents link set argument parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Parsing.LinkSetArgumentParser.IsTruthBased">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Parsing.TruthOrLinkArgumentParser">
+            <summary>
+            Represents truth or link argument parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Parsing.TruthOrLinkArgumentParser.IsTruthBased">
+            <summary>
+            Indicates whether the parser is truth-based.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Parsing.TruthOrLinkArgumentParser.Parse(System.ReadOnlySpan{System.String},Sudoku.Concepts.Grid@,Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Parsing.TruthSetArgumentParser">
+            <summary>
+            Represents truth set argument parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Parsing.TruthSetArgumentParser.IsTruthBased">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.IDrawable">
             <summary>
             Represents a drawable instance that can be used for drawing, providing with base data structure to be used by drawing APIs.

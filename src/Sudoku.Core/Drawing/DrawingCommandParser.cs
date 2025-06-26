@@ -14,7 +14,7 @@ public readonly ref partial struct DrawingCommandParser([AllowNull] ref readonly
 	/// <summary>
 	/// Indicates the valid names.
 	/// </summary>
-	private static readonly string[] ValidNames = ["cell", "candidate", "icon", "house", "chute", "link", "baba"];
+	private static readonly string[] ValidNames = ["cell", "candidate", "icon", "house", "chute", "link", "baba", "truthset", "linkset"];
 
 	/// <summary>
 	/// Indicates the well-known identifiers, and their own key used in parsing.
@@ -52,7 +52,9 @@ public readonly ref partial struct DrawingCommandParser([AllowNull] ref readonly
 		{ "house", static () => new HouseArgumentParser() },
 		{ "chute", static () => new ChuteArgumentParser() },
 		{ "baba", static () => new BabaGroupArgumentParser() },
-		{ "link", static () => new LinkArgumentParser() }
+		{ "link", static () => new LinkArgumentParser() },
+		{ "truthset", static () => new TruthSetArgumentParser() },
+		{ "linkset", static () => new LinkSetArgumentParser() }
 	};
 
 

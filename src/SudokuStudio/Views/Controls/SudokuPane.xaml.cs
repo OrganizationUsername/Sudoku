@@ -93,6 +93,9 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly Color BlockLinkColorDefaultValue = Color.FromArgb(86, 172, 126, 113);
 
 	[Default]
+	private static readonly Color RankSetBoundCandidatesColorDefaultValue = Color.FromArgb(255, 129, 192, 255);
+
+	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
 	[Default]
@@ -582,6 +585,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	[DependencyProperty]
 	public partial Color BlockLinkColor { get; set; }
+
+	/// <summary>
+	/// Indicates the bound candidates color on rank sets.
+	/// </summary>
+	[DependencyProperty]
+	public partial Color RankSetBoundCandidatesColor { get; set; }
 
 	/// <summary>
 	/// Indicates the dash style of the strong links.

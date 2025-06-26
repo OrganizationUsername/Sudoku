@@ -13096,6 +13096,11 @@
             Indicates the block link color.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.RankSetBoundCandidatesColor">
+            <summary>
+            Indicates the bound candidates color on rank sets.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle">
             <summary>
             Indicates the dash style of the strong links.
@@ -13680,6 +13685,12 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.BlockLinkColor"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.BlockLinkColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.RankSetBoundCandidatesColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.RankSetBoundCandidatesColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.RankSetBoundCandidatesColor"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyleProperty">
             <summary>

@@ -7,20 +7,16 @@ public partial struct RankPattern
 	/// </summary>
 	/// <returns>Valid assignments.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinations() => GetAssignmentCombinationsCore(out _, out _);
+	public ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinations() => GetAssignmentCombinationsCore(out _);
 
 	/// <summary>
 	/// Gets assignment combinations with full links.
 	/// </summary>
 	/// <param name="links">The full links.</param>
-	/// <param name="virtualLinks">The virtual links.</param>
 	/// <returns>Assignment combinations.</returns>
-	private ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinationsCore(
-		out SpaceSet links,
-		out ReadOnlySpan<VirtualSpace> virtualLinks
-	)
+	private ReadOnlySpan<ReadOnlyMemory<Candidate>> GetAssignmentCombinationsCore(out SpaceSet links)
 	{
-		(links, var (result, virtualLinksResult)) = (SpaceSet.Empty, (new List<ReadOnlyMemory<Candidate>>(), new List<VirtualSpace>()));
+		(links, var result) = (SpaceSet.Empty, new List<ReadOnlyMemory<Candidate>>());
 
 		// Create a queue to record all possible cases, in BFS way.
 		var queue = new LinkedList<CombinationQueueNode>();
@@ -120,7 +116,6 @@ public partial struct RankPattern
 			}
 		}
 
-		virtualLinks = virtualLinksResult.AsSpan();
 		return result.AsSpan();
 	}
 }

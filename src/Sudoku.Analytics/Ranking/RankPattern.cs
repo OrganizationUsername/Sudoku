@@ -68,44 +68,6 @@ public readonly ref partial struct RankPattern(ref readonly Grid grid, ref reado
 	[UnscopedRef]
 	public ref readonly CandidateMap Candidates => ref _candidates;
 
-	/// <summary>
-	/// Indicates virtual truths.
-	/// </summary>
-	[EquatableMember]
-	public ReadOnlySpan<VirtualSpace> VirtualTruths
-	{
-		get;
-
-		init
-		{
-			var sortedSet = new SortedSet<VirtualSpace>();
-			foreach (var truth in value)
-			{
-				sortedSet.Add(truth);
-			}
-			field = sortedSet.ToArray();
-		}
-	}
-
-	/// <summary>
-	/// Indicates virtual links.
-	/// </summary>
-	[EquatableMember]
-	public ReadOnlySpan<VirtualSpace> VirtualLinks
-	{
-		get;
-
-		init
-		{
-			var sortedSet = new SortedSet<VirtualSpace>();
-			foreach (var truth in value)
-			{
-				sortedSet.Add(truth);
-			}
-			field = sortedSet.ToArray();
-		}
-	}
-
 
 	/// <summary>
 	/// Build candidates.

@@ -7668,18 +7668,15 @@
 				</summary>
 			</target>
         </member>
-        <member name="T:Sudoku.Concepts.Supersymmetry.Extensions.<>E__0">
+        <member name="T:Sudoku.Concepts.Supersymmetry.Extensions.">
             <summary>
             Provides extension members on <see cref="T:System.Int32"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Supersymmetry.Extensions.<>E__0.Neighbors">
+        <member name="P:Sudoku.Concepts.Supersymmetry.Extensions..Neighbors">
             <summary>
             Indicates the neighbors.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Supersymmetry.Extensions.get_Neighbors(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.Supersymmetry.Extensions.<>E__0.Neighbors"/>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.Space">
             <summary>

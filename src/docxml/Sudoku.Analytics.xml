@@ -3192,6 +3192,11 @@
             Indicates whether at least one node in the whole pattern overlaps with a node.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.ChainExtensions..IsXyCycle">
+            <summary>
+            Indicates whether the loop is an XY-Cycle.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Construction.Components.ChainExtensions..IsStrongLinksStrictlyGrouped">
             <summary>
             Indicates whether at least one link in strong links contains grouped nodes,

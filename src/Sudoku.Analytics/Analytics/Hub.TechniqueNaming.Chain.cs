@@ -145,15 +145,12 @@ public partial class Hub
 									_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
 								}
 					},
-					ContinuousNiceLoop { IsX: var isX, IsY: var isY, IsStrictlyGrouped: var isGrouped } instance => instance switch
+					ContinuousNiceLoop { IsStrictlyGrouped: var isGrouped } instance => instance switch
 					{
 						{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: 2 } => Technique.DoublyLinkedAlmostLockedSetsXzRule,
-						_ => (isX, isY) switch
-						{
-							(true, false) => isGrouped ? Technique.GroupedFishyCycle : Technique.FishyCycle,
-							(false, true) => isGrouped ? Technique.GroupedXyCycle : Technique.XyCycle,
-							_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
-						}
+						{ IsX: true, IsY: false } => isGrouped ? Technique.GroupedFishyCycle : Technique.FishyCycle,
+						{ IsXyCycle: true } => isGrouped ? Technique.GroupedXyCycle : Technique.XyCycle,
+						_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
 					}
 				};
 		}

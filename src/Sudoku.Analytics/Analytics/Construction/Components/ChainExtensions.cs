@@ -66,6 +66,29 @@ internal static class ChainExtensions
 		}
 
 		/// <summary>
+		/// Indicates whether the loop is an XY-Cycle.
+		/// </summary>
+		public bool IsXyCycle
+		{
+			get
+			{
+				if (@this is not ContinuousNiceLoop)
+				{
+					return false;
+				}
+
+				foreach (var link in @this.StrongLinks)
+				{
+					if (!link.IsBivalueCellLink)
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+		}
+
+		/// <summary>
 		/// Indicates whether at least one link in strong links contains grouped nodes,
 		/// and is not advanced node (i.e. contains grouped pattern).
 		/// </summary>

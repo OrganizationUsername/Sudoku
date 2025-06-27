@@ -12,6 +12,19 @@ public static class BlockCellConnection
 	/// <param name="cells">The cells to be traversed.</param>
 	/// <returns>A list of pairs of cells as connection segments.</returns>
 	/// <exception cref="ArgumentException">Throws when the specified cells cannot be covered by only one block.</exception>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes"/>
+	/// <para>
+	/// This algorithm finds all Hamiltonian paths formed by a given set of cells that can only connect orthogonally
+	/// (horizontally or vertically), and, whenever a direct connection is impossible, inserts "spirit cells"
+	/// to bridge the gaps and allow the path to succeed.
+	/// </para>
+	/// <para>
+	/// Because the total search space of nine cells is relatively small,
+	/// the implementation is kept quite simple: it enumerates every possible Hamiltonian path
+	/// (including any inserted spirit cells) and then chooses the one of minimal length.
+	/// </para>
+	/// </remarks>
 	public static ReadOnlySpan<Cell> GetConnections(in CellMap cells)
 		=> cells.SharedBlock != FallbackConstants.@int
 			? new HamiltonianPathFinder(in cells).FindPath()

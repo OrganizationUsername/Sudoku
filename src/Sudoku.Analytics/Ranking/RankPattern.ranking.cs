@@ -5,7 +5,6 @@ public partial struct RankPattern
 	/// <summary>
 	/// Indicates whether the current pattern is stable rank-0 pattern, i.e. all links are rank-0 links.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool GetIsRank0Pattern() => GetRank0Links().Count == Truths.Count;
 
 	/// <summary>
@@ -13,7 +12,6 @@ public partial struct RankPattern
 	/// (sometimes assignments certain times of digits in the pattern but sometimes not),
 	/// this property will return <see langword="null"/>.
 	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int? GetRank() => GetRankCore(GetAssignmentCombinations());
 
 	/// <summary>
@@ -21,7 +19,6 @@ public partial struct RankPattern
 	/// because all valid combinations lead to a same result that the link must hold one correct digit.
 	/// </summary>
 	/// <returns>A list of links that are determined as rank-0 links.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public SpaceSet GetRank0Links() => GetRank0LinksCore(GetAssignmentCombinations());
 
 	/// <summary>
@@ -29,7 +26,6 @@ public partial struct RankPattern
 	/// </summary>
 	/// <param name="combinations">The combinations.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private bool GetIsRank0PatternCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 		=> GetRank0LinksCore(combinations) == Links;
 
@@ -40,17 +36,10 @@ public partial struct RankPattern
 	/// <returns>The rank value.</returns>
 	private int? GetRankCore(ReadOnlySpan<ReadOnlyMemory<Candidate>> combinations)
 	{
-		var factAssignmentCountValues = new HashSet<int>();
-		foreach (var l in from assignment in combinations select assignment.Length)
-		{
-			factAssignmentCountValues.Add(l);
-			if (factAssignmentCountValues.Count >= 2)
-			{
-				// Invalid, fast fail.
-				return null;
-			}
-		}
-		return factAssignmentCountValues.Count == 1 ? Links.Count - factAssignmentCountValues.First() : null;
+		var factAssignmentCountValues = new SortedSet<int>();
+		factAssignmentCountValues.AddRange(from assignment in combinations select assignment.Length);
+
+		return factAssignmentCountValues.Max - factAssignmentCountValues.Min;
 	}
 
 	/// <summary>

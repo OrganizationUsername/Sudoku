@@ -10567,6 +10567,7 @@
             <param name="inputPath">Path to the input file to be sorted.</param>
             <param name="outputPath">Path to the file where sorted lines will be written.</param>
             <param name="linesPerChunk">Maximum number of lines to load into memory per chunk.</param>
+            <returns>The number of lines of result file output.</returns>
         </member>
         <member name="M:Sudoku.IO.ExternalSorter.MergeSortedFilesAsync(System.Collections.Generic.List{System.String},System.String)">
             <summary>
@@ -10574,6 +10575,7 @@
             </summary>
             <param name="sortedFiles">List of paths to sorted temporary files.</param>
             <param name="outputPath">Path to the final output file.</param>
+            <returns>The number of lines of result file output.</returns>
         </member>
         <member name="T:Sudoku.IO.Library">
             <summary>

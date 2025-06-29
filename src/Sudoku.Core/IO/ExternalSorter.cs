@@ -13,7 +13,8 @@ public static class ExternalSorter
 	/// <param name="inputPath">Path to the input file to be sorted.</param>
 	/// <param name="outputPath">Path to the file where sorted lines will be written.</param>
 	/// <param name="linesPerChunk">Maximum number of lines to load into memory per chunk.</param>
-	public static async Task SortLargeFileAsync(string inputPath, string outputPath, int linesPerChunk = 500_000)
+	/// <returns>The number of lines of result file output.</returns>
+	public static async Task<int> SortLargeFileAsync(string inputPath, string outputPath, int linesPerChunk = 500_000)
 	{
 		var tempFiles = new ConcurrentBag<string>(); // Stores paths of temporary sorted chunk files.
 		var chunkTasks = new List<Task>(); // Stores asynchronous chunk sort tasks.
@@ -55,7 +56,7 @@ public static class ExternalSorter
 		await Task.WhenAll(chunkTasks);
 
 		// Merge sorted chunks into final output.
-		await MergeSortedFilesAsync([.. tempFiles], outputPath);
+		var resultFileLines = await MergeSortedFilesAsync([.. tempFiles], outputPath);
 
 		// Clean up temporary files.
 		foreach (var file in tempFiles)
@@ -69,6 +70,8 @@ public static class ExternalSorter
 				// Ignore delete errors.
 			}
 		}
+
+		return resultFileLines;
 	}
 
 	/// <summary>
@@ -76,7 +79,8 @@ public static class ExternalSorter
 	/// </summary>
 	/// <param name="sortedFiles">List of paths to sorted temporary files.</param>
 	/// <param name="outputPath">Path to the final output file.</param>
-	private static async Task MergeSortedFilesAsync(List<string> sortedFiles, string outputPath)
+	/// <returns>The number of lines of result file output.</returns>
+	private static async Task<int> MergeSortedFilesAsync(List<string> sortedFiles, string outputPath)
 	{
 		var readers = new List<StreamReader>();
 
@@ -100,6 +104,7 @@ public static class ExternalSorter
 			}
 		}
 
+		var totalWrittenLines = 0;
 		await using (var writer = new StreamWriter(outputPath))
 		{
 			// Perform k-way merge.
@@ -111,6 +116,7 @@ public static class ExternalSorter
 
 				// Write smallest line to output.
 				await writer.WriteLineAsync(minLine);
+				Interlocked.Increment(ref totalWrittenLines);
 
 				// Remove used index.
 				kvp.Value.RemoveAt(0);
@@ -133,5 +139,7 @@ public static class ExternalSorter
 
 		// Dispose all readers.
 		readers.ForEach(static reader => reader.Dispose());
+
+		return totalWrittenLines;
 	}
 }

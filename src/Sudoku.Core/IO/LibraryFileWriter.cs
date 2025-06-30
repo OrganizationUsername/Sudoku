@@ -7,9 +7,9 @@ namespace Sudoku.IO;
 internal sealed partial class LibraryFileWriter : IAsyncDisposable
 {
 	/// <summary>
-	/// Indicates the flush threashold. If the maximum number of characters is reached, a flush operation will be triggered.
+	/// Represents a new line character sequence.
 	/// </summary>
-	private const int FlushThreshold = 10000;
+	private const string NewLineCharacters = "\r\n";
 
 
 	/// <summary>
@@ -24,44 +24,9 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	private readonly SemaphoreSlim _semaphore = new(1, 1);
 
 	/// <summary>
-	/// Indicates the buffer.
+	/// Indicates the buffer. If the maximum number of lines is reached, a flush operation will be triggered.
 	/// </summary>
 	private readonly List<string> _buffer = [];
-
-
-	/// <summary>
-	/// Initializes a <see cref="LibraryFileWriter"/> instance.
-	/// </summary>
-	/// <param name="filePath">The file path.</param>
-	/// <param name="bufferSize">The buffer size.</param>
-	/// <param name="exists">Indicates whether the file exists.</param>
-	public LibraryFileWriter(string filePath, int bufferSize, out bool exists)
-	{
-		(FilePath, BufferSize) = (filePath, bufferSize);
-		exists = File.Exists(filePath);
-		_writer = new(
-			new FileStream(
-				filePath,
-				FileMode.Append,
-				FileAccess.Write,
-				FileShare.Read,
-				bufferSize,
-				FileOptions.Asynchronous
-			),
-			Encoding.UTF8
-		);
-	}
-
-
-	/// <summary>
-	/// Indicates the file path.
-	/// </summary>
-	public string FilePath { get; }
-
-	/// <summary>
-	/// Indicates the buffer size.
-	/// </summary>
-	public int BufferSize { get; }
 
 
 	/// <summary>
@@ -70,8 +35,21 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <param name="exists">Indicates whether the file exists.</param>
-	public LibraryFileWriter(string filePath, out bool exists) : this(filePath, 4096 * 4, out exists)
+	public LibraryFileWriter(string filePath, out bool exists)
 	{
+		FilePath = filePath;
+		exists = File.Exists(filePath);
+		_writer = new(
+			new FileStream(
+				filePath,
+				FileMode.Append,
+				FileAccess.Write,
+				FileShare.Read,
+				1024,
+				FileOptions.Asynchronous
+			),
+			Encoding.UTF8
+		);
 	}
 
 
@@ -79,6 +57,17 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	/// Indicates whether the flush operation will be automatically triggered.
 	/// </summary>
 	public bool AutoFlush { get; init; }
+
+	/// <summary>
+	/// Indicates the buffer size, indicating the maximum number of lines of puzzles can be recorded in backing buffer.
+	/// By default it's 1024.
+	/// </summary>
+	public int BufferSize { get; } = 1024;
+
+	/// <summary>
+	/// Indicates the file path.
+	/// </summary>
+	public string FilePath { get; }
 
 
 	/// <summary>
@@ -94,7 +83,7 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 		try
 		{
 			_buffer.Add(line);
-			if (AutoFlush || _buffer.Count >= FlushThreshold)
+			if (AutoFlush || _buffer.Count >= BufferSize)
 			{
 				await FlushInternalAsync();
 			}
@@ -134,7 +123,7 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 			return;
 		}
 
-		await _writer.WriteAsync(string.Join('\n', _buffer.AsSpan()));
+		await _writer.WriteAsync(string.Join(NewLineCharacters, _buffer.AsSpan()));
 		await _writer.FlushAsync();
 		_buffer.Clear();
 	}

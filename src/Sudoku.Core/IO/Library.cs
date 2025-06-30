@@ -7,7 +7,7 @@ namespace Sudoku.IO;
 /// <param name="identifier"><inheritdoc cref="_identifier" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class Library(string directoryPath, string identifier) :
-	IAsyncEnumerable<Grid>,
+	IAsyncEnumerable<string>,
 	IEquatable<Library>,
 	IEqualityOperators<Library, Library, bool>
 {
@@ -117,16 +117,41 @@ public sealed partial class Library(string directoryPath, string identifier) :
 	public ReadOnlySpan<string> ReadTags() => ReadProperty(static info => info.Tags);
 
 	/// <summary>
+	/// Deduplicate the puzzles in the library.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>A <see cref="Task"/> object that handles the asynchronous operation.</returns>
+	public async Task DeduplicateAsync(CancellationToken cancellationToken = default)
+	{
+		var tempFile = Path.GetTempFileName();
+		await new FileDeduplicator(LibraryPath, tempFile).DeduplicateAsync(cancellationToken);
+
+		try
+		{
+			File.Delete(LibraryPath);
+			File.Move(tempFile, LibraryPath);
+		}
+		catch
+		{
+		}
+	}
+
+	/// <summary>
 	/// Writes a new grid into the target file; if the file doesn't exist, it will create a new file,
 	/// and then append the puzzle into the file.
 	/// </summary>
 	/// <param name="grid">The grid to be appended.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>A <see cref="Task"/> object that handles the asynchronous operation.</returns>
-	public async Task WriteLineAsync(Grid grid, CancellationToken cancellationToken = default)
+	public async Task WriteLineAsync(string grid, CancellationToken cancellationToken = default)
 	{
+		if (!Grid.TryParse(grid, out _))
+		{
+			return;
+		}
+
 		await using var writer = new LibraryFileWriter(LibraryPath, out _);
-		await writer.WriteLineAsync(grid.ToString("."), cancellationToken);
+		await writer.WriteLineAsync(grid, cancellationToken);
 	}
 
 	/// <summary>
@@ -237,7 +262,7 @@ public sealed partial class Library(string directoryPath, string identifier) :
 	/// <param name="length">Indicates the desired number of puzzles.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>An enumerable object that allows iterating values asynchronously.</returns>
-	public async IAsyncEnumerable<string> ReadRawRangeAsync(
+	public async IAsyncEnumerable<string> ReadRangeAsync(
 		ulong start,
 		ulong length,
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
@@ -256,38 +281,8 @@ public sealed partial class Library(string directoryPath, string identifier) :
 		}
 	}
 
-	/// <summary>
-	/// Reads the specified number of puzzles from the library file;
-	/// if the file doesn't exist, nothing will be returned.
-	/// </summary>
-	/// <param name="start">Indicates the start index.</param>
-	/// <param name="length">Indicates the desired number of puzzles.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	/// <returns>An enumerable object that allows iterating values asynchronously.</returns>
-	public async IAsyncEnumerable<Grid> ReadRangeAsync(
-		ulong start,
-		ulong length,
-		[EnumeratorCancellation] CancellationToken cancellationToken = default
-	)
-	{
-		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
-		if (!exists)
-		{
-			// If the file is created just now, nothing will be iterated.
-			yield break;
-		}
-
-		await foreach (var line in reader.ReadLinesRangeAsync(start, start + length, cancellationToken))
-		{
-			if (Grid.TryParse(line, out var grid))
-			{
-				yield return grid;
-			}
-		}
-	}
-
 	/// <inheritdoc/>
-	public async IAsyncEnumerator<Grid> GetAsyncEnumerator(CancellationToken cancellationToken = default)
+	public async IAsyncEnumerator<string> GetAsyncEnumerator(CancellationToken cancellationToken = default)
 	{
 		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
 		if (!exists)
@@ -297,10 +292,7 @@ public sealed partial class Library(string directoryPath, string identifier) :
 
 		await foreach (var line in reader.ReadLinesAsync(cancellationToken))
 		{
-			if (Grid.TryParse(line, out var grid))
-			{
-				yield return grid;
-			}
+			yield return line;
 		}
 	}
 

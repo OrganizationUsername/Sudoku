@@ -10577,6 +10577,32 @@
             <param name="outputPath">Path to the final output file.</param>
             <returns>The number of lines of result file output.</returns>
         </member>
+        <member name="T:Sudoku.IO.FileDeduplicator">
+            <summary>
+            Deduplicates lines in a large text file using multithreading and concurrent collections.
+            This class is optimized for performance and scalability, especially for very large input files.
+            </summary>
+            <param name="_inputPath">Path to the input text file.</param>
+            <param name="_outputPath">Path to the output file containing deduplicated lines.</param>
+            <param name="_workerCount">Number of worker threads for parallel deduplication (default: 4).</param>
+            <param name="_boundedCapacity">The bounded size of the collection while processing.</param>
+        </member>
+        <member name="M:Sudoku.IO.FileDeduplicator.#ctor(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Deduplicates lines in a large text file using multithreading and concurrent collections.
+            This class is optimized for performance and scalability, especially for very large input files.
+            </summary>
+            <param name="_inputPath">Path to the input text file.</param>
+            <param name="_outputPath">Path to the output file containing deduplicated lines.</param>
+            <param name="_workerCount">Number of worker threads for parallel deduplication (default: 4).</param>
+            <param name="_boundedCapacity">The bounded size of the collection while processing.</param>
+        </member>
+        <member name="M:Sudoku.IO.FileDeduplicator.DeduplicateAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously performs line deduplication using a producer-consumer model.
+            </summary>
+            <param name="cancellationToken">Cancellation token to abort the operation.</param>
+        </member>
         <member name="T:Sudoku.IO.Library">
             <summary>
             Represents a puzzle library.
@@ -10680,7 +10706,14 @@
             </summary>
             <returns>The tags.</returns>
         </member>
-        <member name="M:Sudoku.IO.Library.WriteLineAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.Library.DeduplicateAsync(System.Threading.CancellationToken)">
+            <summary>
+            Deduplicate the puzzles in the library.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the asynchronous operation.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteLineAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Writes a new grid into the target file; if the file doesn't exist, it will create a new file,
             and then append the puzzle into the file.
@@ -10712,21 +10745,11 @@
             with a result type <see cref="T:System.Int64"/> indicating the number of lines.
             </returns>
         </member>
-        <member name="M:Sudoku.IO.Library.ReadRawRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.Library.ReadRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Reads the specified number of puzzles from the library file
             without any conversions to <see cref="T:Sudoku.Concepts.Grid"/> (only displays the raw text).
             If the file doesn't exist, nothing will be returned.
-            </summary>
-            <param name="start">Indicates the start index.</param>
-            <param name="length">Indicates the desired number of puzzles.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-            <returns>An enumerable object that allows iterating values asynchronously.</returns>
-        </member>
-        <member name="M:Sudoku.IO.Library.ReadRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
-            <summary>
-            Reads the specified number of puzzles from the library file;
-            if the file doesn't exist, nothing will be returned.
             </summary>
             <param name="start">Indicates the start index.</param>
             <param name="length">Indicates the desired number of puzzles.</param>
@@ -10880,9 +10903,9 @@
             Represents a UTF-8 format library file writer.
             </summary>
         </member>
-        <member name="F:Sudoku.IO.LibraryFileWriter.FlushThreshold">
+        <member name="F:Sudoku.IO.LibraryFileWriter.NewLineCharacters">
             <summary>
-            Indicates the flush threashold. If the maximum number of characters is reached, a flush operation will be triggered.
+            Represents a new line character sequence.
             </summary>
         </member>
         <member name="F:Sudoku.IO.LibraryFileWriter._writer">
@@ -10897,25 +10920,7 @@
         </member>
         <member name="F:Sudoku.IO.LibraryFileWriter._buffer">
             <summary>
-            Indicates the buffer.
-            </summary>
-        </member>
-        <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Int32,System.Boolean@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance.
-            </summary>
-            <param name="filePath">The file path.</param>
-            <param name="bufferSize">The buffer size.</param>
-            <param name="exists">Indicates whether the file exists.</param>
-        </member>
-        <member name="P:Sudoku.IO.LibraryFileWriter.FilePath">
-            <summary>
-            Indicates the file path.
-            </summary>
-        </member>
-        <member name="P:Sudoku.IO.LibraryFileWriter.BufferSize">
-            <summary>
-            Indicates the buffer size.
+            Indicates the buffer. If the maximum number of lines is reached, a flush operation will be triggered.
             </summary>
         </member>
         <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Boolean@)">
@@ -10929,6 +10934,17 @@
         <member name="P:Sudoku.IO.LibraryFileWriter.AutoFlush">
             <summary>
             Indicates whether the flush operation will be automatically triggered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.BufferSize">
+            <summary>
+            Indicates the buffer size, indicating the maximum number of lines of puzzles can be recorded in backing buffer.
+            By default it's 1024.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.LibraryFileWriter.FilePath">
+            <summary>
+            Indicates the file path.
             </summary>
         </member>
         <member name="M:Sudoku.IO.LibraryFileWriter.WriteLineAsync(System.String,System.Threading.CancellationToken)">

@@ -26,6 +26,8 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 
 	/// <summary>
 	/// Initializes a <see cref="LibraryFileReader"/> instance.
+	/// If the target library file doesn't exist, the constructor will automatically create one
+	/// because the backing code uses option <see cref="FileMode.OpenOrCreate"/>.
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <param name="bufferSize">The buffer size.</param>
@@ -36,7 +38,7 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 		exists = File.Exists(filePath);
 		_readerStream = new(
 			filePath,
-			FileMode.Open,
+			FileMode.OpenOrCreate,
 			FileAccess.Read,
 			FileShare.Read,
 			bufferSize,
@@ -99,10 +101,12 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 					processFallback(span, ref lineCount, ref previous);
 				}
 			}
-			if (previous == Cr || previous == Lf)
-			{
-				lineCount++;
-			}
+
+			// The last line may not participate in checking.
+			//if (previous == Cr || previous == Lf)
+			//{
+			//	lineCount++;
+			//}
 		}
 		finally
 		{
@@ -117,7 +121,7 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 			{
 				if (b == Lf)
 				{
-					if (prevChar != Cr)
+					if (prevChar == Cr)
 					{
 						lineCount++;
 					}
@@ -132,54 +136,57 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 
 		static void processVectorized(ReadOnlySpan<byte> data, ref long lineCount, ref byte prevChar)
 		{
-			// Determine the size of vector on byte values.
 			var vectorSize = Vector<byte>.Count;
+			var localCount = 0L;
 			fixed (byte* ptr = data)
 			{
 				var i = 0;
 				for (; i <= data.Length - vectorSize; i += vectorSize)
 				{
 					var vector = Unsafe.ReadUnaligned<Vector<byte>>(ptr + i);
-					var lfMask = Vector.Equals(vector, new Vector<byte>(Lf));
-					var crMask = Vector.Equals(vector, new Vector<byte>(Cr));
+					var lfVector = new Vector<byte>(Lf);
+					var crVector = new Vector<byte>(Cr);
+					var lfMask = Vector.Equals(vector, lfVector);
+					var crMask = Vector.Equals(vector, crVector);
 					for (var j = 0; j < vectorSize; j++)
 					{
 						var current = vector[j];
-						if (lfMask[j] != 0)
+						if (lfMask[j] == byte.MaxValue)
 						{
-							if (prevChar != Cr)
+							if (prevChar == Cr)
 							{
-								Interlocked.Increment(ref lineCount);
+								localCount++;
 							}
 						}
 						else if (prevChar == Cr)
 						{
-							Interlocked.Increment(ref lineCount);
+							localCount++;
 						}
 
 						prevChar = current;
 					}
 				}
 
-				// Handle for the last.
 				for (; i < data.Length; i++)
 				{
 					var current = data[i];
 					if (current == Lf)
 					{
-						if (prevChar != Cr)
+						if (prevChar == Cr)
 						{
-							lineCount++;
+							localCount++;
 						}
 					}
 					else if (prevChar == Cr)
 					{
-						lineCount++;
+						localCount++;
 					}
 
 					prevChar = current;
 				}
 			}
+
+			Interlocked.Add(ref lineCount, localCount);
 		}
 	}
 

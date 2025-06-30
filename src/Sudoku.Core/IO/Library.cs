@@ -20,7 +20,8 @@ public sealed partial class Library(string directoryPath, string identifier) :
 		IndentCharacter = ' ',
 		IndentSize = 4,
 		DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-		PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 	};
 
 
@@ -59,56 +60,60 @@ public sealed partial class Library(string directoryPath, string identifier) :
 	/// Writes the name to the library information file.
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void WriteName(string value) => WriteProperty(static (info, value) => info.Name = value, value);
 
 	/// <summary>
 	/// Writes the description to the library information file.
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void WriteDescription(string value) => WriteProperty(static (info, value) => info.Description = value, value);
 
 	/// <summary>
 	/// Writes the author to the library information file.
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void WriteAuthor(string value) => WriteProperty(static (info, value) => info.Author = value, value);
 
 	/// <summary>
 	/// Writes the tags to the library information file.
+	/// If the original file has any tags, the current value will cover that value.
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void WriteTags(ReadOnlySpan<string> value) => WriteProperty(static (info, value) => info.Tags = value.ToArray(), value);
+	public void WriteTags(params ReadOnlySpan<string> value) => WriteProperty(static (info, value) => info.Tags = value.ToArray(), value);
+
+	/// <summary>
+	/// Writes a list of new tags, appending them into the last of tags array in the library information file.
+	/// </summary>
+	/// <param name="value">The vale to be set.</param>
+	public void AppendTags(params ReadOnlySpan<string> value)
+		=> WriteProperty((info, value) => info.Tags = [.. info.Tags, .. value], value);
 
 	/// <summary>
 	/// Reads the name of the library information file.
+	/// If the information file doesn't exist, create one and return default value (empty string).
 	/// </summary>
 	/// <returns>The name.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ReadName() => ReadProperty(static info => info.Name);
 
 	/// <summary>
 	/// Reads the description of the library information file.
+	/// If the information file doesn't exist, create one and return default value (empty string).
 	/// </summary>
 	/// <returns>The description.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ReadDescription() => ReadProperty(static info => info.Description);
 
 	/// <summary>
 	/// Reads the author of the library information file.
+	/// If the information file doesn't exist, create one and return default value (empty string).
 	/// </summary>
 	/// <returns>The author.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ReadAuthor() => ReadProperty(static info => info.Author);
 
 	/// <summary>
 	/// Reads the tags of the library information file.
+	/// If the information file doesn't exist, create one and return default value (empty array).
 	/// </summary>
 	/// <returns>The tags.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ReadOnlySpan<string> ReadTags() => ReadProperty(static info => info.Tags);
 
 	/// <summary>
@@ -349,7 +354,13 @@ public sealed partial class Library(string directoryPath, string identifier) :
 		{
 			if (!File.Exists(InfoPath))
 			{
-				return new();
+				var result = new LibraryInfo();
+
+				// Create a file and write values.
+				var tempJson = JsonSerializer.Serialize(result, DefaultSerializerOptions);
+				File.WriteAllText(InfoPath, tempJson);
+
+				return result;
 			}
 
 			var json = File.ReadAllText(InfoPath);

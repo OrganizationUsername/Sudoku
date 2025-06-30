@@ -10642,30 +10642,41 @@
         <member name="M:Sudoku.IO.Library.WriteTags(System.ReadOnlySpan{System.String})">
             <summary>
             Writes the tags to the library information file.
+            If the original file has any tags, the current value will cover that value.
             </summary>
             <param name="value">The value to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.AppendTags(System.ReadOnlySpan{System.String})">
+            <summary>
+            Writes a list of new tags, appending them into the last of tags array in the library information file.
+            </summary>
+            <param name="value">The vale to be set.</param>
         </member>
         <member name="M:Sudoku.IO.Library.ReadName">
             <summary>
             Reads the name of the library information file.
+            If the information file doesn't exist, create one and return default value (empty string).
             </summary>
             <returns>The name.</returns>
         </member>
         <member name="M:Sudoku.IO.Library.ReadDescription">
             <summary>
             Reads the description of the library information file.
+            If the information file doesn't exist, create one and return default value (empty string).
             </summary>
             <returns>The description.</returns>
         </member>
         <member name="M:Sudoku.IO.Library.ReadAuthor">
             <summary>
             Reads the author of the library information file.
+            If the information file doesn't exist, create one and return default value (empty string).
             </summary>
             <returns>The author.</returns>
         </member>
         <member name="M:Sudoku.IO.Library.ReadTags">
             <summary>
             Reads the tags of the library information file.
+            If the information file doesn't exist, create one and return default value (empty array).
             </summary>
             <returns>The tags.</returns>
         </member>
@@ -10803,6 +10814,8 @@
         <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Int32,System.Boolean@)">
             <summary>
             Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance.
+            If the target library file doesn't exist, the constructor will automatically create one
+            because the backing code uses option <see cref="F:System.IO.FileMode.OpenOrCreate"/>.
             </summary>
             <param name="filePath">The file path.</param>
             <param name="bufferSize">The buffer size.</param>

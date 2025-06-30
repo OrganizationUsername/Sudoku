@@ -20,6 +20,7 @@ global using System.Runtime.Intrinsics;
 global using System.Runtime.Intrinsics.X86;
 global using System.Runtime.Versioning;
 global using System.Text;
+global using System.Text.Encodings.Web;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;

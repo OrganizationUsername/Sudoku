@@ -37,6 +37,7 @@ global using Sudoku.Analytics.PatternSearchers;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.Traits;
+global using Sudoku.Behaviors.Backdoors;
 global using Sudoku.Behaviors.Bottlenecks;
 global using Sudoku.Behaviors.Diff.Results;
 global using Sudoku.Categorization;

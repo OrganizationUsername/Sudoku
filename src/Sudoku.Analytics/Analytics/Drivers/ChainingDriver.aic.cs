@@ -61,7 +61,7 @@ internal partial class ChainingDriver
 			// Find backdoors of the puzzle.
 			// If the puzzle is invalid (multiple solutions found), we won't call this inferring method to find backdoors,
 			// in order to prevent potential exceptions.
-			if (!BackdoorInferrer.TryInfer(grid, out var backdoorResult))
+			if (Backdoor.GetBackdoors(grid) is not { Length: not 0 } backdoors)
 			{
 				throw new PuzzleInvalidException(
 					grid,
@@ -69,7 +69,7 @@ internal partial class ChainingDriver
 				);
 			}
 
-			foreach (var (type, cell, digit) in backdoorResult.Candidates)
+			foreach (var (type, cell, digit) in backdoors)
 			{
 				if (type == Elimination)
 				{

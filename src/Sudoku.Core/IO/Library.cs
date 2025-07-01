@@ -80,14 +80,14 @@ public sealed partial class Library(string directoryPath, string identifier) :
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
 	public void WriteTags(params ReadOnlySpan<string> value)
-		=> WriteProperty(static (info, value) => info.Tags = value.ToArray(), value);
+		=> WriteProperty(static (info, value) => info.Tags = DeduplicateTags(value), value);
 
 	/// <summary>
 	/// Writes a list of new tags, appending them into the last of tags array in the library information file.
 	/// </summary>
 	/// <param name="value">The vale to be set.</param>
 	public void AppendTags(params ReadOnlySpan<string> value)
-		=> WriteProperty((info, value) => info.Tags = [.. info.Tags, .. value], value);
+		=> WriteProperty(static (info, value) => info.Tags = DeduplicateTags([.. info.Tags, .. value]), value);
 
 	/// <summary>
 	/// Reads the name of the library information file.
@@ -405,5 +405,20 @@ public sealed partial class Library(string directoryPath, string identifier) :
 		info.Tags = libraryInfo.Tags;
 		result.Save(info);
 		return result;
+	}
+
+	/// <summary>
+	/// Deduplicate tags.
+	/// </summary>
+	/// <param name="values">The value.</param>
+	/// <returns>The result.</returns>
+	private static string[] DeduplicateTags(params ReadOnlySpan<string> values)
+	{
+		var result = new SortedSet<string>();
+		foreach (var value in values)
+		{
+			result.Add(value.Trim());
+		}
+		return [.. result];
 	}
 }

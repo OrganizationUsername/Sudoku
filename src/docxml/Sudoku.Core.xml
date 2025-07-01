@@ -10939,6 +10939,13 @@
             <param name="libraryInfo">The library information.</param>
             <returns>The library instance.</returns>
         </member>
+        <member name="M:Sudoku.IO.Library.DeduplicateTags(System.ReadOnlySpan{System.String})">
+            <summary>
+            Deduplicate tags.
+            </summary>
+            <param name="values">The value.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.IO.Library.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>

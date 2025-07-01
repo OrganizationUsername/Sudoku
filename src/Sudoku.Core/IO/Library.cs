@@ -2,6 +2,7 @@ namespace Sudoku.IO;
 
 /// <summary>
 /// Represents a puzzle library.
+/// You can use constructor to create a library if the target directory doesn't contain such related files.
 /// </summary>
 /// <param name="_directoryPath">Indicates the directory path.</param>
 /// <param name="_identifier">Indicates the library identifier.</param>
@@ -387,12 +388,45 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 
 
 	/// <summary>
+	/// Rename the library with file name changed.
+	/// </summary>
+	/// <param name="library">The desired library.</param>
+	/// <param name="newIdentifier">The new identifier you want to change its backing file name.</param>
+	/// <returns>The renamed library instance created; if the target file exists, <see langword="null"/> will be returned.</returns>
+	public static Library? RenameLibrary(Library library, string newIdentifier)
+	{
+		lock (FileLock)
+		{
+			var directory = Path.GetDirectoryName(library.LibraryPath)!;
+			var oldLibraryFilePath = library.LibraryPath;
+			var oldJsonFilePath = library.InfoPath;
+			var newLibraryFilePath = $@"{directory}\{newIdentifier}.txt";
+			var newJsonFilePath = $@"{directory}\{newIdentifier}.json";
+			if (File.Exists(newLibraryFilePath) || File.Exists(newJsonFilePath))
+			{
+				// There's at least one bound file exists. Don't overwrite it and return null.
+				return null;
+			}
+
+			File.Move(oldLibraryFilePath, newLibraryFilePath, false);
+			File.Move(oldJsonFilePath, newJsonFilePath, false);
+			return new(directory, newIdentifier);
+		}
+	}
+
+	/// <summary>
 	/// Creates a new library from the specified raw text file.
+	/// After created the instance, you should use methods <c>Write*</c> to change the configuration of the library.
 	/// </summary>
 	/// <param name="originalFilePath">The original text file.</param>
 	/// <param name="targetDirectory">The target directory.</param>
 	/// <param name="identifier">The file ID, meaning the target library file name.</param>
 	/// <returns>The <see cref="Library"/> instance that you can visit the backing data and update information.</returns>
+	/// <remarks>
+	/// In default behavior, this method will directly copy the file from path <paramref name="originalFilePath"/>
+	/// to the target directory <paramref name="targetDirectory"/> with file name <paramref name="identifier"/>,
+	/// and create a JSON file as the same name as the created library text file.
+	/// </remarks>
 	public static Library CreateLibrary(string originalFilePath, string targetDirectory, string identifier)
 	{
 		lock (FileLock)

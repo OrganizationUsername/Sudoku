@@ -117,6 +117,32 @@ public sealed partial class Library(string directoryPath, string identifier) :
 	public ReadOnlySpan<string> ReadTags() => ReadProperty(static info => info.Tags);
 
 	/// <summary>
+	/// Sort the puzzles in the library.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>A <see cref="Task"/> object that handles the asynchronous operation.</returns>
+	public async Task SortAsync(CancellationToken cancellationToken = default)
+	{
+		var tempFile = Path.GetTempFileName();
+		await new FileExternalSorter(LibraryPath, tempFile, 50_000).SortLargeFileAsync();
+
+		if (cancellationToken.IsCancellationRequested)
+		{
+			File.Delete(tempFile);
+			return;
+		}
+
+		try
+		{
+			File.Delete(LibraryPath);
+			File.Move(tempFile, LibraryPath);
+		}
+		catch
+		{
+		}
+	}
+
+	/// <summary>
 	/// Deduplicate the puzzles in the library.
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>

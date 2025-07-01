@@ -225,7 +225,6 @@ public partial class App : Application
 	{
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
-		LibraryInfo.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
 		ActivateMainWindow();
 	}
 

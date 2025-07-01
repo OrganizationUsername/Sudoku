@@ -38,7 +38,7 @@ internal static class CommonPaths
 		var documents = Environment.GetFolderPath(SpecialFolder.MyDocuments);
 		UserPreference = $@"{documents}\{SudokuStudioName}\user-preference{FileExtensions.UserPreference}";
 		GeneratingHistory = $@"{documents}\{SudokuStudioName}\generating-history{FileExtensions.GeneratingHistory}";
-		Library = $@"{documents}\{SudokuStudioName}\libraries";
+		Library = $@"{documents}\{SudokuStudioName}\libraries_v2";
 		Cache = $@"{documents}\{SudokuStudioName}\cache";
 	}
 

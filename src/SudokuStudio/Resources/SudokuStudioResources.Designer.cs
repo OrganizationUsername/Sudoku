@@ -2458,15 +2458,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Grid library file.
-        /// </summary>
-        internal static string FileExtension_GridLibrary {
-            get {
-                return ResourceManager.GetString("FileExtension_GridLibrary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to JPEG/JPG format.
         /// </summary>
         internal static string FileExtension_JointPhotographicExpertGroup {

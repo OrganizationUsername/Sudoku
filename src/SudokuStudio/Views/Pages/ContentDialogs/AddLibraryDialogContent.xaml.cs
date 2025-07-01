@@ -58,7 +58,7 @@ public sealed partial class AddLibraryDialogContent : Page
 		}
 #endif
 
-		var filePath = $@"{directory}\{fileId}{FileExtensions.PuzzleLibrary}";
+		var filePath = $@"{directory}\{fileId}{FileExtensions.JsonDocument}";
 		if (!File.Exists(filePath))
 		{
 			return fileId;
@@ -67,7 +67,7 @@ public sealed partial class AddLibraryDialogContent : Page
 		// Try for 1024 times.
 		for (var i = 1U; i <= 1U << 10; i++)
 		{
-			filePath = $@"{directory}\{fileId}_{i}{FileExtensions.PuzzleLibrary}";
+			filePath = $@"{directory}\{fileId}_{i}{FileExtensions.JsonDocument}";
 			if (!File.Exists(filePath))
 			{
 				return $"{fileId}_{i}";
@@ -108,7 +108,7 @@ public sealed partial class AddLibraryDialogContent : Page
 			else
 			{
 				instance.FileId = GetAvailbleFileId(fileId);
-				instance.FilePath = $@"{CommonPaths.Library}\{instance.FileId}{FileExtensions.PuzzleLibrary}";
+				instance.FilePath = $@"{CommonPaths.Library}\{instance.FileId}{FileExtensions.JsonDocument}";
 				instance.IsNameValidAsFileId = true;
 			}
 		}

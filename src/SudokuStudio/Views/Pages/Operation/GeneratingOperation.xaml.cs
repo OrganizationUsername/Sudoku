@@ -59,7 +59,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		PuzzleLibraryChoser.SelectedIndex = Array.FindIndex(libs, match) is var index and not -1 ? index : 0;
 
 
-		bool match(LibraryInfo lib) => lib is { FileId: var f } && f == lastFileId;
+		bool match(Library lib) => io::Path.GetFileNameWithoutExtension(lib.LibraryPath) == lastFileId;
 	}
 
 	/// <summary>
@@ -309,7 +309,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private async void LibraryPuzzleFetchButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var library = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
-		if (!library.Any())
+		if (library.IsEmpty)
 		{
 			// There is no puzzle can be selected.
 			return;
@@ -324,7 +324,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	private void PuzzleLibraryChooser_SelectionChanged(object sender, SelectionChangedEventArgs e)
 	{
 		var source = ((LibrarySimpleBindableSource)PuzzleLibraryChoser.SelectedValue).Library;
-		Application.Current.AsApp().Preference.UIPreferences.FetchingPuzzleLibrary = source.FileId;
+		var fileId = io::Path.GetFileNameWithoutExtension(source.LibraryPath);
+		Application.Current.AsApp().Preference.UIPreferences.FetchingPuzzleLibrary = fileId;
 	}
 
 	private async void BatchGeneratingToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
@@ -349,18 +350,29 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { Library: var lib } }:
 			{
-				appendToLibraryTask = lib.AppendPuzzleAsync;
+				appendToLibraryTask = lib.WriteLineAsync;
 				break;
 			}
 			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
 			{
-				var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
-				libraryCreated.Initialize();
-				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
-				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;
-				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
-				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
-				appendToLibraryTask = libraryCreated.AppendPuzzleAsync;
+				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				if (content.LibraryName is var name and not (null or ""))
+				{
+					libraryCreated.WriteName(name);
+				}
+				if (content.LibraryAuthor is var author and not (null or ""))
+				{
+					libraryCreated.WriteAuthor(author);
+				}
+				if (content.LibraryDescription is var description and not (null or ""))
+				{
+					libraryCreated.WriteDescription(description);
+				}
+				if (content.LibraryTags is { Count: not 0 } tags)
+				{
+					libraryCreated.WriteTags([.. tags]);
+				}
+				appendToLibraryTask = libraryCreated.WriteLineAsync;
 				break;
 			}
 		}
@@ -503,28 +515,33 @@ file static class Extensions
 	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
 	public static async Task<Grid> RandomReadOneAsync(
-		this LibraryInfo @this,
+		this Library @this,
 		TransformType transformTypes = TransformType.None,
 		CancellationToken cancellationToken = default
 	)
 	{
-		if (!@this.IsInitialized)
-		{
-			throw new InvalidOperationException(SR.ExceptionMessage("FileShouldBeInitializedFirst"));
-		}
-
 		var rng = new Random();
-		var numberSeen = 0U;
 		Unsafe.SkipInit<Grid>(out var chosen);
-		await foreach (var text in @this.EnumerateTextAsync(cancellationToken))
+		var nextLine = rng.NextUInt64() % await @this.GetCountAsync();
+		await foreach (var text in @this.GetRangeAsync(nextLine, 1, cancellationToken))
 		{
-			if ((uint)rng.Next() % ++numberSeen == 0)
-			{
-				chosen = Grid.Parse(text);
-			}
+			chosen = Grid.Parse(text);
+			break;
 		}
 
 		chosen.Transform(transformTypes);
 		return chosen;
+	}
+
+	/// <summary>
+	/// Creates a randomized <see cref="ulong"/> value.
+	/// </summary>
+	/// <param name="this">The random instance.</param>
+	/// <returns>The <see cref="ulong"/> result.</returns>
+	private static ulong NextUInt64(this Random @this)
+	{
+		var randomBytes = new byte[8];
+		@this.NextBytes(randomBytes);
+		return BitConverter.ToUInt64(randomBytes, 0);
 	}
 }

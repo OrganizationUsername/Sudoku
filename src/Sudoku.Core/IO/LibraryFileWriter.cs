@@ -3,8 +3,7 @@ namespace Sudoku.IO;
 /// <summary>
 /// Represents a UTF-8 format library file writer.
 /// </summary>
-[TypeImpl(TypeImplFlags.AsyncDisposable)]
-internal sealed partial class LibraryFileWriter : IAsyncDisposable
+internal sealed class LibraryFileWriter : IAsyncDisposable
 {
 	/// <summary>
 	/// Represents a new line character sequence.
@@ -15,7 +14,6 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	/// <summary>
 	/// Indicates the writer.
 	/// </summary>
-	[DisposableMember]
 	private readonly StreamWriter _writer;
 
 	/// <summary>
@@ -27,6 +25,15 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	/// Indicates the buffer. If the maximum number of lines is reached, a flush operation will be triggered.
 	/// </summary>
 	private readonly List<string> _buffer = [];
+
+	/// <summary>
+	/// Indicates whether the object had already been disposed before <see cref="DisposeAsync"/> was called.
+	/// If this field holds <see langword="false"/> value, <see cref="DisposeAsync"/> will throw an
+	/// <see cref="ObjectDisposedException"/> to report the error.
+	/// </summary>
+	/// <seealso cref="DisposeAsync"/>
+	/// <seealso cref="ObjectDisposedException"/>
+	private bool _isDisposed;
 
 
 	/// <summary>
@@ -69,6 +76,19 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 	/// </summary>
 	public string FilePath { get; }
 
+
+	/// <inheritdoc/>
+	/// <exception cref="ObjectDisposedException">Throws when the object had already been disposed.</exception>
+	public async ValueTask DisposeAsync()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		await FlushAsync(); // Flush memory and write for the last values.
+
+		// Dispose values.
+		await _writer.DisposeAsync();
+		_isDisposed = true;
+	}
 
 	/// <summary>
 	/// Write a new line of values into the file.
@@ -123,7 +143,7 @@ internal sealed partial class LibraryFileWriter : IAsyncDisposable
 			return;
 		}
 
-		await _writer.WriteAsync(string.Join(NewLineCharacters, _buffer.AsSpan()));
+		await _writer.WriteLineAsync(string.Join(NewLineCharacters, _buffer.AsSpan()));
 		await _writer.FlushAsync();
 		_buffer.Clear();
 	}

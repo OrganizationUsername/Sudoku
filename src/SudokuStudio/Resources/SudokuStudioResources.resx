@@ -690,9 +690,6 @@
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>Generating history file</value>
   </data>
-  <data name="FileExtension_GridLibrary" xml:space="preserve">
-    <value>Grid library file</value>
-  </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>PNG format</value>
   </data>

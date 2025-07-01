@@ -41,11 +41,6 @@ public static class FileFormats
 	public static readonly FileFormat GeneratingHistory = new(SR.Get("FileExtension_GeneratingHistory", App.CurrentCulture), FileExtensions.GeneratingHistory);
 
 	/// <summary>
-	/// Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
-	/// </summary>
-	public static readonly FileFormat PuzzleLibrary = new(SR.Get("FileExtension_GridLibrary", App.CurrentCulture), FileExtensions.PuzzleLibrary);
-
-	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
 	/// </summary>
 	public static readonly FileFormat UserPreference = new(SR.Get("FileExtension_UserPreference", App.CurrentCulture), FileExtensions.UserPreference);

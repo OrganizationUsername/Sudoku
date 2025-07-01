@@ -33,13 +33,7 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
-		var text = ((AddOnePuzzleDialogContent)dialog.Content).TextCodeInput.Text;
-		if (!Grid.TryParse(text, out _))
-		{
-			return;
-		}
-
-		await lib.AppendPuzzleAsync(text);
+		await lib.WriteLineAsync(((AddOnePuzzleDialogContent)dialog.Content).TextCodeInput.Text);
 	}
 
 	private async void AddListItem_ClickAsync(object sender, RoutedEventArgs e)
@@ -75,7 +69,7 @@ public sealed partial class LibraryPage : Page
 
 		instance.IsActive = true;
 
-		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
+		await lib.WriteLinesAsync(File.ReadLinesAsync(filePath));
 
 		instance.IsActive = false;
 	}
@@ -101,7 +95,7 @@ public sealed partial class LibraryPage : Page
 
 		instance.IsActive = true;
 
-		await lib.RemoveDuplicatePuzzlesAsync();
+		await lib.DeduplicateAsync();
 
 		instance.IsActive = false;
 	}
@@ -143,7 +137,7 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
-		lib.ClearPuzzles();
+		lib.Clear();
 	}
 
 	private void DeleteLibraryItem_Click(object sender, RoutedEventArgs e)
@@ -183,11 +177,13 @@ public sealed partial class LibraryPage : Page
 			CloseButtonText = SR.Get("LibraryPage_LibraryPropertiesDialogClose", App.CurrentCulture),
 			Content = new LibraryPropertiesDialogContent
 			{
-				LibraryName = lib.Name ?? LibraryBindableSource.NameDefaultValue,
-				LibraryAuthor = lib.Author ?? LibraryBindableSource.AuthorDefaultValue,
-				LibraryDescription = lib.Description ?? LibraryBindableSource.DescriptionDefaultValue,
+				LibraryName = lib.ReadName() is var name and not "" ? name : LibraryBindableSource.NameDefaultValue,
+				LibraryAuthor = lib.ReadAuthor() is var author and not "" ? author : LibraryBindableSource.AuthorDefaultValue,
+				LibraryDescription = lib.ReadDescription() is var description and not ""
+					? description
+					: LibraryBindableSource.DescriptionDefaultValue,
 				LibraryLastModifiedTime = lib.LastModifiedTime,
-				LibraryInfo = lib
+				Library = lib
 			}
 		};
 		await dialog.ShowAsync();
@@ -210,10 +206,10 @@ public sealed partial class LibraryPage : Page
 			CloseButtonText = SR.Get("LibraryPage_ModifyPropertiesDialogCancel", App.CurrentCulture),
 			Content = new LibraryModifyPropertiesDialogContent
 			{
-				LibraryName = lib.Name,
-				LibraryAuthor = lib.Author,
-				LibraryDescription = lib.Description,
-				LibraryTags = [.. lib.Tags ?? []]
+				LibraryName = lib.ReadName(),
+				LibraryAuthor = lib.ReadAuthor(),
+				LibraryDescription = lib.ReadDescription(),
+				LibraryTags = [.. lib.ReadTags()]
 			}
 		};
 		if (await dialog.ShowAsync() != ContentDialogResult.Primary)
@@ -223,29 +219,29 @@ public sealed partial class LibraryPage : Page
 
 		// Replace with the original dictionary set to refresh UI.
 		var content = (LibraryModifyPropertiesDialogContent)dialog.Content;
+		var fileId = io::Path.GetFileNameWithoutExtension(lib.LibraryPath);
+		var finalName = content.LibraryName is var name and not (null or "")
+			? name
+			: LibraryBindableSource.NameDefaultValue;
+		var finalAuthor = content.LibraryAuthor is var author and not (null or "")
+			? author
+			: LibraryBindableSource.AuthorDefaultValue;
+		var finalDescription = content.LibraryDescription is var description and not (null or "")
+			? description
+			: LibraryBindableSource.DescriptionDefaultValue;
+		var finalTags = content.LibraryTags is { Count: not 0 } tags ? tags.ToArray() : [];
+		lib.WriteName(finalName);
+		lib.WriteAuthor(finalAuthor);
+		lib.WriteDescription(finalDescription);
+		lib.WriteTags(finalTags);
+
 		var newInstance = new LibraryBindableSource
 		{
-			FileId = lib.FileId,
-			Name = (lib.Name = content.LibraryName is var name and not (null or "") ? name : null) switch
-			{
-				{ } finalName => finalName,
-				_ => LibraryBindableSource.NameDefaultValue
-			},
-			Author = (lib.Author = content.LibraryAuthor is var author and not (null or "") ? author : null) switch
-			{
-				{ } finalAuthor => finalAuthor,
-				_ => LibraryBindableSource.AuthorDefaultValue
-			},
-			Description = (lib.Description = content.LibraryDescription is var description and not (null or "") ? description : null) switch
-			{
-				{ } finalDescription => finalDescription,
-				_ => LibraryBindableSource.DescriptionDefaultValue
-			},
-			Tags = (lib.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null) switch
-			{
-				{ } finalTags => finalTags,
-				_ => []
-			}
+			FileId = fileId,
+			Name = finalName,
+			Author = finalAuthor,
+			Description = finalDescription,
+			Tags = finalTags
 		};
 
 		var p = (ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource;
@@ -284,33 +280,31 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
-		var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
-		libraryCreated.Initialize();
+		var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+		var finalName = content.LibraryName is var name and not (null or "")
+			? name
+			: LibraryBindableSource.NameDefaultValue;
+		var finalAuthor = content.LibraryAuthor is var author and not (null or "")
+			? author
+			: LibraryBindableSource.AuthorDefaultValue;
+		var finalDescription = content.LibraryDescription is var description and not (null or "")
+			? description
+			: LibraryBindableSource.DescriptionDefaultValue;
+		var finalTags = content.LibraryTags is { Count: not 0 } tags ? tags.ToArray() : [];
+		libraryCreated.WriteName(finalName);
+		libraryCreated.WriteAuthor(finalAuthor);
+		libraryCreated.WriteDescription(finalDescription);
+		libraryCreated.WriteTags(finalTags);
+
 
 		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(
 			new()
 			{
-				FileId = libraryCreated.FileId,
-				Name = (libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null) switch
-				{
-					{ } finalName => finalName,
-					_ => LibraryBindableSource.NameDefaultValue
-				},
-				Author = (libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null) switch
-				{
-					{ } finalAuthor => finalAuthor,
-					_ => LibraryBindableSource.AuthorDefaultValue
-				},
-				Description = (libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null) switch
-				{
-					{ } finalDescription => finalDescription,
-					_ => LibraryBindableSource.DescriptionDefaultValue
-				},
-				Tags = (libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null) switch
-				{
-					{ } finalTags => finalTags,
-					_ => []
-				}
+				FileId = content.FileId,
+				Name = finalName,
+				Author = finalAuthor,
+				Description = finalDescription,
+				Tags = finalTags
 			}
 		);
 	}
@@ -330,14 +324,13 @@ public sealed partial class LibraryPage : Page
 		}
 
 		var fileName = io::Path.GetFileNameWithoutExtension(filePath);
-		var lib = new LibraryInfo(CommonPaths.Library, fileName);
-		lib.Initialize();
-		lib.Name = fileName;
+		var lib = new Library(CommonPaths.Library, fileName);
+		lib.WriteName(fileName);
 
-		var source = new LibraryBindableSource { IsActive = true, FileId = lib.FileId };
+		var source = new LibraryBindableSource { IsActive = true, FileId = fileName };
 		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(source);
 
-		await lib.AppendPuzzlesAsync(File.ReadLinesAsync(filePath));
+		await lib.WriteLinesAsync(File.ReadLinesAsync(filePath));
 
 		source.IsActive = false;
 	}

@@ -690,9 +690,6 @@
   <data name="FileExtension_GeneratingHistory" xml:space="preserve">
     <value>题目生成记录文件</value>
   </data>
-  <data name="FileExtension_GridLibrary" xml:space="preserve">
-    <value>题库文件</value>
-  </data>
   <data name="FileExtension_Picture" xml:space="preserve">
     <value>PNG 图片</value>
   </data>

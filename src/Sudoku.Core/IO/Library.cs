@@ -48,6 +48,11 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 
 
 	/// <summary>
+	/// Indicates whether the file is not created, or an empty file.
+	/// </summary>
+	public bool IsEmpty => !File.Exists(LibraryPath) || !File.ReadLines(LibraryPath).Any();
+
+	/// <summary>
 	/// Indicates the information path.
 	/// </summary>
 	[EquatableMember]
@@ -57,6 +62,11 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// Indicates the library path.
 	/// </summary>
 	public string LibraryPath => $@"{_directoryPath}\{_identifier}.txt";
+
+	/// <summary>
+	/// Indicates the last modified time of the library file.
+	/// </summary>
+	public DateTime LastModifiedTime => File.GetLastWriteTime(LibraryPath);
 
 
 	/// <summary>
@@ -93,6 +103,20 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// <param name="value">The vale to be set.</param>
 	public void AppendTags(params ReadOnlySpan<string> value)
 		=> WriteProperty(static (info, value) => info.Tags = DeduplicateTags([.. info.Tags, .. value]), value);
+
+	/// <summary>
+	/// Clears all puzzles in the library.
+	/// </summary>
+	public void Clear() => File.WriteAllText(LibraryPath, string.Empty);
+
+	/// <summary>
+	/// Deletes the library. <b>Please be careful to do this; you must discard the current instance if files are deleted.</b>
+	/// </summary>
+	public void Delete()
+	{
+		File.Delete(InfoPath);
+		File.Delete(LibraryPath);
+	}
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => HashCode.Combine(_directoryPath, _identifier);
@@ -213,6 +237,38 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	}
 
 	/// <summary>
+	/// Writes a list of new grids into the target file; if the file does't exist, it will create a new file,
+	/// and then append the puzzle into the file.
+	/// </summary>
+	/// <param name="lines">The grids to be appended.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>A <see cref="Task"/> object that handles the asynchronous operation.</returns>
+	public async Task WriteLinesAsync(IEnumerable<string> lines, CancellationToken cancellationToken = default)
+	{
+		await using var writer = new LibraryFileWriter(LibraryPath, out _);
+		foreach (var line in lines)
+		{
+			if (Grid.TryParse(line, out _))
+			{
+				await writer.WriteLineAsync(line, cancellationToken);
+			}
+		}
+	}
+
+	/// <inheritdoc cref="WriteLinesAsync(IEnumerable{string}, CancellationToken)"/>
+	public async Task WriteLinesAsync(IAsyncEnumerable<string> lines, CancellationToken cancellationToken = default)
+	{
+		await using var writer = new LibraryFileWriter(LibraryPath, out _);
+		await foreach (var line in lines)
+		{
+			if (Grid.TryParse(line, out _))
+			{
+				await writer.WriteLineAsync(line, cancellationToken);
+			}
+		}
+	}
+
+	/// <summary>
 	/// Loads the other library, and reads for all puzzles and appends to the current library file.
 	/// If any exceptions thrown or cancelled, no updates will be applied
 	/// (the current file will keep the original state, rather than successfully written some puzzles before cancelled
@@ -303,9 +359,9 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// </summary>
 	/// <returns>
 	/// A <see cref="Task{TResult}"/> object that handles the asynchronous operation;
-	/// with a result type <see cref="long"/> indicating the number of lines.
+	/// with a result type <see cref="ulong"/> indicating the number of lines.
 	/// </returns>
-	public async Task<long> GetCountAsync()
+	public async Task<ulong> GetCountAsync()
 	{
 		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
 		return exists ? reader.CountLines() : 0;

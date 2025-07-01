@@ -28,11 +28,6 @@ public static class FileExtensions
 	public const string GeneratingHistory = ".ssg";
 
 	/// <summary>
-	/// Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
-	/// </summary>
-	public const string PuzzleLibrary = ".ssl";
-
-	/// <summary>
 	/// Indicates the user preference file format (SSP - Sudoku Studio Preference format).
 	/// </summary>
 	public const string UserPreference = ".ssp";

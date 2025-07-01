@@ -8,19 +8,23 @@ public sealed partial class LibrarySimpleBindableSource
 	/// <summary>
 	/// Indicates the display name.
 	/// </summary>
-	public string DisplayName => LibraryConversion.GetDisplayName(Library.Name, Library.FileId);
+	public string DisplayName
+		=> LibraryConversion.GetDisplayName(
+			Library.ReadName(),
+			io::Path.GetFileNameWithoutExtension(Library.LibraryPath)
+		);
 
 	/// <summary>
 	/// Indicates the library.
 	/// </summary>
-	public required LibraryInfo Library { get; set; }
+	public required Library Library { get; set; }
 
 
 	/// <summary>
-	/// Try to fetch all <see cref="LibraryInfo"/> instances stored in the local path.
+	/// Try to fetch all <see cref="Library"/> instances stored in the local path.
 	/// </summary>
-	/// <returns>All possible <see cref="LibraryInfo"/> instances.</returns>
-	internal static LibraryInfo[] GetLibraries()
+	/// <returns>All possible <see cref="Library"/> instances.</returns>
+	internal static Library[] GetLibraries()
 	{
 		if (!Directory.Exists(CommonPaths.Library))
 		{
@@ -33,12 +37,10 @@ public sealed partial class LibrarySimpleBindableSource
 			..
 			from file in Directory.EnumerateFiles(CommonPaths.Library)
 			let extension = io::Path.GetExtension(file)
-			where extension == FileExtensions.PuzzleLibrary
+			where extension == FileExtensions.JsonDocument
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
-			let library = new LibraryInfo(CommonPaths.Library, fileId)
-			where library.IsInitialized
-			let firstContentLine = File.ReadLines(library.ConfigFilePath).FirstOrDefault()
-			where firstContentLine == LibraryInfo.ConfigFileHeader
+			let library = new Library(CommonPaths.Library, fileId)
+			where File.Exists(library.LibraryPath)
 			select library
 		];
 	}

@@ -13,6 +13,7 @@ public sealed partial class LibraryPropertiesDialogContent : Page
 		InitializeComponent();
 
 		IsLoadingPuzzlesCount = true;
+		TagsTokenView.ItemsSource = Library.ReadTags().ToArray();
 	}
 
 
@@ -50,27 +51,27 @@ public sealed partial class LibraryPropertiesDialogContent : Page
 	/// Indicates the library information.
 	/// </summary>
 	[DependencyProperty]
-	internal partial LibraryInfo LibraryInfo { get; set; }
+	internal partial Library Library { get; set; }
 
 
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 		=> DispatcherQueue.TryEnqueue(
 			async () =>
 			{
-				LibraryPuzzlesCountDisplayer.Text = (await LibraryInfo.GetCountAsync()).ToString();
+				LibraryPuzzlesCountDisplayer.Text = (await Library.GetCountAsync()).ToString();
 				IsLoadingPuzzlesCount = false;
 			}
 		);
 
 	private async void NavigateToLibraryFileButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		var folder = io::Path.GetDirectoryName(LibraryInfo.LibraryFilePath);
+		var folder = io::Path.GetDirectoryName(Library.LibraryPath);
 		await Launcher.LaunchFolderPathAsync(folder);
 	}
 
 	private async void NavigateToLibraryFileButton2_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		var folder = io::Path.GetDirectoryName(LibraryInfo.ConfigFilePath);
+		var folder = io::Path.GetDirectoryName(Library.InfoPath);
 		await Launcher.LaunchFolderPathAsync(folder);
 	}
 }

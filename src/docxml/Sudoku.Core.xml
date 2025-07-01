@@ -10914,6 +10914,11 @@
             Indicates the lock object to keep operation thread-safe.
             </summary>
         </member>
+        <member name="P:Sudoku.IO.Library.IsEmpty">
+            <summary>
+            Indicates whether the file is not created, or an empty file.
+            </summary>
+        </member>
         <member name="P:Sudoku.IO.Library.InfoPath">
             <summary>
             Indicates the information path.
@@ -10922,6 +10927,11 @@
         <member name="P:Sudoku.IO.Library.LibraryPath">
             <summary>
             Indicates the library path.
+            </summary>
+        </member>
+        <member name="P:Sudoku.IO.Library.LastModifiedTime">
+            <summary>
+            Indicates the last modified time of the library file.
             </summary>
         </member>
         <member name="M:Sudoku.IO.Library.WriteName(System.String)">
@@ -10956,6 +10966,16 @@
             Writes a list of new tags, appending them into the last of tags array in the library information file.
             </summary>
             <param name="value">The vale to be set.</param>
+        </member>
+        <member name="M:Sudoku.IO.Library.Clear">
+            <summary>
+            Clears all puzzles in the library.
+            </summary>
+        </member>
+        <member name="M:Sudoku.IO.Library.Delete">
+            <summary>
+            Deletes the library. <b>Please be careful to do this; you must discard the current instance if files are deleted.</b>
+            </summary>
         </member>
         <member name="M:Sudoku.IO.Library.GetHashCode">
             <inheritdoc/>
@@ -11014,6 +11034,18 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the asynchronous operation.</returns>
         </member>
+        <member name="M:Sudoku.IO.Library.WriteLinesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Writes a list of new grids into the target file; if the file does't exist, it will create a new file,
+            and then append the puzzle into the file.
+            </summary>
+            <param name="lines">The grids to be appended.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that handles the asynchronous operation.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.WriteLinesAsync(System.Collections.Generic.IAsyncEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.IO.Library.WriteLinesAsync(System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)"/>
+        </member>
         <member name="M:Sudoku.IO.Library.TryMergeFromAsync(Sudoku.IO.Library,System.Threading.CancellationToken)">
             <summary>
             Loads the other library, and reads for all puzzles and appends to the current library file.
@@ -11034,7 +11066,7 @@
             </summary>
             <returns>
             A <see cref="T:System.Threading.Tasks.Task`1"/> object that handles the asynchronous operation;
-            with a result type <see cref="T:System.Int64"/> indicating the number of lines.
+            with a result type <see cref="T:System.UInt64"/> indicating the number of lines.
             </returns>
         </member>
         <member name="M:Sudoku.IO.Library.GetRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
@@ -11230,6 +11262,15 @@
             Indicates the buffer. If the maximum number of lines is reached, a flush operation will be triggered.
             </summary>
         </member>
+        <member name="F:Sudoku.IO.LibraryFileWriter._isDisposed">
+            <summary>
+            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> was called.
+            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> will throw an
+            <see cref="T:System.ObjectDisposedException"/> to report the error.
+            </summary>
+            <seealso cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/>
+            <seealso cref="T:System.ObjectDisposedException"/>
+        </member>
         <member name="M:Sudoku.IO.LibraryFileWriter.#ctor(System.String,System.Boolean@)">
             <summary>
             Initializes a <see cref="T:Sudoku.IO.LibraryFileWriter"/> instance via the specified file path;
@@ -11254,6 +11295,10 @@
             Indicates the file path.
             </summary>
         </member>
+        <member name="M:Sudoku.IO.LibraryFileWriter.DisposeAsync">
+            <inheritdoc/>
+            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
+        </member>
         <member name="M:Sudoku.IO.LibraryFileWriter.WriteLineAsync(System.String,System.Threading.CancellationToken)">
             <summary>
             Write a new line of values into the file.
@@ -11273,19 +11318,6 @@
             The backing logic on flushing the buffer, writting the buffer into the file.
             </summary>
             <returns>A <see cref="T:System.Threading.Tasks.Task"/> object that can be used as asynchronous operation.</returns>
-        </member>
-        <member name="F:Sudoku.IO.LibraryFileWriter._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/> will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.IO.LibraryFileWriter.DisposeAsync"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
-        </member>
-        <member name="M:Sudoku.IO.LibraryFileWriter.DisposeAsync">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:Sudoku.IO.LibraryInfo">
             <summary>

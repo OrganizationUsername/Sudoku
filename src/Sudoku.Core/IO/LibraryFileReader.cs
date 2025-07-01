@@ -73,10 +73,10 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 	/// </summary>
 	/// <returns>The number of lines.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveOptimization)]
-	public unsafe long CountLines()
+	public unsafe ulong CountLines()
 	{
 		const int MegaByte = 1024 * 1024;
-		var lineCount = 0L;
+		var lineCount = 0UL;
 		var previous = (byte)0;
 
 		using var fs = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read, MegaByte);
@@ -115,7 +115,7 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 		return lineCount;
 
 
-		static void processFallback(ReadOnlySpan<byte> data, ref long lineCount, ref byte prevChar)
+		static void processFallback(ReadOnlySpan<byte> data, ref ulong lineCount, ref byte prevChar)
 		{
 			foreach (var b in data)
 			{
@@ -134,10 +134,10 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 			}
 		}
 
-		static void processVectorized(ReadOnlySpan<byte> data, ref long lineCount, ref byte prevChar)
+		static void processVectorized(ReadOnlySpan<byte> data, ref ulong lineCount, ref byte prevChar)
 		{
 			var vectorSize = Vector<byte>.Count;
-			var localCount = 0L;
+			var localCount = 0UL;
 			fixed (byte* ptr = data)
 			{
 				var i = 0;

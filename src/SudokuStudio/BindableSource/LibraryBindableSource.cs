@@ -55,9 +55,10 @@ public sealed partial class LibraryBindableSource : DependencyObject
 
 
 	/// <summary>
-	/// Indicates the corresponding <see cref="Library"/> instance.
+	/// Indicates the corresponding <see cref="Sudoku.IO.Library"/> instance.
 	/// </summary>
-	public LibraryInfo Library => new(CommonPaths.Library, FileId);
+	/// <seealso cref="Sudoku.IO.Library"/>
+	public Library Library => new(CommonPaths.Library, FileId);
 
 
 	/// <summary>
@@ -77,18 +78,16 @@ public sealed partial class LibraryBindableSource : DependencyObject
 			..
 			from file in Directory.EnumerateFiles(CommonPaths.Library)
 			let extension = io::Path.GetExtension(file)
-			where extension == FileExtensions.PuzzleLibrary
+			where extension == FileExtensions.JsonDocument
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
-			let library = new LibraryInfo(CommonPaths.Library, fileId)
-			where library.IsInitialized
-			let firstContentLine = File.ReadLines(library.ConfigFilePath).FirstOrDefault()
-			where firstContentLine == LibraryInfo.ConfigFileHeader
+			let library = new Library(CommonPaths.Library, fileId)
+			where File.Exists(library.LibraryPath)
 			select new LibraryBindableSource
 			{
-				Name = library.Name ?? NameDefaultValue,
-				Author = library.Author ?? AuthorDefaultValue,
-				Description = library.Description ?? DescriptionDefaultValue,
-				Tags = library.Tags ?? [],
+				Name = library.ReadName() is var name and not "" ? name : NameDefaultValue,
+				Author = library.ReadAuthor() is var author and not "" ? author : AuthorDefaultValue,
+				Description = library.ReadDescription() is var description and not "" ? description : DescriptionDefaultValue,
+				Tags = library.ReadTags() is var tags and not [] ? tags.ToArray() : [],
 				FileId = fileId,
 				IsActive = false
 			}

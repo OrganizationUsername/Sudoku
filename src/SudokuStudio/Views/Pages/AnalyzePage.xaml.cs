@@ -1111,6 +1111,8 @@ public sealed partial class AnalyzePage : Page
 			return;
 		}
 
+		var outputString = puzzle.ToString("#");
+
 		var dialog = new ContentDialog
 		{
 			XamlRoot = XamlRoot,
@@ -1130,18 +1132,30 @@ public sealed partial class AnalyzePage : Page
 		{
 			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { Library: var lib } }:
 			{
-				await lib.AppendPuzzleAsync(puzzle);
+				await lib.WriteLineAsync(outputString);
 				break;
 			}
 			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
 			{
-				var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
-				libraryCreated.Initialize();
-				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
-				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;
-				libraryCreated.Description = content.LibraryDescription is var description and not (null or "") ? description : null;
-				libraryCreated.Tags = content.LibraryTags is { Count: not 0 } tags ? [.. tags] : null;
-				await libraryCreated.AppendPuzzleAsync(puzzle);
+				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				if (content.LibraryName is var name and not (null or ""))
+				{
+					libraryCreated.WriteName(name);
+				}
+				if (content.LibraryAuthor is var author and not (null or ""))
+				{
+					libraryCreated.WriteAuthor(author);
+				}
+				if (content.LibraryDescription is var description and not (null or ""))
+				{
+					libraryCreated.WriteDescription(description);
+				}
+				if (content.LibraryTags is { Count: not 0 } tags)
+				{
+					libraryCreated.WriteTags([.. tags]);
+				}
+
+				await libraryCreated.WriteLineAsync(outputString);
 				break;
 			}
 		}

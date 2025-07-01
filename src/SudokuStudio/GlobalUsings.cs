@@ -72,6 +72,7 @@ global using Sudoku.Generating;
 global using Sudoku.Generating.Filtering;
 global using Sudoku.Generating.Filtering.Constraints;
 global using Sudoku.Generating.Qualified;
+global using Sudoku.IO;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
 global using Sudoku.Resources;

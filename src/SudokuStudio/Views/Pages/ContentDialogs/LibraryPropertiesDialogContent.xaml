@@ -39,16 +39,16 @@
 		<TextBlock Text="{x:Bind LibraryDescription}" IsTextSelectionEnabled="True" />
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryTags}" Style="{StaticResource PropertyNameStyle}" />
 		<c:TokenView
-			ItemsSource="{x:Bind LibraryInfo.Tags}" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
+			x:Name="TagsTokenView" CanRemoveTokens="False" IsWrapped="True" SelectionMode="None"
 			ItemTemplateSelector="{StaticResource TagsTemplateSelector}" />
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryFilePath}" Style="{StaticResource PropertyNameStyle}" />
 		<StackPanel Orientation="Horizontal" Spacing="8">
-			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryInfo.LibraryFilePath}" IsTextScaleFactorEnabled="True" />
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind Library.LibraryPath}" IsTextScaleFactorEnabled="True" />
 			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton_ClickAsync" />
 		</StackPanel>
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryConfigFilePath}" Style="{StaticResource PropertyNameStyle}" />
 		<StackPanel Orientation="Horizontal" Spacing="8">
-			<TextBlock VerticalAlignment="Center" Text="{x:Bind LibraryInfo.ConfigFilePath}" IsTextScaleFactorEnabled="True" />
+			<TextBlock VerticalAlignment="Center" Text="{x:Bind Library.InfoPath}" IsTextScaleFactorEnabled="True" />
 			<Button Content="{ui:FontIcon Glyph=&#xE71B;}" Click="NavigateToLibraryFileButton2_ClickAsync" />
 		</StackPanel>
 		<TextBlock Text="{m:R Key=LibraryPage_LibraryLastModified}" Style="{StaticResource PropertyNameStyle}" />

@@ -10875,7 +10875,7 @@
             Indicates the JSON options to serialize or deserialize object.
             </summary>
         </member>
-        <member name="F:Sudoku.IO.Library._fileLock">
+        <member name="F:Sudoku.IO.Library.FileLock">
             <summary>
             Indicates the lock object to keep operation thread-safe.
             </summary>
@@ -11036,6 +11036,15 @@
             Loads the file, or creates the default instance if the file doesn't exist.
             </summary>
             <returns>The file loaded.</returns>
+        </member>
+        <member name="M:Sudoku.IO.Library.CreateLibrary(System.String,System.String,System.String)">
+            <summary>
+            Creates a new library from the specified raw text file.
+            </summary>
+            <param name="originalFilePath">The original text file.</param>
+            <param name="targetDirectory">The target directory.</param>
+            <param name="identifier">The file ID, meaning the target library file name.</param>
+            <returns>The <see cref="T:Sudoku.IO.Library"/> instance that you can visit the backing data and update information.</returns>
         </member>
         <member name="M:Sudoku.IO.Library.DeduplicateTags(System.ReadOnlySpan{System.String})">
             <summary>

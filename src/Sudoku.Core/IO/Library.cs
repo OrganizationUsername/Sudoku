@@ -24,11 +24,10 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 	};
 
-
 	/// <summary>
 	/// Indicates the lock object to keep operation thread-safe.
 	/// </summary>
-	private readonly Lock _fileLock = new();
+	private static readonly Lock FileLock = new();
 
 
 	/// <summary>
@@ -119,14 +118,14 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 
 		if (cancellationToken.IsCancellationRequested)
 		{
-			lock (_fileLock)
+			lock (FileLock)
 			{
 				File.Delete(tempFile);
 			}
 			return;
 		}
 
-		lock (_fileLock)
+		lock (FileLock)
 		{
 			try
 			{
@@ -149,7 +148,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 		var tempFile = Path.GetTempFileName();
 		await new FileDeduplicator(LibraryPath, tempFile).DeduplicateAsync(cancellationToken);
 
-		lock (_fileLock)
+		lock (FileLock)
 		{
 			try
 			{
@@ -342,7 +341,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// <param name="info">The information to be saved.</param>
 	private void Save(LibraryInfo info)
 	{
-		lock (_fileLock)
+		lock (FileLock)
 		{
 			var json = JsonSerializer.Serialize(info, DefaultSerializerOptions);
 			File.WriteAllText(InfoPath, json);
@@ -368,7 +367,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// <returns>The file loaded.</returns>
 	private LibraryInfo LoadOrCreate()
 	{
-		lock (_fileLock)
+		lock (FileLock)
 		{
 			if (!File.Exists(InfoPath))
 			{
@@ -386,6 +385,31 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 		}
 	}
 
+
+	/// <summary>
+	/// Creates a new library from the specified raw text file.
+	/// </summary>
+	/// <param name="originalFilePath">The original text file.</param>
+	/// <param name="targetDirectory">The target directory.</param>
+	/// <param name="identifier">The file ID, meaning the target library file name.</param>
+	/// <returns>The <see cref="Library"/> instance that you can visit the backing data and update information.</returns>
+	public static Library CreateLibrary(string originalFilePath, string targetDirectory, string identifier)
+	{
+		lock (FileLock)
+		{
+			var directory = Path.GetDirectoryName(targetDirectory)!;
+			Directory.CreateDirectory(directory);
+
+			// Copies the original file as the default behavior.
+			File.Copy(originalFilePath, $@"{targetDirectory}\{identifier}.txt");
+
+			var result = new Library(targetDirectory, identifier);
+			result.WriteName("<Unnamed>");
+			result.WriteAuthor("<Anonymous>");
+			result.WriteTags();
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// Deduplicate tags.

@@ -26793,6 +26793,130 @@
             </summary>
             <returns>The space set instance.</returns>
         </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.NameAttribute">
+            <summary>
+            Represents an attribute that describes the qualified name of a property in step.
+            </summary>
+            <param name="nameKey">The name key.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Annotations.NameAttribute.#ctor(System.String)">
+            <summary>
+            Represents an attribute that describes the qualified name of a property in step.
+            </summary>
+            <param name="nameKey">The name key.</param>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.NameAttribute.IsOptional">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.NameAttribute.NameKey">
+            <summary>
+            Represents the key at resource file.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.NameAttribute.DescriptionKey">
+            <summary>
+            Represents description key at resource file.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.PatternAttribute">
+            <summary>
+            Represents an attribute that describes the string pattern.
+            </summary>
+            <param name="pattern">The pattern.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Annotations.PatternAttribute.#ctor(System.String)">
+            <summary>
+            Represents an attribute that describes the string pattern.
+            </summary>
+            <param name="pattern">The pattern.</param>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.PatternAttribute.IsOptional">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.PatternAttribute.PatternString">
+            <summary>
+            Indicates the raw target pattern string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.PatternAttribute.Pattern">
+            <summary>
+            Indicates the target pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.RangeAttribute">
+            <summary>
+            Represents an attribute that describes the property value range.
+            </summary>
+            <param name="min">The minimum value.</param>
+            <param name="max">The maximum value.</param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Annotations.RangeAttribute.#ctor(System.Object,System.Object)">
+            <summary>
+            Represents an attribute that describes the property value range.
+            </summary>
+            <param name="min">The minimum value.</param>
+            <param name="max">The maximum value.</param>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.RangeAttribute.Min">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.RangeAttribute.Max">
+            <summary>
+            Indicates the maximum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.RangeAttribute.IsOptional">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.StepAnnotationAttribute">
+            <summary>
+            Represents an annotation that will be used for displaying metadata.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.StepAnnotationAttribute.BasedOn">
+            <summary>
+            Represents the attribute based on.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.Annotations.StepAnnotationAttribute.BasedOn.Type">
+            <summary>
+            Indicates the item based on is type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Filtering.Annotations.StepAnnotationAttribute.BasedOn.Member">
+            <summary>
+            Indicates the item based on is member.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.StepAnnotationAttribute.AnnotationBasedOn">
+            <summary>
+            Indicates the item based on.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.StepAttribute">
+            <summary>
+            Represents an attribute that will be used by a <see cref="T:Sudoku.Analytics.Step"/> derived type.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.StepAttribute.AnnotationBasedOn">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.Annotations.StepPropertyAttribute">
+            <summary>
+            Represents an attribute that will be used by a step property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.StepPropertyAttribute.IsOptional">
+            <summary>
+            Indicates whether the attribute type is optional.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Annotations.StepPropertyAttribute.AnnotationBasedOn">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Generating.Filtering.BetweenRule">
             <summary>
             Represents a between rule.
@@ -27651,6 +27775,34 @@
         <member name="M:Sudoku.Generating.Filtering.Constraints.TechniqueSetConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint">
+            <summary>
+            Represents a constraint that determines whether the specified member name satisfied the specified condition.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.Predicates">
+            <summary>
+            Represents the backing predicates to be called.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.TypeOrPropertyConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Generating.Filtering.StepFilter">
             <summary>
             Defines a type that checks whether a <see cref="T:Sudoku.Analytics.Step"/> satisfies the specified condition.
@@ -27658,6 +27810,14 @@
             <param name="step">The step.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="T:Sudoku.Generating.Filtering.TypeOrMemberPredicate">
+            <summary>
+            Represents a type or member predicate.
+            </summary>
+            <param name="typeOrMemberName">The name of type or member.</param>
+            <param name="basedOn">The member kind based on.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Generating.Qualified.ComplexSingleGenerator">
             <summary>

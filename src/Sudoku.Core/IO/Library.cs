@@ -2,10 +2,26 @@ namespace Sudoku.IO;
 
 /// <summary>
 /// Represents a puzzle library.
-/// You can use constructor to create a library if the target directory doesn't contain such related files.
 /// </summary>
 /// <param name="_directoryPath">Indicates the directory path.</param>
 /// <param name="_identifier">Indicates the library identifier.</param>
+/// <remarks>
+/// <para>
+/// In design, you can use constructor to create two files
+/// (raw text file and information file, with extensions <c>.txt</c> and <c>.json</c>)
+/// if the target directory doesn't contain such related files.
+/// However, this method won't check for bound files on purpose. If the local path doesn't contain any files
+/// (raw text file named <c>*.txt</c> or its information file named <c>*.json</c>), this method <b>will not</b> create files;
+/// instead, you should call methods <c>Write*</c> to update information,
+/// like <see cref="WriteName(string)"/> to name this library.
+/// </para>
+/// <para>
+/// Also, if you want to create a library instance via a library raw text file (a list of puzzles stored in a file),
+/// You can call <see langword="static"/> method <see cref="CreateLibrary(string, string, string)"/> to copy desired file
+/// to target folder.
+/// </para>
+/// </remarks>
+/// <seealso cref="CreateLibrary(string, string, string)"/>
 [TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class Library(string _directoryPath, string _identifier) :
 	IAsyncEnumerable<string>,
@@ -48,6 +64,8 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 
 	/// <summary>
 	/// Writes the name to the library information file.
+	/// Please note that the name isn't related to the file name at local file path.
+	/// It means the real name you want to call this library.
 	/// </summary>
 	/// <param name="value">The value to be set.</param>
 	public void WriteName(string value) => WriteProperty(static (info, value) => info.Name = value, value);
@@ -395,6 +413,13 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// <returns>The renamed library instance created; if the target file exists, <see langword="null"/> will be returned.</returns>
 	public static Library? RenameLibrary(Library library, string newIdentifier)
 	{
+		newIdentifier = newIdentifier.Trim();
+		if (Path.GetFileNameWithoutExtension(library.LibraryPath) == newIdentifier)
+		{
+			// Do nothing.
+			return new(Path.GetDirectoryName(library.LibraryPath)!, newIdentifier);
+		}
+
 		lock (FileLock)
 		{
 			var directory = Path.GetDirectoryName(library.LibraryPath)!;

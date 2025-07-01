@@ -406,7 +406,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 
 
 	/// <summary>
-	/// Rename the library with file name changed.
+	/// Rename the library with file name changed; this method won't do anything if <paramref name="newIdentifier"/> isn't changed.
 	/// </summary>
 	/// <param name="library">The desired library.</param>
 	/// <param name="newIdentifier">The new identifier you want to change its backing file name.</param>

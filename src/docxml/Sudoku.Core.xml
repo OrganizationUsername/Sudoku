@@ -10978,6 +10978,9 @@
             </summary>
             <returns>The author.</returns>
         </member>
+        <member name="M:Sudoku.IO.Library.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.IO.Library.ReadTags">
             <summary>
             Reads the tags of the library information file.
@@ -11108,9 +11111,6 @@
         </member>
         <member name="M:Sudoku.IO.Library.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.IO.Library.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.IO.Library.op_Equality(Sudoku.IO.Library,Sudoku.IO.Library)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -12093,6 +12093,45 @@
         <member name="P:Sudoku.Resources.CoreResources.HousesLabel">
             <summary>
               Looks up a localized string similar to houses: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation">
+             <summary>
+               Looks up a localized string similar to Name: {0}
+            File path: {1} (Created: {2})
+            Description: {3}
+            Author: {4}
+            Tags: {5}.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_FileCreated">
+            <summary>
+              Looks up a localized string similar to Yes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_FileNotCreated">
+            <summary>
+              Looks up a localized string similar to No.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_NoAuthor">
+            <summary>
+              Looks up a localized string similar to &lt;Anonymous&gt;.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_NoDescription">
+            <summary>
+              Looks up a localized string similar to &lt;None&gt;.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_NoName">
+            <summary>
+              Looks up a localized string similar to &lt;Unnamed&gt;.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.LibraryInformation_NoTags">
+            <summary>
+              Looks up a localized string similar to &lt;Empty&gt;.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.LockedCandidatesLabel">

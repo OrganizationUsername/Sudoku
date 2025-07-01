@@ -22,7 +22,7 @@ namespace Sudoku.IO;
 /// </para>
 /// </remarks>
 /// <seealso cref="CreateLibrary(string, string, string)"/>
-[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.Equatable | TypeImplFlags.EqualityOperators)]
 public sealed partial class Library(string _directoryPath, string _identifier) :
 	IAsyncEnumerable<string>,
 	IEquatable<Library>,
@@ -52,14 +52,12 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// </summary>
 	[HashCodeMember]
 	[EquatableMember]
-	[StringMember]
-	public string InfoPath => $"{_directoryPath}/{_identifier}.json";
+	public string InfoPath => $@"{_directoryPath}\{_identifier}.json";
 
 	/// <summary>
 	/// Indicates the library path.
 	/// </summary>
-	[StringMember]
-	public string LibraryPath => $"{_directoryPath}/{_identifier}.txt";
+	public string LibraryPath => $@"{_directoryPath}\{_identifier}.txt";
 
 
 	/// <summary>
@@ -117,6 +115,20 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// </summary>
 	/// <returns>The author.</returns>
 	public string ReadAuthor() => ReadProperty(static info => info.Author);
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> string.Format(
+			SR.Get("LibraryInformation"),
+			ReadName() is var name and not "" ? name : SR.Get("LibraryInformation_NoName"),
+			LibraryPath,
+			File.Exists(LibraryPath)
+				? SR.Get("LibraryInformation_FileCreated")
+				: SR.Get("LibraryInformation_FileNotCreated"),
+			ReadDescription() is var description and not "" ? description : SR.Get("LibraryInformation_NoDescription"),
+			ReadAuthor() is var author and not "" ? author : SR.Get("LibraryInformation_NoAuthor"),
+			ReadTags() is var tags and not [] ? string.Join(", ", tags) : SR.Get("LibraryInformation_NoTags")
+		);
 
 	/// <summary>
 	/// Reads the tags of the library information file.

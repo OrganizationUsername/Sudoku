@@ -288,4 +288,29 @@
   <data name="SettingsPage_GridSizeDescription2" xml:space="preserve">
     <value>Also, please note that the pixels are changed in higher DPIs. If your computer is set *1.5 scale, sudoku grid pane of 610 pixel size will be zoomed in to 915 pixels (610 * 1.5 = 915).</value>
   </data>
+  <data name="LibraryInformation" xml:space="preserve">
+    <value>Name: {0}
+File path: {1} (Created: {2})
+Description: {3}
+Author: {4}
+Tags: {5}</value>
+  </data>
+  <data name="LibraryInformation_NoName" xml:space="preserve">
+    <value>&lt;Unnamed&gt;</value>
+  </data>
+  <data name="LibraryInformation_FileCreated" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="LibraryInformation_FileNotCreated" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="LibraryInformation_NoDescription" xml:space="preserve">
+    <value>&lt;None&gt;</value>
+  </data>
+  <data name="LibraryInformation_NoAuthor" xml:space="preserve">
+    <value>&lt;Anonymous&gt;</value>
+  </data>
+  <data name="LibraryInformation_NoTags" xml:space="preserve">
+    <value>&lt;Empty&gt;</value>
+  </data>
 </root>

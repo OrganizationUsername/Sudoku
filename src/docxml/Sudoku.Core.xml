@@ -10860,29 +10860,19 @@
             <summary>
             Represents a puzzle library.
             </summary>
-            <param name="directoryPath"><inheritdoc cref="F:Sudoku.IO.Library._directoryPath" path="/summary"/></param>
-            <param name="identifier"><inheritdoc cref="F:Sudoku.IO.Library._identifier" path="/summary"/></param>
+            <param name="_directoryPath">Indicates the directory path.</param>
+            <param name="_identifier">Indicates the library identifier.</param>
         </member>
         <member name="M:Sudoku.IO.Library.#ctor(System.String,System.String)">
             <summary>
             Represents a puzzle library.
             </summary>
-            <param name="directoryPath"><inheritdoc cref="F:Sudoku.IO.Library._directoryPath" path="/summary"/></param>
-            <param name="identifier"><inheritdoc cref="F:Sudoku.IO.Library._identifier" path="/summary"/></param>
+            <param name="_directoryPath">Indicates the directory path.</param>
+            <param name="_identifier">Indicates the library identifier.</param>
         </member>
         <member name="F:Sudoku.IO.Library.DefaultSerializerOptions">
             <summary>
             Indicates the JSON options to serialize or deserialize object.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.Library._directoryPath">
-            <summary>
-            Indicates the directory path.
-            </summary>
-        </member>
-        <member name="F:Sudoku.IO.Library._identifier">
-            <summary>
-            Indicates the library identifier.
             </summary>
         </member>
         <member name="F:Sudoku.IO.Library._fileLock">

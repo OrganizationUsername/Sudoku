@@ -398,25 +398,6 @@ public sealed partial class Library(string directoryPath, string identifier) :
 
 
 	/// <summary>
-	/// Creates a <see cref="Library"/> instance (and local files) via the specified information.
-	/// </summary>
-	/// <param name="directoryPath">The directory path.</param>
-	/// <param name="identifier">The identifier.</param>
-	/// <param name="libraryInfo">The library information.</param>
-	/// <returns>The library instance.</returns>
-	public static Library CreateLibrary(string directoryPath, string identifier, LibraryInfo libraryInfo)
-	{
-		var result = new Library(directoryPath, identifier);
-		var info = result.LoadOrCreate();
-		info.Name = libraryInfo.Name;
-		info.Author = libraryInfo.Author;
-		info.Description = libraryInfo.Description;
-		info.Tags = libraryInfo.Tags;
-		result.Save(info);
-		return result;
-	}
-
-	/// <summary>
 	/// Deduplicate tags.
 	/// </summary>
 	/// <param name="values">The value.</param>

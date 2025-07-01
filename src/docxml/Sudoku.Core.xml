@@ -10930,15 +10930,6 @@
             </summary>
             <returns>The file loaded.</returns>
         </member>
-        <member name="M:Sudoku.IO.Library.CreateLibrary(System.String,System.String,Sudoku.IO.LibraryInfo)">
-            <summary>
-            Creates a <see cref="T:Sudoku.IO.Library"/> instance (and local files) via the specified information.
-            </summary>
-            <param name="directoryPath">The directory path.</param>
-            <param name="identifier">The identifier.</param>
-            <param name="libraryInfo">The library information.</param>
-            <returns>The library instance.</returns>
-        </member>
         <member name="M:Sudoku.IO.Library.DeduplicateTags(System.ReadOnlySpan{System.String})">
             <summary>
             Deduplicate tags.

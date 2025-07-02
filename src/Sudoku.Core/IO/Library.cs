@@ -387,7 +387,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 			return null;
 		}
 
-		await foreach (var line in reader.ReadLinesRangeAsync(index + 1, 1, cancellationToken))
+		await foreach (var line in reader.ReadLinesRangeAsync(index + 1, index + 2, cancellationToken))
 		{
 			return line;
 		}

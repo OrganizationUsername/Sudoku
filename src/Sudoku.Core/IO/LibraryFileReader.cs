@@ -224,8 +224,7 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 			// Hanlde for the range of valid line number.
 			foreach (var line in lines)
 			{
-				currentLineNumber++;
-				if (currentLineNumber > endLine)
+				if (++currentLineNumber > endLine)
 				{
 					// Unexpected end-of-line.
 					yield break;

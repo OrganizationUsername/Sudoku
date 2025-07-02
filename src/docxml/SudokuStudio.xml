@@ -15855,13 +15855,6 @@
             <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
             <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.NextUInt64(System.Random)">
-            <summary>
-            Creates a randomized <see cref="T:System.UInt64"/> value.
-            </summary>
-            <param name="this">The random instance.</param>
-            <returns>The <see cref="T:System.UInt64"/> result.</returns>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
             Represents printing operation.

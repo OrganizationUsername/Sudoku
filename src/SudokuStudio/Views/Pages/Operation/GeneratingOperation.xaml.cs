@@ -345,7 +345,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			return;
 		}
 
-		var appendToLibraryTask = static (string _, CancellationToken _ = default) => default(Task)!;
+		var appendToLibraryTask = static (string _, CancellationToken _ = default) => default(ValueTask)!;
 		switch ((SaveToLibraryDialogContent)dialog.Content)
 		{
 			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { Library: var lib } }:
@@ -520,28 +520,8 @@ file static class Extensions
 		CancellationToken cancellationToken = default
 	)
 	{
-		var rng = new Random();
-		Unsafe.SkipInit<Grid>(out var chosen);
-		var nextLine = rng.NextUInt64() % await @this.GetCountAsync();
-		await foreach (var text in @this.GetRangeAsync(nextLine, 1, cancellationToken))
-		{
-			chosen = Grid.Parse(text);
-			break;
-		}
-
+		var chosen = Grid.Parse(await @this.SelectOneAsync(cancellationToken));
 		chosen.Transform(transformTypes);
 		return chosen;
-	}
-
-	/// <summary>
-	/// Creates a randomized <see cref="ulong"/> value.
-	/// </summary>
-	/// <param name="this">The random instance.</param>
-	/// <returns>The <see cref="ulong"/> result.</returns>
-	private static ulong NextUInt64(this Random @this)
-	{
-		var randomBytes = new byte[8];
-		@this.NextBytes(randomBytes);
-		return BitConverter.ToUInt64(randomBytes, 0);
 	}
 }

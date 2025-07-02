@@ -368,6 +368,78 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	}
 
 	/// <summary>
+	/// Gets the puzzle at the specified index.
+	/// If the desired index is out of range, this method will return a <see langword="null"/> string
+	/// instead of throwing any exceptions.
+	/// </summary>
+	/// <param name="index">The index, start at 0.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>
+	/// A <see cref="Task{TResult}"/> of <see cref="string"/> object that can handle the asynchronous operation;
+	/// if canceled, the return value is also <see langword="null"/>.
+	/// </returns>
+	public async Task<string?> GetIndexAtAsync(ulong index, CancellationToken cancellationToken = default)
+	{
+		await using var reader = new LibraryFileReader(LibraryPath, out var exists);
+		if (!exists)
+		{
+			// If the file is created just now, nothing will be iterated.
+			return null;
+		}
+
+		await foreach (var line in reader.ReadLinesRangeAsync(index + 1, 1, cancellationToken))
+		{
+			return line;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Randomly selects one puzzle.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>
+	/// The <see cref="Task{TResult}"/> of <see cref="string"/>? object
+	/// that can asynchronously handle the operation, and return the result;
+	/// if canceled while searching, <see langword="null"/> will be returned.
+	/// </returns>
+	public async Task<string?> RandomSelectOneAsync(CancellationToken cancellationToken = default)
+	{
+		await foreach (var result in RandomSelectAsync(1, cancellationToken))
+		{
+			return result;
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Randomly selects the specified number of puzzles to be used.
+	/// </summary>
+	/// <param name="count">The desired number of puzzles.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>An enumerable sequence that is used in asynchronous environment.</returns>
+	public async IAsyncEnumerable<string> RandomSelectAsync(
+		ulong count,
+		[EnumeratorCancellation] CancellationToken cancellationToken = default
+	)
+	{
+		var rng = new IndexGenerator(0, await GetCountAsync());
+		for (var i = 0UL; i < count; i++)
+		{
+			if (cancellationToken.IsCancellationRequested)
+			{
+				yield break;
+			}
+
+			if (rng.NextUnique(cancellationToken) is { } nextIndex
+				&& await GetIndexAtAsync(nextIndex, cancellationToken) is { } validNext)
+			{
+				yield return validNext;
+			}
+		}
+	}
+
+	/// <summary>
 	/// Reads the specified number of puzzles from the library file
 	/// without any conversions to <see cref="Grid"/> (only displays the raw text).
 	/// If the file doesn't exist, nothing will be returned.
@@ -553,5 +625,78 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 			result.Add(value.Trim());
 		}
 		return [.. result];
+	}
+}
+
+/// <summary>
+/// Generates unique random unsigned long integers within a specified range <c>[<paramref name="_a"/>, <paramref name="_b"/>)</c>.
+/// Designed for large ranges without allocating or shuffling large arrays.
+/// </summary>
+/// <param name="_a">Inclusive lower bound of the range.</param>
+/// <param name="_b">Exclusive upper bound of the range.</param>
+/// <param name="seed">Optional seed for reproducible randomness.</param>
+/// <exception cref="ArgumentException">Thrown if b is not greater than a.</exception>
+file sealed class IndexGenerator(ulong _a, ulong _b, int? seed = null)
+{
+	/// <summary>
+	/// Indicates the backing random number generator.
+	/// </summary>
+	private readonly Random _random = seed is { } seedValue ? new(seedValue) : new();
+
+	/// <summary>
+	/// Set of already generated values.
+	/// </summary>
+	private readonly HashSet<ulong> _generated = [];
+
+
+	/// <summary>
+	/// Returns the next unique random number in the range [a, b), or null if all values have been exhausted.
+	/// </summary>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>
+	/// A unique random <see cref="ulong"/>, or <see langword="null"/> if all possible values have been generated,
+	/// or canceled.
+	/// </returns>
+	public ulong? NextUnique(CancellationToken cancellationToken = default)
+	{
+		if ((ulong)_generated.Count >= _b - _a)
+		{
+			// All possible unique values are exhausted.
+			return null;
+		}
+
+		while (true)
+		{
+			if (cancellationToken.IsCancellationRequested)
+			{
+				return null;
+			}
+
+			var candidate = _a + NextUInt64(_b - _a);
+			if (_generated.Add(candidate))
+			{
+				// Return only if not already generated.
+				return candidate;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Generates a random <see cref="ulong"/> in the range [0, range).
+	/// </summary>
+	/// <param name="range">The upper bound (exclusive) for the generated value.</param>
+	/// <returns>A random <see cref="ulong"/> in [0, range).</returns>
+	private ulong NextUInt64(ulong range)
+	{
+		ulong ulongRand;
+		do
+		{
+			var buf = new byte[8];
+			_random.NextBytes(buf); // Fill with random bytes.
+			ulongRand = BitConverter.ToUInt64(buf, 0);
+		}
+		while (ulongRand >= ulong.MaxValue - (ulong.MaxValue % range + 1) % range); // Avoid modulo bias.
+
+		return ulongRand % range;
 	}
 }

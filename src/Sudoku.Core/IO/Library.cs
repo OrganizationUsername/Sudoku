@@ -403,9 +403,9 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// that can asynchronously handle the operation, and return the result;
 	/// if canceled while searching, <see langword="null"/> will be returned.
 	/// </returns>
-	public async Task<string?> RandomSelectOneAsync(CancellationToken cancellationToken = default)
+	public async Task<string?> SelectOneAsync(CancellationToken cancellationToken = default)
 	{
-		await foreach (var result in RandomSelectAsync(1, cancellationToken))
+		await foreach (var result in SelectMultipleAsync(1, cancellationToken))
 		{
 			return result;
 		}
@@ -418,7 +418,7 @@ public sealed partial class Library(string _directoryPath, string _identifier) :
 	/// <param name="count">The desired number of puzzles.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>An enumerable sequence that is used in asynchronous environment.</returns>
-	public async IAsyncEnumerable<string> RandomSelectAsync(
+	public async IAsyncEnumerable<string> SelectMultipleAsync(
 		ulong count,
 		[EnumeratorCancellation] CancellationToken cancellationToken = default
 	)

@@ -11082,7 +11082,7 @@
             if canceled, the return value is also <see langword="null"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.IO.Library.RandomSelectOneAsync(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.Library.SelectOneAsync(System.Threading.CancellationToken)">
             <summary>
             Randomly selects one puzzle.
             </summary>
@@ -11093,7 +11093,7 @@
             if canceled while searching, <see langword="null"/> will be returned.
             </returns>
         </member>
-        <member name="M:Sudoku.IO.Library.RandomSelectAsync(System.UInt64,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.IO.Library.SelectMultipleAsync(System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Randomly selects the specified number of puzzles to be used.
             </summary>

@@ -3269,4 +3269,7 @@ Is pattern rank-0: {6}</value>
   <data name="Message_RankPatternIsTooComplex" xml:space="preserve">
     <value>Pattern is too complex.</value>
   </data>
+  <data name="Message_InvalidKeyword" xml:space="preserve">
+    <value>This is an invalid keyword. The reason why this exception thrown is that the target property specified by argument isn't marked attribute 'KeywordAttribute', or the specified name is misspelt. Please check your input and try again.</value>
+  </data>
 </root>

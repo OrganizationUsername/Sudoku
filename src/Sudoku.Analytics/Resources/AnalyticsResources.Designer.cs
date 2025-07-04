@@ -3805,6 +3805,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is an invalid keyword. The reason why this exception thrown is that the target property specified by argument isn&apos;t marked attribute &apos;KeywordAttribute&apos;, or the specified name is misspelt. Please check your input and try again..
+        /// </summary>
+        public static string Message_InvalidKeyword {
+            get {
+                return ResourceManager.GetString("Message_InvalidKeyword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
         /// </summary>
         public static string Message_MissingDifficultyLevelException {

@@ -1,0 +1,10 @@
+namespace Sudoku.Analytics.Keywords;
+
+/// <summary>
+/// Represents an exception that describes "invalid keyword" information.
+/// </summary>
+public sealed class InvalidKeywordException : InvalidOperationException
+{
+	/// <inheritdoc/>
+	public override string Message => SR.Get("Message_InvalidKeyword");
+}

@@ -8096,6 +8096,14 @@
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Keywords.InvalidKeywordException">
+            <summary>
+            Represents an exception that describes "invalid keyword" information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Keywords.InvalidKeywordException.Message">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Keywords.Keyword">
             <summary>
             Provides helper methods for retrieving attributes with <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/> inheritance rules.
@@ -8107,15 +8115,30 @@
             Represents default binding flags on property.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.IsKeyword``1(System.Reflection.PropertyInfo)">
-            <inheritdoc cref="M:Sudoku.Analytics.Keywords.Keyword.IsKeyword``1(System.String,System.Reflection.PropertyInfo@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordNames``1">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetName``1(System.String)">
             <summary>
-            Retrieves possible property names that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.
+            Retrieves the name of the keyword.
             </summary>
             <typeparam name="TStep">The type of step.</typeparam>
-            <returns>A list of property names that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.</returns>
+            <param name="keyword">The keyword.</param>
+            <returns>The name of the keyword.</returns>
+            <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetDescription``1(System.String)">
+            <summary>
+            Retrieves the description of the keyword.
+            </summary>
+            <typeparam name="TStep">The type of step.</typeparam>
+            <param name="keyword">The keyword.</param>
+            <returns>The description of the keyword.</returns>
+            <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywords``1">
+            <summary>
+            Retrieves possible keywords that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.
+            </summary>
+            <typeparam name="TStep">The type of step.</typeparam>
+            <returns>A list of keywords that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.</returns>
             <seealso cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordVerbs``1(System.String)">
@@ -8123,15 +8146,16 @@
             Retrieves possible keyword verbs.
             </summary>
             <typeparam name="TStep">THe type of step.</typeparam>
-            <param name="propertyName">The property name.</param>
+            <param name="keyword">The keyword.</param>
             <returns>All keyword verbs allowed.</returns>
+            <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordConditions``1(System.String)">
             <summary>
             Retrieves possible keyword conditions of a keyword.
             </summary>
             <typeparam name="TStep">The type of step.</typeparam>
-            <param name="propertyName">The property name.</param>
+            <param name="keyword">The keyword.</param>
             <returns>All marked conditions.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordCondition``2(System.String)">
@@ -8148,7 +8172,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Keywords.Keyword.IsKeyword``1(System.String,System.Reflection.PropertyInfo@)">
             <summary>
-            Determine whether the specified property name is a keyword (a property to be used by filtering).
+            Determine whether the specified property name is a keyword.
             </summary>
             <typeparam name="TStep">The type of step.</typeparam>
             <param name="propertyName">The property name.</param>
@@ -8163,13 +8187,23 @@
             <param name="property">The property to inspect.</param>
             <returns>
             The attribute instance based on these rules:
-            <list type="number">
+            <list type="bullet">
             <item>For <see langword="override"/> properties: Returns base class attribute</item>
             <item>For <see langword="new"/> properties: Returns only if defined on current property</item>
             <item>For non-overridden properties: Returns base class attribute</item>
             </list>
             </returns>
             <exception cref="T:System.ArgumentNullException">Thrown when property is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordAttribute``1(System.String)">
+            <summary>
+            Gets <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/> configured.
+            </summary>
+            <typeparam name="TStep">The type of step.</typeparam>
+            <param name="keyword">The keyword.</param>
+            <returns>
+            The <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Keywords.Keyword.IsNewProperty(System.Reflection.PropertyInfo)">
             <summary>
@@ -31264,6 +31298,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Message_FactorResourceMismatchedException">
             <summary>
               Looks up a localized string similar to Factor resource mismatched..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_InvalidKeyword">
+            <summary>
+              Looks up a localized string similar to This is an invalid keyword. The reason why this exception thrown is that the target property specified by argument isn&apos;t marked attribute &apos;KeywordAttribute&apos;, or the specified name is misspelt. Please check your input and try again..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Message_MissingDifficultyLevelException">

@@ -12,58 +12,64 @@ public static class Keyword
 	private const BindingFlags PropertyBindingFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
 
-	/// <inheritdoc cref="IsKeyword{TStep}(string, out PropertyInfo?)"/>
-	public static bool IsKeyword<TStep>(PropertyInfo propertyInfo) where TStep : Step
-		=> GetAttribute<KeywordAttribute>(propertyInfo) is not null;
-
 	/// <summary>
-	/// Retrieves possible property names that are marked <see cref="KeywordAttribute"/>.
+	/// Retrieves the name of the keyword.
 	/// </summary>
 	/// <typeparam name="TStep">The type of step.</typeparam>
-	/// <returns>A list of property names that are marked <see cref="KeywordAttribute"/>.</returns>
+	/// <param name="keyword">The keyword.</param>
+	/// <returns>The name of the keyword.</returns>
+	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
+	public static string GetName<TStep>(string keyword) where TStep : Step
+		=> GetKeywordAttribute<TStep>(keyword) is { NameResourceKey: var nameResourceKey }
+			? SR.Get(nameResourceKey)
+			: throw new InvalidKeywordException();
+
+	/// <summary>
+	/// Retrieves the description of the keyword.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <param name="keyword">The keyword.</param>
+	/// <returns>The description of the keyword.</returns>
+	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
+	public static string? GetDescription<TStep>(string keyword) where TStep : Step
+		=> GetKeywordAttribute<TStep>(keyword) is { DescriptionResourceKey: var descriptionResourceKey }
+			? descriptionResourceKey is not null ? SR.Get(descriptionResourceKey) : null
+			: throw new InvalidKeywordException();
+
+	/// <summary>
+	/// Retrieves possible keywords that are marked <see cref="KeywordAttribute"/>.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <returns>A list of keywords that are marked <see cref="KeywordAttribute"/>.</returns>
 	/// <seealso cref="KeywordAttribute"/>
-	public static ReadOnlySpan<string> GetKeywordNames<TStep>() where TStep : Step
+	public static ReadOnlySpan<string> GetKeywords<TStep>() where TStep : Step
 		=>
 		from propertyInfo in typeof(TStep).GetProperties(PropertyBindingFlags)
-		where IsKeyword<TStep>(propertyInfo)
+		where propertyInfo.IsDefined<KeywordAttribute>()
 		select propertyInfo.Name;
 
 	/// <summary>
 	/// Retrieves possible keyword verbs.
 	/// </summary>
 	/// <typeparam name="TStep">THe type of step.</typeparam>
-	/// <param name="propertyName">The property name.</param>
+	/// <param name="keyword">The keyword.</param>
 	/// <returns>All keyword verbs allowed.</returns>
-	public static ReadOnlySpan<KeywordVerb> GetKeywordVerbs<TStep>(string propertyName) where TStep : Step
-	{
-		if (!IsKeyword<TStep>(propertyName, out var propertyInfo))
-		{
-			return [];
-		}
-
-		if (GetAttribute<KeywordAttribute>(propertyInfo) is not { AllowedVerbs: var verbs })
-		{
-			return [];
-		}
-
-		var result = new HashSet<KeywordVerb>();
-		foreach (var verb in verbs)
-		{
-			result.Add(verb);
-		}
-		return result.AsReadOnlySpan();
-	}
+	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
+	public static ReadOnlySpan<KeywordVerb> GetKeywordVerbs<TStep>(string keyword) where TStep : Step
+		=> GetKeywordAttribute<TStep>(keyword) is { AllowedVerbs: var verbs }
+			? verbs
+			: throw new InvalidKeywordException();
 
 	/// <summary>
 	/// Retrieves possible keyword conditions of a keyword.
 	/// </summary>
 	/// <typeparam name="TStep">The type of step.</typeparam>
-	/// <param name="propertyName">The property name.</param>
+	/// <param name="keyword">The keyword.</param>
 	/// <returns>All marked conditions.</returns>
-	public static ReadOnlySpan<KeywordConditionAttribute> GetKeywordConditions<TStep>(string propertyName)
+	public static ReadOnlySpan<KeywordConditionAttribute> GetKeywordConditions<TStep>(string keyword)
 		where TStep : Step
 	{
-		if (!IsKeyword<TStep>(propertyName, out var propertyInfo))
+		if (!IsKeyword<TStep>(keyword, out var propertyInfo))
 		{
 			return [];
 		}
@@ -90,13 +96,13 @@ public static class Keyword
 	/// The valid condition set returned, or <see langword="null"/>
 	/// if the target property is either not found or not a valid keyword.
 	/// </returns>
-	public static TAttribute? GetKeywordCondition<TStep, TAttribute>(string propertyName)
+	public static TAttribute? GetKeywordCondition<TStep, TAttribute>(string keyword)
 		where TStep : Step
 		where TAttribute : KeywordConditionAttribute
-		=> IsKeyword<TStep>(propertyName, out var propertyInfo) ? GetAttribute<TAttribute>(propertyInfo) : null;
+		=> IsKeyword<TStep>(keyword, out var propertyInfo) ? GetAttribute<TAttribute>(propertyInfo) : null;
 
 	/// <summary>
-	/// Determine whether the specified property name is a keyword (a property to be used by filtering).
+	/// Determine whether the specified property name is a keyword.
 	/// </summary>
 	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="propertyName">The property name.</param>
@@ -111,7 +117,7 @@ public static class Keyword
 			return false;
 		}
 
-		(propertyInfo, var @return) = IsKeyword<TStep>(p) ? (p, true) : (null, false);
+		(propertyInfo, var @return) = p.IsDefined<KeywordAttribute>() ? (p, true) : (null, false);
 		return @return;
 	}
 
@@ -122,7 +128,7 @@ public static class Keyword
 	/// <param name="property">The property to inspect.</param>
 	/// <returns>
 	/// The attribute instance based on these rules:
-	/// <list type="number">
+	/// <list type="bullet">
 	/// <item>For <see langword="override"/> properties: Returns base class attribute</item>
 	/// <item>For <see langword="new"/> properties: Returns only if defined on current property</item>
 	/// <item>For non-overridden properties: Returns base class attribute</item>
@@ -146,6 +152,17 @@ public static class Keyword
 		// Case 1 & 3: Property uses override or has no override.
 		return FindInBaseClasses<TAttribute>(property);
 	}
+
+	/// <summary>
+	/// Gets <see cref="KeywordAttribute"/> configured.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <param name="keyword">The keyword.</param>
+	/// <returns>
+	/// The <see cref="KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
+	/// </returns>
+	private static KeywordAttribute? GetKeywordAttribute<TStep>(string keyword) where TStep : Step
+		=> IsKeyword<TStep>(keyword, out var propertyInfo) ? GetAttribute<KeywordAttribute>(propertyInfo) : null;
 
 	/// <summary>
 	/// Determines if the property is declared with the <see langword="new"/> keyword.

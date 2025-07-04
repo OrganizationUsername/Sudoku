@@ -13,16 +13,27 @@ public static class Keyword
 
 
 	/// <summary>
-	/// Determine whether the specified property name is a keyword (a property to be used by filtering).
+	/// Represents a default verbs table.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
-	/// <param name="propertyName">The property name.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool IsKeyword<TStep>(string propertyName) where TStep : Step
-		=> typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is { } propertyInfo
-		&& IsKeyword<TStep>(propertyInfo);
+	private static readonly (Predicate<Type> Condition, KeywordVerb[] Verbs)[] DefaultVerbsLookup = [
+		// String types & Enumeration types
+		(
+			static propertyType => propertyType == typeof(string) || propertyType.IsEnum,
+			[KeywordVerb.StringEquality, KeywordVerb.StringPattern]
+		),
 
-	/// <inheritdoc cref="IsKeyword{TStep}(string)"/>
+		// Number types (Only commonly-used types are allowed)
+		(
+			static propertyType => propertyType == typeof(int) || propertyType == typeof(double) || propertyType == typeof(decimal),
+			[KeywordVerb.NumberEquality, KeywordVerb.NumberInequality, KeywordVerb.NumberRange]
+		),
+
+		// Default case
+		(static _ => true, [])
+	];
+
+
+	/// <inheritdoc cref="IsKeyword{TStep}(string, out PropertyInfo?)"/>
 	public static bool IsKeyword<TStep>(PropertyInfo propertyInfo) where TStep : Step
 		=> GetAttribute<KeywordAttribute>(propertyInfo) is not null;
 
@@ -46,19 +57,14 @@ public static class Keyword
 	/// <returns>All keyword verbs allowed.</returns>
 	public static ReadOnlySpan<KeywordVerb> GetKeywordVerbs<TStep>(string propertyName) where TStep : Step
 	{
-		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } propertyInfo)
-		{
-			return [];
-		}
-
-		if (!IsKeyword<TStep>(propertyInfo))
+		if (!IsKeyword<TStep>(propertyName, out var propertyInfo))
 		{
 			return [];
 		}
 
 		if (GetAttribute<KeywordAllowedVerbsAttribute>(propertyInfo) is not { Verbs: var verbs })
 		{
-			return [];
+			goto InferFromPropertyType;
 		}
 
 		var result = new HashSet<KeywordVerb>();
@@ -67,6 +73,23 @@ public static class Keyword
 			result.Add(verb);
 		}
 		return result.AsReadOnlySpan();
+
+	InferFromPropertyType:
+		// If we cannot find explicit attribute to describe its verbs, we should infer them by its corresponding type.
+		// Please note that the configured default verbs may not valid in some cases.
+		// For example, if the target type is number, we can compare its backing values and specify a range.
+		// However, if the target property isn't marked by attribute '[KeywordRange]',
+		// we cannot know the valid minimum and maximum values of the property, meaning we can configure any possible values,
+		// which is bad (or even says, terrible).
+		var propertyType = propertyInfo.PropertyType;
+		foreach (var (predicate, defaultVerbsConfigured) in DefaultVerbsLookup)
+		{
+			if (predicate(propertyType))
+			{
+				return defaultVerbsConfigured;
+			}
+		}
+		return [];
 	}
 
 	/// <summary>
@@ -78,12 +101,7 @@ public static class Keyword
 	public static ReadOnlySpan<KeywordConditionAttribute> GetKeywordConditions<TStep>(string propertyName)
 		where TStep : Step
 	{
-		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } propertyInfo)
-		{
-			return [];
-		}
-
-		if (!IsKeyword<TStep>(propertyInfo))
+		if (!IsKeyword<TStep>(propertyName, out var propertyInfo))
 		{
 			return [];
 		}
@@ -106,14 +124,37 @@ public static class Keyword
 	/// </summary>
 	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <typeparam name="TAttribute">The type of attribute.</typeparam>
-	/// <returns>The valid condition set or default instance returned.</returns>
-	public static TAttribute GetKeywordCondition<TStep, TAttribute>(string propertyName)
+	/// <returns>
+	/// The valid condition set or default instance returned;
+	/// or <see langword="null"/> if the target property is not found, or not a valid keyword.
+	/// </returns>
+	public static TAttribute? GetKeywordCondition<TStep, TAttribute>(string propertyName)
 		where TStep : Step
 		where TAttribute : KeywordConditionAttribute, IKeywordConditionDefaultValue<TAttribute>
-		=> typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is { } propertyInfo
+		=> IsKeyword<TStep>(propertyName, out var propertyInfo)
 		&& GetAttribute<TAttribute>(propertyInfo) is { } result
 			? result
 			: TAttribute.DefaultValue;
+
+	/// <summary>
+	/// Determine whether the specified property name is a keyword (a property to be used by filtering).
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <param name="propertyName">The property name.</param>
+	/// <param name="propertyInfo">The property information instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	private static bool IsKeyword<TStep>(string propertyName, [NotNullWhen(true)] out PropertyInfo? propertyInfo)
+		where TStep : Step
+	{
+		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } p)
+		{
+			propertyInfo = null;
+			return false;
+		}
+
+		(propertyInfo, var @return) = IsKeyword<TStep>(p) ? (p, true) : (null, false);
+		return @return;
+	}
 
 	/// <summary>
 	/// Retrieves the attribute applied to a property according to custom inheritance rules.

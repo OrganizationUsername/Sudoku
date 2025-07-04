@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Keywords;
 
 /// <summary>
-/// Represents an attribute type that describes the filtering rule of a property from a <see cref="Step"/> instance.
+/// Represents an attribute type that describes the property is marked as special property to be filtered in reflection.
 /// </summary>
-/// <seealso cref="Step"/>
-public abstract class KeywordAttribute : Attribute;
+[AttributeUsage(AttributeTargets.Property, Inherited = false)]
+public sealed class KeywordAttribute : Attribute;

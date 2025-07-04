@@ -22,6 +22,11 @@
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
 		</Compile>
+		<Compile Update="Resources\FilteringPropertyResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>FilteringPropertyResources.resx</DependentUpon>
+		</Compile>
 		<EmbeddedResource Update="Resources\AnalyticsResources.resx">
 			<SubType>Designer</SubType>
 			<LastGenOutput>AnalyticsResources.Designer.cs</LastGenOutput>
@@ -29,6 +34,10 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\AnalyticsResources.zh-CN.resx">
 			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\FilteringPropertyResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>FilteringPropertyResources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 

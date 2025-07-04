@@ -1,9 +1,10 @@
 namespace Sudoku.Analytics.Keywords;
 
 /// <summary>
-/// Provides helper methods for retrieving attributes with custom inheritance rules.
+/// Provides helper methods for retrieving attributes with <see cref="KeywordAttribute"/> inheritance rules.
 /// </summary>
-public static class FilteringProperty
+/// <seealso cref="KeywordAttribute"/>
+public static class Keyword
 {
 	/// <summary>
 	/// Represents default binding flags on property.
@@ -12,14 +13,107 @@ public static class FilteringProperty
 
 
 	/// <summary>
-	/// Determine whether the specified property name is a filtering property.
+	/// Determine whether the specified property name is a keyword (a property to be used by filtering).
 	/// </summary>
 	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="propertyName">The property name.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool IsFilteringProperty<TStep>(string propertyName)
-		=> typeof(TStep).GetProperty(propertyName) is { } propertyInfo
-		&& GetAttribute<FilteringPropertyAttribute>(propertyInfo) is not null;
+	public static bool IsKeyword<TStep>(string propertyName) where TStep : Step
+		=> typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is { } propertyInfo
+		&& IsKeyword<TStep>(propertyInfo);
+
+	/// <inheritdoc cref="IsKeyword{TStep}(string)"/>
+	public static bool IsKeyword<TStep>(PropertyInfo propertyInfo) where TStep : Step
+		=> GetAttribute<KeywordAttribute>(propertyInfo) is not null;
+
+	/// <summary>
+	/// Retrieves possible property names that are marked <see cref="KeywordAttribute"/>.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <returns>A list of property names that are marked <see cref="KeywordAttribute"/>.</returns>
+	/// <seealso cref="KeywordAttribute"/>
+	public static ReadOnlySpan<string> GetKeywordNames<TStep>() where TStep : Step
+		=>
+		from propertyInfo in typeof(TStep).GetProperties(PropertyBindingFlags)
+		where IsKeyword<TStep>(propertyInfo)
+		select propertyInfo.Name;
+
+	/// <summary>
+	/// Retrieves possible keyword verbs.
+	/// </summary>
+	/// <typeparam name="TStep">THe type of step.</typeparam>
+	/// <param name="propertyName">The property name.</param>
+	/// <returns>All keyword verbs allowed.</returns>
+	public static ReadOnlySpan<KeywordVerb> GetKeywordVerbs<TStep>(string propertyName) where TStep : Step
+	{
+		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } propertyInfo)
+		{
+			return [];
+		}
+
+		if (!IsKeyword<TStep>(propertyInfo))
+		{
+			return [];
+		}
+
+		if (GetAttribute<KeywordAllowedVerbsAttribute>(propertyInfo) is not { Verbs: var verbs })
+		{
+			return [];
+		}
+
+		var result = new HashSet<KeywordVerb>();
+		foreach (var verb in verbs)
+		{
+			result.Add(verb);
+		}
+		return result.AsReadOnlySpan();
+	}
+
+	/// <summary>
+	/// Retrieves possible keyword conditions of a keyword.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <param name="propertyName">The property name.</param>
+	/// <returns>All marked conditions.</returns>
+	public static ReadOnlySpan<KeywordConditionAttribute> GetKeywordConditions<TStep>(string propertyName)
+		where TStep : Step
+	{
+		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } propertyInfo)
+		{
+			return [];
+		}
+
+		if (!IsKeyword<TStep>(propertyInfo))
+		{
+			return [];
+		}
+
+		var attributes = (Attribute[])propertyInfo.GetCustomAttributes();
+		var result = new List<KeywordConditionAttribute>(attributes.Length);
+		foreach (var attribute in attributes)
+		{
+			if (attribute is KeywordConditionAttribute instance)
+			{
+				result.Add(instance);
+			}
+		}
+		return result.AsSpan();
+	}
+
+	/// <summary>
+	/// Retrieve keyword condition of the specified property;
+	/// if unset, <see cref="IKeywordConditionDefaultValue{TSelf}.DefaultValue"/> will be returned.
+	/// </summary>
+	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <typeparam name="TAttribute">The type of attribute.</typeparam>
+	/// <returns>The valid condition set or default instance returned.</returns>
+	public static TAttribute GetKeywordCondition<TStep, TAttribute>(string propertyName)
+		where TStep : Step
+		where TAttribute : KeywordConditionAttribute, IKeywordConditionDefaultValue<TAttribute>
+		=> typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is { } propertyInfo
+		&& GetAttribute<TAttribute>(propertyInfo) is { } result
+			? result
+			: TAttribute.DefaultValue;
 
 	/// <summary>
 	/// Retrieves the attribute applied to a property according to custom inheritance rules.

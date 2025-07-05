@@ -2442,7 +2442,7 @@
   <data name="ErrorInfo_TooMuchAttributes" xml:space="preserve">
     <value>The field has marked too much attributes.</value>
   </data>
-  <data name="ErrorInfo_AlsMissingCellsInTargetHouse" xml:space="preserve">
+  <data name="'" xml:space="preserve">
     <value>Missing cells or target house.</value>
   </data>
   <data name="ErrorInfo_AlsMissingSlash" xml:space="preserve">
@@ -3271,5 +3271,26 @@ Is pattern rank-0: {6}</value>
   </data>
   <data name="Message_InvalidKeyword" xml:space="preserve">
     <value>This is an invalid keyword. The reason why this exception thrown is that the target property specified by argument isn't marked attribute 'KeywordAttribute', or the specified name is misspelt. Please check your input and try again.</value>
+  </data>
+  <data name="KeywordConditionConstraint" xml:space="preserve">
+    <value>Keyword rule: technique {1}, {0}</value>
+  </data>
+  <data name="ConstraintDescription_KeywordConditionConstraint" xml:space="preserve">
+    <value>Catch a puzzle having a step with satisfied the specified condition</value>
+  </data>
+  <data name="KeywordCondition_NumberComparisonKeywordCondition" xml:space="preserve">
+    <value>Value must be {0} {1}</value>
+  </data>
+  <data name="KeywordCondition_NumberRangeKeywordCondition" xml:space="preserve">
+    <value>Value must be in range {0}{1}, {2}{3}</value>
+  </data>
+  <data name="KeywordCondition_StringEqualityComparisonKeywordCondition" xml:space="preserve">
+    <value>String must be equal to '{0}'</value>
+  </data>
+  <data name="KeywordCondition_StringPatternKeywordCondition" xml:space="preserve">
+    <value>String must satisfy regular expression '{0}'</value>
+  </data>
+  <data name="ErrorInfo_ArgumentMustBeDerivedFromStepType" xml:space="preserve">
+    <value>Argument '{0}' must be the type derived from 'Step'.</value>
   </data>
 </root>

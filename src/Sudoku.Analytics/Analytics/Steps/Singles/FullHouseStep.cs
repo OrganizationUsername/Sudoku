@@ -41,8 +41,8 @@ public sealed class FullHouseStep(
 	[Keyword(
 		NameResourceKey = "FullHouseStep_Lasting_Name", DescriptionResourceKey = "FullHouseStep_Lasting_Description",
 		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange)]
-	[KeywordRange(0, Maximum = 7, IncludesMaximum = true)]
-	public int Lasting { get; } = lasting;
+	[KeywordRange(1, Maximum = 1, IncludesMaximum = true)]
+	public Cell Lasting { get; } = lasting;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FullHouse;

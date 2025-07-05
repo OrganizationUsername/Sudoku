@@ -19,6 +19,7 @@ namespace Sudoku.Generating.Filtering;
 [JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
 [JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
+[JsonDerivedType(typeof(KeywordConditionConstraint), nameof(KeywordConditionConstraint))]
 [TypeImpl(
 	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",

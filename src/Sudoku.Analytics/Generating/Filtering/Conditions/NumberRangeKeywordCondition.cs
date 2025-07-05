@@ -7,7 +7,8 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <param name="maximum"><inheritdoc cref="Maximum" path="/summary"/></param>
 /// <param name="includesMinimum"><inheritdoc cref="IncludesMinimum" path="/summary"/></param>
 /// <param name="includesMaximum"><inheritdoc cref="IncludesMaximum" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
+[method: JsonConstructor]
 public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum, bool includesMinimum, bool includesMaximum) :
 	KeywordCondition
 {
@@ -15,28 +16,24 @@ public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum
 	/// Indicates whether the range includes minimum value.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool IncludesMinimum { get; } = includesMinimum;
 
 	/// <summary>
 	/// Indicates whether the range includes maximum value.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool IncludesMaximum { get; } = includesMaximum;
 
 	/// <summary>
 	/// Indicates the minimum value.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public int Minimum { get; } = minimum;
 
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public int Maximum { get; } = maximum;
 
 	/// <inheritdoc/>
@@ -50,7 +47,7 @@ public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum
 		&& IncludesMinimum == comparer.IncludesMinimum && IncludesMaximum == comparer.IncludesMaximum;
 
 	/// <inheritdoc/>
-	public override bool IsSatisifed<TStep>(TStep instance, string keyword)
+	public override bool IsSatisifed(Step instance, string keyword)
 		=> GetValue(instance, keyword) switch
 		{
 			int keywordValue => (IncludesMinimum, IncludesMaximum) switch
@@ -62,6 +59,18 @@ public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum
 			},
 			_ => false
 		};
+
+	/// <inheritdoc/>
+	public override string ToString(IFormatProvider? formatProvider)
+		=> string.Format(
+			SR.Get("KeywordCondition_NumberRangeKeywordCondition", formatProvider as CultureInfo),
+			[
+				IncludesMinimum ? "[" : "(",
+				Minimum.ToString(),
+				Maximum.ToString(),
+				IncludesMaximum ? "]" : ")"
+			]
+		);
 
 	/// <inheritdoc/>
 	public override NumberRangeKeywordCondition Clone() => new(Minimum, Maximum, IncludesMinimum, IncludesMaximum);

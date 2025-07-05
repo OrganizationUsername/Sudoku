@@ -28,6 +28,10 @@ public sealed class NakedSingleStep(
 	public override int BaseDifficulty => Options.IsDirectMode ? 23 : 10;
 
 	/// <inheritdoc cref="ILastingTrait.Lasting"/>
+	[Keyword(
+		NameResourceKey = "NakedSingleStep_Lasting_Name", DescriptionResourceKey = "NakedSingleStep_Lasting_Description",
+		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange)]
+	[KeywordRange(0, Maximum = 7, IncludesMaximum = true)]
 	public int Lasting { get; } = lasting;
 
 	/// <inheritdoc/>

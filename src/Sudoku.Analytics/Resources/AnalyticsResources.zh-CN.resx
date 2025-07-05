@@ -3316,4 +3316,25 @@
   <data name="Message_InvalidKeyword" xml:space="preserve">
     <value />
   </data>
+  <data name="KeywordConditionConstraint" xml:space="preserve">
+    <value>关键词：技巧 {1} 需要满足 {0}</value>
+  </data>
+  <data name="ConstraintDescription_KeywordConditionConstraint" xml:space="preserve">
+    <value>限制题目某个步骤信息下指定属性的值必须满足某种条件</value>
+  </data>
+  <data name="KeywordCondition_NumberComparisonKeywordCondition" xml:space="preserve">
+    <value>数值必须 {0} {1}</value>
+  </data>
+  <data name="KeywordCondition_NumberRangeKeywordCondition" xml:space="preserve">
+    <value>数值必须介于范围 {0}{1}, {2}{3}</value>
+  </data>
+  <data name="KeywordCondition_StringEqualityComparisonKeywordCondition" xml:space="preserve">
+    <value>字符串必须等于“{0}”</value>
+  </data>
+  <data name="KeywordCondition_StringPatternKeywordCondition" xml:space="preserve">
+    <value>字符串必须满足正则表达式“{0}”</value>
+  </data>
+  <data name="ErrorInfo_ArgumentMustBeDerivedFromStepType" xml:space="preserve">
+    <value />
+  </data>
 </root>

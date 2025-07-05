@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing cells or target house..
+        /// </summary>
+        public static string _ {
+            get {
+                return ResourceManager.GetString("\'", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string _Token_CenterDot {
@@ -1168,6 +1177,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle having a step with satisfied the specified condition.
+        /// </summary>
+        public static string ConstraintDescription_KeywordConditionConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_KeywordConditionConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Catch a puzzle having specified lasting number of a single step.
         /// </summary>
         public static string ConstraintDescription_LastingConstraint {
@@ -1501,20 +1519,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Missing cells or target house..
-        /// </summary>
-        public static string ErrorInfo_AlsMissingCellsInTargetHouse {
-            get {
-                return ResourceManager.GetString("ErrorInfo_AlsMissingCellsInTargetHouse", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The ALS notation must contain only 1 slash character..
         /// </summary>
         public static string ErrorInfo_AlsMissingSlash {
             get {
                 return ResourceManager.GetString("ErrorInfo_AlsMissingSlash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Argument &apos;{0}&apos; must be the type derived from &apos;Step&apos;..
+        /// </summary>
+        public static string ErrorInfo_ArgumentMustBeDerivedFromStepType {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ArgumentMustBeDerivedFromStepType", resourceCulture);
             }
         }
         
@@ -3603,6 +3621,51 @@ namespace Sudoku.Resources {
         public static string JuniorExocetTargetPair {
             get {
                 return ResourceManager.GetString("JuniorExocetTargetPair", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be {0} {1}.
+        /// </summary>
+        public static string KeywordCondition_NumberComparisonKeywordCondition {
+            get {
+                return ResourceManager.GetString("KeywordCondition_NumberComparisonKeywordCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be in range {0}{1}, {2}{3}.
+        /// </summary>
+        public static string KeywordCondition_NumberRangeKeywordCondition {
+            get {
+                return ResourceManager.GetString("KeywordCondition_NumberRangeKeywordCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to String must be equal to &apos;{0}&apos;.
+        /// </summary>
+        public static string KeywordCondition_StringEqualityComparisonKeywordCondition {
+            get {
+                return ResourceManager.GetString("KeywordCondition_StringEqualityComparisonKeywordCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to String must satisfy regular expression &apos;{0}&apos;.
+        /// </summary>
+        public static string KeywordCondition_StringPatternKeywordCondition {
+            get {
+                return ResourceManager.GetString("KeywordCondition_StringPatternKeywordCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyword rule: technique {1}, {0}.
+        /// </summary>
+        public static string KeywordConditionConstraint {
+            get {
+                return ResourceManager.GetString("KeywordConditionConstraint", resourceCulture);
             }
         }
         

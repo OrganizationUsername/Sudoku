@@ -52,6 +52,7 @@ global using Sudoku.Concepts.Supersymmetry;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Generating.Filtering;
+global using Sudoku.Generating.Filtering.Conditions;
 global using Sudoku.Generating.Filtering.Constraints;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;

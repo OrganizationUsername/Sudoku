@@ -15,103 +15,68 @@ public static class Keyword
 	/// <summary>
 	/// Retrieves the name of the keyword.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="keyword">The keyword.</param>
+	/// <param name="keywordType">The keyword containing type.</param>
+	/// <param name="cultureInfo">The culture information.</param>
 	/// <returns>The name of the keyword.</returns>
 	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
-	public static string GetName<TStep>(string keyword) where TStep : Step
-		=> GetKeywordAttribute<TStep>(keyword) is { NameResourceKey: var nameResourceKey }
-			? SR.Get(nameResourceKey)
+	public static string GetName(string keyword, Type keywordType, CultureInfo? cultureInfo)
+		=> GetKeywordAttribute(keyword, keywordType) is { NameResourceKey: var nameResourceKey }
+			? SR.Get(nameResourceKey, cultureInfo)
 			: throw new InvalidKeywordException();
 
 	/// <summary>
 	/// Retrieves the description of the keyword.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="keyword">The keyword.</param>
+	/// <param name="keywordType">The keyword containing type.</param>
 	/// <returns>The description of the keyword.</returns>
 	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
-	public static string? GetDescription<TStep>(string keyword) where TStep : Step
-		=> GetKeywordAttribute<TStep>(keyword) is { DescriptionResourceKey: var descriptionResourceKey }
+	public static string? GetDescription(string keyword, Type keywordType)
+		=> GetKeywordAttribute(keyword, keywordType) is { DescriptionResourceKey: var descriptionResourceKey }
 			? descriptionResourceKey is not null ? SR.Get(descriptionResourceKey) : null
 			: throw new InvalidKeywordException();
 
 	/// <summary>
 	/// Retrieves possible keyword verbs.
 	/// </summary>
-	/// <typeparam name="TStep">THe type of step.</typeparam>
 	/// <param name="keyword">The keyword.</param>
+	/// <param name="keywordType">The keyword containing type.</param>
 	/// <returns>All keyword verbs allowed.</returns>
 	/// <exception cref="InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
-	public static KeywordVerbs GetKeywordVerbs<TStep>(string keyword) where TStep : Step
-		=> GetKeywordAttribute<TStep>(keyword) is { AllowedVerbs: var verbs }
+	public static KeywordVerbs GetKeywordVerbs(string keyword, Type keywordType)
+		=> GetKeywordAttribute(keyword, keywordType) is { AllowedVerbs: var verbs }
 			? verbs
 			: throw new InvalidKeywordException();
 
 	/// <summary>
 	/// Retrieves possible keywords that are marked <see cref="KeywordAttribute"/>.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
+	/// <param name="keywordType">The keyword type.</param>
 	/// <returns>A list of keywords that are marked <see cref="KeywordAttribute"/>.</returns>
+	/// <exception cref="ArgumentException">Throws when the target type is not derived from <see cref="Step"/>.</exception>
 	/// <seealso cref="KeywordAttribute"/>
-	public static ReadOnlySpan<string> GetKeywords<TStep>() where TStep : Step
-		=>
-		from propertyInfo in typeof(TStep).GetProperties(PropertyBindingFlags)
-		where propertyInfo.IsDefined<KeywordAttribute>()
-		select propertyInfo.Name;
-
-	/// <summary>
-	/// Retrieves possible keyword conditions of a keyword.
-	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
-	/// <param name="keyword">The keyword.</param>
-	/// <returns>All marked conditions.</returns>
-	public static ReadOnlySpan<KeywordConditionAttribute> GetKeywordConditions<TStep>(string keyword)
-		where TStep : Step
-	{
-		if (!IsKeyword<TStep>(keyword, out var propertyInfo))
-		{
-			return [];
-		}
-
-		var attributes = (Attribute[])propertyInfo.GetCustomAttributes();
-		var result = new List<KeywordConditionAttribute>(attributes.Length);
-		foreach (var attribute in attributes)
-		{
-			if (attribute is KeywordConditionAttribute instance)
-			{
-				result.Add(instance);
-			}
-		}
-		return result.AsSpan();
-	}
-
-	/// <summary>
-	/// Retrieve keyword condition of the specified keyword;
-	/// if unset, <see langword="null"/> will be returned.
-	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
-	/// <typeparam name="TAttribute">The type of attribute.</typeparam>
-	/// <returns>
-	/// The valid condition set returned, or <see langword="null"/>
-	/// if the target property is either not found or not a valid keyword.
-	/// </returns>
-	public static TAttribute? GetKeywordCondition<TStep, TAttribute>(string keyword)
-		where TStep : Step
-		where TAttribute : KeywordConditionAttribute
-		=> IsKeyword<TStep>(keyword, out var propertyInfo) ? GetAttribute<TAttribute>(propertyInfo) : null;
+	public static ReadOnlySpan<string> GetKeywords(Type keywordType)
+		=> keywordType.IsAssignableTo(typeof(Step))
+			?
+			from propertyInfo in keywordType.GetProperties(PropertyBindingFlags)
+			where propertyInfo.IsDefined<KeywordAttribute>()
+			select propertyInfo.Name
+			: throw new ArgumentException(
+				string.Format(SR.ExceptionMessage("ArgumentMustBeDerivedFromStepType"), nameof(keywordType)),
+				nameof(keywordType)
+			);
 
 	/// <summary>
 	/// Determine whether the specified property name is a keyword.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="propertyName">The property name.</param>
+	/// <param name="propertyType">The property type.</param>
 	/// <param name="propertyInfo">The property information instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	internal static bool IsKeyword<TStep>(string propertyName, [NotNullWhen(true)] out PropertyInfo? propertyInfo)
-		where TStep : Step
+	internal static bool IsKeyword(string propertyName, Type propertyType, [NotNullWhen(true)] out PropertyInfo? propertyInfo)
 	{
-		if (typeof(TStep).GetProperty(propertyName, PropertyBindingFlags) is not { } p)
+		if (propertyType.GetProperty(propertyName, PropertyBindingFlags) is not { } p)
 		{
 			propertyInfo = null;
 			return false;
@@ -156,13 +121,13 @@ public static class Keyword
 	/// <summary>
 	/// Gets <see cref="KeywordAttribute"/> configured.
 	/// </summary>
-	/// <typeparam name="TStep">The type of step.</typeparam>
 	/// <param name="keyword">The keyword.</param>
+	/// <param name="keywordType">The keyword type.</param>
 	/// <returns>
 	/// The <see cref="KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
 	/// </returns>
-	private static KeywordAttribute? GetKeywordAttribute<TStep>(string keyword) where TStep : Step
-		=> IsKeyword<TStep>(keyword, out var propertyInfo) ? GetAttribute<KeywordAttribute>(propertyInfo) : null;
+	private static KeywordAttribute? GetKeywordAttribute(string keyword, Type keywordType)
+		=> IsKeyword(keyword, keywordType, out var propertyInfo) ? GetAttribute<KeywordAttribute>(propertyInfo) : null;
 
 	/// <summary>
 	/// Determines if the property is declared with the <see langword="new"/> keyword.

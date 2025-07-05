@@ -79,7 +79,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number for the house with the least number of empty cells.
+        ///   Looks up a localized string similar to The number for empty cells in target house.
         /// </summary>
         internal static string FullHouseStep_Lasting_Description {
             get {
@@ -93,6 +93,42 @@ namespace Sudoku.Resources {
         internal static string FullHouseStep_Lasting_Name {
             get {
                 return ResourceManager.GetString("FullHouseStep_Lasting_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number for empty cells in target house.
+        /// </summary>
+        internal static string HiddenSingleStep_Lasting_Description {
+            get {
+                return ResourceManager.GetString("HiddenSingleStep_Lasting_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasting.
+        /// </summary>
+        internal static string HiddenSingleStep_Lasting_Name {
+            get {
+                return ResourceManager.GetString("HiddenSingleStep_Lasting_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number for the house with the least number of empty cells.
+        /// </summary>
+        internal static string NakedSingleStep_Lasting_Description {
+            get {
+                return ResourceManager.GetString("NakedSingleStep_Lasting_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasting.
+        /// </summary>
+        internal static string NakedSingleStep_Lasting_Name {
+            get {
+                return ResourceManager.GetString("NakedSingleStep_Lasting_Name", resourceCulture);
             }
         }
         

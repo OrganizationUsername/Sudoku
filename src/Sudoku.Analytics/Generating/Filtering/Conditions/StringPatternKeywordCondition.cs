@@ -4,14 +4,14 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// Represents a keyword condition.
 /// </summary>
 /// <param name="value"><inheritdoc cref="Value" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
+[method: JsonConstructor]
 public sealed partial class StringPatternKeywordCondition([StringSyntax(StringSyntaxAttribute.Regex)] string value) : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be checked.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public string Value { get; } = value;
 
 	/// <inheritdoc/>
@@ -42,13 +42,20 @@ public sealed partial class StringPatternKeywordCondition([StringSyntax(StringSy
 		=> other is StringPatternKeywordCondition comparer && Value == comparer.Value;
 
 	/// <inheritdoc/>
-	public override bool IsSatisifed<TStep>(TStep instance, string keyword)
+	public override bool IsSatisifed(Step instance, string keyword)
 		=> GetValue(instance, keyword) switch
 		{
 			string str => Pattern.IsMatch(str),
 			Enum field => Pattern.IsMatch(field.ToString()),
 			_ => false
 		};
+
+	/// <inheritdoc/>
+	public override string ToString(IFormatProvider? formatProvider)
+		=> string.Format(
+			SR.Get("KeywordCondition_StringPatternKeywordCondition", formatProvider as CultureInfo),
+			Value
+		);
 
 	/// <inheritdoc/>
 	public override StringPatternKeywordCondition Clone() => new(Value);

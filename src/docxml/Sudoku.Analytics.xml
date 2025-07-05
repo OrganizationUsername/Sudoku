@@ -8115,67 +8115,49 @@
             Represents default binding flags on property.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetName``1(System.String)">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetName(System.String,System.Type,System.Globalization.CultureInfo)">
             <summary>
             Retrieves the name of the keyword.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
             <param name="keyword">The keyword.</param>
+            <param name="keywordType">The keyword containing type.</param>
+            <param name="cultureInfo">The culture information.</param>
             <returns>The name of the keyword.</returns>
             <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetDescription``1(System.String)">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetDescription(System.String,System.Type)">
             <summary>
             Retrieves the description of the keyword.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
             <param name="keyword">The keyword.</param>
+            <param name="keywordType">The keyword containing type.</param>
             <returns>The description of the keyword.</returns>
             <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordVerbs``1(System.String)">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordVerbs(System.String,System.Type)">
             <summary>
             Retrieves possible keyword verbs.
             </summary>
-            <typeparam name="TStep">THe type of step.</typeparam>
             <param name="keyword">The keyword.</param>
+            <param name="keywordType">The keyword containing type.</param>
             <returns>All keyword verbs allowed.</returns>
             <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">Throws when the target property specified is not a valid keyword.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywords``1">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywords(System.Type)">
             <summary>
             Retrieves possible keywords that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
+            <param name="keywordType">The keyword type.</param>
             <returns>A list of keywords that are marked <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the target type is not derived from <see cref="T:Sudoku.Analytics.Step"/>.</exception>
             <seealso cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordConditions``1(System.String)">
-            <summary>
-            Retrieves possible keyword conditions of a keyword.
-            </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
-            <param name="keyword">The keyword.</param>
-            <returns>All marked conditions.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordCondition``2(System.String)">
-            <summary>
-            Retrieve keyword condition of the specified keyword;
-            if unset, <see langword="null"/> will be returned.
-            </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
-            <typeparam name="TAttribute">The type of attribute.</typeparam>
-            <returns>
-            The valid condition set returned, or <see langword="null"/>
-            if the target property is either not found or not a valid keyword.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.IsKeyword``1(System.String,System.Reflection.PropertyInfo@)">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.IsKeyword(System.String,System.Type,System.Reflection.PropertyInfo@)">
             <summary>
             Determine whether the specified property name is a keyword.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
             <param name="propertyName">The property name.</param>
+            <param name="propertyType">The property type.</param>
             <param name="propertyInfo">The property information instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -8195,12 +8177,12 @@
             </returns>
             <exception cref="T:System.ArgumentNullException">Thrown when property is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordAttribute``1(System.String)">
+        <member name="M:Sudoku.Analytics.Keywords.Keyword.GetKeywordAttribute(System.String,System.Type)">
             <summary>
             Gets <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/> configured.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
             <param name="keyword">The keyword.</param>
+            <param name="keywordType">The keyword type.</param>
             <returns>
             The <see cref="T:Sudoku.Analytics.Keywords.KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
             </returns>
@@ -27360,7 +27342,7 @@
             Provides extension members on <see cref="T:Sudoku.Generating.Filtering.ComparisonOperator"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.<>E__0.GetOperatorString">
+        <member name="P:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.<>E__0.OperatorString">
             <summary>
             Indicates the string representation of the operator.
             </summary>
@@ -27373,8 +27355,8 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.get_GetOperatorString(Sudoku.Generating.Filtering.ComparisonOperator)">
-            <inheritdoc cref="P:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.<>E__0.GetOperatorString"/>
+        <member name="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.get_OperatorString(Sudoku.Generating.Filtering.ComparisonOperator)">
+            <inheritdoc cref="P:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.<>E__0.OperatorString"/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Generating.Filtering.ComparisonOperator)">
             <inheritdoc cref="M:Sudoku.Generating.Filtering.ComparisonOperatorExtensions.<>E__0.GetOperator``1"/>
@@ -27409,7 +27391,10 @@
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.Equals(Sudoku.Generating.Filtering.KeywordCondition)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.IsSatisifed``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.IsSatisifed(Sudoku.Analytics.Step,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.Clone">
@@ -27417,9 +27402,6 @@
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberComparisonKeywordCondition.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition">
             <summary>
@@ -27465,7 +27447,10 @@
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.Equals(Sudoku.Generating.Filtering.KeywordCondition)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.IsSatisifed``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.IsSatisifed(Sudoku.Analytics.Step,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.Clone">
@@ -27473,9 +27458,6 @@
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.NumberRangeKeywordCondition.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition">
             <summary>
@@ -27497,10 +27479,13 @@
         <member name="P:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.Verb">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.IsSatisifed``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.IsSatisifed(Sudoku.Analytics.Step,System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.Equals(Sudoku.Generating.Filtering.KeywordCondition)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.Clone">
@@ -27508,9 +27493,6 @@
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.StringEqualityComparisonKeywordCondition.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition">
             <summary>
@@ -27543,7 +27525,10 @@
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.Equals(Sudoku.Generating.Filtering.KeywordCondition)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.IsSatisifed``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.IsSatisifed(Sudoku.Analytics.Step,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.Clone">
@@ -27551,9 +27536,6 @@
         </member>
         <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.Filtering.Conditions.StringPatternKeywordCondition.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.Constraint">
             <summary>
@@ -28041,6 +28023,55 @@
         <member name="M:Sudoku.Generating.Filtering.Constraints.IttoryuConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint">
+            <summary>
+            Represents a constraint that checks for a keyword.
+            </summary>
+            <param name="condition"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Condition" path="/summary"/></param>
+            <param name="technique"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Technique" path="/summary"/></param>
+            <param name="keyword"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Keyword" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.#ctor(Sudoku.Generating.Filtering.KeywordCondition,Sudoku.Categorization.Technique,System.String)">
+            <summary>
+            Represents a constraint that checks for a keyword.
+            </summary>
+            <param name="condition"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Condition" path="/summary"/></param>
+            <param name="technique"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Technique" path="/summary"/></param>
+            <param name="keyword"><inheritdoc cref="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Keyword" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Keyword">
+            <summary>
+            Indicates the keyword.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Technique">
+            <summary>
+            Indicates the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Condition">
+            <summary>
+            Indicates the condition encapsulated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.KeywordConditionConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Generating.Filtering.Constraints.LastingConstraint">
             <summary>
             Represents a lasting constraint.
@@ -28339,12 +28370,11 @@
             Indicates the verb supported.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.IsSatisifed``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.IsSatisifed(Sudoku.Analytics.Step,System.String)">
             <summary>
             Determine whether the condition specified is satisfied.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
-            <param name="instance">The instance of type <typeparamref name="TStep"/>.</param>
+            <param name="instance">The instance.</param>
             <param name="keyword">The keyword (a property that will be checked, specified by its name).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
@@ -28357,22 +28387,27 @@
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.Equals(Sudoku.Generating.Filtering.KeywordCondition)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.Clone">
             <inheritdoc cref="M:System.ICloneable.Clone"/>
         </member>
-        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.GetValue``1(``0,System.String)">
+        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.GetValue(Sudoku.Analytics.Step,System.String)">
             <summary>
             Returns the value of the property in a step instance.
             </summary>
-            <typeparam name="TStep">The type of step.</typeparam>
-            <param name="instance">The instance of type <typeparamref name="TStep"/>.</param>
+            <param name="instance">The instance.</param>
             <param name="keyword">The keyword.</param>
             <returns>The real value set. You should cast to target type if you want.</returns>
             <exception cref="T:Sudoku.Analytics.Keywords.InvalidKeywordException">
-            Throws when the keyword is not found in type <typeparamref name="TStep"/>, or it is not a keyword.
+            Throws when the keyword is not found in its containing type, or it is not a keyword.
             </exception>
         </member>
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.KeywordCondition.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.Equals(System.Object)">
@@ -29459,6 +29494,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources._">
+            <summary>
+              Looks up a localized string similar to Missing cells or target house..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources._Token_CenterDot">
             <summary>
               Looks up a localized string similar to .
@@ -30074,6 +30114,11 @@
               Looks up a localized string similar to Catch a puzzle having specified length of ittoryu rounds.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_KeywordConditionConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle having a step with satisfied the specified condition.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_LastingConstraint">
             <summary>
               Looks up a localized string similar to Catch a puzzle having specified lasting number of a single step.
@@ -30259,14 +30304,14 @@
               Looks up a localized string similar to endo target: .
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_AlsMissingCellsInTargetHouse">
-            <summary>
-              Looks up a localized string similar to Missing cells or target house..
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_AlsMissingSlash">
             <summary>
               Looks up a localized string similar to The ALS notation must contain only 1 slash character..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ArgumentMustBeDerivedFromStepType">
+            <summary>
+              Looks up a localized string similar to Argument &apos;{0}&apos; must be the type derived from &apos;Step&apos;..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ArgumentMustBeSingle">
@@ -31427,6 +31472,31 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.JuniorExocetTargetPair">
             <summary>
               Looks up a localized string similar to Junior Exocet (Target Pair).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.KeywordCondition_NumberComparisonKeywordCondition">
+            <summary>
+              Looks up a localized string similar to Value must be {0} {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.KeywordCondition_NumberRangeKeywordCondition">
+            <summary>
+              Looks up a localized string similar to Value must be in range {0}{1}, {2}{3}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.KeywordCondition_StringEqualityComparisonKeywordCondition">
+            <summary>
+              Looks up a localized string similar to String must be equal to &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.KeywordCondition_StringPatternKeywordCondition">
+            <summary>
+              Looks up a localized string similar to String must satisfy regular expression &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.KeywordConditionConstraint">
+            <summary>
+              Looks up a localized string similar to Keyword rule: technique {1}, {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.KeywordIn">
@@ -34738,10 +34808,30 @@
         </member>
         <member name="P:Sudoku.Resources.FilteringPropertyResources.FullHouseStep_Lasting_Description">
             <summary>
-              Looks up a localized string similar to The number for the house with the least number of empty cells.
+              Looks up a localized string similar to The number for empty cells in target house.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.FilteringPropertyResources.FullHouseStep_Lasting_Name">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.HiddenSingleStep_Lasting_Description">
+            <summary>
+              Looks up a localized string similar to The number for empty cells in target house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.HiddenSingleStep_Lasting_Name">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.NakedSingleStep_Lasting_Description">
+            <summary>
+              Looks up a localized string similar to The number for the house with the least number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.NakedSingleStep_Lasting_Name">
             <summary>
               Looks up a localized string similar to Lasting.
             </summary>

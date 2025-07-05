@@ -14,7 +14,7 @@ public static class ComparisonOperatorExtensions
 		/// <summary>
 		/// Indicates the string representation of the operator.
 		/// </summary>
-		public string GetOperatorString
+		public string OperatorString
 			=> @this switch
 			{
 				ComparisonOperator.Equality => "=",

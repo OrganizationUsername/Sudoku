@@ -21,17 +21,17 @@ public enum KeywordVerb
 	StringPattern,
 
 	/// <summary>
-	/// Indicates the verb is to compare Number equality.
+	/// Indicates the verb is to compare number equality.
 	/// </summary>
 	NumberEquality = 201,
 
 	/// <summary>
-	/// Indicates the verb is to compare Number inequality.
+	/// Indicates the verb is to compare number inequality.
 	/// </summary>
 	NumberInequality,
 
 	/// <summary>
-	/// Indicates the verb is to check whether a Number is in a range.
+	/// Indicates the verb is to check whether a number is in a range.
 	/// </summary>
 	NumberRange
 }

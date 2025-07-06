@@ -127,6 +127,8 @@
 * [三元组](rank-theory/03-triplet/README.md)
   * [强三元组的基本推理](rank-theory/03-triplet/01-reasoning-of-truth-triplet.md)
   * [强三元组的例子](rank-theory/03-triplet/02-examples-using-truth-triplet.md)
+  * [弱三元组的基本推理](rank-theory/03-triplet/03-reasoning-of-link-triplet.md)
+  * [弱三元组的例子](rank-theory/03-triplet/04-examples-using-link-triplet.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

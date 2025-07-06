@@ -17592,6 +17592,11 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting">
             <inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting"/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.House">
+            <summary>
+            The house to be displayed.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -34817,6 +34822,16 @@
         <member name="P:Sudoku.Resources.FilteringPropertyResources.HiddenSingleStep_Lasting_Name">
             <summary>
               Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.NakedSingleStep_House_Description">
+            <summary>
+              Looks up a localized string similar to The house with the least number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FilteringPropertyResources.NakedSingleStep_House_Name">
+            <summary>
+              Looks up a localized string similar to House.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.FilteringPropertyResources.NakedSingleStep_Lasting_Description">

@@ -45,6 +45,17 @@ public sealed class NakedSingleStep(
 		IncludesMaximum = true)]
 	public Digit Lasting { get; } = lasting;
 
+	/// <summary>
+	/// The house to be displayed.
+	/// </summary>
+	[Keyword(
+		NameResourceKey = "NakedSingleStep_House_Name",
+		DescriptionResourceKey = "NakedSingleStep_House_Description",
+		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange,
+		Minimum = 0,
+		Maximum = 27)]
+	public House House => Cell.ToHouse(LastingHouseType);
+
 
 	/// <inheritdoc/>
 	public override string GetName(IFormatProvider? formatProvider)

@@ -133,6 +133,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The house with the least number of empty cells.
+        /// </summary>
+        internal static string NakedSingleStep_House_Description {
+            get {
+                return ResourceManager.GetString("NakedSingleStep_House_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        internal static string NakedSingleStep_House_Name {
+            get {
+                return ResourceManager.GetString("NakedSingleStep_House_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The number for the house with the least number of empty cells.
         /// </summary>
         internal static string NakedSingleStep_Lasting_Description {

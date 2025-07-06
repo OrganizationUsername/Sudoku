@@ -64,7 +64,7 @@ description: Examples Using Link Triplet
 
 所以这个题一共有两种不同的删数原因：一个是弱三元组占位导致秩为零，一种是根据强三元组占位分析零秩状态来得到删数。
 
-## 例子 3：有点复杂的结构
+## 例子 3：有点复杂的结构 <a href="#example-3" id="example-3"></a>
 
 <figure><img src="../../.gitbook/assets/images_0546.png" alt="" width="375"><figcaption><p>有点复杂的结构</p></figcaption></figure>
 

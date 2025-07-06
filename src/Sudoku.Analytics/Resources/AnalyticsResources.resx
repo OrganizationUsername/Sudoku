@@ -2442,7 +2442,7 @@
   <data name="ErrorInfo_TooMuchAttributes" xml:space="preserve">
     <value>The field has marked too much attributes.</value>
   </data>
-  <data name="'" xml:space="preserve">
+  <data name="ErrorInfo_AlsMissingCellsInTargetHouse" xml:space="preserve">
     <value>Missing cells or target house.</value>
   </data>
   <data name="ErrorInfo_AlsMissingSlash" xml:space="preserve">
@@ -3258,6 +3258,7 @@ Permutation cases count: {2}
 Rank: {3}
 Eliminations: {4}
 Rank-0 sets: {5}
+Rank of eliminations: {7}
 Is pattern rank-0: {6}</value>
   </data>
   <data name="UnstableRank" xml:space="preserve">
@@ -3292,5 +3293,8 @@ Is pattern rank-0: {6}</value>
   </data>
   <data name="ErrorInfo_ArgumentMustBeDerivedFromStepType" xml:space="preserve">
     <value>Argument '{0}' must be the type derived from 'Step'.</value>
+  </data>
+  <data name="ErrorInfo_RequireLinksOnCheckingEliminationRank" xml:space="preserve">
+    <value>Links expected on checking elimination rank.</value>
   </data>
 </root>

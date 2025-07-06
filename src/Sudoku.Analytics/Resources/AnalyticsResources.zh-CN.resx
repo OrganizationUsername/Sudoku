@@ -3301,6 +3301,7 @@
 秩：{3}
 删数：{4}
 零秩区域：{5}
+删数的秩：{7}
 是否为零秩结构：{6}</value>
   </data>
   <data name="UnstableRank" xml:space="preserve">
@@ -3335,6 +3336,9 @@
     <value>字符串必须满足正则表达式“{0}”</value>
   </data>
   <data name="ErrorInfo_ArgumentMustBeDerivedFromStepType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorInfo_RequireLinksOnCheckingEliminationRank" xml:space="preserve">
     <value />
   </data>
 </root>

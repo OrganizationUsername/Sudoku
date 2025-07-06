@@ -29409,9 +29409,7 @@
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.GetRank">
             <summary>
-            Indicates the rank of the current pattern. If the pattern is unstable
-            (sometimes assignments certain times of digits in the pattern but sometimes not),
-            this property will return <see langword="null"/>.
+            Indicates the rank of the current pattern.
             </summary>
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.GetRank0Links">
@@ -29420,6 +29418,13 @@
             because all valid combinations lead to a same result that the link must hold one correct digit.
             </summary>
             <returns>A list of links that are determined as rank-0 links.</returns>
+        </member>
+        <member name="M:Sudoku.Ranking.RankPattern.GetEliminationRanks">
+            <summary>
+            Gets ranks on eliminations.
+            </summary>
+            <returns>A lookup table that displays each candidate and its elimination rank.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when <see cref="F:Sudoku.Ranking.RankPattern.Links"/> is not specified.</exception>
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.GetIsRank0PatternCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
             <summary>
@@ -29441,6 +29446,14 @@
             </summary>
             <param name="combinations">The combinations.</param>
             <returns>Rank-0 links.</returns>
+        </member>
+        <member name="M:Sudoku.Ranking.RankPattern.GetEliminationRanksCore(System.ReadOnlySpan{System.ReadOnlyMemory{System.Int32}})">
+            <summary>
+            Gets ranks on eliminations.
+            </summary>
+            <param name="combinations">The combinations.</param>
+            <returns>A lookup table that displays each candidate and its elimination rank.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when <see cref="F:Sudoku.Ranking.RankPattern.Links"/> is not specified.</exception>
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -29480,11 +29493,6 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources._">
-            <summary>
-              Looks up a localized string similar to Missing cells or target house..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources._Token_CenterDot">
@@ -30292,6 +30300,11 @@
               Looks up a localized string similar to endo target: .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_AlsMissingCellsInTargetHouse">
+            <summary>
+              Looks up a localized string similar to Missing cells or target house..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_AlsMissingSlash">
             <summary>
               Looks up a localized string similar to The ALS notation must contain only 1 slash character..
@@ -30395,6 +30408,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_PuzzleCannotBeSolved">
             <summary>
               Looks up a localized string similar to The puzzle cannot be solved..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_RequireLinksOnCheckingEliminationRank">
+            <summary>
+              Looks up a localized string similar to Links expected on checking elimination rank..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SashimiPropertyInvalid">
@@ -31915,6 +31933,7 @@
             Rank: {3}
             Eliminations: {4}
             Rank-0 sets: {5}
+            Rank of eliminations: {7}
             Is pattern rank-0: {6}.
              </summary>
         </member>

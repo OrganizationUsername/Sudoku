@@ -61,15 +61,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Missing cells or target house..
-        /// </summary>
-        public static string _ {
-            get {
-                return ResourceManager.GetString("\'", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string _Token_CenterDot {
@@ -1519,6 +1510,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing cells or target house..
+        /// </summary>
+        public static string ErrorInfo_AlsMissingCellsInTargetHouse {
+            get {
+                return ResourceManager.GetString("ErrorInfo_AlsMissingCellsInTargetHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ALS notation must contain only 1 slash character..
         /// </summary>
         public static string ErrorInfo_AlsMissingSlash {
@@ -1704,6 +1704,15 @@ namespace Sudoku.Resources {
         public static string ErrorInfo_PuzzleCannotBeSolved {
             get {
                 return ResourceManager.GetString("ErrorInfo_PuzzleCannotBeSolved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Links expected on checking elimination rank..
+        /// </summary>
+        public static string ErrorInfo_RequireLinksOnCheckingEliminationRank {
+            get {
+                return ResourceManager.GetString("ErrorInfo_RequireLinksOnCheckingEliminationRank", resourceCulture);
             }
         }
         
@@ -4428,6 +4437,7 @@ namespace Sudoku.Resources {
         ///Rank: {3}
         ///Eliminations: {4}
         ///Rank-0 sets: {5}
+        ///Rank of eliminations: {7}
         ///Is pattern rank-0: {6}.
         /// </summary>
         public static string RankInfo {

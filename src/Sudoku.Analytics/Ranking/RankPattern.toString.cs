@@ -17,10 +17,11 @@ public partial struct RankPattern
 			Grid.ToString("@:"),
 			ToString(),
 			combinations.Length,
-			GetRankCore(combinations)?.ToString() ?? SR.Get("UnstableRank"),
+			GetRankCore(combinations).ToString()/* ?? SR.Get("UnstableRank")*/,
 			GetEliminationsCore(combinations).ToString(),
 			GetRank0LinksCore(combinations).ToString(),
-			SR.Get(GetIsRank0PatternCore(combinations) ? "IsRank0Pattern" : "IsNotRank0Pattern")
+			SR.Get(GetIsRank0PatternCore(combinations) ? "IsRank0Pattern" : "IsNotRank0Pattern"),
+			$"[{string.Join(", ", from kvp in GetEliminationRanksCore(combinations) select $"{kvp.Key.AsCandidateMap()}: {kvp.Value}")}]"
 		);
 	}
 }

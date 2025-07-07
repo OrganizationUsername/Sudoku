@@ -42,6 +42,8 @@ description: Examples Using Link Triplet
 
 所以这个题的删数就是 `37c6` 这俩弱区域可以用于删数了；因为 6 和 9 比较特殊，我们无法确定最终 6 和 9 的位置，所以也就无法确定删数。
 
+请记住这两个例子。这两个例子用到的推演方式，和强三元组里出现烟花数组的那个推演过程都是教程的伏笔。
+
 ## 例子 2：复杂鱼 <a href="#example-2" id="example-2"></a>
 
 <figure><img src="../../.gitbook/assets/images_0545.png" alt="" width="375"><figcaption><p>复杂鱼</p></figcaption></figure>

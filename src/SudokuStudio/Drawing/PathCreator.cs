@@ -244,7 +244,7 @@ internal sealed class PathCreator(
 							Stroke = new SolidColorBrush(
 								node switch
 								{
-									{ Shape: LinkShape.Chain or LinkShape.ConjugatePair } => Pane.LinkColor,
+									{ Shape: LinkShape.Cell or LinkShape.Chain or LinkShape.ConjugatePair } => Pane.LinkColor,
 									RankSetViewNode { IsTruth: var isTruth, Space: var space } => (isTruth, space) switch
 									{
 										(true, { House: var house }) => house switch

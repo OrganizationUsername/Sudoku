@@ -341,14 +341,7 @@ public sealed class Analyzer : StepGatherer, IAnalyzer<Analyzer, AnalysisResult,
 						//   7) If the searcher doesn't support for analyzing puzzles with multiple solutions, but we enable it.
 						continue;
 					}
-#pragma warning disable format
-					case (
-						_,
-						_,
-						SingleStepSearcher,
-						{ Options: { PrimarySingle: var limited and not 0, UseIttoryuMode: var ittoryuMode } }
-					):
-#pragma warning restore format
+					case (_, _, SingleStepSearcher, { Options.PrimarySingle: var limited and not 0 }):
 					{
 						accumulator!.Clear();
 
@@ -420,15 +413,7 @@ public sealed class Analyzer : StepGatherer, IAnalyzer<Analyzer, AnalysisResult,
 						}
 						else
 						{
-							var chosenStep = RandomizedChoosing
-								? chosenSteps[_random.Next(0, chosenSteps.Count)]
-								: ittoryuMode
-									? collectedSteps is [.., SingleStep { Digit: var previousDigit }]
-										? (from s in chosenSteps where s.Digit >= previousDigit orderby s.Digit select s) is [var tempStep, ..]
-											? tempStep
-											: chosenSteps.MinBy(static step => step.Digit)!
-										: chosenSteps.MinBy(static step => step.Digit)!
-									: chosenSteps[0];
+							var chosenStep = RandomizedChoosing ? chosenSteps[_random.Next(0, chosenSteps.Count)] : chosenSteps[0];
 							if (!verifyConclusionValidity(searcher, solution, chosenStep))
 							{
 								throw new WrongStepException(playground, chosenStep);

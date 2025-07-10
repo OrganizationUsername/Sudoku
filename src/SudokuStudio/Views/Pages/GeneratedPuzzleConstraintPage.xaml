@@ -84,6 +84,12 @@
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 						<MenuFlyoutSeparator />
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_MissingDigitConstraint}" Click="MenuFlyoutItem_Click">
+							<MenuFlyoutItem.Tag>
+								<con:MissingDigitConstraint Digit="4" />
+							</MenuFlyoutItem.Tag>
+						</MenuFlyoutItem>
+						<MenuFlyoutSeparator />
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PearlConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
 								<con:PearlConstraint ShouldBePearlOrDiamond="False" />

@@ -14,6 +14,7 @@ namespace Sudoku.Generating.Filtering;
 [JsonDerivedType(typeof(KeywordConditionConstraint), nameof(KeywordConditionConstraint))]
 [JsonDerivedType(typeof(LastingConstraint), nameof(LastingConstraint))]
 [JsonDerivedType(typeof(MinimalConstraint), nameof(MinimalConstraint))]
+[JsonDerivedType(typeof(MissingDigitConstraint), nameof(MissingDigitConstraint))]
 [JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
 [JsonDerivedType(typeof(PrimarySingleConstraint), nameof(PrimarySingleConstraint))]
 [JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))]

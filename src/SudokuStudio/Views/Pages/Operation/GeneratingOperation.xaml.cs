@@ -141,20 +141,40 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		unsafe Grid taskEntry()
 		{
-			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
-			var hasNakedSingleConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }];
-			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
-			var hasNakedSingleConnstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.NakedSingle] }];
-			var hasIttoryuConstraint = constraints.OfType<IttoryuConstraint>() is [{ Operator: ComparisonOperator.Equality, Rounds: 1 }];
+			var specializedConditions = (
+				HasFullHouseConstraint:
+					constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }],
+				HasNakedSingleConstraint:
+					constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.NakedSingle }],
+				HasFullHouseConstraintInTechniqueSet:
+					constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }],
+				HasNakedSingleConstraintInTechniqueSet:
+					constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.NakedSingle] }],
+				HasIttoryuConstraint:
+					constraints.OfType<IttoryuConstraint>() is [{ Operator: ComparisonOperator.Equality, Rounds: 1 }],
+				HasMissingDigitConstraint:
+					constraints.OfType<MissingDigitConstraint>() is [{ Digit: var digit and not -1 }]
+			);
 			return coreHandler(
 				constraints,
-				hasFullHouseConstraint || hasFullHouseConstraintInTechniqueSet
-					? &handlerFullHouse
-					: hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
-						? &handlerNakedSingle
-						: hasIttoryuConstraint
-							? &handlerIttoryu
-							: &handlerDefault,
+				specializedConditions switch
+				{
+					{ HasFullHouseConstraint: true } or { HasFullHouseConstraintInTechniqueSet: true } => &handler_FullHouse,
+					{ HasNakedSingleConstraint: true } or { HasNakedSingleConstraintInTechniqueSet: true } => &handler_NakedSingle,
+					{ HasIttoryuConstraint: true } => &handler_Ittoryu,
+					{ HasMissingDigitConstraint: true, HasIttoryuConstraint: false } => &handler_MissingDigit,
+					_ => &handler_Default
+				},
+				specializedConditions switch
+				{
+					{ HasMissingDigitConstraint: true, HasIttoryuConstraint: false } => &transformChecker_MissingDigit,
+					_ => null
+				},
+				specializedConditions switch
+				{
+					{ HasMissingDigitConstraint: true, HasIttoryuConstraint: false } => &transformer_MissingDigit,
+					_ => null
+				},
 				progress => DispatcherQueue.TryEnqueue(
 					() =>
 					{
@@ -163,7 +183,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				),
 				cts.Token,
-				hasNakedSingleConstraint || hasNakedSingleConnstraintInTechniqueSet
+				specializedConditions is { HasNakedSingleConstraint: true } or { HasNakedSingleConstraintInTechniqueSet: true }
 					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
 					: analyzer,
 				ittoryuFinder,
@@ -171,27 +191,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			);
 
 
-			static Grid handlerFullHouse(int givens, SymmetricType type, CancellationToken ct)
+			static Grid handler_FullHouse(Cell givens, SymmetricType type, CancellationToken ct)
 				=> new FullHouseGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
 				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
-			static Grid handlerNakedSingle(int givens, SymmetricType type, CancellationToken ct)
+			static Grid handler_NakedSingle(Cell givens, SymmetricType type, CancellationToken ct)
 				=> new NakedSingleGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
 				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
-			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
-			{
-				var puzzle = new Generator().Generate(givens, symmetry, ct);
-				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
-			}
-
-			static Grid handlerIttoryu(int givens, SymmetricType symmetry, CancellationToken ct)
+			static Grid handler_Ittoryu(Cell givens, SymmetricType symmetry, CancellationToken ct)
 			{
 				var finder = new DisorderedIttoryuFinder();
 				var generator = new Generator();
@@ -210,11 +224,62 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 			}
+
+			static Grid handler_MissingDigit(Cell givens, SymmetricType symmetry, CancellationToken ct)
+			{
+				// Set an arbitrary digit as missing digit.
+				// The digit will be transformed to other one after the puzzle is satisfied the target constraints.
+				var puzzle = new Generator { MissingDigit = 0 }.Generate(givens, symmetry, ct);
+				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
+			}
+
+			static Grid handler_Default(Cell givens, SymmetricType symmetry, CancellationToken ct)
+			{
+				var puzzle = new Generator().Generate(givens, symmetry, ct);
+				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
+			}
+
+			static bool transformChecker_MissingDigit(in Grid grid, [NotNullWhen(true)] out object? result)
+			{
+				var digitsDistribution = new Dictionary<Digit, Cell>(9);
+				foreach (var cell in grid.GivenCells)
+				{
+					var digit = grid.GetDigit(cell);
+					if (!digitsDistribution.TryAdd(digit, 1))
+					{
+						digitsDistribution[digit]++;
+					}
+				}
+
+				foreach (var digit in digitsDistribution.Keys)
+				{
+					if (digitsDistribution[digit] == 0)
+					{
+						result = digit;
+						return true;
+					}
+				}
+
+				result = null;
+				return false;
+			}
+
+			static void transformer_MissingDigit(ref Grid grid, ConstraintCollection constraints, object? variable)
+			{
+				var digit = (int)variable!;
+				var desiredDigit = constraints.OfType<MissingDigitConstraint>()[0].Digit;
+				if (desiredDigit != digit)
+				{
+					grid.SwapDigit(digit, desiredDigit);
+				}
+			}
 		}
 
 		unsafe Grid coreHandler(
 			ConstraintCollection constraints,
 			delegate*<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
+			[AllowNull, MaybeNull] delegate*<in Grid, out object?, bool> gridTransformingChecker,
+			[AllowNull, MaybeNull] delegate*<ref Grid, ConstraintCollection, object?, void> gridTransformer,
 			Action<TProgressDataProvider> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
@@ -232,29 +297,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			}
 
 			var rng = Random.Shared;
-			var symmetries = (
-				(from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes) is [var p]
-					? p
-					: SymmetryConstraint.AllSymmetricTypes
-			) switch
-			{
-				SymmetryConstraint.InvalidSymmetricType => [],
-				SymmetryConstraint.AllSymmetricTypes => SymmetricType.Values,
-				var symmetricTypes and not 0 => symmetricTypes.AllFlags,
-				_ => [SymmetricType.None]
-			};
-			var chosenGivensCountSeed = (
-				from c in constraints.OfType<CountBetweenConstraint>()
-				let betweenRule = c.BetweenRule
-				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
-				let targetPair = c.CellState switch { CellState.Given => (pair.Start, pair.End), CellState.Empty => (81 - pair.End, 81 - pair.Start) }
-				select (betweenRule, targetPair)
-			) is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
-			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
-			var difficultyLevel = (
-				from c in constraints.OfType<DifficultyLevelConstraint>()
-				select c.ValidDifficultyLevels.AllFlags.ToArray()
-			) is [var d] ? d[rng.Next(0, d.Length)] : DifficultyLevels.AllValid;
+			var symmetries = getSymmetry();
+			var chosenGivensCountSeed = getChosenGivensCountRange();
+			var givensCount = getGivensCount();
+			var difficultyLevel = getDifficultyLevel();
 			var progress = new SelfReportingProgress<TProgressDataProvider>(reporter);
 			while (true)
 			{
@@ -263,6 +309,15 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				if (grid.IsEmpty || analyzer.Analyze(grid) is var analysisResult && !analysisResult.IsSolved)
 				{
 					goto ReportState;
+				}
+
+				// Transform if worth.
+				// This transform rules may conflict with other rules so be careful to use this.
+				if (gridTransformingChecker != null
+					&& gridTransformingChecker(grid, out var outVariable)
+					&& gridTransformer != null)
+				{
+					gridTransformer(ref grid, constraints, outVariable);
 				}
 
 				if (constraints.IsValidFor(new(grid, analysisResult)))
@@ -284,6 +339,40 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					BetweenRule.RightOpen => (start, end + 1),
 					_ => (start, end)
 				};
+
+			ReadOnlySpan<SymmetricType> getSymmetry()
+				=> (from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes) switch
+				{
+					[var p] => p switch
+					{
+						SymmetryConstraint.InvalidSymmetricType => [],
+						SymmetryConstraint.AllSymmetricTypes => SymmetricType.Values,
+						var symmetricTypes and not 0 => symmetricTypes.AllFlags,
+						_ => [SymmetricType.None]
+					},
+					_ => SymmetricType.Values
+				};
+
+			(Cell, Cell) getChosenGivensCountRange()
+				=> (
+					from c in constraints.OfType<CountBetweenConstraint>()
+					let betweenRule = c.BetweenRule
+					let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
+					let targetPair = c.CellState switch
+					{
+						CellState.Given => (pair.Start, pair.End),
+						CellState.Empty => (81 - pair.End, 81 - pair.Start)
+					}
+					select (betweenRule, targetPair)
+				) is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
+
+			Cell getGivensCount() => chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
+
+			DifficultyLevel getDifficultyLevel()
+				=> (
+					from c in constraints.OfType<DifficultyLevelConstraint>()
+					select c.ValidDifficultyLevels.AllFlags.ToArray()
+				) is [var d] ? d[rng.Next(0, d.Length)] : DifficultyLevels.AllValid;
 		}
 	}
 

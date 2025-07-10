@@ -3356,4 +3356,10 @@
   <data name="ConstraintDescription_TechniquePrecedenceConstraint" xml:space="preserve">
     <value>限制题目使用的技巧出现的先后关系</value>
   </data>
+  <data name="MissingDigitConstraint" xml:space="preserve">
+    <value>不出现的数字：题目不出现数字 {0}</value>
+  </data>
+  <data name="ConstraintDescription_MissingDigitConstraint" xml:space="preserve">
+    <value>限制题目提示数不出现指定数字</value>
+  </data>
 </root>

@@ -2921,4 +2921,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_IsStrictIttoryuPuzzleRequired" xml:space="preserve">
     <value>, is puzzle required to be strictly-ittoryu:</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigitLabel" xml:space="preserve">
+    <value>Missing digit: </value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigitConstraint" xml:space="preserve">
+    <value>Missing digit constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigit" xml:space="preserve">
+    <value>Missing digit in givens</value>
+  </data>
 </root>

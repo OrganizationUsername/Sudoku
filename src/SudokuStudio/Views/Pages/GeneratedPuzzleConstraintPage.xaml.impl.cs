@@ -334,6 +334,51 @@ public partial class GeneratedPuzzleConstraintPage
 		};
 	}
 
+	private partial SettingsCard? Create_MissingDigit(MissingDigitConstraint constraint)
+	{
+		if (constraint is not { Digit: var missingDigit })
+		{
+			return null;
+		}
+
+		//
+		// text block
+		//
+		var missingDigitLabel = new TextBlock
+		{
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = SR.Get("GeneratedPuzzleConstraintPage_MissingDigitLabel", App.CurrentCulture)
+		};
+
+		//
+		// missing digit selector
+		//
+		var missingDigitSelectorControl = new IntegerBox
+		{
+			Minimum = 1,
+			Maximum = 9,
+			SmallChange = 1,
+			LargeChange = 3,
+			Value = missingDigit + 1,
+			Width = 150
+		};
+		missingDigitSelectorControl.ValueChanged += (_, _) => constraint.Digit = missingDigitSelectorControl.Value - 1;
+
+		return new()
+		{
+			Header = SR.Get("GeneratedPuzzleConstraintPage_MissingDigit", App.CurrentCulture),
+			Description = constraint.Description,
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { missingDigitLabel, missingDigitSelectorControl }
+			},
+			Tag = constraint
+		};
+	}
+
 	private partial SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint
 	{
 		if (constraint is not { CheckPearl: var checkPearl, ShouldBePearlOrDiamond: var value })
@@ -1045,8 +1090,8 @@ file static class Extensions
 	public static string GetTechniqueString(this TechniqueSet @this)
 		=> @this switch
 		{
-		[] => SR.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
-		[var technique] => technique.GetName(App.CurrentCulture),
+			[] => SR.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
+			[var technique] => technique.GetName(App.CurrentCulture),
 			_ => string.Join(
 				SR.Get("_Token_Comma", App.CurrentCulture),
 				from technique in @this select technique.GetName(App.CurrentCulture)

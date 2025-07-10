@@ -21,6 +21,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{ typeof(IttoryuConstraint), static (@this, s) => @this.Create_Ittoryu((IttoryuConstraint)s) },
 		{ typeof(LastingConstraint), static (@this, s) => @this.Create_Lasting((LastingConstraint)s) },
 		{ typeof(MinimalConstraint), static (@this, s) => @this.Create_Minimal((MinimalConstraint)s) },
+		{ typeof(MissingDigitConstraint), static (@this, s) => @this.Create_MissingDigit((MissingDigitConstraint)s) },
 		{ typeof(PearlConstraint), static (@this, s) => @this.Create_PearlOrDiamond((PearlConstraint)s) },
 		{ typeof(PrimarySingleConstraint), static (@this, s) => @this.Create_PrimarySingle((PrimarySingleConstraint)s) },
 		{ typeof(SymmetryConstraint), static (@this, s) => @this.Create_Symmetry((SymmetryConstraint)s) },
@@ -140,6 +141,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	private partial SettingsCard? Create_Conclusion(ConclusionConstraint constraint);
 	private partial SettingsCard? Create_Lasting(LastingConstraint constraint);
 	private partial SettingsCard? Create_Minimal(MinimalConstraint constraint);
+	private partial SettingsCard? Create_MissingDigit(MissingDigitConstraint constraint);
 	private partial SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint;
 	private partial SettingsCard? Create_CountBetween(CountBetweenConstraint constraint);
 	private partial SettingsCard? Create_Ittoryu(IttoryuConstraint constraint);

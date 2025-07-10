@@ -1195,6 +1195,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Catch a puzzle missing specified digit.
+        /// </summary>
+        public static string ConstraintDescription_MissingDigitConstraint {
+            get {
+                return ResourceManager.GetString("ConstraintDescription_MissingDigitConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Catch a puzzle being a pearl one.
         /// </summary>
         public static string ConstraintDescription_PearlConstraint {
@@ -3957,6 +3966,15 @@ namespace Sudoku.Resources {
         public static string MinimalConstraint {
             get {
                 return ResourceManager.GetString("MinimalConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing digit: a puzzle that doesn&apos;t use digit {0} as given.
+        /// </summary>
+        public static string MissingDigitConstraint {
+            get {
+                return ResourceManager.GetString("MissingDigitConstraint", resourceCulture);
             }
         }
         

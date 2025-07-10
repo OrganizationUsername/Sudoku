@@ -24,7 +24,6 @@ public ref partial struct Generator() : IGenerator<Grid>
 	/// <summary>
 	/// Indicates whether the solution grid can be configured by user.
 	/// </summary>
-	/// <!--2024/10/28: Add this field.-->
 	private readonly bool _useCustomizedSolution;
 
 	/// <summary>
@@ -61,12 +60,20 @@ public ref partial struct Generator() : IGenerator<Grid>
 	{
 		// 2024/10/25: Add this constructor as template initialization.
 		// 2024/10/28: Add '_useCustomizedSolution = true;'.
+		// 2025/7/10: Add property 'MissingDigit'.
 
 		ArgumentException.ThrowIfAssertionFailed(template.IsSolved);
 
 		_newFullSudoku = template.UnfixedGrid;
 		_useCustomizedSolution = true;
+		MissingDigit = -1;
 	}
+
+
+	/// <summary>
+	/// Indicates the missing digit to be set. -1 is for default case and there's no missing digits in givens.
+	/// </summary>
+	public Digit MissingDigit { get; init; }
 
 
 	/// <summary>
@@ -127,6 +134,8 @@ public ref partial struct Generator() : IGenerator<Grid>
 		// Do until we have only 17 clues left or until all cells have been tried.
 		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)
 		{
+			cancellationToken.ThrowIfCancellationRequested();
+
 			// Get the next position to try.
 			var cell = _rng.NextCell();
 			do
@@ -152,16 +161,23 @@ public ref partial struct Generator() : IGenerator<Grid>
 
 			candidateCells.Clear();
 
+			var hasConflictWithMissingDigit = false;
 			foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
 			{
 				if (_newValidSudoku.GetDigit(tempCell) != -1)
 				{
+					if (_newFullSudoku.GetDigit(tempCell) == MissingDigit)
+					{
+						hasConflictWithMissingDigit = true;
+						break;
+					}
+
 					candidateCells.Add(tempCell);
 				}
 			}
-			if (candidateCells.Count == 0)
+			if (hasConflictWithMissingDigit || candidateCells.Count == 0)
 			{
-				// The other end of our symmetric puzzle is already deleted.
+				// The other end of our symmetric puzzle is already deleted, or missing digit conflicts with the cells chosen.
 				continue;
 			}
 
@@ -186,8 +202,6 @@ public ref partial struct Generator() : IGenerator<Grid>
 					remainingClues++;
 				}
 			}
-
-			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 

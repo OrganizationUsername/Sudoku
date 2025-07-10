@@ -28120,6 +28120,34 @@
         <member name="M:Sudoku.Generating.Filtering.Constraints.MinimalConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint">
+            <summary>
+            Represents a constraint that checks for a missing digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.Digit">
+            <summary>
+            Indicates the missing digit.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.Equals(Sudoku.Generating.Filtering.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.CheckCore(Sudoku.Generating.Filtering.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Filtering.Constraints.MissingDigitConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Generating.Filtering.Constraints.PearlConstraint">
             <summary>
             Represents a constraint that checks for pearl property.
@@ -30170,6 +30198,11 @@
               Looks up a localized string similar to Catch a puzzle being a minimal one.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_MissingDigitConstraint">
+            <summary>
+              Looks up a localized string similar to Catch a puzzle missing specified digit.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ConstraintDescription_PearlConstraint">
             <summary>
               Looks up a localized string similar to Catch a puzzle being a pearl one.
@@ -31706,6 +31739,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.MinimalConstraint">
             <summary>
               Looks up a localized string similar to Minimal rule: should {0}be a minimal puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.MissingDigitConstraint">
+            <summary>
+              Looks up a localized string similar to Missing digit: a puzzle that doesn&apos;t use digit {0} as given.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Moderate">

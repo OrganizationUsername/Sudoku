@@ -7268,6 +7268,21 @@
               Looks up a localized string similar to Minimal constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_MissingDigit">
+            <summary>
+              Looks up a localized string similar to Missing digit in givens.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_MissingDigitConstraint">
+            <summary>
+              Looks up a localized string similar to Missing digit constraint.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_MissingDigitLabel">
+            <summary>
+              Looks up a localized string similar to Missing digit: .
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ModifiablesCount">
             <summary>
               Looks up a localized string similar to Modifiables count is between.

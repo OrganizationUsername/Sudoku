@@ -2908,6 +2908,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing digit in givens.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_MissingDigit {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_MissingDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing digit constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_MissingDigitConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_MissingDigitConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing digit: .
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_MissingDigitLabel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_MissingDigitLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modifiables count is between.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_ModifiablesCount {

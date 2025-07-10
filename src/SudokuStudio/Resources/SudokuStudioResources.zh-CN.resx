@@ -2912,4 +2912,13 @@
   <data name="GeneratedPuzzleConstraintPage_IsStrictIttoryuPuzzleRequired" xml:space="preserve">
     <value>，是否题目需要真的是一刀流题：</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigitLabel" xml:space="preserve">
+    <value>题目缺少的数字：</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigitConstraint" xml:space="preserve">
+    <value>缺失数字约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MissingDigit" xml:space="preserve">
+    <value>题目里不出现的数字</value>
+  </data>
 </root>

@@ -155,7 +155,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				HasMissingDigitConstraint:
 					constraints.OfType<MissingDigitConstraint>() is [{ Digit: var digit and not -1 }],
 				HasMissingHouseConstraint:
-					constraints.OfType<EmptyHousesCountConstraint>().Length != 0
+					constraints.Has<EmptyHousesCountConstraint>()
 			);
 			return coreHandler(
 				constraints,

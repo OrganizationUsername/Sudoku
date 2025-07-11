@@ -3,6 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that calculates for empty houses.
 /// </summary>
+[ConstraintOptions(AllowsMultiple = true)]
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 public sealed partial class EmptyHousesCountConstraint : Constraint, ILimitCountConstraint<Digit>
 {

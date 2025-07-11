@@ -153,7 +153,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				HasIttoryuConstraint:
 					constraints.OfType<IttoryuConstraint>() is [{ Operator: ComparisonOperator.Equality, Rounds: 1 }],
 				HasMissingDigitConstraint:
-					constraints.OfType<MissingDigitConstraint>() is [{ Digit: var digit and not -1 }]
+					constraints.OfType<MissingDigitConstraint>() is [{ Digit: var digit and not -1 }],
+				HasMissingHouseConstraint:
+					constraints.OfType<EmptyHousesCountConstraint>().Length != 0
 			);
 			return coreHandler(
 				constraints,
@@ -163,6 +165,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					{ HasNakedSingleConstraint: true } or { HasNakedSingleConstraintInTechniqueSet: true } => &handler_NakedSingle,
 					{ HasIttoryuConstraint: true } => &handler_Ittoryu,
 					{ HasMissingDigitConstraint: true, HasIttoryuConstraint: false } => &handler_MissingDigit,
+					{ HasMissingHouseConstraint: true } => &handler_EmptyHouses,
 					_ => &handler_Default
 				},
 				specializedConditions switch
@@ -191,21 +194,21 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			);
 
 
-			static Grid handler_FullHouse(Cell givens, SymmetricType type, CancellationToken ct)
+			static Grid handler_FullHouse(Cell givens, SymmetricType type, ConstraintCollection _, CancellationToken ct)
 				=> new FullHouseGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
 				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
-			static Grid handler_NakedSingle(Cell givens, SymmetricType type, CancellationToken ct)
+			static Grid handler_NakedSingle(Cell givens, SymmetricType type, ConstraintCollection _, CancellationToken ct)
 				=> new NakedSingleGenerator
 				{
 					SymmetricType = type,
 					EmptyCellsCount = givens == -1 ? -1 : 81 - givens
 				}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
 
-			static Grid handler_Ittoryu(Cell givens, SymmetricType symmetry, CancellationToken ct)
+			static Grid handler_Ittoryu(Cell givens, SymmetricType symmetry, ConstraintCollection _, CancellationToken ct)
 			{
 				var finder = new DisorderedIttoryuFinder();
 				var generator = new Generator();
@@ -225,7 +228,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 			}
 
-			static Grid handler_MissingDigit(Cell givens, SymmetricType symmetry, CancellationToken ct)
+			static Grid handler_MissingDigit(Cell givens, SymmetricType symmetry, ConstraintCollection _, CancellationToken ct)
 			{
 				// Set an arbitrary digit as missing digit.
 				// The digit will be transformed to other one after the puzzle is satisfied the target constraints.
@@ -233,7 +236,19 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
 			}
 
-			static Grid handler_Default(Cell givens, SymmetricType symmetry, CancellationToken ct)
+			static Grid handler_EmptyHouses(Cell _, SymmetricType __, ConstraintCollection constraints, CancellationToken ct)
+			{
+				var puzzle = new EmptyHouseBasedGenerator
+				{
+					DesiredMissingHousesMask = constraints.OfType<EmptyHousesCountConstraint>().Aggregate(
+						0,
+						static (interim, next) => interim | (1 << next.Count) - 1 << (int)next.HouseType * 9
+					)
+				}.Generate(ct);
+				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
+			}
+
+			static Grid handler_Default(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct)
 			{
 				var puzzle = new Generator().Generate(givens, symmetry, ct);
 				return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
@@ -277,7 +292,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		unsafe Grid coreHandler(
 			ConstraintCollection constraints,
-			delegate*<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
+			delegate*<Cell, SymmetricType, ConstraintCollection, CancellationToken, Grid> gridCreator,
 			[AllowNull, MaybeNull] delegate*<in Grid, out object?, bool> gridTransformingChecker,
 			[AllowNull, MaybeNull] delegate*<ref Grid, ConstraintCollection, object?, void> gridTransformer,
 			Action<TProgressDataProvider> reporter,
@@ -305,7 +320,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			while (true)
 			{
 				var chosenSymmetricType = symmetries.Length == 0 ? SymmetricType.None : symmetries[rng.Next(0, symmetries.Length)];
-				var grid = gridCreator(givensCount, chosenSymmetricType, cancellationToken);
+				var grid = gridCreator(givensCount, chosenSymmetricType, constraints, cancellationToken);
 				if (grid.IsEmpty || analyzer.Analyze(grid) is var analysisResult && !analysisResult.IsSolved)
 				{
 					goto ReportState;

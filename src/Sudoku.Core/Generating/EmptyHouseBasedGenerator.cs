@@ -33,14 +33,21 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 
 
 	/// <summary>
-	/// Indicates the missing house type.
+	/// <para>Indicates the desired missing houses mask.</para>
+	/// <para>
+	/// This property can be made a <see cref="Dictionary{TKey, TValue}"/>
+	/// of type arguments <see cref="HouseType"/> (the desired house types)
+	/// and <see cref="int"/> (indicating the number of empty houses) in logic.
+	/// You can set the desired number of 1 bits to construct the mask,
+	/// telling the current generator the number of empty houses you want to keep for generated puzzles.
+	/// Use 0 as placeholders. Set all 1's to target bit ranges that the mask represents.
+	/// </para>
+	/// <para>
+	/// For example, if you want to keep 1 empty row, 1 empty column and 1 empty block,
+	/// you can set the mask with value <c>0b000000001000000001000000001</c> (i.e. 262657).
+	/// </para>
 	/// </summary>
-	public HouseType MissingHouseType { get; init; }
-
-	/// <summary>
-	/// Indicates the number of missing houses.
-	/// </summary>
-	public Digit MissingHousesCount { get; init; }
+	public HouseMask DesiredMissingHousesMask { get; init; }
 
 
 	/// <summary>
@@ -70,11 +77,26 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 	/// If a deletion produces a grid with more than one solution it is of course undone.
 	/// </summary>
 	/// <inheritdoc cref="Generate(CancellationToken)"/>
-	private void GenerateInitPos(CancellationToken cancellationToken = default)
+	private unsafe void GenerateInitPos(CancellationToken cancellationToken = default)
 	{
-		var houseIndices = SpanEnumerable.Range(9).ToArray().AsSpan();
+		var blockIndices = SpanEnumerable.Range(0, 9).ToArray().AsSpan();
+		var rowIndices = SpanEnumerable.Range(9, 9).ToArray().AsSpan();
+		var columnIndices = SpanEnumerable.Range(18, 9).ToArray().AsSpan();
 
-		// Do until we have only 17 clues left or until all cells have been tried.
+		var bitsMap = new Dictionary<HouseType, int>(3)
+		{
+			{ HouseType.Block, BitOperations.PopCount(DesiredMissingHousesMask & Grid.MaxCandidatesMask) },
+			{ HouseType.Row, BitOperations.PopCount(DesiredMissingHousesMask >> 9 & Grid.MaxCandidatesMask) },
+			{ HouseType.Column, BitOperations.PopCount(DesiredMissingHousesMask >> 18) }
+		};
+
+		var localPairs = stackalloc LocalPair[]
+		{
+			new() { HouseType = HouseType.Block, HouseIndices = &blockIndices },
+			new() { HouseType = HouseType.Row, HouseIndices = &rowIndices },
+			new() { HouseType = HouseType.Column, HouseIndices = &columnIndices }
+		};
+
 		while (true)
 		{
 			cancellationToken.ThrowIfCancellationRequested();
@@ -86,25 +108,38 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			var used = CellMap.Empty;
 			var remainingClues = 81;
 
-			_rng.Shuffle(houseIndices);
+			// Fetch the number of empty houses set.
 			var hasUniqueSolutionAfterClearingValuesFromSpecifiedHouses = true;
-			foreach (var house in houseIndices[..MissingHousesCount])
+			for (var i = 0; i < 3; i++)
 			{
-				// Remove all possible cells from such target house.
-				foreach (var cell in HousesMap[(int)MissingHouseType * 9 + house])
-				{
-					_newValidSudoku.SetDigit(cell, -1);
-					used.Add(cell);
-					remainingClues--;
-				}
+				var l = localPairs + i;
+				var houseIndices = *l->HouseIndices;
 
-				// Determine whether the puzzle has unique solution.
-				if (!_solver.CheckValidity(_newValidSudoku.ToString("!0")))
+				// Shuffle values.
+				_rng.Shuffle(houseIndices);
+
+				var houseType = l->HouseType;
+				foreach (var house in houseIndices[..bitsMap[houseType]])
 				{
-					hasUniqueSolutionAfterClearingValuesFromSpecifiedHouses = false;
-					break;
+					// Remove all possible cells from such target house.
+					foreach (var cell in HousesMap[house])
+					{
+						_newValidSudoku.SetDigit(cell, -1);
+						if (used.Add(cell))
+						{
+							remainingClues--;
+						}
+					}
+
+					// Determine whether the puzzle has unique solution.
+					if (!_solver.CheckValidity(_newValidSudoku.ToString("!0")))
+					{
+						hasUniqueSolutionAfterClearingValuesFromSpecifiedHouses = false;
+						goto CheckFlag;
+					}
 				}
 			}
+		CheckFlag:
 			if (!hasUniqueSolutionAfterClearingValuesFromSpecifiedHouses)
 			{
 				continue;
@@ -338,4 +373,20 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 	/// <inheritdoc/>
 	Grid IGenerator<Grid>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 		=> Generate(cancellationToken: cancellationToken);
+}
+
+/// <summary>
+/// To simplify for loop, we use a temporary type to construct values into a sequence of unsafe values.
+/// </summary>
+file ref struct LocalPair
+{
+	/// <summary>
+	/// Indicates the target house type.
+	/// </summary>
+	public HouseType HouseType;
+
+	/// <summary>
+	/// Indicates the target house indices.
+	/// </summary>
+	public unsafe Span<int>* HouseIndices;
 }

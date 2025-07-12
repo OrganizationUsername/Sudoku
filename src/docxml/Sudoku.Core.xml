@@ -10448,6 +10448,11 @@
             Represents a puzzle generator that can avoid selections on empty houses.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator.InvalidHouseCombinations">
+            <summary>
+            Indicates invalid combinations of houses to be empty. Such combinations will make puzzle have multiple solutions.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator._generateIndices">
             <summary>
             The order in which cells are set when generating a full grid.

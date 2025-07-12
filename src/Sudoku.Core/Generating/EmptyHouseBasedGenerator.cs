@@ -7,6 +7,40 @@ namespace Sudoku.Generating;
 public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 {
 	/// <summary>
+	/// Indicates invalid combinations of houses to be empty. Such combinations will make puzzle have multiple solutions.
+	/// </summary>
+	private static readonly HouseMask[][] InvalidHouseCombinations = [
+		[0b000_000_000__000_000_000__000_000_111, 0b000_000_001__000_000_001__000_000_001],
+		[0b000_000_000__000_000_000__000_000_111, 0b000_000_010__000_000_010__000_000_010],
+		[0b000_000_000__000_000_000__000_000_111, 0b000_000_100__000_000_100__000_000_100],
+		[0b000_000_000__000_000_000__000_111_000, 0b000_001_000__000_001_000__000_001_000],
+		[0b000_000_000__000_000_000__000_111_000, 0b000_010_000__000_010_000__000_010_000],
+		[0b000_000_000__000_000_000__000_111_000, 0b000_100_000__000_100_000__000_100_000],
+		[0b000_000_000__000_000_000__111_000_000, 0b001_000_000__001_000_000__001_000_000],
+		[0b000_000_000__000_000_000__111_000_000, 0b010_000_000__010_000_000__010_000_000],
+		[0b000_000_000__000_000_000__111_000_000, 0b100_000_000__100_000_000__100_000_000],
+		[0b000_000_000__000_000_011__000_000_000, 0b000_000_000__000_000_101__000_000_000],
+		[0b000_000_000__000_000_110__000_000_000, 0b000_000_000__000_000_011__000_000_000],
+		[0b000_000_000__000_000_101__000_000_000, 0b000_000_000__000_000_110__000_000_000],
+		[0b000_000_000__000_011_000__000_000_000, 0b000_000_000__000_101_000__000_000_000],
+		[0b000_000_000__000_110_000__000_000_000, 0b000_000_000__000_011_000__000_000_000],
+		[0b000_000_000__000_101_000__000_000_000, 0b000_000_000__000_110_000__000_000_000],
+		[0b000_000_000__011_000_000__000_000_000, 0b000_000_000__101_000_000__000_000_000],
+		[0b000_000_000__110_000_000__000_000_000, 0b000_000_000__011_000_000__000_000_000],
+		[0b101_000_000__000_000_000__000_000_000, 0b110_000_000__000_000_000__000_000_000],
+		[0b000_000_011__000_000_000__000_000_000, 0b000_000_101__000_000_000__000_000_000],
+		[0b000_000_110__000_000_000__000_000_000, 0b000_000_011__000_000_000__000_000_000],
+		[0b000_000_101__000_000_000__000_000_000, 0b000_000_110__000_000_000__000_000_000],
+		[0b000_011_000__000_000_000__000_000_000, 0b000_101_000__000_000_000__000_000_000],
+		[0b000_110_000__000_000_000__000_000_000, 0b000_011_000__000_000_000__000_000_000],
+		[0b000_101_000__000_000_000__000_000_000, 0b000_110_000__000_000_000__000_000_000],
+		[0b011_000_000__000_000_000__000_000_000, 0b101_000_000__000_000_000__000_000_000],
+		[0b110_000_000__000_000_000__000_000_000, 0b011_000_000__000_000_000__000_000_000],
+		[0b101_000_000__000_000_000__000_000_000, 0b110_000_000__000_000_000__000_000_000]
+	];
+
+
+	/// <summary>
 	/// The order in which cells are set when generating a full grid.
 	/// </summary>
 	private readonly int[] _generateIndices = new int[81];
@@ -61,9 +95,15 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 
 		try
 		{
-			while (!GenerateForFullGrid()) ;
+			while (true)
+			{
+				while (!GenerateForFullGrid()) ;
 
-			GenerateInitPos(cancellationToken);
+				if (GenerateInitPos(cancellationToken))
+				{
+					break;
+				}
+			}
 			return _newValidSudoku.FixedGrid;
 		}
 		catch (OperationCanceledException)
@@ -77,12 +117,8 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 	/// If a deletion produces a grid with more than one solution it is of course undone.
 	/// </summary>
 	/// <inheritdoc cref="Generate(CancellationToken)"/>
-	private unsafe void GenerateInitPos(CancellationToken cancellationToken = default)
+	private unsafe bool GenerateInitPos(CancellationToken cancellationToken = default)
 	{
-		var blockIndices = SpanEnumerable.Range(0, 9).ToArray().AsSpan();
-		var rowIndices = SpanEnumerable.Range(9, 9).ToArray().AsSpan();
-		var columnIndices = SpanEnumerable.Range(18, 9).ToArray().AsSpan();
-
 		var bitsMap = new Dictionary<HouseType, int>(3)
 		{
 			{ HouseType.Block, BitOperations.PopCount(DesiredMissingHousesMask & Grid.MaxCandidatesMask) },
@@ -90,6 +126,9 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			{ HouseType.Column, BitOperations.PopCount(DesiredMissingHousesMask >> 18) }
 		};
 
+		var blockIndices = SpanEnumerable.Range(0, 9).ToArray().AsSpan();
+		var rowIndices = SpanEnumerable.Range(9, 9).ToArray().AsSpan();
+		var columnIndices = SpanEnumerable.Range(18, 9).ToArray().AsSpan();
 		var localPairs = stackalloc LocalPair[]
 		{
 			new() { HouseType = HouseType.Block, HouseIndices = &blockIndices },
@@ -97,8 +136,14 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			new() { HouseType = HouseType.Column, HouseIndices = &columnIndices }
 		};
 
+		var trialTimes = -1;
 		while (true)
 		{
+			if (++trialTimes >= 126)
+			{
+				return false;
+			}
+
 			cancellationToken.ThrowIfCancellationRequested();
 
 			// Step 1: Clear some houses.
@@ -113,14 +158,32 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			for (var i = 0; i < 3; i++)
 			{
 				var l = localPairs + i;
-				var houseIndices = *l->HouseIndices;
-
-				// Shuffle values.
-				_rng.Shuffle(houseIndices);
-
-				var houseType = l->HouseType;
-				foreach (var house in houseIndices[..bitsMap[houseType]])
+				if (bitsMap[l->HouseType] == 0)
 				{
+					continue;
+				}
+
+				_rng.Shuffle(*l->HouseIndices);
+				var previousHousesMask = 0;
+				var j = 0;
+				foreach (var house in *l->HouseIndices)
+				{
+					// Check whether the house selected will directly cause multiple solutions.
+					// If so, we should skip for the house.
+					var willHouseCauseMultipleSolutions = false;
+					foreach (var combination in InvalidHouseCombinations[house])
+					{
+						if (combination == (previousHousesMask | 1 << house))
+						{
+							willHouseCauseMultipleSolutions = true;
+							break;
+						}
+					}
+					if (willHouseCauseMultipleSolutions)
+					{
+						continue;
+					}
+
 					// Remove all possible cells from such target house.
 					foreach (var cell in HousesMap[house])
 					{
@@ -137,6 +200,13 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 						hasUniqueSolutionAfterClearingValuesFromSpecifiedHouses = false;
 						goto CheckFlag;
 					}
+
+					previousHousesMask |= 1 << house;
+					if (++j >= bitsMap[l->HouseType])
+					{
+						// Enough houses are cleared.
+						break;
+					}
 				}
 			}
 		CheckFlag:
@@ -146,50 +216,59 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			}
 
 			// Step 2: Generate puzzles.
-			var targetRemainingClues = _rng.Next(17, 30);
-			while (remainingClues > targetRemainingClues && used != ~CellMap.Empty)
+			var step2TrialTimes = -1;
+			while (true)
 			{
-				cancellationToken.ThrowIfCancellationRequested();
-
-				// Get the next position to try.
-				var cell = _rng.NextCell();
-				do
+				if (++step2TrialTimes >= 1000)
 				{
-					if (cell < 80)
+					break;
+				}
+
+				var targetRemainingClues = _rng.Next(17, 30);
+				while (remainingClues > targetRemainingClues && used != ~CellMap.Empty)
+				{
+					cancellationToken.ThrowIfCancellationRequested();
+
+					// Get the next position to try.
+					var cell = _rng.NextCell();
+					do
 					{
-						cell++;
+						if (cell < 80)
+						{
+							cell++;
+						}
+						else
+						{
+							cell = 0;
+						}
 					}
-					else
+					while (used.Contains(cell));
+					used.Add(cell);
+
+					if (_newValidSudoku.GetDigit(cell) == -1)
 					{
-						cell = 0;
+						// Already deleted.
+						continue;
+					}
+
+					// Delete cell.
+					_newValidSudoku.SetDigit(cell, -1);
+					remainingClues--;
+
+					if (!_solver.CheckValidity(_newValidSudoku.ToString("!0")))
+					{
+						// If not unique, revert deletion.
+						_newValidSudoku.SetDigit(cell, _newFullSudoku.GetDigit(cell));
+						remainingClues++;
 					}
 				}
-				while (used.Contains(cell));
-				used.Add(cell);
 
-				if (_newValidSudoku.GetDigit(cell) == -1)
+				// Check validity.
+				if (_newValidSudoku.ModifiableCellsCount <= targetRemainingClues
+					&& _solver.CheckValidity(_newValidSudoku.ToString("!0")))
 				{
-					// Already deleted.
-					continue;
+					return true;
 				}
-
-				// Delete cell.
-				_newValidSudoku.SetDigit(cell, -1);
-				remainingClues--;
-
-				if (!_solver.CheckValidity(_newValidSudoku.ToString("!0")))
-				{
-					// If not unique, revert deletion.
-					_newValidSudoku.SetDigit(cell, _newFullSudoku.GetDigit(cell));
-					remainingClues++;
-				}
-			}
-
-			// Check validity.
-			if (_newValidSudoku.ModifiableCellsCount <= targetRemainingClues
-				&& _solver.CheckValidity(_newValidSudoku.ToString("!0")))
-			{
-				return;
 			}
 		}
 	}

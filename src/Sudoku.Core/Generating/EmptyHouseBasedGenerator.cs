@@ -145,10 +145,16 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 			new() { HouseType = HouseType.Column, HouseIndices = &columnIndices }
 		};
 
-		var patternTrialTimes = -1;
+		var patternTestTimes = -1;
 		while (true)
 		{
-			if (++patternTrialTimes >= 126)
+			// If the maximum test times are reached, we should change a solution to create puzzles.
+			//
+			// You might ask me why 126 is here.
+			// In practice, a valid puzzle (having a unique solution) cannot remove all cells from 5+ complete blocks.
+			// Therefore, I put 126 here to represent the maximum number of test cases (C(9, 4) = 126).
+			// But it is not always a correct limit in fact.
+			if (++patternTestTimes >= 126)
 			{
 				return false;
 			}

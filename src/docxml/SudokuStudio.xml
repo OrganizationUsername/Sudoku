@@ -431,25 +431,10 @@
             Indicates the open-source license being used for this repository.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials">
-            <summary>
-            Indicates the initials displaying on the <see cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/> control.
-            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath"/>.
-            </summary>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.PersonPicture"/>
-            <seealso cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath"/>
-        </member>
         <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Name">
             <summary>
             Indicates the name of the image.
             </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.IconPath">
-            <summary>
-            Indicates the path of the image to show.
-            This property can be <see langword="null"/> if you have set the property <see cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Initials"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.RepositoryInfoBindableSource.Site">
             <summary>

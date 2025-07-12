@@ -69,53 +69,44 @@
 			<w:SettingsExpander Header="{m:R Key=AboutPage_SpecialThanks}" Description="{m:R Key=AboutPage_SpecialThanksDescription}">
 				<w:SettingsExpander.ItemTemplate>
 					<DataTemplate x:DataType="bs:RepositoryInfoBindableSource">
-						<w:SettingsCard ContentAlignment="Left" Padding="0,12">
-							<Grid RowDefinitions="*,*,*" ColumnDefinitions="Auto,Auto,*">
-								<PersonPicture
-									Grid.RowSpan="3" Width="48" Height="48" Margin="46,6,12,6"
-									HorizontalAlignment="Center" Initials="{x:Bind Initials}"
-									VerticalAlignment="Center" ProfilePicture="{x:Bind IconPath}" />
-								<TextBlock
-									Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,6,0,0"
-									Text="{x:Bind Name}" Style="{StaticResource BaseTextBlockStyle}" />
-								<TextBlock
-									Grid.Row="1" Grid.Column="1" Margin="12,6,0,0" Style="{StaticResource BodyTextBlockStyle}"
-									Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
-								<TextBlock
-									Grid.Row="1" Grid.Column="2" Margin="12,6,0,0" Style="{StaticResource BaseTextBlockStyle}"
-									Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
-								<HyperlinkButton Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="12,0,0,6" NavigateUri="{x:Bind Site}">
-									<SymbolIcon Symbol="Link" />
+						<w:SettingsCard ContentAlignment="Left">
+							<StackPanel Orientation="Horizontal" Spacing="4">
+								<HyperlinkButton Grid.ColumnSpan="2" NavigateUri="{x:Bind Site}" VerticalAlignment="Center">
+									<TextBlock Text="{x:Bind Name}" />
 								</HyperlinkButton>
-							</Grid>
+								<TextBlock VerticalAlignment="Center" Text="{x:Bind cvt:CompilationConversion.License(OpenSourceLicense)}" />
+								<TextBlock
+									FontWeight="Bold" VerticalAlignment="Center"
+									Text="{x:Bind cvt:CompilationConversion.ForReference(IsForReference)}" />
+							</StackPanel>
 						</w:SettingsCard>
 					</DataTemplate>
 				</w:SettingsExpander.ItemTemplate>
 				<w:SettingsExpander.Items>
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_DotnetRuntime}" OpenSourceLicense="MIT"
-						IconPath="/Assets/images/repo-dotnet.png" Site="https://github.com/dotnet/runtime" />
+						Site="https://github.com/dotnet/runtime" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_LearnWinUI3}" OpenSourceLicense="MIT"
-						Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" Initials="LW" IsForReference="True" />
+						Site="https://github.com/PacktPublishing/-Learn-WinUI-3.0" IsForReference="True" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WpfSamples}" OpenSourceLicense="MIT"
-						Site="https://github.com/microsoft/WPF-Samples" Initials="WS" IsForReference="True" />
+						Site="https://github.com/microsoft/WPF-Samples" IsForReference="True" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_UWPSamples}" OpenSourceLicense="MIT"
-						Site="https://github.com/microsoft/Windows-universal-samples" Initials="US" IsForReference="True" />
+						Site="https://github.com/microsoft/Windows-universal-samples" IsForReference="True" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WinUI3Gallary}" OpenSourceLicense="MIT"
-						Site="https://github.com/microsoft/WinUI-Gallery" Initials="WG" />
+						Site="https://github.com/microsoft/WinUI-Gallery" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
-						Site="https://github.com/veler/DevToys" IconPath="/Assets/images/logo-devtoys.png" IsForReference="True" />
+						Site="https://github.com/veler/DevToys" IsForReference="True" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WinUICommunity}" OpenSourceLicense="MIT"
-						IconPath="/Assets/images/winui-community.jpg" Site="https://github.com/WinUICommunity/WinUICommunity" />
+						Site="https://github.com/WinUICommunity/WinUICommunity" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
-						Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />
+						Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" />
 				</w:SettingsExpander.Items>
 			</w:SettingsExpander>
 		</StackPanel>

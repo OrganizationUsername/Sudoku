@@ -1,3 +1,5 @@
+#define ENABLE_VERIFICATION_ON_BLOCK_COMBINATION
+
 namespace Sudoku.Generating;
 
 /// <summary>
@@ -6,49 +8,6 @@ namespace Sudoku.Generating;
 [TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 {
-	/// <summary>
-	/// <para>
-	/// Indicates invalid combinations of houses to be cleared.
-	/// Such combinations will make puzzle have multiple solutions.
-	/// </para>
-	/// <para>
-	/// You can compare houses cleared with such values,
-	/// to know whether a combination of cleared houses are invalid.
-	/// For example, a valid puzzle (having a unique solution) cannot remove 27 givens
-	/// from block 1, 2, 3, block 4, 5, 6, and so on).
-	/// </para>
-	/// </summary>
-	private static readonly HouseMask[][] InvalidHouseCombinations = [
-		[0b000_000_000__000_000_000__000_000_111, 0b000_000_001__000_000_001__000_000_001],
-		[0b000_000_000__000_000_000__000_000_111, 0b000_000_010__000_000_010__000_000_010],
-		[0b000_000_000__000_000_000__000_000_111, 0b000_000_100__000_000_100__000_000_100],
-		[0b000_000_000__000_000_000__000_111_000, 0b000_001_000__000_001_000__000_001_000],
-		[0b000_000_000__000_000_000__000_111_000, 0b000_010_000__000_010_000__000_010_000],
-		[0b000_000_000__000_000_000__000_111_000, 0b000_100_000__000_100_000__000_100_000],
-		[0b000_000_000__000_000_000__111_000_000, 0b001_000_000__001_000_000__001_000_000],
-		[0b000_000_000__000_000_000__111_000_000, 0b010_000_000__010_000_000__010_000_000],
-		[0b000_000_000__000_000_000__111_000_000, 0b100_000_000__100_000_000__100_000_000],
-		[0b000_000_000__000_000_011__000_000_000, 0b000_000_000__000_000_101__000_000_000],
-		[0b000_000_000__000_000_110__000_000_000, 0b000_000_000__000_000_011__000_000_000],
-		[0b000_000_000__000_000_101__000_000_000, 0b000_000_000__000_000_110__000_000_000],
-		[0b000_000_000__000_011_000__000_000_000, 0b000_000_000__000_101_000__000_000_000],
-		[0b000_000_000__000_110_000__000_000_000, 0b000_000_000__000_011_000__000_000_000],
-		[0b000_000_000__000_101_000__000_000_000, 0b000_000_000__000_110_000__000_000_000],
-		[0b000_000_000__011_000_000__000_000_000, 0b000_000_000__101_000_000__000_000_000],
-		[0b000_000_000__110_000_000__000_000_000, 0b000_000_000__011_000_000__000_000_000],
-		[0b101_000_000__000_000_000__000_000_000, 0b110_000_000__000_000_000__000_000_000],
-		[0b000_000_011__000_000_000__000_000_000, 0b000_000_101__000_000_000__000_000_000],
-		[0b000_000_110__000_000_000__000_000_000, 0b000_000_011__000_000_000__000_000_000],
-		[0b000_000_101__000_000_000__000_000_000, 0b000_000_110__000_000_000__000_000_000],
-		[0b000_011_000__000_000_000__000_000_000, 0b000_101_000__000_000_000__000_000_000],
-		[0b000_110_000__000_000_000__000_000_000, 0b000_011_000__000_000_000__000_000_000],
-		[0b000_101_000__000_000_000__000_000_000, 0b000_110_000__000_000_000__000_000_000],
-		[0b011_000_000__000_000_000__000_000_000, 0b101_000_000__000_000_000__000_000_000],
-		[0b110_000_000__000_000_000__000_000_000, 0b011_000_000__000_000_000__000_000_000],
-		[0b101_000_000__000_000_000__000_000_000, 0b110_000_000__000_000_000__000_000_000]
-	];
-
-
 	/// <summary>
 	/// The order in which cells are set when generating a full grid.
 	/// </summary>
@@ -186,12 +145,34 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 					// Check whether the house selected will directly cause multiple solutions.
 					// If so, we should skip for the house.
 					var willHouseCauseMultipleSolutions = false;
-					foreach (var combination in InvalidHouseCombinations[house])
+					if (house < 9)
 					{
-						if (combination == (previousHousesMask | 1 << house))
+#if ENABLE_VERIFICATION_ON_BLOCK_COMBINATION
+						if (BitOperations.PopCount(previousHousesMask) >= 2)
 						{
-							willHouseCauseMultipleSolutions = true;
-							break;
+							var allSetBits = previousHousesMask.AllSets;
+							foreach (var pair in allSetBits.GetSubsets(2))
+							{
+								var index = pair[0] * 9 + pair[1];
+								if ((ValidBlockCombinations[index] >> house & 1) == 0)
+								{
+									// Invalid selection.
+									willHouseCauseMultipleSolutions = true;
+									break;
+								}
+							}
+						}
+#endif
+					}
+					else
+					{
+						foreach (var combination in InvalidLineCombinations[house - 9])
+						{
+							if (combination == (previousHousesMask | 1 << house))
+							{
+								willHouseCauseMultipleSolutions = true;
+								break;
+							}
 						}
 					}
 					if (willHouseCauseMultipleSolutions)

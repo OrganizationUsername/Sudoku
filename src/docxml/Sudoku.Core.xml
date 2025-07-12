@@ -10448,11 +10448,6 @@
             Represents a puzzle generator that can avoid selections on empty houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator.InvalidHouseCombinations">
-            <summary>
-            Indicates invalid combinations of houses to be empty. Such combinations will make puzzle have multiple solutions.
-            </summary>
-        </member>
         <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator._generateIndices">
             <summary>
             The order in which cells are set when generating a full grid.
@@ -10522,6 +10517,51 @@
         </member>
         <member name="M:Sudoku.Generating.EmptyHouseBasedGenerator.Sudoku#Generating#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator.ValidBlockCombinations">
+            <summary>
+            <para>Indicates valid combinations of blocks to be cleared.</para>
+            <para>
+            This field is provided as optimization on selection,
+            in order to prevent combinations that will cause multiple solutions after selected.
+            But different with <see cref="F:Sudoku.Generating.EmptyHouseBasedGenerator.InvalidLineCombinations"/>, this field can be checked as valid combinations.
+            If you can find a block that is inside the current table, the block will be a valid selection; otherwise, not.
+            </para>
+            <para>
+            This table requires you select at least 2 blocks before using.
+            You should use a <see langword="foreach"/> loop to iterate all pairs of selected blocks like this:
+            <code><![CDATA[
+            var invalidFlag = false;
+            foreach (var combination in blocks.AllSets.GetSubsets(2))
+            {
+                // Read table through the following way:
+                var validBlocks = ValidHouseCombinations_Blocks[combination[0] * 9 + combination[1]];
+            
+                // Determine whether the chosen house is invalid:
+                if ((validBlocks >> newSelectedHouse & 1) == 0)
+                {
+                    // Invalid selection.
+                    invalidFlag = true;
+                    break;
+                }
+            }
+            ]]></code>
+            </para>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.EmptyHouseBasedGenerator.InvalidLineCombinations">
+            <summary>
+            <para>
+            Indicates invalid combinations of lines (index 9 - 26) to be cleared.
+            Such combinations will make puzzle have multiple solutions.
+            </para>
+            <para>
+            You can compare houses cleared with such values,
+            to know whether a combination of cleared houses are invalid.
+            For example, a valid puzzle (having a unique solution) cannot remove all cells from row 1 and 2;
+            otherwise, digits from row 1 can be replaced with digits from row 2 with same column.
+            </para>
+            </summary>
         </member>
         <member name="M:Sudoku.Generating.EmptyHouseBasedGenerator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

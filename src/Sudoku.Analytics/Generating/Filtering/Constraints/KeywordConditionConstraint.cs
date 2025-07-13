@@ -3,30 +3,30 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that checks for a keyword.
 /// </summary>
-/// <param name="condition"><inheritdoc cref="Condition" path="/summary"/></param>
-/// <param name="technique"><inheritdoc cref="Technique" path="/summary"/></param>
-/// <param name="keyword"><inheritdoc cref="Keyword" path="/summary"/></param>
 [ConstraintOptions(AllowsMultiple = true)]
 [TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class KeywordConditionConstraint(KeywordCondition condition, Technique technique, string keyword) : Constraint
+public sealed partial class KeywordConditionConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the keyword.
 	/// </summary>
 	[HashCodeMember]
-	public string Keyword { get; } = keyword;
+	[StringMember]
+	public string Keyword { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Indicates the technique.
 	/// </summary>
 	[HashCodeMember]
-	public Technique Technique { get; } = technique;
+	[StringMember]
+	public Technique Technique { get; set; }
 
 	/// <summary>
 	/// Indicates the condition encapsulated.
 	/// </summary>
 	[HashCodeMember]
-	public KeywordCondition Condition { get; } = condition;
+	[StringMember]
+	public KeywordCondition? Condition { get; set; }
 
 
 	/// <inheritdoc/>
@@ -40,19 +40,20 @@ public sealed partial class KeywordConditionConstraint(KeywordCondition conditio
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			SR.Get("KeywordConditionConstraint", culture),
-			[Technique.GetName(culture), Condition.ToString(culture)]
+			[Technique.GetName(culture), Condition?.ToString(culture)]
 		);
 	}
 
 	/// <inheritdoc/>
-	public override KeywordConditionConstraint Clone() => new(Condition.Clone(), Technique, Keyword);
+	public override KeywordConditionConstraint Clone()
+		=> new() { Condition = Condition?.Clone(), Technique = Technique, Keyword = Keyword };
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		foreach (var step in context.AnalysisResult)
 		{
-			if (step.Code == Technique && Condition.IsSatisifed(step, Keyword))
+			if (step.Code == Technique && (Condition?.IsSatisifed(step, Keyword) ?? true))
 			{
 				return true;
 			}

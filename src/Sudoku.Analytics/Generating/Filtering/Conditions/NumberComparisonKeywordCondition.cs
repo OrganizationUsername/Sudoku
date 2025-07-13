@@ -3,23 +3,20 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents number equality keyword condition.
 /// </summary>
-/// <param name="value"><inheritdoc cref="Value" path="/summary"/></param>
-/// <param name="operator"><inheritdoc cref="Operator" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-[method: JsonConstructor]
-public sealed partial class NumberComparisonKeywordCondition(int value, ComparisonOperator @operator) : KeywordCondition
+public sealed partial class NumberComparisonKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be compared.
 	/// </summary>
 	[HashCodeMember]
-	public int Value { get; } = value;
+	public int Value { get; set; }
 
 	/// <summary>
 	/// Indicates the operator to be used.
 	/// </summary>
 	[HashCodeMember]
-	public ComparisonOperator Operator { get; } = @operator;
+	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>
 	public override KeywordVerbs Verb => KeywordVerbs.NumberComparison;
@@ -45,5 +42,5 @@ public sealed partial class NumberComparisonKeywordCondition(int value, Comparis
 		);
 
 	/// <inheritdoc/>
-	public override NumberComparisonKeywordCondition Clone() => new(Value, Operator);
+	public override NumberComparisonKeywordCondition Clone() => new() { Value = Value, Operator = Operator };
 }

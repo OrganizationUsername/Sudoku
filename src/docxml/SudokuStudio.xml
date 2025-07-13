@@ -852,6 +852,16 @@
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Inequality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:SudokuStudio.Collection.ControlCreatorFactory">
+            <summary>
+            Represents a control creator factory.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Collection.ControlCreatorFactory.#ctor">
+            <summary>
+            Represents a control creator factory.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Collection.ObservableStack`1">
             <summary>
             <para><inheritdoc cref="T:System.Collections.Generic.Stack`1" path="/summary"/></para>

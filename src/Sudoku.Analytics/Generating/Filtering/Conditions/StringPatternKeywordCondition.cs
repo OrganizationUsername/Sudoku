@@ -3,16 +3,14 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents a keyword condition.
 /// </summary>
-/// <param name="value"><inheritdoc cref="Value" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-[method: JsonConstructor]
-public sealed partial class StringPatternKeywordCondition([StringSyntax(StringSyntaxAttribute.Regex)] string value) : KeywordCondition
+public sealed partial class StringPatternKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be checked.
 	/// </summary>
 	[HashCodeMember]
-	public string Value { get; } = value;
+	public string Value { get; set; } = "*";
 
 	/// <inheritdoc/>
 	public override KeywordVerbs Verb => KeywordVerbs.StringPattern;
@@ -58,5 +56,5 @@ public sealed partial class StringPatternKeywordCondition([StringSyntax(StringSy
 		);
 
 	/// <inheritdoc/>
-	public override StringPatternKeywordCondition Clone() => new(Value);
+	public override StringPatternKeywordCondition Clone() => new() { Value = Value };
 }

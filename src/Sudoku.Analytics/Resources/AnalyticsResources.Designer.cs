@@ -3715,7 +3715,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keyword rule: technique {1}, {0}.
+        ///   Looks up a localized string similar to Keyword rule: technique &quot;{0}&quot; satisfies condition &quot;{1}&quot;.
         /// </summary>
         public static string KeywordConditionConstraint {
             get {

@@ -3,16 +3,14 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents string equality condition.
 /// </summary>
-/// <param name="value"><inheritdoc cref="Value" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-[method: JsonConstructor]
-public sealed partial class StringEqualityComparisonKeywordCondition(string value) : KeywordCondition
+public sealed partial class StringEqualityComparisonKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be compared.
 	/// </summary>
 	[HashCodeMember]
-	public string Value { get; } = value;
+	public string Value { get; set; } = string.Empty;
 
 	/// <inheritdoc/>
 	public override KeywordVerbs Verb => KeywordVerbs.StringEqualityComparison;
@@ -39,5 +37,5 @@ public sealed partial class StringEqualityComparisonKeywordCondition(string valu
 		);
 
 	/// <inheritdoc/>
-	public override StringEqualityComparisonKeywordCondition Clone() => new(Value);
+	public override StringEqualityComparisonKeywordCondition Clone() => new() { Value = Value };
 }

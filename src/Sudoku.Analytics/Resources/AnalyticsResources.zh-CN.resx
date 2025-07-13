@@ -3318,7 +3318,7 @@
     <value />
   </data>
   <data name="KeywordConditionConstraint" xml:space="preserve">
-    <value>关键词：技巧 {1} 需要满足 {0}</value>
+    <value>关键词：技巧“{0}”需要满足{1}</value>
   </data>
   <data name="ConstraintDescription_KeywordConditionConstraint" xml:space="preserve">
     <value>限制题目某个步骤信息下指定属性的值必须满足某种条件</value>

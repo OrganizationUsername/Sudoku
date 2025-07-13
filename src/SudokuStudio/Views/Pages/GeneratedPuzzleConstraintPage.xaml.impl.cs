@@ -415,7 +415,7 @@ public partial class GeneratedPuzzleConstraintPage
 		}
 
 		//
-		// minimum value box
+		// minimum & maximum value box
 		//
 		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 5, Value = min };
 		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, SmallChange = 1, LargeChange = 5, Value = max };
@@ -611,6 +611,11 @@ public partial class GeneratedPuzzleConstraintPage
 
 		void isStrictIttoryuRequiredToggleSwitchControlCallback(DependencyObject d, DependencyProperty _)
 			=> constraint.IsStrictIttoryu = ((ToggleSwitch)d).IsOn;
+	}
+
+	private partial SettingsCard? Create_KeywordCondition(KeywordConditionConstraint constraint)
+	{
+		return null;
 	}
 
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint)

@@ -3274,7 +3274,7 @@ Is pattern rank-0: {6}</value>
     <value>This is an invalid keyword. The reason why this exception thrown is that the target property specified by argument isn't marked attribute 'KeywordAttribute', or the specified name is misspelt. Please check your input and try again.</value>
   </data>
   <data name="KeywordConditionConstraint" xml:space="preserve">
-    <value>Keyword rule: technique {1}, {0}</value>
+    <value>Keyword rule: technique "{0}" satisfies condition "{1}"</value>
   </data>
   <data name="ConstraintDescription_KeywordConditionConstraint" xml:space="preserve">
     <value>Catch a puzzle having a step with satisfied the specified condition</value>

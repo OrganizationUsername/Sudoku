@@ -3,38 +3,32 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents number range keyword condition.
 /// </summary>
-/// <param name="minimum"><inheritdoc cref="Minimum" path="/summary"/></param>
-/// <param name="maximum"><inheritdoc cref="Maximum" path="/summary"/></param>
-/// <param name="includesMinimum"><inheritdoc cref="IncludesMinimum" path="/summary"/></param>
-/// <param name="includesMaximum"><inheritdoc cref="IncludesMaximum" path="/summary"/></param>
 [TypeImpl(TypeImplFlags.Object_GetHashCode)]
-[method: JsonConstructor]
-public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum, bool includesMinimum, bool includesMaximum) :
-	KeywordCondition
+public sealed partial class NumberRangeKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates whether the range includes minimum value.
 	/// </summary>
 	[HashCodeMember]
-	public bool IncludesMinimum { get; } = includesMinimum;
+	public bool IncludesMinimum { get; set; }
 
 	/// <summary>
 	/// Indicates whether the range includes maximum value.
 	/// </summary>
 	[HashCodeMember]
-	public bool IncludesMaximum { get; } = includesMaximum;
+	public bool IncludesMaximum { get; set; }
 
 	/// <summary>
 	/// Indicates the minimum value.
 	/// </summary>
 	[HashCodeMember]
-	public int Minimum { get; } = minimum;
+	public int Minimum { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
 	[HashCodeMember]
-	public int Maximum { get; } = maximum;
+	public int Maximum { get; set; }
 
 	/// <inheritdoc/>
 	public override KeywordVerbs Verb => KeywordVerbs.NumberRange;
@@ -73,5 +67,6 @@ public sealed partial class NumberRangeKeywordCondition(int minimum, int maximum
 		);
 
 	/// <inheritdoc/>
-	public override NumberRangeKeywordCondition Clone() => new(Minimum, Maximum, IncludesMinimum, IncludesMaximum);
+	public override NumberRangeKeywordCondition Clone()
+		=> new() { Minimum = Minimum, Maximum = Maximum, IncludesMinimum = IncludesMinimum, IncludesMaximum = IncludesMaximum };
 }

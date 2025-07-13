@@ -68,6 +68,17 @@ public static class Keyword
 			);
 
 	/// <summary>
+	/// Gets <see cref="KeywordAttribute"/> configured.
+	/// </summary>
+	/// <param name="keyword">The keyword.</param>
+	/// <param name="keywordType">The keyword type.</param>
+	/// <returns>
+	/// The <see cref="KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
+	/// </returns>
+	public static KeywordAttribute? GetKeywordAttribute(string keyword, Type keywordType)
+		=> IsKeyword(keyword, keywordType, out var propertyInfo) ? GetAttribute<KeywordAttribute>(propertyInfo) : null;
+
+	/// <summary>
 	/// Determine whether the specified property name is a keyword.
 	/// </summary>
 	/// <param name="propertyName">The property name.</param>
@@ -117,17 +128,6 @@ public static class Keyword
 		// Case 1 & 3: Property uses override or has no override.
 		return FindInBaseClasses<TAttribute>(property);
 	}
-
-	/// <summary>
-	/// Gets <see cref="KeywordAttribute"/> configured.
-	/// </summary>
-	/// <param name="keyword">The keyword.</param>
-	/// <param name="keywordType">The keyword type.</param>
-	/// <returns>
-	/// The <see cref="KeywordAttribute"/> instance configured; or <see langword="null"/> if it is not a keyword.
-	/// </returns>
-	private static KeywordAttribute? GetKeywordAttribute(string keyword, Type keywordType)
-		=> IsKeyword(keyword, keywordType, out var propertyInfo) ? GetAttribute<KeywordAttribute>(propertyInfo) : null;
 
 	/// <summary>
 	/// Determines if the property is declared with the <see langword="new"/> keyword.

@@ -26,7 +26,6 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Indicates the backing random.
 	/// </summary>
-	[field: MaybeNull]
 	private static Random Rng => field ??= Random.Shared;
 
 

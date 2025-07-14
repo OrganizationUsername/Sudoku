@@ -568,23 +568,23 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 	/// </listheader>
 	/// <item>
 	/// <term><c>.</c></term>
-	/// <description>Dots are placeholders</description>
+	/// <description>Placeholders; empty cells will be replaced with <c>'.'</c></description>
 	/// </item>
 	/// <item>
 	/// <term><c>0</c></term>
-	/// <description>Zero characters are placeholders</description>
+	/// <description>Placeholders; empty cells will be replaced with <c>'0'</c></description>
 	/// </item>
 	/// <item>
 	/// <term><c>+</c></term>
-	/// <description>Output text will include modifiable digits (Susser format only)</description>
+	/// <description>Includes modifiable digits (Susser format only)</description>
 	/// </item>
 	/// <item>
 	/// <term><c>:</c></term>
-	/// <description>Output text will include eliminations (for both Susser and multiline formats)</description>
+	/// <description>Includes eliminations (for both Susser and multiline formats)</description>
 	/// </item>
 	/// <item>
 	/// <term><c>!</c></term>
-	/// <description>Output text will treat modifiable digits as givens</description>
+	/// <description>Treats modifiable digits as givens</description>
 	/// </item>
 	/// <item>
 	/// <term><c>^</c></term>

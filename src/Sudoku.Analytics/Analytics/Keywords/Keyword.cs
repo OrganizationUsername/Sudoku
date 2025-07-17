@@ -49,7 +49,7 @@ public static class Keyword
 		&& (
 			GetKeywordType(keyword, keywordType) is var metaType and not KeywordType.Unknown
 				? metaType.AllowedVerbs
-				: KeywordVerbs.Values[1..].Aggregate(static (interim, next) => interim | next)
+				: KeywordVerbs.MergeFlags(KeywordVerbs.Values[1..])
 		) is var allowedVerbs ? allowedVerbs & verbs : throw new InvalidKeywordException();
 
 	/// <summary>

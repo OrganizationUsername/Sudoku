@@ -44,5 +44,20 @@ public sealed class KeywordAttribute : Attribute
 	/// <summary>
 	/// Indicates the meta type configured.
 	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// The meta type will be represented in runtime type checking and conversion,
+	/// in order to achieve complex conversion behaviors from the specified value into built-in types.
+	/// </para>
+	/// <para>
+	/// For example, if the target type mark this attribute is an enumeration type (like <see cref="Step.Code"/>),
+	/// we can configure this property with value <see cref="KeywordType.String"/>,
+	/// the runtime will use its string representation of target keyword property value (using <see cref="Enum.ToString()"/>)
+	/// to convert the original value into built-in type <see cref="KeywordType.String"/>.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Step.Code"/>
+	/// <seealso cref="Enum.ToString()"/>
+	/// <seealso cref="KeywordType.String"/>
 	public KeywordType MetaType { get; init; }
 }

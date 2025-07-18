@@ -41,12 +41,7 @@ public sealed partial class StringPatternKeywordCondition : KeywordCondition
 
 	/// <inheritdoc/>
 	public override bool IsSatisifed(Step instance, string keyword)
-		=> GetValue(instance, keyword) switch
-		{
-			string str => Pattern.IsMatch(str),
-			Enum field => Pattern.IsMatch(field.ToString()),
-			_ => false
-		};
+		=> GetValue(instance, keyword) switch { string str => Pattern.IsMatch(str), _ => false };
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

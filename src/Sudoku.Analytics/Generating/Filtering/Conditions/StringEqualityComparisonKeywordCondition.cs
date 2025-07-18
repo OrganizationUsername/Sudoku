@@ -18,12 +18,7 @@ public sealed partial class StringEqualityComparisonKeywordCondition : KeywordCo
 
 	/// <inheritdoc/>
 	public override bool IsSatisifed(Step instance, string keyword)
-		=> GetValue(instance, keyword) switch
-		{
-			string str => str == Value,
-			Enum field => field.ToString() == Value,
-			_ => false
-		};
+		=> GetValue(instance, keyword) switch { string str => str == Value, _ => false };
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] KeywordCondition? other)

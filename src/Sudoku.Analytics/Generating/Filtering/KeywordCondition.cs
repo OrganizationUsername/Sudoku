@@ -48,7 +48,9 @@ public abstract partial class KeywordCondition :
 	public abstract KeywordCondition Clone();
 
 	/// <summary>
-	/// Returns the value of the property in a step instance.
+	/// Returns the value of the property in a step instance;
+	/// if <see cref="KeywordAttribute.KeywordConverterType"/> configured,
+	/// a value converter will be invoked, and cast from original value into keyword-type-compatible one.
 	/// </summary>
 	/// <param name="instance">The instance.</param>
 	/// <param name="keyword">The keyword.</param>
@@ -57,9 +59,23 @@ public abstract partial class KeywordCondition :
 	/// Throws when the keyword is not found in its containing type, or it is not a keyword.
 	/// </exception>
 	protected object? GetValue(Step instance, string keyword)
-		=> Keyword.IsKeyword(keyword, instance.GetType(), out var propertyInfo)
-			? propertyInfo.GetValue(instance)
-			: throw new InvalidKeywordException();
+	{
+		var instanceType = instance.GetType();
+		if (!Keyword.IsKeyword(keyword, instanceType, out var propertyInfo))
+		{
+			throw new InvalidKeywordException();
+		}
+
+		var rawValue = propertyInfo.GetValue(instance);
+		if (Keyword.GetKeywordAttribute(keyword, instanceType)!.KeywordConverterType is { } converterType)
+		{
+			var converter = (KeywordValueConverter)Activator.CreateInstance(converterType)!;
+			return converter.TryConvert(rawValue, CultureInfo.CurrentUICulture, out var valueConverted)
+				? valueConverted
+				: throw new InvalidKeywordException();
+		}
+		return rawValue;
+	}
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();

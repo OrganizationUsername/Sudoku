@@ -60,4 +60,31 @@ public sealed class KeywordAttribute : Attribute
 	/// <seealso cref="Enum.ToString()"/>
 	/// <seealso cref="KeywordType.String"/>
 	public KeywordType MetaType { get; init; }
+
+	/// <summary>
+	/// Indicates keyword converter type.
+	/// </summary>
+	/// <value>
+	/// The type to be assigned. The value shouldn't be <see langword="null"/> and must leave parameterless constructor.
+	/// </value>
+	/// <exception cref="InvalidKeywordConverterTypeException">
+	/// Throws when the value is not derived from <see cref="KeywordValueConverter"/>,
+	/// or doesn't contain a visible parameterless constructor to be invoked.
+	/// </exception>
+	[NotNull]
+	[DisallowNull]
+	public Type? KeywordConverterType
+	{
+		get;
+
+		init
+		{
+			if (value.IsAssignableTo(typeof(KeywordValueConverter)) && value.HasParameterlessConstructor)
+			{
+				field = value;
+				return;
+			}
+			throw new InvalidKeywordConverterTypeException();
+		}
+	}
 }

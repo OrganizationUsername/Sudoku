@@ -94,6 +94,7 @@ public abstract partial class Step(ReadOnlyMemory<Conclusion> conclusions, View[
 	[Keyword(
 		NameResourceKey = "Step_Code_Name",
 		MetaType = KeywordType.String,
+		KeywordConverterType = typeof(TechniqueKeywordValueConverter),
 		AllowedVerbs = KeywordVerbs.StringEqualityComparison | KeywordVerbs.StringPattern)]
 	public abstract Technique Code { get; }
 

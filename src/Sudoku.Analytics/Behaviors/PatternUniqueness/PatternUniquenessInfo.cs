@@ -8,8 +8,7 @@ namespace Sudoku.Behaviors.PatternUniqueness;
 /// <param name="failedCases"><inheritdoc cref="FailedCases" path="/summary"/></param>
 /// <param name="patternCandidates"><inheritdoc cref="PatternCandidates" path="/summary"/></param>
 /// <seealso cref="UniquenessChecker.GetUniqueness(in Grid, in CellMap)"/>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct PatternUniquenessInfo(
+public readonly ref struct PatternUniquenessInfo(
 	in Grid grid,
 	bool isDeadlyPattern,
 	ReadOnlySpan<Grid> failedCases,

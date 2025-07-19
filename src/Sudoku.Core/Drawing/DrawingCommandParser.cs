@@ -8,8 +8,7 @@ namespace Sudoku.Drawing.Parsing;
 /// Please visit <see href="https://sudokustudio.kazusa.tech/user-manual/drawing-command-line">this link</see>
 /// to learn more information about drawing command syntax.
 /// </remarks>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct DrawingCommandParser([AllowNull] ref readonly Grid grid)
+public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid grid)
 {
 	/// <summary>
 	/// Indicates the valid names.

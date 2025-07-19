@@ -5,8 +5,7 @@ namespace Sudoku.Generating;
 /// </summary>
 /// <param name="missingDigit"><inheritdoc cref="MissingDigit" path="/summary"/></param>
 /// <param name="seedPattern"><inheritdoc cref="_seedPattern" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
-public ref partial struct PatternBasedPuzzleGenerator(ref readonly CellMap seedPattern, Digit missingDigit = -1) : IGenerator<Grid>
+public ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seedPattern, Digit missingDigit = -1) : IGenerator<Grid>
 {
 #pragma warning disable IDE0052, CS0414
 	/// <summary>

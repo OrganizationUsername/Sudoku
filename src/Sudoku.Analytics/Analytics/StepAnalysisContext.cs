@@ -7,8 +7,7 @@ namespace Sudoku.Analytics;
 /// <param name="initialGrid"><inheritdoc cref="InitialGrid" path="/summary"/></param>
 /// <seealso cref="Step"/>
 /// <seealso cref="Concepts.Grid"/>
-[TypeImpl(TypeImplFlags.AllObjectMethods, IsLargeStructure = true)]
-public ref partial struct StepAnalysisContext(in Grid grid, ref readonly Grid initialGrid)
+public ref struct StepAnalysisContext(in Grid grid, ref readonly Grid initialGrid)
 {
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.

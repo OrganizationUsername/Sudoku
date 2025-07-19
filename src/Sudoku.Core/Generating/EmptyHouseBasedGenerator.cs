@@ -5,7 +5,6 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a puzzle generator that can avoid selections on empty houses.
 /// </summary>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 {
 	/// <summary>

@@ -3,7 +3,6 @@ namespace Sudoku.Analytics.Async;
 /// <summary>
 /// Represents an awaitable rule on collecting steps from a puzzle.
 /// </summary>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
 public readonly ref partial struct AsyncCollectorAwaitable : IStepGathererAwaitable<AsyncCollectorAwaitable.Awaiter>
 {
 	/// <summary>

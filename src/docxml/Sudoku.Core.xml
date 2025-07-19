@@ -9189,15 +9189,6 @@
             <param name="str">The string to be parsed.</param>
             <returns>A <see cref="T:Sudoku.Drawing.ColorIdentifier"/> value returned.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Parsing.DrawingCommandParser.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Parsing.DrawingCommandParser.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Parsing.DrawingCommandParser.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Drawing.Parsing.ArgumentParser">
             <summary>
             Represents a parser type that parses arguments for one kind of drawing item.
@@ -10563,15 +10554,6 @@
             </para>
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.EmptyHouseBasedGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.EmptyHouseBasedGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.EmptyHouseBasedGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Generating.LocalPair">
             <summary>
             To simplify for loop, we use a temporary type to construct values into a sequence of unsafe values.
@@ -10712,15 +10694,6 @@
         </member>
         <member name="M:Sudoku.Generating.Generator.Sudoku#Generating#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.Generator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.Generator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.Generator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.GeneratorProgress">
             <summary>
@@ -10941,15 +10914,6 @@
             Order the pattern cells via connection complexity.
             </summary>
             <returns>The cells ordered.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.IO.FileDeduplicator">
             <summary>

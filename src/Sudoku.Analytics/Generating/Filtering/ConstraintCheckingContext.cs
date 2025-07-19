@@ -6,8 +6,7 @@ namespace Sudoku.Generating.Filtering;
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="analysisResult"><inheritdoc cref="AnalysisResult" path="/summary"/></param>
 /// <seealso cref="Constraint.Check(ConstraintCheckingContext)"/>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
-public readonly ref partial struct ConstraintCheckingContext(in Grid grid, AnalysisResult analysisResult)
+public readonly ref struct ConstraintCheckingContext(in Grid grid, AnalysisResult analysisResult)
 {
 	/// <summary>
 	/// Indicates the reference to the grid to be checked.

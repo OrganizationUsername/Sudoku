@@ -44,7 +44,6 @@ public sealed class FullHouseStep(
 	[Keyword(
 		NameResourceKey = "FullHouseStep_Lasting_Name",
 		DescriptionResourceKey = "FullHouseStep_Lasting_Description",
-		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange,
 		Minimum = 1,
 		Maximum = 1,
 		IncludesMaximum = true)]
@@ -56,7 +55,6 @@ public sealed class FullHouseStep(
 	[Keyword(
 		NameResourceKey = "FullHouseStep_House_Name",
 		DescriptionResourceKey = "FullHouseStep_House_Description",
-		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange,
 		Minimum = 0,
 		Maximum = 27)]
 	public House House { get; } = house;

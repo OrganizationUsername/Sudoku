@@ -39,7 +39,6 @@ public sealed class NakedSingleStep(
 	[Keyword(
 		NameResourceKey = "NakedSingleStep_Lasting_Name",
 		DescriptionResourceKey = "NakedSingleStep_Lasting_Description",
-		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange,
 		Minimum = 3,
 		Maximum = 6,
 		IncludesMaximum = true)]
@@ -51,7 +50,6 @@ public sealed class NakedSingleStep(
 	[Keyword(
 		NameResourceKey = "NakedSingleStep_House_Name",
 		DescriptionResourceKey = "NakedSingleStep_House_Description",
-		AllowedVerbs = KeywordVerbs.NumberComparison | KeywordVerbs.NumberRange,
 		Minimum = 0,
 		Maximum = 27)]
 	public House House => Cell.ToHouse(LastingHouseType);

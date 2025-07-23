@@ -4,8 +4,7 @@ namespace Sudoku.Generating.Filtering;
 /// Represents a keyword condition.
 /// </summary>
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
 	OtherModifiersOnToString = "sealed")]
 [JsonDerivedType(typeof(StringPatternKeywordCondition), nameof(StringPatternKeywordCondition))]
@@ -40,6 +39,9 @@ public abstract partial class KeywordCondition :
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] KeywordCondition? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

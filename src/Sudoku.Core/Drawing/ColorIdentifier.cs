@@ -8,10 +8,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(ColorColorIdentifier), 0)]
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
-[TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
-	ToStringBehavior = ToStringBehavior.MakeAbstract)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
@@ -74,6 +71,12 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ColorIdentifier? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 
 	/// <summary>

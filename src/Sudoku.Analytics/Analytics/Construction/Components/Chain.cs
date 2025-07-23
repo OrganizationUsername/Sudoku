@@ -5,10 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// and such pattern contains a list of <see cref="Node"/> instances indicating interim passing nodes.
 /// </summary>
 /// <seealso cref="Node"/>
-[TypeImpl(
-	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators,
-	OtherModifiersOnEquals = "sealed",
-	ToStringBehavior = ToStringBehavior.MakeAbstract)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators, OtherModifiersOnEquals = "sealed")]
 public abstract partial class Chain :
 	IComparable<Chain>,
 	IComparisonOperators<Chain, Chain, bool>,
@@ -386,6 +383,9 @@ public abstract partial class Chain :
 
 	/// <inheritdoc/>
 	public abstract int CompareTo(Chain? other);
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

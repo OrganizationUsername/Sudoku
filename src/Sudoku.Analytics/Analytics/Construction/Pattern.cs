@@ -3,10 +3,7 @@ namespace Sudoku.Analytics.Construction;
 /// <summary>
 /// Represents a pattern that describes a technique, describing cells and digits used in a puzzle.
 /// </summary>
-[TypeImpl(
-	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.EqualityOperators,
-	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, OtherModifiersOnEquals = "sealed")]
 public abstract partial class Pattern :
 	ICloneable,
 	IConstructible<PatternType>,
@@ -27,6 +24,9 @@ public abstract partial class Pattern :
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Pattern? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	public abstract Pattern Clone();

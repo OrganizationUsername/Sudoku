@@ -23,11 +23,7 @@ namespace Sudoku.Generating.Filtering;
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
 [JsonDerivedType(typeof(TechniquePrecedenceConstraint), nameof(TechniquePrecedenceConstraint))]
 [JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
-[TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
-	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
-	ToStringBehavior = ToStringBehavior.MakeAbstract)]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, OtherModifiersOnEquals = "sealed")]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>, IFormattable
 {
 	/// <summary>
@@ -51,6 +47,12 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

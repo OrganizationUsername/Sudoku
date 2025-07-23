@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode, GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract)]
+[TypeImpl(TypeImplFlags.Object_Equals)]
 public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	Dictionary<TKey, AlmostLockedSetPattern>,
 	IComponent,
@@ -35,4 +35,7 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
 }

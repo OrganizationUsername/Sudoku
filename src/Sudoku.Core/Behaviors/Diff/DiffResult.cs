@@ -3,11 +3,7 @@ namespace Sudoku.Behaviors.Diff;
 /// <summary>
 /// Represents a difference result.
 /// </summary>
-[TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators,
-	ToStringBehavior = ToStringBehavior.MakeAbstract,
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
-	OtherModifiersOnEquals = "sealed")]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, OtherModifiersOnEquals = "sealed")]
 [JsonPolymorphic]
 [JsonDerivedType(typeof(NothingChangedDiffResult), (int)DiffType.NothingChanged)]
 [JsonDerivedType(typeof(ResetDiffResult), (int)DiffType.Reset)]
@@ -49,6 +45,12 @@ public abstract partial class DiffResult :
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] DiffResult? other);
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	/// <exception cref="FormatException">Throws when the format argument is invalid.</exception>

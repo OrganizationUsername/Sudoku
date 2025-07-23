@@ -8,9 +8,7 @@ namespace Sudoku.Drawing;
 	UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType,
 	TypeDiscriminatorPropertyName = "$typeid")]
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
-	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
-	ToStringBehavior = ToStringBehavior.MakeAbstract,
+	TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
 	OtherModifiersOnEquatableEquals = "virtual",
 	OtherModifiersOnEquals = "sealed")]
 #pragma warning disable format
@@ -58,6 +56,12 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	[StringMember("EqualityContract")]
 	protected string TypeIdentifier => GetType().Name;
 
+
+	/// <inheritdoc/>
+	public abstract override int GetHashCode();
+
+	/// <inheritdoc/>
+	public abstract override string ToString();
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	public abstract ViewNode Clone();

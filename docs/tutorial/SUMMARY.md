@@ -2,7 +2,7 @@
 
 ## 数独概述 <a href="#sudoku-basics" id="sudoku-basics"></a>
 
-* [初来乍到](README.md)
+* [数独初介绍](README.md)
 * [坐标](sudoku-basics/02-coordinate.md)
 * [数独历史](sudoku-basics/03-history-of-sudoku.md)
 

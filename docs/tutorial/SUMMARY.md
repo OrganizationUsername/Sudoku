@@ -136,6 +136,7 @@
   * [外鱼鳍的基本推理](rank-theory/04-complex-fish/04-reasoning-of-exofin.md)
   * [内鱼鳍的基本推理](rank-theory/04-complex-fish/05-reasoning-of-endofin.md)
   * [复杂鱼的自噬](rank-theory/04-complex-fish/06-cannibalism-in-fish.md)
+  * [复杂鱼的命名系统](rank-theory/04-complex-fish/07-naming-system-of-complex-fish.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

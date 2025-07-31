@@ -126,9 +126,12 @@ public static class DiffAnalysis
 						changedCandidates.Add(cell * 9 + right.GetDigit(cell));
 					}
 				}
-
-				result = new ChangedModifiableDiffResult(changedCandidates);
-				return true;
+				if (changedCandidates)
+				{
+					// If there's any candidates are changed, we can return the value.
+					result = new ChangedModifiableDiffResult(changedCandidates);
+					return true;
+				}
 			}
 
 			// If not, determine whether the second grid ('right') adds several candidates from the first grid ('left').

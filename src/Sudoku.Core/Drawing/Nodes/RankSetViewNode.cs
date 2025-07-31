@@ -5,10 +5,7 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode.Identifier" path="/summary"/></param>
 /// <param name="space"><inheritdoc cref="Space" path="/summary"/></param>
-[TypeImpl(
-	TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString,
-	OtherModifiersOnGetHashCode = "sealed",
-	OtherModifiersOnToString = "sealed")]
+[TypeImpl(TypeImplFlags.Object_GetHashCode, OtherModifiersOnGetHashCode = "sealed")]
 public abstract partial class RankSetViewNode(ColorIdentifier identifier, Space space) : ViewNode(identifier), ILinkViewNode
 {
 	/// <summary>
@@ -20,7 +17,6 @@ public abstract partial class RankSetViewNode(ColorIdentifier identifier, Space 
 	/// Indicates the space.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Space Space { get; } = space;
 
 	/// <inheritdoc/>
@@ -31,4 +27,9 @@ public abstract partial class RankSetViewNode(ColorIdentifier identifier, Space 
 
 	/// <inheritdoc/>
 	LinkShape ILinkViewNode.Shape => LinkShape.RankSet;
+
+
+	/// <inheritdoc/>
+	public sealed override string ToString()
+		=> $$"""{{nameof(RankSetViewNode)}} { {{nameof(Space)}} = {{Space}}, {{nameof(Identifier)}} = {{Identifier}}, EqualityContract = {{TypeIdentifier}} }""";
 }

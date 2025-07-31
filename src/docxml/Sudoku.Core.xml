@@ -9891,11 +9891,11 @@
         <member name="P:Sudoku.Drawing.Nodes.RankSetViewNode.Sudoku#Drawing#Nodes#ILinkViewNode#Shape">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.Nodes.RankSetViewNode.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.Nodes.RankSetViewNode.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.RankSetViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Drawing.Nodes.SquareViewNode">
             <summary>
@@ -10161,6 +10161,9 @@
             </summary>
             <seealso cref="T:Sudoku.Drawing.ViewNode"/>
         </member>
+        <member name="M:Sudoku.Drawing.ViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.ViewNode.GetHashCode">
             <inheritdoc/>
         </member>
@@ -10181,9 +10184,6 @@
         </member>
         <member name="M:Sudoku.Drawing.ViewNode.op_Inequality(Sudoku.Drawing.ViewNode,Sudoku.Drawing.ViewNode)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Drawing.ViewNode.Equals(Sudoku.Drawing.ViewNode)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.WellKnownColorIdentifier">
             <summary>

@@ -7,29 +7,24 @@ namespace Sudoku.Drawing;
 [JsonPolymorphic(
 	UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType,
 	TypeDiscriminatorPropertyName = "$typeid")]
-[TypeImpl(
-	TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
-	OtherModifiersOnEquatableEquals = "virtual",
-	OtherModifiersOnEquals = "sealed")]
-#pragma warning disable format
-[JsonDerivedType(typeof(         CellViewNode),  0)]
-[JsonDerivedType(typeof(    CandidateViewNode),  1)]
-[JsonDerivedType(typeof(        HouseViewNode),  2)]
-[JsonDerivedType(typeof(        ChuteViewNode),  3)]
-[JsonDerivedType(typeof(    BabaGroupViewNode),  4)]
-[JsonDerivedType(typeof(    ChainLinkViewNode),  5)]
-[JsonDerivedType(typeof(     CellLinkViewNode),  6)]
-[JsonDerivedType(typeof(ConjugateLinkViewNode),  7)]
-[JsonDerivedType(typeof(       CircleViewNode), 10)]
-[JsonDerivedType(typeof(        CrossViewNode), 11)]
-[JsonDerivedType(typeof(     TriangleViewNode), 12)]
-[JsonDerivedType(typeof(      DiamondViewNode), 13)]
-[JsonDerivedType(typeof(         StarViewNode), 14)]
-[JsonDerivedType(typeof(       SquareViewNode), 15)]
-[JsonDerivedType(typeof(        HeartViewNode), 16)]
-[JsonDerivedType(typeof(   TruthSpaceViewNode), 20)]
-[JsonDerivedType(typeof(    LinkSpaceViewNode), 21)]
-#pragma warning restore format
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, OtherModifiersOnEquals = "sealed")]
+[JsonDerivedType(typeof(CellViewNode), 0)]
+[JsonDerivedType(typeof(CandidateViewNode), 1)]
+[JsonDerivedType(typeof(HouseViewNode), 2)]
+[JsonDerivedType(typeof(ChuteViewNode), 3)]
+[JsonDerivedType(typeof(BabaGroupViewNode), 4)]
+[JsonDerivedType(typeof(ChainLinkViewNode), 5)]
+[JsonDerivedType(typeof(CellLinkViewNode), 6)]
+[JsonDerivedType(typeof(ConjugateLinkViewNode), 7)]
+[JsonDerivedType(typeof(CircleViewNode), 10)]
+[JsonDerivedType(typeof(CrossViewNode), 11)]
+[JsonDerivedType(typeof(TriangleViewNode), 12)]
+[JsonDerivedType(typeof(DiamondViewNode), 13)]
+[JsonDerivedType(typeof(StarViewNode), 14)]
+[JsonDerivedType(typeof(SquareViewNode), 15)]
+[JsonDerivedType(typeof(HeartViewNode), 16)]
+[JsonDerivedType(typeof(TruthSpaceViewNode), 20)]
+[JsonDerivedType(typeof(LinkSpaceViewNode), 21)]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	ICloneable,
 	IDrawableItem,
@@ -56,6 +51,9 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 	[StringMember("EqualityContract")]
 	protected string TypeIdentifier => GetType().Name;
 
+
+	/// <inheritdoc/>
+	public virtual bool Equals([NotNullWhen(true)] ViewNode? other) => other is not null && Identifier == other.Identifier;
 
 	/// <inheritdoc/>
 	public abstract override int GetHashCode();

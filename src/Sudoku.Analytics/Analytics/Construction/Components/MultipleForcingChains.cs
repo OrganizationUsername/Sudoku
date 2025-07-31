@@ -13,10 +13,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <seealso cref="StrongForcingChain"/>
 /// <seealso cref="WeakForcingChain"/>
 /// <seealso cref="Node"/>
-[TypeImpl(
-	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.AllEqualityComparisonOperators,
-	OtherModifiersOnEquals = "sealed",
-	OtherModifiersOnToString = "sealed")]
+[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators, OtherModifiersOnEquals = "sealed")]
 public partial class MultipleForcingChains(params Conclusion[] conclusions) :
 	SortedDictionary<Candidate, UnnamedChain>,
 	IAnyAllMethod<MultipleForcingChains, KeyValuePair<Candidate, UnnamedChain>>,
@@ -294,6 +291,9 @@ public partial class MultipleForcingChains(params Conclusion[] conclusions) :
 		}
 		return hashCode.ToHashCode();
 	}
+
+	/// <inheritdoc/>
+	public sealed override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)

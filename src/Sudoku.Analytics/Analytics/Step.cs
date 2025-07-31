@@ -8,11 +8,9 @@ namespace Sudoku.Analytics;
 /// <param name="views"><inheritdoc cref="Views" path="/summary"/></param>
 /// <param name="options"><inheritdoc cref="Options" path="/summary"/></param>
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.Equatable,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
-	OtherModifiersOnGetHashCode = "sealed",
-	OtherModifiersOnToString = "sealed",
-	OtherModifiersOnEquatableEquals = "virtual")]
+	OtherModifiersOnGetHashCode = "sealed")]
 public abstract partial class Step(ReadOnlyMemory<Conclusion> conclusions, View[]? views, StepGathererOptions options) :
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
@@ -176,6 +174,10 @@ public abstract partial class Step(ReadOnlyMemory<Conclusion> conclusions, View[
 	private string TechniqueResourceKey => $"TechniqueFormat_{FormatTypeIdentifier}";
 
 
+	/// <inheritdoc/>
+	public virtual bool Equals([NotNullWhen(true)] Step? other)
+		=> other is not null && ConclusionText == other.ConclusionText && Code == other.Code;
+
 	/// <summary>
 	/// Compares two <see cref="Step"/> instances, determining which one is greater.
 	/// </summary>
@@ -201,6 +203,9 @@ public abstract partial class Step(ReadOnlyMemory<Conclusion> conclusions, View[
 	/// <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
 	/// </remarks>
 	public virtual int CompareTo(Step? other) => other is null ? -1 : Math.Sign(Code - other.Code);
+
+	/// <inheritdoc/>
+	public sealed override string ToString() => ToString(null);
 
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.

@@ -8,10 +8,9 @@ namespace Sudoku.Analytics;
 /// <param name="runningArea"><inheritdoc cref="RunningArea" path="/summary"/></param>
 /// <seealso cref="Step"/>
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators,
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode | TypeImplFlags.AllEqualityComparisonOperators,
 	OtherModifiersOnEquals = "sealed",
-	OtherModifiersOnGetHashCode = "sealed",
-	OtherModifiersOnToString = "sealed")]
+	OtherModifiersOnGetHashCode = "sealed")]
 public abstract partial class StepSearcher(
 	int priority,
 	int level,
@@ -75,6 +74,9 @@ public abstract partial class StepSearcher(
 	/// <param name="other">The other object to be compared.</param>
 	/// <returns>An <see cref="int"/> indicating which one is greater.</returns>
 	public int CompareTo(StepSearcher? other) => other is null ? -1 : Priority.CompareTo(other.Priority);
+
+	/// <inheritdoc/>
+	public sealed override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider) => Metadata.GetName(formatProvider as CultureInfo);

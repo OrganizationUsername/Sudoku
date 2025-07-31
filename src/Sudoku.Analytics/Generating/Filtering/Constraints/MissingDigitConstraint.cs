@@ -3,14 +3,13 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that checks for a missing digit.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class MissingDigitConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the missing digit.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Digit Digit { get; set; }
 
 

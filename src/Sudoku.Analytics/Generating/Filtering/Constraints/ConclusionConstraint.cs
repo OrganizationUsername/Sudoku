@@ -4,21 +4,19 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a conclusion constraint.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class ConclusionConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates whether the conclusion should be appeared.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool ShouldAppear { get; set; }
 
 	/// <summary>
 	/// Indicates the conclusion.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Conclusion Conclusion { get; set; }
 
 

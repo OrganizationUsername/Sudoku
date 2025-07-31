@@ -3,24 +3,21 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents an elimination count constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public int LimitCount { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Technique Technique { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>

@@ -3830,7 +3830,7 @@
 				</param>
 				<returns>
 					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:SudokuStudio.Input.SudokuPanePositionConverter.ToString" />.
+					by implementing to-string method <c>ToString</c>.
 				</returns>
 				<remarks>
 					<para>

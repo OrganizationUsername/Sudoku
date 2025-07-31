@@ -3,22 +3,20 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that checks for pearl or diamond property.
 /// </summary>
-/// <param name="checkPearl"></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+/// <param name="checkPearl"><inheritdoc cref="CheckPearl" path="/summary"/></param>
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public abstract partial class PearlOrDiamondConstraint(bool checkPearl) : Constraint
 {
 	/// <summary>
 	/// Indicates whether the puzzle should be pearl or diamond.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool ShouldBePearlOrDiamond { get; set; }
 
 	/// <summary>
 	/// Indicates whether the constraint checks for pearl.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool CheckPearl { get; } = checkPearl;
 
 

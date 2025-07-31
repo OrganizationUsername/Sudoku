@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that limits a puzzle that can only use such techniques to be finished.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class TechniqueSetConstraint : Constraint
 {
 	/// <summary>
@@ -12,12 +12,6 @@ public sealed partial class TechniqueSetConstraint : Constraint
 	[HashCodeMember]
 	public TechniqueSet Techniques { get; set; } = TechniqueSets.None;
 
-	[StringMember]
-	private string TechniquesString => Techniques.ToString();
-
-
-	/// <inheritdoc/>
-	public override TechniqueSetConstraint Clone() => new() { Techniques = Techniques };
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
@@ -29,6 +23,9 @@ public sealed partial class TechniqueSetConstraint : Constraint
 		var culture = formatProvider as CultureInfo;
 		return string.Format(SR.Get("TechniqueSetConstraint", culture), Techniques.ToString(culture));
 	}
+
+	/// <inheritdoc/>
+	public override TechniqueSetConstraint Clone() => new() { Techniques = Techniques };
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)

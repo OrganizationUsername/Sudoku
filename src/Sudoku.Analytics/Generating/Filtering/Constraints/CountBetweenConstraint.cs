@@ -3,14 +3,13 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a count between constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
 {
 	/// <summary>
 	/// Indicates the range of the numbers set.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	[JsonConverter(typeof(RangeConverter))]
 	public Range Range { get; set; }
 
@@ -21,12 +20,10 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 	/// <seealso cref="CellState.Given"/>
 	/// <seealso cref="CellState.Empty"/>
 	[HashCodeMember]
-	[StringMember]
 	public CellState CellState { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public BetweenRule BetweenRule { get; set; }
 
 

@@ -4,28 +4,25 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a constraint that checks for a keyword.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class KeywordConditionConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the keyword.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public string Keyword { get; set; } = string.Empty;
 
 	/// <summary>
 	/// Indicates the technique.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Technique Technique { get; set; }
 
 	/// <summary>
 	/// Indicates the condition encapsulated.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public KeywordCondition? Condition { get; set; }
 
 

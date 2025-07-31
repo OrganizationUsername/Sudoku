@@ -51,7 +51,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	public abstract override int GetHashCode();
 
 	/// <inheritdoc/>
-	public abstract override string ToString();
+	public sealed override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);

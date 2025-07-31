@@ -4,24 +4,21 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a lasting constraint.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class LastingConstraint : Constraint, ILimitCountConstraint<int>, IComparisonOperatorConstraint
 {
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public int LimitCount { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public SingleTechniqueFlag TechniqueFlag { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>

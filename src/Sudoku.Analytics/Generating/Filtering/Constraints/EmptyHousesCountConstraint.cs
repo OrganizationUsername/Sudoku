@@ -4,21 +4,19 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a constraint that calculates for empty houses.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class EmptyHousesCountConstraint : Constraint, ILimitCountConstraint<Digit>
 {
 	/// <summary>
 	/// Indicates the target house type.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public HouseType HouseType { get; set; }
 
 	/// <summary>
 	/// Indicates the number of empty houses should be appeared.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Digit Count { get; set; }
 
 	/// <inheritdoc/>
@@ -34,8 +32,7 @@ public sealed partial class EmptyHousesCountConstraint : Constraint, ILimitCount
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is EmptyHousesCountConstraint comparer
-		&& Count == comparer.Count && HouseType == comparer.HouseType;
+		=> other is EmptyHousesCountConstraint comparer && Count == comparer.Count && HouseType == comparer.HouseType;
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

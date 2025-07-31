@@ -3,14 +3,13 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a primary single constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString, ToStringBehavior = ToStringBehavior.RecordLike)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class PrimarySingleConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates whether the constraint allows hidden singles on rows or columns.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public bool AllowsHiddenSingleInLines { get; set; }
 
 	/// <summary>
@@ -18,9 +17,6 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	public SingleTechniqueFlag Primary { get; set; }
-
-	[StringMember(nameof(Primary))]
-	private string SinglePreferString => Primary.GetName(null);
 
 
 	/// <inheritdoc/>

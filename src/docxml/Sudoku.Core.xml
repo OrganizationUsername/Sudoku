@@ -4847,7 +4847,7 @@
 				</param>
 				<returns>
 					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="M:Sudoku.Concepts.Graphs.CellGraphDepth.ToString" />.
+					by implementing to-string method <c>ToString</c>.
 				</returns>
 				<remarks>
 					<para>
@@ -4937,6 +4937,9 @@
             Represents a list of cells that will form trap contradictions in the cluster.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Graphs.Cluster.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.Create(Sudoku.Concepts.Grid@,System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Graphs.Cluster"/> instance via the specified grid.
@@ -4950,9 +4953,6 @@
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.Cluster.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.Cluster.op_Equality(Sudoku.Concepts.Graphs.Cluster,Sudoku.Concepts.Graphs.Cluster)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -9991,11 +9991,11 @@
         <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Drawing.PaletteIdColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Drawing.View">
             <summary>
@@ -10205,11 +10205,11 @@
         <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.Equals(Sudoku.Drawing.ColorIdentifier)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Drawing.WellKnownColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Drawing.WellKnownColorIdentifierKind">
             <summary>

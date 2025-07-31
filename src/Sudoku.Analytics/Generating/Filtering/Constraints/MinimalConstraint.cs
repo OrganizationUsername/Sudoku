@@ -3,7 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents minimal constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString, ToStringBehavior = ToStringBehavior.Specified)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class MinimalConstraint : Constraint
 {
 	/// <summary>
@@ -11,9 +11,6 @@ public sealed partial class MinimalConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	public bool ShouldBeMinimal { get; set; }
-
-	[StringMember]
-	private string ShouldBeMinimalString => ShouldBeMinimal.ToString();
 
 
 	/// <inheritdoc/>

@@ -6,7 +6,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// </summary>
 /// <seealso cref="TechniqueCountConstraint"/>
 [ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class TechniqueConstraint : Constraint
 {
 	/// <summary>
@@ -14,9 +14,6 @@ public sealed partial class TechniqueConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	public TechniqueSet Techniques { get; set; } = TechniqueSets.None;
-
-	[StringMember]
-	private string TechniquesString => Techniques.ToString();
 
 
 	/// <inheritdoc/>

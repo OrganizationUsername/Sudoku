@@ -4,15 +4,7 @@ namespace Sudoku.Analytics.Construction.Chaining;
 /// Represents a rule that make inferences (strong or weak) between two <see cref="Node"/> instances.
 /// </summary>
 /// <seealso cref="Node"/>
-[TypeImpl(
-	TypeImplFlags.AllObjectMethods,
-	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
-	OtherModifiersOnEquals = "sealed",
-	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException,
-	OtherModifiersOnGetHashCode = "sealed",
-	ToStringBehavior = ToStringBehavior.ThrowNotSupportedException,
-	OtherModifiersOnToString = "sealed")]
-public abstract partial class ChainingRule
+public abstract class ChainingRule
 {
 	/// <summary>
 	/// Indicates the elementary link types.

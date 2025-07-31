@@ -225,7 +225,7 @@ fixed (short* ptr = instance)
 				</param>
 				<returns>
 					A <see cref="bool"/> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <see cref="ToString"/>.
+					by implementing to-string method <c>ToString</c>.
 				</returns>
 				<remarks>
 					<para>

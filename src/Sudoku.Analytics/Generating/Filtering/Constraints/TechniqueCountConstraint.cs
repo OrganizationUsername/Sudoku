@@ -5,24 +5,21 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// contains the specified techniques.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
+[TypeImpl(TypeImplFlags.Object_GetHashCode)]
 public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public int LimitCount { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
-	[StringMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Technique Technique { get; set; }
 
 

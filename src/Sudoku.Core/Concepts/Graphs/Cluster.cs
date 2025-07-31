@@ -17,24 +17,21 @@ using ConflictedInfo = ((Cell Left, Cell Right), CellMap InfluencedRange);
 /// <param name="map"><inheritdoc cref="Map" path="/summary"/></param>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable,
-	ToStringBehavior = ToStringBehavior.RecordLike)]
+	TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode
+		| TypeImplFlags.EqualityOperators | TypeImplFlags.Equatable)]
 public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in CellMap map) : IEquatable<Cluster>
 {
 	/// <summary>
 	/// Indicates the grid used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	private readonly ref readonly Grid _grid = ref grid;
 
 	/// <summary>
 	/// Indicates the backing cells map used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	[EquatableMember]
-	[SuppressMessage("Style", "IDE0032:Use auto property", Justification = "<Pending>")]
 	private readonly CellMap _map = map;
 
 
@@ -42,7 +39,6 @@ public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in 
 	/// Indicates the digit used.
 	/// </summary>
 	[HashCodeMember]
-	[StringMember]
 	public Digit Digit { get; } = digit;
 
 	/// <summary>
@@ -136,6 +132,11 @@ public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in 
 			return result;
 		}
 	}
+
+
+	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString()
+		=> $$"""{{nameof(Cluster)}} { Grid = {{_grid}}, Map = {{_map}}, {{nameof(Digit)}} = {{Digit + 1}} }""";
 
 
 	/// <summary>

@@ -5,8 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// with eliminations from all weak links.
 /// </summary>
 /// <param name="lastNode"><inheritdoc/></param>
-[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
-public sealed partial class ContinuousNiceLoop(Node lastNode) : NamedChain(lastNode, true)
+public sealed class ContinuousNiceLoop(Node lastNode) : NamedChain(lastNode, true)
 {
 	/// <inheritdoc/>
 	protected internal override int WeakStartIdentity => 1;
@@ -244,6 +243,9 @@ public sealed partial class ContinuousNiceLoop(Node lastNode) : NamedChain(lastN
 
 	/// <inheritdoc/>
 	public override int CompareTo(Chain? other) => CompareTo(other as ContinuousNiceLoop);
+
+	/// <inheritdoc/>
+	public override string ToString() => ((IFormattable)this).ToString(null, null);
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(in Grid grid)

@@ -7,13 +7,23 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="isDynamicChaining">
 /// <inheritdoc cref="Chain(Node, bool, bool, bool)" path="/param[@name='isDynamicChaining']"/>
 /// </param>
-[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
-public sealed partial class StrongForcingChain(Node lastNode, bool isDynamicChaining = false) :
-	UnnamedChain(lastNode, isDynamicChaining: isDynamicChaining)
+public sealed class StrongForcingChain(Node lastNode, bool isDynamicChaining = false) : UnnamedChain(lastNode, isDynamicChaining)
 {
 	/// <inheritdoc/>
 	protected internal override int WeakStartIdentity => 0;
 
+
+	/// <inheritdoc/>
+	public override void Reverse()
+	{
+		var newNodes = new Node[_nodes.Length];
+		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
+		{
+			// Reverse and negate its "IsOn" property to keep the chain starting with same "IsOn" property value.
+			newNodes[i] = ~_nodes[pos];
+		}
+		Array.Copy(newNodes, _nodes, _nodes.Length);
+	}
 
 	/// <summary>
 	/// Determine which <see cref="StrongForcingChain"/> instance is greater.
@@ -188,14 +198,5 @@ public sealed partial class StrongForcingChain(Node lastNode, bool isDynamicChai
 	}
 
 	/// <inheritdoc/>
-	public override void Reverse()
-	{
-		var newNodes = new Node[_nodes.Length];
-		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
-		{
-			// Reverse and negate its "IsOn" property to keep the chain starting with same "IsOn" property value.
-			newNodes[i] = ~_nodes[pos];
-		}
-		Array.Copy(newNodes, _nodes, _nodes.Length);
-	}
+	public override string ToString() => ((IFormattable)this).ToString(null, null);
 }

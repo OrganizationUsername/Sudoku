@@ -4,8 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
 /// </summary>
 /// <param name="lastNode"><inheritdoc cref="NamedChain(Node, bool)" path="/param[@name='lastNode']"/></param>
-[TypeImpl(TypeImplFlags.Object_ToString, EmitThisCastToInterface = true)]
-public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNode, false)
+public sealed class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNode, false)
 {
 	/// <summary>
 	/// Indicates whether the chain is formed a W-Wing.
@@ -318,6 +317,9 @@ public sealed partial class AlternatingInferenceChain(Node lastNode) : NamedChai
 		}
 		return 0;
 	}
+
+	/// <inheritdoc/>
+	public override string ToString() => ((IFormattable)this).ToString(null, null);
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(in Grid grid) => [.. EliminationCalculator.Chain.GetConclusions(grid, First, Last)];

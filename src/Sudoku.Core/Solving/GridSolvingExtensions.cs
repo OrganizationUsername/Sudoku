@@ -62,10 +62,7 @@ public static class GridSolvingExtensions
 		/// <summary>
 		/// Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
 		/// </summary>
-		public bool IsValid
-		{
-			get => @this.IsSolved || @this.Uniqueness == Uniqueness.Unique;
-		}
+		public bool IsValid => @this.IsSolved || @this.Uniqueness == Uniqueness.Unique;
 
 		/// <summary>
 		/// Checks the uniqueness of the current sudoku puzzle.

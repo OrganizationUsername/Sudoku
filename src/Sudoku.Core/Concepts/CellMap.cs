@@ -130,10 +130,7 @@ public partial struct CellMap : CellMapBase
 	/// <summary>
 	/// Determines whether the current list of cells are all lie in an intersection area, i.e. a locked candidates.
 	/// </summary>
-	public readonly bool IsInIntersection
-	{
-		get => Count == 1 || Count <= 3 && BitOperations.PopCount(SharedHouses) == 2;
-	}
+	public readonly bool IsInIntersection => Count == 1 || Count <= 3 && BitOperations.PopCount(SharedHouses) == 2;
 
 	/// <summary>
 	/// Indicates whether every cell in the current collection cannot see each other.
@@ -251,10 +248,7 @@ public partial struct CellMap : CellMapBase
 	/// Please note that the result value may be invalid if no shared houses can be found.
 	/// In such case, the return value will be <see cref="FallbackConstants.@int"/> (32, not -1).
 	/// </b></remarks>
-	public readonly House SharedBlock
-	{
-		get => BitOperations.TrailingZeroCount(SharedHouses & Grid.MaxCandidatesMask);
-	}
+	public readonly House SharedBlock => BitOperations.TrailingZeroCount(SharedHouses & Grid.MaxCandidatesMask);
 
 	/// <summary>
 	/// Indicates the shared line, i.e. a line of 9 cells that contain all possible cells stored in the current collection.
@@ -263,10 +257,7 @@ public partial struct CellMap : CellMapBase
 	/// Please note that the result value may be invalid if no shared houses can be found.
 	/// In such case, the return value will be <see cref="FallbackConstants.@int"/> (32, not -1).
 	/// </b></remarks>
-	public readonly House SharedLine
-	{
-		get => BitOperations.TrailingZeroCount(SharedHouses & ~Grid.MaxCandidatesMask);
-	}
+	public readonly House SharedLine => BitOperations.TrailingZeroCount(SharedHouses & ~Grid.MaxCandidatesMask);
 
 	/// <summary>
 	/// Indicates the first shared house returned.
@@ -276,10 +267,7 @@ public partial struct CellMap : CellMapBase
 	/// For example, cells <c>r1c25</c> is lying in row 1, the return value will be 9 (index of row 1).
 	/// However, <b>if the collection has no cells, the return value will be <see cref="FallbackConstants.@int"/></b> (32, not -1).
 	/// </remarks>
-	public readonly House FirstSharedHouse
-	{
-		get => BitOperations.TrailingZeroCount(SharedHouses);
-	}
+	public readonly House FirstSharedHouse => BitOperations.TrailingZeroCount(SharedHouses);
 
 	/// <summary>
 	/// Indicates all houses shared. This property is used to check all houses that all cells of this instance shared.
@@ -313,10 +301,7 @@ public partial struct CellMap : CellMapBase
 	/// <see cref="Houses"/> will return the house index 0 (block 1), 9 (row 1), 18 (column 1)
 	/// and 19 (column 2).
 	/// </summary>
-	public readonly HouseMask Houses
-	{
-		get => (HouseMask)BlockMask | RowMask << 9 | ColumnMask << 18;
-	}
+	public readonly HouseMask Houses => (HouseMask)BlockMask | RowMask << 9 | ColumnMask << 18;
 
 	/// <summary>
 	/// Try to get the symmetric type of the pattern.

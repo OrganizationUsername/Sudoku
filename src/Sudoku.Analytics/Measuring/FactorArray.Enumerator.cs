@@ -20,10 +20,7 @@ public partial struct FactorArray
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public readonly Factor Current
-		{
-			get => _factors[_index];
-		}
+		public readonly Factor Current => _factors[_index];
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;

@@ -89,10 +89,7 @@ public sealed partial class ConclusionSet :
 	/// <summary>
 	/// Indicates the number of bit array elements.
 	/// </summary>
-	public int Count
-	{
-		get => _bitArray.Cardinality;
-	}
+	public int Count => _bitArray.Cardinality;
 
 	/// <inheritdoc/>
 	bool ICollection<Conclusion>.IsReadOnly => false;

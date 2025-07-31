@@ -112,16 +112,10 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 
 
 	/// <inheritdoc/>
-	public readonly bool IsUndefined
-	{
-		get => this == Undefined;
-	}
+	public readonly bool IsUndefined => this == Undefined;
 
 	/// <inheritdoc/>
-	public readonly bool IsEmpty
-	{
-		get => this == Empty;
-	}
+	public readonly bool IsEmpty => this == Empty;
 
 	/// <inheritdoc/>
 	public readonly bool IsSolved
@@ -203,22 +197,13 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <inheritdoc/>
-	public readonly Cell GivenCellsCount
-	{
-		get => GivenCells.Count;
-	}
+	public readonly Cell GivenCellsCount => GivenCells.Count;
 
 	/// <inheritdoc/>
-	public readonly Cell ModifiableCellsCount
-	{
-		get => ModifiableCells.Count;
-	}
+	public readonly Cell ModifiableCellsCount => ModifiableCells.Count;
 
 	/// <inheritdoc/>
-	public readonly Cell EmptyCellsCount
-	{
-		get => EmptyCells.Count;
-	}
+	public readonly Cell EmptyCellsCount => EmptyCells.Count;
 
 	/// <inheritdoc/>
 	public readonly Candidate CandidatesCount

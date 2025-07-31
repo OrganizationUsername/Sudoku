@@ -15,10 +15,7 @@ public partial class Chain
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public readonly Node Current
-		{
-			get => _nodes[_index];
-		}
+		public readonly Node Current => _nodes[_index];
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;

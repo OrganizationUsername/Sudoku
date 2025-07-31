@@ -36,10 +36,7 @@ public sealed partial class AlmostLockedSetPattern(
 	/// <summary>
 	/// Indicates whether the ALS only uses a bi-value cell.
 	/// </summary>
-	public bool IsBivalueCell
-	{
-		get => Cells.Count == 1;
-	}
+	public bool IsBivalueCell => Cells.Count == 1;
 
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => true;
@@ -73,10 +70,7 @@ public sealed partial class AlmostLockedSetPattern(
 	/// <summary>
 	/// Indicates the house used.
 	/// </summary>
-	public House House
-	{
-		get => Cells.FirstSharedHouse;
-	}
+	public House House => Cells.FirstSharedHouse;
 
 	/// <summary>
 	/// Indicates all strong links in this ALS.

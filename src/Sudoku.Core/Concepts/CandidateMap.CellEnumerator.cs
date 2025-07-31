@@ -15,10 +15,7 @@ public partial struct CandidateMap
 
 
 		/// <inheritdoc/>
-		public readonly Cell Current
-		{
-			get => _candidates[_index] / 9;
-		}
+		public readonly Cell Current => _candidates[_index] / 9;
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;

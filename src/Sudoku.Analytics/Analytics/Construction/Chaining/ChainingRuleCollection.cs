@@ -12,10 +12,7 @@ public readonly ref struct ChainingRuleCollection(ReadOnlySpan<ChainingRule> rul
 	/// <summary>
 	/// Indicates the length of rules.
 	/// </summary>
-	public int Length
-	{
-		get => Rules.Length;
-	}
+	public int Length => Rules.Length;
 
 	/// <summary>
 	/// Indicates the rules.
@@ -28,10 +25,7 @@ public readonly ref struct ChainingRuleCollection(ReadOnlySpan<ChainingRule> rul
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>A <see cref="ChainingRule"/> instance returned.</returns>
-	public ChainingRule this[int index]
-	{
-		get => Rules[index];
-	}
+	public ChainingRule this[int index] => Rules[index];
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>

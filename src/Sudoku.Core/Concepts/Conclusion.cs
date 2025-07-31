@@ -64,36 +64,24 @@ public readonly partial struct Conclusion(Mask mask) :
 	/// <summary>
 	/// Indicates the cell the current instance uses.
 	/// </summary>
-	public Cell Cell
-	{
-		get => Candidate / 9;
-	}
+	public Cell Cell => Candidate / 9;
 
 	/// <summary>
 	/// Indicates the digit the current instance uses.
 	/// </summary>
-	public Digit Digit
-	{
-		get => Candidate % 9;
-	}
+	public Digit Digit => Candidate % 9;
 
 	/// <summary>
 	/// Indicates the candidate the current instance uses.
 	/// </summary>
-	public Candidate Candidate
-	{
-		get => _mask % 729;
-	}
+	public Candidate Candidate => _mask % 729;
 
 	/// <summary>
 	/// Indicates the conclusion type of the current instance.
 	/// If the type is <see cref="Assignment"/>, this conclusion will be set value (Set a digit into a cell);
 	/// otherwise, a candidate will be removed.
 	/// </summary>
-	public ConclusionType ConclusionType
-	{
-		get => (ConclusionType)(_mask / 729);
-	}
+	public ConclusionType ConclusionType => (ConclusionType)(_mask / 729);
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

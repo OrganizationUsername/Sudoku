@@ -426,13 +426,14 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											var possibleBivalueCells = CandidatesMap[d1] & CandidatesMap[d2] & BivalueCells;
 											foreach (var (node, theOtherNode) in ((p, q), (q, p)))
 											{
+												if (theOtherNode.FirstSharedHouse is
+													not (var strongXyCellHouse and not FallbackConstants.@int))
+												{
+													continue;
+												}
+
 												foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 												{
-													if (theOtherNode.FirstSharedHouse is not (var strongXyCellHouse and not FallbackConstants.@int))
-													{
-														continue;
-													}
-
 													foreach (var strongXyCell in
 														possibleBivalueCells & HousesMap[strongXyCellHouse] & ~node & ~theOtherNode)
 													{

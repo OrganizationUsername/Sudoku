@@ -10750,6 +10750,13 @@
             The current state of the sudoku.
             </summary>
         </member>
+        <member name="T:Sudoku.Generating.GridStateChanger`1">
+            <summary>
+            Represents for a grid state changer callback method.
+            </summary>
+            <param name="grid">The grid to be changed.</param>
+            <param name="obj">An extra object to be used.</param>
+        </member>
         <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
             <summary>
             Defines a puzzle generator that makes the given pattern as a hard one.
@@ -10914,6 +10921,23 @@
             Order the pattern cells via connection complexity.
             </summary>
             <returns>The cells ordered.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.SelfReportingProgress`1">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="TProgressDataProvider"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:Sudoku.Generating.SelfReportingProgress`1.#ctor(System.Action{`0})">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="TProgressDataProvider"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:Sudoku.Generating.SelfReportingProgress`1.Report(`0)">
+            <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
         </member>
         <member name="T:Sudoku.IO.FileDeduplicator">
             <summary>

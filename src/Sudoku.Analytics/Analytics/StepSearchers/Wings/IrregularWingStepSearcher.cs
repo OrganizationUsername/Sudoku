@@ -428,7 +428,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											{
 												foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 												{
-													if (theOtherNode.FirstSharedHouse is not (var strongXyCellHouse and not 32))
+													if (theOtherNode.FirstSharedHouse is not (var strongXyCellHouse and not FallbackConstants.@int))
 													{
 														continue;
 													}

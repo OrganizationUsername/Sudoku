@@ -3,7 +3,7 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents an entry point for generating puzzles with mixed configuration.
 /// </summary>
-public static class GeneratorHub
+public static partial class GeneratorHub
 {
 	/// <summary>
 	/// Provides a way to generate a puzzle in asynchronous environment.
@@ -132,8 +132,6 @@ public static class GeneratorHub
 				ittoryuFinder,
 				filters
 			);
-
-
 		}
 
 		unsafe Grid coreHandler(
@@ -191,7 +189,7 @@ public static class GeneratorHub
 			}
 
 
-			static (Cell, Cell) b(BetweenRule betweenRule, Cell start, Cell end)
+			static (Cell, Cell) determineEmptyCellsCount(BetweenRule betweenRule, Cell start, Cell end)
 				=> betweenRule switch
 				{
 					BetweenRule.BothOpen => (start + 1, end - 1),
@@ -224,7 +222,7 @@ public static class GeneratorHub
 						CellState.Empty => (81 - pair.End, 81 - pair.Start)
 					}
 					select (betweenRule, targetPair)
-				) is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
+				) is [var (br, (start, end))] ? determineEmptyCellsCount(br, start, end) : (-1, -1);
 
 			Cell getGivensCount() => chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
 
@@ -236,98 +234,13 @@ public static class GeneratorHub
 		}
 	}
 
-	private static bool TransformChecker_MissingDigit(in Grid grid, [NotNullWhen(true)] out object? result)
-	{
-		var digitsDistribution = new Dictionary<Digit, Cell>(9);
-		foreach (var cell in grid.GivenCells)
-		{
-			var digit = grid.GetDigit(cell);
-			if (!digitsDistribution.TryAdd(digit, 1))
-			{
-				digitsDistribution[digit]++;
-			}
-		}
+	private static partial bool TransformChecker_MissingDigit(in Grid grid, out object? result);
+	private static partial void Transformer_MissingDigit(ref Grid grid, ConstraintCollection constraints, object? variable);
 
-		foreach (var digit in digitsDistribution.Keys)
-		{
-			if (digitsDistribution[digit] == 0)
-			{
-				result = digit;
-				return true;
-			}
-		}
-
-		result = null;
-		return false;
-	}
-
-	private static void Transformer_MissingDigit(ref Grid grid, ConstraintCollection constraints, object? variable)
-	{
-		var digit = (int)variable!;
-		var desiredDigit = constraints.OfType<MissingDigitConstraint>()[0].Digit;
-		if (desiredDigit != digit)
-		{
-			grid.SwapDigit(digit, desiredDigit);
-		}
-	}
-
-	private static Grid Optimizer_FullHouseOnly(Cell givens, SymmetricType type, ConstraintCollection constraints, CancellationToken ct)
-		=> new FullHouseGenerator
-		{
-			SymmetricType = type,
-			EmptyCellsCount = givens == -1 ? -1 : 81 - givens
-		}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
-
-	private static Grid Optimizer_NakedSingleOnly(Cell givens, SymmetricType type, ConstraintCollection constraints, CancellationToken ct)
-		=> new NakedSingleGenerator
-		{
-			SymmetricType = type,
-			EmptyCellsCount = givens == -1 ? -1 : 81 - givens
-		}.TryGenerateUnique(out var p, ct) ? p : throw new OperationCanceledException();
-
-	private static Grid Optimizer_IttoryuMode(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct)
-	{
-		var finder = new DisorderedIttoryuFinder();
-		var generator = new Generator();
-		while (true)
-		{
-			var puzzle = generator.Generate(givens, symmetry, ct);
-			if (puzzle.IsUndefined)
-			{
-				throw new OperationCanceledException();
-			}
-
-			if (finder.FindPath(puzzle, ct) is { IsComplete: true } path)
-			{
-				puzzle.MakeIttoryu(path);
-				return puzzle;
-			}
-		}
-	}
-
-	private static Grid Optimizer_MissingDigit(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct)
-	{
-		// Set an arbitrary digit as missing digit.
-		// The digit will be transformed to other one after the puzzle is satisfied the target constraints.
-		var puzzle = new Generator { MissingDigit = 0 }.Generate(givens, symmetry, ct);
-		return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
-	}
-
-	private static Grid Optimizer_EmptyHouses(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct)
-	{
-		var puzzle = new EmptyHouseBasedGenerator
-		{
-			DesiredMissingHousesMask = constraints.OfType<EmptyHousesCountConstraint>().Aggregate(
-				0,
-				static (interim, next) => interim | (1 << next.Count) - 1 << (int)next.HouseType * 9
-			)
-		}.Generate(ct);
-		return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
-	}
-
-	private static Grid DefaultGenerator(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct)
-	{
-		var puzzle = new Generator().Generate(givens, symmetry, ct);
-		return puzzle.IsUndefined ? throw new OperationCanceledException() : puzzle;
-	}
+	private static partial Grid Optimizer_FullHouseOnly(Cell givens, SymmetricType type, ConstraintCollection constraints, CancellationToken ct);
+	private static partial Grid Optimizer_NakedSingleOnly(Cell givens, SymmetricType type, ConstraintCollection constraints, CancellationToken ct);
+	private static partial Grid Optimizer_IttoryuMode(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct);
+	private static partial Grid Optimizer_MissingDigit(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct);
+	private static partial Grid Optimizer_EmptyHouses(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct);
+	private static partial Grid DefaultGenerator(Cell givens, SymmetricType symmetry, ConstraintCollection constraints, CancellationToken ct);
 }

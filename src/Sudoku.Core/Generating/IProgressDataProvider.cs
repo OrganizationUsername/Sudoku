@@ -1,9 +1,10 @@
 namespace Sudoku.Generating;
 
 /// <summary>
-/// Indicates the data provider type,
+/// Represents data that will be reported in progress, invoked by <see cref="IProgress{T}.Report(T)"/>.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
+/// <seealso cref="IProgress{T}.Report(T)"/>
 public interface IProgressDataProvider<TSelf>
 	where TSelf : struct, IEquatable<TSelf>, IProgressDataProvider<TSelf>, allows ref struct
 {

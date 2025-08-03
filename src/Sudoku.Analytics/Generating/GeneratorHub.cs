@@ -103,7 +103,9 @@ public static partial class GeneratorHub
 				HasMissingHouseConstraint:
 					constraints.Has<EmptyHousesCountConstraint>()
 			);
-			return coreHandler(
+			return HandlerCore(
+				ref generatingCount,
+				ref generatingFilteredCount,
 				constraints,
 				specializedConditions switch
 				{
@@ -125,113 +127,117 @@ public static partial class GeneratorHub
 					_ => null
 				},
 				reportAction,
-				cts.Token,
 				specializedConditions is { HasNakedSingleConstraint: true } or { HasNakedSingleConstraintInTechniqueSet: true }
 					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
 					: analyzer,
 				ittoryuFinder,
-				filters
+				filters,
+				cts.Token
 			);
 		}
+	}
 
-		unsafe Grid coreHandler(
-			ConstraintCollection constraints,
-			delegate*<Cell, SymmetricType, ConstraintCollection, CancellationToken, Grid> gridCreator,
-			[AllowNull, MaybeNull] delegate*<in Grid, out object?, bool> gridTransformingChecker,
-			[AllowNull, MaybeNull] delegate*<ref Grid, ConstraintCollection, object?, void> gridTransformer,
-			Action<TProgressDataProvider> reporter,
-			CancellationToken cancellationToken,
-			Analyzer analyzer,
-			DisorderedIttoryuFinder finder,
-			BottleneckFilter[] filters
-		)
+	private static unsafe Grid HandlerCore<TProgressDataProvider>(
+		ref int generatingCount,
+		ref int generatingFilteredCount,
+		ConstraintCollection constraints,
+		delegate*<int, SymmetricType, ConstraintCollection, CancellationToken, Grid> gridCreator,
+		[AllowNull, MaybeNull] delegate*<in Grid, out object?, bool> gridTransformingChecker,
+		[AllowNull, MaybeNull] delegate*<ref Grid, ConstraintCollection, object?, void> gridTransformer,
+		Action<TProgressDataProvider> reporter,
+		Analyzer analyzer,
+		DisorderedIttoryuFinder finder,
+		BottleneckFilter[] filters,
+		CancellationToken cancellationToken
+	)
+		where TProgressDataProvider : struct, IEquatable<TProgressDataProvider>, IProgressDataProvider<TProgressDataProvider>
+	{
+		// Update generating configurations.
+		if (constraints.OfType<BottleneckTechniqueConstraint>() is { Length: not 0 } list)
 		{
-			// Update generating configurations.
-			if (constraints.OfType<BottleneckTechniqueConstraint>() is { Length: not 0 } list)
+			foreach (var element in list)
 			{
-				foreach (var element in list)
-				{
-					element.Filters = filters;
-				}
+				element.Filters = filters;
 			}
-
-			var rng = Random.Shared;
-			var symmetries = getSymmetry();
-			var chosenGivensCountSeed = getChosenGivensCountRange();
-			var givensCount = getGivensCount();
-			var difficultyLevel = getDifficultyLevel();
-			var progress = new SelfReportingProgress<TProgressDataProvider>(reporter);
-			while (true)
-			{
-				var chosenSymmetricType = symmetries.Length == 0 ? SymmetricType.None : symmetries[rng.Next(0, symmetries.Length)];
-				var grid = gridCreator(givensCount, chosenSymmetricType, constraints, cancellationToken);
-				if (grid.IsEmpty || analyzer.Analyze(grid) is var analysisResult && !analysisResult.IsSolved)
-				{
-					goto ReportState;
-				}
-
-				// Transform if worth. This transform rules may conflict with other rules so be careful to use this.
-				if (gridTransformingChecker != null
-					&& gridTransformingChecker(grid, out var outVariable)
-					&& gridTransformer != null)
-				{
-					gridTransformer(ref grid, constraints, outVariable);
-				}
-
-				if (constraints.IsValidFor(new(grid, analysisResult)))
-				{
-					return grid;
-				}
-
-			ReportState:
-				progress.Report(TProgressDataProvider.Create(++generatingCount, generatingFilteredCount));
-				cancellationToken.ThrowIfCancellationRequested();
-			}
-
-
-			static (Cell, Cell) determineEmptyCellsCount(BetweenRule betweenRule, Cell start, Cell end)
-				=> betweenRule switch
-				{
-					BetweenRule.BothOpen => (start + 1, end - 1),
-					BetweenRule.LeftOpen => (start + 1, end),
-					BetweenRule.RightOpen => (start, end + 1),
-					_ => (start, end)
-				};
-
-			ReadOnlySpan<SymmetricType> getSymmetry()
-				=> (from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes) switch
-				{
-					[var p] => p switch
-					{
-						SymmetryConstraint.InvalidSymmetricType => [],
-						SymmetryConstraint.AllSymmetricTypes => SymmetricType.Values,
-						var symmetricTypes and not 0 => symmetricTypes.AllFlags,
-						_ => [SymmetricType.None]
-					},
-					_ => SymmetricType.Values
-				};
-
-			(Cell, Cell) getChosenGivensCountRange()
-				=> (
-					from c in constraints.OfType<CountBetweenConstraint>()
-					let betweenRule = c.BetweenRule
-					let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
-					let targetPair = c.CellState switch
-					{
-						CellState.Given => (pair.Start, pair.End),
-						CellState.Empty => (81 - pair.End, 81 - pair.Start)
-					}
-					select (betweenRule, targetPair)
-				) is [var (br, (start, end))] ? determineEmptyCellsCount(br, start, end) : (-1, -1);
-
-			Cell getGivensCount() => chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
-
-			DifficultyLevel getDifficultyLevel()
-				=> (
-					from c in constraints.OfType<DifficultyLevelConstraint>()
-					select c.ValidDifficultyLevels.AllFlags.ToArray()
-				) is [var d] ? d[rng.Next(0, d.Length)] : DifficultyLevels.AllValid;
 		}
+
+		var rng = Random.Shared;
+		var symmetries = getSymmetry();
+		var chosenGivensCountSeed = getChosenGivensCountRange();
+		var givensCount = getGivensCount();
+		var difficultyLevel = getDifficultyLevel();
+		var progress = new SelfReportingProgress<TProgressDataProvider>(reporter);
+		while (true)
+		{
+			var chosenSymmetricType = symmetries.Length == 0 ? SymmetricType.None : symmetries[rng.Next(0, symmetries.Length)];
+			var grid = gridCreator(givensCount, chosenSymmetricType, constraints, cancellationToken);
+			if (grid.IsEmpty
+				|| analyzer.Analyze(grid, cancellationToken: cancellationToken) is not { IsSolved: true } analysisResult)
+			{
+				goto ReportState;
+			}
+
+			// Transform if worth. This transform rules may conflict with other rules so be careful to use this.
+			if (gridTransformingChecker != null
+				&& gridTransformingChecker(grid, out var outVariable)
+				&& gridTransformer != null)
+			{
+				gridTransformer(ref grid, constraints, outVariable);
+			}
+
+			if (constraints.IsValidFor(new(grid, analysisResult)))
+			{
+				return grid;
+			}
+
+		ReportState:
+			progress.Report(TProgressDataProvider.Create(++generatingCount, generatingFilteredCount));
+			cancellationToken.ThrowIfCancellationRequested();
+		}
+
+
+		static (Cell, Cell) determineEmptyCellsCount(BetweenRule betweenRule, Cell start, Cell end)
+			=> betweenRule switch
+			{
+				BetweenRule.BothOpen => (start + 1, end - 1),
+				BetweenRule.LeftOpen => (start + 1, end),
+				BetweenRule.RightOpen => (start, end + 1),
+				_ => (start, end)
+			};
+
+		ReadOnlySpan<SymmetricType> getSymmetry()
+			=> (from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes) switch
+			{
+				[var p] => p switch
+				{
+					SymmetryConstraint.InvalidSymmetricType => [],
+					SymmetryConstraint.AllSymmetricTypes => SymmetricType.Values,
+					var symmetricTypes and not 0 => symmetricTypes.AllFlags,
+					_ => [SymmetricType.None]
+				},
+				_ => SymmetricType.Values
+			};
+
+		(Cell, Cell) getChosenGivensCountRange()
+			=> (
+				from c in constraints.OfType<CountBetweenConstraint>()
+				let betweenRule = c.BetweenRule
+				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
+				let targetPair = c.CellState switch
+				{
+					CellState.Given => (pair.Start, pair.End),
+					CellState.Empty => (81 - pair.End, 81 - pair.Start)
+				}
+				select (betweenRule, targetPair)
+			) is [var (br, (start, end))] ? determineEmptyCellsCount(br, start, end) : (-1, -1);
+
+		Cell getGivensCount() => chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rng.Next(s, e + 1) : -1;
+
+		DifficultyLevel getDifficultyLevel()
+			=> (
+				from c in constraints.OfType<DifficultyLevelConstraint>()
+				select c.ValidDifficultyLevels.AllFlags.ToArray()
+			) is [var d] ? d[rng.Next(0, d.Length)] : DifficultyLevels.AllValid;
 	}
 
 	private static partial bool TransformChecker_MissingDigit(in Grid grid, out object? result);

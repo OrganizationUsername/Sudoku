@@ -10834,7 +10834,7 @@
         </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
-            Indicates the data provider type,
+            Represents data that will be reported in progress, invoked by <see cref="M:System.IProgress`1.Report(`0)" />.
             </summary>
             <typeparam name="TSelf"><self-type-constraint>
 		<para>Indicates the type implementing this interface.</para>
@@ -10846,6 +10846,7 @@
 			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
 		</para>
 	</self-type-constraint></typeparam>
+            <seealso cref="M:System.IProgress`1.Report(`0)" />
         </member>
         <member name="P:Sudoku.Generating.IProgressDataProvider`1.Count">
             <summary>

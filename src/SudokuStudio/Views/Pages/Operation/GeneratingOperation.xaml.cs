@@ -71,7 +71,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		bool onlyGenerateOne,
 		GridStateChanger<Analyzer>? gridStateChanger = null,
 		Action<string>? gridTextConsumer = null
-	) where TProgressDataProvider : struct, IEquatable<TProgressDataProvider>, IProgressDataProvider<TProgressDataProvider>
+	)
+		where TProgressDataProvider : struct, IEquatable<TProgressDataProvider>, IProgressDataProvider<TProgressDataProvider>
 	{
 		var processingText = SR.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
 		await GeneratorHub.GenerateAsync<TProgressDataProvider>(

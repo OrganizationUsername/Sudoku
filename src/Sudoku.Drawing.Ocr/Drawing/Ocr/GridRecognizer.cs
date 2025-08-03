@@ -4,10 +4,9 @@ namespace Sudoku.Drawing.Ocr;
 /// Provides a grid field recognizer. If you want to know what is a <b>field</b>,
 /// please see the 'remark' part of <see cref="InternalServiceProvider"/>.
 /// </summary>
-/// <param name="_photo">Indicates the photo to be assigned.</param>
+/// <param name="photo">Indicates the photo to be assigned.</param>
 /// <seealso cref="InternalServiceProvider"/>
-[TypeImpl(TypeImplFlags.Disposable)]
-internal sealed partial class GridRecognizer(Bitmap _photo) : IDisposable
+internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 {
 	/// <summary>
 	/// Indicates the L2Gradient.
@@ -41,11 +40,25 @@ internal sealed partial class GridRecognizer(Bitmap _photo) : IDisposable
 
 
 	/// <summary>
+	/// Indicates whether the object is disposed.
+	/// </summary>
+	private bool _isDisposed;
+
+	/// <summary>
 	/// The image.
 	/// </summary>
-	[DisposableMember]
-	private Image<Bgr, byte> _image = _photo.CorrectOrientation().ToImage<Bgr, byte>();
+	private Image<Bgr, byte> _image = photo.CorrectOrientation().ToImage<Bgr, byte>();
 
+
+	/// <inheritdoc/>
+	public void Dispose()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		_image.Dispose();
+
+		_isDisposed = true;
+	}
 
 	/// <summary>
 	/// Recognize.

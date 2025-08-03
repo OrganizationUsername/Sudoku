@@ -3,7 +3,6 @@ namespace Sudoku.Drawing.Drawing2D;
 /// <summary>
 /// Represents a canvas that allows drawing sudoku-related items onto it.
 /// </summary>
-[TypeImpl(TypeImplFlags.Disposable)]
 public sealed partial class GridCanvas : IDisposable
 {
 	/// <summary>
@@ -33,24 +32,22 @@ public sealed partial class GridCanvas : IDisposable
 	/// with centering the text with both horizontal aligning and vertical aligning.
 	/// </summary>
 	/// <seealso cref="Graphics.DrawString(string?, Font, Brush, RectangleF, StringFormat?)"/>
-	[DisposableMember]
-	private readonly StringFormat _stringAligner = new()
-	{
-		Alignment = StringAlignment.Center,
-		LineAlignment = StringAlignment.Center
-	};
+	private readonly StringFormat _stringAligner = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
 
 	/// <summary>
 	/// Indicates the backing bitmap to be used.
 	/// </summary>
-	[DisposableMember]
 	private readonly Bitmap _backingBitmap;
 
 	/// <summary>
 	/// Indicates the backing <see cref="Graphics"/> instance to draw elements.
 	/// </summary>
-	[DisposableMember]
 	private readonly Graphics _g;
+
+	/// <summary>
+	/// Indicates whether the object is disposed.
+	/// </summary>
+	private bool _isDisposed;
 
 
 	/// <summary>
@@ -75,6 +72,18 @@ public sealed partial class GridCanvas : IDisposable
 	/// </summary>
 	public GridCanvasSettings Settings { get; }
 
+
+	/// <inheritdoc/>
+	public void Dispose()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		_stringAligner.Dispose();
+		_backingBitmap.Dispose();
+		_g.Dispose();
+
+		_isDisposed = true;
+	}
 
 	/// <summary>
 	/// Try to save the picture into the local path.

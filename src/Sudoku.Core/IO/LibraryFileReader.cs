@@ -3,8 +3,7 @@ namespace Sudoku.IO;
 /// <summary>
 /// Represents a UTF-8 format library file reader.
 /// </summary>
-[TypeImpl(TypeImplFlags.AsyncDisposable)]
-internal sealed partial class LibraryFileReader : IAsyncDisposable
+internal sealed class LibraryFileReader : IAsyncDisposable
 {
 	/// <summary>
 	/// Represents constant line feed <c>'\n'</c>.
@@ -20,8 +19,12 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 	/// <summary>
 	/// Indicates the reader stream.
 	/// </summary>
-	[DisposableMember]
 	private readonly FileStream _readerStream;
+
+	/// <summary>
+	/// Indicates whether the object is disposed.
+	/// </summary>
+	private bool _isDisposed;
 
 
 	/// <summary>
@@ -32,6 +35,7 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 	/// <param name="filePath">The file path.</param>
 	/// <param name="bufferSize">The buffer size.</param>
 	/// <param name="exists">Indicates whether the file exists.</param>
+	/// <seealso cref="FileMode.OpenOrCreate"/>
 	public LibraryFileReader(string filePath, int bufferSize, out bool exists)
 	{
 		(FilePath, BufferSize) = (filePath, bufferSize);
@@ -188,6 +192,15 @@ internal sealed partial class LibraryFileReader : IAsyncDisposable
 
 			Interlocked.Add(ref lineCount, localCount);
 		}
+	}
+
+	/// <inheritdoc/>
+	public async ValueTask DisposeAsync()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		await _readerStream.DisposeAsync();
+		_isDisposed = true;
 	}
 
 	/// <summary>

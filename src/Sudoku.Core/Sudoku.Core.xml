@@ -11394,6 +11394,11 @@
             Indicates the reader stream.
             </summary>
         </member>
+        <member name="F:Sudoku.IO.LibraryFileReader._isDisposed">
+            <summary>
+            Indicates whether the object is disposed.
+            </summary>
+        </member>
         <member name="M:Sudoku.IO.LibraryFileReader.#ctor(System.String,System.Int32,System.Boolean@)">
             <summary>
             Initializes a <see cref="T:Sudoku.IO.LibraryFileReader"/> instance.
@@ -11403,6 +11408,7 @@
             <param name="filePath">The file path.</param>
             <param name="bufferSize">The buffer size.</param>
             <param name="exists">Indicates whether the file exists.</param>
+            <seealso cref="F:System.IO.FileMode.OpenOrCreate"/>
         </member>
         <member name="P:Sudoku.IO.LibraryFileReader.FilePath">
             <summary>
@@ -11427,6 +11433,9 @@
             </summary>
             <returns>The number of lines.</returns>
         </member>
+        <member name="M:Sudoku.IO.LibraryFileReader.DisposeAsync">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.IO.LibraryFileReader.ReadLinesRangeAsync(System.UInt64,System.UInt64,System.Threading.CancellationToken)">
             <summary>
             Asynchronously read for the specified lines.
@@ -11444,19 +11453,6 @@
             <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
             <returns>An enumerator object that allows iterating values asynchronously.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when <paramref name="cancellationToken"/> is requested.</exception>
-        </member>
-        <member name="F:Sudoku.IO.LibraryFileReader._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/> will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.IO.LibraryFileReader.DisposeAsync"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
-        </member>
-        <member name="M:Sudoku.IO.LibraryFileReader.DisposeAsync">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:Sudoku.IO.LibraryFileWriter">
             <summary>

@@ -3,14 +3,17 @@ namespace Sudoku.Drawing.Ocr;
 /// <summary>
 /// Define a sudoku recognition service provider.
 /// </summary>
-[TypeImpl(TypeImplFlags.Disposable)]
-public sealed partial class RecognitionServiceProvider : IDisposable
+public sealed class RecognitionServiceProvider : IDisposable
 {
 	/// <summary>
 	/// Indicates the internal recognition service provider.
 	/// </summary>
-	[DisposableMember]
 	private readonly InternalServiceProvider _recognizingServiceProvider;
+
+	/// <summary>
+	/// Indicates whether the object is disposed.
+	/// </summary>
+	private bool _isDisposed;
 
 
 	/// <summary>
@@ -25,6 +28,16 @@ public sealed partial class RecognitionServiceProvider : IDisposable
 	/// </summary>
 	public bool IsInitialized => _recognizingServiceProvider.Initialized;
 
+
+	/// <inheritdoc/>
+	public void Dispose()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		_recognizingServiceProvider.Dispose();
+
+		_isDisposed = true;
+	}
 
 	/// <summary>
 	/// Recognize the image.

@@ -6,8 +6,7 @@ namespace Sudoku.Drawing.Ocr;
 /// <remarks>
 /// During the recognizing, the <b>field</b> indicates the whole outline of a grid.
 /// </remarks>
-[TypeImpl(TypeImplFlags.Disposable)]
-internal sealed partial class InternalServiceProvider : IDisposable
+internal sealed class InternalServiceProvider : IDisposable
 {
 	/// <summary>
 	/// Indicates the ThOcrMin.
@@ -21,9 +20,13 @@ internal sealed partial class InternalServiceProvider : IDisposable
 
 
 	/// <summary>
+	/// Indicates whether the object is disposed.
+	/// </summary>
+	private bool _isDisposed;
+
+	/// <summary>
 	/// The internal <see cref="Tesseract"/> instance.
 	/// </summary>
-	[DisposableMember]
 	private Tesseract? _ocr;
 
 
@@ -32,6 +35,16 @@ internal sealed partial class InternalServiceProvider : IDisposable
 	/// </summary>
 	public bool Initialized => _ocr is not null;
 
+
+	/// <inheritdoc/>
+	public void Dispose()
+	{
+		ObjectDisposedException.ThrowIf(_isDisposed, this);
+
+		_ocr?.Dispose();
+
+		_isDisposed = true;
+	}
 
 	/// <summary>
 	/// Recognizes digits.

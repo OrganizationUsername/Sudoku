@@ -26604,6 +26604,9 @@
             <param name="index">The index.</param>
             <returns>The technique field.</returns>
         </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.op_Addition(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.Technique)">
             <inheritdoc/>
         </member>
@@ -26676,12 +26679,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Categorization#TechniqueSet}#op_False(Sudoku.Categorization.TechniqueSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Categorization.TechniqueSet)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
-        </member>
-        <member name="M:Sudoku.Categorization.TechniqueSet.System#ILogicalOperators{Sudoku#Categorization#TechniqueSet}#op_LogicalNot(Sudoku.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Categorization.TechniqueSetExtensions">

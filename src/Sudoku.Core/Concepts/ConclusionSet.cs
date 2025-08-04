@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString
-		| TypeImplFlags.EqualityOperators | TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator)]
+		| TypeImplFlags.EqualityOperators | TypeImplFlags.TrueAndFalseOperators)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
@@ -492,6 +492,9 @@ public sealed partial class ConclusionSet :
 	public static ConclusionSet Parse(string s, IFormatProvider? provider)
 		=> CoordinateParser.GetInstance(provider).ConclusionParser(s);
 
+
+	/// <inheritdoc/>
+	public static bool operator !(ConclusionSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	public static ConclusionSet operator ~(ConclusionSet value)

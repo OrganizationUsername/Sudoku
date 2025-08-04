@@ -8,9 +8,7 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// </remarks>
 /// <seealso cref="Space"/>
 [TypeImpl(
-	TypeImplFlags.Object_Equals
-		| TypeImplFlags.AllEqualityComparisonOperators
-		| TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator,
+	TypeImplFlags.Object_Equals | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators,
 	IsLargeStructure = true)]
 public partial struct SpaceSet :
 	IAdditionOperators<SpaceSet, Space, SpaceSet>,
@@ -394,6 +392,9 @@ public partial struct SpaceSet :
 		return result;
 	}
 
+	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
+	public static bool operator !(in SpaceSet value) => value.Count == 0;
+
 	/// <inheritdoc cref="IAdditionOperators{TSelf, TOther, TResult}.op_Addition(TSelf, TOther)"/>
 	public static SpaceSet operator +(in SpaceSet left, Space right)
 	{
@@ -442,6 +443,9 @@ public partial struct SpaceSet :
 		result._field[3] ^= right._field[3];
 		return result;
 	}
+
+	/// <inheritdoc/>
+	static bool ILogicalOperators<SpaceSet>.operator !(SpaceSet value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	static SpaceSet IBitwiseOperators<SpaceSet, SpaceSet, SpaceSet>.operator ~(SpaceSet value) => ~value;

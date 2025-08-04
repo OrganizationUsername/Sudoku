@@ -14,7 +14,7 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate>;
 [DebuggerStepThrough]
 [TypeImpl(
 	TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString
-		| TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator,
+		| TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators,
 	IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 {
@@ -684,6 +684,9 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 
 	/// <inheritdoc/>
+	public static bool operator !(in CandidateMap value) => value.Count == 0;
+
+	/// <inheritdoc/>
 	public static CandidateMap operator ~(in CandidateMap offsets)
 	{
 		var vectors = offsets._bits.Vectors;
@@ -852,4 +855,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		}
 		return result;
 	}
+
+	/// <inheritdoc/>
+	static bool ILogicalOperators<CandidateMap>.operator !(CandidateMap value) => value.Count == 0;
 }

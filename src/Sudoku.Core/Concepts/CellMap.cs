@@ -19,8 +19,7 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(
-	TypeImplFlags.AllObjectMethods
-		| TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators | TypeImplFlags.LogicalNotOperator,
+	TypeImplFlags.AllObjectMethods | TypeImplFlags.AllEqualityComparisonOperators | TypeImplFlags.TrueAndFalseOperators,
 	IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
@@ -845,6 +844,9 @@ public partial struct CellMap : CellMapBase
 	private static Vector128<ulong> CV(ulong e1, ulong e0) => Vector128.Create(e0, e1);
 
 
+	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
+	public static bool operator !(in CellMap value) => value.Count == 0;
+
 	/// <inheritdoc/>
 	public static CellMap operator ~(in CellMap offsets) => CreateByVector(~offsets._vector & BitwiseNotConstant);
 
@@ -1009,4 +1011,7 @@ public partial struct CellMap : CellMapBase
 		}
 		return result;
 	}
+
+	/// <inheritdoc/>
+	static bool ILogicalOperators<CellMap>.operator !(CellMap value) => value.Count == 0;
 }

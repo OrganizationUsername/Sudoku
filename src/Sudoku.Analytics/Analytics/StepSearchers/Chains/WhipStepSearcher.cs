@@ -24,6 +24,10 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
+		if (!grid.IsValid)
+		{
+			return null;
+		}
 
 		// Iterate on each candidate that can be asserted as false in solution.
 		foreach (var cell in EmptyCells)

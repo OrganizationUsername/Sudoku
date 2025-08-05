@@ -15,7 +15,11 @@ public static class TrueCandidate
 	[Cached]
 	public static CandidateMap GetAllTrueCandidates(in Grid grid, CancellationToken cancellationToken = default)
 	{
-		ArgumentException.ThrowIfAssertionFailed(grid.IsValid);
+		if (!grid.IsValid)
+		{
+			return [];
+		}
+
 		ArgumentException.ThrowIfAssertionFailed(grid.PuzzleType == SudokuType.Standard);
 
 		// VARIABLE_DECLARATION_BEGIN

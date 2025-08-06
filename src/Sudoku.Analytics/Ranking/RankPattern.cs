@@ -19,7 +19,6 @@ namespace Sudoku.Ranking;
 /// We should append an extra check on "both true" to candidates in a same link if we want to trim links.
 /// </para>
 /// </remarks>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, IsLargeStructure = true)]
 public readonly ref partial struct RankPattern(ref readonly Grid grid, ref readonly SpaceSet truths, ref readonly SpaceSet links) :
 	IEquatable<RankPattern>
 {
@@ -75,6 +74,9 @@ public readonly ref partial struct RankPattern(ref readonly Grid grid, ref reado
 	public ref readonly CandidateMap Candidates => ref _candidates;
 
 
+	/// <inheritdoc cref="ReadOnlySpan{T}.Equals"/>
+	public override bool Equals(object? obj) => false;
+
 	/// <inheritdoc/>
 	public bool Equals(in RankPattern other) => Grid == other.Grid && Truths == other.Truths && Links == other.Links;
 
@@ -118,4 +120,11 @@ public readonly ref partial struct RankPattern(ref readonly Grid grid, ref reado
 
 		return result;
 	}
+
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	public static bool operator ==(in RankPattern left, in RankPattern right) => left.Equals(in right);
+
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	public static bool operator !=(in RankPattern left, in RankPattern right) => !(left == right);
 }

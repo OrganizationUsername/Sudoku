@@ -5,11 +5,7 @@ namespace Sudoku.Concepts.Graphs;
 /// This graph will be useful to measure border lines.
 /// </summary>
 /// <seealso cref="Cell"/>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public readonly ref partial struct AdjacentCellGraph :
-	IEquatable<AdjacentCellGraph>,
-	//IEqualityOperators<AdjacentCellGraph, AdjacentCellGraph, bool>,
-	IFormattable
+public readonly ref struct AdjacentCellGraph : IEquatable<AdjacentCellGraph>, IFormattable
 {
 	/// <summary>
 	/// Indicates the backing field of cells.
@@ -93,6 +89,9 @@ public readonly ref partial struct AdjacentCellGraph :
 	}
 
 
+	/// <inheritdoc cref="ReadOnlySpan{T}.Equals"/>
+	public override bool Equals(object? obj) => false;
+
 	/// <inheritdoc/>
 	public bool Equals(AdjacentCellGraph other) => Cells == other.Cells;
 
@@ -107,4 +106,11 @@ public readonly ref partial struct AdjacentCellGraph :
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(AdjacentCellGraph left, AdjacentCellGraph right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(AdjacentCellGraph left, AdjacentCellGraph right) => !(left == right);
 }

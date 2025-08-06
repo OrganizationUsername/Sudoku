@@ -12,8 +12,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="isStrong"><inheritdoc cref="IsStrong" path="/summary"/></param>
 /// <param name="groupedLinkPattern"><inheritdoc cref="GroupedLinkPattern" path="/summary"/></param>
 /// <seealso cref="Node"/>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public sealed partial class Link(Node firstNode, Node secondNode, bool isStrong, Pattern? groupedLinkPattern = null) :
+public sealed class Link(Node firstNode, Node secondNode, bool isStrong, Pattern? groupedLinkPattern = null) :
 	IComponent,
 	IEquatable<Link>,
 	IEqualityOperators<Link, Link, bool>
@@ -83,6 +82,9 @@ public sealed partial class Link(Node firstNode, Node secondNode, bool isStrong,
 		=> ((firstNode, secondNode, isStrong), groupedLinkPattern) = (this, GroupedLinkPattern);
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as Link);
+
+	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] Link? other) => other is not null && Equals(other, LinkComparison.Undirected);
 
 	/// <summary>
@@ -123,4 +125,12 @@ public sealed partial class Link(Node firstNode, Node secondNode, bool isStrong,
 
 	/// <inheritdoc/>
 	public override string ToString() => $"{FirstNode}{(IsStrong ? StrongLinkConnector : WeakLinkConnector)}{SecondNode}";
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(Link? left, Link? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(Link? left, Link? right) => !(left == right);
 }

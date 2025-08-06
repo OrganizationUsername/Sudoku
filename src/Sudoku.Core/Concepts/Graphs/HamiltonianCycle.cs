@@ -6,8 +6,7 @@ namespace Sudoku.Concepts.Graphs;
 /// </summary>
 /// <param name="cells"><inheritdoc cref="_cells" path="/summary"/></param>
 /// <seealso cref="CellGraph"/>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public readonly partial struct HamiltonianCycle(Cell[] cells) :
+public readonly struct HamiltonianCycle(Cell[] cells) :
 	IEnumerable<Cell>,
 	IEquatable<HamiltonianCycle>,
 	IEqualityOperators<HamiltonianCycle, HamiltonianCycle, bool>,
@@ -40,6 +39,9 @@ public readonly partial struct HamiltonianCycle(Cell[] cells) :
 	/// <returns>The cell at the specified index.</returns>
 	public Cell this[int index] => _cells[index];
 
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is HamiltonianCycle comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public bool Equals(HamiltonianCycle other) => Equals(other, HamiltonianCycleComparison.Default);
@@ -194,4 +196,11 @@ public readonly partial struct HamiltonianCycle(Cell[] cells) :
 
 	/// <inheritdoc/>
 	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => _cells.AsEnumerable().GetEnumerator();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(HamiltonianCycle left, HamiltonianCycle right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(HamiltonianCycle left, HamiltonianCycle right) => !(left == right);
 }

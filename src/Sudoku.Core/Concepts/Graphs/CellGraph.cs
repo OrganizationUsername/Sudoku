@@ -9,7 +9,6 @@ namespace Sudoku.Concepts.Graphs;
 /// </summary>
 /// <seealso href="https://en.wikipedia.org/wiki/Component_(graph_theory)">Wikipedia - Component (Graph Theory)</seealso>
 [CollectionBuilder(typeof(CellGraph), nameof(Create))]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, IReadOnlyCollection<Cell>
 {
 	/// <summary>
@@ -210,6 +209,9 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is CellGraph comparer && Equals(comparer);
+
+	/// <inheritdoc/>
 	public bool Equals(CellGraph other) => _cells == other._cells;
 
 	/// <inheritdoc/>
@@ -377,4 +379,11 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 		}
 		return new(cells, invalidCells);
 	}
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(CellGraph left, CellGraph right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(CellGraph left, CellGraph right) => !(left == right);
 }

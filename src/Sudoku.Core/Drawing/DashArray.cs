@@ -4,7 +4,6 @@ namespace Sudoku.Drawing;
 /// Defines a dash array of <see cref="double"/> values. The values can be used in UI as dash array of a double collection.
 /// </summary>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
 public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>
 {
 	/// <summary>
@@ -25,16 +24,15 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 	[JsonIgnore]
 	public int Count => _doubles.Count;
 
-	[JsonIgnore]
-	[StringMember]
-	private string ValuesString => $"[{string.Join(", ", _doubles)}]";
-
 
 	/// <summary>
 	/// Adds a new value into the collection.
 	/// </summary>
 	/// <param name="value">The value.</param>
 	public void Add(double value) => _doubles.Add(value);
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is DashArray comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public bool Equals(DashArray other) => _doubles.SequenceEqual(other._doubles);
@@ -56,6 +54,9 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 		return result.ToHashCode();
 	}
 
+	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString() => $"[{string.Join(", ", _doubles)}]";
+
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public Enumerator GetEnumerator() => new(_doubles);
 
@@ -64,4 +65,11 @@ public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<Das
 
 	/// <inheritdoc/>
 	IEnumerator<double> IEnumerable<double>.GetEnumerator() => _doubles.AsEnumerable().GetEnumerator();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(DashArray left, DashArray right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(DashArray left, DashArray right) => !(left == right);
 }

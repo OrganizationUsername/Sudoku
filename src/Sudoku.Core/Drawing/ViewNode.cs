@@ -4,10 +4,7 @@ namespace Sudoku.Drawing;
 /// Represents an item that can be drawn by GDI+ graphics module or UI shape controls.
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="Identifier" path="/summary"/></param>
-[JsonPolymorphic(
-	UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType,
-	TypeDiscriminatorPropertyName = "$typeid")]
-[TypeImpl(TypeImplFlags.EqualityOperators)]
+[JsonPolymorphic(UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FallBackToBaseType, TypeDiscriminatorPropertyName = "$typeid")]
 [JsonDerivedType(typeof(CellViewNode), 0)]
 [JsonDerivedType(typeof(CandidateViewNode), 1)]
 [JsonDerivedType(typeof(HouseViewNode), 2)]
@@ -25,7 +22,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(HeartViewNode), 16)]
 [JsonDerivedType(typeof(TruthSpaceViewNode), 20)]
 [JsonDerivedType(typeof(LinkSpaceViewNode), 21)]
-public abstract partial class ViewNode(ColorIdentifier identifier) :
+public abstract class ViewNode(ColorIdentifier identifier) :
 	ICloneable,
 	IDrawableItem,
 	IEquatable<ViewNode>,
@@ -68,4 +65,12 @@ public abstract partial class ViewNode(ColorIdentifier identifier) :
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(ViewNode? left, ViewNode? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(ViewNode? left, ViewNode? right) => !(left == right);
 }

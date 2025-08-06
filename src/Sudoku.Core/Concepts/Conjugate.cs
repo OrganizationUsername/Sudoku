@@ -8,8 +8,7 @@ namespace Sudoku.Concepts;
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="_mask">Indicates the target mask.</param>
-[TypeImpl(TypeImplFlags.AllObjectMethods | TypeImplFlags.EqualityOperators)]
-public readonly partial struct Conjugate(ConjugateMask _mask) :
+public readonly struct Conjugate(ConjugateMask _mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>,
 	IFormattable,
@@ -49,7 +48,6 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	[HashCodeMember]
 	public Digit Digit => _mask >> 20 & 15;
 
 	/// <summary>
@@ -65,15 +63,23 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 	/// <summary>
 	/// Indicates the cells (the "from" cell and "to" cell).
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Map => [From, To];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (From * 9 + Digit, To * 9 + Digit);
 
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conjugate comparer && Equals(comparer);
+
 	/// <inheritdoc/>
 	public bool Equals(Conjugate other) => Digit == other.Digit && Map == other.Map;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Digit, Map);
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
@@ -114,4 +120,11 @@ public readonly partial struct Conjugate(ConjugateMask _mask) :
 		=> CoordinateParser.GetInstance(provider).ConjugateParser(s) is [var result]
 			? result
 			: throw new FormatException(SR.ExceptionMessage("MultipleConjugatePairValuesFound"));
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(Conjugate left, Conjugate right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(Conjugate left, Conjugate right) => !(left == right);
 }

@@ -23,8 +23,7 @@ namespace Sudoku.Generating.Filtering;
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
 [JsonDerivedType(typeof(TechniquePrecedenceConstraint), nameof(TechniquePrecedenceConstraint))]
 [JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
-[TypeImpl(TypeImplFlags.EqualityOperators)]
-public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>, IFormattable
+public abstract class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>, IFormattable
 {
 	/// <summary>
 	/// Indicates whether the constraint should be negated.
@@ -76,4 +75,12 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(Constraint? left, Constraint? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(Constraint? left, Constraint? right) => !(left == right);
 }

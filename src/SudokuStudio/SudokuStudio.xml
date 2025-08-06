@@ -831,23 +831,23 @@
             Represents a color palette that contains a list of <see cref="T:Windows.UI.Color"/> instances that can be used in UI binding.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Collection.ColorPalette.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.Equals(SudokuStudio.Collection.ColorPalette)">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Collection.ColorPalette.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Equality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Collection.ColorPalette.op_Inequality(SudokuStudio.Collection.ColorPalette,SudokuStudio.Collection.ColorPalette)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Collection.ControlCreatorFactory">
             <summary>

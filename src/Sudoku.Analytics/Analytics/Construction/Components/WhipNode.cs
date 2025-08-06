@@ -6,13 +6,8 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="assignment"><inheritdoc cref="Assignment" path="/summary"/></param>
 /// <param name="availableAssignments"><inheritdoc cref="AvailableAssignments" path="/summary"/></param>
 /// <param name="parent"><inheritdoc cref="Parent" path="/summary"/></param>
-[StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
-public sealed partial class WhipNode(
-	WhipAssignment assignment,
-	ReadOnlyMemory<WhipAssignment> availableAssignments,
-	WhipNode? parent = null
-) : IParentLinkedNode<WhipNode>
+public sealed class WhipNode(WhipAssignment assignment, ReadOnlyMemory<WhipAssignment> availableAssignments, WhipNode? parent = null) :
+	IParentLinkedNode<WhipNode>
 {
 	/// <summary>
 	/// Initializes a <see cref="WhipNode"/> with no next assignments.
@@ -57,10 +52,16 @@ public sealed partial class WhipNode(
 
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as WhipNode);
+
+	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] WhipNode? other) => other is not null && Assignment == other.Assignment;
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => Assignment.GetHashCode();
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)
@@ -79,4 +80,11 @@ public sealed partial class WhipNode(
 	/// <returns>The new node created.</returns>
 	public static WhipNode operator >>(WhipNode current, WhipNode? parent)
 		=> new(current.Assignment, current.AvailableAssignments, parent);
+
+	/// <inheritdoc/>
+	public static bool operator ==(WhipNode? left, WhipNode? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(WhipNode? left, WhipNode? right) => !(left == right);
 }

@@ -16,7 +16,6 @@ namespace Sudoku.Categorization;
 /// <seealso cref="BitArray"/>
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
 public sealed partial class TechniqueSet() :
 	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
@@ -191,6 +190,9 @@ public sealed partial class TechniqueSet() :
 	/// Clears the collection, making all techniques to be removed.
 	/// </summary>
 	public void Clear() => _bitArray.SetAll(false);
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as TechniqueSet);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] TechniqueSet? other) => other is not null && _bitArray.SequenceEqual(other._bitArray);
@@ -481,6 +483,13 @@ public sealed partial class TechniqueSet() :
 
 	/// <inheritdoc/>
 	public static bool operator false(TechniqueSet value) => value.Count == 0;
+
+	/// <inheritdoc/>
+	public static bool operator ==(TechniqueSet? left, TechniqueSet? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(TechniqueSet? left, TechniqueSet? right) => !(left == right);
 
 	/// <inheritdoc/>
 	public static TechniqueSet operator +(TechniqueSet left, Technique right) => [.. left, right];

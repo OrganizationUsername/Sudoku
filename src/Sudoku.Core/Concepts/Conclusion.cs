@@ -11,7 +11,6 @@ namespace Sudoku.Concepts;
 /// but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
 public readonly partial struct Conclusion(Mask mask) :
 	IComparable<Conclusion>,
 	IDrawableItem,
@@ -91,6 +90,9 @@ public readonly partial struct Conclusion(Mask mask) :
 		=> ((conclusionType, _), cell, digit) = (this, Cell, Digit);
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Conclusion comparer && Equals(comparer);
+
+	/// <inheritdoc/>
 	public bool Equals(Conclusion other) => _mask == other._mask;
 
 	/// <inheritdoc/>
@@ -98,6 +100,9 @@ public readonly partial struct Conclusion(Mask mask) :
 
 	/// <inheritdoc/>
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
@@ -182,4 +187,10 @@ public readonly partial struct Conclusion(Mask mask) :
 	/// <param name="self">The current conclusion instance to be negated.</param>
 	/// <returns>The negation.</returns>
 	public static Conclusion operator ~(Conclusion self) => new((ConclusionType)(1 & (byte)~self.ConclusionType), self.Candidate);
+
+	/// <inheritdoc/>
+	public static bool operator ==(Conclusion left, Conclusion right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
 }

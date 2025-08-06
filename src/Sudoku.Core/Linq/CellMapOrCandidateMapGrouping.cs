@@ -10,8 +10,7 @@ namespace Sudoku.Linq;
 /// <param name="values"><inheritdoc cref="Values" path="/summary"/></param>
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators, IsLargeStructure = true)]
-public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TKey>(TKey key, in TMap values) :
+public readonly struct CellMapOrCandidateMapGrouping<TMap, TElement, TKey>(TKey key, in TMap values) :
 	IEnumerable<TElement>,
 	IEquatable<CellMapOrCandidateMapGrouping<TMap, TElement, TKey>>,
 	IEqualityOperators<CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, bool>,
@@ -46,7 +45,9 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TKe
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public void Deconstruct(out TKey key, out TMap values) => (key, values) = (Key, Values);
 
-
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj)
+		=> obj is CellMapOrCandidateMapGrouping<TMap, TElement, TKey> comparer && Equals(comparer);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public bool Equals(in CellMapOrCandidateMapGrouping<TMap, TElement, TKey> other) => Values == other.Values;
@@ -92,4 +93,21 @@ public readonly partial struct CellMapOrCandidateMapGrouping<TMap, TElement, TKe
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<TMap, TElement>.Select<TResult>(Func<TElement, TResult> selector)
 		=> this.Select(selector).ToArray();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(in CellMapOrCandidateMapGrouping<TMap, TElement, TKey> left, in CellMapOrCandidateMapGrouping<TMap, TElement, TKey> right)
+		=> left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(in CellMapOrCandidateMapGrouping<TMap, TElement, TKey> left, in CellMapOrCandidateMapGrouping<TMap, TElement, TKey> right)
+		=> !(left == right);
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, bool>.operator ==(global::Sudoku.Linq.CellMapOrCandidateMapGrouping<TMap, TElement, TKey> left, CellMapOrCandidateMapGrouping<TMap, TElement, TKey> right)
+		=> left == right;
+
+	/// <inheritdoc/>
+	static bool IEqualityOperators<CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, CellMapOrCandidateMapGrouping<TMap, TElement, TKey>, bool>.operator !=(global::Sudoku.Linq.CellMapOrCandidateMapGrouping<TMap, TElement, TKey> left, CellMapOrCandidateMapGrouping<TMap, TElement, TKey> right)
+		=> left != right;
 }

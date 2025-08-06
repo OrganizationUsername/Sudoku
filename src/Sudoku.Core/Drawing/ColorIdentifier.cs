@@ -8,8 +8,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(ColorColorIdentifier), 0)]
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
+public abstract class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
 {
 	/// <inheritdoc cref="WellKnownColorIdentifierKind.Normal"/>
 	public static readonly ColorIdentifier Normal = WellKnownColorIdentifierKind.Normal;
@@ -70,6 +69,9 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 
 
 	/// <inheritdoc/>
+	public sealed override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as ColorIdentifier);
+
+	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] ColorIdentifier? other);
 
 	/// <inheritdoc/>
@@ -77,6 +79,14 @@ public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEq
 
 	/// <inheritdoc/>
 	public abstract override string ToString();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(ColorIdentifier? left, ColorIdentifier? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(ColorIdentifier? left, ColorIdentifier? right) => !(left == right);
 
 
 	/// <summary>

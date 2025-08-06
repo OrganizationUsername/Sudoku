@@ -14,8 +14,7 @@ namespace Sudoku.Concepts.Graphs;
 /// <param name="digit"><inheritdoc cref="Digit" path="/summary"/></param>
 /// <param name="map"><inheritdoc cref="Map" path="/summary"/></param>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Cluster.html">Sudopedia Mirror - Cluster</seealso>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in CellMap map) : IEquatable<Cluster>
+public readonly ref struct Cluster(in Grid grid, Digit digit, scoped in CellMap map) : IEquatable<Cluster>
 {
 	/// <summary>
 	/// Indicates the grid used.
@@ -127,6 +126,9 @@ public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in 
 	}
 
 
+	/// <inheritdoc cref="ReadOnlySpan{T}.Equals"/>
+	public override bool Equals(object? obj) => false;
+
 	/// <inheritdoc/>
 	public bool Equals(Cluster other) => _map == other._map;
 
@@ -156,4 +158,11 @@ public readonly ref partial struct Cluster(in Grid grid, Digit digit, scoped in 
 		}
 		return new(grid, digit, result);
 	}
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(Cluster left, Cluster right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(Cluster left, Cluster right) => !(left == right);
 }

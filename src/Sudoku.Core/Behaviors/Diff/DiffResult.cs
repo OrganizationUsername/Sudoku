@@ -3,7 +3,6 @@ namespace Sudoku.Behaviors.Diff;
 /// <summary>
 /// Represents a difference result.
 /// </summary>
-[TypeImpl(TypeImplFlags.EqualityOperators)]
 [JsonPolymorphic]
 [JsonDerivedType(typeof(NothingChangedDiffResult), (int)DiffType.NothingChanged)]
 [JsonDerivedType(typeof(ResetDiffResult), (int)DiffType.Reset)]
@@ -77,4 +76,12 @@ public abstract partial class DiffResult :
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(DiffResult? left, DiffResult? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(DiffResult? left, DiffResult? right) => !(left == right);
 }

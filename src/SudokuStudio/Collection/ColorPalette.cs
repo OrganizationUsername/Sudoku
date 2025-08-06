@@ -3,15 +3,13 @@ namespace SudokuStudio.Collection;
 /// <summary>
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
-public sealed partial class ColorPalette :
+public sealed class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,
 	IEqualityOperators<ColorPalette, ColorPalette, bool>
 {
-	[StringMember]
-	private string ElementsString => $"[{string.Join(", ", this)}]";
-
+	/// <inheritdoc cref="object.Equals(object?)"/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as ColorPalette);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] ColorPalette? other)
@@ -46,4 +44,15 @@ public sealed partial class ColorPalette :
 		}
 		return result.ToHashCode();
 	}
+
+	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString() => $"[{string.Join(", ", this)}]";
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(ColorPalette? left, ColorPalette? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(ColorPalette? left, ColorPalette? right) => !(left == right);
 }

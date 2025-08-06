@@ -3723,20 +3723,20 @@
             Represents for a house blossom branch collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection,Sudoku.Analytics.Construction.Components.HouseBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IBinaryForcingChains`2">
             <summary>
@@ -4129,6 +4129,9 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(Sudoku.Analytics.Construction.Components.Link)">
             <inheritdoc/>
         </member>
@@ -4155,14 +4158,11 @@
         <member name="M:Sudoku.Analytics.Construction.Components.Link.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Link.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.op_Equality(Sudoku.Analytics.Construction.Components.Link,Sudoku.Analytics.Construction.Components.Link)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Link.op_Inequality(Sudoku.Analytics.Construction.Components.Link,Sudoku.Analytics.Construction.Components.Link)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.LinkComparison">
             <summary>
@@ -4378,20 +4378,20 @@
 				</summary>
 			</target>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Equals(Sudoku.Analytics.Construction.Components.LockedMember)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Equality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Equality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.LockedMember.op_Inequality(Sudoku.Analytics.Construction.Components.LockedMember,Sudoku.Analytics.Construction.Components.LockedMember)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.MultipleChainBasedComponent">
             <summary>
@@ -4975,20 +4975,20 @@
             Represents for a normal blossom branch collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NormalBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.NormalWhipAssignment">
             <summary>
@@ -5012,20 +5012,20 @@
             Represents for a n-times ALS blossom branch collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Analytics.Construction.Components.NTimesAlmostLockedSetsBlossomBranchCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.RectangleForcingChains">
             <summary>
@@ -5372,10 +5372,16 @@
         <member name="P:Sudoku.Analytics.Construction.Components.WhipNode.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(Sudoku.Analytics.Construction.Components.WhipNode)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString(System.IFormatProvider)">
@@ -5389,17 +5395,11 @@
             <param name="parent">The parent node.</param>
             <returns>The new node created.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_Equality(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WhipNode.op_Inequality(Sudoku.Analytics.Construction.Components.WhipNode,Sudoku.Analytics.Construction.Components.WhipNode)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.ComponentType">
             <summary>
@@ -5545,10 +5545,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.op_Equality(Sudoku.Analytics.Construction.Pattern,Sudoku.Analytics.Construction.Pattern)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Pattern.op_Inequality(Sudoku.Analytics.Construction.Pattern,Sudoku.Analytics.Construction.Pattern)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Patterns.AlmostHiddenSetPattern">
             <summary>
@@ -26454,6 +26454,9 @@
             Clears the collection, making all techniques to be removed.
             </summary>
         </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.Equals(Sudoku.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
@@ -26613,6 +26616,12 @@
         <member name="M:Sudoku.Categorization.TechniqueSet.op_False(Sudoku.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.op_Equality(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Categorization.TechniqueSet.op_Inequality(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.TechniqueSet)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.op_Addition(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.Technique)">
             <inheritdoc/>
         </member>
@@ -26665,15 +26674,6 @@
         </member>
         <member name="M:Sudoku.Categorization.TechniqueSet.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Categorization.TechniqueSet.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Categorization.TechniqueSet.op_Equality(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.TechniqueSet)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Categorization.TechniqueSet.op_Inequality(Sudoku.Categorization.TechniqueSet,Sudoku.Categorization.TechniqueSet)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Categorization.TechniqueSetExtensions">
             <summary>
@@ -27374,10 +27374,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Constraint.op_Equality(Sudoku.Generating.Filtering.Constraint,Sudoku.Generating.Filtering.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.Constraint.op_Inequality(Sudoku.Generating.Filtering.Constraint,Sudoku.Generating.Filtering.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.ConstraintCheckingContext">
             <summary>
@@ -28243,10 +28243,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.op_Equality(Sudoku.Generating.Filtering.KeywordCondition,Sudoku.Generating.Filtering.KeywordCondition)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.Filtering.KeywordCondition.op_Inequality(Sudoku.Generating.Filtering.KeywordCondition,Sudoku.Generating.Filtering.KeywordCondition)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.Filtering.PrecedenceOperator">
             <summary>
@@ -29208,6 +29208,9 @@
             Indicates the candidates.
             </summary>
         </member>
+        <member name="M:Sudoku.Ranking.RankPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.Equals(System.Object)"/>
+        </member>
         <member name="M:Sudoku.Ranking.RankPattern.Equals(Sudoku.Ranking.RankPattern@)">
             <inheritdoc/>
         </member>
@@ -29221,6 +29224,12 @@
             <param name="grid">The grid.</param>
             <param name="truths">The truths.</param>
             <param name="links">The links.</param>
+        </member>
+        <member name="M:Sudoku.Ranking.RankPattern.op_Equality(Sudoku.Ranking.RankPattern@,Sudoku.Ranking.RankPattern@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Ranking.RankPattern.op_Inequality(Sudoku.Ranking.RankPattern@,Sudoku.Ranking.RankPattern@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Ranking.RankPattern.GetEliminations">
             <summary>
@@ -29344,15 +29353,6 @@
             Gets the full string of the current pattern, including its details (rank, eliminations and so on).
             </summary>
             <returns>The string.</returns>
-        </member>
-        <member name="M:Sudoku.Ranking.RankPattern.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Ranking.RankPattern.op_Equality(Sudoku.Ranking.RankPattern@,Sudoku.Ranking.RankPattern@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Ranking.RankPattern.op_Inequality(Sudoku.Ranking.RankPattern@,Sudoku.Ranking.RankPattern@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Resources.AnalyticsResources">
             <summary>

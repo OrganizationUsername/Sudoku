@@ -3,12 +3,12 @@ namespace Sudoku.Generating.Filtering;
 /// <summary>
 /// Represents a keyword condition.
 /// </summary>
-[TypeImpl(TypeImplFlags.EqualityOperators)]
+[JsonPolymorphic]
 [JsonDerivedType(typeof(StringPatternKeywordCondition), nameof(StringPatternKeywordCondition))]
 [JsonDerivedType(typeof(StringEqualityComparisonKeywordCondition), nameof(StringEqualityComparisonKeywordCondition))]
 [JsonDerivedType(typeof(NumberRangeKeywordCondition), nameof(NumberRangeKeywordCondition))]
 [JsonDerivedType(typeof(NumberComparisonKeywordCondition), nameof(NumberComparisonKeywordCondition))]
-public abstract partial class KeywordCondition :
+public abstract class KeywordCondition :
 	ICloneable,
 	IEquatable<KeywordCondition>,
 	IEqualityOperators<KeywordCondition, KeywordCondition, bool>,
@@ -88,4 +88,12 @@ public abstract partial class KeywordCondition :
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider as CultureInfo);
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(KeywordCondition? left, KeywordCondition? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(KeywordCondition? left, KeywordCondition? right) => !(left == right);
 }

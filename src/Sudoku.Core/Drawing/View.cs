@@ -3,8 +3,7 @@ namespace Sudoku.Drawing;
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public sealed partial class View :
+public sealed class View :
 	HashSet<ViewNode>,
 	IEquatable<View>,
 	IExceptMethod<View, ViewNode>,
@@ -77,6 +76,9 @@ public sealed partial class View :
 	}
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as View);
+
+	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] View? other) => SetComparer.Equals(this, other);
 
 	/// <inheritdoc/>
@@ -147,6 +149,13 @@ public sealed partial class View :
 	/// <inheritdoc/>
 	IEnumerable<TResult> IOfTypeMethod<View, ViewNode>.OfType<TResult>() => this.OfType<TResult>().ToArray();
 
+
+	/// <inheritdoc/>
+	public static bool operator ==(View? left, View? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(View? left, View? right) => !(left == right);
 
 	/// <summary>
 	/// Creates a <see cref="View"/> whose elements contains both <paramref name="left"/> and <paramref name="right"/>.

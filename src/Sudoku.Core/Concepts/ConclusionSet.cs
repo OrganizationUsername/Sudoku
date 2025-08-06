@@ -3,8 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a list of conclusions.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString | TypeImplFlags.EqualityOperators)]
-public sealed partial class ConclusionSet :
+public sealed class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
 	IEquatable<ConclusionSet>,
@@ -201,6 +200,9 @@ public sealed partial class ConclusionSet :
 	}
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as ConclusionSet);
+
+	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] ConclusionSet? other) => other is not null && _bitArray.SequenceEqual(other._bitArray);
 
 	/// <inheritdoc/>
@@ -280,6 +282,9 @@ public sealed partial class ConclusionSet :
 		}
 		return result.ToHashCode();
 	}
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
@@ -499,6 +504,13 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	public static bool operator false(ConclusionSet value) => value.Count == 0;
+
+	/// <inheritdoc/>
+	public static bool operator ==(ConclusionSet? left, ConclusionSet? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(ConclusionSet? left, ConclusionSet? right) => !(left == right);
 
 	/// <inheritdoc/>
 	public static ConclusionSet operator ~(ConclusionSet value)

@@ -3,11 +3,13 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents for a n-times ALS blossom branch collection.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public sealed partial class NTimesAlmostLockedSetsBlossomBranchCollection :
+public sealed class NTimesAlmostLockedSetsBlossomBranchCollection :
 	DeathBlossomBranchCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>,
 	IEqualityOperators<NTimesAlmostLockedSetsBlossomBranchCollection, NTimesAlmostLockedSetsBlossomBranchCollection, bool>
 {
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as NTimesAlmostLockedSetsBlossomBranchCollection);
+
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] NTimesAlmostLockedSetsBlossomBranchCollection? other)
 	{
@@ -56,4 +58,13 @@ public sealed partial class NTimesAlmostLockedSetsBlossomBranchCollection :
 
 		return result.ToHashCode();
 	}
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(NTimesAlmostLockedSetsBlossomBranchCollection? left, NTimesAlmostLockedSetsBlossomBranchCollection? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(NTimesAlmostLockedSetsBlossomBranchCollection? left, NTimesAlmostLockedSetsBlossomBranchCollection? right)
+		=> !(left == right);
 }

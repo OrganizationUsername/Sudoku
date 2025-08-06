@@ -3,8 +3,7 @@ namespace Sudoku.Analytics.Construction;
 /// <summary>
 /// Represents a pattern that describes a technique, describing cells and digits used in a puzzle.
 /// </summary>
-[TypeImpl(TypeImplFlags.EqualityOperators)]
-public abstract partial class Pattern :
+public abstract class Pattern :
 	ICloneable,
 	IConstructible<PatternType>,
 	IEquatable<Pattern>,
@@ -36,4 +35,12 @@ public abstract partial class Pattern :
 
 	/// <inheritdoc/>
 	object ICloneable.Clone() => Clone();
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(Pattern? left, Pattern? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(Pattern? left, Pattern? right) => !(left == right);
 }

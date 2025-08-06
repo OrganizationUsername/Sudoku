@@ -3,11 +3,13 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents for a normal blossom branch collection.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.EqualityOperators)]
-public sealed partial class NormalBlossomBranchCollection :
+public sealed class NormalBlossomBranchCollection :
 	DeathBlossomBranchCollection<NormalBlossomBranchCollection, Digit>,
 	IEqualityOperators<NormalBlossomBranchCollection, NormalBlossomBranchCollection, bool>
 {
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as NormalBlossomBranchCollection);
+
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] NormalBlossomBranchCollection? other)
 	{
@@ -56,4 +58,12 @@ public sealed partial class NormalBlossomBranchCollection :
 
 		return result.ToHashCode();
 	}
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(NormalBlossomBranchCollection? left, NormalBlossomBranchCollection? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(NormalBlossomBranchCollection? left, NormalBlossomBranchCollection? right) => !(left == right);
 }

@@ -5,8 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="lockedCells"><inheritdoc cref="LockedCells" path="/summary"/></param>
 /// <param name="lockedBlock"><inheritdoc cref="LockedBlock" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class LockedMember(in CellMap lockedCells, House lockedBlock) :
+public sealed class LockedMember(in CellMap lockedCells, House lockedBlock) :
 	IComponent,
 	IEquatable<LockedMember>,
 	IEqualityOperators<LockedMember, LockedMember, bool>
@@ -14,13 +13,11 @@ public sealed partial class LockedMember(in CellMap lockedCells, House lockedBlo
 	/// <summary>
 	/// Indicates the locked cells.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap LockedCells { get; } = lockedCells;
 
 	/// <summary>
 	/// Indicates the locked block.
 	/// </summary>
-	[HashCodeMember]
 	public House LockedBlock { get; } = lockedBlock;
 
 	/// <inheritdoc/>
@@ -33,6 +30,9 @@ public sealed partial class LockedMember(in CellMap lockedCells, House lockedBlo
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as LockedMember);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LockedCells, LockedBlock);
 
 	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] LockedMember? other)

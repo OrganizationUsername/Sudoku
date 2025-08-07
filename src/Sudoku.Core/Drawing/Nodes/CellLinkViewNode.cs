@@ -6,24 +6,17 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="start"><inheritdoc cref="Start" path="/summary"/></param>
 /// <param name="end"><inheritdoc cref="End" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class CellLinkViewNode(ColorIdentifier identifier, Cell start, Cell end) :
-	BasicViewNode(identifier),
-	ILinkViewNode
+public sealed class CellLinkViewNode(ColorIdentifier identifier, Cell start, Cell end) : BasicViewNode(identifier), ILinkViewNode
 {
 	/// <summary>
 	/// Indicates the start point.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Cell Start { get; } = start;
 
 	/// <summary>
 	/// Indicates the end point.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Cell End { get; } = end;
 
 	/// <inheritdoc/>
@@ -43,6 +36,13 @@ public sealed partial class CellLinkViewNode(ColorIdentifier identifier, Cell st
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is CellLinkViewNode comparer && Start == comparer.Start && End == comparer.End;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(Start, End, TypeIdentifier);
+
+	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString()
+		=> $"{nameof(CellLinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Identifier)} = {Identifier} }}";
 
 	/// <inheritdoc/>
 	public override CellLinkViewNode Clone() => new(Identifier, Start, End);

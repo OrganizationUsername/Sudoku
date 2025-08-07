@@ -3,7 +3,6 @@ namespace SudokuStudio.Configuration;
 /// <summary>
 /// Defines a serialization data of a step searcher.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_ToString)]
 public sealed partial class StepSearcherInfo : DependencyObject
 {
 	/// <summary>
@@ -23,13 +22,11 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// Indicates whether the step searcher is enabled.
 	/// </summary>
 	[DependencyProperty(DefaultValue = true)]
-	[StringMember]
 	public partial bool IsEnabled { get; set; }
 
 	/// <summary>
 	/// Indicates the name of the step searcher.
 	/// </summary>
-	[StringMember]
 	[JsonIgnore]
 	public string Name => CreateStepSearcher().Metadata.GetName(App.CurrentCulture);
 
@@ -39,9 +36,12 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// </summary>
 	/// <seealso cref="Activator.CreateInstance(Type)"/>
 	[DependencyProperty]
-	[StringMember]
 	public partial string TypeName { get; set; }
 
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $$"""{{nameof(StepSearcherInfo)}} { {{nameof(IsEnabled)}} = {{IsEnabled}}, {{nameof(Name)}} = {{Name}}, {{nameof(TypeName)}} = {{TypeName}} }""";
 
 	/// <summary>
 	/// Creates a list of <see cref="StepSearcher"/> instances.

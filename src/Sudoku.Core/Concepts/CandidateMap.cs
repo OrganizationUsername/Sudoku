@@ -11,7 +11,6 @@ using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate>;
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString, IsLargeStructure = true)]
 public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 {
 	/// <summary>
@@ -323,6 +322,9 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	}
 
 	/// <inheritdoc/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is CandidateMap comparer && Equals(comparer);
+
+	/// <inheritdoc/>
 	public readonly int CompareTo(in CandidateMap other)
 	{
 		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(this)}".CompareTo($"{b(other)}"));
@@ -355,6 +357,9 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override readonly int GetHashCode() => _bits.GetHashCode();
+
+	/// <inheritdoc cref="object.ToString"/>
+	public override readonly string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	public readonly string ToString(IFormatProvider? formatProvider)

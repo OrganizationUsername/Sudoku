@@ -1689,14 +1689,14 @@
             </summary>
             <seealso cref="M:System.Activator.CreateInstance(System.Type)"/>
         </member>
+        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Configuration.StepSearcherInfo.CreateStepSearcher">
             <summary>
             Creates a list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
             <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
-        </member>
-        <member name="M:SudokuStudio.Configuration.StepSearcherInfo.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherInfo.IsEnabledProperty">
             <summary>

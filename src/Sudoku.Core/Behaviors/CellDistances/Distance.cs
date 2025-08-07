@@ -9,8 +9,7 @@ namespace Sudoku.Behaviors.CellDistances;
 /// <remarks>
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_GetHashCode)]
-public readonly ref partial struct Distance(int p, int q)
+public readonly ref struct Distance(int p, int q)
 {
 	/// <summary>
 	/// Indicates the default root part specifier.
@@ -155,8 +154,14 @@ public readonly ref partial struct Distance(int p, int q)
 	public double RawValue => _p * Math.Sqrt(_q);
 
 
+	/// <inheritdoc cref="ReadOnlySpan{T}.Equals"/>
+	public override bool Equals(object? obj) => false;
+
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public bool Equals(Distance other) => (_p, _q) == (other._p, other._q);
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(_p, _q);
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	public int CompareTo(Distance other) => RawValue.CompareTo(other.RawValue);

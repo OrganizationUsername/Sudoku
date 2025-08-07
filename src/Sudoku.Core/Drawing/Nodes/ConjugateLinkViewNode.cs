@@ -7,31 +7,24 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="start"><inheritdoc cref="Start" path="/summary"/></param>
 /// <param name="end"><inheritdoc cref="End" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="Digit" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class ConjugateLinkViewNode(ColorIdentifier identifier, Cell start, Cell end, Digit digit) :
+public sealed class ConjugateLinkViewNode(ColorIdentifier identifier, Cell start, Cell end, Digit digit) :
 	ViewNode(identifier),
 	ILinkViewNode
 {
 	/// <summary>
 	/// Indicates the start point.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Cell Start { get; } = start;
 
 	/// <summary>
 	/// Indicates the end point.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Cell End { get; } = end;
 
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Digit Digit { get; } = digit;
 
 	/// <summary>
@@ -56,10 +49,14 @@ public sealed partial class ConjugateLinkViewNode(ColorIdentifier identifier, Ce
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other)
-		&& other is ConjugateLinkViewNode comparer
-		&& Start == comparer.Start
-		&& End == comparer.End
-		&& Digit == comparer.Digit;
+		&& other is ConjugateLinkViewNode comparer && Start == comparer.Start && End == comparer.End && Digit == comparer.Digit;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(Start, End, Digit, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $"{nameof(ConjugateLinkViewNode)} {{ {nameof(Start)} = {Start}, {nameof(End)} = {End}, {nameof(Digit)} = {Digit}, {nameof(Identifier)} = {Identifier} }}";
 
 	/// <inheritdoc/>
 	public override ConjugateLinkViewNode Clone() => new(Identifier, Start, End, Digit);

@@ -5,21 +5,13 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="cell"><inheritdoc cref="Cell" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class CellViewNode(ColorIdentifier identifier, Cell cell) : BasicViewNode(identifier)
+public sealed class CellViewNode(ColorIdentifier identifier, Cell cell) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the cell highlighted.
 	/// </summary>
-	[HashCodeMember]
 	public Cell Cell { get; } = cell;
-
-	/// <summary>
-	/// Indicates the cell string.
-	/// </summary>
-	[StringMember(nameof(Cell))]
-	private string CellString => CoordinateConverter.InvariantCultureInstance.CellConverter(in Cell.AsCellMap());
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -28,6 +20,16 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, Cell cell) 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is CellViewNode comparer && Cell == comparer.Cell;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Cell, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+	{
+		var cellString = CoordinateConverter.InvariantCultureInstance.CellConverter(Cell.AsCellMap());
+		return $"{nameof(CellViewNode)} {{ Cell = {cellString}, {nameof(Identifier)} = {Identifier} }}";
+	}
 
 	/// <inheritdoc/>
 	public override CellViewNode Clone() => new(Identifier, Cell);

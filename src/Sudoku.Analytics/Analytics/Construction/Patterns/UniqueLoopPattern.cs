@@ -6,8 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loop"><inheritdoc cref="Loop" path="/summary"/></param>
 /// <param name="path"><inheritdoc cref="Path" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class UniqueLoopPattern(in CellMap loop, Cell[] path, Mask digitsMask) : Pattern
+public sealed class UniqueLoopPattern(in CellMap loop, Cell[] path, Mask digitsMask) : Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
@@ -30,33 +29,6 @@ public sealed partial class UniqueLoopPattern(in CellMap loop, Cell[] path, Mask
 	/// </summary>
 	public Mask DigitsMask { get; } = digitsMask;
 
-	[HashCodeMember]
-	private int LoopHashCode => Loop.GetHashCode();
-
-	[StringMember]
-	private string PatternString
-	{
-		get
-		{
-			var sb = new StringBuilder();
-			sb.Append($$"""{{nameof(UniqueLoopPattern)}} {""");
-			sb.Append($"{nameof(Loop)} = {Loop}");
-			sb.Append(", ");
-			sb.Append($"{nameof(Path)} = [");
-			for (var i = 0; i < Path.Length; i++)
-			{
-				sb.Append(Path[i]);
-				if (i != Path.Length - 1)
-				{
-					sb.Append(", ");
-				}
-			}
-			sb.Append("], ");
-			sb.Append($$"""{{nameof(DigitsMask)}} = {{DigitsMask}} ({{DigitsMask.ToBinaryString()}}) }""");
-			return sb.ToString();
-		}
-	}
-
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap loop, out Cell[] path, out Mask digitsMask)
@@ -64,6 +36,30 @@ public sealed partial class UniqueLoopPattern(in CellMap loop, Cell[] path, Mask
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other) => other is UniqueLoopPattern comparer && Loop == comparer.Loop;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Loop.GetHashCode();
+
+	/// <inheritdoc/>
+	public override string ToString()
+	{
+		var sb = new StringBuilder();
+		sb.Append($$"""{{nameof(UniqueLoopPattern)}} {""");
+		sb.Append($"{nameof(Loop)} = {Loop}");
+		sb.Append(", ");
+		sb.Append($"{nameof(Path)} = [");
+		for (var i = 0; i < Path.Length; i++)
+		{
+			sb.Append(Path[i]);
+			if (i != Path.Length - 1)
+			{
+				sb.Append(", ");
+			}
+		}
+		sb.Append("], ");
+		sb.Append($$"""{{nameof(DigitsMask)}} = {{DigitsMask}} ({{DigitsMask.ToBinaryString()}}) }""");
+		return sb.ToString();
+	}
 
 	/// <inheritdoc/>
 	public override UniqueLoopPattern Clone() => new(Loop, Path, DigitsMask);

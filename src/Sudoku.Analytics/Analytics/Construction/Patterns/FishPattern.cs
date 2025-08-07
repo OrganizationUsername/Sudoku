@@ -8,8 +8,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="coverSets"><inheritdoc cref="CoverSets" path="/summary"/></param>
 /// <param name="exofins"><inheritdoc cref="Exofins" path="/summary"/></param>
 /// <param name="endofins"><inheritdoc cref="Endofins" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class FishPattern(Digit digit, HouseMask baseSets, HouseMask coverSets, in CellMap exofins, in CellMap endofins) :
+public sealed class FishPattern(Digit digit, HouseMask baseSets, HouseMask coverSets, in CellMap exofins, in CellMap endofins) :
 	Pattern,
 	IFormattable
 {
@@ -57,31 +56,26 @@ public sealed partial class FishPattern(Digit digit, HouseMask baseSets, HouseMa
 	/// <summary>
 	/// Indicates the digit to be used.
 	/// </summary>
-	[HashCodeMember]
 	public Digit Digit { get; } = digit;
 
 	/// <summary>
 	/// Indicates the base sets.
 	/// </summary>
-	[HashCodeMember]
 	public HouseMask BaseSets { get; } = baseSets;
 
 	/// <summary>
 	/// Indicates the cover sets.
 	/// </summary>
-	[HashCodeMember]
 	public HouseMask CoverSets { get; } = coverSets;
 
 	/// <summary>
 	/// Indicates exo-fins.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Exofins { get; } = exofins;
 
 	/// <summary>
 	/// Indicates endo-fins.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Endofins { get; } = endofins;
 
 
@@ -90,6 +84,12 @@ public sealed partial class FishPattern(Digit digit, HouseMask baseSets, HouseMa
 		=> other is FishPattern comparer
 		&& (Digit, BaseSets, CoverSets) == (comparer.Digit, comparer.BaseSets, comparer.CoverSets)
 		&& (Exofins, Endofins) == (comparer.Exofins, comparer.Endofins);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Digit, BaseSets, CoverSets, Exofins, Endofins);
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

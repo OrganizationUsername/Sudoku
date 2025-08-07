@@ -10,16 +10,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="house2"><inheritdoc cref="House2" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
 /// <param name="zDigit"><inheritdoc cref="ZDigit" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class XyzWingPattern(
-	Cell pivot,
-	Cell leafCell1,
-	Cell leafCell2,
-	House house1,
-	House house2,
-	Mask digitsMask,
-	Digit zDigit
-) :
+public sealed class XyzWingPattern(Cell pivot, Cell leafCell1, Cell leafCell2, House house1, House house2, Mask digitsMask, Digit zDigit) :
 	Pattern,
 	IFormattable
 {
@@ -37,37 +28,31 @@ public sealed partial class XyzWingPattern(
 	/// <summary>
 	/// Indicates the pivot cell.
 	/// </summary>
-	[HashCodeMember]
 	public Cell Pivot { get; } = pivot;
 
 	/// <summary>
 	/// Indicates the leaf cell 1.
 	/// </summary>
-	[HashCodeMember]
 	public Cell LeafCell1 { get; } = leafCell1;
 
 	/// <summary>
 	/// Indicates the leaf cell 2.
 	/// </summary>
-	[HashCodeMember]
 	public Cell LeafCell2 { get; } = leafCell2;
 
 	/// <summary>
 	/// Indicates the house 1.
 	/// </summary>
-	[HashCodeMember]
 	public House House1 { get; } = house1;
 
 	/// <summary>
 	/// Indicates the house 2.
 	/// </summary>
-	[HashCodeMember]
 	public House House2 { get; } = house2;
 
 	/// <summary>
 	/// Indicates all digits.
 	/// </summary>
-	[HashCodeMember]
 	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <summary>
@@ -88,6 +73,12 @@ public sealed partial class XyzWingPattern(
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is XyzWingPattern comparer && Cells == comparer.Cells && DigitsMask == comparer.DigitsMask
 		&& House1 == comparer.House1 && House2 == comparer.House2;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Pivot, LeafCell1, LeafCell2, House1, House2, DigitsMask);
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

@@ -7,9 +7,8 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="cell"><inheritdoc cref="Cell" path="/summary"/></param>
 /// <param name="unknownValueChar"><inheritdoc cref="UnknownValueChar" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, char unknownValueChar, Mask digitsMask) :
+public sealed class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, char unknownValueChar, Mask digitsMask) :
 	BasicViewNode(identifier)
 {
 	/// <summary>
@@ -25,31 +24,17 @@ public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, Cell c
 	/// <summary>
 	/// Indicates the cell used.
 	/// </summary>
-	[HashCodeMember]
 	public int Cell { get; } = cell;
 
 	/// <summary>
 	/// Indicates the character that represents the baba group name.
 	/// </summary>
-	[StringMember]
 	public char UnknownValueChar { get; } = unknownValueChar;
 
 	/// <summary>
 	/// Indicates a mask that hold digits used.
 	/// </summary>
 	public Mask DigitsMask { get; } = digitsMask;
-
-	/// <summary>
-	/// Indicates the cell string.
-	/// </summary>
-	[StringMember(nameof(Cell))]
-	private string CellString => CoordinateConverter.InvariantCultureInstance.CellConverter(in Cell.AsCellMap());
-
-	/// <summary>
-	/// Indicates the digits mask string.
-	/// </summary>
-	[StringMember(nameof(DigitsMask))]
-	private string DigitsMaskString => Convert.ToString(DigitsMask, 2).ToString();
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -63,6 +48,17 @@ public sealed partial class BabaGroupViewNode(ColorIdentifier identifier, Cell c
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is BabaGroupViewNode comparer && Cell == comparer.Cell;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(Cell, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+	{
+		var cellsString = CoordinateConverter.InvariantCultureInstance.CellConverter(Cell.AsCellMap());
+		var digitsString = Convert.ToString(DigitsMask, 2).ToString();
+		return $"{nameof(BabaGroupViewNode)} {{ {nameof(UnknownValueChar)} = {UnknownValueChar}, Cell = {cellsString}, Digits = {digitsString}, Identifier = {Identifier} }}";
+	}
 
 	/// <inheritdoc/>
 	public override BabaGroupViewNode Clone() => new(Identifier, Cell, UnknownValueChar, DigitsMask);

@@ -15,9 +15,7 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell>;
 /// </remarks>
 /// <seealso cref="Vector128{T}"/>
 [JsonConverter(typeof(Converter))]
-[StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
-[TypeImpl(TypeImplFlags.AllObjectMethods, IsLargeStructure = true)]
 public partial struct CellMap : CellMapBase
 {
 	/// <inheritdoc cref="CellMapBase.Shifting"/>
@@ -525,8 +523,14 @@ public partial struct CellMap : CellMapBase
 		return false;
 	}
 
+	/// <inheritdoc/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is CellMap comparer && Equals(comparer);
+
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public readonly bool Equals(in CellMap other) => _vector.Equals(other._vector);
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override readonly int GetHashCode() => _vector.GetHashCode();
 
 	/// <inheritdoc/>
 	public readonly int CompareTo(in CellMap other)
@@ -549,6 +553,9 @@ public partial struct CellMap : CellMapBase
 		}
 		return -1;
 	}
+
+	/// <inheritdoc cref="object.ToString"/>
+	public override readonly string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	public readonly string ToString(IFormatProvider? formatProvider)

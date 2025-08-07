@@ -6,8 +6,7 @@ namespace SudokuStudio.Input;
 /// Defines a converter instance that calculates for cursor pointers.
 /// </summary>
 /// <param name="Grid">Indicates the grid layout.</param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-internal readonly partial record struct SudokuPanePositionConverter([property: HashCodeMember] GridLayout Grid) : IPointCalculator
+internal readonly record struct SudokuPanePositionConverter(GridLayout Grid) : IPointCalculator
 {
 	/// <summary>
 	/// Indicates the first cell top-left position.
@@ -104,6 +103,9 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 
 	/// <inheritdoc/>
 	public bool Equals(SudokuPanePositionConverter other) => GridSize == other.GridSize;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Grid.GetHashCode();
 
 	/// <summary>
 	/// Try to get the position <see cref="Point"/> of the target candidate.

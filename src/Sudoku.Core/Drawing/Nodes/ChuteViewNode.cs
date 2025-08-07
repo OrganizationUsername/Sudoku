@@ -5,15 +5,12 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="chuteIndex"><inheritdoc cref="ChuteIndex" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class ChuteViewNode(ColorIdentifier identifier, int chuteIndex) : BasicViewNode(identifier)
+public sealed class ChuteViewNode(ColorIdentifier identifier, int chuteIndex) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the chute index. The value can be between 0 and 5.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public int ChuteIndex { get; } = chuteIndex;
 
 	/// <summary>
@@ -42,6 +39,13 @@ public sealed partial class ChuteViewNode(ColorIdentifier identifier, int chuteI
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is ChuteViewNode comparer && ChuteIndex == comparer.ChuteIndex;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(ChuteIndex, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $"{nameof(ChuteViewNode)} {{ {nameof(ChuteIndex)} = {ChuteIndex}, {nameof(Identifier)} = {Identifier} }}";
 
 	/// <inheritdoc/>
 	public override ChuteViewNode Clone() => new(Identifier, ChuteIndex);

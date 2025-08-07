@@ -4,8 +4,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// Represents a domino loop pattern.
 /// </summary>
 /// <param name="cells"><inheritdoc cref="Cells" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class DominoLoopPattern(Cell[] cells) : Pattern
+public sealed class DominoLoopPattern(Cell[] cells) : Pattern
 {
 	/// <summary>
 	/// Indicateds all possible patterns.
@@ -94,15 +93,17 @@ public sealed partial class DominoLoopPattern(Cell[] cells) : Pattern
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Map => [.. Cells];
-
-	[StringMember(nameof(Map))]
-	private string MapString => Map.ToString();
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other) => other is DominoLoopPattern comparer && Map == comparer.Map;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Map.GetHashCode();
+
+	/// <inheritdoc/>
+	public override string ToString() => Map.ToString();
 
 	/// <inheritdoc/>
 	public override DominoLoopPattern Clone() => new(Cells);

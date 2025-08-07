@@ -5,8 +5,7 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// defined in another project called <see href="https://sudoku.allanbarker.com/index.html">XSudo</see>.
 /// </summary>
 /// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString)]
-public readonly partial struct Space(Mask mask) :
+public readonly struct Space(Mask mask) :
 	IComparable<Space>,
 	IComparisonOperators<Space, Space, bool>,
 	IEquatable<Space>,
@@ -128,9 +127,6 @@ public readonly partial struct Space(Mask mask) :
 	/// </summary>
 	private Digit Secondary => _mask >> 4 & 15;
 
-	[StringMember]
-	private string FinalText => $"{Secondary + 1}{Letter}{Primary + 1}";
-
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public void Deconstruct(out int primary, out int secondary) => (primary, secondary) = (Primary, Secondary);
@@ -159,10 +155,16 @@ public readonly partial struct Space(Mask mask) :
 		};
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Space comparer && Equals(comparer);
+
+	/// <inheritdoc/>
 	public bool Equals(Space other) => _mask == other._mask;
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => _mask;
+
+	/// <inheritdoc/>
+	public override string ToString() => $"{Secondary + 1}{Letter}{Primary + 1}";
 
 	/// <summary>
 	/// Try to find all possible candidates in the current set.

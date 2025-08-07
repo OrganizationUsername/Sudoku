@@ -5,15 +5,12 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="house"><inheritdoc cref="House" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class HouseViewNode(ColorIdentifier identifier, House house) : BasicViewNode(identifier)
+public sealed class HouseViewNode(ColorIdentifier identifier, House house) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the house highlighted.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public House House { get; } = house;
 
 
@@ -23,6 +20,13 @@ public sealed partial class HouseViewNode(ColorIdentifier identifier, House hous
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is HouseViewNode comparer && House == comparer.House;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(House, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $"{nameof(HouseViewNode)} {{ {nameof(House)} = {House}, {nameof(Identifier)} = {Identifier} }}";
 
 	/// <inheritdoc/>
 	public override HouseViewNode Clone() => new(Identifier, House);

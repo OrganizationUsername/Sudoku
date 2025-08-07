@@ -4,8 +4,7 @@ namespace Sudoku.Solving.Dlx;
 /// Represents a dancing link node.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
-[TypeImpl(TypeImplFlags.Object_ToString)]
-public partial class DancingLinkNode : IFormattable
+public class DancingLinkNode : IFormattable
 {
 	/// <summary>
 	/// Initializes a <see cref="DancingLinkNode"/> instance via the specified ID value and the column node.
@@ -53,6 +52,9 @@ public partial class DancingLinkNode : IFormattable
 	/// </summary>
 	public DancingLinkNode Down { get; set; }
 
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

@@ -12,13 +12,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public sealed partial class AlmostLockedSetPattern(
-	Mask digitsMask,
-	in CellMap cells,
-	in CellMap possibleEliminationMap,
-	CellMap[] eliminationMap
-) :
+public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in CellMap possibleEliminationMap, CellMap[] eliminationMap) :
 	Pattern,
 	IComparable<AlmostLockedSetPattern>,
 	IComparisonOperators<AlmostLockedSetPattern, AlmostLockedSetPattern, bool>,
@@ -115,6 +109,12 @@ public sealed partial class AlmostLockedSetPattern(
 		=> other is null
 			? throw new ArgumentNullException(nameof(other))
 			: Cells.Count.CompareTo(other.Cells.Count) is var p and not 0 ? p : Cells.CompareTo(other.Cells);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(DigitsMask, Cells);
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

@@ -5,14 +5,11 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode(ColorIdentifier)"/></param>
 /// <param name="cell"><inheritdoc cref="Cell" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
-public abstract partial class IconViewNode(ColorIdentifier identifier, Cell cell) : ViewNode(identifier)
+public abstract class IconViewNode(ColorIdentifier identifier, Cell cell) : ViewNode(identifier)
 {
 	/// <summary>
 	/// The cell.
 	/// </summary>
-	[HashCodeMember]
-	[StringMember]
 	public Cell Cell { get; } = cell;
 
 
@@ -22,4 +19,11 @@ public abstract partial class IconViewNode(ColorIdentifier identifier, Cell cell
 	/// <inheritdoc/>
 	public sealed override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is IconViewNode comparer && Cell == comparer.Cell;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Cell, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+		=> $"{nameof(IconViewNode)} {{ {nameof(Cell)} = {Cell}, {nameof(Identifier)} = {Identifier} }}";
 }

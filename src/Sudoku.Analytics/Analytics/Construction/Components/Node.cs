@@ -10,8 +10,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="map"><inheritdoc cref="_map" path="/summary"/></param>
 /// <param name="isOn"><inheritdoc cref="IsOn" path="/summary"/></param>
 /// <param name="parents"><inheritdoc cref="Parents" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.AllObjectMethods)]
-public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parents = null) :
+public sealed class Node(in CandidateMap map, bool isOn, NodeSet? parents = null) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
 	ICloneable,
@@ -31,7 +30,6 @@ public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parent
 	/// <summary>
 	/// Indicates the backing map.
 	/// </summary>
-	[HashCodeMember]
 	private readonly CandidateMap _map = map;
 
 
@@ -43,7 +41,6 @@ public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parent
 	/// <summary>
 	/// Indicates whether the node is on.
 	/// </summary>
-	[HashCodeMember]
 	public bool IsOn { get; } = isOn;
 
 	/// <summary>
@@ -92,6 +89,9 @@ public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parent
 		=> ((isGroupedNode, map), parents) = (this, Parents);
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as Node);
+
+	/// <inheritdoc/>
 	public bool Equals([NotNullWhen(true)] Node? other) => Equals(other, NodeComparison.IncludeIsOn);
 
 	/// <summary>
@@ -130,6 +130,9 @@ public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parent
 		return false;
 	}
 
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(_map, IsOn);
+
 	/// <summary>
 	/// Calculates the hash code on the current instance.
 	/// </summary>
@@ -166,6 +169,9 @@ public sealed partial class Node(in CandidateMap map, bool isOn, NodeSet? parent
 				NodeComparison.IgnoreIsOn => _map.CompareTo(in other._map),
 				_ => throw new ArgumentOutOfRangeException(nameof(comparison))
 			};
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc/>
 	public string ToString(IFormatProvider? formatProvider)

@@ -5,26 +5,18 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="candidate"><inheritdoc cref="Candidate" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode | TypeImplFlags.Object_ToString)]
 [method: JsonConstructor]
-public sealed partial class CandidateViewNode(ColorIdentifier identifier, Candidate candidate) : BasicViewNode(identifier)
+public sealed class CandidateViewNode(ColorIdentifier identifier, Candidate candidate) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Indicates the candidate highlighted.
 	/// </summary>
-	[HashCodeMember]
 	public Candidate Candidate { get; } = candidate;
 
 	/// <summary>
 	/// Indicates the target cell.
 	/// </summary>
 	public Cell Cell => Candidate / 9;
-
-	/// <summary>
-	/// Indicates the candidate string.
-	/// </summary>
-	[StringMember(nameof(Candidate))]
-	private string CandidateString => CoordinateConverter.InvariantCultureInstance.CandidateConverter(Candidate.AsCandidateMap());
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -33,6 +25,16 @@ public sealed partial class CandidateViewNode(ColorIdentifier identifier, Candid
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is CandidateViewNode comparer && Candidate == comparer.Candidate;
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public override int GetHashCode() => HashCode.Combine(Candidate, TypeIdentifier);
+
+	/// <inheritdoc/>
+	public override string ToString()
+	{
+		var candidateString = CoordinateConverter.InvariantCultureInstance.CandidateConverter(Candidate.AsCandidateMap());
+		return $"{nameof(CandidateViewNode)} {{ Candidate = {candidateString}, {nameof(Identifier)} = {Identifier} }}";
+	}
 
 	/// <inheritdoc/>
 	public override CandidateViewNode Clone() => new(Identifier, Candidate);

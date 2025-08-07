@@ -4,8 +4,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Provides with a list of nodes.
 /// </summary>
 [CollectionBuilder(typeof(NodeSet), nameof(Create))]
-[TypeImpl(TypeImplFlags.Object_ToString)]
-public sealed partial class NodeSet : IComponent, IFormattable, IReadOnlyList<Node>, IReadOnlyCollection<Node>
+public sealed class NodeSet : IComponent, IFormattable, IReadOnlyList<Node>, IReadOnlyCollection<Node>
 {
 	/// <summary>
 	/// Indicates the internal list of nodes.
@@ -42,12 +41,12 @@ public sealed partial class NodeSet : IComponent, IFormattable, IReadOnlyList<No
 	public Node this[int index] => _nodes[index];
 
 
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
+
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
-	{
-		var s = string.Join(", ", from element in _nodes select element.ToString(formatProvider));
-		return $"[{s}]";
-	}
+		=> $"[{string.Join(", ", from element in _nodes select element.ToString(formatProvider))}]";
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public AnonymousSpanEnumerator<Node> GetEnumerator() => new(_nodes.AsSpan());

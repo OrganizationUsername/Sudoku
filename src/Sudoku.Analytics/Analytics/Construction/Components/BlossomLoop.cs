@@ -4,7 +4,6 @@ namespace Sudoku.Analytics.Construction.Components;
 /// Represents a blossom loop.
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="Conclusions" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_Equals | TypeImplFlags.Object_ToString)]
 public sealed partial class BlossomLoop(params ConclusionSet conclusions) :
 	SortedDictionary<Candidate, StrongForcingChain>,
 	IComparable<BlossomLoop>,
@@ -78,6 +77,9 @@ public sealed partial class BlossomLoop(params ConclusionSet conclusions) :
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.BlossomLoop;
 
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as BlossomLoop);
 
 	/// <summary>
 	/// Determines whether at least one branch contains at least one element satisfying the specified condition.
@@ -201,6 +203,9 @@ public sealed partial class BlossomLoop(params ConclusionSet conclusions) :
 		}
 		return hashCode.ToHashCode();
 	}
+
+	/// <inheritdoc/>
+	public override string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)

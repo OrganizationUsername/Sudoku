@@ -389,16 +389,8 @@ public partial struct CellMap : CellMapBase
 			}
 
 			var (pos, arr) = (0, new Cell[Count]);
-			for (
-				var value = _vector[0];
-				value != 0;
-				arr[pos++] = BitOperations.TrailingZeroCount(value), value &= value - 1
-			) ;
-			for (
-				var value = _vector[1];
-				value != 0;
-				arr[pos++] = Shifting + BitOperations.TrailingZeroCount(value), value &= value - 1
-			) ;
+			for (var value = _vector[0]; value != 0; arr[pos++] = BitOperations.TrailingZeroCount(value), value &= value - 1) ;
+			for (var value = _vector[1]; value != 0; arr[pos++] = Shifting + BitOperations.TrailingZeroCount(value), value &= value - 1) ;
 			return arr;
 		}
 	}

@@ -4,25 +4,25 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a conclusion constraint.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class ConclusionConstraint : Constraint
+public sealed class ConclusionConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates whether the conclusion should be appeared.
 	/// </summary>
-	[HashCodeMember]
 	public bool ShouldAppear { get; set; }
 
 	/// <summary>
 	/// Indicates the conclusion.
 	/// </summary>
-	[HashCodeMember]
 	public Conclusion Conclusion { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is ConclusionConstraint comparer && (Conclusion, ShouldAppear) == (comparer.Conclusion, comparer.ShouldAppear);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(ShouldAppear, Conclusion);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

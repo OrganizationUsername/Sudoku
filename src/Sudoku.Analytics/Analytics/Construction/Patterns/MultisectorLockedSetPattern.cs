@@ -6,8 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="map"><inheritdoc cref="Map" path="/summary"/></param>
 /// <param name="rowCount"><inheritdoc cref="RowCount" path="/summary"/></param>
 /// <param name="columnCount"><inheritdoc cref="ColumnCount" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class MultisectorLockedSetPattern(in CellMap map, RowIndex rowCount, ColumnIndex columnCount) : Pattern
+public sealed class MultisectorLockedSetPattern(in CellMap map, RowIndex rowCount, ColumnIndex columnCount) : Pattern
 {
 	/// <summary>
 	/// Indicates the list initialized with the static constructor.
@@ -77,7 +76,6 @@ public sealed partial class MultisectorLockedSetPattern(in CellMap map, RowIndex
 	/// <summary>
 	/// The map of cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Map { get; } = map;
 
 	/// <summary>
@@ -98,6 +96,9 @@ public sealed partial class MultisectorLockedSetPattern(in CellMap map, RowIndex
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is MultisectorLockedSetPattern comparer && Map == comparer.Map;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Map.GetHashCode();
 
 	/// <inheritdoc/>
 	public override MultisectorLockedSetPattern Clone() => new(Map, RowCount, ColumnCount);

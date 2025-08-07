@@ -3,17 +3,14 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents difficulty level constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
+public sealed class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
 {
 	/// <summary>
 	/// Indicates the difficulty level.
 	/// </summary>
-	[HashCodeMember]
 	public DifficultyLevel DifficultyLevel { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <summary>
@@ -55,6 +52,9 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is DifficultyLevelConstraint comparer && (DifficultyLevel, Operator) == (comparer.DifficultyLevel, comparer.Operator);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(DifficultyLevel, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

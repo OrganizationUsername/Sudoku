@@ -34,9 +34,6 @@
   </Folder>
   <Folder Name="/Global Items/Source Generators/" />
   <Folder Name="/Source Generators/">
-    <Project Path="PuzzlesMeta/src/Puzzles.SourceGeneration/Puzzles.SourceGeneration.csproj">
-      <BuildType Solution="Build|*" Project="Debug" />
-    </Project>
     <Project Path="PuzzlesMeta/src/RootLevelSourceGeneration/RootLevelSourceGeneration.csproj">
       <BuildType Solution="Build|*" Project="Debug" />
     </Project>

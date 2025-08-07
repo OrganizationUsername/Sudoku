@@ -3,30 +3,25 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
+public sealed class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <summary>
 	/// Indicates whether the constraint use strict mode to check for ittoryu mode,
 	/// meaning the puzzle must be solved with ittoryu mode.
 	/// </summary>
-	[HashCodeMember]
 	public bool IsStrictIttoryu { get; set; }
 
 	/// <summary>
 	/// Indicates the rounds used.
 	/// </summary>
-	[HashCodeMember]
 	public int Rounds { get; set; }
 
 	/// <summary>
 	/// Indicates the single technique that can be used in the checking.
 	/// </summary>
-	[HashCodeMember]
 	public SingleTechniqueFlag LimitedSingle { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>
@@ -45,6 +40,9 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		=> other is IttoryuConstraint comparer
 		&& IsStrictIttoryu == comparer.IsStrictIttoryu && Rounds == comparer.Rounds
 		&& Operator == comparer.Operator && LimitedSingle == comparer.LimitedSingle;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(IsStrictIttoryu, Rounds, LimitedSingle, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

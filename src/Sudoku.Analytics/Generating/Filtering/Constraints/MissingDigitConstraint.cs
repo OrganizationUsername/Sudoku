@@ -3,19 +3,20 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that checks for a missing digit.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class MissingDigitConstraint : Constraint
+public sealed class MissingDigitConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the missing digit.
 	/// </summary>
-	[HashCodeMember]
 	public Digit Digit { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is MissingDigitConstraint comparer && Digit == comparer.Digit;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Digit;
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

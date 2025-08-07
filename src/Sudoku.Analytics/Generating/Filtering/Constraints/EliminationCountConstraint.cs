@@ -3,22 +3,19 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents an elimination count constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
+public sealed class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public int LimitCount { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
-	[HashCodeMember]
 	public Technique Technique { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
+
 
 	/// <inheritdoc/>
 	static int ILimitCountConstraint<int>.Maximum => 30;
@@ -30,6 +27,9 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is EliminationCountConstraint comparer && (LimitCount, Operator) == (comparer.LimitCount, comparer.Operator);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LimitCount, Technique, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

@@ -6,8 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="cells"><inheritdoc cref="Cells" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
 /// <param name="otherDigitsMask"><inheritdoc cref="OtherDigitsMask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class UniqueRectanglePattern(in CellMap cells, Mask digitsMask, Mask otherDigitsMask) : Pattern
+public sealed class UniqueRectanglePattern(in CellMap cells, Mask digitsMask, Mask otherDigitsMask) : Pattern
 {
 	/// <summary>
 	/// The table of all possible pattern cells.
@@ -103,6 +102,9 @@ public sealed partial class UniqueRectanglePattern(in CellMap cells, Mask digits
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is UniqueRectanglePattern comparer
 		&& Cells == comparer.Cells && DigitsMask == comparer.DigitsMask && OtherDigitsMask == comparer.OtherDigitsMask;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Cells, DigitsMask, OtherDigitsMask);
 
 	/// <summary>
 	/// Try to get all candidates used in the pattern.

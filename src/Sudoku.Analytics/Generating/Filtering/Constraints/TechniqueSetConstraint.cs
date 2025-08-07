@@ -3,19 +3,20 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a constraint that limits a puzzle that can only use such techniques to be finished.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class TechniqueSetConstraint : Constraint
+public sealed class TechniqueSetConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
-	[HashCodeMember]
 	public TechniqueSet Techniques { get; set; } = TechniqueSets.None;
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is TechniqueSetConstraint comparer && Techniques == comparer.Techniques;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Techniques.GetHashCode();
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

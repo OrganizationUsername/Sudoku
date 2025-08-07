@@ -3,13 +3,11 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents a keyword condition.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class StringPatternKeywordCondition : KeywordCondition
+public sealed class StringPatternKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be checked.
 	/// </summary>
-	[HashCodeMember]
 	public string Value { get; set; } = "*";
 
 	/// <inheritdoc/>
@@ -42,6 +40,9 @@ public sealed partial class StringPatternKeywordCondition : KeywordCondition
 	/// <inheritdoc/>
 	public override bool IsSatisifed(Step instance, string keyword)
 		=> GetValue(instance, keyword) switch { string str => Pattern.IsMatch(str), _ => false };
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Value.GetHashCode();
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

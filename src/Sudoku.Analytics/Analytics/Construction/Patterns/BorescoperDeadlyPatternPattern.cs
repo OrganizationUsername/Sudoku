@@ -31,8 +31,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </list>
 /// </summary>
 /// <param name="mask"><inheritdoc cref="_mask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class BorescoperDeadlyPatternPattern(long mask) : Pattern
+public sealed class BorescoperDeadlyPatternPattern(long mask) : Pattern
 {
 	/// <summary>
 	/// Indicates all possible patterns to iterate.
@@ -73,7 +72,6 @@ public sealed partial class BorescoperDeadlyPatternPattern(long mask) : Pattern
 	/// Due to the drawing API, you have to check this file rather than the tip window.
 	/// </para>
 	/// </summary>
-	[HashCodeMember]
 	private readonly long _mask = mask;
 
 
@@ -286,6 +284,9 @@ public sealed partial class BorescoperDeadlyPatternPattern(long mask) : Pattern
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is BorescoperDeadlyPatternPattern comparer && _mask == comparer._mask;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => _mask.GetHashCode();
 
 	/// <inheritdoc/>
 	public override BorescoperDeadlyPatternPattern Clone() => new(_mask);

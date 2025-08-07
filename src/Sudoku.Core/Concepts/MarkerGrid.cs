@@ -21,8 +21,7 @@ using GridBase = IGrid<MarkerGrid>;
 /// <seealso cref="Grid.SetCandidates(Cell, Mask)"/>
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [InlineArray(81)]
-[TypeImpl(TypeImplFlags.Object_Equals, IsLargeStructure = true)]
-public partial struct MarkerGrid : GridBase
+public struct MarkerGrid : GridBase
 {
 	/// <summary>
 	/// <inheritdoc cref="GridBase.Undefined" path="/summary"/>
@@ -316,6 +315,9 @@ public partial struct MarkerGrid : GridBase
 	[UnscopedRef]
 	ref Mask IInlineArray<MarkerGrid, Mask>.this[Cell cell] => ref this[cell];
 
+
+	/// <inheritdoc/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is MarkerGrid comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public readonly bool ConflictWith(Cell cell, Digit digit)

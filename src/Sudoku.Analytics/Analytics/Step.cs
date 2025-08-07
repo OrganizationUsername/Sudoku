@@ -76,13 +76,11 @@ public abstract class Step(ReadOnlyMemory<Conclusion> conclusions, View[]? views
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
-	[HashCodeMember]
 	public string ConclusionText => Options.Converter.ConclusionConverter(Conclusions.Span);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
 	/// </summary>
-	[HashCodeMember]
 	[Keyword(
 		NameResourceKey = "Step_Code_Name",
 		MetaType = KeywordType.String,

@@ -5,8 +5,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
-[TypeImpl(TypeImplFlags.Object_Equals)]
-public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
+public abstract class DeathBlossomBranchCollection<TSelf, TKey> :
 	Dictionary<TKey, AlmostLockedSetPattern>,
 	IComponent,
 	IEquatable<TSelf>
@@ -32,6 +31,9 @@ public abstract partial class DeathBlossomBranchCollection<TSelf, TKey> :
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.DeathBlossomBranch;
 
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => Equals(obj as DeathBlossomBranchCollection<TSelf, TKey>);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] TSelf? other);

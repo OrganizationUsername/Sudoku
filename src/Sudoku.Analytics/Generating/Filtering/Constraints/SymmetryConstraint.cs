@@ -3,8 +3,7 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents symmetry constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class SymmetryConstraint : Constraint
+public sealed class SymmetryConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates an invalid value.
@@ -20,13 +19,15 @@ public sealed partial class SymmetryConstraint : Constraint
 	/// <summary>
 	/// Indicates the supported symmetry types to be used.
 	/// </summary>
-	[HashCodeMember]
 	public SymmetricType SymmetricTypes { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is SymmetryConstraint comparer && SymmetricTypes == comparer.SymmetricTypes;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => (int)SymmetricTypes;
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

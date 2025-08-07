@@ -3,25 +3,25 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a primary single constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class PrimarySingleConstraint : Constraint
+public sealed class PrimarySingleConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates whether the constraint allows hidden singles on rows or columns.
 	/// </summary>
-	[HashCodeMember]
 	public bool AllowsHiddenSingleInLines { get; set; }
 
 	/// <summary>
 	/// Indicates which technique a user likes to finish a grid.
 	/// </summary>
-	[HashCodeMember]
 	public SingleTechniqueFlag Primary { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is PrimarySingleConstraint comparer && Primary == comparer.Primary;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(AllowsHiddenSingleInLines, Primary);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

@@ -7,7 +7,6 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
 /// </remarks>
 /// <seealso cref="Space"/>
-[TypeImpl(TypeImplFlags.Object_Equals, IsLargeStructure = true)]
 public partial struct SpaceSet :
 	IAdditionOperators<SpaceSet, Space, SpaceSet>,
 	IAnyAllMethod<SpaceSet, Space>,
@@ -82,6 +81,9 @@ public partial struct SpaceSet :
 
 		ToArray().AsReadOnlySpan().CopyTo(array.AsSpan()[arrayIndex..]);
 	}
+
+	/// <inheritdoc/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is SpaceSet comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public readonly bool Contains(Space space)

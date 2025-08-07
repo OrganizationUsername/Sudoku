@@ -36,15 +36,12 @@ public abstract class ViewNode(ColorIdentifier identifier) :
 	/// is not supported by derived types, meaning derived types cannot detect this attribute
 	/// because it's in primary constructor declaration by a base type.
 	/// </b></remarks>
-	[StringMember]
 	public ColorIdentifier Identifier { get; } = identifier;
 
 	/// <summary>
 	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.
 	/// </summary>
 	/// <seealso cref="ViewNode"/>
-	[HashCodeMember]
-	[StringMember("EqualityContract")]
 	protected string TypeIdentifier => GetType().Name;
 
 

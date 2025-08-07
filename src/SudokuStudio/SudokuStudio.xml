@@ -3794,6 +3794,9 @@
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Equals(SudokuStudio.Input.SudokuPanePositionConverter)">
             <inheritdoc/>
         </member>
+        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
+            <inheritdoc/>
+        </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetPosition(System.Int32,SudokuStudio.Input.Position)">
             <summary>
             Try to get the position <see cref="T:Windows.Foundation.Point"/> of the target candidate.
@@ -3857,9 +3860,6 @@
 					</para>
 				</remarks>
 			</target>
-        </member>
-        <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:SudokuStudio.Input.VirtualKeyModifierState">
             <summary>

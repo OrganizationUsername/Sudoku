@@ -6,8 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loopCells"><inheritdoc cref="LoopCells" path="/summary"/></param>
 /// <param name="extraCells"><inheritdoc cref="ExtraCells" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class BivalueOddagonPattern(in CellMap loopCells, in CellMap extraCells, Mask digitsMask) : Pattern
+public sealed class BivalueOddagonPattern(in CellMap loopCells, in CellMap extraCells, Mask digitsMask) : Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
@@ -18,7 +17,6 @@ public sealed partial class BivalueOddagonPattern(in CellMap loopCells, in CellM
 	/// <summary>
 	/// Indicates the cells of the whole loop.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap LoopCells { get; } = loopCells;
 
 	/// <summary>
@@ -39,6 +37,9 @@ public sealed partial class BivalueOddagonPattern(in CellMap loopCells, in CellM
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is BivalueOddagonPattern comparer && LoopCells == comparer.LoopCells;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LoopCells);
 
 	/// <inheritdoc/>
 	public override BivalueOddagonPattern Clone() => new(LoopCells, ExtraCells, DigitsMask);

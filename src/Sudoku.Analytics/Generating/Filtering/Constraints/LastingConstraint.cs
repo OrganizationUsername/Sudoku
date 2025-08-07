@@ -4,22 +4,19 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a lasting constraint.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class LastingConstraint : Constraint, ILimitCountConstraint<int>, IComparisonOperatorConstraint
+public sealed class LastingConstraint : Constraint, ILimitCountConstraint<int>, IComparisonOperatorConstraint
 {
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public int LimitCount { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
-	[HashCodeMember]
 	public SingleTechniqueFlag TechniqueFlag { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
+
 
 	/// <inheritdoc/>
 	static int ILimitCountConstraint<int>.Minimum => 0;
@@ -32,6 +29,9 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is LastingConstraint comparer
 		&& (LimitCount, TechniqueFlag, Operator) == (comparer.LimitCount, comparer.TechniqueFlag, comparer.Operator);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LimitCount, TechniqueFlag, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

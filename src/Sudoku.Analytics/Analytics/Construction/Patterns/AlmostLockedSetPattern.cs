@@ -41,13 +41,11 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	[HashCodeMember]
 	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Cells { get; } = cells;
 
 	/// <summary>

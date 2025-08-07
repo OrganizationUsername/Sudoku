@@ -26,8 +26,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="corner"><inheritdoc cref="Corner" path="/summary"/></param>
 /// <param name="lines"><inheritdoc cref="Lines" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines) : Pattern
+public sealed class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines) : Pattern
 {
 	/// <summary>
 	/// Indicates the line offsets of the patterns.
@@ -115,6 +114,9 @@ public sealed partial class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMas
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is QiuDeadlyPattern1Pattern comparer && Crossline == comparer.Crossline && Lines == comparer.Lines;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Corner, Lines);
 
 	/// <inheritdoc/>
 	public override QiuDeadlyPattern1Pattern Clone() => new(Corner, Lines);

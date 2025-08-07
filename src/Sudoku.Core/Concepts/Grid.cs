@@ -14,7 +14,6 @@ using GridBase = IGrid<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlags.Object_Equals, IsLargeStructure = true)]
 public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
 {
 	/// <inheritdoc cref="GridBase.DefaultMask"/>
@@ -468,6 +467,9 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 		digitsMap = DigitsMap;
 		valuesMap = ValuesMap;
 	}
+
+	/// <inheritdoc/>
+	public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is Grid comparer && Equals(comparer);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public readonly bool Equals(in Grid other) => this[..].SequenceEqual(other[..]);

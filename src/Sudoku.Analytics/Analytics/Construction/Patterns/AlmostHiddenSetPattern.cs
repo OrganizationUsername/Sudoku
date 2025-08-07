@@ -12,8 +12,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
 /// <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
 /// </remarks>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class AlmostHiddenSetPattern(
+public sealed class AlmostHiddenSetPattern(
 	in CellMap cells,
 	House house,
 	Mask digitsMask,
@@ -33,31 +32,26 @@ public sealed partial class AlmostHiddenSetPattern(
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Cells { get; } = cells;
 
 	/// <summary>
 	/// Indicates the house used.
 	/// </summary>
-	[HashCodeMember]
 	public House House { get; } = house;
 
 	/// <summary>
 	/// Indicates the mask of digits used.
 	/// </summary>
-	[HashCodeMember]
 	public Mask DigitsMask { get; } = digitsMask;
 
 	/// <summary>
 	/// Indicates the mask of subset digits used.
 	/// </summary>
-	[HashCodeMember]
 	public Mask SubsetDigitsMask { get; } = subsetDigitsMask;
 
 	/// <summary>
 	/// Indicates all candidates that can be used as weak links.
 	/// </summary>
-	[HashCodeMember]
 	public CandidateMap CandidatesCanFormWeakLink { get; } = candidatesCanFormWeakLink;
 
 
@@ -66,6 +60,9 @@ public sealed partial class AlmostHiddenSetPattern(
 		=> other is AlmostHiddenSetPattern comparer
 		&& Cells == comparer.Cells && House == comparer.House
 		&& DigitsMask == comparer.DigitsMask && SubsetDigitsMask == comparer.SubsetDigitsMask;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Cells, House, DigitsMask, SubsetDigitsMask, CandidatesCanFormWeakLink);
 
 	/// <inheritdoc/>
 	public int CompareTo(AlmostHiddenSetPattern? other)

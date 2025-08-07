@@ -3,19 +3,16 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents number equality keyword condition.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class NumberComparisonKeywordCondition : KeywordCondition
+public sealed class NumberComparisonKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be compared.
 	/// </summary>
-	[HashCodeMember]
 	public int Value { get; set; }
 
 	/// <summary>
 	/// Indicates the operator to be used.
 	/// </summary>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <inheritdoc/>
@@ -33,6 +30,9 @@ public sealed partial class NumberComparisonKeywordCondition : KeywordCondition
 			int keywordValue => Operator.GetOperator<int>()(keywordValue, Value),
 			_ => false
 		};
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Value, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

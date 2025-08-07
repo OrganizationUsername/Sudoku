@@ -7,9 +7,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="block2Cells"><inheritdoc cref="Block2Cells" path="/summary"/></param>
 /// <param name="block3Cells"><inheritdoc cref="Block3Cells" path="/summary"/></param>
 /// <param name="block4Cells"><inheritdoc cref="Block4Cells" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class ChromaticPatternPattern(Cell[] block1Cells, Cell[] block2Cells, Cell[] block3Cells, Cell[] block4Cells) :
-	Pattern
+public sealed class ChromaticPatternPattern(Cell[] block1Cells, Cell[] block2Cells, Cell[] block3Cells, Cell[] block4Cells) : Pattern
 {
 	/// <summary>
 	/// All possible blocks combinations being reserved for chromatic pattern searcher's usages.
@@ -118,9 +116,6 @@ public sealed partial class ChromaticPatternPattern(Cell[] block1Cells, Cell[] b
 	/// </summary>
 	public CellMap Map => [.. Block1Cells, .. Block2Cells, .. Block3Cells, .. Block4Cells];
 
-	[HashCodeMember]
-	private int HashCode => Map.GetHashCode();
-
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	public void Deconstruct(out Cell[] block1Cells, out Cell[] block2Cells, out Cell[] block3Cells, out Cell[] block4Cells)
@@ -129,6 +124,9 @@ public sealed partial class ChromaticPatternPattern(Cell[] block1Cells, Cell[] b
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is ChromaticPatternPattern comparer && Map == comparer.Map;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Map.GetHashCode();
 
 	/// <inheritdoc/>
 	public override ChromaticPatternPattern Clone() => new(Block1Cells, Block2Cells, Block3Cells, Block4Cells);

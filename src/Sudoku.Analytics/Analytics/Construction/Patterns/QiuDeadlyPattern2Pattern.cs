@@ -25,8 +25,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="lines1"><inheritdoc cref="Lines1" path="/summary"/></param>
 /// <param name="lines2"><inheritdoc cref="Lines2" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class QiuDeadlyPattern2Pattern(HouseMask lines1, HouseMask lines2) : Pattern
+public sealed class QiuDeadlyPattern2Pattern(HouseMask lines1, HouseMask lines2) : Pattern
 {
 	/// <summary>
 	/// Indicates the patterns for case 2.
@@ -94,6 +93,9 @@ public sealed partial class QiuDeadlyPattern2Pattern(HouseMask lines1, HouseMask
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is QiuDeadlyPattern2Pattern comparer && Lines1 == comparer.Lines1 && Lines2 == comparer.Lines2;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Lines1, Lines2);
 
 	/// <inheritdoc/>
 	public override QiuDeadlyPattern2Pattern Clone() => new(Lines1, Lines2);

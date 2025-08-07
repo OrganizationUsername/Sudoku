@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="patternCells"><inheritdoc cref="PatternCells" path="/summary"/></param>
 /// <param name="pairCells"><inheritdoc cref="PairCells" path="/summary"/></param>
 /// <param name="size"><inheritdoc cref="Size" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class ExtendedRectanglePattern(bool isFat, in CellMap patternCells, (Cell Left, Cell Right)[] pairCells, int size) : Pattern
+public sealed class ExtendedRectanglePattern(bool isFat, in CellMap patternCells, (Cell Left, Cell Right)[] pairCells, int size) : Pattern
 {
 	/// <summary>
 	/// Indicates all possible extended rectangle pattern combinations.
@@ -150,7 +149,6 @@ public sealed partial class ExtendedRectanglePattern(bool isFat, in CellMap patt
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap PatternCells { get; } = patternCells;
 
 	/// <summary>
@@ -174,6 +172,9 @@ public sealed partial class ExtendedRectanglePattern(bool isFat, in CellMap patt
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is ExtendedRectanglePattern comparer && PatternCells == comparer.PatternCells;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => PatternCells.GetHashCode();
 
 	/// <inheritdoc/>
 	public override ExtendedRectanglePattern Clone() => new(IsFat, PatternCells, PairCells, Size);

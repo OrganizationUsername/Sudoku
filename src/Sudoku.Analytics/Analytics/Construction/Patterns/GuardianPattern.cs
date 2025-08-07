@@ -6,8 +6,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// <param name="loopCells"><inheritdoc cref="LoopCells" path="/summary"/></param>
 /// <param name="guardians"><inheritdoc cref="Guardians" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="Digit" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class GuardianPattern(in CellMap loopCells, in CellMap guardians, Digit digit) : Pattern
+public sealed class GuardianPattern(in CellMap loopCells, in CellMap guardians, Digit digit) : Pattern
 {
 	/// <inheritdoc/>
 	public override bool IsChainingCompatible => false;
@@ -18,19 +17,16 @@ public sealed partial class GuardianPattern(in CellMap loopCells, in CellMap gua
 	/// <summary>
 	/// Indicates the cells used in this whole guardian loop.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap LoopCells { get; } = loopCells;
 
 	/// <summary>
 	/// Indicates the extra cells that is used as guardians.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Guardians { get; } = guardians;
 
 	/// <summary>
 	/// Indicates the digit used.
 	/// </summary>
-	[HashCodeMember]
 	public Digit Digit { get; } = digit;
 
 
@@ -42,6 +38,9 @@ public sealed partial class GuardianPattern(in CellMap loopCells, in CellMap gua
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is GuardianPattern comaprer
 		&& LoopCells == comaprer.LoopCells && Guardians == comaprer.Guardians && Digit == comaprer.Digit;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LoopCells, Guardians, Digit);
 
 	/// <inheritdoc/>
 	public override GuardianPattern Clone() => new(LoopCells, Guardians, Digit);

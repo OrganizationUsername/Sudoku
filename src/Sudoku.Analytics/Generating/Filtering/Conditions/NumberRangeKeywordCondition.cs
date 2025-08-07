@@ -3,31 +3,26 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents number range keyword condition.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class NumberRangeKeywordCondition : KeywordCondition
+public sealed class NumberRangeKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates whether the range includes minimum value.
 	/// </summary>
-	[HashCodeMember]
 	public bool IncludesMinimum { get; set; }
 
 	/// <summary>
 	/// Indicates whether the range includes maximum value.
 	/// </summary>
-	[HashCodeMember]
 	public bool IncludesMaximum { get; set; }
 
 	/// <summary>
 	/// Indicates the minimum value.
 	/// </summary>
-	[HashCodeMember]
 	public int Minimum { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
-	[HashCodeMember]
 	public int Maximum { get; set; }
 
 	/// <inheritdoc/>
@@ -53,6 +48,9 @@ public sealed partial class NumberRangeKeywordCondition : KeywordCondition
 			},
 			_ => false
 		};
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(IncludesMinimum, IncludesMaximum, Minimum, Maximum);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

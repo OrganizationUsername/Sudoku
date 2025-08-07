@@ -3,13 +3,11 @@ namespace Sudoku.Generating.Filtering.Conditions;
 /// <summary>
 /// Represents string equality condition.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class StringEqualityComparisonKeywordCondition : KeywordCondition
+public sealed class StringEqualityComparisonKeywordCondition : KeywordCondition
 {
 	/// <summary>
 	/// Indicates the value to be compared.
 	/// </summary>
-	[HashCodeMember]
 	public string Value { get; set; } = string.Empty;
 
 	/// <inheritdoc/>
@@ -23,6 +21,9 @@ public sealed partial class StringEqualityComparisonKeywordCondition : KeywordCo
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] KeywordCondition? other)
 		=> other is StringEqualityComparisonKeywordCondition comparer && Value == comparer.Value;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Value.GetHashCode();
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

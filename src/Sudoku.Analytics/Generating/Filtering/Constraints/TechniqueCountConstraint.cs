@@ -5,21 +5,17 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// contains the specified techniques.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
+public sealed class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public int LimitCount { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public ComparisonOperator Operator { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
-	[HashCodeMember]
 	public Technique Technique { get; set; }
 
 
@@ -34,6 +30,9 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is TechniqueCountConstraint comparer
 		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(LimitCount, Operator, Technique);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

@@ -20,8 +20,7 @@ namespace Sudoku.Analytics.Construction.Patterns;
 /// </summary>
 /// <param name="map"><inheritdoc cref="Map" path="/summary"/></param>
 /// <param name="pivot"><inheritdoc cref="Pivot" path="/summary"/></param>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class FireworkPattern(in CellMap map, Cell? pivot) : Pattern
+public sealed class FireworkPattern(in CellMap map, Cell? pivot) : Pattern
 {
 	/// <summary>
 	/// Indicates the patterns used.
@@ -117,19 +116,20 @@ public sealed partial class FireworkPattern(in CellMap map, Cell? pivot) : Patte
 	/// <summary>
 	/// Indicates the full map of all cells used.
 	/// </summary>
-	[HashCodeMember]
 	public CellMap Map { get; } = map;
 
 	/// <summary>
 	/// The pivot cell. This property can be <see langword="null"/> if four cells are used.
 	/// </summary>
-	[HashCodeMember]
 	public Cell? Pivot { get; } = pivot;
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Pattern? other)
 		=> other is FireworkPattern comparer && Map == comparer.Map && Pivot == comparer.Pivot;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Map, Pivot);
 
 	/// <inheritdoc/>
 	public override FireworkPattern Clone() => new(Map, Pivot);

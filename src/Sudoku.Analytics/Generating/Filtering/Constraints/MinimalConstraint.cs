@@ -3,19 +3,20 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents minimal constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class MinimalConstraint : Constraint
+public sealed class MinimalConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates whether the puzzle shsould be minimal.
 	/// </summary>
-	[HashCodeMember]
 	public bool ShouldBeMinimal { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is MinimalConstraint comparer && ShouldBeMinimal == comparer.ShouldBeMinimal;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => ShouldBeMinimal ? 1 : 0;
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

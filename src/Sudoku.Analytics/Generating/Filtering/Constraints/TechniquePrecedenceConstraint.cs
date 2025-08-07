@@ -4,25 +4,21 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// Represents a precedence (ordering relation) of a technique.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class TechniquePrecedenceConstraint : Constraint
+public sealed class TechniquePrecedenceConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the target technqiue to be compared.
 	/// </summary>
-	[HashCodeMember]
 	public Technique TargetTechnique { get; set; }
 
 	/// <summary>
 	/// Indicates the techniques that the target technique should be compared.
 	/// </summary>
-	[HashCodeMember]
 	public Technique ComparedTechnique { get; set; }
 
 	/// <summary>
 	/// Indicates the operator.
 	/// </summary>
-	[HashCodeMember]
 	public PrecedenceOperator Operator { get; set; }
 
 
@@ -31,6 +27,9 @@ public sealed partial class TechniquePrecedenceConstraint : Constraint
 		=> other is TechniquePrecedenceConstraint comparer
 		&& TargetTechnique == comparer.TargetTechnique
 		&& Operator == comparer.Operator && ComparedTechnique == comparer.ComparedTechnique;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(TargetTechnique, ComparedTechnique, Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

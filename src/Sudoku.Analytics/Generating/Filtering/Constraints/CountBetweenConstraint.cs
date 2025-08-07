@@ -3,13 +3,11 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// <summary>
 /// Represents a count between constraint.
 /// </summary>
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
+public sealed class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
 {
 	/// <summary>
 	/// Indicates the range of the numbers set.
 	/// </summary>
-	[HashCodeMember]
 	[JsonConverter(typeof(RangeConverter))]
 	public Range Range { get; set; }
 
@@ -19,11 +17,9 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 	/// </summary>
 	/// <seealso cref="CellState.Given"/>
 	/// <seealso cref="CellState.Empty"/>
-	[HashCodeMember]
 	public CellState CellState { get; set; }
 
 	/// <inheritdoc/>
-	[HashCodeMember]
 	public BetweenRule BetweenRule { get; set; }
 
 
@@ -31,6 +27,9 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is CountBetweenConstraint comparer
 		&& Range.Equals(comparer.Range) && (CellState, BetweenRule) == (comparer.CellState, comparer.BetweenRule);
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => HashCode.Combine(Range, CellState, BetweenRule);
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

@@ -6,19 +6,20 @@ namespace Sudoku.Generating.Filtering.Constraints;
 /// </summary>
 /// <seealso cref="TechniqueCountConstraint"/>
 [ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
-[TypeImpl(TypeImplFlags.Object_GetHashCode)]
-public sealed partial class TechniqueConstraint : Constraint
+public sealed class TechniqueConstraint : Constraint
 {
 	/// <summary>
 	/// Indicates the techniques must appear.
 	/// </summary>
-	[HashCodeMember]
 	public TechniqueSet Techniques { get; set; } = TechniqueSets.None;
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is TechniqueConstraint comparer && Techniques == comparer.Techniques;
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => Techniques.GetHashCode();
 
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)

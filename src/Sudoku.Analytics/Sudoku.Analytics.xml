@@ -3302,63 +3302,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.DeathBlossomBranchCollection`2.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.Excluder">
-            <summary>
-            Represents a type that supports excluders marking inside a direct technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Components.ExcluderInfo@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cell">The cell.</param>
-            <param name="chosenCells">The chosen cells.</param>
-            <param name="excluderInfo">The excluder information.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <param name="excluderHouses">The excluder houses.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetLockedCandidatesExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Excluder.GetSubsetExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="digit">The digit.</param>
-            <param name="house">The house.</param>
-            <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.ExcluderInfo">
             <summary>
             Represents excluders information used by a Hidden Single step, describing which cells can raise conclusion,
@@ -5146,20 +5089,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.ToString">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.TrueCandidate">
-            <summary>
-            Defines a searcher that searches for the true candidates of the current sudoku grid.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.TrueCandidate.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <summary>
-            Get all true candidates when the number of empty cells is below than the argument.
-            </summary>
-            <param name="grid">Indicates the puzzle.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>All true candidates.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.UnnamedChain">
             <summary>
@@ -7733,6 +7662,63 @@
             otherwise, both arguments should be discards.
             </returns>
         </member>
+        <member name="T:Sudoku.Analytics.Hub.Excluder">
+            <summary>
+            Represents a type that supports excluders marking inside a direct technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Analytics.Construction.Components.ExcluderInfo@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cell">The cell.</param>
+            <param name="chosenCells">The chosen cells.</param>
+            <param name="excluderInfo">The excluder information.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.GetLockedCandidatesExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.GetSubsetExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="digit">The digit.</param>
+            <param name="house">The house.</param>
+            <param name="cells">The cells.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Hub.Lasting">
             <summary>
             Represents lasting rule of a single technique.
@@ -7976,6 +7962,20 @@
             </summary>
             <param name="size">The number of cells used in a subset.</param>
             <returns>The name of the subset.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.TrueCandidate">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.TrueCandidate.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
         </member>
         <member name="T:Sudoku.Analytics.Keywords.InvalidKeywordConverterTypeException">
             <summary>

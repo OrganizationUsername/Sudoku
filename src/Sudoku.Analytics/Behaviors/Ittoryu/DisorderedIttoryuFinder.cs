@@ -151,7 +151,7 @@ public sealed class DisorderedIttoryuFinder(params TechniqueSet supportedTechniq
 			for (var house = 0; house < 27; house++)
 			{
 				if ((emptyCells & HousesMap[house]) is [var fullHouseCell]
-					&& BitOperations.TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
+					&& TrailingZeroCount(grid.GetCandidates(fullHouseCell)) == digit)
 				{
 					foundNodes.Add(new(grid, house, fullHouseCell * 9 + digit));
 				}
@@ -174,9 +174,9 @@ public sealed class DisorderedIttoryuFinder(params TechniqueSet supportedTechniq
 					continue;
 				}
 
-				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && BitOperations.IsPow2(mask))
+				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && IsPow2(mask))
 				{
-					foundNodes.Add(new(grid, house, HousesCells[house][BitOperations.Log2((uint)mask)] * 9 + digit));
+					foundNodes.Add(new(grid, house, HousesCells[house][Log2((uint)mask)] * 9 + digit));
 				}
 			}
 		}

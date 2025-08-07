@@ -43,14 +43,14 @@ public sealed class UniqueRectangleDifferentDigitChainingRule : UniqueRectangleC
 
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
-				if (BitOperations.PopCount((uint)otherDigitsMask) != 2)
+				if (PopCount((uint)otherDigitsMask) != 2)
 				{
 					continue;
 				}
 
 				var ur = new UniqueRectanglePattern(urCells, urDigitsMask, otherDigitsMask);
 
-				var theOtherDigit1 = BitOperations.TrailingZeroCount(otherDigitsMask);
+				var theOtherDigit1 = TrailingZeroCount(otherDigitsMask);
 				var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 				var cells1 = __CandidatesMap[theOtherDigit1] & urCells;
 				var cells2 = __CandidatesMap[theOtherDigit2] & urCells;

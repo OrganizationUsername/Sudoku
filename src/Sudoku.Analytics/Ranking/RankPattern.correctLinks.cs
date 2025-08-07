@@ -98,7 +98,7 @@ public partial struct RankPattern
 				// Sometimes the pairs of combination can be appeared in a line, which would be already checked by line links.
 				// We should ignore the pairs.
 				if (link.House is < 9 and not -1
-					&& BitOperations.IsPow2(combination.Digits)
+					&& IsPow2(combination.Digits)
 					&& combination.Cells is { Count: 2, SharedLine: not FallbackConstants.@int } pairCells)
 				{
 					// Skip for the pair.

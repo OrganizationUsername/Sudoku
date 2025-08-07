@@ -62,12 +62,12 @@ public partial class Hub
 			{
 				var candidatesMap = grid.CandidatesMap;
 				var extraDigitsMask = (Mask)(grid[cells] & ~comparer);
-				if (BitOperations.PopCount((uint)extraDigitsMask) != 2)
+				if (PopCount((uint)extraDigitsMask) != 2)
 				{
 					return [];
 				}
 
-				var digit1 = BitOperations.TrailingZeroCount(extraDigitsMask);
+				var digit1 = TrailingZeroCount(extraDigitsMask);
 				var digit2 = extraDigitsMask.GetNextSet(digit1);
 				var cells1 = candidatesMap[digit1] & cells;
 				var cells2 = candidatesMap[digit2] & cells;
@@ -80,7 +80,7 @@ public partial class Hub
 				//
 				// Then we should find all peer intersection cells and make union.
 				var (nakedPairElims1, nakedPairElims2) = (CellMap.Empty, CellMap.Empty);
-				var urDigit1 = BitOperations.TrailingZeroCount(comparer);
+				var urDigit1 = TrailingZeroCount(comparer);
 				var urDigit2 = comparer.GetNextSet(urDigit1);
 				var template = candidatesMap[urDigit1] | candidatesMap[urDigit2];
 				foreach (ref readonly var pair in cells & ~cells1 & 2)
@@ -180,8 +180,8 @@ public partial class Hub
 					ref readonly var externalSide = ref mapPair.Item2;
 
 					// Check whether two maps only hold one digit for each.
-					var internalSideDigit = BitOperations.TrailingZeroCount(internalSide.Digits);
-					var externalSideDigit = BitOperations.TrailingZeroCount(externalSide.Digits);
+					var internalSideDigit = TrailingZeroCount(internalSide.Digits);
+					var externalSideDigit = TrailingZeroCount(externalSide.Digits);
 					if (internalSideDigit == FallbackConstants.@int || externalSideDigit == FallbackConstants.@int)
 					{
 						continue;
@@ -267,7 +267,7 @@ public partial class Hub
 							{
 								// Check whether the intersection cell 'abcCellCanSeeExternalCell' only contains one extra digit.
 								var digitsMaskOnAbcCell = (Mask)(grid.GetCandidates(abcCellCanSeeExternalCell) & ~comparer);
-								if (BitOperations.TrailingZeroCount(digitsMaskOnAbcCell) == digit)
+								if (TrailingZeroCount(digitsMaskOnAbcCell) == digit)
 								{
 									// Invalid.
 									goto FastFail;

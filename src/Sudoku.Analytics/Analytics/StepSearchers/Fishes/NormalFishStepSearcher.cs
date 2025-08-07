@@ -231,13 +231,13 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					{
 						// All fins should be in the same block.
 						var blockMask = (fins = baseLine & ~coverLine).BlockMask;
-						if (!fins || !BitOperations.IsPow2(blockMask))
+						if (!fins || !IsPow2(blockMask))
 						{
 							continue;
 						}
 
 						// Cover set shouldn't overlap with the block of all fins lying in.
-						var finBlock = BitOperations.TrailingZeroCount(blockMask);
+						var finBlock = TrailingZeroCount(blockMask);
 						if (!(coverLine & HousesMap[finBlock]))
 						{
 							continue;

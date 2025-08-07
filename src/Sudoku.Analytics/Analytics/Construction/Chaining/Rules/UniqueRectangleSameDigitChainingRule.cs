@@ -43,18 +43,18 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 
 				var urDigitsMask = (Mask)(1 << d1 | 1 << d2);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
-				if (!BitOperations.IsPow2(otherDigitsMask))
+				if (!IsPow2(otherDigitsMask))
 				{
 					continue;
 				}
 
 				var ur = new UniqueRectanglePattern(urCells, urDigitsMask, otherDigitsMask);
-				var otherOnlyDigit = BitOperations.Log2((uint)otherDigitsMask);
+				var otherOnlyDigit = Log2((uint)otherDigitsMask);
 				var cellsContainingThisDigit = __CandidatesMap[otherOnlyDigit] & urCells;
 				var rowsSpanned = cellsContainingThisDigit.RowMask << 9;
-				if (BitOperations.PopCount((uint)rowsSpanned) == 2)
+				if (PopCount((uint)rowsSpanned) == 2)
 				{
-					var row1 = BitOperations.TrailingZeroCount(rowsSpanned);
+					var row1 = TrailingZeroCount(rowsSpanned);
 					var row2 = rowsSpanned.GetNextSet(row1);
 					var cells1 = cellsContainingThisDigit & HousesMap[row1];
 					var cells2 = cellsContainingThisDigit & HousesMap[row2];
@@ -68,9 +68,9 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 				}
 
 				var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
-				if (BitOperations.PopCount((uint)columnsSpanned) == 2)
+				if (PopCount((uint)columnsSpanned) == 2)
 				{
-					var column1 = BitOperations.TrailingZeroCount(columnsSpanned);
+					var column1 = TrailingZeroCount(columnsSpanned);
 					var column2 = columnsSpanned.GetNextSet(column1);
 					var cells3 = cellsContainingThisDigit & HousesMap[column1];
 					var cells4 = cellsContainingThisDigit & HousesMap[column2];

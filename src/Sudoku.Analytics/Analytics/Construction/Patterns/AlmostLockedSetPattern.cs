@@ -194,7 +194,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 				foreach (ref readonly var map in tempMap & size)
 				{
 					var blockMask = map.BlockMask;
-					if (BitOperations.IsPow2(blockMask) && house >= 9)
+					if (IsPow2(blockMask) && house >= 9)
 					{
 						// All ALS cells lying on a box-row or a box-column
 						// will be processed as a block ALS.
@@ -203,7 +203,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 
 					// Get all candidates in these cells.
 					var digitsMask = grid[map];
-					if (BitOperations.PopCount((uint)digitsMask) - 1 != size)
+					if (PopCount((uint)digitsMask) - 1 != size)
 					{
 						continue;
 					}

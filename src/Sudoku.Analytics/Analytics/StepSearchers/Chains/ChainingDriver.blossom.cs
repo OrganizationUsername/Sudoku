@@ -89,7 +89,7 @@ internal partial class ChainingDriver
 				}
 
 				var digitsMask = grid.GetCandidates(startCell);
-				if (cellDistribution.Count != BitOperations.PopCount((uint)digitsMask))
+				if (cellDistribution.Count != PopCount((uint)digitsMask))
 				{
 					continue;
 				}
@@ -137,7 +137,7 @@ internal partial class ChainingDriver
 				}
 
 				var digitsMask = grid.GetCandidates(startCell);
-				if (houseDistribution.Count != BitOperations.PopCount((uint)digitsMask))
+				if (houseDistribution.Count != PopCount((uint)digitsMask))
 				{
 					continue;
 				}

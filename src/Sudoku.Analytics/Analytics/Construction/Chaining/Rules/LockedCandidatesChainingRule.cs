@@ -30,7 +30,7 @@ public sealed class LockedCandidatesChainingRule : ChainingRule
 				}
 
 				var firstPair = pairHouse[0];
-				var h1 = BitOperations.TrailingZeroCount(firstPair);
+				var h1 = TrailingZeroCount(firstPair);
 				var h2 = firstPair.GetNextSet(h1);
 				var cells1 = cells & HousesMap[h1];
 				var cells2 = cells & HousesMap[h2];
@@ -84,9 +84,9 @@ public sealed class LockedCandidatesChainingRule : ChainingRule
 		foreach (var element in links)
 		{
 			if (element is ({ Map: { Digits: var digits1, Cells: var cells1 } }, { Map: { Digits: var digits2, Cells: var cells2 } }, _, null)
-				&& digits1 == digits2 && BitOperations.IsPow2(digits1)
-				&& digits1 == digits2 && BitOperations.IsPow2(digits1)
-				&& BitOperations.Log2((uint)digits1) is var digit
+				&& digits1 == digits2 && IsPow2(digits1)
+				&& digits1 == digits2 && IsPow2(digits1)
+				&& Log2((uint)digits1) is var digit
 				&& (cells1 & cells2 & __CandidatesMap[digit]) is { Count: not 0 } intersection)
 			{
 				result.AddRange(from cell in intersection select new Conclusion(Elimination, cell, digit));

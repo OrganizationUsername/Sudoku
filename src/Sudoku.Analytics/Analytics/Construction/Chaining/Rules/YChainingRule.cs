@@ -21,14 +21,14 @@ public sealed class YChainingRule : ChainingRule
 		foreach (var cell in __EmptyCells)
 		{
 			var mask = grid.GetCandidates(cell);
-			if (BitOperations.PopCount((uint)mask) < 2)
+			if (PopCount((uint)mask) < 2)
 			{
 				continue;
 			}
 
 			if (__BivalueCells.Contains(cell))
 			{
-				var digit1 = BitOperations.TrailingZeroCount(mask);
+				var digit1 = TrailingZeroCount(mask);
 				var digit2 = mask.GetNextSet(digit1);
 				var node1 = new Node((cell * 9 + digit1).AsCandidateMap(), false);
 				var node2 = new Node((cell * 9 + digit2).AsCandidateMap(), true);
@@ -63,9 +63,9 @@ public sealed class YChainingRule : ChainingRule
 		var startDigit = startCandidate % 9;
 		var digitsMask = (Mask)(grid.GetCandidates(cell) & ~(1 << startDigit));
 		var resultNodes = new HashSet<Node>();
-		if (BitOperations.IsPow2(digitsMask))
+		if (IsPow2(digitsMask))
 		{
-			var endDigit = BitOperations.Log2((uint)digitsMask);
+			var endDigit = Log2((uint)digitsMask);
 			var digitsToCheck = (Mask)(originalGrid.GetCandidates(cell) & ~grid.GetCandidates(cell));
 			resultNodes.Add(
 				new(

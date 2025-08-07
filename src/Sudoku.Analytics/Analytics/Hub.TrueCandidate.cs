@@ -33,7 +33,7 @@ public partial class Hub
 			var multivalueCellsCount = 0;
 			foreach (var cell in __EmptyCells)
 			{
-				switch (BitOperations.PopCount((uint)grid.GetCandidates(cell)))
+				switch (PopCount((uint)grid.GetCandidates(cell)))
 				{
 					case 1:
 					{
@@ -145,7 +145,7 @@ public partial class Hub
 					}
 
 					chosen[currentIndex] = i;
-					var pos1 = BitOperations.TrailingZeroCount(mask);
+					var pos1 = TrailingZeroCount(mask);
 
 					stack[currentIndex, pos1].Add(currentCell);
 					stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);

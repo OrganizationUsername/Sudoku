@@ -15,7 +15,7 @@ public sealed class XyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
 		var trivalueCells = CellMap.Empty;
 		foreach (var cell in emptyCells & ~bivalueCells)
 		{
-			if (BitOperations.PopCount((uint)grid.GetCandidates(cell)) == 3)
+			if (PopCount((uint)grid.GetCandidates(cell)) == 3)
 			{
 				trivalueCells.Add(cell);
 			}
@@ -54,14 +54,14 @@ public sealed class XyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
 
 						// Check whether 3 cells intersected by one common digit, and contains 3 different digits.
 						var unionedDigitsMask = (Mask)((Mask)(digitsMaskPivot | digitsMask1) | digitsMask2);
-						if (BitOperations.PopCount((uint)unionedDigitsMask) != 3
+						if (PopCount((uint)unionedDigitsMask) != 3
 							|| unionedDigitsMask != digitsMaskPivot
-							|| !BitOperations.IsPow2((Mask)(digitsMaskPivot & digitsMask1 & digitsMask2)))
+							|| !IsPow2((Mask)(digitsMaskPivot & digitsMask1 & digitsMask2)))
 						{
 							continue;
 						}
 
-						var intersectedDigit = BitOperations.Log2((uint)(digitsMaskPivot & digitsMask1 & digitsMask2));
+						var intersectedDigit = Log2((uint)(digitsMaskPivot & digitsMask1 & digitsMask2));
 						result.Add(new(pivot, leafCell1, leafCell2, house1, house2, unionedDigitsMask, intersectedDigit));
 					}
 				}

@@ -145,12 +145,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 			}
 
 			var lastDigitMask = (Mask)(grid[emptyCellsInHouse] & ~(1 << digit));
-			if (!BitOperations.IsPow2(lastDigitMask))
+			if (!IsPow2(lastDigitMask))
 			{
 				continue;
 			}
 
-			var lastDigit = BitOperations.Log2((uint)lastDigitMask);
+			var lastDigit = Log2((uint)lastDigitMask);
 			var lastCell = (emptyCellsInHouse & elimMap)[0];
 			var step = new DirectIntersectionStep(
 				new SingletonArray<Conclusion>(new(Assignment, lastCell, lastDigit)),
@@ -293,12 +293,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	{
 		foreach (var lastCell in elimMap)
 		{
-			if (grid.GetCandidates(lastCell) is var digitsMask && BitOperations.PopCount((uint)digitsMask) != 2)
+			if (grid.GetCandidates(lastCell) is var digitsMask && PopCount((uint)digitsMask) != 2)
 			{
 				continue;
 			}
 
-			var lastDigit = BitOperations.TrailingZeroCount((Mask)(digitsMask & ~(1 << digit)));
+			var lastDigit = TrailingZeroCount((Mask)(digitsMask & ~(1 << digit)));
 			var step = new DirectIntersectionStep(
 				new SingletonArray<Conclusion>(new(Assignment, lastCell, lastDigit)),
 				[

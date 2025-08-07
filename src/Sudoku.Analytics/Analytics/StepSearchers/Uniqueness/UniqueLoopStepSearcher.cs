@@ -53,7 +53,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				throw new PuzzleInvalidException(grid, typeof(UniqueLoopStepSearcher));
 			}
 
-			var d1 = BitOperations.TrailingZeroCount(comparer);
+			var d1 = TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
 			for (var i = 0; i < TypeCheckers.Length; i++)
 			{
@@ -96,7 +96,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		{
 			var queue = LinkedList.Singleton(LinkedList.Singleton(cell));
 			var comparer = grid.GetCandidates(cell);
-			var d1 = BitOperations.TrailingZeroCount(comparer);
+			var d1 = TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
 			var pairMap = CandidatesMap[d1] & CandidatesMap[d2];
 			while (queue.Count != 0)

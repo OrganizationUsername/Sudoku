@@ -247,7 +247,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					var isNotPossibleUr = true;
 					foreach (var cell in urCells)
 					{
-						if (BitOperations.PopCount((uint)(grid.GetCandidates(cell) & comparer)) == 2)
+						if (PopCount((uint)(grid.GetCandidates(cell) & comparer)) == 2)
 						{
 							isNotPossibleUr = false;
 							break;

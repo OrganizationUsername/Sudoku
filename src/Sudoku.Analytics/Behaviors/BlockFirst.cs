@@ -128,7 +128,7 @@ public sealed class BlockFirst : IBehaviorMetric
 							mask |= (Mask)(1 << d);
 						}
 					}
-					return baseScore + BitOperations.PopCount((uint)mask);
+					return baseScore + PopCount((uint)mask);
 				}
 			}
 			return (minStep, minScore);
@@ -179,7 +179,7 @@ public sealed class BlockFirst : IBehaviorMetric
 			}
 
 			if (lastCell != -1
-				&& BitOperations.IsPow2((lastCell.AsCellMap() + currentCell).BlockMask)
+				&& IsPow2((lastCell.AsCellMap() + currentCell).BlockMask)
 				&& solution.GetDigit(lastCell) is var lastDigit
 				&& solution.GetDigit(currentCell) is var currentDigit
 				&& currentDigit < lastDigit
@@ -190,7 +190,7 @@ public sealed class BlockFirst : IBehaviorMetric
 			}
 
 			var index = indexedList.FindIndex(cell => cell == currentCell);
-			return lastCell == -1 ? index + 1 : index + 1 - BitOperations.PopCount((uint)mask);
+			return lastCell == -1 ? index + 1 : index + 1 - PopCount((uint)mask);
 		}
 	}
 }

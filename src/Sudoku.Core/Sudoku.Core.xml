@@ -4594,10 +4594,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.op_Equality(Sudoku.Concepts.Graphs.AdjacentCellGraph,Sudoku.Concepts.Graphs.AdjacentCellGraph)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.op_Inequality(Sudoku.Concepts.Graphs.AdjacentCellGraph,Sudoku.Concepts.Graphs.AdjacentCellGraph)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Graphs.CellGraph">
             <summary>

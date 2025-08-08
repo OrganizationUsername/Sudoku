@@ -108,9 +108,9 @@ public readonly ref struct AdjacentCellGraph : IEquatable<AdjacentCellGraph>, IF
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	public static bool operator ==(AdjacentCellGraph left, AdjacentCellGraph right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	public static bool operator !=(AdjacentCellGraph left, AdjacentCellGraph right) => !(left == right);
 }

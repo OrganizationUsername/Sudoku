@@ -28307,6 +28307,11 @@
             <returns>A task that encapsulates asynchronous operation.</returns>
             <exception cref="T:System.OperationCanceledException">Throws when operation canceled.</exception>
         </member>
+        <member name="M:Sudoku.Generating.GeneratorHub.HandlerCore``1(System.Int32@,System.Int32@,Sudoku.Generating.Filtering.ConstraintCollection,,,,System.Action{``0},Sudoku.Analytics.Analyzer,Sudoku.Behaviors.Ittoryu.DisorderedIttoryuFinder,Sudoku.Behaviors.Bottlenecks.BottleneckFilter[],System.Threading.CancellationToken)">
+            <summary>
+            The backing hanlder.
+            </summary>
+        </member>
         <member name="T:Sudoku.Generating.Qualified.ComplexSingleGenerator">
             <summary>
             Represents a generator type that can generate puzzles with complex single techniques.

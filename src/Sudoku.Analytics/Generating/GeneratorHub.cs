@@ -137,6 +137,9 @@ public static partial class GeneratorHub
 		}
 	}
 
+	/// <summary>
+	/// The backing hanlder.
+	/// </summary>
 	private static unsafe Grid HandlerCore<TProgressDataProvider>(
 		ref int generatingCount,
 		ref int generatingFilteredCount,
@@ -171,16 +174,13 @@ public static partial class GeneratorHub
 		{
 			var chosenSymmetricType = symmetries.Length == 0 ? SymmetricType.None : symmetries[rng.Next(0, symmetries.Length)];
 			var grid = gridCreator(givensCount, chosenSymmetricType, constraints, cancellationToken);
-			if (grid.IsEmpty
-				|| analyzer.Analyze(grid, cancellationToken: cancellationToken) is not { IsSolved: true } analysisResult)
+			if (grid.IsEmpty || analyzer.Analyze(grid, cancellationToken: cancellationToken) is not { IsSolved: true } analysisResult)
 			{
 				goto ReportState;
 			}
 
 			// Transform if worth. This transform rules may conflict with other rules so be careful to use this.
-			if (gridTransformingChecker != null
-				&& gridTransformingChecker(grid, out var outVariable)
-				&& gridTransformer != null)
+			if (gridTransformingChecker != null && gridTransformingChecker(grid, out var outVariable) && gridTransformer != null)
 			{
 				gridTransformer(ref grid, constraints, outVariable);
 			}

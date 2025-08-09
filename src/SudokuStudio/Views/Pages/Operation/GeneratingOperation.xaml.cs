@@ -326,26 +326,3 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		);
 	}
 }
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Randomly read one puzzle in the specified file, and return it.
-	/// </summary>
-	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
-	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
-	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
-	public static async Task<Grid> RandomReadOneAsync(
-		this Library @this,
-		TransformType transformTypes = TransformType.None,
-		CancellationToken cancellationToken = default
-	)
-	{
-		var chosen = Grid.Parse(await @this.SelectOneAsync(cancellationToken));
-		chosen.Transform(transformTypes);
-		return chosen;
-	}
-}

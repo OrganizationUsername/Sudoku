@@ -15860,23 +15860,6 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.IO.Library,Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
-            <summary>
-            Randomly read one puzzle in the specified file, and return it.
-            </summary>
-            <param name="this">Indicates the current instance.</param>
-            <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
-            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
             Represents printing operation.

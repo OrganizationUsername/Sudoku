@@ -34,6 +34,7 @@ global using Sudoku.Concepts.Coordinates.Formatting;
 global using Sudoku.Concepts.Supersymmetry;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
+global using Sudoku.IO;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
 global using Sudoku.Shuffling.Minlex;

@@ -34,18 +34,9 @@
   </Folder>
   <Folder Name="/Global Items/Source Generators/" />
   <Folder Name="/Source Generators/">
-    <Project Path="PuzzlesMeta/src/RootLevelSourceGeneration/RootLevelSourceGeneration.csproj">
-      <BuildType Solution="Build|*" Project="Debug" />
-    </Project>
     <Project Path="src/Sudoku.Analytics.SourceGeneration/Sudoku.Analytics.SourceGeneration.csproj" />
     <Project Path="src/SudokuStudio.SourceGeneration/SudokuStudio.SourceGeneration.csproj" />
   </Folder>
-  <Project Path="PuzzlesMeta/src/Puzzles.Core/Puzzles.Core.csproj">
-    <BuildType Solution="Build|*" Project="Debug" />
-  </Project>
-  <Project Path="PuzzlesMeta/src/System/SystemExtensions.csproj">
-    <BuildType Solution="Build|*" Project="Debug" />
-  </Project>
   <Project Path="src/ConsoleTest/MyPrivateWorks.csproj" />
   <Project Path="src/Sudoku.Analytics/Sudoku.Analytics.csproj" />
   <Project Path="src/Sudoku.CommandLine/Sudoku.CommandLine.csproj">
@@ -62,5 +53,8 @@
     <Platform Solution="Debug|x64" Project="x64" />
     <Platform Solution="Release|Any CPU" Project="x64" />
     <Platform Solution="Release|x64" Project="x64" />
+  </Project>
+  <Project Path="src/System/SystemExtensions.csproj">
+    <BuildType Solution="Build|*" Project="Debug" />
   </Project>
 </Solution>

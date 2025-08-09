@@ -10,49 +10,31 @@ public sealed class Generator : IIncrementalGenerator
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		context.RegisterSourceOutput(
-			context.CompilationProvider
-				.Combine(
-					context.SyntaxProvider
-						.ForAttributeWithMetadataName(
-							"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
-							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
-								&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-							AttachedPropertyHandler.Transform
-						)
-						.Where(NotNullPredicate)
-						.Select(NotNullSelector)
-						.Collect()
-				),
-			static (spc, c) =>
-			{
-				if (c.Left.AssemblyName == "SudokuStudio")
-				{
-					AttachedPropertyHandler.Output(spc, c.Right);
-				}
-			}
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
+					static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
+						&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+					AttachedPropertyHandler.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			AttachedPropertyHandler.Output
 		);
 
 		context.RegisterSourceOutput(
-			context.CompilationProvider
-				.Combine(
-					context.SyntaxProvider
-						.ForAttributeWithMetadataName(
-							"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
-							static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
-								&& !m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-							DependencyPropertyHandler.Transform
-						)
-						.Where(NotNullPredicate)
-						.Select(NotNullSelector)
-						.Collect()
-				),
-			static (spc, c) =>
-			{
-				if (c.Left.AssemblyName == "SudokuStudio")
-				{
-					DependencyPropertyHandler.Output(spc, c.Right);
-				}
-			}
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
+					static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
+						&& !m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
+					DependencyPropertyHandler.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			DependencyPropertyHandler.Output
 		);
 	}
 
@@ -73,13 +55,4 @@ public sealed class Generator : IIncrementalGenerator
 	/// <param name="_"/>
 	/// <returns>The value.</returns>
 	public static T NotNullSelector<T>(T? value, CancellationToken _) where T : class => value!;
-
-	/// <summary>
-	/// Try to get the internal value without nullability checking.
-	/// </summary>
-	/// <typeparam name="T">The type of the value.</typeparam>
-	/// <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
-	/// <param name="_"/>
-	/// <returns>The value.</returns>
-	public static T NotNullSelector<T>(T? value, CancellationToken _) where T : struct => value!.Value;
 }

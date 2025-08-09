@@ -29,7 +29,7 @@
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
             please see the 'remark' part of <see cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>.
             </summary>
-            <param name="_photo">Indicates the photo to be assigned.</param>
+            <param name="photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.#ctor(System.Drawing.Bitmap)">
@@ -37,7 +37,7 @@
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
             please see the 'remark' part of <see cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>.
             </summary>
-            <param name="_photo">Indicates the photo to be assigned.</param>
+            <param name="photo">Indicates the photo to be assigned.</param>
             <seealso cref="T:Sudoku.Drawing.Ocr.InternalServiceProvider"/>
         </member>
         <member name="F:Sudoku.Drawing.Ocr.GridRecognizer.L2Gradient">
@@ -70,10 +70,18 @@
             Indicates the behavior that specifies and executes the chain approximation algorithm.
             </summary>
         </member>
+        <member name="F:Sudoku.Drawing.Ocr.GridRecognizer._isDisposed">
+            <summary>
+            Indicates whether the object is disposed.
+            </summary>
+        </member>
         <member name="F:Sudoku.Drawing.Ocr.GridRecognizer._image">
             <summary>
             The image.
             </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Recognize">
             <summary>
@@ -108,19 +116,6 @@
             <param name="field">The field.</param>
             <returns>The image.</returns>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.GridRecognizer._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose"/> was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose"/> will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
-        </member>
         <member name="T:Sudoku.Drawing.Ocr.ImageHandler">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
@@ -133,12 +128,12 @@
             </remarks>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
-        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.">
+        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__0">
             <summary>
             Provides extension members on <see cref="T:System.Drawing.PointF"/>[].
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.ImageHandler..IsRectangle(System.Int32,System.Int32,System.Double)">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__0.IsRectangle(System.Int32,System.Int32,System.Double)">
             <summary>
             Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
             The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
@@ -149,18 +144,21 @@
             <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
             <returns>A <see cref="T:System.Boolean"/> value.</returns>
         </member>
-        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+            <inheritdoc cref="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__0.IsRectangle(System.Int32,System.Int32,System.Double)"/>
+        </member>
+        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__1">
             <summary>
             Provides extension members on <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.ImageHandler..CorrectOrientation">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__1.CorrectOrientation">
             <summary>
             To correct the orientation.
             </summary>
             <returns>The reference same as <see langword="this"/>.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.ImageHandler..ToImage``2">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__1.ToImage``2">
             <summary>
             Create an <see cref="T:Emgu.CV.Image`2"/> from <see cref="T:System.Drawing.Bitmap"/>.
             </summary>
@@ -175,16 +173,25 @@
             <seealso cref="T:Emgu.CV.Image`2"/>
             <seealso cref="T:System.Drawing.Bitmap"/>
         </member>
-        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.`2">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.CorrectOrientation(System.Drawing.Bitmap)">
+            <inheritdoc cref="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__1.CorrectOrientation"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.ToImage``2(System.Drawing.Bitmap)">
+            <inheritdoc cref="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__1.ToImage``2"/>
+        </member>
+        <member name="T:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__2`2">
             <summary>
             Provides extension members on <see cref="T:Emgu.CV.Image`2"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.`2.CopyFromBitmap(System.Drawing.Bitmap)">
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__2`2.CopyFromBitmap(System.Drawing.Bitmap)">
             <summary>
             Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
             </summary>
             <param name="bmp">the bitmap to copy data from.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.ImageHandler.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
+            <inheritdoc cref="M:Sudoku.Drawing.Ocr.ImageHandler.&lt;&gt;E__2`2.CopyFromBitmap(System.Drawing.Bitmap)"/>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.ImageHandler.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
             <summary>
@@ -214,6 +221,11 @@
             Indicates the ThOcrMax.
             </summary>
         </member>
+        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider._isDisposed">
+            <summary>
+            Indicates whether the object is disposed.
+            </summary>
+        </member>
         <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider._ocr">
             <summary>
             The internal <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
@@ -224,11 +236,15 @@
             Indicates whether the current recognizer has already initialized.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},System.Boolean)">
             <summary>
             Recognizes digits.
             </summary>
             <param name="field">The field.</param>
+            <param name="ignoreConflicts">Indicates whether the method ignores any conflicts of sudoku basic rules.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.Drawing.Ocr.FailedToFillValueException">
             Throws when the processing is wrong or un-handle-able.
@@ -255,19 +271,6 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose"/> was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose"/> will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
-        </member>
         <member name="T:Sudoku.Drawing.Ocr.RecognitionServiceProvider">
             <summary>
             Define a sudoku recognition service provider.
@@ -276,6 +279,11 @@
         <member name="F:Sudoku.Drawing.Ocr.RecognitionServiceProvider._recognizingServiceProvider">
             <summary>
             Indicates the internal recognition service provider.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Drawing.Ocr.RecognitionServiceProvider._isDisposed">
+            <summary>
+            Indicates whether the object is disposed.
             </summary>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.#ctor">
@@ -288,26 +296,17 @@
             Indicates whether the OCR tool has already initialized.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap)">
+        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap,System.Boolean)">
             <summary>
             Recognize the image.
             </summary>
             <param name="image">The image.</param>
+            <param name="ignoreConflicts">Indicates whether this method ignores any conflicts on sudoku basic rules.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">Throws when the tool has not initialized yet.</exception>
-        </member>
-        <member name="F:Sudoku.Drawing.Ocr.RecognitionServiceProvider._isDisposed">
-            <summary>
-            Indicates whether the object had already been disposed before <see cref="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose"/> was called.
-            If this field holds <see langword="false"/> value, <see cref="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose"/> will throw an
-            <see cref="T:System.ObjectDisposedException"/> to report the error.
-            </summary>
-            <seealso cref="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose"/>
-            <seealso cref="T:System.ObjectDisposedException"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose">
-            <inheritdoc/>
-            <exception cref="T:System.ObjectDisposedException">Throws when the object had already been disposed.</exception>
         </member>
         <member name="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">
             <summary>

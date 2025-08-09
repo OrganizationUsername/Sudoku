@@ -26423,12 +26423,16 @@
             </summary>
             <seealso cref="T:Sudoku.Categorization.TechniqueSet"/>
         </member>
-        <member name="M:Sudoku.Categorization.TechniqueSetExtensions.GetCommonSuitableStepType(Sudoku.Categorization.TechniqueSet)">
+        <member name="T:Sudoku.Categorization.TechniqueSetExtensions.&lt;&gt;E__0">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Categorization.TechniqueSet"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Categorization.TechniqueSetExtensions.&lt;&gt;E__0.CommonSuitableStepType">
             <summary>
             Try to get common suitable <see cref="T:System.Type"/> referring to a <see cref="T:Sudoku.Analytics.Step"/> type,
             whose containing property <see cref="P:Sudoku.Analytics.Step.Code"/> can create this technique.
             </summary>
-            <param name="this">The current instance.</param>
             <returns>
             A valid <see cref="T:System.Type"/> instance, or <see langword="null"/> if it may not be referred by all <see cref="T:Sudoku.Analytics.Step"/>
             derived types.
@@ -26437,6 +26441,9 @@
             <seealso href="https://www.zhihu.com/question/369088717/answer/2613233529">
             Zhihu: Which way to calculate LCA in a multiway tree is fastest?
             </seealso>
+        </member>
+        <member name="M:Sudoku.Categorization.TechniqueSetExtensions.get_CommonSuitableStepType(Sudoku.Categorization.TechniqueSet)">
+            <inheritdoc cref="P:Sudoku.Categorization.TechniqueSetExtensions.&lt;&gt;E__0.CommonSuitableStepType"/>
         </member>
         <member name="T:Sudoku.Categorization.TechniqueSets">
             <summary>

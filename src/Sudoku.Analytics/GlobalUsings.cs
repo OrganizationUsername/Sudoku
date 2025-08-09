@@ -69,4 +69,3 @@ global using static Sudoku.Analytics.Caching.MemoryCachedData;
 global using static Sudoku.Analytics.Hub;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;
-global using FailedReason = Sudoku.Analytics.FailedReason;

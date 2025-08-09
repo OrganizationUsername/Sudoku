@@ -334,15 +334,10 @@ file static class Extensions
 	/// Randomly read one puzzle in the specified file, and return it.
 	/// </summary>
 	/// <param name="this">Indicates the current instance.</param>
-	/// <param name="transformTypes">
-	/// Indicates the available transform type that the chosen grid can be transformed.
-	/// Use <see cref="TransformType"/>.<see langword="operator"/> |(<see cref="TransformType"/>, <see cref="TransformType"/>)
-	/// to combine multiple flags.
-	/// </param>
+	/// <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
 	/// <returns>A <see cref="Task{TResult}"/> of <see cref="Grid"/> instance as the result.</returns>
 	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
-	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
 	public static async Task<Grid> RandomReadOneAsync(
 		this Library @this,
 		TransformType transformTypes = TransformType.None,

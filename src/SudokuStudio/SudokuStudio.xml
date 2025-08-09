@@ -15872,15 +15872,10 @@
             Randomly read one puzzle in the specified file, and return it.
             </summary>
             <param name="this">Indicates the current instance.</param>
-            <param name="transformTypes">
-            Indicates the available transform type that the chosen grid can be transformed.
-            Use <see cref="T:Sudoku.Shuffling.Transforming.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Shuffling.Transforming.TransformType"/>, <see cref="T:Sudoku.Shuffling.Transforming.TransformType"/>)
-            to combine multiple flags.
-            </param>
+            <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
-            <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>

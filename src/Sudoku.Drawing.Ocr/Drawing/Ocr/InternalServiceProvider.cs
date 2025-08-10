@@ -3,20 +3,17 @@ namespace Sudoku.Drawing.Ocr;
 /// <summary>
 /// Define a recognizer.
 /// </summary>
-/// <remarks>
-/// During the recognizing, the <b>field</b> indicates the whole outline of a grid.
-/// </remarks>
 internal sealed class InternalServiceProvider : IDisposable
 {
 	/// <summary>
-	/// Indicates the ThOcrMin.
+	/// Indicates the min value of threshold.
 	/// </summary>
-	private const int ThOcrMin = 120;
+	private const int ThresholdMinValue = 120;
 
 	/// <summary>
-	/// Indicates the ThOcrMax.
+	/// Indicates the max value of threshold.
 	/// </summary>
-	private const int ThOcrMax = 255;
+	private const int ThresholdMaxValue = 255;
 
 
 	/// <summary>
@@ -49,39 +46,53 @@ internal sealed class InternalServiceProvider : IDisposable
 	/// <summary>
 	/// Recognizes digits.
 	/// </summary>
-	/// <param name="field">The field.</param>
-	/// <param name="ignoreConflicts">Indicates whether the method ignores any conflicts of sudoku basic rules.</param>
+	/// <param name="field">
+	/// <para>The field indicating the whole outline of a grid.</para>
+	/// <para>
+	/// It doesn't mean C# concept "field"; instead, this parameter represents the range of border of the grid
+	/// to be recognized encapsulated by API.
+	/// </para>
+	/// </param>
 	/// <returns>The grid.</returns>
-	/// <exception cref="FailedToFillValueException">
-	/// Throws when the processing is wrong or un-handle-able.
-	/// </exception>
-	public Grid RecognizeDigits(Image<Bgr, byte> field, bool ignoreConflicts)
+	/// <exception cref="FailedToFillValueException">Throws when any conflicts are found in target grid.</exception>
+	public Grid Recognize(Image<Bgr, byte> field)
 	{
 		var result = Grid.Empty;
-		var w = field.Width / 9;
-		var o = w / 6;
-		for (var x = 0; x < 9; x++)
+		var cellWidth = field.Width / 9;
+		var offset = cellWidth / 6;
+		for (var column = 0; column < 9; column++)
 		{
-			for (var y = 0; y < 9; y++)
+			for (var row = 0; row < 9; row++)
 			{
 				// Recognize digit from cell.
-				var recognizedResult = RecognizeCellNumber(field.GetSubRect(new(o + w * x, o + w * y, w - o * 2, w - o * 2)));
-				if (recognizedResult != -1)
+				var recognizedResult = RecognizeCellNumber(
+					field.GetSubRect(
+						new(
+							offset + cellWidth * column,
+							offset + cellWidth * row,
+							cellWidth - offset * 2,
+							cellWidth - offset * 2
+						)
+					)
+				);
+				if (recognizedResult == -1)
 				{
-					var cell = x * 9 + y;
-					var digit = recognizedResult - 1;
-					if (!result.GetExistence(cell, digit) && !ignoreConflicts)
-					{
-						throw new FailedToFillValueException(cell, digit);
-					}
-
-					result.SetDigit(cell, digit);
+					continue;
 				}
+
+				// Check validity on value.
+				if ((row * 9 + column, recognizedResult - 1) is var (cell, digit) && !result.GetExistence(cell, digit))
+				{
+					throw new FailedToFillValueException(cell, digit);
+				}
+
+				// Set value to grid.
+				result.SetDigit(cell, digit);
 			}
 		}
 
 		// The result will be transposed.
-		return result.Transpose();
+		return result;
 	}
 
 	/// <summary>
@@ -103,7 +114,7 @@ internal sealed class InternalServiceProvider : IDisposable
 		CvInvoke.CvtColor(cellImg, imgGray, ColorConversion.Bgr2Gray);
 
 		var imgThresholds = new Mat();
-		CvInvoke.Threshold(imgGray, imgThresholds, ThOcrMin, ThOcrMax, ThresholdType.Binary);
+		CvInvoke.Threshold(imgGray, imgThresholds, ThresholdMinValue, ThresholdMaxValue, ThresholdType.Binary);
 
 		_ocr.SetImage(imgThresholds);
 		if (_ocr.Recognize() != 0)
@@ -120,7 +131,6 @@ internal sealed class InternalServiceProvider : IDisposable
 				numberText += t;
 			}
 		}
-
 		return numberText.Length > 1 ? -1 : Digit.TryParse(numberText, out var resultValue) ? resultValue : -1;
 	}
 

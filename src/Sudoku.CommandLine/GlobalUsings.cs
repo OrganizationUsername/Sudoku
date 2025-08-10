@@ -12,7 +12,6 @@ global using System.Linq.Providers;
 global using System.Runtime.CompilerServices;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using Puzzles.Meta.Transforming;
 global using Sudoku.Analytics;
 global using Sudoku.Categorization;
 global using Sudoku.CommandLine;

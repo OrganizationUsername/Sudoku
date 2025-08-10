@@ -502,7 +502,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.ComparingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IMySymbol{Puzzles#Meta#Transforming#BoardComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#Shuffling#Transforming#GridComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CountOption">

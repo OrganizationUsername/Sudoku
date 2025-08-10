@@ -61,7 +61,7 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 	}
 
 	/// <summary>
-	/// Recognize.
+	/// Starts recognization operation, to prepare image to be recognized.
 	/// </summary>
 	/// <returns>The result.</returns>
 	public Image<Bgr, byte> Recognize()

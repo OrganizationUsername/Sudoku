@@ -85,7 +85,7 @@
         </member>
         <member name="M:Sudoku.Drawing.Ocr.GridRecognizer.Recognize">
             <summary>
-            Recognize.
+            Starts recognization operation, to prepare image to be recognized.
             </summary>
             <returns>The result.</returns>
         </member>
@@ -207,18 +207,15 @@
             <summary>
             Define a recognizer.
             </summary>
-            <remarks>
-            During the recognizing, the <b>field</b> indicates the whole outline of a grid.
-            </remarks>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider.ThOcrMin">
+        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider.ThresholdMinValue">
             <summary>
-            Indicates the ThOcrMin.
+            Indicates the min value of threshold.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider.ThOcrMax">
+        <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider.ThresholdMaxValue">
             <summary>
-            Indicates the ThOcrMax.
+            Indicates the max value of threshold.
             </summary>
         </member>
         <member name="F:Sudoku.Drawing.Ocr.InternalServiceProvider._isDisposed">
@@ -239,16 +236,19 @@
         <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte},System.Boolean)">
+        <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.Recognize(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
             <summary>
             Recognizes digits.
             </summary>
-            <param name="field">The field.</param>
-            <param name="ignoreConflicts">Indicates whether the method ignores any conflicts of sudoku basic rules.</param>
+            <param name="field">
+            <para>The field indicating the whole outline of a grid.</para>
+            <para>
+            It doesn't mean C# concept "field"; instead, this parameter represents the range of border of the grid
+            to be recognized encapsulated by API.
+            </para>
+            </param>
             <returns>The grid.</returns>
-            <exception cref="T:Sudoku.Drawing.Ocr.FailedToFillValueException">
-            Throws when the processing is wrong or un-handle-able.
-            </exception>
+            <exception cref="T:Sudoku.Drawing.Ocr.FailedToFillValueException">Throws when any conflicts are found in target grid.</exception>
         </member>
         <member name="M:Sudoku.Drawing.Ocr.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
             <summary>
@@ -271,42 +271,51 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
         </member>
-        <member name="T:Sudoku.Drawing.Ocr.RecognitionServiceProvider">
+        <member name="T:Sudoku.Drawing.Ocr.Recognizer">
             <summary>
             Define a sudoku recognition service provider.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.RecognitionServiceProvider._recognizingServiceProvider">
+        <member name="F:Sudoku.Drawing.Ocr.Recognizer._recognizingServiceProvider">
             <summary>
             Indicates the internal recognition service provider.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Ocr.RecognitionServiceProvider._isDisposed">
+        <member name="F:Sudoku.Drawing.Ocr.Recognizer._isDisposed">
             <summary>
             Indicates whether the object is disposed.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.#ctor">
+        <member name="M:Sudoku.Drawing.Ocr.Recognizer.#ctor">
             <summary>
-            Initializes a default <see cref="T:Sudoku.Drawing.Ocr.RecognitionServiceProvider"/> instance.
+            Initializes a default <see cref="T:Sudoku.Drawing.Ocr.Recognizer"/> instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Ocr.RecognitionServiceProvider.IsInitialized">
-            <summary>
-            Indicates whether the OCR tool has already initialized.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Dispose">
+        <member name="M:Sudoku.Drawing.Ocr.Recognizer.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.Ocr.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap,System.Boolean)">
+        <member name="M:Sudoku.Drawing.Ocr.Recognizer.TryRecognize(System.Drawing.Bitmap,Sudoku.Concepts.Grid@)">
             <summary>
             Recognize the image.
             </summary>
             <param name="image">The image.</param>
-            <param name="ignoreConflicts">Indicates whether this method ignores any conflicts on sudoku basic rules.</param>
+            <param name="result">The result grid recognized.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.Recognizer.Recognize(System.Drawing.Bitmap)">
+            <summary>
+            Recognize the image.
+            </summary>
+            <param name="image">The image.</param>
             <returns>The grid.</returns>
             <exception cref="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">Throws when the tool has not initialized yet.</exception>
+        </member>
+        <member name="M:Sudoku.Drawing.Ocr.Recognizer.RecognizeAsync(System.Drawing.Bitmap)">
+            <summary>
+            Performs asynchronous operation to recognize image.
+            </summary>
+            <param name="image">The image.</param>
+            <returns>The grid.</returns>
         </member>
         <member name="T:Sudoku.Drawing.Ocr.RecognizerNotInitializedException">
             <summary>

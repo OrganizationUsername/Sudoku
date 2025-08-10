@@ -8,6 +8,7 @@ global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Versioning;
+global using System.Threading.Tasks;
 global using Emgu.CV;
 global using Emgu.CV.CvEnum;
 global using Emgu.CV.OCR;

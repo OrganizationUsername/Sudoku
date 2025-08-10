@@ -11242,9 +11242,6 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize"/>
         </member>
-        <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly"/>
-        </member>
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLength">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
         </member>
@@ -11479,12 +11476,6 @@
             Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnlyProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.BowmanBingoMaxLengthProperty">
             <summary>
@@ -12041,22 +12032,6 @@
             <param name="obj">The containing object of the property.</param>
             <returns>The value returned.</returns>
             <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.AlignedExclusionMaxSearchingSize"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Sets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/> with the specified value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <param name="value">The value to be set.</param>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetTemplateDeleteOnly(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Gets the attached property <see cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/> of its containing value.
-            </summary>
-            <param name="obj">The containing object of the property.</param>
-            <returns>The value returned.</returns>
-            <seealso cref="P:SudokuStudio.Views.Attached.AnalyzerProperties.TemplateDeleteOnly"/>
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetBowmanBingoMaxLength(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>

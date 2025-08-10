@@ -1514,14 +1514,6 @@
     <value>同数叠加</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="TemplateSet" xml:space="preserve">
-    <value>模板填数</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="TemplateDelete" xml:space="preserve">
-    <value>模板删数</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="BowmanBingo" xml:space="preserve">
     <value>Bowman's Bingo</value>
     <comment>Technique Name</comment>

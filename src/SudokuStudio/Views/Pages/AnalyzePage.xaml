@@ -229,7 +229,6 @@
 							a:AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=OneWay}"
 							a:AnalyzerProperties.AnalyzerIsFullApplying="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerIsFullApplying,Mode=OneWay}"
 							a:AnalyzerProperties.AnalyzerUseIttoryuMode="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AnalyzerUseIttoryuMode,Mode=OneWay}"
-							a:AnalyzerProperties.TemplateDeleteOnly="False"
 							a:AnalyzerProperties.BowmanBingoMaxLength="64"
 							a:AnalyzerProperties.SearchExtendedDeathBlossomTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchExtendedDeathBlossomTypes,Mode=OneWay}"
 							a:AnalyzerProperties.AlmostLockedCandidatesCheckValueTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlmostLockedCandidatesCheckValueTypes,Mode=OneWay}"

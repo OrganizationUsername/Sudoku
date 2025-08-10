@@ -103,9 +103,6 @@ public static class SettingItemNames
 	/// <inheritdoc cref="ComplexFishStepSearcher.MaxSize"/>
 	public const string MaxSizeOfComplexFish = nameof(MaxSizeOfComplexFish);
 
-	/// <inheritdoc cref="TemplateStepSearcher.TemplateDeleteOnly"/>
-	public const string TemplateDeleteOnly = nameof(TemplateDeleteOnly);
-
 	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
 	public const string BowmanBingoMaxLength = nameof(BowmanBingoMaxLength);
 

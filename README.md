@@ -196,7 +196,6 @@ This solution supports many kinds of human-friendly techniques. Here I will list
   * Last Resorts
     * Bowman's Bingo
     * Pattern Overlay
-    * Templating
     * Brute Force
 
 ## Forks & PRs (Pull Requests) for This Repo

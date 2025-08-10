@@ -2366,9 +2366,6 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.MaxSizeOfComplexFish">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly"/>
-        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.BowmanBingoMaxLength">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
         </member>
@@ -11359,24 +11356,6 @@
             </summary>
             <returns>The templates.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.TemplateStepSearcher">
-            <summary>
-            Provides with a <b>Template</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Template Set</item>
-            <item>Template Delete</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly">
-            <summary>
-            Indicates whether the technique searcher only checks template deletes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher">
             <summary>
             Provides with a <b>Domino Loop</b> (i.e. SK Loop) step searcher.
@@ -17228,46 +17207,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.PatternOverlayStep.Interpolations">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.TemplateStep">
-            <summary>
-            Provides with a step that is a <b>Template</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="isTemplateDeletion"><inheritdoc cref="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Boolean)">
-            <summary>
-            Provides with a step that is a <b>Template</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
-            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="isTemplateDeletion"><inheritdoc cref="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.IsTemplateDeletion">
-            <summary>
-            Indicates the current template step is a template deletion.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.BaseDifficulty">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Digit">
-            <summary>
-            Indicates the digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.DigitsUsed">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.TemplateStep.Interpolations">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DominoLoopStep">
@@ -25799,16 +25738,6 @@
             Indicates pattern overlay method.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.TemplateSet">
-            <summary>
-            Indicates template set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.Technique.TemplateDelete">
-            <summary>
-            Indicates template delete.
-            </summary>
-        </member>
         <member name="F:Sudoku.Categorization.Technique.BowmanBingo">
             <summary>
             Indicates bowman's bingo.
@@ -26311,11 +26240,6 @@
         <member name="F:Sudoku.Categorization.TechniqueGroup.PatternOverlay">
             <summary>
             Indicates the pattern overlay method (POM) technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.TechniqueGroup.Templating">
-            <summary>
-            Indicates the templating technique.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.BruteForce">
@@ -34494,11 +34418,6 @@
               Looks up a localized string similar to Symmetry.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_Templating">
-            <summary>
-              Looks up a localized string similar to Templating.
-            </summary>
-        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_UniqueLoop">
             <summary>
               Looks up a localized string similar to Unique Loop.
@@ -34537,16 +34456,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueSetConstraint">
             <summary>
               Looks up a localized string similar to Technique sets: a puzzle can be solved by using only techniques {0}.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TemplateDelete">
-            <summary>
-              Looks up a localized string similar to Template Delete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TemplateSet">
-            <summary>
-              Looks up a localized string similar to Template Set.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TrueKeyword">

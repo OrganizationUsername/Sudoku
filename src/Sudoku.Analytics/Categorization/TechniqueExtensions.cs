@@ -48,8 +48,7 @@ public static class TechniqueExtensions
 		/// Indicates whether the technique is last resort.
 		/// </summary>
 		public bool IsLastResort
-			=> @this.Group is TechniqueGroup.BowmanBingo or TechniqueGroup.PatternOverlay
-			or TechniqueGroup.Templating or TechniqueGroup.BruteForce;
+			=> @this.Group is TechniqueGroup.BowmanBingo or TechniqueGroup.PatternOverlay or TechniqueGroup.BruteForce;
 
 		/// <summary>
 		/// Indicates whether the specified technique supports for customization on difficulty values.

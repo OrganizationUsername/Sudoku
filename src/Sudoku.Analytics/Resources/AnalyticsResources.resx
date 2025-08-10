@@ -1257,12 +1257,6 @@
   <data name="PatternOverlay" xml:space="preserve">
     <value>Pattern Overlay</value>
   </data>
-  <data name="TemplateSet" xml:space="preserve">
-    <value>Template Set</value>
-  </data>
-  <data name="TemplateDelete" xml:space="preserve">
-    <value>Template Delete</value>
-  </data>
   <data name="BowmanBingo" xml:space="preserve">
     <value>Bowman's Bingo</value>
   </data>
@@ -2174,9 +2168,6 @@
   </data>
   <data name="TechniqueGroup_Symmetry" xml:space="preserve">
     <value>Symmetry</value>
-  </data>
-  <data name="TechniqueGroup_Templating" xml:space="preserve">
-    <value>Templating</value>
   </data>
   <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
     <value>Unique Loop</value>

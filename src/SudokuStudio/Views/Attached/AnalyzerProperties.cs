@@ -165,10 +165,6 @@ public static partial class AnalyzerProperties
 	[DependencyProperty(DefaultValue = 3)]
 	public static partial int AlignedExclusionMaxSearchingSize { get; set; }
 
-	/// <inheritdoc cref="TemplateStepSearcher.TemplateDeleteOnly"/>
-	[DependencyProperty]
-	public static partial bool TemplateDeleteOnly { get; set; }
-
 	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
 	[DependencyProperty(DefaultValue = 64)]
 	public static partial int BowmanBingoMaxLength { get; set; }

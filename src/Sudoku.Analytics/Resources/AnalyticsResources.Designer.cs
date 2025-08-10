@@ -8875,15 +8875,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Templating.
-        /// </summary>
-        public static string TechniqueGroup_Templating {
-            get {
-                return ResourceManager.GetString("TechniqueGroup_Templating", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unique Loop.
         /// </summary>
         public static string TechniqueGroup_UniqueLoop {
@@ -8952,24 +8943,6 @@ namespace Sudoku.Resources {
         public static string TechniqueSetConstraint {
             get {
                 return ResourceManager.GetString("TechniqueSetConstraint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Template Delete.
-        /// </summary>
-        public static string TemplateDelete {
-            get {
-                return ResourceManager.GetString("TemplateDelete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Template Set.
-        /// </summary>
-        public static string TemplateSet {
-            get {
-                return ResourceManager.GetString("TemplateSet", resourceCulture);
             }
         }
         

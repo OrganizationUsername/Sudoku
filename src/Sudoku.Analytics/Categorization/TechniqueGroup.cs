@@ -270,11 +270,6 @@ public enum TechniqueGroup
 	PatternOverlay,
 
 	/// <summary>
-	/// Indicates the templating technique.
-	/// </summary>
-	Templating,
-
-	/// <summary>
 	/// Indicates the brute force (BF) technique.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "BF")]

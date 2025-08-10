@@ -4559,35 +4559,6 @@ public enum Technique
 	#endregion
 
 	//
-	// Templating
-	//
-	#region Templating
-	/// <summary>
-	/// Indicates template set.
-	/// </summary>
-	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1201")]
-	[TechniqueMetadata<TemplateStepSearcher, TemplateStep>(
-		Rating = 90,
-		DifficultyLevel = DifficultyLevel.LastResort,
-		ContainingGroup = TechniqueGroup.Templating,
-		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
-		Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
-	TemplateSet,
-
-	/// <summary>
-	/// Indicates template delete.
-	/// </summary>
-	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1202")]
-	[TechniqueMetadata<TemplateStepSearcher, TemplateStep>(
-		Rating = 90,
-		DifficultyLevel = DifficultyLevel.LastResort,
-		ContainingGroup = TechniqueGroup.Templating,
-		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
-		Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
-	TemplateDelete,
-	#endregion
-
-	//
 	// Bowman's Bingo
 	//
 	#region Bowman's Bingo

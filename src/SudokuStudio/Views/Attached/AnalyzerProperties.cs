@@ -175,63 +175,60 @@ public static partial class AnalyzerProperties
 
 
 	/// <summary>
-	/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
-	/// stored in type <see cref="AnalyzerProperties"/>.
+	/// Provides extension members on <see cref="StepGatherer"/>.
 	/// </summary>
-	/// <param name="this">The analyzer instance.</param>
-	/// <param name="attachedPropertyValue">The attached property.</param>
-	/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
-	/// <param name="propertyMatched">
-	/// A <see cref="bool"/> value indicating whether the property in <see cref="StepSearcher"/> collection is found,
-	/// and the target type of that property is same as argument <paramref name="attachedPropertyValue"/>.
-	/// </param>
-	/// <returns>The same reference as <paramref name="this"/>.</returns>
-	/// <seealso cref="AnalyzerProperties"/>
-	public static T WithRuntimeIdentifierSetter<T>(
-		this T @this,
-		object attachedPropertyValue,
-		string methodName,
-		out bool propertyMatched
-	)
-		where T : StepGatherer
+	extension<T>(T @this) where T : StepGatherer
 	{
-		foreach (var searcher in @this.ResultStepSearchers)
+		/// <summary>
+		/// Sets the specified property in a <see cref="StepSearcher"/> with the target value via attached properties
+		/// stored in type <see cref="AnalyzerProperties"/>.
+		/// </summary>
+		/// <param name="attachedPropertyValue">The attached property.</param>
+		/// <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
+		/// <param name="propertyMatched">
+		/// A <see cref="bool"/> value indicating whether the property in <see cref="StepSearcher"/> collection is found,
+		/// and the target type of that property is same as argument <paramref name="attachedPropertyValue"/>.
+		/// </param>
+		/// <returns>The same reference as the current instance.</returns>
+		/// <seealso cref="AnalyzerProperties"/>
+		public T WithRuntimeIdentifierSetter(object attachedPropertyValue, string methodName, out bool propertyMatched)
 		{
-			if (searcher.GetType().GetProperties().FirstOrDefault(methodNameMatcher) is { } propertyInfo)
+			foreach (var searcher in @this.ResultStepSearchers)
 			{
-				propertyInfo.SetValue(searcher, attachedPropertyValue);
-				propertyMatched = true;
-				return @this;
+				if (searcher.GetType().GetProperties().FirstOrDefault(methodNameMatcher) is { } propertyInfo)
+				{
+					propertyInfo.SetValue(searcher, attachedPropertyValue);
+					propertyMatched = true;
+					return @this;
+				}
+
+
+				bool methodNameMatcher(PropertyInfo property)
+					=> property.GetCustomAttribute<SettingItemNameAttribute>() is { Identifier: var identifier }
+					&& methodName[GetSetterName.Length..] == identifier;
 			}
 
-
-			bool methodNameMatcher(PropertyInfo property)
-				=> property.GetCustomAttribute<SettingItemNameAttribute>() is { Identifier: var identifier }
-				&& methodName[GetSetterName.Length..] == identifier;
+			propertyMatched = false;
+			return @this;
 		}
 
-		propertyMatched = false;
-		return @this;
-	}
-
-	/// <summary>
-	/// Calls the method <see cref="WithRuntimeIdentifierSetter"/> for all properties in type <see cref="AnalyzerProperties"/>.
-	/// </summary>
-	/// <param name="this">The analyzer instance.</param>
-	/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
-	/// <returns>The same reference with argument <paramref name="this"/>.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
-	/// <seealso cref="WithRuntimeIdentifierSetter"/>
-	public static T WithRuntimeIdentifierSetters<T>(this T @this, SudokuPane attachedPane)
-		where T : StepGatherer
-	{
-		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
+		/// <summary>
+		/// Calls the method <see cref="WithRuntimeIdentifierSetter"/> for all properties in type <see cref="AnalyzerProperties"/>.
+		/// </summary>
+		/// <param name="attachedPane">Indicates the <see cref="SudokuPane"/> instance that all properties in this type attached to.</param>
+		/// <returns>The same reference as the current instance.</returns>
+		/// <exception cref="InvalidOperationException">Throws when the matched property is invalid.</exception>
+		/// <seealso cref="WithRuntimeIdentifierSetter"/>
+		public T WithRuntimeIdentifierSetters(SudokuPane attachedPane)
 		{
-			if (methodInfo.Name.StartsWith(GetSetterName))
+			foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 			{
-				@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane])!, methodInfo.Name, out _);
+				if (methodInfo.Name.StartsWith(GetSetterName))
+				{
+					@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane])!, methodInfo.Name, out _);
+				}
 			}
+			return @this;
 		}
-		return @this;
 	}
 }

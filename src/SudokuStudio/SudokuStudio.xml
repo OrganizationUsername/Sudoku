@@ -187,26 +187,40 @@
             GetXmlnsDefinitions()
             </summary>
         </member>
-        <member name="T:SudokuStudio.AppCastExtensions">
+        <member name="T:SudokuStudio.AppExtensions">
             <summary>
             Provides with extension methods on <see cref="T:SudokuStudio.App"/>.
             </summary>
             <seealso cref="T:SudokuStudio.App"/>
         </member>
-        <member name="T:SudokuStudio.AppCastExtensions.&lt;&gt;E__0">
+        <member name="T:SudokuStudio.AppExtensions.&lt;&gt;E__0">
             <summary>
-            Provide casting method.
+            Provides extension members on <see cref="T:SudokuStudio.App"/>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.AppCastExtensions.&lt;&gt;E__0.AsApp">
+        <member name="M:SudokuStudio.AppExtensions.&lt;&gt;E__0.GetStepSearchers">
+            <summary>
+            Try to get <see cref="T:Sudoku.Analytics.StepSearcher"/> instances via configuration for the specified application.
+            </summary>
+            <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
+        </member>
+        <member name="M:SudokuStudio.AppExtensions.GetStepSearchers(SudokuStudio.App)">
+            <inheritdoc cref="M:SudokuStudio.AppExtensions.&lt;&gt;E__0.GetStepSearchers"/>
+        </member>
+        <member name="T:SudokuStudio.AppExtensions.&lt;&gt;E__1">
+            <summary>
+            Provides extension members on <see cref="T:Microsoft.UI.Xaml.Application"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.AppExtensions.&lt;&gt;E__1.AsApp">
             <summary>
             Converts the current instance into an <see cref="T:SudokuStudio.App"/> instance;
             throw <see cref="T:System.InvalidCastException"/> if the current object is not an <see cref="T:SudokuStudio.App"/> instance.
             </summary>
             <returns>The result casted.</returns>
         </member>
-        <member name="M:SudokuStudio.AppCastExtensions.AsApp(Microsoft.UI.Xaml.Application)">
-            <inheritdoc cref="M:SudokuStudio.AppCastExtensions.&lt;&gt;E__0.AsApp"/>
+        <member name="M:SudokuStudio.AppExtensions.AsApp(Microsoft.UI.Xaml.Application)">
+            <inheritdoc cref="M:SudokuStudio.AppExtensions.&lt;&gt;E__1.AsApp"/>
         </member>
         <member name="T:SudokuStudio.BindableSource.AnalyzeTabPageBindableSource">
             <summary>
@@ -3566,18 +3580,6 @@
             <param name="pt2">The end point.</param>
             <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
         </member>
-        <member name="T:SudokuStudio.StepSearcherCollectionExtensions">
-            <summary>
-            Represents extension methods on step searcher collection.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.StepSearcherCollectionExtensions.GetStepSearchers(SudokuStudio.App)">
-            <summary>
-            Try to get <see cref="T:Sudoku.Analytics.StepSearcher"/> instances via configuration for the specified application.
-            </summary>
-            <param name="this">The application.</param>
-            <returns>A list of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.</returns>
-        </member>
         <member name="T:SudokuStudio.Input.Hotkey">
             <summary>
             Defines a hotkey.
@@ -3754,28 +3756,28 @@
             Indicates the grid points.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Width">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#Width">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Height">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#Height">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#Padding">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#Padding">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#ControlSize">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#ControlSize">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#GridSize">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#GridSize">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#CellSize">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#CellSize">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#CandidateSize">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#CandidateSize">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#Drawing2D#IPointCalculator#GridPoints">
+        <member name="P:SudokuStudio.Input.SudokuPanePositionConverter.Sudoku#Drawing#IPointCalculator#GridPoints">
             <inheritdoc/>
         </member>
         <member name="M:SudokuStudio.Input.SudokuPanePositionConverter.Deconstruct(Windows.Foundation.Point@,Windows.Foundation.Point[0:,0:]@)">
@@ -11248,30 +11250,39 @@
         <member name="P:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerUseIttoryuMode">
             <inheritdoc cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``1(``0,System.Object,System.String,System.Boolean@)">
+        <member name="T:SudokuStudio.Views.Attached.AnalyzerProperties.&lt;&gt;E__0`1">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Analytics.StepGatherer"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.&lt;&gt;E__0`1.WithRuntimeIdentifierSetter(System.Object,System.String,System.Boolean@)">
             <summary>
             Sets the specified property in a <see cref="T:Sudoku.Analytics.StepSearcher"/> with the target value via attached properties
             stored in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
-            <param name="this">The analyzer instance.</param>
             <param name="attachedPropertyValue">The attached property.</param>
             <param name="methodName">The name of the property <paramref name="attachedPropertyValue"/>.</param>
             <param name="propertyMatched">
             A <see cref="T:System.Boolean"/> value indicating whether the property in <see cref="T:Sudoku.Analytics.StepSearcher"/> collection is found,
             and the target type of that property is same as argument <paramref name="attachedPropertyValue"/>.
             </param>
-            <returns>The same reference as <paramref name="this"/>.</returns>
+            <returns>The same reference as the current instance.</returns>
             <seealso cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>
         </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetters``1(``0,SudokuStudio.Views.Controls.SudokuPane)">
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.&lt;&gt;E__0`1.WithRuntimeIdentifierSetters(SudokuStudio.Views.Controls.SudokuPane)">
             <summary>
             Calls the method <see cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``1(``0,System.Object,System.String,System.Boolean@)"/> for all properties in type <see cref="T:SudokuStudio.Views.Attached.AnalyzerProperties"/>.
             </summary>
-            <param name="this">The analyzer instance.</param>
             <param name="attachedPane">Indicates the <see cref="T:SudokuStudio.Views.Controls.SudokuPane"/> instance that all properties in this type attached to.</param>
-            <returns>The same reference with argument <paramref name="this"/>.</returns>
+            <returns>The same reference as the current instance.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the matched property is invalid.</exception>
             <seealso cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``1(``0,System.Object,System.String,System.Boolean@)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetter``1(``0,System.Object,System.String,System.Boolean@)">
+            <inheritdoc cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.&lt;&gt;E__0`1.WithRuntimeIdentifierSetter(System.Object,System.String,System.Boolean@)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.WithRuntimeIdentifierSetters``1(``0,SudokuStudio.Views.Controls.SudokuPane)">
+            <inheritdoc cref="M:SudokuStudio.Views.Attached.AnalyzerProperties.&lt;&gt;E__0`1.WithRuntimeIdentifierSetters(SudokuStudio.Views.Controls.SudokuPane)"/>
         </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AnalyzerIsFullApplyingProperty">
             <summary>

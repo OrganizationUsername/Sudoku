@@ -64,7 +64,6 @@ global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Coordinates.Formatting;
 global using Sudoku.Concepts.Supersymmetry;
 global using Sudoku.Drawing;
-global using Sudoku.Drawing.Drawing2D;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Drawing.Parsing;
 global using Sudoku.Generating;

@@ -12471,22 +12471,22 @@
             <returns>The P value.</returns>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_Equality(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_Inequality(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_GreaterThan(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_LessThan(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_GreaterThanOrEqual(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
         </member>
         <member name="M:Sudoku.Scripting.Distance.op_LessThanOrEqual(Sudoku.Scripting.Distance,Sudoku.Scripting.Distance)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Scripting.EmptyArea">
             <summary>

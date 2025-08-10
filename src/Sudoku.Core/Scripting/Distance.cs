@@ -269,21 +269,21 @@ public readonly ref struct Distance(int _p, int _q) : IEquatable<Distance>
 	}
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
 	public static bool operator ==(Distance left, Distance right) => left.Equals(right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	public static bool operator !=(Distance left, Distance right) => !(left == right);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
 	public static bool operator >(Distance left, Distance right) => left.CompareTo(right) > 0;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 	public static bool operator <(Distance left, Distance right) => left.CompareTo(right) < 0;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 	public static bool operator >=(Distance left, Distance right) => left.CompareTo(right) >= 0;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	public static bool operator <=(Distance left, Distance right) => left.CompareTo(right) <= 0;
 }

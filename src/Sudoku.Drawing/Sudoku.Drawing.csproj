@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Provides APIs for drawing pictures with sudoku-related items.</Description>
-		<DocumentationFile>Sudoku.Drawing.Drawing2D.xml</DocumentationFile>
+		<Description>Provides APIs for drawing pictures.</Description>
+		<DocumentationFile>Sudoku.Drawing.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>

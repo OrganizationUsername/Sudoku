@@ -1,46 +1,46 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Drawing.Drawing2D</name>
+        <name>Sudoku.Drawing</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Drawing.Drawing2D.ColorPalette">
+        <member name="T:Sudoku.Drawing.ColorPalette">
             <summary>
             Represents a color palette instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.ColorPalette.Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.ColorPalette.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.ColorPalette.System#Linq#Providers#ISliceMethod{Sudoku#Drawing#Drawing2D#ColorPalette,System#Drawing#Color}#Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.ColorPalette.System#Linq#Providers#ISliceMethod{Sudoku#Drawing#ColorPalette,System#Drawing#Color}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Drawing.Drawing2D.GridCanvas">
+        <member name="T:Sudoku.Drawing.GridCanvas">
             <summary>
             Represents a canvas that allows drawing sudoku-related items onto it.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas.RotateAngle">
+        <member name="F:Sudoku.Drawing.GridCanvas.RotateAngle">
             <summary>
             Represents a radian value equivalent to 45 degree. This field is used for rotate the chains if overlapped.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas.SqrtOf2">
+        <member name="F:Sudoku.Drawing.GridCanvas.SqrtOf2">
             <summary>
             Represents square root of 2. This field is used for rotate the chains.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._needFooterText">
+        <member name="F:Sudoku.Drawing.GridCanvas._needFooterText">
             <summary>
             Indicates whether the footer text can be drawn in this canvas, making canvas reserve footer.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._calculator">
+        <member name="F:Sudoku.Drawing.GridCanvas._calculator">
             <summary>
             Indicates the backing point calculator to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._stringAligner">
+        <member name="F:Sudoku.Drawing.GridCanvas._stringAligner">
             <summary>
             Represents a <see cref="T:System.Drawing.StringFormat"/> instance that locates the text drawn, created by method
             <see cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>,
@@ -48,39 +48,39 @@
             </summary>
             <seealso cref="M:System.Drawing.Graphics.DrawString(System.String,System.Drawing.Font,System.Drawing.Brush,System.Drawing.RectangleF,System.Drawing.StringFormat)"/>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._backingBitmap">
+        <member name="F:Sudoku.Drawing.GridCanvas._backingBitmap">
             <summary>
             Indicates the backing bitmap to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._g">
+        <member name="F:Sudoku.Drawing.GridCanvas._g">
             <summary>
             Indicates the backing <see cref="T:System.Drawing.Graphics"/> instance to draw elements.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.GridCanvas._isDisposed">
+        <member name="F:Sudoku.Drawing.GridCanvas._isDisposed">
             <summary>
             Indicates whether the object is disposed.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.#ctor(System.Int32,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.Boolean)">
+        <member name="M:Sudoku.Drawing.GridCanvas.#ctor(System.Int32,System.Int32,Sudoku.Drawing.GridCanvasSettings,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Drawing.Drawing2D.GridCanvas"/> instance via some values.
+            Initializes a <see cref="T:Sudoku.Drawing.GridCanvas"/> instance via some values.
             </summary>
             <param name="size">Indicates the picture size to be used.</param>
             <param name="padding">Indicates the padding of the inner grid.</param>
             <param name="settings">Indicates settings that can be used by drawing items.</param>
             <param name="needFooterText">Indicates whether footer text is enabled to be drawn.</param>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvas.Settings">
+        <member name="P:Sudoku.Drawing.GridCanvas.Settings">
             <summary>
             Indicates canvas settings to be used. The value can be changed if you want to change.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.Dispose">
+        <member name="M:Sudoku.Drawing.GridCanvas.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.SavePictureTo(System.String)">
+        <member name="M:Sudoku.Drawing.GridCanvas.SavePictureTo(System.String)">
             <summary>
             Try to save the picture into the local path.
             </summary>
@@ -88,7 +88,7 @@
             <exception cref="T:System.ArgumentException">Throws when the file doesn't contain any valid file extension.</exception>
             <exception cref="T:System.NotSupportedException">Throws when the specified file extension is not supported.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.TryGetPaletteColorByIndex(System.Int32,System.Drawing.Color@)">
+        <member name="M:Sudoku.Drawing.GridCanvas.TryGetPaletteColorByIndex(System.Int32,System.Drawing.Color@)">
             <summary>
             Try to get the result color value.
             </summary>
@@ -97,7 +97,7 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.GetColor(Sudoku.Drawing.ColorIdentifier)">
+        <member name="M:Sudoku.Drawing.GridCanvas.GetColor(Sudoku.Drawing.ColorIdentifier)">
             <summary>
             Gets the color value.
             </summary>
@@ -105,7 +105,7 @@
             <returns></returns>
             <exception cref="T:System.ArgumentException">Throws when the specified value is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.MeasureFooterTextExtraHeight(System.String,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings)">
+        <member name="M:Sudoku.Drawing.GridCanvas.MeasureFooterTextExtraHeight(System.String,System.Int32,Sudoku.Drawing.GridCanvasSettings)">
             <summary>
             Try to get extra height that footer text will use.
             </summary>
@@ -114,7 +114,7 @@
             <param name="settings">Indicates the settings to be used.</param>
             <returns>Indicates the measured extra height.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.GetFooterTextFont(System.Single,Sudoku.Drawing.Drawing2D.GridCanvasSettings)">
+        <member name="M:Sudoku.Drawing.GridCanvas.GetFooterTextFont(System.Single,Sudoku.Drawing.GridCanvasSettings)">
             <summary>
             Get the font via the specified name, size and the scale.
             </summary>
@@ -122,7 +122,7 @@
             <param name="settings">Indicates the settings.</param>
             <returns>The font.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.GetFont(System.String,System.Single,System.Decimal,System.Drawing.FontStyle)">
+        <member name="M:Sudoku.Drawing.GridCanvas.GetFont(System.String,System.Single,System.Decimal,System.Drawing.FontStyle)">
             <summary>
             Get the font via the specified name, size and the scale.
             </summary>
@@ -133,7 +133,7 @@
             <returns>The font.</returns>
             <exception cref="T:System.ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.CreateGraphics(System.Boolean,System.Int32,Sudoku.Drawing.Drawing2D.GridCanvasSettings,System.Drawing.Bitmap@)">
+        <member name="M:Sudoku.Drawing.GridCanvas.CreateGraphics(System.Boolean,System.Int32,Sudoku.Drawing.GridCanvasSettings,System.Drawing.Bitmap@)">
             <summary>
             Creates a <see cref="T:System.Drawing.Graphics"/> instance via values.
             </summary>
@@ -143,7 +143,7 @@
             <param name="bitmap">Indicates the bitmap instance that returns after <see cref="T:System.Drawing.Graphics"/> instance is created.</param>
             <returns>A <see cref="T:System.Drawing.Graphics"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.Clear">
+        <member name="M:Sudoku.Drawing.GridCanvas.Clear">
             <summary>
             Clear the canvas, removing all drawn elements.
             </summary>
@@ -151,50 +151,50 @@
             This will invalidate drawing items, and draw background and border lines.
             </remarks>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawBackground">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBackground">
             <summary>
             Draw the background.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawBorderLines">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBorderLines">
             <summary>
             Draw border lines onto the canvas.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawFooterText(System.String)">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawFooterText(System.String)">
             <summary>
             Draw footer text onto the canvas.
             </summary>
             <param name="footerText">The footer text.</param>
             <exception cref="T:System.InvalidOperationException">Throws when the canvas doesn't support drawing footer text.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawGrid``1(``0@)">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawGrid``1(``0@)">
             <summary>
             Draw a <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:Sudoku.Concepts.MarkerGrid"/> instance onto the canvas.
             </summary>
             <typeparam name="TGrid">The type of grid.</typeparam>
             <param name="grid">The grid to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawCellViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CellViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawCellViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CellViewNode})">
             <summary>
             Draw cell view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawCandidateViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawCandidateViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
             Draw candidate view nodes onto the canvas, with conflict check on conclusions.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
             <param name="conclusions">The conclusions to be checked.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawHouseViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.HouseViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawHouseViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.HouseViewNode})">
             <summary>
             Draw house view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ILinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
             Draw link view nodes onto the canvas, with conflict check on conclusions.
             If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
@@ -202,19 +202,19 @@
             <param name="nodes">The nodes to be drawn.</param>
             <param name="conclusions">The conclusion to be checked.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawChuteViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChuteViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawChuteViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChuteViewNode})">
             <summary>
             Draw chute view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawBabaGroupingViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.BabaGroupViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBabaGroupingViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.BabaGroupViewNode})">
             <summary>
             Draw baba grouping view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawEliminations(System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawEliminations(System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode})">
             <summary>
             Draw eliminations onto the canvas, with conflict check on nodes.
             If a node covers (uses) one candidate, the elimination will be treated as a cannibalism one, drawing with different color.
@@ -222,221 +222,221 @@
             <param name="conclusions">The conclusions to be drawn.</param>
             <param name="nodes">The nodes to be checked.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawIconViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.IconViewNode})">
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawIconViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.IconViewNode})">
             <summary>
             Draw icon view nodes onto the canvas.
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="T:Sudoku.Drawing.Drawing2D.GridCanvasSettings">
+        <member name="T:Sudoku.Drawing.GridCanvasSettings">
             <summary>
             Represents with a preference type that stores the configurations on drawing.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ShowCandidates">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ShowCandidates">
             <summary>
             Indicates whether the form shows candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ShowLightHouse">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ShowLightHouse">
             <summary>
             Indicates whether the grid painter will use new algorithm to draw a house (lighter).
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BorderBarFullyOverlapsGridLine">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BorderBarFullyOverlapsGridLine">
             <summary>
             Indicates whether border bars will fully overlaps the shared grid line while drawing.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ValueScale">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ValueScale">
             <summary>
             Indicates the scale of values.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateScale">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateScale">
             <summary>
             Indicates the scale of candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.FooterTextScale">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.FooterTextScale">
             <summary>
             Indicates the scale that footer text will be drawn. The value unit is unified with
-            <see cref="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ValueScale"/> and <see cref="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateScale"/>.
+            <see cref="P:Sudoku.Drawing.GridCanvasSettings.ValueScale"/> and <see cref="P:Sudoku.Drawing.GridCanvasSettings.CandidateScale"/>.
             </summary>
-            <seealso cref="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ValueScale"/>
-            <seealso cref="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateScale"/>
+            <seealso cref="P:Sudoku.Drawing.GridCanvasSettings.ValueScale"/>
+            <seealso cref="P:Sudoku.Drawing.GridCanvasSettings.CandidateScale"/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.GridLineWidth">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.GridLineWidth">
             <summary>
             Indicates the grid line width of the sudoku grid to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BlockLineWidth">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BlockLineWidth">
             <summary>
             Indicates the block line width of the sudoku grid to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.FigurePadding">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.FigurePadding">
             <summary>
             Indicates the padding of figures.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.GivenFontName">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenFontName">
             <summary>
             Indicates the font of given digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ModifiableFontName">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ModifiableFontName">
             <summary>
             Indicates the font of modifiable digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateFontName">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateFontName">
             <summary>
             Indicates the font of candidate digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BabaGroupingFontName">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BabaGroupingFontName">
             <summary>
             Indicates the font of baba grouping characters to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.FooterTextFontName">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.FooterTextFontName">
             <summary>
             Indicates the font of footer text to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.GivenFontStyle">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenFontStyle">
             <summary>
             Indicates the font style of the givens.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ModifiableFontStyle">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ModifiableFontStyle">
             <summary>
             Indicates the font style of the modifiables.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateFontStyle">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateFontStyle">
             <summary>
             Indicates the font style of the candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BabaGroupingCharacterFontStyle">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BabaGroupingCharacterFontStyle">
             <summary>
             Indicates the font style of a baba grouping.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.FooterTextFontStyle">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.FooterTextFontStyle">
             <summary>
             Indicates the font style of footer text.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.GivenColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenColor">
             <summary>
             Indicates the given digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ModifiableColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ModifiableColor">
             <summary>
             Indicates the modifiable digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CandidateColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateColor">
             <summary>
             Indicates the candidate digits to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.NormalColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.NormalColor">
             <summary>
             Indicates the normal color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.AssignmentColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.AssignmentColor">
             <summary>
             Indicates the color that draws for an assignment.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.OverlappedAssignmentColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.OverlappedAssignmentColor">
             <summary>
             Indicates the color that draws for an overlapped assignment.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.EliminationColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.EliminationColor">
             <summary>
             Indicates the elimination color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.CannibalismColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.CannibalismColor">
             <summary>
             Indicates the cannibalism color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ExofinColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ExofinColor">
             <summary>
             Indicates the exo-fin color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.EndofinColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.EndofinColor">
             <summary>
             Indicates the endo-fin color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ChainColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ChainColor">
             <summary>
             Indicates the chain color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BackgroundColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BackgroundColor">
             <summary>
             Indicates the background color of the sudoku grid to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.GridLineColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.GridLineColor">
             <summary>
             Indicates the grid line color of the sudoku grid to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BlockLineColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BlockLineColor">
             <summary>
             Indicates the block line color of the sudoku grid to draw.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.BabaGroupingCharacterColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.BabaGroupingCharacterColor">
             <summary>
             Indicates the color of the baba grouping identifier color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.FooterTextColor">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.FooterTextColor">
             <summary>
             Indicates footer text color.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.AuxiliaryColorSet">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.AuxiliaryColorSet">
             <summary>
             Indicates the auxiliary color set.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.AlmostLockedSetColorSet">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.AlmostLockedSetColorSet">
             <summary>
             Indicates the almost locked set color set.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.RectangleColorSet">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.RectangleColorSet">
             <summary>
             Indicates the almost rectangle color set.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.GridCanvasSettings.ColorPalette">
+        <member name="P:Sudoku.Drawing.GridCanvasSettings.ColorPalette">
             <summary>
             Indicates the user-defined color palette.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.Drawing2D.PointCalculator">
+        <member name="T:Sudoku.Drawing.PointCalculator">
             <summary>
             Provides a serial of methods for a point calculator that interacts with the UI projects.
             </summary>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.PointCalculator.AnchorsCount">
+        <member name="F:Sudoku.Drawing.PointCalculator.AnchorsCount">
             <summary>
             Indicates the number of anchors hold per house.
             </summary>
@@ -446,96 +446,96 @@
             so this value is 27.
             </remarks>
         </member>
-        <member name="F:Sudoku.Drawing.Drawing2D.PointCalculator.DefaultPadding">
+        <member name="F:Sudoku.Drawing.PointCalculator.DefaultPadding">
             <summary>
             Indicates the default padding of the sudoku grid drawn.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.#ctor(System.Single,System.Single)">
+        <member name="M:Sudoku.Drawing.PointCalculator.#ctor(System.Single,System.Single)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Drawing.Drawing2D.PointCalculator"/> instance via the specified picture size and padding value.
+            Initializes a <see cref="T:Sudoku.Drawing.PointCalculator"/> instance via the specified picture size and padding value.
             </summary>
             <param name="size">The size of the picture.</param>
             <param name="padding">The padding.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.#ctor(System.Drawing.SizeF,System.Single)">
+        <member name="M:Sudoku.Drawing.PointCalculator.#ctor(System.Drawing.SizeF,System.Single)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Drawing.Drawing2D.PointCalculator"/> instance with the specified picture size instance and padding value.
+            Initializes a <see cref="T:Sudoku.Drawing.PointCalculator"/> instance with the specified picture size instance and padding value.
             </summary>
             <param name="size">The <see cref="T:System.Drawing.SizeF"/> instance.</param>
             <param name="padding">
             Indicates the padding to set to allow the output items moving a little bit left or right,
-            in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="F:Sudoku.Drawing.Drawing2D.PointCalculator.DefaultPadding"/>
+            in order to correct the position on drawing. The default value is <c>10F</c>, which is defined by <see cref="F:Sudoku.Drawing.PointCalculator.DefaultPadding"/>
             </param>
-            <seealso cref="F:Sudoku.Drawing.Drawing2D.PointCalculator.DefaultPadding"/>
+            <seealso cref="F:Sudoku.Drawing.PointCalculator.DefaultPadding"/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Width">
+        <member name="P:Sudoku.Drawing.PointCalculator.Width">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Height">
+        <member name="P:Sudoku.Drawing.PointCalculator.Height">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Padding">
+        <member name="P:Sudoku.Drawing.PointCalculator.Padding">
             <inheritdoc/>
             <remarks>The default value is <c>10</c>.</remarks>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.ControlSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.ControlSize">
             <summary>
             Indicates the control size.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.GridSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.GridSize">
             <summary>
             Indicates the grid size.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.CellSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.CellSize">
             <summary>
             Indicates the cell size.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.CandidateSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.CandidateSize">
             <summary>
             Indicates the candidate size.
             </summary>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.GridPoints">
+        <member name="P:Sudoku.Drawing.PointCalculator.GridPoints">
             <summary>
             Indicates the absolutely points in grid cross-lines.
             This property will be assigned later (and not <see langword="null"/>).
             </summary>
             <remarks>Note that the size of this 2D array is always 28 by 28.</remarks>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#ControlSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.Sudoku#Drawing#IPointCalculator#ControlSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#GridSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.Sudoku#Drawing#IPointCalculator#GridSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#CellSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.Sudoku#Drawing#IPointCalculator#CellSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#CandidateSize">
+        <member name="P:Sudoku.Drawing.PointCalculator.Sudoku#Drawing#IPointCalculator#CandidateSize">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Drawing.Drawing2D.PointCalculator.Sudoku#Drawing#Drawing2D#IPointCalculator#GridPoints">
+        <member name="P:Sudoku.Drawing.PointCalculator.Sudoku#Drawing#IPointCalculator#GridPoints">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetCell(System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetCell(System.Drawing.PointF)">
             <summary>
             Get the focus cell offset via a mouse point.
             </summary>
             <param name="point">The mouse point.</param>
             <returns>The cell offset. Returns -1 when the current point is invalid.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetCandidate(System.Drawing.PointF)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetCandidate(System.Drawing.PointF)">
             <summary>
             Get the focus candidate offset via a mouse point.
             </summary>
             <param name="point">The mouse point.</param>
             <returns>The candidate offset.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseCenter(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseCenter(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Get the center mouse point of all candidates.
             </summary>
@@ -543,7 +543,7 @@
             <returns>The center mouse point.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseRectangle(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangle(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Get the rectangle from all candidates.
             </summary>
@@ -551,14 +551,14 @@
             <returns>The rectangle.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseRectangleViaCell(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangleViaCell(System.Int32)">
             <summary>
             Get the rectangle (4 mouse points) via the specified cell.
             </summary>
             <param name="cell">The cell.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseRectangle(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangle(System.Int32,System.Int32)">
             <summary>
             Get the rectangle (4 mouse points) for the specified cell and digit of a candidate.
             </summary>
@@ -566,21 +566,21 @@
             <param name="digit">The digit.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseRectangleViaHouse(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMouseRectangleViaHouse(System.Int32)">
             <summary>
             Get the rectangle (4 mouse points) via the specified house.
             </summary>
             <param name="house">The house.</param>
             <returns>The rectangle.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetAnchorsViaHouse(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetAnchorsViaHouse(System.Int32)">
             <summary>
             Gets two points that specifies and represents the anchors of this house.
             </summary>
             <param name="house">The house.</param>
             <returns>The anchor points.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32)">
             <summary>
             Gets two points specifies and represents a line as shared border grid lines between two adjacent cells.
             </summary>
@@ -588,14 +588,14 @@
             <param name="cell2">The second cell that is adjacent with <paramref name="cell1"/> by row or column.</param>
             <returns>The two points representing with a line.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMousePointInCenter(System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMousePointInCenter(System.Int32)">
             <summary>
             Get the mouse point of the center of a cell via its offset.
             </summary>
             <param name="cell">The cell offset.</param>
             <returns>The mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMousePointInCenter(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Drawing.PointCalculator.GetMousePointInCenter(System.Int32,System.Int32)">
             <summary>
             Get the mouse point of the center of a cell via its offset and the digit.
             </summary>
@@ -603,8 +603,8 @@
             <param name="digit">The digit.</param>
             <returns>The mouse point.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Drawing.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Drawing.PointCalculator.GetSharedLinePosition(System.Int32,System.Int32)"/>
         </member>
         <member name="T:System.Drawing.BitmapExtensions">
             <summary>

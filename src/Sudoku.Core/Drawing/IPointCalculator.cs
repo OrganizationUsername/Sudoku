@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing.Drawing2D;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Represents a base type of pointer calculator.

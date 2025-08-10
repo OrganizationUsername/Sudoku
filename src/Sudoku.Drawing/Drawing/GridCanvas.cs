@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing.Drawing2D;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Represents a canvas that allows drawing sudoku-related items onto it.

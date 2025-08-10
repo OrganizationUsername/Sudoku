@@ -1,4 +1,4 @@
-namespace Sudoku.Scripting.Ittoryu;
+namespace Sudoku.Algorithms.Ittoryu;
 
 /// <summary>
 /// Represents ittoryu-related technique sets instances.

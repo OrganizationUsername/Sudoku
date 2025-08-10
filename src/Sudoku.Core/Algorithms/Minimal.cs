@@ -1,4 +1,4 @@
-namespace Sudoku.Scripting;
+namespace Sudoku.Algorithms;
 
 /// <summary>
 /// Represents extension methods on <see cref="Grid"/> for minimal.

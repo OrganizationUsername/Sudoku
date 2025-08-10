@@ -1,4 +1,4 @@
-namespace Sudoku.Scripting;
+namespace Sudoku.Algorithms;
 
 /// <summary>
 /// Represents the methods that calculates for distance.

@@ -9,51 +9,6 @@
             Represents a source generator that copies the whole method, and replaces some variables with cached fields.
             </summary>
         </member>
-        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult">
-            <summary>
-            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> instances to be generated once.
-            </summary>
-            <param name="Results">Indicates the results created.</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.#ctor(Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult[])">
-            <summary>
-            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> instances to be generated once.
-            </summary>
-            <param name="Results">Indicates the results created.</param>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.Results">
-            <summary>Indicates the results created.</summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.AggregateSuccessTransformResult.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptsLocationAttributeSourceCode">
-            <summary>
-            Indicates the raw source code for intercepts location attribute.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.ValidVariableNames">
-            <summary>
-            Represents a list of properties that will be replaced with cached members.
-            </summary>
-            <remarks>
-            Please note that here we don't replace expression <c>grid.GetSolution()</c> with <c>Solution</c> at present
-            because it'll change syntax node
-            (from <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax"/> to <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax"/>).
-            It may be considered in the future.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
-            <inheritdoc/>
-            <remarks>
-            This generator will aim to methods, to find whether a method block contains at least one intercepted usage.
-            If so, such method will be replaced with cached method.
-            The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
-            </remarks>
-        </member>
         <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.IC0100">
             <summary>
             Represents message "Necessary type is missing".
@@ -109,92 +64,29 @@
             no matter whether it has type parameter constraints".
             </summary>
         </member>
-        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptsLocationAttributeSourceCode">
             <summary>
-            Represents a transform result after failed to be handled.
+            Indicates the raw source code for intercepts location attribute.
             </summary>
-            <param name="Diagnostic">The diagnostic result.</param>
         </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.#ctor(Microsoft.CodeAnalysis.Diagnostic)">
+        <member name="F:Sudoku.SourceGeneration.CachedMethodGenerator.ValidVariableNames">
             <summary>
-            Represents a transform result after failed to be handled.
+            Represents a list of properties that will be replaced with cached members.
             </summary>
-            <param name="Diagnostic">The diagnostic result.</param>
+            <remarks>
+            Please note that here we don't replace expression <c>grid.GetSolution()</c> with <c>Solution</c> at present
+            because it'll change syntax node
+            (from <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.InvocationExpressionSyntax"/> to <see cref="T:Microsoft.CodeAnalysis.CSharp.Syntax.MemberAccessExpressionSyntax"/>).
+            It may be considered in the future.
+            </remarks>
         </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.FailedTransformResult.Diagnostic">
-            <summary>The diagnostic result.</summary>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation">
-            <summary>
-            Represents location information for an intercepted method.
-            </summary>
-            <param name="FilePath">Indicates the file path of the target method.</param>
-            <param name="Line">Indicates the line number.</param>
-            <param name="Character">Indicates the character position.</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.#ctor(System.String,System.Int32,System.Int32)">
-            <summary>
-            Represents location information for an intercepted method.
-            </summary>
-            <param name="FilePath">Indicates the file path of the target method.</param>
-            <param name="Line">Indicates the line number.</param>
-            <param name="Character">Indicates the character position.</param>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.FilePath">
-            <summary>Indicates the file path of the target method.</summary>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.Line">
-            <summary>Indicates the line number.</summary>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation.Character">
-            <summary>Indicates the character position.</summary>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult">
-            <summary>
-            Represents a transform result after successfully to be handled.
-            </summary>
-            <param name="Text">Indicates the source text generated.</param>
-            <param name="Location">Indicates the location information.</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult.#ctor(System.String,Sudoku.SourceGeneration.CachedMethodGenerator.InterceptedLocation)">
-            <summary>
-            Represents a transform result after successfully to be handled.
-            </summary>
-            <param name="Text">Indicates the source text generated.</param>
-            <param name="Location">Indicates the location information.</param>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult.Text">
-            <summary>Indicates the source text generated.</summary>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult.Location">
-            <summary>Indicates the location information.</summary>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
-            <summary>
-            Represents a transform result.
-            </summary>
-            <param name="Success">Indicates whether the result describes for "successful".</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.#ctor(System.Boolean)">
-            <summary>
-            Represents a transform result.
-            </summary>
-            <param name="Success">Indicates whether the result describes for "successful".</param>
-        </member>
-        <member name="P:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.Success">
-            <summary>Indicates whether the result describes for "successful".</summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.op_Implicit(Microsoft.CodeAnalysis.Diagnostic)~Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
-            <summary>
-            Implicit cast from <see cref="T:Microsoft.CodeAnalysis.Diagnostic"/> to <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult"/>.
-            </summary>
-            <param name="diagnostic">The diagnostic result.</param>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult.op_Implicit(Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult[])~Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult">
-            <summary>
-            Implicit cast from <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.SuccessTransformResult"/> array to <see cref="T:Sudoku.SourceGeneration.CachedMethodGenerator.TransformResult"/>.
-            </summary>
-            <param name="results">The results.</param>
+        <member name="M:Sudoku.SourceGeneration.CachedMethodGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+            <remarks>
+            This generator will aim to methods, to find whether a method block contains at least one intercepted usage.
+            If so, such method will be replaced with cached method.
+            The requirement is that, the callee method should be applied with '<c>[InterceptorMethodCaller]</c>'.
+            </remarks>
         </member>
         <member name="T:Sudoku.SourceGeneration.InterceptorInstanceRoutingDefaultBehavior">
             <summary>
@@ -236,12 +128,112 @@
         <member name="P:Sudoku.SourceGeneration.LocationResult.RefMethodSymbol">
             <summary>Indicates the referenced method symbol.</summary>
         </member>
-        <member name="T:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator">
+        <member name="T:Sudoku.SourceGeneration.InterceptedLocation">
             <summary>
-            Represents a source generator type that runs multiple different usage of source output services on compiling code.
+            Represents location information for an intercepted method.
             </summary>
+            <param name="FilePath">Indicates the file path of the target method.</param>
+            <param name="Line">Indicates the line number.</param>
+            <param name="Character">Indicates the character position.</param>
         </member>
-        <member name="M:Sudoku.SourceGeneration.StepSearcherDefaultImportingGenerator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+        <member name="M:Sudoku.SourceGeneration.InterceptedLocation.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Represents location information for an intercepted method.
+            </summary>
+            <param name="FilePath">Indicates the file path of the target method.</param>
+            <param name="Line">Indicates the line number.</param>
+            <param name="Character">Indicates the character position.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.FilePath">
+            <summary>Indicates the file path of the target method.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.Line">
+            <summary>Indicates the line number.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.InterceptedLocation.Character">
+            <summary>Indicates the character position.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.TransformResult">
+            <summary>
+            Represents a transform result.
+            </summary>
+            <param name="Success">Indicates whether the result describes for "successful".</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.TransformResult.#ctor(System.Boolean)">
+            <summary>
+            Represents a transform result.
+            </summary>
+            <param name="Success">Indicates whether the result describes for "successful".</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.TransformResult.Success">
+            <summary>Indicates whether the result describes for "successful".</summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.TransformResult.op_Implicit(Microsoft.CodeAnalysis.Diagnostic)~Sudoku.SourceGeneration.TransformResult">
+            <summary>
+            Implicit cast from <see cref="T:Microsoft.CodeAnalysis.Diagnostic"/> to <see cref="T:Sudoku.SourceGeneration.TransformResult"/>.
+            </summary>
+            <param name="diagnostic">The diagnostic result.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.TransformResult.op_Implicit(Sudoku.SourceGeneration.SuccessTransformResult[])~Sudoku.SourceGeneration.TransformResult">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.SourceGeneration.SuccessTransformResult"/> array to <see cref="T:Sudoku.SourceGeneration.TransformResult"/>.
+            </summary>
+            <param name="results">The results.</param>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.SuccessTransformResult">
+            <summary>
+            Represents a transform result after successfully to be handled.
+            </summary>
+            <param name="Text">Indicates the source text generated.</param>
+            <param name="Location">Indicates the location information.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.SuccessTransformResult.#ctor(System.String,Sudoku.SourceGeneration.InterceptedLocation)">
+            <summary>
+            Represents a transform result after successfully to be handled.
+            </summary>
+            <param name="Text">Indicates the source text generated.</param>
+            <param name="Location">Indicates the location information.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.SuccessTransformResult.Text">
+            <summary>Indicates the source text generated.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.SuccessTransformResult.Location">
+            <summary>Indicates the location information.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.FailedTransformResult">
+            <summary>
+            Represents a transform result after failed to be handled.
+            </summary>
+            <param name="Diagnostic">The diagnostic result.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.FailedTransformResult.#ctor(Microsoft.CodeAnalysis.Diagnostic)">
+            <summary>
+            Represents a transform result after failed to be handled.
+            </summary>
+            <param name="Diagnostic">The diagnostic result.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.FailedTransformResult.Diagnostic">
+            <summary>The diagnostic result.</summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.AggregateSuccessTransformResult">
+            <summary>
+            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.SuccessTransformResult"/> instances to be generated once.
+            </summary>
+            <param name="Results">Indicates the results created.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AggregateSuccessTransformResult.#ctor(Sudoku.SourceGeneration.SuccessTransformResult[])">
+            <summary>
+            Represents a transform result that creates a list of <see cref="T:Sudoku.SourceGeneration.SuccessTransformResult"/> instances to be generated once.
+            </summary>
+            <param name="Results">Indicates the results created.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.AggregateSuccessTransformResult.Results">
+            <summary>Indicates the results created.</summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AggregateSuccessTransformResult.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AggregateSuccessTransformResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">

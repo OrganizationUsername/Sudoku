@@ -7,14 +7,7 @@ namespace System.Numerics;
 public ref struct Int128Enumerator(UInt128 _value) : IBitEnumerator
 {
 	/// <inheritdoc/>
-	public readonly int PopulationCount
-	{
-		get
-		{
-			var (upper, lower) = ((ulong)(_value >> 64), (ulong)(_value & ulong.MaxValue));
-			return PopCount(upper) + PopCount(lower);
-		}
-	}
+	public readonly int PopulationCount => (int)UInt128.PopCount(_value);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<int> Bits => _value.AllSets;

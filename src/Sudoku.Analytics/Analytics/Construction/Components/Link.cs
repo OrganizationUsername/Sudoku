@@ -61,8 +61,7 @@ public sealed class Link(Node firstNode, Node secondNode, bool isStrong, Pattern
 	public Node SecondNode { get; } = secondNode;
 
 	/// <summary>
-	/// Indicates the pattern that the grouped link used. The value can be used as a "tag" recording extra information.
-	/// The default value is <see langword="null"/>.
+	/// Indicates the pattern that the grouped link used.
 	/// </summary>
 	public Pattern? GroupedLinkPattern { get; } = groupedLinkPattern;
 

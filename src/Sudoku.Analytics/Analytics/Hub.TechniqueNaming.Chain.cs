@@ -92,7 +92,7 @@ public partial class Hub
 			public static Technique GetTechnique(NamedChain chain, ConclusionSet conclusions)
 				=> chain switch
 				{
-					AlternatingInferenceChain { IsX: var isX, IsStrictlyGrouped: var isGrouped, Links: var links } instance => instance switch
+					AlternatingInferenceChain { IsStrictlyGrouped: var isGrouped } instance => instance switch
 					{
 						{ IsOverlapped: true } and [{ Map: var map1 }, .., { Map: var map2 }] when map1 == map2
 							=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
@@ -116,7 +116,7 @@ public partial class Hub
 						{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
 						{ Links.Length: 5, IsWoodsWing: false, IsMedusaWing: false }
 							=> isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
-						{ Links.Length: 3 } when isX => links switch
+						{ Links: { Length: 3 } links } => links switch
 						{
 							[
 								({ Map.Cells: var cells11 }, { Map.Cells: var cells12 }),

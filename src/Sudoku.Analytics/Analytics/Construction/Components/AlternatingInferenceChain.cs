@@ -80,7 +80,7 @@ public sealed class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNo
 		&& Links is [
 			var a and ({ GroupedLinkPattern: AlmostLockedSetPattern } or { IsBivalueCellLink: true }),
 			_,
-		{ IsStrictlyGrouped: true },
+			{ IsStrictlyGrouped: true },
 			_,
 			var b and ({ GroupedLinkPattern: AlmostLockedSetPattern } or { IsBivalueCellLink: true })
 		]
@@ -122,12 +122,12 @@ public sealed class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNo
 		=> this switch
 		{
 			[
-			{ Map.Digits: var m1 },
-			{ Map.Digits: var m2 },
-			{ Map.Digits: var m3 },
-			{ Map.Digits: var m4 },
-			{ Map.Digits: var m5 },
-			{ Map.Digits: var m6 }
+				{ Map.Digits: var m1 },
+				{ Map.Digits: var m2 },
+				{ Map.Digits: var m3 },
+				{ Map.Digits: var m4 },
+				{ Map.Digits: var m5 },
+				{ Map.Digits: var m6 }
 			] => IsPow2(m1) && IsPow2(m2) && IsPow2(m3) && IsPow2(m4) && IsPow2(m5) && IsPow2(m6)
 				? (true, m1, m2, m3, m4, m5, m6)
 				: (false, m1, m2, m3, m4, m5, m6),

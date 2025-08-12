@@ -120,15 +120,7 @@ public sealed class ContinuousNiceLoop(Node lastNode) : NamedChain(lastNode, tru
 	public override bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainComparison patternComparison)
 		=> Equals(other as ContinuousNiceLoop, nodeComparison, patternComparison);
 
-	/// <summary>
-	/// Creates a hash code based on the current instance.
-	/// </summary>
-	/// <param name="nodeComparison">The node comparison.</param>
-	/// <param name="patternComparison">The pattern comparison.</param>
-	/// <returns>An <see cref="int"/> as the result.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
-	/// </exception>
+	/// <inheritdoc/>
 	public override int GetHashCode(NodeComparison nodeComparison, ChainComparison patternComparison)
 	{
 		switch (patternComparison)

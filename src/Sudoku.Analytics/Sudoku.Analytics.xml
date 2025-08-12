@@ -3455,15 +3455,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
-            <summary>
-            Creates a hash code based on the current instance.
-            </summary>
-            <param name="nodeComparison">The node comparison.</param>
-            <param name="patternComparison">The pattern comparison.</param>
-            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop)">
             <summary>
@@ -4264,8 +4256,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Link.GroupedLinkPattern">
             <summary>
-            Indicates the pattern that the grouped link used. The value can be used as a "tag" recording extra information.
-            The default value is <see langword="null"/>.
+            Indicates the pattern that the grouped link used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.Link.Sudoku#Analytics#Construction#IComponent#Type">

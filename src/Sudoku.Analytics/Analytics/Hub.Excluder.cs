@@ -5,8 +5,39 @@ public partial class Hub
 	/// <summary>
 	/// Represents a type that supports excluders marking inside a direct technique.
 	/// </summary>
-	public static class Excluder
+	public static partial class Excluder
 	{
+		[GeneratedRegex("""(Row|Column)HiddenSingle\d{3}""", RegexOptions.Compiled)]
+		private static partial Regex SubtypeTextPattern { get; }
+
+
+		/// <summary>
+		/// Indicates whether the solving steps contains at least one <see cref="Step"/>
+		/// using hidden singles in line, with block excluders.
+		/// </summary>
+		public static bool HasBlockExcluders(AnalysisResult @this)
+		{
+			foreach (var step in @this.StepsSpan)
+			{
+				if (step is not HiddenSingleStep { Subtype: var subtype })
+				{
+					continue;
+				}
+
+				var text = subtype.ToString();
+				if (!SubtypeTextPattern.IsMatch(text))
+				{
+					continue;
+				}
+
+				if (text[^3] != '0')
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
 		/// <summary>
 		/// Get all <see cref="Cell"/> offsets that represents as excluders.
 		/// </summary>

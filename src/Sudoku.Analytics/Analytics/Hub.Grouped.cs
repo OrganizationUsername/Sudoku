@@ -1,14 +1,11 @@
-namespace Sudoku.Analytics.Construction.Components;
+namespace Sudoku.Analytics;
 
-/// <summary>
-/// Represents a list of methods that operates with concept "Grouped Node".
-/// </summary>
-public static class Grouped
+public partial class Hub
 {
 	/// <summary>
-	/// Provides extension members on <see cref="CellMap"/>.
+	/// Represents a list of methods that operates with concept "Grouped Node".
 	/// </summary>
-	extension(CellMap)
+	public static class Grouped
 	{
 		/// <summary>
 		/// Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.

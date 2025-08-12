@@ -2765,43 +2765,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/> to check for excluders.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.SubtypeTextPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match the string "Row".<br/>
-                    ○ Match the string "Column".<br/>
-            ○ Match the string "HiddenSingle".<br/>
-            ○ Match a Unicode digit exactly 3 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.&lt;&gt;E__0">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.&lt;&gt;E__0.HasBlockExcluders">
-            <summary>
-            Indicates whether the solving steps contains at least one <see cref="T:Sudoku.Analytics.Step"/>
-            using hidden singles in line, with block excluders.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.get_HasBlockExcluders(Sudoku.Analytics.AnalysisResult)">
-            <inheritdoc cref="P:Sudoku.Analytics.Construction.Components.AnalysisResultExcluderExtensions.&lt;&gt;E__0.HasBlockExcluders"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.BinaryForcingChains">
             <summary>
             Represents a binary forcing chains (contradiction forcing chains or double forcing chains).
@@ -3898,28 +3861,6 @@
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ForcingChainsInfo.NodesEnumerator.MoveNext">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.Grouped">
-            <summary>
-            Represents a list of methods that operates with concept "Grouped Node".
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.Grouped.&lt;&gt;E__0">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Concepts.CellMap"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Grouped.&lt;&gt;E__0.FormsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <summary>
-            Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
-            </summary>
-            <param name="cells">The cells to be checked.</param>
-            <param name="house">The house.</param>
-            <param name="spannedHousesList">The spanned houses.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Grouped.FormsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{System.Int32}@)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Grouped.&lt;&gt;E__0.FormsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{System.Int32}@)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.GroupedWhipAssignment">
             <summary>
@@ -7967,6 +7908,29 @@
             Represents a type that supports excluders marking inside a direct technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Hub.Excluder.SubtypeTextPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match the string "Row".<br/>
+                    ○ Match the string "Column".<br/>
+            ○ Match the string "HiddenSingle".<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Excluder.HasBlockExcluders(Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Indicates whether the solving steps contains at least one <see cref="T:Sudoku.Analytics.Step"/>
+            using hidden singles in line, with block excluders.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Hub.Excluder.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Get all <see cref="T:System.Int32"/> offsets that represents as excluders.
@@ -8018,6 +7982,20 @@
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Hub.Grouped">
+            <summary>
+            Represents a list of methods that operates with concept "Grouped Node".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Hub.Grouped.FormsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+            <summary>
+            Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
+            </summary>
+            <param name="cells">The cells to be checked.</param>
+            <param name="house">The house.</param>
+            <param name="spannedHousesList">The spanned houses.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Hub.Lasting">
             <summary>

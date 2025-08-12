@@ -37,7 +37,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				goto NextLoop;
 			}
 
-			if (!AllowsBlockExcluders && Analyzer.Analyze(puzzle, cancellationToken: cancellationToken).HasBlockExcluders)
+			if (!AllowsBlockExcluders && Excluder.HasBlockExcluders(Analyzer.Analyze(puzzle, cancellationToken: cancellationToken)))
 			{
 				goto NextLoop;
 			}

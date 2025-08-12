@@ -68,7 +68,7 @@ public partial class Hub
 			out ExcluderInfo excluderInfo
 		)
 		{
-			excluderInfo = ExcluderInfo.TryCreate(grid, digit, house, cell.AsCellMap())!;
+			excluderInfo = ExcluderInfo.Create(grid, digit, house, cell.AsCellMap())!;
 			if (excluderInfo is var (cc, covered, excluded))
 			{
 				chosenCells = cc;
@@ -142,7 +142,7 @@ public partial class Hub
 		/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
 		public static ReadOnlySpan<IconViewNode> GetLockedCandidatesExcluders(in Grid grid, Digit digit, House house, in CellMap cells)
 		{
-			var info = ExcluderInfo.TryCreate(grid, digit, house, cells);
+			var info = ExcluderInfo.Create(grid, digit, house, cells);
 			if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 			{
 				return [];
@@ -171,7 +171,7 @@ public partial class Hub
 		/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
 		public static ReadOnlySpan<IconViewNode> GetSubsetExcluders(in Grid grid, Digit digit, House house, in CellMap cells)
 		{
-			var info = ExcluderInfo.TryCreate(grid, digit, house, cells);
+			var info = ExcluderInfo.Create(grid, digit, house, cells);
 			if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 			{
 				return [];

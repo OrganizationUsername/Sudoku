@@ -3571,7 +3571,7 @@
         <member name="P:Sudoku.Analytics.Construction.Components.ExcluderInfo.Sudoku#Analytics#Construction#IComponent#Type">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.TryCreate(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Construction.Components.ExcluderInfo.Create(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
             with the specified digit in the specified grid.

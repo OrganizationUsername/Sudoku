@@ -24,7 +24,7 @@ public sealed record ExcluderInfo(in CellMap BaseCells, in CellMap EmptyCells, i
 	/// <param name="house">The house to be checked.</param>
 	/// <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
 	/// <returns>The result pair.</returns>
-	public static ExcluderInfo? TryCreate(in Grid grid, Digit digit, House house, in CellMap cells)
+	public static ExcluderInfo? Create(in Grid grid, Digit digit, House house, in CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
 		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells & ~cells & emptyCells, CellMap.Empty, CellMap.Empty);

@@ -71,8 +71,7 @@ public partial class Hub
 			/// <param name="chain">The chain to be checked.</param>
 			/// <param name="conclusions">Indicates conclusions to be used.</param>
 			/// <returns>The pattern sort key.</returns>
-			public static int GetSortKey(NamedChain chain, ConclusionSet conclusions)
-				=> SortKeyDictionary[GetTechnique(chain, conclusions)];
+			public static int GetSortKey(NamedChain chain, ConclusionSet conclusions) => SortKeyDictionary[GetTechnique(chain, conclusions)];
 
 			/// <summary>
 			/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
@@ -80,8 +79,7 @@ public partial class Hub
 			/// <param name="chain">The chain to be checked.</param>
 			/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 			/// <returns>The <see cref="Technique"/> field categorized.</returns>
-			public static Technique GetTechnique(NamedChain chain, in Grid grid)
-				=> GetTechnique(chain, chain.GetConclusions(grid));
+			public static Technique GetTechnique(NamedChain chain, in Grid grid) => GetTechnique(chain, chain.GetConclusions(grid));
 
 			/// <summary>
 			/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
@@ -98,12 +96,9 @@ public partial class Hub
 							=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
 						{ IsGroupedAlmostLockedSetWWing: true } => Technique.GroupedAlmostLockedSetsWWing,
 						{ IsAlmostLockedSetWWing: true } => Technique.AlmostLockedSetsWWing,
-						{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: var count and >= 2 } => count switch
-						{
-							2 => Technique.SinglyLinkedAlmostLockedSetsXzRule,
-							3 => Technique.AlmostLockedSetsXyWing,
-							_ => Technique.AlmostLockedSetsChain
-						},
+						{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: 2 } => Technique.SinglyLinkedAlmostLockedSetsXzRule,
+						{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: 3 } => Technique.AlmostLockedSetsXyWing,
+						{ IsAlmostLockedSetSequence: true, AlmostLockedSetsCount: > 3 } => Technique.AlmostLockedSetsChain,
 						{ IsX: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
 						{ IsY: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 						{ IsOverlapped: true } => Technique.NodeCollision,
@@ -122,10 +117,10 @@ public partial class Hub
 								({ Map.Cells: var cells11 }, { Map.Cells: var cells12 }),
 								_,
 								({ Map.Cells: var cells21 }, { Map.Cells: var cells22 })
-							] => (
+							] when (
 								TrailingZeroCount((cells11 | cells12).SharedHouses).HouseType,
 								TrailingZeroCount((cells21 | cells22).SharedHouses).HouseType
-							) switch
+							) is var (p1, p2) => (p1, p2) switch
 							{
 								(HouseType.Block, _) or (_, HouseType.Block)
 									=> isGrouped ? Technique.GroupedTurbotFish : Technique.TurbotFish,
@@ -134,14 +129,13 @@ public partial class Hub
 								_ => isGrouped ? Technique.GroupedSkyscraper : Technique.Skyscraper
 							}
 						},
-						[{ Map.Digits: var digits1 }, .., { Map.Digits: var digits2 }]
-							=> digits1 == digits2
-								? isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain
-								: conclusions.Count switch
-								{
-									1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
-									_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
-								}
+						[{ Map.Digits: var digits1 }, .., { Map.Digits: var digits2 }] when digits1 == digits2
+							=> isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain,
+						_ => conclusions.Count switch
+						{
+							1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+							_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
+						}
 					},
 					ContinuousNiceLoop { IsStrictlyGrouped: var isGrouped } instance => instance switch
 					{

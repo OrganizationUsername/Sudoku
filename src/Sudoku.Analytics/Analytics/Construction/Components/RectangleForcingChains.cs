@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <param name="cells"><inheritdoc cref="Cells" path="/summary"/></param>
 /// <param name="urDigitsMask"><inheritdoc cref="UrDigitsMask" path="/summary"/></param>
 /// <param name="conclusions"><inheritdoc cref="MultipleForcingChains(Conclusion[])" path="/param[@name='conclusions']"/></param>
-public sealed partial class RectangleForcingChains(Cell[] cells, Mask urDigitsMask, params Conclusion[] conclusions) :
+public sealed class RectangleForcingChains(Cell[] cells, Mask urDigitsMask, params Conclusion[] conclusions) :
 	MultipleForcingChains(conclusions)
 {
 	/// <inheritdoc/>

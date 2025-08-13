@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle">Indicates the original puzzle to be solved.</param>
-public sealed partial record AnalysisResult(in Grid Puzzle) :
+public sealed record AnalysisResult(in Grid Puzzle) :
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
 	IEnumerable<Step>,
@@ -32,12 +32,12 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	public const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
-		| FormattingOptions.ShowSeparators
-		| FormattingOptions.ShowStepsAfterBottleneck
-		| FormattingOptions.ShowSteps
-		| FormattingOptions.ShowGridAndSolutionCode
-		| FormattingOptions.ShowElapsedTime;
+	public const AnalysisResultFormattingOptions DefaultOptions = AnalysisResultFormattingOptions.ShowDifficulty
+		| AnalysisResultFormattingOptions.ShowSeparators
+		| AnalysisResultFormattingOptions.ShowStepsAfterBottleneck
+		| AnalysisResultFormattingOptions.ShowSteps
+		| AnalysisResultFormattingOptions.ShowGridAndSolutionCode
+		| AnalysisResultFormattingOptions.ShowElapsedTime;
 
 
 	/// <summary>
@@ -317,6 +317,119 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	/// <inheritdoc/>
 	IEnumerable<Step> IReadOnlyDictionary<Grid, Step>.Values => InterimSteps ?? [];
 
+	/// <summary>
+	/// A span of values.
+	/// </summary>
+	private ReadOnlySpan<KeyValuePair<Grid, Step>> Span => Step.Combine(GridsSpan, StepsSpan);
+
+
+	/// <summary>
+	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same
+	/// with the specified argument <paramref name="grid"/>.
+	/// </summary>
+	/// <param name="grid">The grid to be matched.</param>
+	/// <returns>The found <see cref="Step"/> instance.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the puzzle is not solved (i.e. <see cref="IsSolved"/> property returns <see langword="false"/>).
+	/// </exception>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
+	/// </exception>
+	public Step this[in Grid grid]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				throw new InvalidOperationException(SR.ExceptionMessage("GridMustBeSolved"));
+			}
+
+			foreach (var (g, s) in Span)
+			{
+				if (g == grid)
+				{
+					return s;
+				}
+			}
+			throw new ArgumentOutOfRangeException(SR.ExceptionMessage("GridInvalid"));
+		}
+	}
+
+	/// <summary>
+	/// Gets the first found <see cref="Step"/> whose name is specified one, or nearly same as the specified one.
+	/// </summary>
+	/// <param name="techniqueName">Technique name.</param>
+	/// <returns>The first found step.</returns>
+	public KeyValuePair<Grid, Step>? this[string techniqueName]
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			foreach (var pair in Span)
+			{
+				var (_, step) = pair;
+				var name = step.GetName(null);
+				if (oic(name))
+				{
+					return pair;
+				}
+
+				var aliases = step.Code.GetAliasedNames(null);
+				if (aliases is not null && Array.Exists(aliases, oic))
+				{
+					return pair;
+				}
+
+				var abbr = step.Code.Abbreviation;
+				if (abbr is not null && oic(abbr))
+				{
+					return pair;
+				}
+			}
+			return null;
+
+
+			bool oic(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
+		}
+	}
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+	/// </summary>
+	/// <param name="difficultyRating">The specified difficulty rating value.</param>
+	/// <returns>
+	/// A list of <see cref="Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="IsSolved"/> returns <see langword="false"/>),
+	/// the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+	/// the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+	/// only depends on property <see cref="IsSolved"/>.
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public ReadOnlySpan<Step> this[int difficultyRating] => StepsSpan.FindAll(step => step.Difficulty == difficultyRating);
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
+	/// </summary>
+	/// <param name="code">The specified technique code.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[int]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public ReadOnlySpan<Step> this[Technique code] => StepsSpan.FindAll(step => step.Code == code);
+
+	/// <summary>
+	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+	/// </summary>
+	/// <param name="difficultyLevel">The specified difficulty level.</param>
+	/// <returns>
+	/// <inheritdoc cref="this[int]" path="/returns"/>
+	/// </returns>
+	/// <seealso cref="IsSolved"/>
+	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]
+		=> StepsSpan.FindAll(step => step.DifficultyLevel == difficultyLevel);
 
 	/// <inheritdoc/>
 	Step IReadOnlyDictionary<Grid, Step>.this[Grid key] => this[key];
@@ -407,21 +520,21 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	/// <inheritdoc/>
 	public override string ToString() => ToString(DefaultOptions);
 
-	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
-	public string ToString(FormattingOptions options) => ToString(options, default(IFormatProvider));
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
+	public string ToString(AnalysisResultFormattingOptions options) => ToString(options, default(IFormatProvider));
 
-	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
 	public string ToString(Func<string, Step, string>? stepStringReplacer) => ToString(DefaultOptions, null, stepStringReplacer);
 
-	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider) => ToString(DefaultOptions, formatProvider);
 
-	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
 	public string ToString(IFormatProvider? formatProvider, Func<string, Step, string> stepStringReplacer)
 		=> ToString(DefaultOptions, formatProvider, stepStringReplacer);
 
-	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
-	public string ToString(FormattingOptions options, Func<string, Step, string> stepStringReplacer)
+	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	public string ToString(AnalysisResultFormattingOptions options, Func<string, Step, string> stepStringReplacer)
 		=> ToString(options, null, stepStringReplacer);
 
 	/// <summary>
@@ -430,7 +543,8 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	/// <param name="options">The formatting options.</param>
 	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(FormattingOptions options, IFormatProvider? formatProvider) => ToString(options, formatProvider, null);
+	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider)
+		=> ToString(options, formatProvider, null);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options,
@@ -480,7 +594,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	/// <seealso href="https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/epson-esc-pos-with-formatting">
 	/// Epson formatting
 	/// </seealso>
-	public string ToString(FormattingOptions options, IFormatProvider? formatProvider, Func<string, Step, string>? stepStringReplacer)
+	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider, Func<string, Step, string>? stepStringReplacer)
 	{
 		// Initialize and deconstruct variables.
 		if (this is not
@@ -505,13 +619,13 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 
 		// Print header.
 		var sb = new StringBuilder();
-		if (f(FormattingOptions.ShowGridAndSolutionCode))
+		if (f(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzle", culture)}{puzzle:#}");
 		}
 
 		// Print solving steps (if worth).
-		if (f(FormattingOptions.ShowSteps) && steps.Length != 0)
+		if (f(AnalysisResultFormattingOptions.ShowSteps) && steps.Length != 0)
 		{
 			sb.AppendLine(SR.Get("AnalysisResultSolvingSteps", culture));
 
@@ -519,18 +633,18 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && !f(FormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !f(AnalysisResultFormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.AppendLine(SR.Get("Ellipsis", culture));
 						break;
 					}
 
 					var step = steps[i];
-					var stepStr = f(FormattingOptions.ShowSimple) ? step.ToSimpleString(culture) : step.ToString(culture);
-					var showDiff = f(FormattingOptions.ShowDifficulty);
+					var stepStr = f(AnalysisResultFormattingOptions.ShowSimple) ? step.ToSimpleString(culture) : step.ToString(culture);
+					var showDiff = f(AnalysisResultFormattingOptions.ShowDifficulty);
 					var d = $"({step.Difficulty,5}";
 					var s = $"{i + 1,4}";
-					var labelInfo = (f(FormattingOptions.ShowStepLabel), showDiff) switch
+					var labelInfo = (f(AnalysisResultFormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -540,13 +654,13 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 					sb.AppendLine(r($"{labelInfo}{stepStr}", step));
 				}
 
-				if (f(FormattingOptions.ShowBottleneck))
+				if (f(AnalysisResultFormattingOptions.ShowBottleneck))
 				{
-					a(sb, f(FormattingOptions.ShowSeparators));
+					a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
 
 					sb.Append(SR.Get("AnalysisResultBottleneckStep", culture));
 
-					if (f(FormattingOptions.ShowStepLabel))
+					if (f(AnalysisResultFormattingOptions.ShowStepLabel))
 					{
 						sb.Append(SR.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
@@ -557,7 +671,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 					sb.AppendLine(r(bottleneckStep.ToString(), bottleneckStep));
 				}
 
-				a(sb, f(FormattingOptions.ShowSeparators));
+				a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
 			}
 		}
 
@@ -568,7 +682,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 
 			sb.AppendLine(SR.Get("AnalysisResultTechniqueUsed", culture));
 
-			if (f(FormattingOptions.ShowStepDetail))
+			if (f(AnalysisResultFormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"{SR.Get("AnalysisResultMin", culture),6}, ");
 				sb.Append($"{SR.Get("AnalysisResultTotal", culture),6}");
@@ -590,7 +704,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 				select step into step
 				group step by step.GetName(formatProvider))
 			{
-				if (f(FormattingOptions.ShowStepDetail))
+				if (f(AnalysisResultFormattingOptions.ShowStepDetail))
 				{
 					var (currentTotal, currentMinimum) = (0, int.MaxValue);
 					foreach (var solvingStep in solvingStepsGroup)
@@ -604,7 +718,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
-			if (f(FormattingOptions.ShowStepDetail))
+			if (f(AnalysisResultFormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"  (---{total,8}) ");
 			}
@@ -612,7 +726,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 			sb.Append($"{stepsCount,3} ");
 			sb.AppendLine(SR.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 
-			a(sb, f(FormattingOptions.ShowSeparators));
+			a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
@@ -620,7 +734,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
-		if (!solution.IsUndefined && f(FormattingOptions.ShowGridAndSolutionCode))
+		if (!solution.IsUndefined && f(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzleSolution", culture)}{solution:!}");
 		}
@@ -632,12 +746,12 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 			sb.Append(SR.Get("AnalysisResultNot", culture));
 		}
 		sb.AppendLine(SR.Get("AnalysisResultBeenSolved", culture));
-		if (f(FormattingOptions.ShowElapsedTime))
+		if (f(AnalysisResultFormattingOptions.ShowElapsedTime))
 		{
 			sb.Append(SR.Get("AnalysisResultTimeElapsed", culture));
 			sb.AppendLine(elapsed.ToString(@"hh\:mm\:ss\.fff"));
 		}
-		if (memoryUsed is not null && f(FormattingOptions.ShowMemoryUsage))
+		if (memoryUsed is not null && f(AnalysisResultFormattingOptions.ShowMemoryUsage))
 		{
 			sb.Append(SR.Get("AnalysisResultMemoryUsed", culture));
 			sb.AppendLine(
@@ -647,7 +761,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 			);
 		}
 
-		a(sb, f(FormattingOptions.ShowSeparators));
+		a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
 		return sb.ToString();
 
 
@@ -659,7 +773,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 			}
 		}
 
-		bool f(FormattingOptions x) => options.HasFlag(x);
+		bool f(AnalysisResultFormattingOptions x) => options.HasFlag(x);
 
 		(int, Step)? getBottleneck()
 		{

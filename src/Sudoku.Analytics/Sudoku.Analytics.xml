@@ -741,6 +741,65 @@
         <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Values">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Span">
+            <summary>
+            A span of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same
+            with the specified argument <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid to be matched.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> property returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.String)">
+            <summary>
+            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
+            </summary>
+            <param name="techniqueName">Technique name.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+            </summary>
+            <param name="difficultyRating">The specified difficulty rating value.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> returns <see langword="false"/>),
+            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+            only depends on property <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Categorization.Technique)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
+            </summary>
+            <param name="code">The specified technique code.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.DifficultyLevel)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+            </summary>
+            <param name="difficultyLevel">The specified difficulty level.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IReadOnlyDictionary{Sudoku#Concepts#Grid,Sudoku#Analytics#Step}#Item(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
@@ -789,22 +848,22 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
@@ -812,7 +871,7 @@
             <param name="formatProvider">The format provider instance.</param>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
             <summary>
             Returns a string that represents the current object, with the specified formatting options,
             with a string replacer method that can enhance the output string.
@@ -917,7 +976,7 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
         </member>
-        <member name="T:Sudoku.Analytics.AnalysisResult.FormattingOptions">
+        <member name="T:Sudoku.Analytics.AnalysisResultFormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalysisResult" /> instance.
             </summary>
@@ -931,62 +990,62 @@
 	</flags-attribute></remarks>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult" />
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.None">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.None">
             <summary>
             Indicates the none of the formatting option.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSeparators">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSeparators">
             <summary>
             Indicates the analysis result will append separators.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepLabel">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepLabel">
             <summary>
             Indicates the analysis result will append the step label.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSimple">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSimple">
             <summary>
             Indicates the analysis result will use simple mode to show steps.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowBottleneck">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowBottleneck">
             <summary>
             Indicates the analysis result will show the bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowDifficulty">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowDifficulty">
             <summary>
             Indicates the analysis result will show the difficulty.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepsAfterBottleneck">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepsAfterBottleneck">
             <summary>
             Indicates the analysis result will show all steps after the bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepDetail">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepDetail">
             <summary>
             Indicates the analysis result will show the step detail.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSteps">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSteps">
             <summary>
             Indicates the analysis result will show the steps.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowGridAndSolutionCode">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowGridAndSolutionCode">
             <summary>
             Indicates the analysis result will show grid code for the puzzle itself and its solution.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowElapsedTime">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowElapsedTime">
             <summary>
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowMemoryUsage">
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowMemoryUsage">
             <summary>
             Indicates the analysis result will show memory usage.
             </summary>
@@ -994,65 +1053,6 @@
             Please note that this flag only simply make subtraction on start and end state of GC,
             which means it may produce a negative number. Don't rely on it; just for the reference.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Span">
-            <summary>
-            A span of values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same
-            with the specified argument <paramref name="grid"/>.
-            </summary>
-            <param name="grid">The grid to be matched.</param>
-            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> property returns <see langword="false"/>).
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.String)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
-            </summary>
-            <param name="techniqueName">Technique name.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
-            </summary>
-            <param name="difficultyRating">The specified difficulty rating value.</param>
-            <returns>
-            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> returns <see langword="false"/>),
-            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
-            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
-            only depends on property <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Categorization.Technique)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
-            </summary>
-            <param name="code">The specified technique code.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.DifficultyLevel)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
-            </summary>
-            <param name="difficultyLevel">The specified difficulty level.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>
@@ -35835,7 +35835,7 @@
             Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
+        <member name="M:Sudoku.Text.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
             <summary>
             Gets the output text.
             </summary>

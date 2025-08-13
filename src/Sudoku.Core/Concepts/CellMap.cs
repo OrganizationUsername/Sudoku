@@ -7,11 +7,6 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell>;
 /// </summary>
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
-/// <para>
-/// This type uses <see cref="Vector128{T}"/> to store bits, which may be unsupported in some platforms or machines.
-/// I might reconsider the design of this type, in order to make this type compatible with that in the future;
-/// but at present I don't do anything for it.
-/// </para>
 /// </remarks>
 /// <seealso cref="Vector128{T}"/>
 [JsonConverter(typeof(Converter))]
@@ -740,20 +735,7 @@ public partial struct CellMap : CellMapBase
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[OverloadResolutionPriority(-1)]
-	public static CellMap Create(ReadOnlySpan<Cell> cells)
-	{
-		if (cells.IsEmpty)
-		{
-			return default;
-		}
-
-		var result = default(CellMap);
-		foreach (var cell in cells)
-		{
-			result.Add(cell);
-		}
-		return result;
-	}
+	public static CellMap Create(ReadOnlySpan<Cell> cells) => cells.AsCellMap();
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CellMap Parse(string str)

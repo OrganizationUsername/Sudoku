@@ -2107,6 +2107,16 @@
         <member name="P:Sudoku.Concepts.Chute.HousesMask">
             <summary>Indicates the houses used.</summary>
         </member>
+        <member name="F:Sudoku.Concepts.Chute.MinChuteIndex">
+            <summary>
+            Indicates the minimum chute index.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Chute.MaxChuteIndex">
+            <summary>
+            Indicates the maximum chute index.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Chute.Cells">
             <summary>
             Indicates the cells in this chute.
@@ -13160,142 +13170,155 @@
             Indicates the swappable pairs, which means the swappable houses.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorLeftRight``1(``0@)">
+        <member name="T:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1">
+            <summary>
+            Provides extension members on <typeparamref name="TGrid"/>,
+            where <typeparamref name="TGrid"/> satisfies <see langword="unmanaged"/> and <see cref="T:Sudoku.Concepts.IGrid`1"/> constraints.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorLeftRight">
             <summary>
             Mirror left-right the grid.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorTopBottom``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorTopBottom">
             <summary>
             Mirror top-bottom the grid.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorDiagonal``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorDiagonal">
             <summary>
             Mirror diagonal the grid.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transpose``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.Transpose">
             <summary>
             Transpose the grid.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorAntidiagonal``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorAntidiagonal">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result grid.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateClockwise``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotateClockwise">
             <summary>
             Rotate the grid clockwise.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateCounterclockwise``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotateCounterclockwise">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotatePi``1(``0@)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotatePi">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <remarks>
             This method will return the reference that is same as the argument,
             in order to inline multiple transformation operations.
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapDigit``1(``0@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapDigit(System.Int32,System.Int32)">
             <summary>
             Swap two digits.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
             <param name="digit1">The digit 1 to be swapped.</param>
             <param name="digit2">The digit 2 to be swapped.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapHouse``1(``0@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapHouse(System.Int32,System.Int32)">
             <summary>
             Swap to houses.
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
             <param name="houseIndex1">The house 1 to be swapped.</param>
             <param name="houseIndex2">The house 2 to be swapped.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <exception cref="T:System.ArgumentException">
             Throws when two specified house argument is not in valid range (0..27),
             two houses are not in same house type, or are not swappable.
             </exception>
-            <remarks>
-            This method will return the reference that is same as the argument <paramref name="this"/>,
-            in order to inline multiple transformation operations.
-            </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapChute``1(``0@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapChute(System.Int32,System.Int32)">
             <summary>
             Swap chutes (i.e. mega-rows or mega-columns).
             </summary>
-            <typeparam name="TGrid">The type of grid.</typeparam>
-            <param name="this">The grid.</param>
             <param name="chuteIndex1">The first chute to be swapped.</param>
             <param name="chuteIndex2">The second chute to be swapped.</param>
-            <returns>The result.</returns>
+            <returns>The reference to the current grid.</returns>
             <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorLeftRight``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorLeftRight"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorTopBottom``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorTopBottom"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorDiagonal``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorDiagonal"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transpose``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.Transpose"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorAntidiagonal``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorAntidiagonal"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateClockwise``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotateClockwise"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateCounterclockwise``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotateCounterclockwise"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotatePi``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.RotatePi"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapDigit``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapDigit(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapHouse``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapHouse(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapChute``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.SwapChute(System.Int32,System.Int32)"/>
         </member>
         <member name="T:Sudoku.Shuffling.Transforming.TransformType">
             <summary>

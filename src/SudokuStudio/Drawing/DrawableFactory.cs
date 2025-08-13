@@ -207,25 +207,30 @@ internal static partial class DrawableFactory
 file static class Extensions
 {
 	/// <summary>
-	/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements in a <see cref="ViewUnitBindableSource"/>.
+	/// Provides extension members on <see cref="UIElementCollection"/> instance.
 	/// </summary>
-	/// <param name="this">The collection.</param>
-	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
+	extension(UIElementCollection @this)
 	{
-		foreach (var control in @this.FindDrawableControls())
+		/// <summary>
+		/// Removes all possible <see cref="FrameworkElement"/>s that is used for displaying elements
+		/// in a <see cref="ViewUnitBindableSource"/>.
+		/// </summary>
+		public void RemoveAllViewUnitControls()
 		{
-			@this.Remove(control);
+			foreach (var control in @this.FindDrawableControls())
+			{
+				@this.Remove(control);
+			}
 		}
-	}
 
-	/// <summary>
-	/// Returns a list of <see cref="FrameworkElement"/> instances that bound with drawable items.
-	/// </summary>
-	/// <param name="collection">The pane.</param>
-	public static IEnumerable<FrameworkElement> FindDrawableControls(this UIElementCollection collection)
-		=> (
-			from child in collection.OfType<FrameworkElement>()
-			where child.Tag is IDrawableItem and (ViewNode or GroupedNodeInfo or CandidateMap or Conclusion)
-			select child
-		).ToArray();
+		/// <summary>
+		/// Returns a list of <see cref="FrameworkElement"/> instances that bound with drawable items.
+		/// </summary>
+		public IEnumerable<FrameworkElement> FindDrawableControls()
+			=> (
+				from child in @this.OfType<FrameworkElement>()
+				where child.Tag is IDrawableItem and (ViewNode or GroupedNodeInfo or CandidateMap or Conclusion)
+				select child
+			).ToArray();
+	}
 }

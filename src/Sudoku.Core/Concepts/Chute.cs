@@ -9,6 +9,17 @@ namespace Sudoku.Concepts;
 public readonly record struct Chute(int Index, bool IsRow, HouseMask HousesMask) : IFormattable, IParsable<Chute>
 {
 	/// <summary>
+	/// Indicates the minimum chute index.
+	/// </summary>
+	public const int MinChuteIndex = 0;
+
+	/// <summary>
+	/// Indicates the maximum chute index.
+	/// </summary>
+	public const int MaxChuteIndex = 6;
+
+
+	/// <summary>
 	/// Indicates the cells in this chute.
 	/// </summary>
 	public ref readonly CellMap Cells => ref ChuteMaps[Index];

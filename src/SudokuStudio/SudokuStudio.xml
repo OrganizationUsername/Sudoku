@@ -3332,17 +3332,27 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+        <member name="T:SudokuStudio.Drawing.Extensions.&lt;&gt;E__0">
             <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            Provides extension members on <see cref="T:Microsoft.UI.Xaml.Controls.UIElementCollection"/> instance.
             </summary>
-            <param name="this">The collection.</param>
         </member>
-        <member name="M:SudokuStudio.Drawing.Extensions.FindDrawableControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+        <member name="M:SudokuStudio.Drawing.Extensions.&lt;&gt;E__0.RemoveAllViewUnitControls">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements
+            in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.&lt;&gt;E__0.FindDrawableControls">
             <summary>
             Returns a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/> instances that bound with drawable items.
             </summary>
-            <param name="collection">The pane.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <inheritdoc cref="M:SudokuStudio.Drawing.Extensions.&lt;&gt;E__0.RemoveAllViewUnitControls"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.FindDrawableControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <inheritdoc cref="M:SudokuStudio.Drawing.Extensions.&lt;&gt;E__0.FindDrawableControls"/>
         </member>
         <member name="T:SudokuStudio.Drawing.Extensions">
             <target name="class" when="extension">

@@ -61,261 +61,242 @@ public static class Transformation
 
 
 	/// <summary>
-	/// Mirror left-right the grid.
+	/// Provides extension members on <typeparamref name="TGrid"/>,
+	/// where <typeparamref name="TGrid"/> satisfies <see langword="unmanaged"/> and <see cref="IGrid{TSelf}"/> constraints.
 	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result grid.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid MirrorLeftRight<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
+	extension<TGrid>(ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
 	{
-		for (var i = 0; i < 9; i++)
+		/// <summary>
+		/// Mirror left-right the grid.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid MirrorLeftRight()
 		{
-			for (var j = 0; j < 9; j++)
+			for (var i = 0; i < 9; i++)
 			{
-				Unsafe.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
+				for (var j = 0; j < 9; j++)
+				{
+					Unsafe.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
+				}
 			}
-		}
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Mirror top-bottom the grid.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result grid.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid MirrorTopBottom<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		for (var i = 0; i < 9; i++)
-		{
-			for (var j = 0; j < 9; j++)
-			{
-				Unsafe.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
-			}
-		}
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Mirror diagonal the grid.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result grid.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid MirrorDiagonal<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		for (var i = 0; i < 9; i++)
-		{
-			for (var j = i + 1; j < 9; j++)
-			{
-				Unsafe.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
-			}
-		}
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Transpose the grid.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result grid.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid Transpose<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-		=> ref @this.MirrorDiagonal<TGrid>();
-
-	/// <summary>
-	/// Mirror anti-diagonal the grid.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result grid.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid MirrorAntidiagonal<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		for (var i = 0; i < 9; i++)
-		{
-			for (var j = 0; j < 9; j++)
-			{
-				Unsafe.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
-			}
-		}
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Rotate the grid clockwise.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid RotateClockwise<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		var result = TGrid.Undefined;
-		for (var cell = 0; cell < 81; cell++)
-		{
-			result[cell] = @this[ClockwiseTable[cell]];
-		}
-
-		@this = result;
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Rotate the grid counterclockwise.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid RotateCounterclockwise<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		var result = TGrid.Undefined;
-		for (var cell = 0; cell < 81; cell++)
-		{
-			result[cell] = @this[CounterclockwiseTable[cell]];
-		}
-
-		@this = result;
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <returns>The result.</returns>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	/// <seealso cref="Math.PI"/>
-	public static ref TGrid RotatePi<TGrid>(this ref TGrid @this) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		var result = TGrid.Undefined;
-		for (var cell = 0; cell < 81; cell++)
-		{
-			result[cell] = @this[PiRotateTable[cell]];
-		}
-
-		@this = result;
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Swap two digits.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <param name="digit1">The digit 1 to be swapped.</param>
-	/// <param name="digit2">The digit 2 to be swapped.</param>
-	/// <returns>The result.</returns>
-	/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
-	public static ref TGrid SwapDigit<TGrid>(this ref TGrid @this, Digit digit1, Digit digit2) where TGrid : unmanaged, IGrid<TGrid>
-	{
-		if (digit1 == digit2)
-		{
 			return ref @this;
 		}
 
-		@this.Unfix();
-		var digits1Map = @this.ValuesMap[digit1];
-		var digits2Map = @this.ValuesMap[digit2];
-		foreach (var cell in digits1Map) { @this.SetDigit(cell, -1); }
-		foreach (var cell in digits2Map) { @this.SetDigit(cell, -1); }
-		foreach (var cell in digits1Map) { @this.SetDigit(cell, digit2); }
-		foreach (var cell in digits2Map) { @this.SetDigit(cell, digit1); }
-		@this.Fix();
-		return ref @this;
-	}
-
-	/// <summary>
-	/// Swap to houses.
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <param name="houseIndex1">The house 1 to be swapped.</param>
-	/// <param name="houseIndex2">The house 2 to be swapped.</param>
-	/// <returns>The result.</returns>
-	/// <exception cref="ArgumentException">
-	/// Throws when two specified house argument is not in valid range (0..27),
-	/// two houses are not in same house type, or are not swappable.
-	/// </exception>
-	/// <remarks>
-	/// This method will return the reference that is same as the argument <paramref name="this"/>,
-	/// in order to inline multiple transformation operations.
-	/// </remarks>
-	public static ref TGrid SwapHouse<TGrid>(this ref TGrid @this, House houseIndex1, House houseIndex2)
-		where TGrid : unmanaged, IGrid<TGrid>
-	{
-		ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex1, 9, 27);
-		ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex2, 9, 27);
-		ArgumentException.ThrowIfAssertionFailed(houseIndex1.HouseType == houseIndex2.HouseType);
-		ArgumentException.ThrowIfAssertionFailed(Array.Exists(SwappableHouses, houseIndexChecker));
-
-		for (var i = 0; i < 9; i++)
+		/// <summary>
+		/// Mirror top-bottom the grid.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid MirrorTopBottom()
 		{
-			Unsafe.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
-		}
-		return ref @this;
-
-
-		bool houseIndexChecker((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
-	}
-
-	/// <summary>
-	/// Swap chutes (i.e. mega-rows or mega-columns).
-	/// </summary>
-	/// <typeparam name="TGrid">The type of grid.</typeparam>
-	/// <param name="this">The grid.</param>
-	/// <param name="chuteIndex1">The first chute to be swapped.</param>
-	/// <param name="chuteIndex2">The second chute to be swapped.</param>
-	/// <returns>The result.</returns>
-	/// <exception cref="ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
-	public static ref TGrid SwapChute<TGrid>(this ref TGrid @this, int chuteIndex1, int chuteIndex2)
-		where TGrid : unmanaged, IGrid<TGrid>
-	{
-		ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex1, 0, 6);
-		ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex2, 0, 6);
-		ArgumentException.ThrowIfAssertionFailed(chuteIndex1 is >= 0 and < 3 == chuteIndex2 is >= 0 and < 3);
-
-		if (chuteIndex1 == chuteIndex2)
-		{
+			for (var i = 0; i < 9; i++)
+			{
+				for (var j = 0; j < 9; j++)
+				{
+					Unsafe.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
+				}
+			}
 			return ref @this;
 		}
 
-		ref readonly var chuteCells1 = ref Chutes[chuteIndex1].Cells;
-		ref readonly var chuteCells2 = ref Chutes[chuteIndex2].Cells;
-		for (var i = 0; i < 27; i++)
+		/// <summary>
+		/// Mirror diagonal the grid.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid MirrorDiagonal()
 		{
-			Unsafe.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
+			for (var i = 0; i < 9; i++)
+			{
+				for (var j = i + 1; j < 9; j++)
+				{
+					Unsafe.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
+				}
+			}
+			return ref @this;
 		}
-		return ref @this;
+
+		/// <summary>
+		/// Transpose the grid.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid Transpose() => ref @this.MirrorDiagonal<TGrid>();
+
+		/// <summary>
+		/// Mirror anti-diagonal the grid.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid MirrorAntidiagonal()
+		{
+			for (var i = 0; i < 9; i++)
+			{
+				for (var j = 0; j < 9; j++)
+				{
+					Unsafe.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
+				}
+			}
+			return ref @this;
+		}
+
+		/// <summary>
+		/// Rotate the grid clockwise.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid RotateClockwise()
+		{
+			var result = TGrid.Undefined;
+			for (var cell = 0; cell < 81; cell++)
+			{
+				result[cell] = @this[ClockwiseTable[cell]];
+			}
+
+			@this = result;
+			return ref @this;
+		}
+
+		/// <summary>
+		/// Rotate the grid counterclockwise.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		public ref TGrid RotateCounterclockwise()
+		{
+			var result = TGrid.Undefined;
+			for (var cell = 0; cell < 81; cell++)
+			{
+				result[cell] = @this[CounterclockwiseTable[cell]];
+			}
+
+			@this = result;
+			return ref @this;
+		}
+
+		/// <summary>
+		/// Rotate the grid <c><see cref="Math.PI"/></c> degrees.
+		/// </summary>
+		/// <returns>The reference to the current grid.</returns>
+		/// <remarks>
+		/// This method will return the reference that is same as the argument,
+		/// in order to inline multiple transformation operations.
+		/// </remarks>
+		/// <seealso cref="Math.PI"/>
+		public ref TGrid RotatePi()
+		{
+			var result = TGrid.Undefined;
+			for (var cell = 0; cell < 81; cell++)
+			{
+				result[cell] = @this[PiRotateTable[cell]];
+			}
+
+			@this = result;
+			return ref @this;
+		}
+
+		/// <summary>
+		/// Swap two digits.
+		/// </summary>
+		/// <param name="digit1">The digit 1 to be swapped.</param>
+		/// <param name="digit2">The digit 2 to be swapped.</param>
+		/// <returns>The reference to the current grid.</returns>
+		/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
+		public ref TGrid SwapDigit(Digit digit1, Digit digit2)
+		{
+			if (digit1 == digit2)
+			{
+				return ref @this;
+			}
+
+			@this.Unfix();
+			var digits1Map = @this.ValuesMap[digit1];
+			var digits2Map = @this.ValuesMap[digit2];
+			foreach (var cell in digits1Map) { @this.SetDigit(cell, -1); }
+			foreach (var cell in digits2Map) { @this.SetDigit(cell, -1); }
+			foreach (var cell in digits1Map) { @this.SetDigit(cell, digit2); }
+			foreach (var cell in digits2Map) { @this.SetDigit(cell, digit1); }
+			@this.Fix();
+			return ref @this;
+		}
+
+		/// <summary>
+		/// Swap to houses.
+		/// </summary>
+		/// <param name="houseIndex1">The house 1 to be swapped.</param>
+		/// <param name="houseIndex2">The house 2 to be swapped.</param>
+		/// <returns>The reference to the current grid.</returns>
+		/// <exception cref="ArgumentException">
+		/// Throws when two specified house argument is not in valid range (0..27),
+		/// two houses are not in same house type, or are not swappable.
+		/// </exception>
+		public ref TGrid SwapHouse(House houseIndex1, House houseIndex2)
+		{
+			ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex1, 9, 27);
+			ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex2, 9, 27);
+			ArgumentException.ThrowIfAssertionFailed(houseIndex1.HouseType == houseIndex2.HouseType);
+			ArgumentException.ThrowIfAssertionFailed(Array.Exists(SwappableHouses, houseIndexChecker));
+
+			for (var i = 0; i < 9; i++)
+			{
+				Unsafe.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
+			}
+			return ref @this;
+
+
+			bool houseIndexChecker((House, House) pair) => pair == (houseIndex1, houseIndex2) || pair == (houseIndex2, houseIndex1);
+		}
+
+		/// <summary>
+		/// Swap chutes (i.e. mega-rows or mega-columns).
+		/// </summary>
+		/// <param name="chuteIndex1">The first chute to be swapped.</param>
+		/// <param name="chuteIndex2">The second chute to be swapped.</param>
+		/// <returns>The reference to the current grid.</returns>
+		/// <exception cref="ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
+		public ref TGrid SwapChute(int chuteIndex1, int chuteIndex2)
+		{
+			ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex1, Chute.MinChuteIndex, Chute.MaxChuteIndex);
+			ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex2, Chute.MinChuteIndex, Chute.MaxChuteIndex);
+			ArgumentException.ThrowIfAssertionFailed(
+				chuteIndex1 is >= Chute.MinChuteIndex and < (Chute.MaxChuteIndex >> 1)
+					== chuteIndex2 is >= Chute.MinChuteIndex and < (Chute.MaxChuteIndex >> 1)
+			);
+
+			if (chuteIndex1 == chuteIndex2)
+			{
+				return ref @this;
+			}
+
+			ref readonly var chuteCells1 = ref Chutes[chuteIndex1].Cells;
+			ref readonly var chuteCells2 = ref Chutes[chuteIndex2].Cells;
+			for (var i = 0; i < 27; i++)
+			{
+				Unsafe.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
+			}
+			return ref @this;
+		}
 	}
 }

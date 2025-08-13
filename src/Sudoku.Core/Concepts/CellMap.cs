@@ -1013,3 +1013,28 @@ public partial struct CellMap : CellMapBase
 	/// <inheritdoc/>
 	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
 }
+
+/// <summary>
+/// Represents JSON serialization rules on type <see cref="CellMap"/>.
+/// </summary>
+file sealed class Converter : JsonConverter<CellMap>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
+	{
+		writer.WriteStartArray();
+		foreach (var element in value.StringChunks)
+		{
+			writer.WriteStringValue(element);
+		}
+		writer.WriteEndArray();
+	}
+}

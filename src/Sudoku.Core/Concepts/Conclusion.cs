@@ -11,7 +11,7 @@ namespace Sudoku.Concepts;
 /// but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-public readonly partial struct Conclusion(Mask mask) :
+public readonly struct Conclusion(Mask mask) :
 	IComparable<Conclusion>,
 	IDrawableItem,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
@@ -193,4 +193,22 @@ public readonly partial struct Conclusion(Mask mask) :
 
 	/// <inheritdoc/>
 	public static bool operator !=(Conclusion left, Conclusion right) => !(left == right);
+}
+
+/// <summary>
+/// Represents JSON serialization rules on type <see cref="Conclusion"/>.
+/// </summary>
+file sealed class Converter : JsonConverter<Conclusion>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	public override Conclusion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> Conclusion.Parse(reader.GetString() ?? string.Empty);
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString());
 }

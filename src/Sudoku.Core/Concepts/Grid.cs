@@ -14,7 +14,7 @@ using GridBase = IGrid<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
-public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
+public struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
 {
 	/// <inheritdoc cref="GridBase.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -1334,4 +1334,22 @@ public partial struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffRes
 
 	/// <inheritdoc/>
 	static DiffResult? ISubtractionOperators<Grid, Grid, DiffResult?>.operator checked -(Grid left, Grid right) => checked(left - right);
+}
+
+/// <summary>
+/// Represents JSON serialization rules on type <see cref="Grid"/>.
+/// </summary>
+file sealed class Converter : JsonConverter<Grid>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => true;
+
+
+	/// <inheritdoc/>
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString("#"));
 }

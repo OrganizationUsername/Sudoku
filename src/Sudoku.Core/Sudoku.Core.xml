@@ -882,21 +882,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CandidateMap.Converter">
-            <summary>
-            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-        </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="F:Sudoku.Concepts.CandidateMap.InlineArrayLength">
             <summary>
             Indicates the length of the backing buffer.
@@ -1307,6 +1292,20 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Represents JSON serialization rules on type <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell state table.
@@ -1323,21 +1322,6 @@
 	</large-structure>
             </remarks>
             <seealso cref="T:System.Runtime.Intrinsics.Vector128`1" />
-        </member>
-        <member name="T:Sudoku.Concepts.CellMap.Converter">
-            <summary>
-            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.ICellMapOrCandidateMap`2.Shifting"/>
@@ -1822,6 +1806,20 @@
         <member name="M:Sudoku.Concepts.CellMap.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Represents JSON serialization rules on type <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.CellMapCreator">
             <summary>
             Represents a list of creating methods.
@@ -2114,21 +2112,6 @@
             but one of those two holds the global index of the candidate position is greater, it is greater.
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Conclusion.Converter">
-            <summary>
-            Represents a JSON converter for type <see cref="T:Sudoku.Concepts.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Conclusion.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(System.Int16)">
             <summary>
             Defines a type that can describe a candidate is the correct or wrong digit.
@@ -2269,6 +2252,20 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_Inequality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Represents JSON serialization rules on type <see cref="T:Sudoku.Concepts.Conclusion"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionExtensions">
@@ -5158,20 +5155,6 @@
 	</large-structure></para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.Grid.Converter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Converter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>
         </member>
@@ -5786,6 +5769,20 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#ISubtractionOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,Sudoku#Behaviors#Diff#DiffResult}#op_CheckedSubtraction(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Represents JSON serialization rules on type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
@@ -8917,18 +8914,6 @@
             Defines a dash array of <see cref="T:System.Double"/> values. The values can be used in UI as dash array of a double collection.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.DashArray.Converter">
-            <summary>
-            Defines JSON serialization converter on type <see cref="T:Sudoku.Drawing.DashArray"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.DashArray"/>
-        </member>
-        <member name="M:Sudoku.Drawing.DashArray.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.DashArray.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.DashArray,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Drawing.DashArray.#ctor">
             <summary>
             Defines a dash array of <see cref="T:System.Double"/> values. The values can be used in UI as dash array of a double collection.
@@ -9018,6 +9003,17 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.DashArray.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Drawing.Converter">
+            <summary>
+            Represents JSON serialization rules on type <see cref="T:Sudoku.Drawing.DashArray"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Drawing.DashArray,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.Parsing.DrawingCommandParser">

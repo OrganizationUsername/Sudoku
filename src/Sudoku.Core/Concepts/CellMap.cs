@@ -735,7 +735,20 @@ public partial struct CellMap : CellMapBase
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[OverloadResolutionPriority(-1)]
-	public static CellMap Create(ReadOnlySpan<Cell> cells) => cells.AsCellMap();
+	public static CellMap Create(ReadOnlySpan<Cell> cells)
+	{
+		if (cells.IsEmpty)
+		{
+			return default;
+		}
+
+		var result = default(CellMap);
+		foreach (var cell in cells)
+		{
+			result.Add(cell);
+		}
+		return result;
+	}
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CellMap Parse(string str)

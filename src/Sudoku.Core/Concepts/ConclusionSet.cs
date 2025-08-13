@@ -496,6 +496,38 @@ public sealed class ConclusionSet :
 		=> CoordinateParser.GetInstance(provider).ConclusionParser(s);
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <summary>
+	/// Adds a new technique into the current collection.
+	/// </summary>
+	/// <param name="value">The technique.</param>
+	public void operator +=(Conclusion value) => Add(value);
+
+	/// <summary>
+	/// Remove a technique from the current collection.
+	/// </summary>
+	/// <param name="value">The technique.</param>
+	public void operator -=(Conclusion value) => Remove(value);
+
+	/// <summary>
+	/// Performs bitwise-and operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator &=(ConclusionSet value) => _bitArray.And(value._bitArray);
+
+	/// <summary>
+	/// Performs bitwise-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator |=(ConclusionSet value) => _bitArray.Or(value._bitArray);
+
+	/// <summary>
+	/// Performs bitwise-exclusive-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator ^=(ConclusionSet value) => _bitArray.Xor(value._bitArray);
+#endif
+
 	/// <inheritdoc/>
 	public static bool operator !(ConclusionSet value) => value.Count == 0;
 

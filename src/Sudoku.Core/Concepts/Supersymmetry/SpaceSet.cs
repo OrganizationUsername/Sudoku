@@ -381,6 +381,56 @@ public partial struct SpaceSet :
 	static SpaceSet IParsable<SpaceSet>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <summary>
+	/// Adds a new space into the current collection.
+	/// </summary>
+	/// <param name="value">The space.</param>
+	public void operator +=(Space value) => Add(value);
+
+	/// <summary>
+	/// Removes a space from the current collection.
+	/// </summary>
+	/// <param name="value">The space.</param>
+	public void operator -=(Space value) => Remove(value);
+
+	/// <summary>
+	/// Performs bitwise-and operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator &=(in SpaceSet value)
+	{
+		_field[0] &= value._field[0];
+		_field[1] &= value._field[1];
+		_field[2] &= value._field[2];
+		_field[3] &= value._field[3];
+	}
+
+	/// <summary>
+	/// Performs bitwise-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator |=(in SpaceSet value)
+	{
+		_field[0] |= value._field[0];
+		_field[1] |= value._field[1];
+		_field[2] |= value._field[2];
+		_field[3] |= value._field[3];
+	}
+
+	/// <summary>
+	/// Performs bitwise-exclusive-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator ^=(in SpaceSet value)
+	{
+		_field[0] ^= value._field[0];
+		_field[1] ^= value._field[1];
+		_field[2] ^= value._field[2];
+		_field[3] ^= value._field[3];
+	}
+#endif
+
 	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
 	public static bool operator !(in SpaceSet value) => value.Count == 0;
 

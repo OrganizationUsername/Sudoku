@@ -794,6 +794,25 @@ public partial struct CellMap : CellMapBase
 	internal static Vector128<ulong> CV(ulong e1, ulong e0) => Vector128.Create(e0, e1);
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <inheritdoc/>
+	public void operator &=(in CellMap value) => _vector &= value._vector;
+
+	/// <inheritdoc/>
+	public void operator |=(in CellMap value) => _vector |= value._vector;
+
+	/// <inheritdoc/>
+	public void operator ^=(in CellMap value) => _vector ^= value._vector;
+
+	/// <inheritdoc/>
+	public void operator +=(Cell offset)
+		=> _vector = _vector.WithElement(offset / Shifting, _vector[offset / Shifting] | 1UL << offset % Shifting);
+
+	/// <inheritdoc/>
+	public void operator -=(Cell offset)
+		=> _vector = _vector.WithElement(offset / Shifting, _vector[offset / Shifting] & ~(1UL << offset % Shifting));
+#endif
+
 	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
 	public static bool operator !(in CellMap value) => value.Count == 0;
 

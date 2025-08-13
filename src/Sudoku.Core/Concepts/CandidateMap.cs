@@ -683,6 +683,41 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	}
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <inheritdoc/>
+	public void operator &=(in CandidateMap value)
+	{
+		for (var i = 0; i < InlineArrayLength; i++)
+		{
+			_bits[i] &= value._bits[i];
+		}
+	}
+
+	/// <inheritdoc/>
+	public void operator |=(in CandidateMap value)
+	{
+		for (var i = 0; i < InlineArrayLength; i++)
+		{
+			_bits[i] |= value._bits[i];
+		}
+	}
+
+	/// <inheritdoc/>
+	public void operator ^=(in CandidateMap value)
+	{
+		for (var i = 0; i < InlineArrayLength; i++)
+		{
+			_bits[i] ^= value._bits[i];
+		}
+	}
+
+	/// <inheritdoc/>
+	public void operator +=(Candidate offset) => _bits[offset >> 6] |= 1UL << (offset & 63);
+
+	/// <inheritdoc/>
+	public void operator -=(Candidate offset) => _bits[offset >> 6] &= ~(1UL << (offset & 63));
+#endif
+
 	/// <inheritdoc/>
 	public static bool operator !(in CandidateMap value) => value.Count == 0;
 

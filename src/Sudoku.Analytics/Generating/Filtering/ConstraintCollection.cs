@@ -182,6 +182,32 @@ public sealed class ConstraintCollection :
 	IEnumerable<TResult> IOfTypeMethod<ConstraintCollection, Constraint>.OfType<TResult>() => OfType<TResult>().ToArray();
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <summary>
+	/// Adds a new constraint into the current collection, or do nothing if <paramref name="value"/> is <see langword="null"/>.
+	/// </summary>
+	/// <param name="value">The constraint.</param>
+	public void operator +=(Constraint? value)
+	{
+		if (value is not null)
+		{
+			Add(value);
+		}
+	}
+
+	/// <summary>
+	/// Removes a constraint from the current collection, or do nothing if <paramref name="value"/> is <see langword="null"/>.
+	/// </summary>
+	/// <param name="value">The constraint.</param>
+	public void operator -=(Constraint? value)
+	{
+		if (value is not null)
+		{
+			Remove(value);
+		}
+	}
+#endif
+
 	/// <inheritdoc/>
 	public static ConstraintCollection operator +(ConstraintCollection left, Constraint? right)
 	{

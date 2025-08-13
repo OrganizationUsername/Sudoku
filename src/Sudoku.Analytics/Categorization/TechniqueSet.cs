@@ -475,6 +475,50 @@ public sealed partial class TechniqueSet() :
 	private static Technique TechniqueProjectionBack(int index) => (Technique)index + 1;
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <summary>
+	/// Adds a new technique into the current collection.
+	/// </summary>
+	/// <param name="value">The technique.</param>
+	public void operator +=(Technique value) => _bitArray.Set(TechniqueProjection(value), true);
+
+	/// <summary>
+	/// Adds a new technique group into the current collection.
+	/// </summary>
+	/// <param name="value">The technique.</param>
+	public void operator +=(TechniqueGroup value)
+	{
+		foreach (var technique in TechniqueRelationGroups[value])
+		{
+			_bitArray.Set(TechniqueProjection(technique), true);
+		}
+	}
+
+	/// <summary>
+	/// Remove a technique from the current collection.
+	/// </summary>
+	/// <param name="value">The technique.</param>
+	public void operator -=(Technique value) => _bitArray.Set(TechniqueProjection(value), false);
+
+	/// <summary>
+	/// Performs bitwise-and operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator &=(TechniqueSet value) => _bitArray.And(value._bitArray);
+
+	/// <summary>
+	/// Performs bitwise-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator |=(TechniqueSet value) => _bitArray.Or(value._bitArray);
+
+	/// <summary>
+	/// Performs bitwise-exclusive-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public void operator ^=(TechniqueSet value) => _bitArray.Xor(value._bitArray);
+#endif
+
 	/// <inheritdoc/>
 	public static bool operator !(TechniqueSet value) => value.Count == 0;
 

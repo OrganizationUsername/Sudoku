@@ -414,6 +414,38 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	}
 
 
+#if USER_DEFINED_COMPOUND_OPERATORS
+	/// <summary>
+	/// Performs bitwise-and operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public abstract void operator &=(in TSelf value);
+
+	/// <summary>
+	/// Performs bitwise-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public abstract void operator |=(in TSelf value);
+
+	/// <summary>
+	/// Performs bitwise-exclusive-or operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="value">The instance.</param>
+	public abstract void operator ^=(in TSelf value);
+
+	/// <summary>
+	/// Performs adding operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	public virtual void operator +=(TElement offset) => Add(offset);
+
+	/// <summary>
+	/// Performs removing operation and assign the value to the current instance.
+	/// </summary>
+	/// <param name="offset">The offset.</param>
+	public virtual void operator -=(TElement offset) => Remove(offset);
+#endif
+
 	/// <summary>
 	/// Determines whether the current collection is empty.
 	/// </summary>

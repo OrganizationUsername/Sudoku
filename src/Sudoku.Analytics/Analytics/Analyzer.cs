@@ -210,8 +210,6 @@ public sealed class Analyzer : StepGatherer
 		var result = new AnalysisResult(puzzle) { IsSolved = false };
 		var solution = puzzle.SolutionGrid;
 
-		// #1 Memory usage snapshot
-		var gcSnapshot1 = GC.GetTotalMemory(false);
 		try
 		{
 			if (puzzle.Uniqueness != Uniqueness.Bad)
@@ -232,7 +230,6 @@ public sealed class Analyzer : StepGatherer
 						mappingDigits,
 						selfPairedDigitsMask,
 						progress,
-						gcSnapshot1,
 						cancellationToken
 					);
 				}
@@ -276,7 +273,6 @@ public sealed class Analyzer : StepGatherer
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<StepGathererProgressPresenter>? progress,
-			long gcSnapshot1,
 			CancellationToken cancellationToken
 		)
 		{
@@ -307,7 +303,7 @@ public sealed class Analyzer : StepGatherer
 					{
 						if (onCollectingSteps(
 							collectedSteps, step, context, ref playground, timestampOriginal,
-							stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
+							stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -405,7 +401,7 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, step, context, ref playground,
-									timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
+									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -421,7 +417,7 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -448,7 +444,7 @@ public sealed class Analyzer : StepGatherer
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, context, ref playground,
-							timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -476,7 +472,7 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, gcSnapshot1, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -492,7 +488,7 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-									resultBase, gcSnapshot1, cancellationToken, out var result))
+									resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -517,7 +513,7 @@ public sealed class Analyzer : StepGatherer
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-										resultBase, gcSnapshot1, cancellationToken, out var result))
+										resultBase, cancellationToken, out var result))
 									{
 										return result;
 									}
@@ -587,7 +583,6 @@ public sealed class Analyzer : StepGatherer
 				long timestampOriginal,
 				List<Grid> steppingGrids,
 				AnalysisResult resultBase,
-				long gcSnapshot1,
 				CancellationToken cancellationToken,
 				[NotNullWhen(true)] out AnalysisResult? result
 			)

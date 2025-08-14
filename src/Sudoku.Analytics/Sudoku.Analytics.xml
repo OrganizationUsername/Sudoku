@@ -150,11 +150,6 @@
             Indicates whether the pattern is complete.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
-            <summary>
-            Indicates hte digits string.
-            </summary>
-        </member>
         <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
             <inheritdoc/>
         </member>

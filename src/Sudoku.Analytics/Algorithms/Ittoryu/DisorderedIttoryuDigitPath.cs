@@ -15,11 +15,6 @@ public readonly record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
 	/// </summary>
 	public bool IsComplete => Digits.Length == 9;
 
-	/// <summary>
-	/// Indicates hte digits string.
-	/// </summary>
-	private string[] DigitsString => from digit in Digits select (digit + 1).ToString();
-
 
 	/// <inheritdoc/>
 	public int CompareTo(DisorderedIttoryuDigitPath other) => GetHashCode().CompareTo(other.GetHashCode());
@@ -45,7 +40,10 @@ public readonly record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
 
 	/// <inheritdoc cref="ToString()"/>
 	public string ToString(string? separator)
-		=> separator switch { null or [] => string.Concat(DigitsString), _ => string.Join(separator, DigitsString) };
+	{
+		var digitsString = from digit in Digits select (digit + 1).ToString();
+		return separator switch { null or [] => string.Concat(digitsString), _ => string.Join(separator, digitsString) };
+	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public AnonymousSpanEnumerator<Digit> GetEnumerator() => new(Digits);

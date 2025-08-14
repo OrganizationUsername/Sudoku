@@ -3,10 +3,10 @@ namespace Sudoku.Categorization;
 /// <summary>
 /// Represents a group of <see cref="SingleSubtype"/> instances.
 /// </summary>
-/// <param name="values"><inheritdoc cref="_values" path="/summary"/></param>
+/// <param name="_values">Indicates the array to be initialized.</param>
 /// <seealso cref="SingleSubtype"/>
 [CollectionBuilder(typeof(SingleSubtypeGroup), nameof(Create))]
-public readonly struct SingleSubtypeGroup(ReadOnlyMemory<SingleSubtype> values) :
+public readonly struct SingleSubtypeGroup(ReadOnlyMemory<SingleSubtype> _values) :
 	IEnumerable<SingleSubtype>,
 	IReadOnlyCollection<SingleSubtype>,
 	ISliceMethod<SingleSubtypeGroup, SingleSubtype>,
@@ -16,12 +16,6 @@ public readonly struct SingleSubtypeGroup(ReadOnlyMemory<SingleSubtype> values) 
 	/// Indicates the empty instance.
 	/// </summary>
 	public static readonly SingleSubtypeGroup Empty = default;
-
-
-	/// <summary>
-	/// Indicates the array to be initialized.
-	/// </summary>
-	private readonly ReadOnlyMemory<SingleSubtype> _values = values;
 
 
 	/// <summary>

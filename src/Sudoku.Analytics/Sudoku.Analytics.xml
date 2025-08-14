@@ -23403,24 +23403,19 @@
             <summary>
             Represents a group of <see cref="T:Sudoku.Categorization.SingleSubtype"/> instances.
             </summary>
-            <param name="values"><inheritdoc cref="F:Sudoku.Categorization.SingleSubtypeGroup._values" path="/summary"/></param>
+            <param name="_values">Indicates the array to be initialized.</param>
             <seealso cref="T:Sudoku.Categorization.SingleSubtype"/>
         </member>
         <member name="M:Sudoku.Categorization.SingleSubtypeGroup.#ctor(System.ReadOnlyMemory{Sudoku.Categorization.SingleSubtype})">
             <summary>
             Represents a group of <see cref="T:Sudoku.Categorization.SingleSubtype"/> instances.
             </summary>
-            <param name="values"><inheritdoc cref="F:Sudoku.Categorization.SingleSubtypeGroup._values" path="/summary"/></param>
+            <param name="_values">Indicates the array to be initialized.</param>
             <seealso cref="T:Sudoku.Categorization.SingleSubtype"/>
         </member>
         <member name="F:Sudoku.Categorization.SingleSubtypeGroup.Empty">
             <summary>
             Indicates the empty instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Categorization.SingleSubtypeGroup._values">
-            <summary>
-            Indicates the array to be initialized.
             </summary>
         </member>
         <member name="M:Sudoku.Categorization.SingleSubtypeGroup.#ctor(Sudoku.Categorization.SingleSubtype[])">

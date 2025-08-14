@@ -38,7 +38,7 @@ public static class GridAnalysisExtensions
 				// due to wrong analysis for Roslyn on extension member with complex nullable argument types.
 				.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true }!)
 				.WithUserDefinedOptions(new() { PrimarySingle = SingleTechniqueFlag.FullHouse })
-				.Analyze(in @this)
+				.Analyze(@this)
 				.IsSolved;
 
 		/// <summary>
@@ -50,7 +50,7 @@ public static class GridAnalysisExtensions
 				// due to wrong analysis for Roslyn on extension member with complex nullable argument types.
 				.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true }!)
 				.WithUserDefinedOptions(new() { IsDirectMode = true, PrimarySingle = SingleTechniqueFlag.NakedSingle })
-				.Analyze(in @this)
+				.Analyze(@this)
 				.IsSolved;
 
 
@@ -66,7 +66,7 @@ public static class GridAnalysisExtensions
 				// due to wrong analysis for Roslyn on extension member with complex nullable argument types.
 				.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true }!)
 				.WithUserDefinedOptions(new() { IsDirectMode = true, PrimarySingle = SingleTechniqueFlag.HiddenSingleColumn })
-				.Analyze(in @this)
+				.Analyze(@this)
 				.IsSolved;
 	}
 }

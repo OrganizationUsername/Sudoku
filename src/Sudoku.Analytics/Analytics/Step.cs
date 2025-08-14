@@ -223,7 +223,7 @@ public abstract class Step(ReadOnlyMemory<Conclusion> conclusions, View[]? views
 					_
 						=> $"{GetName(formatProvider)}{colonToken}{FormatTypeIdentifier} => {ConclusionText}"
 				}
-				: throw new();
+				: throw new UnreachableException();
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.

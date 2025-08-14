@@ -1397,7 +1397,7 @@ file static class Extensions
 			}
 			default:
 			{
-				throw new();
+				throw new UnreachableException();
 			}
 		}
 	}

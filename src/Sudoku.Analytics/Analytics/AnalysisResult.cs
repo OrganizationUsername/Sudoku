@@ -604,7 +604,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 				StepsSpan: var steps
 			})
 		{
-			throw new();
+			throw new UnreachableException();
 		}
 		var r = stepStringReplacer ?? (static (self, _) => self);
 		var converter = CoordinateConverter.GetInstance(formatProvider);

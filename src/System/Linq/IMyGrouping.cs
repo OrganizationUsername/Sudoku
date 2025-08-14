@@ -6,7 +6,7 @@ namespace System.Linq;
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TKey">Indicates the type of keys that group values.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
-public interface IMyGrouping<TSelf, out TKey, TElement> :
+internal interface IMyGrouping<TSelf, out TKey, TElement> :
 	IEnumerable<TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,

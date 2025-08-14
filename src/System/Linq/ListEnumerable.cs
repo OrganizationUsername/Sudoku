@@ -6,6 +6,25 @@ namespace System.Linq;
 /// <seealso cref="List{T}"/>
 public static class ListEnumerable
 {
+	/// <summary>
+	/// Provides extension members on <see cref="List{T}"/>,
+	/// where <typeparamref name="T"/> satisfies <see cref="IAdditiveIdentity{TSelf, TResult}"/>, <see cref="IAdditionOperators{TSelf, TOther, TResult}"/> constraints.
+	/// </summary>
+	extension<T>(List<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	{
+		/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>
+		public T Sum()
+		{
+			var result = T.AdditiveIdentity;
+			foreach (ref readonly var element in @this.AsSpan())
+			{
+				result += element;
+			}
+			return result;
+		}
+	}
+
+
 	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
 	public static int Count<T>(this List<T> @this, Func<T, bool> predicate)
 	{

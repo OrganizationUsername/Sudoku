@@ -150,37 +150,6 @@ public static class ListExtensions
 		/// </returns>
 		public bool SequenceEqual(List<T> other) => @this.AsSpan().SequenceEqual(other.AsSpan());
 	}
-
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="IAdditiveIdentity{TSelf, TResult}"/>, <see cref="IAdditionOperators{TSelf, TOther, TResult}"/> constraints.
-	/// </summary>
-	extension<T>(List<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
-	{
-		/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>
-		public T Sum()
-		{
-			var result = T.AdditiveIdentity;
-			foreach (ref readonly var element in @this.AsSpan())
-			{
-				result += element;
-			}
-			return result;
-		}
-	}
-
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="ICloneable"/> constraint.
-	/// </summary>
-	extension<T>(List<T> @this) where T : ICloneable
-	{
-		/// <summary>
-		/// Clones the whole collection, with each element being called <see cref="ICloneable.Clone"/>.
-		/// </summary>
-		/// <returns>A new collection.</returns>
-		public List<T> Clone() => [.. from element in @this select (T)element.Clone()];
-	}
 }
 
 /// <summary>

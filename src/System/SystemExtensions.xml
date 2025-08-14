@@ -1117,33 +1117,6 @@
         <member name="M:System.Collections.Generic.ListExtensions.SequenceEqual``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{``0})">
             <inheritdoc cref="M:System.Collections.Generic.ListExtensions.&lt;&gt;E__1`1.SequenceEqual(System.Collections.Generic.List{`0})"/>
         </member>
-        <member name="T:System.Collections.Generic.ListExtensions.&lt;&gt;E__2`1">
-            <summary>
-            Provides extension members on <see cref="T:System.Collections.Generic.List`1"/>,
-            where <typeparamref name="T"/> satisfies <see cref="T:System.Numerics.IAdditiveIdentity`2"/>, <see cref="T:System.Numerics.IAdditionOperators`3"/> constraints.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.&lt;&gt;E__2`1.Sum">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Int32})"/>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.Sum``1(System.Collections.Generic.List{``0})">
-            <inheritdoc cref="M:System.Collections.Generic.ListExtensions.&lt;&gt;E__2`1.Sum"/>
-        </member>
-        <member name="T:System.Collections.Generic.ListExtensions.&lt;&gt;E__3`1">
-            <summary>
-            Provides extension members on <see cref="T:System.Collections.Generic.List`1"/>,
-            where <typeparamref name="T"/> satisfies <see cref="T:System.ICloneable"/> constraint.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.&lt;&gt;E__3`1.Clone">
-            <summary>
-            Clones the whole collection, with each element being called <see cref="M:System.ICloneable.Clone"/>.
-            </summary>
-            <returns>A new collection.</returns>
-        </member>
-        <member name="M:System.Collections.Generic.ListExtensions.Clone``1(System.Collections.Generic.List{``0})">
-            <inheritdoc cref="M:System.Collections.Generic.ListExtensions.&lt;&gt;E__3`1.Clone"/>
-        </member>
         <member name="T:System.Collections.Generic.Entry`1">
             <summary>
             Represents an entry to call internal fields on <see cref="T:System.Collections.Generic.List`1"/>.
@@ -3473,6 +3446,18 @@
             Represents with LINQ methods for <see cref="T:System.Collections.Generic.List`1"/>.
             </summary>
             <seealso cref="T:System.Collections.Generic.List`1"/>
+        </member>
+        <member name="T:System.Linq.ListEnumerable.&lt;&gt;E__0`1">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.List`1"/>,
+            where <typeparamref name="T"/> satisfies <see cref="T:System.Numerics.IAdditiveIdentity`2"/>, <see cref="T:System.Numerics.IAdditionOperators`3"/> constraints.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.&lt;&gt;E__0`1.Sum">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum(System.Collections.Generic.IEnumerable{System.Int32})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Sum``1(System.Collections.Generic.List{``0})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;&gt;E__0`1.Sum"/>
         </member>
         <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>

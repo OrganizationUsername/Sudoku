@@ -645,8 +645,7 @@ public sealed class Analyzer : StepGatherer
 							Solution = playground,
 							ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
 							InterimSteps = [.. steps],
-							InterimGrids = [.. steppingGrids],
-							MemoryUsed = gcSnapshot2 - gcSnapshot1
+							InterimGrids = [.. steppingGrids]
 						};
 						return true;
 					}

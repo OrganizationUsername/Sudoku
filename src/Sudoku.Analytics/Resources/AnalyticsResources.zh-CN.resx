@@ -2212,9 +2212,6 @@
   <data name="TechniqueGroup_Symmetry" xml:space="preserve">
     <value>对称类技巧</value>
   </data>
-  <data name="TechniqueGroup_Templating" xml:space="preserve">
-    <value>模板</value>
-  </data>
   <data name="TechniqueGroup_UniqueLoop" xml:space="preserve">
     <value>唯一环</value>
   </data>
@@ -3065,12 +3062,6 @@
   <data name="Factor_UniqueLoopConjugatePairsCountFactor" xml:space="preserve">
     <value>唯一环用到的强链</value>
   </data>
-  <data name="AnalysisResultMemoryUsed" xml:space="preserve">
-    <value>内存使用：</value>
-  </data>
-  <data name="AnalysisResultMemoryUsedMinusResult" xml:space="preserve">
-    <value>（有潜在回收行为）</value>
-  </data>
   <data name="StepSearcherName_GroupedFinnedChainStepSearcher" xml:space="preserve">
     <value>区块鳍链</value>
     <comment>Step Searcher Name</comment>
@@ -3362,5 +3353,8 @@
   </data>
   <data name="Message_InvalidKeywordConverterType" xml:space="preserve">
     <value />
+  </data>
+  <data name="TechniqueGroup_Templating" xml:space="preserve">
+    <value>模板</value>
   </data>
 </root>

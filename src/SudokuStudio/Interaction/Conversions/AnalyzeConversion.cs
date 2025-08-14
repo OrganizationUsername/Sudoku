@@ -226,23 +226,28 @@ internal static class AnalyzeConversion
 file static class Extensions
 {
 	/// <summary>
-	/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
-	/// of the rating text.
+	/// Provides extension members on <see cref="Factor"/>.
 	/// </summary>
-	/// <param name="this">The current instance.</param>
-	/// <param name="step">The step to be calculated.</param>
-	/// <param name="scale">The scale value to be used.</param>
-	/// <param name="formatProvider">The culture to be used.</param>
-	/// <returns>The string representation of final rating text.</returns>
-	public static string ToString(this Factor @this, Step step, decimal scale, IFormatProvider? formatProvider)
+	extension(Factor @this)
 	{
-		var culture = formatProvider as CultureInfo;
-		var colonCharacter = SR.Get("_Token_Colon", culture);
-		return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
+		/// <summary>
+		/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
+		/// of the rating text.
+		/// </summary>
+		/// <param name="step">The step to be calculated.</param>
+		/// <param name="scale">The scale value to be used.</param>
+		/// <param name="formatProvider">The culture to be used.</param>
+		/// <returns>The string representation of final rating text.</returns>
+		public string ToString(Step step, decimal scale, IFormatProvider? formatProvider)
 		{
-			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value
-				=> $"{@this.GetName(culture)}{colonCharacter}{value}",
-			_ => string.Empty
-		};
+			var culture = formatProvider as CultureInfo;
+			var colonCharacter = SR.Get("_Token_Colon", culture);
+			return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
+			{
+				{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value
+					=> $"{@this.GetName(culture)}{colonCharacter}{value}",
+				_ => string.Empty
+			};
+		}
 	}
 }

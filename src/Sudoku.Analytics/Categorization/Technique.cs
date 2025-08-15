@@ -3190,7 +3190,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq chain.
 	/// </summary>
-	[TechniqueMetadata(
+	[TechniqueMetadata<SueDeCoqChainStepSearcher, SueDeCoqChainStep>(
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.SueDeCoq)]

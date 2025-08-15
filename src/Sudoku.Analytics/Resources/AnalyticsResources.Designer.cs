@@ -2482,6 +2482,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length of Sue de Coq chain.
+        /// </summary>
+        public static string Factor_SueDeCoqChainLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_SueDeCoqChainLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Isolated digits in Sue de Coq.
         /// </summary>
         public static string Factor_SueDeCoqIsolatedFactor {
@@ -5757,6 +5766,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_SueDeCoq3DimensionStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_SueDeCoq3DimensionStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq Chain.
+        /// </summary>
+        public static string StepSearcherName_SueDeCoqChainStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_SueDeCoqChainStepSearcher", resourceCulture);
             }
         }
         

@@ -2631,6 +2631,20 @@
         <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Add(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
             <inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.Add(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookupBase">
+            <summary>
+            Represents the base dictionary type of <see cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>.
+            </summary>
+            <param name="comparer"><inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.#ctor(System.Collections.Generic.IComparer{`0})" path="/param[@name='comparer']"/></param>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookupBase.#ctor(System.Collections.Generic.IComparer{Sudoku.Concepts.HouseDigitIdentifier})">
+            <summary>
+            Represents the base dictionary type of <see cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>.
+            </summary>
+            <param name="comparer"><inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.#ctor(System.Collections.Generic.IComparer{`0})" path="/param[@name='comparer']"/></param>
+            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>
+        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
             <summary>
             Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
@@ -12860,6 +12874,18 @@
         <member name="M:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.SueDeCoqChainStepSearcher">
+            <summary>
+            Provides with a <b>Sue de Coq Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Sue de Coq Chain</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.SueDeCoqChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher">
             <summary>
             Provides with an <b>Aligned Exclusion</b> step searcher.
@@ -17375,6 +17401,54 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.Interpolations">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.SueDeCoqChainStep">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="_patterns"><inheritdoc cref="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Patterns" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqChainStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern[])">
+            <summary>
+            Provides with a step that is a <b>Sue de Coq Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="_patterns"><inheritdoc cref="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Patterns" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Length">
+            <summary>
+            Represents the length of the patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.Patterns">
+            <summary>
+            Indicates the patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqChainStep.PatternsSet">
+            <summary>
+            Represents a <see cref="T:System.Collections.Generic.HashSet`1"/> instance that will be used for comparison.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqChainStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SueDeCoqStep">
@@ -30839,6 +30913,11 @@
               Looks up a localized string similar to Cannibalism in Sue de Coq.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqChainLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of Sue de Coq chain.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqIsolatedFactor">
             <summary>
               Looks up a localized string similar to Isolated digits in Sue de Coq.
@@ -32664,6 +32743,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_SueDeCoq3DimensionStepSearcher">
             <summary>
               Looks up a localized string similar to Sue de Coq 3 Dimension.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_SueDeCoqChainStepSearcher">
+            <summary>
+              Looks up a localized string similar to Sue de Coq Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_SueDeCoqStepSearcher">

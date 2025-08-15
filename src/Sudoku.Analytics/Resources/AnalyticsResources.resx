@@ -3315,4 +3315,10 @@ Is pattern rank-0: {6}</value>
   <data name="SueDeCoqChain" xml:space="preserve">
     <value>Sue de Coq Chain</value>
   </data>
+  <data name="Factor_SueDeCoqChainLengthFactor" xml:space="preserve">
+    <value>Length of Sue de Coq chain</value>
+  </data>
+  <data name="StepSearcherName_SueDeCoqChainStepSearcher" xml:space="preserve">
+    <value>Sue de Coq Chain</value>
+  </data>
 </root>

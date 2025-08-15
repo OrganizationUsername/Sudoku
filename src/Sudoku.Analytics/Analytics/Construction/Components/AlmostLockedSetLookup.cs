@@ -1,7 +1,5 @@
 namespace Sudoku.Analytics.Construction.Components;
 
-using AlmostLockedSetLookupBase = SortedDictionary<HouseDigitIdentifier, HashSet<(AlmostLockedSetPattern Pattern, House SharedHouse)>>;
-
 /// <summary>
 /// Represents a lookup table of Almost Locked Sets, grouped by house and digit.
 /// </summary>

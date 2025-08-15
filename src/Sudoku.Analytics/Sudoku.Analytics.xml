@@ -2625,10 +2625,10 @@
             Represents key comparer.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.TryAdd(System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
+        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.TryAdd(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
             <inheritdoc cref="M:System.Collections.Generic.Dictionary`2.TryAdd(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Add(System.ValueTuple{System.Int32,System.Int32},System.Collections.Generic.List{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
+        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Add(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
             <inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.Add(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">

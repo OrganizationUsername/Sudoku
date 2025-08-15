@@ -240,7 +240,6 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 	{
 		var candidatesMap = grid.CandidatesMap;
 		var result = new AlmostLockedSetLookup();
-
 		foreach (var als in Collect(grid))
 		{
 			if (als.IsBivalueCell && skipBivalueCells)
@@ -255,7 +254,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 				var appearingCells = als.Cells & candidatesMap[digit];
 				if (appearingCells.SharedLine is var sharedLine and not FallbackConstants.@int)
 				{
-					var keyPair = (als.House, digit);
+					var keyPair = new HouseDigitIdentifier(als.House, digit);
 					var valuePair = (als, sharedLine);
 					if (!result.TryAdd(keyPair, [valuePair]))
 					{

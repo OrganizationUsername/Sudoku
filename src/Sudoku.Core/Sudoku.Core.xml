@@ -5312,6 +5312,158 @@
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.CandidatesMap``1(``0@,System.Int32,System.Int32)"/>
         </member>
+        <member name="T:Sudoku.Concepts.HouseDigitIdentifier">
+            <summary>
+            Represents a pair of (house, digit) information.
+            </summary>
+            <param name="house"><inheritdoc cref="P:Sudoku.Concepts.HouseDigitIdentifier.House" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Concepts.HouseDigitIdentifier.Digit" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a pair of (house, digit) information.
+            </summary>
+            <param name="house"><inheritdoc cref="P:Sudoku.Concepts.HouseDigitIdentifier.House" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Concepts.HouseDigitIdentifier.Digit" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseDigitIdentifier.MaxRawValue">
+            <summary>
+            Indicates the raw representation of maximum value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseDigitIdentifier.MinValue">
+            <summary>
+            Indicates the minimum value of the current type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseDigitIdentifier.MaxValue">
+            <summary>
+            Indicates the maximum value of the current type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseDigitIdentifier._mask">
+            <summary>
+            Represents the backing mask value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.House">
+            <summary>
+            Indicates the house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.Digit">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.System#Numerics#IMinMaxValue{Sudoku#Concepts#HouseDigitIdentifier}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.System#Numerics#IMinMaxValue{Sudoku#Concepts#HouseDigitIdentifier}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Deconstruct(System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Equals(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.CompareTo(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.TryParse(System.String,Sudoku.Concepts.HouseDigitIdentifier@)">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseDigitIdentifier.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.HouseDigitIdentifier@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.HouseDigitIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Parse(System.String)">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseDigitIdentifier.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Increment(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_CheckedIncrement(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Decrement(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_CheckedDecrement(Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Equality(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Inequality(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_GreaterThan(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_LessThan(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_GreaterThanOrEqual(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_LessThanOrEqual(Sudoku.Concepts.HouseDigitIdentifier,Sudoku.Concepts.HouseDigitIdentifier)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Addition(Sudoku.Concepts.HouseDigitIdentifier,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_CheckedAddition(Sudoku.Concepts.HouseDigitIdentifier,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Subtraction(Sudoku.Concepts.HouseDigitIdentifier,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_CheckedSubtraction(Sudoku.Concepts.HouseDigitIdentifier,System.Byte)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Explicit(System.Byte)~Sudoku.Concepts.HouseDigitIdentifier">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/>.
+            </summary>
+            <param name="mask">The mask.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_CheckedExplicit(System.Byte)~Sudoku.Concepts.HouseDigitIdentifier">
+            <summary>
+            Explicit cast from <see cref="T:System.Byte"/> to <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/>, with boundary check.
+            </summary>
+            <param name="mask">The mask.</param>
+            <exception cref="T:System.OverflowException">Throws when value is less than 0 or greater than <see cref="F:Sudoku.Concepts.HouseDigitIdentifier.MaxRawValue"/> - 1.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.op_Implicit(Sudoku.Concepts.HouseDigitIdentifier)~System.Byte">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/> to <see cref="T:System.Byte"/>.
+            </summary>
+            <param name="value">The instance.</param>
+        </member>
         <member name="T:Sudoku.Concepts.HouseExtensions">
             <summary>
             Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.

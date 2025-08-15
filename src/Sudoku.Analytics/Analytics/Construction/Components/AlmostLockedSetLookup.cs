@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.Construction.Components;
 
-using AlmostLockedSetLookupBase = SortedDictionary<(House House, Digit Digit), List<(AlmostLockedSetPattern Pattern, House SharedHouse)>>;
+using AlmostLockedSetLookupBase = SortedDictionary<HouseDigitIdentifier, HashSet<(AlmostLockedSetPattern Pattern, House SharedHouse)>>;
 
 /// <summary>
 /// Represents a lookup table of Almost Locked Sets, grouped by house and digit.
@@ -24,8 +24,8 @@ public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyCompa
 	/// <summary>
 	/// Represents key comparer.
 	/// </summary>
-	private static IComparer<(House, Digit)> KeyComparer
-		=> field ??= Comparer<(House House, Digit Digit)>.Create(
+	private static IComparer<HouseDigitIdentifier> KeyComparer
+		=> field ??= Comparer<HouseDigitIdentifier>.Create(
 			static (left, right) =>
 			{
 				var l = left.House * 9 + left.Digit;
@@ -36,7 +36,7 @@ public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyCompa
 
 
 	/// <inheritdoc cref="Dictionary{TKey, TValue}.TryAdd(TKey, TValue)"/>
-	public bool TryAdd((House, Digit) key, List<(AlmostLockedSetPattern, House)> value)
+	public bool TryAdd(HouseDigitIdentifier key, HashSet<(AlmostLockedSetPattern, House)> value)
 	{
 		if (ContainsKey(key))
 		{
@@ -48,9 +48,9 @@ public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyCompa
 	}
 
 	/// <inheritdoc cref="SortedDictionary{TKey, TValue}.Add(TKey, TValue)"/>
-	public new void Add((House, Digit) key, List<(AlmostLockedSetPattern, House)> value)
+	public new void Add(HouseDigitIdentifier key, HashSet<(AlmostLockedSetPattern, House)> value)
 	{
 		base.Add(key, value);
-		(key.Item1 < 9 ? BlockView : LineView).Add(key, value);
+		(key.House < 9 ? BlockView : LineView).Add(key, value);
 	}
 }

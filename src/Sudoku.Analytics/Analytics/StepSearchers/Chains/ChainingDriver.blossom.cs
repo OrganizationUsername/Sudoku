@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
-using HousesDistribution = Dictionary<(House, Digit), SortedSet<Node>>;
+using HousesDistribution = Dictionary<HouseDigitIdentifier, SortedSet<Node>>;
 
 internal partial class ChainingDriver
 {
@@ -286,7 +286,7 @@ internal partial class ChainingDriver
 						foreach (var houseType in HouseTypes)
 						{
 							var house = endCell.ToHouse(houseType);
-							var entry = (house, endDigit);
+							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{
 								housesDistribution[entry].Add(endNode);
@@ -317,7 +317,7 @@ internal partial class ChainingDriver
 						foreach (var houseType in HouseTypes)
 						{
 							var house = endCell.ToHouse(houseType);
-							var entry = (house, endDigit);
+							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{
 								housesDistribution[entry].Add(endNode);

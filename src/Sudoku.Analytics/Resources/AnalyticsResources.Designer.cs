@@ -5941,6 +5941,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq Chain.
+        /// </summary>
+        public static string SueDeCoqChain {
+            get {
+                return ResourceManager.GetString("SueDeCoqChain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sue de Coq Isolated Digit.
         /// </summary>
         public static string SueDeCoqIsolated {

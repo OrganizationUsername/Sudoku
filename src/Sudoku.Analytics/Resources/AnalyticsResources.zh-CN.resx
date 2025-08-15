@@ -3357,4 +3357,7 @@
   <data name="TechniqueGroup_Templating" xml:space="preserve">
     <value>模板</value>
   </data>
+  <data name="SueDeCoqChain" xml:space="preserve">
+    <value>多段融合待定数组</value>
+  </data>
 </root>

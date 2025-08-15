@@ -41,6 +41,11 @@ public enum ComponentType
 	ChainLinkDictionary,
 
 	/// <summary>
+	/// Indicates the component is ALS dictionary, grouped by house and digit.
+	/// </summary>
+	AlmostLockedSetDictionary,
+
+	/// <summary>
 	/// Indicates the component is forcing chains.
 	/// </summary>
 	ForcingChains,

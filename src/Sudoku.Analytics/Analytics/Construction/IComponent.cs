@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Construction;
 
 /// <summary>
-/// Represents a component in analysis of patterns.
+/// Represents a type that describes a component in a pattern, which is unspeakable by normal implementation of pattern.
 /// </summary>
 public interface IComponent : IConstructible<ComponentType>
 {

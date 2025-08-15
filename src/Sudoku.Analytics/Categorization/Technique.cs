@@ -3186,6 +3186,15 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.SueDeCoq,
 		Links = ["http://sudopedia.enjoysudoku.com/Sue_de_Coq.html"])]
 	SueDeCoqCannibalism,
+
+	/// <summary>
+	/// Indicates sue de coq chain.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 80,
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.SueDeCoq)]
+	SueDeCoqChain,
 	#endregion
 
 	//

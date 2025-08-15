@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a pair of (house, digit) information.
+/// Encapsulates house and digit into one type.
 /// </summary>
 /// <param name="house"><inheritdoc cref="House" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="Digit" path="/summary"/></param>
@@ -21,7 +21,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	/// <summary>
 	/// Indicates the raw representation of maximum value.
 	/// </summary>
-	public const byte MaxRawValue = 243;
+	public const byte MaxRawValue = 27 * 9;
 
 
 	/// <summary>

@@ -33,13 +33,28 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	/// <summary>
 	/// Indicates the maximum value of the current type.
 	/// </summary>
-	public static readonly HouseDigitIdentifier MaxValue = new(26, 8);
+	public static readonly HouseDigitIdentifier MaxValue = new(^1, ^1);
 
 
 	/// <summary>
 	/// Represents the backing mask value.
 	/// </summary>
 	private readonly byte _mask = (byte)(house * 9 + digit);
+
+
+	/// <summary>
+	/// Initializes a <see cref="HouseDigitIdentifier"/> instance via the specified house index and digit index;
+	/// from-end cases are also supported.
+	/// </summary>
+	/// <param name="houseIndex">Indicates the house index.</param>
+	/// <param name="digitIndex">Indicates the digit index.</param>
+	/// <remarks>
+	/// This constructor allows you using index syntax to create a <see cref="HouseDigitIdentifier"/> instance,
+	/// like <c><see langword="new"/> <see cref="HouseDigitIdentifier"/>(^1, ^1)</c>.
+	/// </remarks>
+	public HouseDigitIdentifier(Index houseIndex, Index digitIndex) : this(houseIndex.GetOffset(27), digitIndex.GetOffset(9))
+	{
+	}
 
 
 	/// <summary>
@@ -51,6 +66,16 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	/// Indicates the digit.
 	/// </summary>
 	public Digit Digit => _mask % 9;
+
+	/// <summary>
+	/// Indicates the cells used.
+	/// </summary>
+	public ref readonly CellMap Cells => ref HousesMap[House];
+
+	/// <summary>
+	/// Indicates the candidates used.
+	/// </summary>
+	public CandidateMap Candidates => Cells * Digit;
 
 
 	/// <inheritdoc/>
@@ -140,13 +165,13 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 
 
 	/// <inheritdoc/>
-	public static HouseDigitIdentifier operator ++(HouseDigitIdentifier value) => value + 1;
+	public static HouseDigitIdentifier operator ++(HouseDigitIdentifier value) => unchecked(value + 1);
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator checked ++(HouseDigitIdentifier value) => checked(value + 1);
 
 	/// <inheritdoc/>
-	public static HouseDigitIdentifier operator --(HouseDigitIdentifier value) => value - 1;
+	public static HouseDigitIdentifier operator --(HouseDigitIdentifier value) => unchecked(value - 1);
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator checked --(HouseDigitIdentifier value) => checked(value - 1);
@@ -171,7 +196,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator +(HouseDigitIdentifier left, byte right)
-		=> (HouseDigitIdentifier)((left._mask + right) % MaxRawValue);
+		=> unchecked((HouseDigitIdentifier)((left._mask + right) % MaxRawValue));
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator checked +(HouseDigitIdentifier left, byte right)
@@ -179,7 +204,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator -(HouseDigitIdentifier left, byte right)
-		=> (HouseDigitIdentifier)((left._mask + MaxRawValue - right % MaxRawValue) % MaxRawValue);
+		=> unchecked((HouseDigitIdentifier)((left._mask + MaxRawValue - right % MaxRawValue) % MaxRawValue));
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier operator checked -(HouseDigitIdentifier left, byte right)

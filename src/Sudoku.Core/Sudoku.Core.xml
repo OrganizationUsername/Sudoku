@@ -5406,6 +5406,18 @@
             Represents the backing mask value.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.HouseDigitIdentifier.#ctor(System.Index,System.Index)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/> instance via the specified house index and digit index;
+            from-end cases are also supported.
+            </summary>
+            <param name="houseIndex">Indicates the house index.</param>
+            <param name="digitIndex">Indicates the digit index.</param>
+            <remarks>
+            This constructor allows you using index syntax to create a <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/> instance,
+            like <c><see langword="new"/> <see cref="T:Sudoku.Concepts.HouseDigitIdentifier"/>(^1, ^1)</c>.
+            </remarks>
+        </member>
         <member name="P:Sudoku.Concepts.HouseDigitIdentifier.House">
             <summary>
             Indicates the house.
@@ -5414,6 +5426,16 @@
         <member name="P:Sudoku.Concepts.HouseDigitIdentifier.Digit">
             <summary>
             Indicates the digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseDigitIdentifier.Candidates">
+            <summary>
+            Indicates the candidates used.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.HouseDigitIdentifier.System#Numerics#IMinMaxValue{Sudoku#Concepts#HouseDigitIdentifier}#MinValue">

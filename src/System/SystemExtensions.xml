@@ -6278,6 +6278,31 @@
             6 cases.
             </returns>
         </member>
+        <member name="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.op_BitwiseAnd(System.ReadOnlySpan{`0},System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="count">The number of elements you want to take.</param>
+            <returns>
+            The subsets of the list.
+            For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
+            <code><![CDATA[
+            [[1, 2], [1, 3], [2, 3]]
+            ]]></code>
+            3 cases.
+            </returns>
+            <exception cref="T:System.ArgumentException">Throws when the argument is negative.</exception>
+        </member>
+        <member name="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.op_BitwiseOr(System.ReadOnlySpan{`0},System.Int32)">
+            <summary>
+            Get all subsets from the limited number of the values to take,
+            specified as maximum number of elements of each combination.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="count">The number of elements you want to take, as maximum possible value.</param>
+            <exception cref="T:System.ArgumentException">Throws when the argument is negative.</exception>
+        </member>
         <member name="M:System.Numerics.Combinatorics.GetSubsets``1(System.ReadOnlySpan{``0})">
             <inheritdoc cref="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.GetSubsets"/>
         </member>
@@ -6289,6 +6314,12 @@
         </member>
         <member name="M:System.Numerics.Combinatorics.GetPermutations``1(System.ReadOnlySpan{``0},System.Int32)">
             <inheritdoc cref="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.GetPermutations(System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.Combinatorics.op_BitwiseAnd``1(System.ReadOnlySpan{``0},System.Int32)">
+            <inheritdoc cref="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.op_BitwiseAnd(System.ReadOnlySpan{`0},System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.Combinatorics.op_BitwiseOr``1(System.ReadOnlySpan{``0},System.Int32)">
+            <inheritdoc cref="M:System.Numerics.Combinatorics.&lt;&gt;E__0`1.op_BitwiseOr(System.ReadOnlySpan{`0},System.Int32)"/>
         </member>
         <member name="T:System.Numerics.Combinatorics.&lt;&gt;E__1`1">
             <summary>

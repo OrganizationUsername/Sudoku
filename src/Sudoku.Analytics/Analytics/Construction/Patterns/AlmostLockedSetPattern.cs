@@ -242,6 +242,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 		var result = new AlmostLockedSetLookup();
 		foreach (var als in Collect(grid))
 		{
+			// See https://www.bilibili.com/opus/585712790473706857/
 			if (als.House < 9 || als.IsBivalueCell && skipBivalueCells)
 			{
 				continue;

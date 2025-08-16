@@ -14,7 +14,6 @@ public sealed partial class SueDeCoqChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var lookup = AlmostLockedSetPattern.GetLookup(grid, true);
 
 		// Search for Sue de Coq chain.
 		// A valid Sue de Coq chain has a property that they starts with a line (row or column),

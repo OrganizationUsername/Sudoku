@@ -2597,61 +2597,6 @@
         <member name="M:Sudoku.Analytics.Construction.Chaining.Rules.YChainingRule.CollectOffNodes(Sudoku.Analytics.Construction.Components.Node,Sudoku.Concepts.Grid@,Sudoku.Analytics.Configuration.StepGathererOptions,System.Collections.Generic.HashSet{Sudoku.Analytics.Construction.Components.Node}@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup">
-            <summary>
-            Represents a lookup table of Almost Locked Sets, grouped by house and digit.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.#ctor">
-            <summary>
-            Represents a lookup table of Almost Locked Sets, grouped by house and digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.RowView">
-            <summary>
-            Represents row view.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.ColumnView">
-            <summary>
-            Represents column view.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Sudoku#Analytics#Construction#IComponent#Type">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.KeyComparer">
-            <summary>
-            Represents key comparer.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Item(Sudoku.Concepts.HouseDigitIdentifier)">
-            <summary>
-            Returns the entry of the key.
-            </summary>
-            <param name="key">The key.</param>
-            <returns>The hash set entry.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.TryAdd(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
-            <inheritdoc cref="M:System.Collections.Generic.Dictionary`2.TryAdd(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Add(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
-            <inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.Add(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookupBase">
-            <summary>
-            Represents the base dictionary type of <see cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>.
-            </summary>
-            <param name="comparer"><inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.#ctor(System.Collections.Generic.IComparer{`0})" path="/param[@name='comparer']"/></param>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookupBase.#ctor(System.Collections.Generic.IComparer{Sudoku.Concepts.HouseDigitIdentifier})">
-            <summary>
-            Represents the base dictionary type of <see cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>.
-            </summary>
-            <param name="comparer"><inheritdoc cref="M:System.Collections.Generic.SortedDictionary`2.#ctor(System.Collections.Generic.IComparer{`0})" path="/param[@name='comparer']"/></param>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup"/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain">
             <summary>
             Represents a chain pattern that has a start node, with alternating inferences between strong and weak.
@@ -5962,14 +5907,6 @@
             </summary>
             <param name="grid">The grid.</param>
             <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.GetLookup(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Create a lookup table that represents distribution of ALS patterns. This method can be used for checking Sue de Coq chains.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="skipBivalueCells">Indicates whether this method will ignore bi-value cells checking.</param>
-            <returns>A list of ALS patterns, grouped by containing house and primary digit.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>

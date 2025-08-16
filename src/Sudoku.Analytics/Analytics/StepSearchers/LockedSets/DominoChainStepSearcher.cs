@@ -7,8 +7,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Sue de Coq Chain</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_SueDeCoqChainStepSearcher", Technique.SueDeCoqChain)]
-public sealed partial class SueDeCoqChainStepSearcher : StepSearcher
+[StepSearcher("StepSearcherName_DominoChainStepSearcher", Technique.DominoChain)]
+public sealed partial class DominoChainStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)

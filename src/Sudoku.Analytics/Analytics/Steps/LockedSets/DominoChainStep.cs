@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
 /// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
 /// <param name="_patterns"><inheritdoc cref="Patterns" path="/summary"/></param>
-public sealed class SueDeCoqChainStep(
+public sealed class DominoChainStep(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
@@ -37,13 +37,13 @@ public sealed class SueDeCoqChainStep(
 	}
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.SueDeCoqChain;
+	public override Technique Code => Technique.DominoChain;
 
 	/// <inheritdoc/>
 	public override FactorArray Factors
 		=> [
 			Factor.Create(
-				"Factor_SueDeCoqChainLengthFactor",
+				"Factor_DominoChainLengthFactor",
 				[nameof(Length)],
 				GetType(),
 				static args => DifficultyCalculator.OeisSequences.A002024((int)args[0]!)
@@ -63,5 +63,5 @@ public sealed class SueDeCoqChainStep(
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Step? other)
-		=> other is SueDeCoqChainStep comparer && PatternsSet.SetEquals(comparer.PatternsSet);
+		=> other is DominoChainStep comparer && PatternsSet.SetEquals(comparer.PatternsSet);
 }

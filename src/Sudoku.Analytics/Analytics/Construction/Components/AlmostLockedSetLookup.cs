@@ -3,17 +3,17 @@ namespace Sudoku.Analytics.Construction.Components;
 /// <summary>
 /// Represents a lookup table of Almost Locked Sets, grouped by house and digit.
 /// </summary>
-public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyComparer), IComponent
+public sealed class AlmostLockedSetLookup() : IComponent
 {
 	/// <summary>
-	/// Represents block view.
+	/// Represents row view.
 	/// </summary>
-	public AlmostLockedSetLookupBase BlockView { get; } = new(KeyComparer);
+	public AlmostLockedSetLookupBase RowView { get; } = new(KeyComparer);
 
 	/// <summary>
-	/// Represents line view.
+	/// Represents column view.
 	/// </summary>
-	public AlmostLockedSetLookupBase LineView { get; } = new(KeyComparer);
+	public AlmostLockedSetLookupBase ColumnView { get; } = new(KeyComparer);
 
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.AlmostLockedSetDictionary;
@@ -33,10 +33,25 @@ public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyCompa
 		);
 
 
+	/// <summary>
+	/// Returns the entry of the key.
+	/// </summary>
+	/// <param name="key">The key.</param>
+	/// <returns>The hash set entry.</returns>
+	public HashSet<(AlmostLockedSetPattern Pattern, House SharedHouse)> this[HouseDigitIdentifier key]
+		=> (
+			key.House.HouseType switch
+			{
+				HouseType.Row => RowView,
+				_ => ColumnView
+			}
+		)[key];
+
+
 	/// <inheritdoc cref="Dictionary{TKey, TValue}.TryAdd(TKey, TValue)"/>
 	public bool TryAdd(HouseDigitIdentifier key, HashSet<(AlmostLockedSetPattern, House)> value)
 	{
-		if (ContainsKey(key))
+		if (RowView.ContainsKey(key) || ColumnView.ContainsKey(key))
 		{
 			return false;
 		}
@@ -46,9 +61,12 @@ public sealed class AlmostLockedSetLookup() : AlmostLockedSetLookupBase(KeyCompa
 	}
 
 	/// <inheritdoc cref="SortedDictionary{TKey, TValue}.Add(TKey, TValue)"/>
-	public new void Add(HouseDigitIdentifier key, HashSet<(AlmostLockedSetPattern, House)> value)
-	{
-		base.Add(key, value);
-		(key.House < 9 ? BlockView : LineView).Add(key, value);
-	}
+	public void Add(HouseDigitIdentifier key, HashSet<(AlmostLockedSetPattern, House)> value)
+		=> (
+			key.House.HouseType switch
+			{
+				HouseType.Row => RowView,
+				_ => ColumnView
+			}
+		).Add(key, value);
 }

@@ -20,6 +20,7 @@ public sealed partial class SueDeCoqChainStepSearcher : StepSearcher
 		// A valid Sue de Coq chain has a property that they starts with a line (row or column),
 		// and alternate line types, inserting blocks as interim bridge.
 		// For example, the following puzzle shows the houses that a chain used:
+		//
 		//                           2369 + 14
 		// .-------------------.---------------------.--------------------.
 		// | 137   367    368  | 2689  (1269)  5     | 2368  23789  4     |
@@ -34,11 +35,9 @@ public sealed partial class SueDeCoqChainStepSearcher : StepSearcher
 		// | 2479  1     (456) | 24679 (2469)  3     | 2458  2578   2578  |
 		// | 8     34679 (346) | 5     (12469) 12679 | 234   237    127   |
 		// '-------------------'---------------------'--------------------'
+		//
 		// Puzzle:
 		//   .....5..4...3...1..29.7....5.1..47..682.5.143..71....6....8.96..1...3...8..5.....:218 318 818 625 527 229 529 829 944 945 965 966 267 481 287 392 492 393 695 297
-		// The sequence must be either:
-		//   * Row -> Block -> Column -> Block -> Row -> ...
-		//   * Column -> Block -> Row -> Block -> Column -> ...
 
 		return null;
 	}

@@ -2607,14 +2607,14 @@
             Represents a lookup table of Almost Locked Sets, grouped by house and digit.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.BlockView">
+        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.RowView">
             <summary>
-            Represents block view.
+            Represents row view.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.LineView">
+        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.ColumnView">
             <summary>
-            Represents line view.
+            Represents column view.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Sudoku#Analytics#Construction#IComponent#Type">
@@ -2624,6 +2624,13 @@
             <summary>
             Represents key comparer.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.Item(Sudoku.Concepts.HouseDigitIdentifier)">
+            <summary>
+            Returns the entry of the key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>The hash set entry.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.AlmostLockedSetLookup.TryAdd(Sudoku.Concepts.HouseDigitIdentifier,System.Collections.Generic.HashSet{System.ValueTuple{Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,System.Int32}})">
             <inheritdoc cref="M:System.Collections.Generic.Dictionary`2.TryAdd(`0,`1)"/>

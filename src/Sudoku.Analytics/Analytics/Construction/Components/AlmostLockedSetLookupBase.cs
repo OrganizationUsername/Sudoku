@@ -5,5 +5,5 @@ namespace Sudoku.Analytics.Construction.Components;
 /// </summary>
 /// <param name="comparer"><inheritdoc cref="SortedDictionary{TKey, TValue}(IComparer{TKey}?)" path="/param[@name='comparer']"/></param>
 /// <seealso cref="AlmostLockedSetLookup"/>
-public class AlmostLockedSetLookupBase(IComparer<HouseDigitIdentifier>? comparer) :
+public sealed class AlmostLockedSetLookupBase(IComparer<HouseDigitIdentifier>? comparer) :
 	SortedDictionary<HouseDigitIdentifier, HashSet<(AlmostLockedSetPattern Pattern, House SharedHouse)>>(comparer);

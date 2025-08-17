@@ -20,7 +20,7 @@ public sealed class DominoChainStep(
 	/// <summary>
 	/// Represents the length of the patterns.
 	/// </summary>
-	public int Length => Patterns.Length;
+	public int PatternsLength => Patterns.Length;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed
@@ -44,7 +44,7 @@ public sealed class DominoChainStep(
 		=> [
 			Factor.Create(
 				"Factor_DominoChainLengthFactor",
-				[nameof(Length)],
+				[nameof(PatternsLength)],
 				GetType(),
 				static args => DifficultyCalculator.OeisSequences.A002024((int)args[0]!)
 			)

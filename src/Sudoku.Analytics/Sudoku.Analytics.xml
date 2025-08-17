@@ -12827,6 +12827,11 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.DominoChainStepSearcher.LineFirst">
+            <summary>
+            Indicates the row column first grouped by block.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DominoChainStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
@@ -13949,6 +13954,40 @@
             </summary>
             <param name="map">The map.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.QueueNode">
+            <summary>
+            Represents a file-local queue node on calculating domino chains.
+            </summary>
+            <param name="pattern"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.Pattern" path="/summary"/></param>
+            <param name="restrictedCommon"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.RestrictedCommon" path="/summary"/></param>
+            <param name="parent"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.Parent" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QueueNode.#ctor(Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern,Sudoku.Concepts.CandidateMap@,Sudoku.Analytics.StepSearchers.QueueNode)">
+            <summary>
+            Represents a file-local queue node on calculating domino chains.
+            </summary>
+            <param name="pattern"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.Pattern" path="/summary"/></param>
+            <param name="restrictedCommon"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.RestrictedCommon" path="/summary"/></param>
+            <param name="parent"><inheritdoc cref="P:Sudoku.Analytics.StepSearchers.QueueNode.Parent" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QueueNode.RestrictedCommon">
+            <summary>
+            Indicates the restricted common candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QueueNode.Pattern">
+            <summary>
+            Indicates the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.QueueNode.Parent">
+            <summary>
+            Indicates the parent node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.QueueNode.ToString">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.StepSearcherAttribute">
             <summary>
@@ -17178,7 +17217,7 @@
         <member name="P:Sudoku.Analytics.Steps.DominoChainStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DominoChainStep.Length">
+        <member name="P:Sudoku.Analytics.Steps.DominoChainStep.PatternsLength">
             <summary>
             Represents the length of the patterns.
             </summary>

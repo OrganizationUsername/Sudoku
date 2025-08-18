@@ -12,7 +12,7 @@ public interface ILeftJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf,
 	/// Performs a left outer join with the other sequence.
 	/// </summary>
 	/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>
-	public virtual IEnumerable<TResult?> LeftJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult?> LeftJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -23,7 +23,7 @@ public interface ILeftJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf,
 	/// Performs a left outer join with the other sequence.
 	/// </summary>
 	/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult}, IEqualityComparer{TKey}?)"/>
-	public virtual IEnumerable<TResult?> LeftJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult?> LeftJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,

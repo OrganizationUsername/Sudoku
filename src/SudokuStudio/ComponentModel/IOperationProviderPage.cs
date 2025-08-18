@@ -8,5 +8,5 @@ public interface IOperationProviderPage
 	/// <summary>
 	/// Indicates the base page.
 	/// </summary>
-	public abstract AnalyzePage BasePage { get; set; }
+	AnalyzePage BasePage { get; set; }
 }

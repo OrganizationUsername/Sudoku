@@ -9,5 +9,5 @@ public interface IConstructible<TEnum> where TEnum : Enum
 	/// <summary>
 	/// Indicates the type of the constructible element.
 	/// </summary>
-	public abstract TEnum Type { get; }
+	TEnum Type { get; }
 }

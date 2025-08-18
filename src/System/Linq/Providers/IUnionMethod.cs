@@ -8,10 +8,10 @@ public interface IUnionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IUnionMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Union{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
-	public virtual IEnumerable<TSource> Union(IEnumerable<TSource> second) => Union(second, null);
+	IEnumerable<TSource> Union(IEnumerable<TSource> second) => Union(second, null);
 
 	/// <inheritdoc cref="Enumerable.Union{TSource}(IEnumerable{TSource}, IEnumerable{TSource}, IEqualityComparer{TSource}?)"/>
-	public virtual IEnumerable<TSource> Union(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+	IEnumerable<TSource> Union(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
 	{
 		comparer ??= EqualityComparer<TSource>.Default;
 

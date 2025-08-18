@@ -8,5 +8,5 @@ public interface ITrueCandidatesTrait
 	/// <summary>
 	/// Indicates the true candidates used.
 	/// </summary>
-	public abstract CandidateMap TrueCandidates { get; }
+	CandidateMap TrueCandidates { get; }
 }

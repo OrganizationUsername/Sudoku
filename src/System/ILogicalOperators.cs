@@ -11,19 +11,19 @@ public interface ILogicalOperators<TSelf> : IBitwiseOperators<TSelf, TSelf, TSel
 	/// </summary>
 	/// <param name="value">The value to be determined.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static abstract bool operator true(TSelf value);
+	static abstract bool operator true(TSelf value);
 
 	/// <summary>
 	/// Determine whether the specified object is determined <see langword="false"/>.
 	/// </summary>
 	/// <param name="value">The value to be determined.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static virtual bool operator false(TSelf value) => !(value ? true : false);
+	static virtual bool operator false(TSelf value) => !(value ? true : false);
 
 	/// <summary>
 	/// Negates the current instance, and makes the result to be negated one.
 	/// </summary>
 	/// <param name="value">The value.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public static abstract bool operator !(TSelf value);
+	static abstract bool operator !(TSelf value);
 }

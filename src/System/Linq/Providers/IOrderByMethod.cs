@@ -12,11 +12,11 @@ public interface IOrderByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, 
 
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public virtual IEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
+	IEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
 		=> OrderBy(keySelector, null);
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
-	public virtual IEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+	IEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
 		where TKey : notnull
 	{
 		comparer ??= Comparer<TKey>.Default;
@@ -29,11 +29,11 @@ public interface IOrderByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, 
 	}
 
 	/// <inheritdoc cref="Enumerable.OrderByDescending{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public virtual IEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
+	IEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
 		=> OrderByDescending(keySelector, null);
 
 	/// <inheritdoc cref="Enumerable.OrderByDescending{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
-	public virtual IEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+	IEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
 		where TKey : notnull
 	{
 		comparer ??= Comparer<TKey>.Default;

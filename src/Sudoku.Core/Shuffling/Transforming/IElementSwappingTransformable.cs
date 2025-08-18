@@ -15,11 +15,11 @@ public interface IElementSwappingTransformable<TSelf, TElement> : IEnumerable<TE
 	/// <param name="element1">The first element to be swapped.</param>
 	/// <param name="element2">The second element to be swapped.</param>
 	/// <returns>The result swapped.</returns>
-	public abstract TSelf SwapElement(TElement element1, TElement element2);
+	TSelf SwapElement(TElement element1, TElement element2);
 
 	/// <summary>
 	/// Try to shuffle <typeparamref name="TSelf"/> instance of elements, keeping equality with the current instance.
 	/// </summary>
 	/// <returns>The result shuffled.</returns>
-	public abstract TSelf Shuffle();
+	TSelf Shuffle();
 }

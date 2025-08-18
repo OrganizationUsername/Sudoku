@@ -11,14 +11,14 @@ public interface IShuffleMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	/// Shuffles the whole collection.
 	/// </summary>
 	/// <returns>The whole collection, shuffled.</returns>
-	public virtual IEnumerable<TSource> Shuffle() => Shuffle(Random.Shared);
+	IEnumerable<TSource> Shuffle() => Shuffle(Random.Shared);
 
 	/// <summary>
 	/// Shuffles the whole collection.
 	/// </summary>
 	/// <param name="random">The random number generator to be called.</param>
 	/// <returns>The whole collection, shuffled.</returns>
-	public virtual IEnumerable<TSource> Shuffle(Random random)
+	IEnumerable<TSource> Shuffle(Random random)
 	{
 		var array = this.ToArray();
 		random.Shuffle(array);

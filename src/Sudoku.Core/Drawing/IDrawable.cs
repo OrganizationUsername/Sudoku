@@ -9,10 +9,10 @@ public interface IDrawable
 	/// Indicates the conclusions that a step produces,
 	/// meaning the specified candidates in this property can be safely set or deleted.
 	/// </summary>
-	public abstract ReadOnlyMemory<Conclusion> Conclusions { get; }
+	ReadOnlyMemory<Conclusion> Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the view collection that represents <see cref="ViewNode"/> data, used by rendering APIs.
 	/// </summary>
-	public abstract ReadOnlyMemory<View> Views { get; }
+	ReadOnlyMemory<View> Views { get; }
 }

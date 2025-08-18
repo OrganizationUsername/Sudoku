@@ -8,5 +8,5 @@ public interface IBetweenRuleConstraint
 	/// <summary>
 	/// Indicates the between rule.
 	/// </summary>
-	public abstract BetweenRule BetweenRule { get; set; }
+	BetweenRule BetweenRule { get; set; }
 }

@@ -10,5 +10,5 @@ internal interface IStepGathererAwaitable<out TAwaiter>
 	/// Returns an object of type <typeparamref name="TAwaiter"/> that supports the internal awaiting rule of analyzing a puzzle.
 	/// </summary>
 	/// <returns>An object of type <typeparamref name="TAwaiter"/>.</returns>
-	public abstract TAwaiter GetAwaiter();
+	TAwaiter GetAwaiter();
 }

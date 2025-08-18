@@ -8,5 +8,5 @@ public interface IConjugatePairTrait : ITrait
 	/// <summary>
 	/// Indicates the number of conjugate pairs.
 	/// </summary>
-	public abstract int ConjugatePairsCount { get; }
+	int ConjugatePairsCount { get; }
 }

@@ -9,44 +9,44 @@ public interface IFirstLastMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
-	public virtual TSource First() => TryGetFirst(out var result) ? result : throw new InvalidOperationException();
+	TSource First() => TryGetFirst(out var result) ? result : throw new InvalidOperationException();
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual TSource First(Func<TSource, bool> predicate)
+	TSource First(Func<TSource, bool> predicate)
 		=> TryGetFirst(predicate, out var result) ? result : throw new InvalidOperationException();
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
-	public virtual TSource? FirstOrDefault() => TryGetFirst(out var result) ? result : default;
+	TSource? FirstOrDefault() => TryGetFirst(out var result) ? result : default;
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual TSource FirstOrDefault(TSource defaultValue) => TryGetFirst(out var result) ? result : defaultValue;
+	TSource FirstOrDefault(TSource defaultValue) => TryGetFirst(out var result) ? result : defaultValue;
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual TSource? FirstOrDefault(Func<TSource, bool> predicate)
+	TSource? FirstOrDefault(Func<TSource, bool> predicate)
 		=> TryGetFirst(predicate, out var result) ? result : default;
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool}, TSource)"/>
-	public virtual TSource FirstOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
+	TSource FirstOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
 		=> TryGetFirst(predicate, out var result) ? result : defaultValue;
 
 	/// <inheritdoc cref="Enumerable.Last{TSource}(IEnumerable{TSource})"/>
-	public virtual TSource Last() => TryGetLast(out var result) ? result : throw new InvalidOperationException();
+	TSource Last() => TryGetLast(out var result) ? result : throw new InvalidOperationException();
 
 	/// <inheritdoc cref="Enumerable.Last{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual TSource Last(Func<TSource, bool> predicate)
+	TSource Last(Func<TSource, bool> predicate)
 		=> TryGetLast(predicate, out var result) ? result : throw new InvalidOperationException();
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource})"/>
-	public virtual TSource? LastOrDefault() => TryGetLast(out var result) ? result : default;
+	TSource? LastOrDefault() => TryGetLast(out var result) ? result : default;
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual TSource LastOrDefault(TSource defaultValue) => TryGetLast(out var result) ? result : defaultValue;
+	TSource LastOrDefault(TSource defaultValue) => TryGetLast(out var result) ? result : defaultValue;
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual TSource? LastOrDefault(Func<TSource, bool> predicate) => TryGetLast(predicate, out var result) ? result : default;
+	TSource? LastOrDefault(Func<TSource, bool> predicate) => TryGetLast(predicate, out var result) ? result : default;
 
 	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool}, TSource)"/>
-	public virtual TSource LastOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
+	TSource LastOrDefault(Func<TSource, bool> predicate, TSource defaultValue)
 		=> TryGetLast(predicate, out var result) ? result : defaultValue;
 
 	/// <summary>

@@ -23,31 +23,31 @@ internal interface ITaskbarList3
 	/// <summary>
 	/// Initializes the taskbar list object. This method must be called before any other ITaskbarList methods can be called.
 	/// </summary>
-	public abstract void HrInit();
+	void HrInit();
 
 	/// <summary>
 	/// Adds an item to the taskbar.
 	/// </summary>
 	/// <param name="hWnd">A handle to the window to be added to the taskbar.</param>
-	public abstract void AddTab(nint hWnd);
+	void AddTab(nint hWnd);
 
 	/// <summary>
 	/// Deletes an item from the taskbar.
 	/// </summary>
 	/// <param name="hWnd">A handle to the window to be deleted from the taskbar.</param>
-	public abstract void DeleteTab(nint hWnd);
+	void DeleteTab(nint hWnd);
 
 	/// <summary>
 	/// Activates an item on the taskbar. The window is not actually activated; the window's item on the taskbar is merely displayed as active.
 	/// </summary>
 	/// <param name="hWnd">A handle to the window on the taskbar to be displayed as active.</param>
-	public abstract void ActivateTab(nint hWnd);
+	void ActivateTab(nint hWnd);
 
 	/// <summary>
 	/// Marks a taskbar item as active but does not visually activate it.
 	/// </summary>
 	/// <param name="hWnd">A handle to the window to be marked as active.</param>
-	public abstract void SetActiveAlt(nint hWnd);
+	void SetActiveAlt(nint hWnd);
 	#endregion
 
 	//
@@ -59,7 +59,7 @@ internal interface ITaskbarList3
 	/// </summary>
 	/// <param name="hWnd"></param>
 	/// <param name="fFullscreen"></param>
-	public abstract void MarkFullscreenWindow(nint hWnd, int fFullscreen);
+	void MarkFullscreenWindow(nint hWnd, int fFullscreen);
 
 	/// <summary>
 	/// Displays or updates a progress bar hosted in a taskbar button to show the specific percentage
@@ -71,7 +71,7 @@ internal interface ITaskbarList3
 	/// operation that has been completed at the time the method is called.</param>
 	/// <param name="ullTotal">An application-defined value that specifies the value ullCompleted will
 	/// have when the operation is complete.</param>
-	public abstract void SetProgressValue(nint hWnd, ulong ullCompleted, ulong ullTotal);
+	void SetProgressValue(nint hWnd, ulong ullCompleted, ulong ullTotal);
 
 	/// <summary>
 	/// Sets the type and state of the progress indicator displayed on a taskbar button.
@@ -80,7 +80,7 @@ internal interface ITaskbarList3
 	/// shown. This window's associated taskbar button will display the progress bar.</param>
 	/// <param name="tbpFlags">Flags that control the current state of the progress button. Specify
 	/// only one of the following flags; all states are mutually exclusive of all others.</param>
-	public abstract void SetProgressState(nint hWnd, TBPFLAG tbpFlags);
+	void SetProgressState(nint hWnd, TBPFLAG tbpFlags);
 
 	/// <summary>
 	/// Informs the taskbar that a new tab or document thumbnail has been provided for display in an
@@ -91,7 +91,7 @@ internal interface ITaskbarList3
 	/// <param name="hWndMDI">Handle of the application's main window. This value tells the taskbar
 	/// which application's preview group to attach the new thumbnail to. This value is required and
 	/// cannot be NULL.</param>
-	public abstract void RegisterTab(nint hWndTab, nint hWndMDI);
+	void RegisterTab(nint hWndTab, nint hWndMDI);
 
 	/// <summary>
 	/// Removes a thumbnail from an application's preview group when that tab or document is closed in the application.
@@ -99,7 +99,7 @@ internal interface ITaskbarList3
 	/// <param name="hWndTab">The handle of the tab window whose thumbnail is being removed. This is the same
 	/// value with which the thumbnail was registered as part the group through ITaskbarList3::RegisterTab.
 	/// This value is required and cannot be NULL.</param>
-	public abstract void UnregisterTab(nint hWndTab);
+	void UnregisterTab(nint hWndTab);
 
 	/// <summary>
 	/// Inserts a new thumbnail into a tabbed-document interface (TDI) or multiple-document interface
@@ -111,7 +111,7 @@ internal interface ITaskbarList3
 	/// <param name="hWndInsertBefore">The handle of the tab window whose thumbnail that hwndTab is
 	/// inserted to the left of. This handle must already be registered through ITaskbarList3::RegisterTab.
 	/// If this value is NULL, the new thumbnail is added to the end of the list.</param>
-	public abstract void SetTabOrder(nint hWndTab, nint hWndInsertBefore);
+	void SetTabOrder(nint hWndTab, nint hWndInsertBefore);
 
 	/// <summary>
 	/// Informs the taskbar that a tab or document window has been made the active window.
@@ -122,7 +122,7 @@ internal interface ITaskbarList3
 	/// which group the thumbnail is a member of. This value is required and cannot be NULL.</param>
 	/// <param name="tbatFlags">None, one, or both of the following values that specify a thumbnail
 	/// and peek view to use in place of a representation of the specific tab or document.</param>
-	public abstract void SetTabActive(nint hWndTab, nint hWndMDI, UInt32 tbatFlags);
+	void SetTabActive(nint hWndTab, nint hWndMDI, UInt32 tbatFlags);
 
 	/// <summary>
 	/// Adds a thumbnail toolbar with a specified set of buttons to the thumbnail image of a window in a
@@ -136,9 +136,9 @@ internal interface ITaskbarList3
 	/// individual button to be added to the toolbar. Buttons cannot be added or deleted later, so this must
 	/// be the full defined set. Buttons also cannot be reordered, so their order in the array, which is the
 	/// order in which they are displayed left to right, will be their permanent order.</param>
-	public abstract void ThumbBarAddButtons(nint hWnd, uint cButtons, [MarshalAs(UnmanagedType.LPArray)] THUMBBUTTON[] pButton);
+	void ThumbBarAddButtons(nint hWnd, uint cButtons, [MarshalAs(UnmanagedType.LPArray)] THUMBBUTTON[] pButton);
 
-	public abstract void ThumbBarUpdateButtons(nint hWnd, uint cButtons, [MarshalAs(UnmanagedType.LPArray)] THUMBBUTTON[] pButton);
+	void ThumbBarUpdateButtons(nint hWnd, uint cButtons, [MarshalAs(UnmanagedType.LPArray)] THUMBBUTTON[] pButton);
 
 	/// <summary>
 	/// Specifies an image list that contains button images for a toolbar embedded in a thumbnail image of a
@@ -147,7 +147,7 @@ internal interface ITaskbarList3
 	/// <param name="hWnd">The handle of the window whose thumbnail representation contains the toolbar to be
 	/// updated. This handle must belong to the calling process.</param>
 	/// <param name="himl">The handle of the image list that contains all button images to be used in the toolbar.</param>
-	public abstract void ThumbBarSetImageList(nint hWnd, nint himl);
+	void ThumbBarSetImageList(nint hWnd, nint himl);
 
 	/// <summary>
 	/// Applies an overlay to a taskbar button to indicate application status or a notification to the user.
@@ -160,7 +160,7 @@ internal interface ITaskbarList3
 	/// taskbar button, that existing overlay is replaced.</param>
 	/// <param name="pszDescription">A pointer to a string that provides an alt text version of the
 	/// information conveyed by the overlay, for accessibility purposes.</param>
-	public abstract void SetOverlayIcon(nint hWnd, nint hIcon, string pszDescription);
+	void SetOverlayIcon(nint hWnd, nint hIcon, string pszDescription);
 
 	/// <summary>
 	/// Specifies or updates the text of the tooltip that is displayed when the mouse pointer rests on an
@@ -170,7 +170,7 @@ internal interface ITaskbarList3
 	/// belong to the calling process.</param>
 	/// <param name="pszTip">The pointer to the text to be displayed in the tooltip. This value can be NULL,
 	/// in which case the title of the window specified by hwnd is used as the tooltip.</param>
-	public abstract void SetThumbnailTooltip(nint hWnd, string pszTip);
+	void SetThumbnailTooltip(nint hWnd, string pszTip);
 
 	/// <summary>
 	/// Selects a portion of a window's client area to display as that window's thumbnail in the taskbar.
@@ -179,6 +179,6 @@ internal interface ITaskbarList3
 	/// <param name="prcClip">A pointer to a RECT structure that specifies a selection within the window's
 	/// client area, relative to the upper-left corner of that client area. To clear a clip that is already
 	/// in place and return to the default display of the thumbnail, set this parameter to NULL.</param>
-	public abstract void SetThumbnailClip(nint hWnd, nint prcClip);
+	void SetThumbnailClip(nint hWnd, nint prcClip);
 	#endregion
 }

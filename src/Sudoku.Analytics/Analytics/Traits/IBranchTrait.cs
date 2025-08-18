@@ -8,5 +8,5 @@ public interface IBranchTrait
 	/// <summary>
 	/// Indicates the number of branches.
 	/// </summary>
-	public abstract int BranchesCount { get; }
+	int BranchesCount { get; }
 }

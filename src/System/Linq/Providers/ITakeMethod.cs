@@ -8,16 +8,16 @@ public interface ITakeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : ITakeMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, int)"/>
-	public virtual IEnumerable<TSource> Take(int count) => new List<TSource>(this)[..count];
+	IEnumerable<TSource> Take(int count) => new List<TSource>(this)[..count];
 
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, Range)"/>
-	public virtual IEnumerable<TSource> Take(Range range) => new List<TSource>(this)[range];
+	IEnumerable<TSource> Take(Range range) => new List<TSource>(this)[range];
 
 	/// <inheritdoc cref="Enumerable.TakeLast{TSource}(IEnumerable{TSource}, int)"/>
-	public virtual IEnumerable<TSource> TakeLast(int count) => new List<TSource>(this)[^count..];
+	IEnumerable<TSource> TakeLast(int count) => new List<TSource>(this)[^count..];
 
 	/// <inheritdoc cref="Enumerable.TakeWhile{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual IEnumerable<TSource> TakeWhile(Func<TSource, bool> predicate)
+	IEnumerable<TSource> TakeWhile(Func<TSource, bool> predicate)
 	{
 		var result = new List<TSource>();
 		foreach (var element in this)
@@ -32,7 +32,7 @@ public interface ITakeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc cref="Enumerable.TakeWhile{TSource}(IEnumerable{TSource}, Func{TSource, int, bool})"/>
-	public virtual IEnumerable<TSource> TakeWhile(Func<TSource, int, bool> predicate)
+	IEnumerable<TSource> TakeWhile(Func<TSource, int, bool> predicate)
 	{
 		var result = new List<TSource>();
 		var i = 0;

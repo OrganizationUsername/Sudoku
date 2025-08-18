@@ -8,11 +8,11 @@ internal interface IAnalyzerTab
 	/// <summary>
 	/// Indicates the parent page of the current tab.
 	/// </summary>
-	public abstract AnalyzePage BasePage { get; set; }
+	AnalyzePage BasePage { get; set; }
 
 	/// <summary>
 	/// Gets or sets the analysis result, updating the current tab page using this property.
 	/// </summary>
 	/// <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
-	public abstract AnalysisResult? AnalysisResult { get; set; }
+	AnalysisResult? AnalysisResult { get; set; }
 }

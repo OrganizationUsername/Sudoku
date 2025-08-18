@@ -10,5 +10,5 @@ internal interface IThemeSupportedWindow
 	/// Set title bar button colors using the specified theme.
 	/// </summary>
 	/// <param name="theme">The theme.</param>
-	public abstract void ManuallySetTitleBarButtonsColor(Theme theme);
+	void ManuallySetTitleBarButtonsColor(Theme theme);
 }

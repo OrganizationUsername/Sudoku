@@ -14,5 +14,5 @@ public interface IGenerator<out TResult> where TResult : allows ref struct
 	/// <param name="progress">An <see cref="IProgress{T}"/> instance that is used for reporting the state.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>The result returned.</returns>
-	public abstract TResult Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default);
+	TResult Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default);
 }

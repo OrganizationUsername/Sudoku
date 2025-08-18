@@ -12,7 +12,7 @@ public interface IIterator<TSelf, T> : IEnumerable<T>, IEnumerator<T> where TSel
 
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	public new sealed TSelf GetEnumerator() => (TSelf)this;
+	new sealed TSelf GetEnumerator() => (TSelf)this;
 
 	/// <inheritdoc/>
 	[SuppressMessage("Usage", "CA1816:Dispose methods should call SuppressFinalize", Justification = "<Pending>")]

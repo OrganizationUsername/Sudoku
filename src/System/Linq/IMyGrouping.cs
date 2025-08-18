@@ -20,7 +20,7 @@ internal interface IMyGrouping<TSelf, out TKey, TElement> :
 	/// <summary>
 	/// Indicates the backing elements.
 	/// </summary>
-	protected abstract ReadOnlySpan<TElement> Elements { get; }
+	protected ReadOnlySpan<TElement> Elements { get; }
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<TElement>.Count => Elements.Length;
@@ -31,17 +31,17 @@ internal interface IMyGrouping<TSelf, out TKey, TElement> :
 	/// </summary>
 	/// <param name="index">The desired index.</param>
 	/// <returns>The reference to the element at the specified index.</returns>
-	public abstract ref readonly TElement this[int index] { get; }
+	ref readonly TElement this[int index] { get; }
 
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetPinnableReference"/>
-	public abstract ref readonly TElement GetPinnableReference();
+	ref readonly TElement GetPinnableReference();
 
 	/// <summary>
 	/// Creates an enumerator that can enumerate each element in the source collection.
 	/// </summary>
 	/// <returns>An enumerator instance.</returns>
-	public new abstract AnonymousSpanEnumerator<TElement> GetEnumerator();
+	new AnonymousSpanEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => Elements.ToArray().GetEnumerator();

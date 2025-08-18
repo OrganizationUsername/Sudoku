@@ -13,7 +13,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource>
 	/// <summary>
 	/// Indicates whether the method group supported is extension method.
 	/// </summary>
-	public static virtual bool IsExtensionMethod => true;
+	static virtual bool IsExtensionMethod => true;
 
 	/// <summary>
 	/// Indicates whether the provider type <typeparamref name="TSelf"/> won't calculate the final result immediately.
@@ -21,7 +21,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource>
 	/// By default, the value is <see langword="false"/>.
 	/// </summary>
 	/// <seealso cref="IEnumerable{T}"/>
-	public static virtual bool IsValueLazilyCalculated => false;
+	static virtual bool IsValueLazilyCalculated => false;
 
 	/// <summary>
 	/// Indicates whether the methods defined in type <typeparamref name="TSelf"/> support for query syntax also.
@@ -137,5 +137,5 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource>
 	/// </item>
 	/// </list>
 	/// </remarks>
-	public static virtual bool SupportsQuerySyntax => false;
+	static virtual bool SupportsQuerySyntax => false;
 }

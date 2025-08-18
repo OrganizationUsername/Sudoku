@@ -12,7 +12,7 @@ public interface IAllAreMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSourc
 	/// </summary>
 	/// <typeparam name="T">The type of the target elements.</typeparam>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public virtual bool AllAre<T>() where T : TSource?
+	bool AllAre<T>() where T : TSource?
 	{
 		foreach (var element in this)
 		{

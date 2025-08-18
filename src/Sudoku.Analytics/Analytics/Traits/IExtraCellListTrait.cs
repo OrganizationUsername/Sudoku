@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Analytics.Traits;
 
 /// <summary>
 /// Represents a trait that describes the extra cell list.
@@ -8,5 +8,5 @@ public interface IExtraCellListTrait : ITrait
 	/// <summary>
 	/// Indicates the number of extra cells.
 	/// </summary>
-	public abstract int ExtraCellSize { get; }
+	int ExtraCellSize { get; }
 }

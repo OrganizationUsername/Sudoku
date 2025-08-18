@@ -8,5 +8,5 @@ public interface ISizeTrait : ITrait
 	/// <summary>
 	/// Indicates the size of the pattern.
 	/// </summary>
-	public abstract int Size { get; }
+	int Size { get; }
 }

@@ -8,7 +8,7 @@ public interface IIndexMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IIndexMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
-	public virtual IEnumerable<(int Index, TSource Item)> Index()
+	IEnumerable<(int Index, TSource Item)> Index()
 	{
 		var i = 0;
 		var result = new List<(int, TSource)>();

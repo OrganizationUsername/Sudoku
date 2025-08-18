@@ -12,5 +12,5 @@ public interface IFiniteSet<TSelf, T> : ISet<T> where TSelf : IFiniteSet<TSelf, 
 	/// Returns an object that inverts elements including the current collection.
 	/// </summary>
 	/// <returns>An instance as the result.</returns>
-	public abstract TSelf Negate();
+	TSelf Negate();
 }

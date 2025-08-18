@@ -8,7 +8,7 @@ public interface ISelectManyMethod<TSelf, TSource> : IQueryExpressionMethod<TSel
 	where TSelf : ISelectManyMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TResult}})"/>
-	public virtual IEnumerable<TResult> SelectMany<TResult>(Func<TSource, IEnumerable<TResult>> selector)
+	IEnumerable<TResult> SelectMany<TResult>(Func<TSource, IEnumerable<TResult>> selector)
 	{
 		var result = new List<TResult>();
 		foreach (var element in this)
@@ -22,7 +22,7 @@ public interface ISelectManyMethod<TSelf, TSource> : IQueryExpressionMethod<TSel
 	}
 
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TResult}(IEnumerable{TSource}, Func{TSource, int, IEnumerable{TResult}})"/>
-	public virtual IEnumerable<TResult> SelectMany<TResult>(Func<TSource, int, IEnumerable<TResult>> selector)
+	IEnumerable<TResult> SelectMany<TResult>(Func<TSource, int, IEnumerable<TResult>> selector)
 	{
 		var result = new List<TResult>();
 		var i = 0;
@@ -37,7 +37,7 @@ public interface ISelectManyMethod<TSelf, TSource> : IQueryExpressionMethod<TSel
 	}
 
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
-	public virtual IEnumerable<TResult> SelectMany<TCollection, TResult>(Func<TSource, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector)
+	IEnumerable<TResult> SelectMany<TCollection, TResult>(Func<TSource, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector)
 	{
 		var result = new List<TResult>();
 		foreach (var element in this)
@@ -51,7 +51,7 @@ public interface ISelectManyMethod<TSelf, TSource> : IQueryExpressionMethod<TSel
 	}
 
 	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, int, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
-	public virtual IEnumerable<TResult> SelectMany<TCollection, TResult>(Func<TSource, int, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector)
+	IEnumerable<TResult> SelectMany<TCollection, TResult>(Func<TSource, int, IEnumerable<TCollection>> collectionSelector, Func<TSource, TCollection, TResult> resultSelector)
 	{
 		var result = new List<TResult>();
 		var i = 0;

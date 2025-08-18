@@ -12,11 +12,11 @@ public interface IThenByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, T
 
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
-	public virtual IEnumerable<TSource> ThenBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
+	IEnumerable<TSource> ThenBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
 		=> ThenBy(keySelector, null);
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
-	public virtual IEnumerable<TSource> ThenBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer) where TKey : notnull
+	IEnumerable<TSource> ThenBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer) where TKey : notnull
 	{
 		// Implementation details:
 		// The implementation here is same as 'OrderBy', because we cannot determine the internal comparison rule
@@ -33,11 +33,11 @@ public interface IThenByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, T
 	}
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
-	public virtual IEnumerable<TSource> ThenByDescending<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
+	IEnumerable<TSource> ThenByDescending<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
 		=> ThenByDescending(keySelector, null);
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
-	public virtual IEnumerable<TSource> ThenByDescending<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
+	IEnumerable<TSource> ThenByDescending<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer)
 		where TKey : notnull
 	{
 		comparer ??= Comparer<TKey>.Default;

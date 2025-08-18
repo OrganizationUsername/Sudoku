@@ -9,10 +9,10 @@ public interface IAverageMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>, 
 	where TSource : INumberBase<TSource>
 {
 	/// <inheritdoc/>
-	public virtual TSource Average() => Sum() / TSource.CreateChecked(Count());
+	TSource Average() => Sum() / TSource.CreateChecked(Count());
 
 	/// <inheritdoc/>
-	public virtual TResult Average<TAccumulator, TResult>()
+	TResult Average<TAccumulator, TResult>()
 		where TAccumulator : INumberBase<TAccumulator>
 		where TResult : INumberBase<TResult>
 	{

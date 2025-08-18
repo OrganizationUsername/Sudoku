@@ -8,5 +8,5 @@ internal interface IDynamicForcingChains : IForcingChains
 	/// <summary>
 	/// Indicates whether the chain is dynamic.
 	/// </summary>
-	public abstract bool IsDynamic { get; }
+	bool IsDynamic { get; }
 }

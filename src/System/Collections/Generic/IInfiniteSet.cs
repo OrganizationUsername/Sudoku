@@ -14,5 +14,5 @@ public interface IInfiniteSet<TSelf, T> : ISet<T> where TSelf : IInfiniteSet<TSe
 	/// </summary>
 	/// <param name="other">The collection to make subraction.</param>
 	/// <returns>An instance as the result.</returns>
-	public abstract TSelf ExceptWith(TSelf other);
+	TSelf ExceptWith(TSelf other);
 }

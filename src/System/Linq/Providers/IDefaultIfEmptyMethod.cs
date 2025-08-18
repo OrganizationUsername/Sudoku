@@ -9,8 +9,8 @@ public interface IDefaultIfEmptyMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TS
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.DefaultIfEmpty{TSource}(IEnumerable{TSource})"/>
-	public virtual IEnumerable<TSource?> DefaultIfEmpty() => Any() ? this : [default];
+	IEnumerable<TSource?> DefaultIfEmpty() => Any() ? this : [default];
 
 	/// <inheritdoc cref="Enumerable.DefaultIfEmpty{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual IEnumerable<TSource> DefaultIfEmpty(TSource defaultValue) => Any() ? this : [defaultValue];
+	IEnumerable<TSource> DefaultIfEmpty(TSource defaultValue) => Any() ? this : [defaultValue];
 }

@@ -9,14 +9,14 @@ public interface IAnyAllMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Any{TSource}(IEnumerable{TSource})"/>
-	public virtual bool Any()
+	bool Any()
 	{
 		using var iterator = GetEnumerator();
 		return iterator.MoveNext();
 	}
 
 	/// <inheritdoc cref="Enumerable.Any{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual bool Any(Func<TSource, bool> predicate)
+	bool Any(Func<TSource, bool> predicate)
 	{
 		foreach (var element in this)
 		{
@@ -29,7 +29,7 @@ public interface IAnyAllMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc cref="Enumerable.All{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public virtual bool All(Func<TSource, bool> predicate)
+	bool All(Func<TSource, bool> predicate)
 	{
 		foreach (var element in this)
 		{

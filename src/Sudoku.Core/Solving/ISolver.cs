@@ -12,7 +12,7 @@ public interface ISolver
 	/// <remarks>
 	/// This property is reserved as information that is offered to the algorithm learners.
 	/// </remarks>
-	public abstract string? UriLink { get; }
+	string? UriLink { get; }
 
 
 	/// <summary>
@@ -46,5 +46,5 @@ public interface ISolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public abstract bool? Solve(in Grid grid, out Grid result);
+	bool? Solve(in Grid grid, out Grid result);
 }

@@ -8,5 +8,5 @@ public interface IToArrayMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IToArrayMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.ToArray{TSource}(IEnumerable{TSource})"/>
-	public virtual TSource[] ToArray() => [.. this];
+	TSource[] ToArray() => [.. this];
 }

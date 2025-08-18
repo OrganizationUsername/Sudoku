@@ -9,7 +9,7 @@ public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
-	public virtual TSource ElementAt(int index)
+	TSource ElementAt(int index)
 	{
 		var i = -1;
 		foreach (var element in this)
@@ -23,7 +23,7 @@ public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, Index)"/>
-	public virtual TSource ElementAt(Index index)
+	TSource ElementAt(Index index)
 	{
 		var targetIndex = index.GetOffset(Count());
 
@@ -39,7 +39,7 @@ public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc cref="Enumerable.ElementAtOrDefault{TSource}(IEnumerable{TSource}, int)"/>
-	public virtual TSource? ElementAtOrDefault(int index)
+	TSource? ElementAtOrDefault(int index)
 	{
 		var i = -1;
 		foreach (var element in this)
@@ -53,7 +53,7 @@ public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc cref="Enumerable.ElementAtOrDefault{TSource}(IEnumerable{TSource}, Index)"/>
-	public virtual TSource? ElementAtOrDefault(Index index)
+	TSource? ElementAtOrDefault(Index index)
 	{
 		var targetIndex = index.GetOffset(Count());
 

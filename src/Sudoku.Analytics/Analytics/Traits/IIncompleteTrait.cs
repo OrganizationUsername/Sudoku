@@ -8,5 +8,5 @@ public interface IIncompleteTrait : ITrait
 	/// <summary>
 	/// Indicates whether the pattern is incomplete.
 	/// </summary>
-	public abstract bool IsIncomplete { get; }
+	bool IsIncomplete { get; }
 }

@@ -9,7 +9,7 @@ public interface ISumMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 {
 	/// <inheritdoc/>
-	public virtual TSource Sum()
+	TSource Sum()
 	{
 		var result = TSource.AdditiveIdentity;
 		foreach (var element in this)

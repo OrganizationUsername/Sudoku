@@ -8,7 +8,7 @@ public interface IChunkMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSelf : IChunkMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Chunk{TSource}(IEnumerable{TSource}, int)"/>
-	public virtual IEnumerable<TSource[]> Chunk(int size)
+	IEnumerable<TSource[]> Chunk(int size)
 	{
 		return size > 0 ? [.. produceValues()] : throw new InvalidOperationException();
 

@@ -8,27 +8,27 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <summary>
 	/// Indicates the complexity of the whole pattern.
 	/// </summary>
-	public abstract int Complexity { get; }
+	int Complexity { get; }
 
 	/// <summary>
 	/// Indicates the digits used in this pattern.
 	/// </summary>
-	public abstract Mask DigitsMask { get; }
+	Mask DigitsMask { get; }
 
 	/// <summary>
 	/// Indicates the conclusions of the pattern.
 	/// </summary>
-	public abstract ReadOnlyMemory<Conclusion> Conclusions { get; }
+	ReadOnlyMemory<Conclusion> Conclusions { get; }
 
 	/// <summary>
 	/// Indicates the complexity of each branch.
 	/// </summary>
-	public abstract ReadOnlySpan<int> BranchedComplexity { get; }
+	ReadOnlySpan<int> BranchedComplexity { get; }
 
 	/// <summary>
 	/// Indicates all possible branches.
 	/// </summary>
-	protected abstract ReadOnlySpan<UnnamedChain> Branches { get; }
+	ReadOnlySpan<UnnamedChain> Branches { get; }
 
 
 	/// <summary>
@@ -38,7 +38,7 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <param name="newConclusions">The conclusions.</param>
 	/// <param name="supportedRules">The supported rules.</param>
 	/// <returns>The views.</returns>
-	public sealed View[] GetViews(in Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
+	sealed View[] GetViews(in Grid grid, Conclusion[] newConclusions, ChainingRuleCollection supportedRules)
 	{
 		var viewNodes = GetViewsCore(grid, supportedRules, newConclusions);
 		var result = new View[viewNodes.Length];
@@ -74,7 +74,7 @@ public interface IForcingChains : IChainOrForcingChains, IFormattable
 	/// <param name="rules">The rules used.</param>
 	/// <param name="newConclusions">The conclusions used.</param>
 	/// <returns>A list of nodes.</returns>
-	protected abstract ReadOnlySpan<ViewNode[]> GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions);
+	protected ReadOnlySpan<ViewNode[]> GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

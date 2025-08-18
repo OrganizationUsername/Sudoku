@@ -10,7 +10,7 @@ public interface IProgramSupportedFileHandler<T> where T : notnull, allows ref s
 	/// <summary>
 	/// Indicates the supported file extension.
 	/// </summary>
-	public static abstract string SupportedFileExtension { get; }
+	static abstract string SupportedFileExtension { get; }
 
 
 	/// <summary>
@@ -18,12 +18,12 @@ public interface IProgramSupportedFileHandler<T> where T : notnull, allows ref s
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <returns>The parsed instance.</returns>
-	public static abstract T? Read(string filePath);
+	static abstract T? Read(string filePath);
 
 	/// <summary>
 	/// Writes the specified instance, and output the content into the target file path.
 	/// </summary>
 	/// <param name="filePath">The file path.</param>
 	/// <param name="instance">The instance to be written.</param>
-	public static abstract void Write(string filePath, T instance);
+	static abstract void Write(string filePath, T instance);
 }

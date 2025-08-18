@@ -8,7 +8,7 @@ public interface ISelectMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, T
 	where TSelf : ISelectMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public virtual IEnumerable<TResult> Select<TResult>(Func<TSource, TResult> selector)
+	IEnumerable<TResult> Select<TResult>(Func<TSource, TResult> selector)
 	{
 		var result = new List<TResult>();
 		foreach (var element in this)
@@ -19,7 +19,7 @@ public interface ISelectMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, T
 	}
 
 	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, int, TResult})"/>
-	public virtual IEnumerable<TResult> Select<TResult>(Func<TSource, int, TResult> selector)
+	IEnumerable<TResult> Select<TResult>(Func<TSource, int, TResult> selector)
 	{
 		var result = new List<TResult>();
 		var i = 0;

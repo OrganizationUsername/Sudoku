@@ -9,20 +9,20 @@ public interface IPatternType3StepTrait<TSelf> : ITrait where TSelf : Step, IPat
 	/// <summary>
 	/// Indicates whether the subset is hidden.
 	/// </summary>
-	public abstract bool IsHidden { get; }
+	bool IsHidden { get; }
 
 	/// <summary>
 	/// Indicates the size of the subset. The value may not be equal to the length of <see cref="SubsetCells"/>.
 	/// </summary>
-	public abstract int SubsetSize { get; }
+	int SubsetSize { get; }
 
 	/// <summary>
 	/// Indicates the digits mask including all digits appeared in the subset.
 	/// </summary>
-	public abstract Mask SubsetDigitsMask { get; }
+	Mask SubsetDigitsMask { get; }
 
 	/// <summary>
 	/// Indicates the subset cells.
 	/// </summary>
-	public abstract CellMap SubsetCells { get; }
+	CellMap SubsetCells { get; }
 }

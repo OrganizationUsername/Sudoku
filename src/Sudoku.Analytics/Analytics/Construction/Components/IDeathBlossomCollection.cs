@@ -12,7 +12,7 @@ internal interface IDeathBlossomCollection<TSelf, TKey> : IComponent
 	/// <summary>
 	/// Indicates the branches used.
 	/// </summary>
-	public abstract TSelf Branches { get; }
+	TSelf Branches { get; }
 
 	/// <inheritdoc/>
 	ComponentType IComponent.Type => ComponentType.DeathBlossomBranch;

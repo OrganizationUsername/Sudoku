@@ -12,7 +12,7 @@ public interface IHasMethod<TSelf, TSource> : ICustomLinqMethod<TSelf, TSource>
 	/// </summary>
 	/// <typeparam name="T">The type of the constraint to be checked.</typeparam>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public virtual bool Has<T>() where T : TSource
+	bool Has<T>() where T : TSource
 	{
 		foreach (var element in this)
 		{

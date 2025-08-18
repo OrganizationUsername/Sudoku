@@ -15,7 +15,7 @@ internal interface IParentLinkedNode<TSelf> :
 	/// <summary>
 	/// Indicates the length of ancestors.
 	/// </summary>
-	public sealed int AncestorsLength
+	sealed int AncestorsLength
 	{
 		get
 		{
@@ -31,7 +31,7 @@ internal interface IParentLinkedNode<TSelf> :
 	/// <summary>
 	/// Indicates all ancestor nodes of the current node.
 	/// </summary>
-	public sealed ReadOnlySpan<TSelf> Ancestors
+	sealed ReadOnlySpan<TSelf> Ancestors
 	{
 		get
 		{
@@ -48,12 +48,12 @@ internal interface IParentLinkedNode<TSelf> :
 	/// <summary>
 	/// Indicates the parent node.
 	/// </summary>
-	public abstract TSelf? Parent { get; }
+	TSelf? Parent { get; }
 
 	/// <summary>
 	/// Indicates the root node.
 	/// </summary>
-	public abstract TSelf Root { get; }
+	TSelf Root { get; }
 
 
 	/// <summary>
@@ -61,7 +61,7 @@ internal interface IParentLinkedNode<TSelf> :
 	/// </summary>
 	/// <param name="childNode">The node to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public virtual bool IsAncestorOf(TSelf childNode)
+	bool IsAncestorOf(TSelf childNode)
 	{
 		for (var node = childNode; node is not null; node = node.Parent)
 		{
@@ -74,7 +74,7 @@ internal interface IParentLinkedNode<TSelf> :
 	}
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(IFormatProvider? formatProvider);
+	string ToString(IFormatProvider? formatProvider);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -86,7 +86,7 @@ internal interface IParentLinkedNode<TSelf> :
 	/// <param name="current">The current node.</param>
 	/// <param name="parent">The parent node.</param>
 	/// <returns>The new node created.</returns>
-	public static abstract TSelf operator >>(TSelf current, TSelf? parent);
+	static abstract TSelf operator >>(TSelf current, TSelf? parent);
 
 	/// <inheritdoc cref="IShiftOperators{TSelf, TOther, TResult}.op_LeftShift(TSelf, TOther)"/>
 	static TSelf IShiftOperators<TSelf, TSelf, TSelf>.operator <<(TSelf? parent, TSelf current) => current >> parent;

@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Construction;
 public interface IComponent : IConstructible<ComponentType>
 {
 	/// <inheritdoc cref="IConstructible{TEnum}.Type"/>
-	public new abstract ComponentType Type { get; }
+	new ComponentType Type { get; }
 
 	/// <inheritdoc/>
 	ComponentType IConstructible<ComponentType>.Type => Type;

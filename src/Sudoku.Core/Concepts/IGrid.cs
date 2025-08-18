@@ -38,76 +38,76 @@ public interface IGrid<TSelf> :
 	/// <summary>
 	/// Determines whether the current grid contains any missing candidates.
 	/// </summary>
-	public abstract bool IsMissingCandidates { get; }
+	bool IsMissingCandidates { get; }
 
 	/// <summary>
 	/// Indicates whether the grid is <see cref="Empty"/>, which means the grid holds totally same value with <see cref="Empty"/>.
 	/// </summary>
 	/// <seealso cref="Empty"/>
-	public virtual bool IsEmpty => (TSelf)this == TSelf.Empty;
+	bool IsEmpty => (TSelf)this == TSelf.Empty;
 
 	/// <summary>
 	/// Indicates whether the grid is <see cref="Undefined"/>, which means the grid holds totally same value with <see cref="Undefined"/>.
 	/// </summary>
 	/// <seealso cref="Undefined"/>
-	public virtual bool IsUndefined => (TSelf)this == TSelf.Undefined;
+	bool IsUndefined => (TSelf)this == TSelf.Undefined;
 
 	/// <summary>
 	/// Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
 	/// otherwise, <see langword="false"/>.
 	/// </summary>
-	public abstract bool IsSolved { get; }
+	bool IsSolved { get; }
 
 	/// <summary>
 	/// Try to get the symmetry of the puzzle.
 	/// </summary>
-	public virtual SymmetricType Symmetry => GivenCells.Symmetry;
+	SymmetricType Symmetry => GivenCells.Symmetry;
 
 	/// <summary>
 	/// Indicates the total number of given cells.
 	/// </summary>
-	public virtual Cell GivenCellsCount => GivenCells.Count;
+	Cell GivenCellsCount => GivenCells.Count;
 
 	/// <summary>
 	/// Indicates the total number of modifiable cells.
 	/// </summary>
-	public virtual Cell ModifiableCellsCount => ModifiableCells.Count;
+	Cell ModifiableCellsCount => ModifiableCells.Count;
 
 	/// <summary>
 	/// Indicates the total number of empty cells.
 	/// </summary>
-	public virtual Cell EmptyCellsCount => EmptyCells.Count;
+	Cell EmptyCellsCount => EmptyCells.Count;
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
-	public abstract CellMap GivenCells { get; }
+	CellMap GivenCells { get; }
 
 	/// <summary>
 	/// Gets a cell list that only contains the modifiable cells.
 	/// </summary>
-	public abstract CellMap ModifiableCells { get; }
+	CellMap ModifiableCells { get; }
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid is empty.
 	/// </summary>
-	public abstract CellMap EmptyCells { get; }
+	CellMap EmptyCells { get; }
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
 	/// </summary>
-	public abstract CellMap BivalueCells { get; }
+	CellMap BivalueCells { get; }
 
 	/// <summary>
 	/// Indicates the number of total candidates.
 	/// </summary>
-	public abstract Candidate CandidatesCount { get; }
+	Candidate CandidatesCount { get; }
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public abstract ReadOnlySpan<CellMap> CandidatesMap { get; }
+	ReadOnlySpan<CellMap> CandidatesMap { get; }
 
 	/// <summary>
 	/// <para>
@@ -120,7 +120,7 @@ public interface IGrid<TSelf> :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public abstract ReadOnlySpan<CellMap> DigitsMap { get; }
+	ReadOnlySpan<CellMap> DigitsMap { get; }
 
 	/// <summary>
 	/// <para>
@@ -133,17 +133,17 @@ public interface IGrid<TSelf> :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public abstract ReadOnlySpan<CellMap> ValuesMap { get; }
+	ReadOnlySpan<CellMap> ValuesMap { get; }
 
 	/// <summary>
 	/// Indicates all possible candidates in the current grid.
 	/// </summary>
-	public abstract ReadOnlySpan<Candidate> Candidates { get; }
+	ReadOnlySpan<Candidate> Candidates { get; }
 
 	/// <summary>
 	/// Indicates all possible conjugate pairs appeared in this grid.
 	/// </summary>
-	public abstract ReadOnlySpan<Conjugate> ConjugatePairs { get; }
+	ReadOnlySpan<Conjugate> ConjugatePairs { get; }
 
 	/// <summary>
 	/// <para>Indicates which houses are empty houses.</para>
@@ -154,28 +154,28 @@ public interface IGrid<TSelf> :
 	/// the result <see cref="HouseMask"/> value, <c>000010000_000010000_000010000</c> as binary.
 	/// </para>
 	/// </summary>
-	public abstract HouseMask EmptyHouses { get; }
+	HouseMask EmptyHouses { get; }
 
 	/// <summary>
 	/// <para>Indicates which houses are completed, regardless of ways of filling.</para>
 	/// <para><inheritdoc cref="EmptyHouses" path="//summary/para[3]"/></para>
 	/// </summary>
-	public abstract HouseMask CompletedHouses { get; }
+	HouseMask CompletedHouses { get; }
 
 	/// <summary>
 	/// Gets the grid where all modifiable cells are empty cells (i.e. the initial one).
 	/// </summary>
-	public abstract TSelf ResetGrid { get; }
+	TSelf ResetGrid { get; }
 
 	/// <summary>
 	/// Indicates the unfixed grid for the current grid, meaning all given digits will be replaced with modifiable ones.
 	/// </summary>
-	public abstract TSelf UnfixedGrid { get; }
+	TSelf UnfixedGrid { get; }
 
 	/// <summary>
 	/// Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
 	/// </summary>
-	public abstract TSelf FixedGrid { get; }
+	TSelf FixedGrid { get; }
 
 	/// <summary>
 	/// Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
@@ -218,39 +218,39 @@ public interface IGrid<TSelf> :
 	/// <seealso cref="CellState"/>
 	/// <seealso cref="SudokuType"/>
 	[UnscopedRef]
-	protected abstract ref readonly Mask FirstMaskRef { get; }
+	protected ref readonly Mask FirstMaskRef { get; }
 
 
 	/// <summary>
 	/// Represents a string value that describes a <typeparamref name="TSelf"/> instance can be parsed into <see cref="Empty"/>.
 	/// </summary>
 	/// <seealso cref="Empty"/>
-	public static abstract string EmptyString { get; }
+	static abstract string EmptyString { get; }
 
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 	/// </summary>
-	public static virtual Mask DefaultMask => (Mask)(TSelf.EmptyMask | TSelf.MaxCandidatesMask);
+	static virtual Mask DefaultMask => (Mask)(TSelf.EmptyMask | TSelf.MaxCandidatesMask);
 
 	/// <summary>
 	/// Indicates the empty mask, modifiable mask and given mask.
 	/// </summary>
-	public static abstract Mask EmptyMask { get; }
+	static abstract Mask EmptyMask { get; }
 
 	/// <summary>
 	/// Indicates the modifiable mask.
 	/// </summary>
-	public static abstract Mask ModifiableMask { get; }
+	static abstract Mask ModifiableMask { get; }
 
 	/// <summary>
 	/// Indicates the given mask.
 	/// </summary>
-	public static abstract Mask GivenMask { get; }
+	static abstract Mask GivenMask { get; }
 
 	/// <summary>
 	/// Indicates the maximum candidate mask that used.
 	/// </summary>
-	public static abstract Mask MaxCandidatesMask { get; }
+	static abstract Mask MaxCandidatesMask { get; }
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program
@@ -260,7 +260,7 @@ public interface IGrid<TSelf> :
 	/// This field is initialized by the static constructor of this structure.
 	/// </remarks>
 	/// <seealso cref="DefaultMask"/>
-	public static abstract ref readonly TSelf Empty { get; }
+	static abstract ref readonly TSelf Empty { get; }
 
 	/// <summary>
 	/// Indicates the default grid that all values are initialized 0.
@@ -269,7 +269,7 @@ public interface IGrid<TSelf> :
 	/// <remarks>
 	/// This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
 	/// </remarks>
-	public static abstract ref readonly TSelf Undefined { get; }
+	static abstract ref readonly TSelf Undefined { get; }
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -294,7 +294,7 @@ public interface IGrid<TSelf> :
 	/// </summary>
 	/// <param name="cells">A list of desired cells.</param>
 	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public abstract Mask this[in CellMap cells] { get; }
+	Mask this[in CellMap cells] { get; }
 
 	/// <summary>
 	/// <inheritdoc cref="this[in CellMap]" path="/summary"/>
@@ -329,50 +329,50 @@ public interface IGrid<TSelf> :
 	/// </param>
 	/// <returns><inheritdoc cref="this[in CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="aggregator"/> is not defined.</exception>
-	public abstract Mask this[in CellMap cells, bool withValueCells, MaskAggregator aggregator = MaskAggregator.Or] { get; }
+	Mask this[in CellMap cells, bool withValueCells, MaskAggregator aggregator = MaskAggregator.Or] { get; }
 
 
 	/// <summary>
 	/// Reset the sudoku grid, making all modifiable values to empty ones.
 	/// </summary>
-	public abstract void Reset();
+	void Reset();
 
 	/// <summary>
 	/// Fix the current grid, making all modifiable values will be changed to given ones.
 	/// </summary>
-	public abstract void Fix();
+	void Fix();
 
 	/// <summary>
 	/// Unfix the current grid, making all given values will be changed to modifiable ones.
 	/// </summary>
-	public abstract void Unfix();
+	void Unfix();
 
 	/// <summary>
 	/// Try to apply the specified conclusion.
 	/// </summary>
 	/// <param name="conclusion">The conclusion to be applied.</param>
-	public abstract void Apply(Conclusion conclusion);
+	void Apply(Conclusion conclusion);
 
 	/// <summary>
 	/// Set the specified cell to the specified state.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="state">The state.</param>
-	public abstract void SetState(Cell cell, CellState state);
+	void SetState(Cell cell, CellState state);
 
 	/// <summary>
 	/// Set the specified cell with specified candidates.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask that holds a list of desired digits.</param>
-	public abstract void SetCandidates(Cell cell, Mask mask);
+	void SetCandidates(Cell cell, Mask mask);
 
 	/// <summary>
 	/// Set the specified cell to the specified mask.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask to set.</param>
-	public abstract void SetMask(Cell cell, Mask mask);
+	void SetMask(Cell cell, Mask mask);
 
 	/// <summary>
 	/// Set the specified digit into the specified cell.
@@ -389,7 +389,7 @@ public interface IGrid<TSelf> :
 	/// If the cell is a given cell, the setter will do nothing.
 	/// </para>
 	/// </param>
-	public abstract void SetDigit(Cell cell, Digit digit);
+	void SetDigit(Cell cell, Digit digit);
 
 	/// <summary>
 	/// Sets the target candidate state.
@@ -400,24 +400,24 @@ public interface IGrid<TSelf> :
 	/// The case you want to set. <see langword="false"/> means that this candidate
 	/// doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
 	/// </param>
-	public abstract void SetExistence(Cell cell, Digit digit, bool isOn);
+	void SetExistence(Cell cell, Digit digit, bool isOn);
 
 	/// <summary>
 	/// Sets a candidate existence case with a <see cref="bool"/> value.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <inheritdoc cref="SetExistence(Cell, Digit, bool)"/>
-	public abstract bool GetExistence(Cell cell, Digit digit);
+	bool GetExistence(Cell cell, Digit digit);
 
 	/// <inheritdoc cref="object.Equals(object?)"/>
-	public abstract bool Equals([NotNullWhen(true)] object? other);
+	bool Equals([NotNullWhen(true)] object? other);
 
 	/// <summary>
 	/// Determines whether the current instance has same mask values with the other object.
 	/// </summary>
 	/// <param name="other">The other instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public abstract bool Equals(in TSelf other);
+	bool Equals(in TSelf other);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell is conflict with a certain cell in the peers of the current cell,
@@ -426,10 +426,10 @@ public interface IGrid<TSelf> :
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public abstract bool ConflictWith(Cell cell, Digit digit);
+	bool ConflictWith(Cell cell, Digit digit);
 
 	/// <inheritdoc cref="Exists(Cell, Digit)"/>
-	public virtual bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
+	bool? Exists(Candidate candidate) => Exists(candidate / 9, candidate % 9);
 
 	/// <summary>
 	/// Indicates whether the current grid contains the digit in the specified cell.
@@ -476,29 +476,29 @@ public interface IGrid<TSelf> :
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="GetExistence(Cell, Digit)"/>
-	public abstract bool? Exists(Cell cell, Digit digit);
+	bool? Exists(Cell cell, Digit digit);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
-	public abstract int GetHashCode();
+	int GetHashCode();
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
-	public abstract int CompareTo(in TSelf other);
+	int CompareTo(in TSelf other);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public abstract string ToString();
+	string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public virtual string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
+	string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public virtual string ToString(string? format) => ToString(format, null);
+	string ToString(string? format) => ToString(format, null);
 
 	/// <summary>
 	/// Get the cell state at the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The cell state.</returns>
-	public abstract CellState GetState(Cell cell);
+	CellState GetState(Cell cell);
 
 	/// <summary>
 	/// Get the candidate mask part of the specified cell.
@@ -523,7 +523,7 @@ public interface IGrid<TSelf> :
 	/// the value will indicate the cell contains the digit 2, 4 and 9.
 	/// </para>
 	/// </returns>
-	public abstract Mask GetCandidates(Cell cell);
+	Mask GetCandidates(Cell cell);
 
 	/// <summary>
 	/// Try to get the digit filled in the specified cell.
@@ -531,7 +531,7 @@ public interface IGrid<TSelf> :
 	/// <param name="cell">The cell used.</param>
 	/// <returns>The digit that the current cell filled. If the cell is empty, return -1.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the specified cell keeps a wrong cell state value.</exception>
-	public abstract Digit GetDigit(Cell cell);
+	Digit GetDigit(Cell cell);
 
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
@@ -541,14 +541,14 @@ public interface IGrid<TSelf> :
 	/// that are between 0 and <see cref="MaxCandidatesMask"/> (i.e. 511).
 	/// </returns>
 	/// <seealso cref="MaxCandidatesMask"/>
-	public abstract Mask[] ToCandidateMaskArray();
+	Mask[] ToCandidateMaskArray();
 
 	/// <summary>
 	/// Try to create a new array of <see cref="Digit"/> instances indicating filling digits inside cells.
 	/// </summary>
 	/// <returns>An array of <see cref="Digit"/> instances.</returns>
 	/// <seealso cref="Digit"/>
-	public abstract Digit[] ToDigitsArray();
+	Digit[] ToDigitsArray();
 
 	/// <inheritdoc/>
 	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(other);
@@ -567,7 +567,7 @@ public interface IGrid<TSelf> :
 
 
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
-	public static new virtual bool TryParse(string? s, IFormatProvider? formatProvider, out TSelf result)
+	static new virtual bool TryParse(string? s, IFormatProvider? formatProvider, out TSelf result)
 	{
 		try
 		{
@@ -582,7 +582,7 @@ public interface IGrid<TSelf> :
 	}
 
 	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static new virtual bool TryParse(ReadOnlySpan<char> s, IFormatProvider? formatProvider, out TSelf result)
+	static new virtual bool TryParse(ReadOnlySpan<char> s, IFormatProvider? formatProvider, out TSelf result)
 	{
 		try
 		{
@@ -597,23 +597,23 @@ public interface IGrid<TSelf> :
 	}
 
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
-	public static virtual bool TryParse(string? s, out TSelf result) => TSelf.TryParse(s, null, out result);
+	static virtual bool TryParse(string? s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
 	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
-	public static virtual bool TryParse(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
+	static virtual bool TryParse(ReadOnlySpan<char> s, out TSelf result) => TSelf.TryParse(s, null, out result);
 
 	/// <summary>
 	/// Creates a <typeparamref name="TSelf"/> instance via the specified list of <see cref="Mask"/> values.
 	/// </summary>
 	/// <param name="values">The values to be created.</param>
 	/// <returns>A <typeparamref name="TSelf"/> instance created.</returns>
-	public static abstract TSelf Create(ReadOnlySpan<Mask> values);
+	static abstract TSelf Create(ReadOnlySpan<Mask> values);
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string?, IFormatProvider?)"/>
-	public static virtual TSelf Parse(string? s) => TSelf.Parse(s, null);
+	static virtual TSelf Parse(string? s) => TSelf.Parse(s, null);
 
 	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
-	public static virtual TSelf Parse(ReadOnlySpan<char> s) => TSelf.Parse(s, null);
+	static virtual TSelf Parse(ReadOnlySpan<char> s) => TSelf.Parse(s, null);
 
 	/// <summary>
 	/// Event handler on value changed.
@@ -685,22 +685,22 @@ public interface IGrid<TSelf> :
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	public static abstract bool operator ==(in TSelf left, in TSelf right);
+	static abstract bool operator ==(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	public static abstract bool operator !=(in TSelf left, in TSelf right);
+	static abstract bool operator !=(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
-	public static abstract bool operator >(in TSelf left, in TSelf right);
+	static abstract bool operator >(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
-	public static abstract bool operator >=(in TSelf left, in TSelf right);
+	static abstract bool operator >=(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
-	public static abstract bool operator <(in TSelf left, in TSelf right);
+	static abstract bool operator <(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
-	public static abstract bool operator <=(in TSelf left, in TSelf right);
+	static abstract bool operator <=(in TSelf left, in TSelf right);
 
 	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;

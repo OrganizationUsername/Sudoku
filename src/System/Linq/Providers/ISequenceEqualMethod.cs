@@ -9,10 +9,10 @@ public interface ISequenceEqualMethod<TSelf, TSource> : ILinqMethod<TSelf, TSour
 	where TSource : notnull
 {
 	/// <inheritdoc cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
-	public virtual bool SequenceEqual(IEnumerable<TSource> second) => SequenceEqual(second, null);
+	bool SequenceEqual(IEnumerable<TSource> second) => SequenceEqual(second, null);
 
 	/// <inheritdoc cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource}, IEnumerable{TSource}, IEqualityComparer{TSource}?)"/>
-	public virtual bool SequenceEqual(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+	bool SequenceEqual(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
 	{
 		using var e1 = GetEnumerator();
 		using var e2 = second.GetEnumerator();

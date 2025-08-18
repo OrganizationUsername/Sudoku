@@ -40,13 +40,13 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
-	public new abstract int Count { get; }
+	new int Count { get; }
 
 	/// <summary>
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
 	/// all offset values (cell indices and candidate indices), grouped with same row/column.
 	/// </summary>
-	public virtual ReadOnlySpan<string> StringChunks
+	ReadOnlySpan<string> StringChunks
 		=> (TSelf)this ? ToString().Split([',', ' '], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries) : [];
 
 	/// <summary>
@@ -56,17 +56,17 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// A <b>Peer Intersection</b> is a set of offsets that all offsets from the base collection can be seen.
 	/// For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
 	/// </remarks>
-	public abstract TSelf PeerIntersection { get; }
+	TSelf PeerIntersection { get; }
 
 	/// <summary>
 	/// Indicates the size of each unit.
 	/// </summary>
-	protected abstract int Shifting { get; }
+	protected int Shifting { get; }
 
 	/// <summary>
 	/// Indicates the offsets in this collection.
 	/// </summary>
-	protected abstract TElement[] Offsets { get; }
+	protected TElement[] Offsets { get; }
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
@@ -75,12 +75,12 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <summary>
 	/// Indicates an empty instance containing no elements.
 	/// </summary>
-	public static abstract ref readonly TSelf Empty { get; }
+	static abstract ref readonly TSelf Empty { get; }
 
 	/// <summary>
 	/// Indicates an instance that contains all possible elements.
 	/// </summary>
-	public static abstract ref readonly TSelf Full { get; }
+	static abstract ref readonly TSelf Full { get; }
 
 	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
@@ -98,7 +98,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
-	public abstract TElement this[TElement index] { get; }
+	TElement this[TElement index] { get; }
 
 	/// <inheritdoc/>
 	TElement IReadOnlyList<TElement>.this[int index] => this[index];
@@ -112,7 +112,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be added.</returns>
-	public abstract int AddRange(ReadOnlySpan<TElement> offsets);
+	int AddRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Removes a list of offsets from the current collection.
@@ -122,7 +122,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
-	public abstract int RemoveRange(ReadOnlySpan<TElement> offsets);
+	int RemoveRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Copies the current instance to the target sequence specified as a reference
@@ -138,26 +138,26 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public abstract void CopyTo(ref TElement sequence, int length);
+	void CopyTo(ref TElement sequence, int length);
 
 	/// <summary>
 	/// Iterates on each element in this collection.
 	/// </summary>
 	/// <param name="action">The visitor that handles for each element in this collection.</param>
-	public abstract void ForEach(Action<TElement> action);
+	void ForEach(Action<TElement> action);
 
 	/// <summary>
 	/// Try to toggle the offset, which means the value will be added if not exist in collection, or removed if exists.
 	/// </summary>
 	/// <param name="offset">The offset to be added or removed.</param>
-	public abstract void Toggle(TElement offset);
+	void Toggle(TElement offset);
 
 	/// <summary>
 	/// Try to get the specified index of the offset.
 	/// </summary>
 	/// <param name="offset">The desired offset.</param>
 	/// <returns>The index of the offset.</returns>
-	public abstract int IndexOf(TElement offset);
+	int IndexOf(TElement offset);
 
 	/// <summary>
 	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
@@ -193,22 +193,22 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// If all rules are compared, but they are still considered equal, then return 0.
 	/// </para>
 	/// </returns>
-	public abstract int CompareTo(in TSelf other);
+	int CompareTo(in TSelf other);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public abstract bool Equals(in TSelf other);
+	bool Equals(in TSelf other);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public virtual string ToString() => ToString(null);
+	string ToString() => ToString(null);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(IFormatProvider? formatProvider);
+	string ToString(IFormatProvider? formatProvider);
 
 	/// <summary>
 	/// Returns an array of <typeparamref name="TElement"/> offsets having stored in the current collection.
 	/// </summary>
 	/// <returns>An array of offsets.</returns>
-	public abstract TElement[] ToArray();
+	TElement[] ToArray();
 
 	/// <summary>
 	/// Slices the current instance, and get the new instance with some of elements between two indices.
@@ -216,13 +216,13 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="start">The start index.</param>
 	/// <param name="count">The number of elements.</param>
 	/// <returns>The target instance.</returns>
-	public abstract TSelf Slice(int start, int count);
+	TSelf Slice(int start, int count);
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
-	public new abstract AnonymousSpanEnumerator<TElement> GetEnumerator();
+	new AnonymousSpanEnumerator<TElement> GetEnumerator();
 
 	/// <inheritdoc/>
 	void ICollection<TElement>.Clear() => Clear();
@@ -419,31 +419,31 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// Performs bitwise-and operation and assign the value to the current instance.
 	/// </summary>
 	/// <param name="value">The instance.</param>
-	public abstract void operator &=(in TSelf value);
+	void operator &=(in TSelf value);
 
 	/// <summary>
 	/// Performs bitwise-or operation and assign the value to the current instance.
 	/// </summary>
 	/// <param name="value">The instance.</param>
-	public abstract void operator |=(in TSelf value);
+	void operator |=(in TSelf value);
 
 	/// <summary>
 	/// Performs bitwise-exclusive-or operation and assign the value to the current instance.
 	/// </summary>
 	/// <param name="value">The instance.</param>
-	public abstract void operator ^=(in TSelf value);
+	void operator ^=(in TSelf value);
 
 	/// <summary>
 	/// Performs adding operation and assign the value to the current instance.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	public virtual void operator +=(TElement offset) => Add(offset);
+	void operator +=(TElement offset) => Add(offset);
 
 	/// <summary>
 	/// Performs removing operation and assign the value to the current instance.
 	/// </summary>
 	/// <param name="offset">The offset.</param>
-	public virtual void operator -=(TElement offset) => Remove(offset);
+	void operator -=(TElement offset) => Remove(offset);
 #endif
 
 	/// <summary>
@@ -461,7 +461,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
 	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
 	/// </remarks>
-	public static abstract bool operator !(in TSelf offsets);
+	static abstract bool operator !(in TSelf offsets);
 
 	/// <summary>
 	/// Reverse state for all offsets, which means all <see langword="true"/> bits
@@ -470,27 +470,27 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// </summary>
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
-	public static abstract TSelf operator ~(in TSelf offsets);
+	static abstract TSelf operator ~(in TSelf offsets);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
 	/// </summary>
 	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static abstract bool operator true(in TSelf map);
+	static abstract bool operator true(in TSelf map);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
 	/// </summary>
 	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static abstract bool operator false(in TSelf map);
+	static abstract bool operator false(in TSelf map);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	public static abstract bool operator ==(in TSelf left, in TSelf right);
+	static abstract bool operator ==(in TSelf left, in TSelf right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	public static abstract bool operator !=(in TSelf left, in TSelf right);
+	static abstract bool operator !=(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -499,7 +499,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
-	public static abstract TSelf operator +(in TSelf collection, TElement offset);
+	static abstract TSelf operator +(in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -508,7 +508,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	public static abstract TSelf operator -(in TSelf collection, TElement offset);
+	static abstract TSelf operator -(in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
@@ -516,7 +516,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	public static abstract TSelf operator &(in TSelf left, in TSelf right);
+	static abstract TSelf operator &(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
@@ -525,7 +525,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	public static abstract TSelf operator |(in TSelf left, in TSelf right);
+	static abstract TSelf operator |(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -533,7 +533,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
+	static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
@@ -558,7 +558,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	public static virtual TSelf operator %(in TSelf @base, in TSelf template) => (@base & template).PeerIntersection & template;
+	static virtual TSelf operator %(in TSelf @base, in TSelf template) => (@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
@@ -596,7 +596,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// and the argument <paramref name="subsetSize"/> is 2,
 	/// the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
-	public static abstract ReadOnlySpan<TSelf> operator &(in TSelf map, int subsetSize);
+	static abstract ReadOnlySpan<TSelf> operator &(in TSelf map, int subsetSize);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -608,7 +608,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// All possible subsets. If <paramref name="subsetSize"/> is greater than <see cref="Count"/>,
 	/// this method will return all possible subsets without throwing exceptions.
 	/// </returns>
-	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, int subsetSize);
+	static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, int subsetSize);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified range of the subset size.
@@ -616,7 +616,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="map">The instance to check subsets.</param>
 	/// <param name="subsetSizeRange">The desired size.</param>
 	/// <returns>All possible subsets.</returns>
-	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, Range subsetSizeRange);
+	static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, Range subsetSizeRange);
 
 	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator !(TSelf value) => !value;

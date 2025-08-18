@@ -8,5 +8,5 @@ public interface IComparisonOperatorConstraint
 	/// <summary>
 	/// Indicates the comparison operator used.
 	/// </summary>
-	public abstract ComparisonOperator Operator { get; set; }
+	ComparisonOperator Operator { get; set; }
 }

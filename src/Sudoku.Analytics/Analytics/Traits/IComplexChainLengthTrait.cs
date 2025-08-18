@@ -8,5 +8,5 @@ public interface IComplexChainLengthTrait : ITrait
 	/// <summary>
 	/// Indicates the length of complex chain.
 	/// </summary>
-	public abstract int ComplexLength { get; }
+	int ComplexLength { get; }
 }

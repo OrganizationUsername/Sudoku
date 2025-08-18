@@ -8,7 +8,7 @@ public interface IBehaviorMetric
 	/// <summary>
 	/// Indicates a behavior to be measured.
 	/// </summary>
-	public static abstract UserBehavior MeasurableBehavior { get; }
+	static abstract UserBehavior MeasurableBehavior { get; }
 
 
 	/// <summary>
@@ -28,7 +28,7 @@ public interface IBehaviorMetric
 	/// argument <paramref name="stepsAll"/> will record the usages of all techniques (including direct and indirect techniques);
 	/// and argument <paramref name="steps"/> only records for direct technique usages.
 	/// </remarks>
-	public static abstract ReadOnlySpan<int> GetDistanceArray(
+	static abstract ReadOnlySpan<int> GetDistanceArray(
 		Collector collector,
 		in Grid grid,
 		out ReadOnlySpan<KeyValuePair<SingleStep, Grid>> steps,

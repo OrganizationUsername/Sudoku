@@ -8,10 +8,10 @@ public interface IIntersectionMethod<TSelf, TSource> : ILinqMethod<TSelf, TSourc
 	where TSelf : IIntersectionMethod<TSelf, TSource>, allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Intersect{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
-	public virtual IEnumerable<TSource> Intersect(IEnumerable<TSource> second) => Intersect(second, null);
+	IEnumerable<TSource> Intersect(IEnumerable<TSource> second) => Intersect(second, null);
 
 	/// <inheritdoc cref="Enumerable.Intersect{TSource}(IEnumerable{TSource}, IEnumerable{TSource}, IEqualityComparer{TSource}?)"/>
-	public virtual IEnumerable<TSource> Intersect(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
+	IEnumerable<TSource> Intersect(IEnumerable<TSource> second, IEqualityComparer<TSource>? comparer)
 	{
 		comparer ??= EqualityComparer<TSource>.Default;
 

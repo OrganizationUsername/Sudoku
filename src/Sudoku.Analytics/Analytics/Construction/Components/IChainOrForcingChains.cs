@@ -8,7 +8,7 @@ public interface IChainOrForcingChains : IComponent
 	/// <summary>
 	/// Indicates whether the pattern is grouped (i.e. contains a node uses at least 2 candidates).
 	/// </summary>
-	public abstract bool IsGrouped { get; }
+	bool IsGrouped { get; }
 
 	/// <summary>
 	/// Indicates whether the pattern is strictly grouped,
@@ -16,9 +16,9 @@ public interface IChainOrForcingChains : IComponent
 	/// or returns <see langword="true"/> from property <see cref="IsGrouped"/>.
 	/// </summary>
 	/// <seealso cref="IsGrouped"/>
-	public abstract bool IsStrictlyGrouped { get; }
+	bool IsStrictlyGrouped { get; }
 
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(IFormatProvider? formatProvider);
+	string ToString(IFormatProvider? formatProvider);
 }

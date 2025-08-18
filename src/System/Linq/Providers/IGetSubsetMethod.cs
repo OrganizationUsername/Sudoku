@@ -22,7 +22,7 @@ public interface IGetSubsetMethod<TSelf, TSource> :
 	/// ]]></code>
 	/// 3 cases.
 	/// </returns>
-	public virtual IEnumerable<TSource[]> GetSubsets(int subsetSize)
+	IEnumerable<TSource[]> GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0)
 		{

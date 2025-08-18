@@ -9,15 +9,15 @@ public interface IAggregateMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
-	public virtual TSource? Aggregate(Func<TSource?, TSource?, TSource> func) => Aggregate(default, func, Func<TSource?>.Self);
+	TSource? Aggregate(Func<TSource?, TSource?, TSource> func) => Aggregate(default, func, Func<TSource?>.Self);
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
-	public virtual TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+	TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 		where TAccumulate : allows ref struct
 		=> Aggregate(seed, func, Func<TAccumulate>.Self);
 
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate, TResult}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate}, Func{TAccumulate, TResult})"/>
-	public virtual TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
+	TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 		where TAccumulate : allows ref struct
 		where TResult : allows ref struct
 	{

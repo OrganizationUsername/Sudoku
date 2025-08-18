@@ -9,5 +9,5 @@ public interface IConcatMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Concat{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
-	public virtual IEnumerable<TSource> Concat(IEnumerable<TSource> second) => [.. this, .. second];
+	IEnumerable<TSource> Concat(IEnumerable<TSource> second) => [.. this, .. second];
 }

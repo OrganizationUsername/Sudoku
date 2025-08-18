@@ -8,5 +8,5 @@ public interface ICellListTrait : ITrait
 	/// <summary>
 	/// Indicates the number of cells.
 	/// </summary>
-	public abstract int CellSize { get; }
+	int CellSize { get; }
 }

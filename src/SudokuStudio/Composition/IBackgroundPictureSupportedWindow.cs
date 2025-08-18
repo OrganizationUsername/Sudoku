@@ -8,5 +8,5 @@ internal interface IBackgroundPictureSupportedWindow
 	/// <summary>
 	/// Indicates the root grid layout.
 	/// </summary>
-	public abstract Panel RootGridLayout { get; }
+	Panel RootGridLayout { get; }
 }

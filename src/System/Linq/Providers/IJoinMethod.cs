@@ -9,7 +9,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
-	public virtual IEnumerable<TResult> Join<TInner, TKey, TResult>(
+	IEnumerable<TResult> Join<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -17,7 +17,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	) where TKey : notnull => Join(inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult}, IEqualityComparer{TKey}?)"/>
-	public virtual IEnumerable<TResult> Join<TInner, TKey, TResult>(
+	IEnumerable<TResult> Join<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -55,7 +55,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	}
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
-	public virtual IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -64,7 +64,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 
 	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
 	[SuppressMessage("Style", "IDE0042:Deconstruct variable declaration", Justification = "<Pending>")]
-	public virtual IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult> GroupJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,

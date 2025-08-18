@@ -15,7 +15,7 @@ public interface IJustOneCellGenerator
 	/// A <see cref="bool"/> value indicating whether the result has already been generated without any error.
 	/// For example, a user has cancelled the task, the return value should be <see langword="false"/>.
 	/// </returns>
-	public abstract bool TryGenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default);
+	bool TryGenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// Generates a puzzle and return a <see cref="Grid"/> instance that satisfies rules of Just-One-Cell puzzles;
@@ -28,7 +28,7 @@ public interface IJustOneCellGenerator
 	/// A <see cref="bool"/> value indicating whether the result has already been generated without any error.
 	/// For example, a user has cancelled the task, the return value should be <see langword="false"/>.
 	/// </returns>
-	public abstract bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
+	bool TryGenerateJustOneCell(out Grid result, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// Generates a puzzle and return a <see cref="Grid"/> instance that satisfies rules of Just-One-Cell puzzles,
@@ -43,5 +43,5 @@ public interface IJustOneCellGenerator
 	/// A <see cref="bool"/> value indicating whether the result has already been generated without any error.
 	/// For example, a user has cancelled the task, the return value should be <see langword="false"/>.
 	/// </returns>
-	public abstract bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
+	bool TryGenerateJustOneCell(out Grid result, out Grid phasedGrid, [NotNullWhen(true)] out Step? step, CancellationToken cancellationToken = default);
 }

@@ -9,10 +9,10 @@ public interface IContainsMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : notnull
 {
 	/// <inheritdoc cref="Enumerable.Contains{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual bool Contains(TSource value) => Contains(value, null);
+	bool Contains(TSource value) => Contains(value, null);
 
 	/// <inheritdoc cref="Enumerable.Contains{TSource}(IEnumerable{TSource}, TSource, IEqualityComparer{TSource}?)"/>
-	public virtual bool Contains(TSource value, IEqualityComparer<TSource>? comparer)
+	bool Contains(TSource value, IEqualityComparer<TSource>? comparer)
 	{
 		comparer ??= EqualityComparer<TSource>.Default;
 

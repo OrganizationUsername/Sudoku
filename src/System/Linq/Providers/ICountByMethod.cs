@@ -9,7 +9,7 @@ public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	where TSource : allows ref struct
 {
 	/// <inheritdoc/>
-	public virtual IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
+	IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
 	{
 		var dictionary = new Dictionary<TKey, int>();
 		foreach (var element in this)
@@ -23,7 +23,7 @@ public interface ICountByMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	}
 
 	/// <inheritdoc/>
-	public virtual IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? keyComparer)
+	IEnumerable<KeyValuePair<TKey, int>> CountBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? keyComparer)
 		where TKey : notnull
 	{
 		var dictionary = new Dictionary<TKey, int>(keyComparer);

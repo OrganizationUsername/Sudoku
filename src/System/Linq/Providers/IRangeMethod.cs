@@ -13,5 +13,5 @@ public interface IRangeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 
 
 	/// <inheritdoc cref="Enumerable.Range(int, int)"/>
-	public static abstract TSelf Range(int start, int count);
+	static abstract TSelf Range(int start, int count);
 }

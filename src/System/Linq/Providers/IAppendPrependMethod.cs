@@ -9,8 +9,8 @@ public interface IAppendPrependMethod<TSelf, TSource> : ILinqMethod<TSelf, TSour
 	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.Append{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual IEnumerable<TSource> Append(TSource element) => [.. this, element];
+	IEnumerable<TSource> Append(TSource element) => [.. this, element];
 
 	/// <inheritdoc cref="Enumerable.Prepend{TSource}(IEnumerable{TSource}, TSource)"/>
-	public virtual IEnumerable<TSource> Prepend(TSource element) => [element, .. this];
+	IEnumerable<TSource> Prepend(TSource element) => [element, .. this];
 }

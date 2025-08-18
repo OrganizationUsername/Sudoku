@@ -8,5 +8,5 @@ public interface IDeadlyPatternTypeTrait : ITrait
 	/// <summary>
 	/// Indicates the subtype used in the pattern.
 	/// </summary>
-	public abstract int Type { get; }
+	int Type { get; }
 }

@@ -20,7 +20,7 @@ internal interface IMultipleForcingChains<TSelf, TBranch> :
 	/// the property <see cref="IsHouseMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsHouseMultiple"/>
-	public abstract bool IsCellMultiple { get; }
+	bool IsCellMultiple { get; }
 
 	/// <summary>
 	/// Indicates whether the pattern is aimed to a house, producing multiple branches.
@@ -30,17 +30,17 @@ internal interface IMultipleForcingChains<TSelf, TBranch> :
 	/// the property <see cref="IsCellMultiple"/> will always return <see langword="false"/> and vice versa.
 	/// </remarks>
 	/// <seealso cref="IsCellMultiple"/>
-	public abstract bool IsHouseMultiple { get; }
+	bool IsHouseMultiple { get; }
 
 	/// <summary>
 	/// Indicates whether the pattern is advanced. In other words, the start candidates are not inside a cell or a house.
 	/// </summary>
-	public abstract bool IsAdvancedMultiple { get; }
+	bool IsAdvancedMultiple { get; }
 
 	/// <summary>
 	/// Returns a <see cref="CandidateMap"/> indicating all candidates used in this pattern, as the start.
 	/// </summary>
-	public abstract CandidateMap Candidates { get; }
+	CandidateMap Candidates { get; }
 
 
 	/// <summary>
@@ -48,12 +48,12 @@ internal interface IMultipleForcingChains<TSelf, TBranch> :
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public abstract bool Exists(Func<TBranch, bool> predicate);
+	bool Exists(Func<TBranch, bool> predicate);
 
 	/// <summary>
 	/// Determines whether all elements in this collection satisfy the specified condition.
 	/// </summary>
 	/// <param name="predicate">The condition to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public abstract bool TrueForAll(Func<TBranch, bool> predicate);
+	bool TrueForAll(Func<TBranch, bool> predicate);
 }

@@ -11,7 +11,7 @@ public interface IRightJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf
 	/// Performs a right outer join with the other sequence.
 	/// </summary>
 	/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>
-	public virtual IEnumerable<TResult?> RightJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult?> RightJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
@@ -22,7 +22,7 @@ public interface IRightJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf
 	/// Performs a right outer join with the other sequence.
 	/// </summary>
 	/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult}, IEqualityComparer{TKey}?)"/>
-	public virtual IEnumerable<TResult?> RightJoin<TInner, TKey, TResult>(
+	IEnumerable<TResult?> RightJoin<TInner, TKey, TResult>(
 		IEnumerable<TInner> inner,
 		Func<TSource, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Analytics.Traits;
 
 /// <summary>
 /// Represents a trait that describes the candidate list.
@@ -8,5 +8,5 @@ public interface ICandidateListTrait : ITrait
 	/// <summary>
 	/// Indicates the number of candidates.
 	/// </summary>
-	public abstract int CandidateSize { get; }
+	int CandidateSize { get; }
 }

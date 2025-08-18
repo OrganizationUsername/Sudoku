@@ -8,7 +8,7 @@ public interface ITechniqueGenerator
 	/// <summary>
 	/// Indicates the techniques supported in the current generator.
 	/// </summary>
-	public abstract TechniqueSet SupportedTechniques { get; }
+	TechniqueSet SupportedTechniques { get; }
 
 	/// <summary>
 	/// Indicates the internal random number generator to be used.
@@ -26,5 +26,5 @@ public interface ITechniqueGenerator
 	/// A <see cref="bool"/> value indicating whether the result has already been generated without any error.
 	/// For example, a user has cancelled the task, the return value should be <see langword="false"/>.
 	/// </returns>
-	public abstract bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default);
+	bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default);
 }

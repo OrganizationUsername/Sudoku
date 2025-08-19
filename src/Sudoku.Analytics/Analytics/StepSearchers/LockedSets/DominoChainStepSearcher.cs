@@ -97,6 +97,12 @@ public sealed partial class DominoChainStepSearcher : StepSearcher
 			var nextHouseStart = currentAls.House.HouseType == HouseType.Row ? nextHouseStartColumn : nextHouseStartRow;
 			for (var nextHouse = nextHouseStart; nextHouse < nextHouseStart + 3; nextHouse++)
 			{
+				if ((currentNode.HousesUsed >> nextHouse & 1) != 0)
+				{
+					// The house has already been traversed.
+					continue;
+				}
+
 				if (HousesMap[nextHouse] & currentRccCells)
 				{
 					// Cannot select the intersected one.
@@ -150,13 +156,31 @@ public sealed partial class DominoChainStepSearcher : StepSearcher
 					if (!IsPow2(tempNextBlocksMask) || nextRccs.Cells.Count == 3)
 					{
 						// Skip for two cases mentioned above.
-						continue;
+						goto CheckBlockEnclosingState;
 					}
 
 					// Add node to the next iteration.
 					queue.Enqueue(new(nextAls, nextRccs, currentNode));
 
-					// TODO: Check for block enclosing states.
+				CheckBlockEnclosingState:
+					// Check for block enclosing states.
+					var nextBlock = TrailingZeroCount(tempNextBlocksMask);
+					if (!alsesInBlock.TryGetValue(nextBlock, out var nextBlockAlses))
+					{
+						continue;
+					}
+
+					var nextRccCells = nextRccs.Cells;
+					foreach (var nextBlockAls in nextBlockAlses)
+					{
+						if ((nextBlockAls.Cells & nextRccCells) != nextRccCells)
+						{
+							// The current ALS must fully cover all RCCs.
+							continue;
+						}
+
+						// TODO: Implement.
+					}
 				}
 			}
 		}
@@ -177,6 +201,22 @@ file sealed class QueueNode(AlmostLockedSetPattern pattern, in CandidateMap rest
 	/// Indicates the restricted common candidates.
 	/// </summary>
 	public CandidateMap RestrictedCommon { get; } = restrictedCommon;
+
+	/// <summary>
+	/// Indicates all houses used.
+	/// </summary>
+	public HouseMask HousesUsed
+	{
+		get
+		{
+			var result = 0;
+			for (var node = this; node is not null; node = node.Parent)
+			{
+				result |= 1 << node.Pattern.House;
+			}
+			return result;
+		}
+	}
 
 	/// <summary>
 	/// Indicates the pattern.

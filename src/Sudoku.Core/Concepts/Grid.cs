@@ -14,7 +14,7 @@ using GridBase = IGrid<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
-public struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
+public struct Grid : GridBase
 {
 	/// <inheritdoc cref="GridBase.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -1340,29 +1340,6 @@ public struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	public static bool operator <=(in Grid left, in Grid right) => left.CompareTo(right) <= 0;
 
-	/// <summary>
-	/// Analyzes difference between two grids.
-	/// If two grids are not same from given cells, the return value will be <see langword="null"/>.
-	/// </summary>
-	/// <param name="left">The first grid to be checked.</param>
-	/// <param name="right">The second grid to be checked.</param>
-	/// <returns>The difference between two grids.</returns>
-	public static DiffResult? operator -(in Grid left, in Grid right)
-	{
-		Grid.TryAnalyzeDiff(left, right, out var result);
-		return result;
-	}
-
-	/// <summary>
-	/// Analyzes difference between two grids.
-	/// If two grids are not same from given cells, a <see cref="GridDiffTooMuchException"/> instance will be thrown.
-	/// </summary>
-	/// <param name="left">The first grid to be checked.</param>
-	/// <param name="right">The second grid to be checked.</param>
-	/// <returns>The difference between two grids.</returns>
-	/// <exception cref="GridDiffTooMuchException">Throws when two grids are not same from given cells.</exception>
-	public static DiffResult operator checked -(in Grid left, in Grid right)
-		=> left - right ?? throw new GridDiffTooMuchException();
 
 	/// <inheritdoc/>
 	static bool IEqualityOperators<Grid, Grid, bool>.operator ==(Grid left, Grid right) => left == right;
@@ -1381,12 +1358,6 @@ public struct Grid : GridBase, ISubtractionOperators<Grid, Grid, DiffResult?>
 
 	/// <inheritdoc/>
 	static bool IComparisonOperators<Grid, Grid, bool>.operator <=(Grid left, Grid right) => left <= right;
-
-	/// <inheritdoc/>
-	static DiffResult? ISubtractionOperators<Grid, Grid, DiffResult?>.operator -(Grid left, Grid right) => left - right;
-
-	/// <inheritdoc/>
-	static DiffResult? ISubtractionOperators<Grid, Grid, DiffResult?>.operator checked -(Grid left, Grid right) => checked(left - right);
 }
 
 /// <summary>

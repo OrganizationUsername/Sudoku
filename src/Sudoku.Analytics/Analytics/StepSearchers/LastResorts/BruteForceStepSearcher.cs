@@ -81,7 +81,6 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 			{
 				var step = new BruteForceStep(
 					new SingletonArray<Conclusion>(new(Assignment, offset * 9 + Solution.GetDigit(offset))),
-					null,
 					context.Options
 				);
 				if (context.OnlyFindOne)

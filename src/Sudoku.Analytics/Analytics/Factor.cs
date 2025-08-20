@@ -66,7 +66,7 @@ public readonly struct Factor(string resourceKey, string[] parameterNames, Type 
 							matchPropertyInfoList.Add(
 								Array.FindIndex(matches, static match => !match.Name.Contains('.')) is var index and not -1
 									? matches[index]
-									: firstMatch // The arbitary one in matched set will be selected.
+									: firstMatch // The arbitrary one in matched set will be selected.
 							);
 							found = true;
 							goto NextMatch;

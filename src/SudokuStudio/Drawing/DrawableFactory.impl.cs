@@ -144,7 +144,9 @@ internal partial class DrawableFactory
 	private static partial void ForCandidateNode(DrawingContext context, CandidateViewNode candidateNode, ReadOnlyMemory<Conclusion> conclusions, out Conclusion? overlapped)
 	{
 		var (sudokuPane, animatedResults) = context;
-		(overlapped, var (id, candidate)) = (null, candidateNode);
+		overlapped = null;
+		var id = candidateNode.Identifier;
+		var candidate = candidateNode.Candidate;
 		var cell = candidate / 9;
 		if (sudokuPane._children[cell] is not { } paneCellControl)
 		{

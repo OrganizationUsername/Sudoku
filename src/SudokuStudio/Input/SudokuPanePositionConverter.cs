@@ -163,7 +163,8 @@ internal readonly record struct SudokuPanePositionConverter(GridLayout Grid) : I
 		var points = new HashSet<Point>();
 		foreach (var node in nodes)
 		{
-			var (_, start, end) = node;
+			var start = node.Start;
+			var end = node.End;
 			switch (node.Shape)
 			{
 				case LinkShape.Chain or LinkShape.ConjugatePair:
@@ -192,8 +193,9 @@ internal readonly record struct SudokuPanePositionConverter(GridLayout Grid) : I
 		{
 			points.Add(GetPosition(candidate));
 		}
-		foreach (var (_, candidate) in candidateNodes)
+		foreach (var candidateNode in candidateNodes)
 		{
+			var candidate = candidateNode.Candidate;
 			points.Add(GetPosition(candidate));
 		}
 		return points.AsReadOnlySpan();

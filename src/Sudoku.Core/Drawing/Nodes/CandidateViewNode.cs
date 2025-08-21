@@ -19,9 +19,6 @@ public sealed class CandidateViewNode(ColorIdentifier identifier, Candidate cand
 	public Cell Cell => Candidate / 9;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	public void Deconstruct(out ColorIdentifier identifier, out Candidate candidate) => (identifier, candidate) = (Identifier, Candidate);
-
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] ViewNode? other)
 		=> base.Equals(other) && other is CandidateViewNode comparer && Candidate == comparer.Candidate;

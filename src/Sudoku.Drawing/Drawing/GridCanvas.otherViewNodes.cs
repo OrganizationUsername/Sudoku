@@ -185,7 +185,8 @@ public partial class GridCanvas
 				arrowPen.CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F);
 			}
 
-			var (_, start, end) = node;
+			var start = node.Start;
+			var end = node.End;
 			arrowPen.DashStyle = node switch
 			{
 				ChainLinkViewNode { IsStrongLink: var i } => i ? DashStyle.Solid : DashStyle.Dot,

@@ -37,7 +37,8 @@ internal sealed class PathCreator(
 		var result = new List<Shape>();
 		foreach (var node in nodes)
 		{
-			var (_, start, end) = node;
+			var start = node.Start;
+			var end = node.End;
 			var dashArray = node switch
 			{
 				ChainLinkViewNode { IsStrongLink: var i } => [.. i ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle],

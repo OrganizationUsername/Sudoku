@@ -26,7 +26,7 @@ public static class ChainLinkViewNodeExtensions
 		var converter = new SudokuPanePositionConverter(grid);
 		var points = converter.GetPoints(nodes, candidateNodes, conclusions);
 		var ((cellSize, _), _, _, _) = converter;
-		if (link is not ILinkViewNode(_, var start, var end) { Shape: LinkShape.Chain })
+		if (link is not ILinkViewNode { Shape: LinkShape.Chain, Start: var start, End: var end })
 		{
 			return false;
 		}

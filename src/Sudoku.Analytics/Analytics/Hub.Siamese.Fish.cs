@@ -154,12 +154,12 @@ public partial class Hub
 						var result = new List<CandidateViewNode>();
 						foreach (var node1 in fish1ViewNodes)
 						{
-							if (node1 is not CandidateViewNode(WellKnownColorIdentifier id1, var candidate1))
+							if (node1 is not CandidateViewNode { Identifier: WellKnownColorIdentifier id1, Candidate: var candidate1 })
 							{
 								continue;
 							}
 
-							var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode(_, var candidate2) && candidate1 == candidate2);
+							var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode { Candidate: var candidate2 } && candidate1 == candidate2);
 							if (n?.Identifier is not WellKnownColorIdentifier id2)
 							{
 								throw new InvalidOperationException(SR.ExceptionMessage("NormalFishViewInvalid"));

@@ -9710,14 +9710,6 @@
             Indicates the target cell.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.Nodes.CandidateViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
         <member name="M:Sudoku.Drawing.Nodes.CandidateViewNode.Equals(Sudoku.Drawing.ViewNode)">
             <inheritdoc/>
         </member>
@@ -10177,14 +10169,6 @@
             <summary>
             Indicates the color identifier.
             </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.ILinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,System.Object@,System.Object@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
         </member>
         <member name="T:Sudoku.Drawing.Nodes.LinkSpaceViewNode">
             <summary>

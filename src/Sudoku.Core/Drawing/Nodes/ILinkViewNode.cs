@@ -24,9 +24,4 @@ public interface ILinkViewNode
 	/// Indicates the color identifier.
 	/// </summary>
 	ColorIdentifier Identifier { get; }
-
-
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
-	sealed void Deconstruct(out ColorIdentifier identifier, out object start, out object end)
-		=> (identifier, start, end) = (Identifier, Start, End);
 }

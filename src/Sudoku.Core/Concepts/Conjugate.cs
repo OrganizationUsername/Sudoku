@@ -4,8 +4,8 @@ namespace Sudoku.Concepts;
 /// Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
 /// </summary>
 /// <remarks>
-/// A <b>Conjugate pair</b> is a pair of two candidates, in the same house where all cells has only
-/// two position can fill this candidate.
+/// A <b>Conjugate pair</b> is a pair of two candidates, in the same house,
+/// where all cells has only two position can fill this candidate.
 /// </remarks>
 /// <param name="_mask">Indicates the target mask.</param>
 public readonly struct Conjugate(ConjugateMask _mask) :

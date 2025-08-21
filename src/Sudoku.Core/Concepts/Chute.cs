@@ -6,7 +6,10 @@ namespace Sudoku.Concepts;
 /// <param name="Index">Index of the chute. The value is between 0 and 6.</param>
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
 /// <param name="HousesMask">Indicates the houses used.</param>
-public readonly record struct Chute(int Index, bool IsRow, HouseMask HousesMask) : IFormattable, IParsable<Chute>
+public readonly record struct Chute(int Index, bool IsRow, HouseMask HousesMask) :
+	IEqualityOperators<Chute, Chute, bool>,
+	IFormattable,
+	IParsable<Chute>
 {
 	/// <summary>
 	/// Indicates the minimum chute index.

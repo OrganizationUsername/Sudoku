@@ -183,6 +183,8 @@ public sealed partial class DominoChainStepSearcher : StepSearcher
 						// Check for eliminations.
 						var conclusions = new List<Conclusion>();
 						var nodes = new List<QueueNode>();
+						var fullPatternMap = CandidateMap.Empty;
+						var digitsCount = 0;
 						for (var node = currentNode; node is not null; node = node.Parent)
 						{
 							nodes.Add(node);
@@ -197,16 +199,59 @@ public sealed partial class DominoChainStepSearcher : StepSearcher
 									}
 								}
 							}
+
+							foreach (var cell in node.Pattern.Cells)
+							{
+								foreach (var digit in grid.GetCandidates(cell))
+								{
+									fullPatternMap.Add(cell * 9 + digit);
+								}
+							}
+
+							digitsCount += PopCount((uint)node.Pattern.DigitsMask);
+							digitsCount += PopCount((uint)node.RestrictedCommon.Digits);
 						}
+
+						var lastBlockAlsMap = CandidateMap.Empty;
+						foreach (var digit in nextBlockAls.DigitsMask)
+						{
+							var cells = nextBlockAls.Cells & CandidatesMap[digit];
+							foreach (var house in cells.SharedHouses)
+							{
+								foreach (var cell in HousesMap[house] & CandidatesMap[digit] & ~cells)
+								{
+									conclusions.Add(new(Elimination, cell, digit));
+								}
+							}
+
+							foreach (var cell in cells)
+							{
+								foreach (var d in grid.GetCandidates(cell))
+								{
+									fullPatternMap.Add(cell * 9 + d);
+									lastBlockAlsMap.Add(cell * 9 + digit);
+								}
+							}
+
+							digitsCount += PopCount((uint)(lastBlockAlsMap & ~nodes[^1].RestrictedCommon).Digits);
+						}
+						if (fullPatternMap.Cells.Count != digitsCount)
+						{
+							// Not rank-0 pattern.
+							continue;
+						}
+
 						if (conclusions.Count == 0)
 						{
+							// No eliminations.
 							continue;
 						}
 
 						nodes.Reverse();
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						for (var i = 0; i < nodes.Count; i++)
+						var i = 0;
+						for (; i < nodes.Count; i = (i + 1) % 5)
 						{
 							var n = nodes[i];
 							var rcc = n.RestrictedCommon;
@@ -215,15 +260,36 @@ public sealed partial class DominoChainStepSearcher : StepSearcher
 								foreach (var digit in grid.GetCandidates(cell))
 								{
 									var candidate = cell * 9 + digit;
+									if (candidateOffsets.Exists(c => c.Candidate == candidate))
+									{
+										continue;
+									}
 									candidateOffsets.Add(
 										new(
 											rcc.Contains(candidate)
 												? ColorIdentifier.Auxiliary1
-												: WellKnownColorIdentifierKind.AlmostLockedSet1 + i % 5,
+												: WellKnownColorIdentifierKind.AlmostLockedSet1 + i,
 											candidate
 										)
 									);
 								}
+							}
+						}
+						foreach (var cell in nextBlockAls.Cells)
+						{
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								var candidate = cell * 9 + digit;
+								if (candidateOffsets.Exists(c => c.Candidate == candidate))
+								{
+									continue;
+								}
+								candidateOffsets.Add(
+									new(
+										WellKnownColorIdentifierKind.AlmostLockedSet1 + i,
+										candidate
+									)
+								);
 							}
 						}
 

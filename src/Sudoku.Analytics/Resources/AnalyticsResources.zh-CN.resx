@@ -3354,18 +3354,4 @@
   <data name="Message_InvalidKeywordConverterType" xml:space="preserve">
     <value />
   </data>
-  <data name="DominoChain" xml:space="preserve">
-    <value>多段融合待定数组</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="TechniqueGroup_Templating" xml:space="preserve">
-    <value>模板</value>
-  </data>
-  <data name="Factor_DominoChainLengthFactor" xml:space="preserve">
-    <value>融合待定数组的长度</value>
-  </data>
-  <data name="StepSearcherName_DominoChainStepSearcher" xml:space="preserve">
-    <value>多段融合待定数组</value>
-    <comment>Step Searcher Name</comment>
-  </data>
 </root>

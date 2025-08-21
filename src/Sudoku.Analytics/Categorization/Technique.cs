@@ -4509,18 +4509,9 @@ public enum Technique
 	#endregion
 
 	//
-	// Domino Chain & Loop
+	// Domino Loop
 	//
-	#region Domino Chain & Loop
-	/// <summary>
-	/// Indicates domino chain.
-	/// </summary>
-	[TechniqueMetadata<DominoChainStepSearcher, DominoChainStep>(
-		Rating = 80,
-		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.DominoLoop)]
-	DominoChain,
-
+	#region Domino Loop
 	/// <summary>
 	/// Indicates domino loop.
 	/// </summary>

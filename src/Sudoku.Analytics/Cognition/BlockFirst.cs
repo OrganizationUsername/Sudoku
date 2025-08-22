@@ -123,7 +123,7 @@ public sealed class BlockFirst : IBehaviorMetric
 					var mask = (Mask)0;
 					for (var d = 0; d < currentDigit; d++)
 					{
-						if (!!(playground.CandidatesMap[d] & HousesMap[currentCellBlock]))
+						if (playground.CandidatesMap[d] & HousesMap[currentCellBlock])
 						{
 							mask |= (Mask)(1 << d);
 						}

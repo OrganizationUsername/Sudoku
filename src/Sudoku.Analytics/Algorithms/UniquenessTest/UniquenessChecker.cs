@@ -158,7 +158,37 @@ public static class UniquenessChecker
 	/// A <see cref="bool"/> result indicating whether the candidate <paramref name="assigned"/>
 	/// will make the pattern to be a deadly pattern.
 	/// </returns>
-	public static bool TryAssign(
+	/// <remarks>
+	/// <para>
+	/// This method will help you find a contradiction of deadly pattern if you assign a value into a cell.
+	/// For example, the following grid shows two extended rectangles:
+	/// <code><![CDATA[
+	/// ,---------------,--------------------,--------------,
+	/// | 7    2    8   | 3       59    59   | 4    1   6   |
+	/// | 4    5   *19  |*127     127   6    | 3   *29  8   |
+	/// | 16   3   *169 |*12      4     8    | 7   *29  5   |
+	/// :---------------+--------------------+--------------:
+	/// | 8    46   126 | 12469   3     1249 | 19   5   7   |
+	/// | 126  9    5   | 1267    127   127  | 8    3   4   |
+	/// | 3    47   17  | 1459    8     1459 | 2    6   19  |
+	/// :---------------+--------------------+--------------:
+	/// | 9   #678  3   |#12458   125   1245 | 156 #47  12  |
+	/// | 25  #78   27  |#124589  6     3    | 159 #47  129 |
+	/// | 256  1    4   | 2579    2579  2579 | 569  8   3   |
+	/// '---------------'--------------------'--------------'
+	/// ]]></code>
+	/// This method returns <see langword="true"/> if assigning <c>r2c4</c> with value 2, or <c>r7c2</c> with 7.
+	/// For the former one, we will make cells <c>r23c348</c> forms a invalid state of digits 1, 2 and 9;
+	/// and for the latter one, we will lead to a contradiction of cells <c>r78c248</c> with digits 4, 7 and 8.
+	/// </para>
+	/// <para>
+	/// This method will perform breadth-first searching to find any contradictions if we assign with <c>r2c4 = 2</c>
+	/// and <c>r7c2 = 7</c>, and return a <see langword="bool"/> value indicating whether the first assigned value
+	/// can form such contradiction or not. If can, argument <paramref name="result"/> will include the full path of trial of cells;
+	/// otherwise, <see langword="null"/>.
+	/// </para>
+	/// </remarks>
+	public static bool CanLeadToDeadlyPatternContradiction(
 		Candidate assigned,
 		PatternAssigningMap? assigningMap,
 		in Grid grid,

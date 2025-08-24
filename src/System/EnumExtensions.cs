@@ -66,6 +66,28 @@ public static class EnumExtensions
 		/// </summary>
 		public static ReadOnlySpan<T> Values => Enum.GetValues<T>();
 
+		/// <summary>
+		/// Represents default value of the current type.
+		/// </summary>
+		public static T None => default;
+
+		/// <summary>
+		/// Indicates the minimal value of the current type.
+		/// </summary>
+		public static T MinValue => (from value in get_Values<T>() orderby Convert.ToUInt64(value) select value)[0];
+
+		/// <summary>
+		/// Indicates the maximal value of the current type.
+		/// </summary>
+		public static T MaxValue => (from value in get_Values<T>() orderby Convert.ToUInt64(value) descending select value)[0];
+
+		/// <summary>
+		/// Represents a value that holds all flags of the current type.
+		/// </summary>
+		/// <exception cref="InvalidOperationException">Throws when the type is not marked <see cref="FlagsAttribute"/>.</exception>
+		public static T All
+			=> typeof(T).IsDefined<FlagsAttribute>() ? MergeFlags(get_Values<T>()) : throw new InvalidOperationException();
+
 
 		/// <summary>
 		/// Get all possible flags that the current enumeration field set.

@@ -4593,19 +4593,19 @@
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.DefaultMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.MaxCandidatesMask">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.EmptyMask">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.EmptyMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.ModifiableMask">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.ModifiableMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.ModifiableMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.GivenMask">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.GivenMask"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.GivenMask"/>
         </member>
         <member name="F:Sudoku.Concepts.Grid.EmptyString">
             <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.EmptyString"/>
@@ -4618,10 +4618,10 @@
         </member>
         <member name="F:Sudoku.Concepts.Grid._values">
             <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.FirstMaskRef" path="/summary"/>
             </summary>
             <remarks>
-            <para><inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef" path="/remarks/para[1]"/></para>
+            <para><inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.FirstMaskRef" path="/remarks/para[1]"/></para>
             <para>
             Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
             The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
@@ -4743,28 +4743,28 @@
         <member name="P:Sudoku.Concepts.Grid.FixedGrid">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Elements">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#Elements">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#FirstMaskRef">
             <inheritdoc cref="F:Sudoku.Concepts.Grid._values"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#EmptyString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#DefaultMask">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#DefaultMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#MaxCandidatesMask">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#MaxCandidatesMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#EmptyMask">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#EmptyMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#ModifiableMask">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#ModifiableMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#GivenMask">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#GivenMask">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Empty">
@@ -4779,7 +4779,7 @@
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.Grid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#Grid}#Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
@@ -6229,11 +6229,6 @@
             Indicates the number of total candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.Elements">
-            <summary>
-            Indicates the elements.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.CandidatesMap">
             <summary>
             Indicates the map of possible positions of the existence of the candidate value for each digit.
@@ -6308,88 +6303,19 @@
             Indicates the fixed grid for the current grid, meaning all modifiable digits will be replaced with given ones.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.FirstMaskRef">
-            <summary>
-            Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
-            </summary>
-            <remarks>
-            <para>
-            The field uses the mask table of length 81 to indicate the state and all possible candidates
-            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 12 of 16 bits.
-            <code>
-            | 15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
-            |---------------|-----------|-----------------------------------|
-            |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
-            '---------------|-----------|-----------------------------------'
-             \_____________/ \_________/ \_________________________________/
-                   (3)           (2)                     (1)
-            </code>
-            Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
-            and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
-            <list type="table">
-            <listheader>
-            <term>State name</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>Empty cell (flag: <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
-            <description>The cell is currently empty, and wait for being filled.</description>
-            </item>
-            <item>
-            <term>Modifiable cell (flag: <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
-            <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
-            </item>
-            <item>
-            <term>Given cell (flag: <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
-            <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
-            </item>
-            </list>
-            </para>
-            <para>Part (3) is for reserved cases. Such bits may not be used.</para>
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.CellState"/>
-            <seealso cref="T:Sudoku.SudokuType"/>
-        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.EmptyString">
             <summary>
             Represents a string value that describes a <typeparamref name="TSelf"/> instance can be parsed into <see cref="P:Sudoku.Concepts.IGrid`1.Empty"/>.
             </summary>
             <seealso cref="P:Sudoku.Concepts.IGrid`1.Empty"/>
         </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.DefaultMask">
-            <summary>
-            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.EmptyMask">
-            <summary>
-            Indicates the empty mask, modifiable mask and given mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.ModifiableMask">
-            <summary>
-            Indicates the modifiable mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.GivenMask">
-            <summary>
-            Indicates the given mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask">
-            <summary>
-            Indicates the maximum candidate mask that used.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Empty">
             <summary>
-            The empty grid that is valid during implementation or running the program
-            (all values are <see cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>, i.e. empty cells).
+            Represents an empty grid, whose cells are initialized as empty states.
             </summary>
             <remarks>
             This field is initialized by the static constructor of this structure.
             </remarks>
-            <seealso cref="P:Sudoku.Concepts.IGrid`1.DefaultMask"/>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Undefined">
             <summary>
@@ -6415,14 +6341,6 @@
             <remarks>
             This value is found out via backtracking algorithm.
             </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.Item(System.Int32)">
-            <summary>
-            Returns the reference to the element at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The reference to the element.</returns>
-            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6673,10 +6591,8 @@
             Serializes this instance to an array, where all digit value will be stored.
             </summary>
             <returns>
-            This array. All elements are the raw masks
-            that are between 0 and <see cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/> (i.e. 511).
+            This array of masks.
             </returns>
-            <seealso cref="P:Sudoku.Concepts.IGrid`1.MaxCandidatesMask"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.ToDigitsArray">
             <summary>
@@ -6799,6 +6715,101 @@
         <member name="M:Sudoku.Concepts.IGrid`1.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThanOrEqual(`0,`0)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.IInlineArrayGrid`1">
+            <summary>
+            Represents a grid instance that supports inline-array-related members.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.Elements">
+            <summary>
+            Indicates the elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.FirstMaskRef">
+            <summary>
+            Indicates the inner array that stores the masks of the sudoku grid, which stores the in-time sudoku grid inner information.
+            </summary>
+            <remarks>
+            <para>
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 12 of 16 bits.
+            <code>
+            | 15  14  13  12  11  10  9   8   7   6   5   4   3   2   1   0 |
+            |---------------|-----------|-----------------------------------|
+            |   |   |   |   | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+            '---------------|-----------|-----------------------------------'
+             \_____________/ \_________/ \_________________________________/
+                   (3)           (2)                     (1)
+            </code>
+            Here the 9 bits in (1) indicate whether each digit is possible candidate in the current cell for each bit respectively,
+            and the higher 3 bits in (2) indicate the cell state. The possible cell state are:
+            <list type="table">
+            <listheader>
+            <term>State name</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Empty cell (flag: <see cref="F:Sudoku.Concepts.CellState.Empty"/>)</term>
+            <description>The cell is currently empty, and wait for being filled.</description>
+            </item>
+            <item>
+            <term>Modifiable cell (flag: <see cref="F:Sudoku.Concepts.CellState.Modifiable"/>)</term>
+            <description>The cell is filled by a digit, but the digit isn't the given by the initial grid.</description>
+            </item>
+            <item>
+            <term>Given cell (flag: <see cref="F:Sudoku.Concepts.CellState.Given"/>)</term>
+            <description>The cell is filled by a digit, which is given by the initial grid and can't be modified.</description>
+            </item>
+            </list>
+            </para>
+            <para>Part (3) is for reserved cases. Such bits may not be used.</para>
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.CellState"/>
+            <seealso cref="T:Sudoku.SudokuType"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.DefaultMask">
+            <summary>
+            Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.EmptyMask">
+            <summary>
+            Indicates the empty mask, modifiable mask and given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.ModifiableMask">
+            <summary>
+            Indicates the modifiable mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.GivenMask">
+            <summary>
+            Indicates the given mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.MaxCandidatesMask">
+            <summary>
+            Indicates the maximum candidate mask that used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.Item(System.Int32)">
+            <summary>
+            Returns the reference to the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the element.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
         <member name="T:Sudoku.Concepts.MarkerGrid">
             <summary>
             Represents a sudoku grid that will be used for candidate marking.
@@ -6837,7 +6848,7 @@
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.MarkerGrid._values">
-            <inheritdoc cref="P:Sudoku.Concepts.IGrid`1.FirstMaskRef"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IInlineArrayGrid`1.FirstMaskRef"/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.#ctor(System.Int32@,Sudoku.Concepts.GridCreatingOption)">
             <summary>
@@ -6906,28 +6917,28 @@
             For <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances, this property always returns <see langword="false"/>.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Elements">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#Elements">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#FirstMaskRef">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#DefaultMask">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#DefaultMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#MaxCandidatesMask">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#MaxCandidatesMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#EmptyMask">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#EmptyMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#ModifiableMask">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#ModifiableMask">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#GivenMask">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#GivenMask">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Undefined">
@@ -6942,7 +6953,7 @@
         <member name="P:Sudoku.Concepts.MarkerGrid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.MaskAggregator)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#Item(System.Int32)">
+        <member name="P:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IInlineArrayGrid{Sudoku#Concepts#MarkerGrid}#Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Equals(System.Object)">
@@ -7475,6 +7486,57 @@
             <summary>
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.SimdGrid">
+            <summary>
+            Represents a grid that uses SIMD-related APIs, in order to optimize performance via hardware intrinsics.
+            </summary>
+            <remarks>
+            This type uses 192 bits.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.SimdGrid.CellStateFieldEachUInt64FieldAccommodateCellStatesCount">
+            <summary>
+            Represents value 21, meaning the number of cell states
+            that each <see cref="T:System.UInt64"/> field from backing field <c>_cellStates</c> can accommodate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SimdGrid.EmptyCellStateMask">
+            <summary>
+            Represents value 1, indicating empty cell states mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SimdGrid.Empty">
+            <summary>
+            Represents an empty grid which doesn't contain any possible givens; all candidates are initialized as states "on".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SimdGrid._cellStates">
+            <summary>
+            Represents cell states.
+            </summary>
+            <remarks>
+            Due to design of this type, in order not to write 3 bits out to 2 different positions,
+            we will only use 63 of 64 bits for each <see cref="T:System.UInt64"/> fields for it.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.SimdGrid._candidateStates">
+            <summary>
+            Represents candidate states.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SimdGrid.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>
@@ -13235,7 +13297,8 @@
         <member name="T:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1">
             <summary>
             Provides extension members on <typeparamref name="TGrid"/>,
-            where <typeparamref name="TGrid"/> satisfies <see langword="unmanaged"/> and <see cref="T:Sudoku.Concepts.IGrid`1"/> constraints.
+            where <typeparamref name="TGrid"/> satisfies <see langword="unmanaged"/>, <see cref="T:Sudoku.Concepts.IGrid`1"/>
+            and <see cref="T:Sudoku.Concepts.IInlineArrayGrid`1"/> constraints.
             </summary>
         </member>
         <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0`1.MirrorLeftRight">

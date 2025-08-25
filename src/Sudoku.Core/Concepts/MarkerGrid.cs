@@ -1,6 +1,7 @@
 namespace Sudoku.Concepts;
 
 using GridBase = IGrid<MarkerGrid>;
+using InlineArrayGridBase = IInlineArrayGrid<MarkerGrid>;
 
 /// <summary>
 /// Represents a sudoku grid that will be used for candidate marking.
@@ -21,7 +22,7 @@ using GridBase = IGrid<MarkerGrid>;
 /// <seealso cref="Grid.SetCandidates(Cell, Mask)"/>
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [InlineArray(81)]
-public struct MarkerGrid : GridBase
+public struct MarkerGrid : GridBase, InlineArrayGridBase
 {
 	/// <summary>
 	/// <inheritdoc cref="GridBase.Undefined" path="/summary"/>
@@ -42,7 +43,7 @@ public struct MarkerGrid : GridBase
 	public static readonly MarkerGrid Empty = default;
 
 
-	/// <inheritdoc cref="GridBase.FirstMaskRef"/>
+	/// <inheritdoc cref="InlineArrayGridBase.FirstMaskRef"/>
 	private Mask _values;
 
 
@@ -227,30 +228,30 @@ public struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ReadOnlySpan<Mask> GridBase.Elements => this[..];
+	readonly ReadOnlySpan<Mask> InlineArrayGridBase.Elements => this[..];
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
+	readonly ref readonly Mask InlineArrayGridBase.FirstMaskRef => ref this[0];
 
 
 	/// <inheritdoc/>
 	static string GridBase.EmptyString => Grid.EmptyString;
 
 	/// <inheritdoc/>
-	static Mask GridBase.DefaultMask => Grid.DefaultMask;
+	static Mask InlineArrayGridBase.DefaultMask => Grid.DefaultMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.MaxCandidatesMask => Grid.MaxCandidatesMask;
+	static Mask InlineArrayGridBase.MaxCandidatesMask => Grid.MaxCandidatesMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.EmptyMask => Grid.EmptyMask;
+	static Mask InlineArrayGridBase.EmptyMask => Grid.EmptyMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.ModifiableMask => Grid.ModifiableMask;
+	static Mask InlineArrayGridBase.ModifiableMask => Grid.ModifiableMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.GivenMask => Grid.GivenMask;
+	static Mask InlineArrayGridBase.GivenMask => Grid.GivenMask;
 
 	/// <inheritdoc/>
 	static ref readonly MarkerGrid GridBase.Undefined => ref Undefined;
@@ -310,7 +311,7 @@ public struct MarkerGrid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask GridBase.this[Cell cell] => ref this[cell];
+	ref Mask InlineArrayGridBase.this[Cell cell] => ref this[cell];
 
 
 	/// <inheritdoc/>

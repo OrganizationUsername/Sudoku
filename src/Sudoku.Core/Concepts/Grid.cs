@@ -3,6 +3,7 @@
 namespace Sudoku.Concepts;
 
 using GridBase = IGrid<Grid>;
+using InlineArrayGridBase = IInlineArrayGrid<Grid>;
 
 /// <summary>
 /// Represents a sudoku grid.
@@ -14,21 +15,21 @@ using GridBase = IGrid<Grid>;
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(81)]
 [JsonConverter(typeof(Converter))]
-public struct Grid : GridBase
+public struct Grid : GridBase, InlineArrayGridBase
 {
-	/// <inheritdoc cref="GridBase.DefaultMask"/>
+	/// <inheritdoc cref="InlineArrayGridBase.DefaultMask"/>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
 
-	/// <inheritdoc cref="GridBase.MaxCandidatesMask"/>
+	/// <inheritdoc cref="InlineArrayGridBase.MaxCandidatesMask"/>
 	public const Mask MaxCandidatesMask = (1 << 9) - 1;
 
-	/// <inheritdoc cref="GridBase.EmptyMask"/>
+	/// <inheritdoc cref="InlineArrayGridBase.EmptyMask"/>
 	public const Mask EmptyMask = (Mask)CellState.Empty << 9;
 
-	/// <inheritdoc cref="GridBase.ModifiableMask"/>
+	/// <inheritdoc cref="InlineArrayGridBase.ModifiableMask"/>
 	public const Mask ModifiableMask = (Mask)CellState.Modifiable << 9;
 
-	/// <inheritdoc cref="GridBase.GivenMask"/>
+	/// <inheritdoc cref="InlineArrayGridBase.GivenMask"/>
 	public const Mask GivenMask = (Mask)CellState.Given << 9;
 
 #if EMPTY_GRID_STRING_CONSTANT
@@ -50,10 +51,10 @@ public struct Grid : GridBase
 
 
 	/// <summary>
-	/// <inheritdoc cref="GridBase.FirstMaskRef" path="/summary"/>
+	/// <inheritdoc cref="InlineArrayGridBase.FirstMaskRef" path="/summary"/>
 	/// </summary>
 	/// <remarks>
-	/// <para><inheritdoc cref="GridBase.FirstMaskRef" path="/remarks/para[1]"/></para>
+	/// <para><inheritdoc cref="InlineArrayGridBase.FirstMaskRef" path="/remarks/para[1]"/></para>
 	/// <para>
 	/// Part (3) is for the reserved bits. Such bits won't be used except for the array element at index 0 -
 	/// The first element in the array will use (3) to represent the sudoku grid type. There are only two kinds of grid type value:
@@ -356,30 +357,30 @@ public struct Grid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	readonly ReadOnlySpan<Mask> GridBase.Elements => this[..];
+	readonly ReadOnlySpan<Mask> InlineArrayGridBase.Elements => this[..];
 
 	/// <inheritdoc cref="_values"/>
 	[UnscopedRef]
-	readonly ref readonly Mask GridBase.FirstMaskRef => ref this[0];
+	readonly ref readonly Mask InlineArrayGridBase.FirstMaskRef => ref this[0];
 
 
 	/// <inheritdoc/>
 	static string GridBase.EmptyString => EmptyString;
 
 	/// <inheritdoc/>
-	static Mask GridBase.DefaultMask => DefaultMask;
+	static Mask InlineArrayGridBase.DefaultMask => DefaultMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.MaxCandidatesMask => MaxCandidatesMask;
+	static Mask InlineArrayGridBase.MaxCandidatesMask => MaxCandidatesMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.EmptyMask => EmptyMask;
+	static Mask InlineArrayGridBase.EmptyMask => EmptyMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.ModifiableMask => ModifiableMask;
+	static Mask InlineArrayGridBase.ModifiableMask => ModifiableMask;
 
 	/// <inheritdoc/>
-	static Mask GridBase.GivenMask => GivenMask;
+	static Mask InlineArrayGridBase.GivenMask => GivenMask;
 
 	/// <inheritdoc/>
 	static ref readonly Grid GridBase.Empty => ref Empty;
@@ -439,7 +440,7 @@ public struct Grid : GridBase
 
 	/// <inheritdoc/>
 	[UnscopedRef]
-	ref Mask GridBase.this[Cell cell] => ref this[cell];
+	ref Mask InlineArrayGridBase.this[Cell cell] => ref this[cell];
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

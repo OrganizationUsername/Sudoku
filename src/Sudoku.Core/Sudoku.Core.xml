@@ -7487,57 +7487,6 @@
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.SimdGrid">
-            <summary>
-            Represents a grid that uses SIMD-related APIs, in order to optimize performance via hardware intrinsics.
-            </summary>
-            <remarks>
-            This type uses 192 bits.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.SimdGrid.CellStateFieldEachUInt64FieldAccommodateCellStatesCount">
-            <summary>
-            Represents value 21, meaning the number of cell states
-            that each <see cref="T:System.UInt64"/> field from backing field <c>_cellStates</c> can accommodate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SimdGrid.EmptyCellStateMask">
-            <summary>
-            Represents value 1, indicating empty cell states mask.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SimdGrid.Empty">
-            <summary>
-            Represents an empty grid which doesn't contain any possible givens; all candidates are initialized as states "on".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SimdGrid._cellStates">
-            <summary>
-            Represents cell states.
-            </summary>
-            <remarks>
-            Due to design of this type, in order not to write 3 bits out to 2 different positions,
-            we will only use 63 of 64 bits for each <see cref="T:System.UInt64"/> fields for it.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.SimdGrid._candidateStates">
-            <summary>
-            Represents candidate states.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.SimdGrid.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>
             Represents a way to find a path that connects block cells.

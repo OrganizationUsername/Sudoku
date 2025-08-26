@@ -20,18 +20,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\OcrResources.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>OcrResources.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\OcrResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>OcrResources.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\OcrResources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>OcrResources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\OcrResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>OcrResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

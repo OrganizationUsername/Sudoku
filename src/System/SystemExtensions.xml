@@ -6723,12 +6723,6 @@
             Provides extension members on <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
         </member>
-        <member name="M:System.ReadOnlySpanUnsafeExtensions.&lt;&gt;E__0`1.AsNonReadOnly">
-            <summary>
-            Converts the current instance as a non-read-only span.
-            </summary>
-            <returns>A <see cref="T:System.Span`1"/> instance.</returns>
-        </member>
         <member name="M:System.ReadOnlySpanUnsafeExtensions.&lt;&gt;E__0`1.Create(`0@,System.Int32)">
             <summary>
             Creates a <see cref="T:System.ReadOnlySpan`1"/> instance.
@@ -6736,9 +6730,6 @@
             <param name="reference">The reference to the first element.</param>
             <param name="length">The length.</param>
             <returns><see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
-        </member>
-        <member name="M:System.ReadOnlySpanUnsafeExtensions.AsNonReadOnly``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.ReadOnlySpanUnsafeExtensions.&lt;&gt;E__0`1.AsNonReadOnly"/>
         </member>
         <member name="M:System.ReadOnlySpanUnsafeExtensions.Create``1(``0@,System.Int32)">
             <inheritdoc cref="M:System.ReadOnlySpanUnsafeExtensions.&lt;&gt;E__0`1.Create(`0@,System.Int32)"/>
@@ -7665,12 +7656,6 @@
             Provides extension members on <see cref="T:System.Span`1"/>.
             </summary>
         </member>
-        <member name="M:System.SpanUnsafeExtensions.&lt;&gt;E__0`1.AsReadOnly">
-            <summary>
-            Converts the current instance as a read-only span.
-            </summary>
-            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
-        </member>
         <member name="M:System.SpanUnsafeExtensions.&lt;&gt;E__0`1.Create(`0@,System.Int32)">
             <summary>
             Creates a <see cref="T:System.Span`1"/> instance.
@@ -7678,9 +7663,6 @@
             <param name="reference">The reference to the first element.</param>
             <param name="length">The length.</param>
             <returns><see cref="T:System.Span`1"/> instance.</returns>
-        </member>
-        <member name="M:System.SpanUnsafeExtensions.AsReadOnly``1(System.Span{``0})">
-            <inheritdoc cref="M:System.SpanUnsafeExtensions.&lt;&gt;E__0`1.AsReadOnly"/>
         </member>
         <member name="M:System.SpanUnsafeExtensions.Create``1(``0@,System.Int32)">
             <inheritdoc cref="M:System.SpanUnsafeExtensions.&lt;&gt;E__0`1.Create(`0@,System.Int32)"/>

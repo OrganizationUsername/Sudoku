@@ -32,26 +32,6 @@ public static class TimeSpanLiterals
 		/// (<see cref="int"/> -> <see cref="TimeSpan"/>) in hours.
 		/// </summary>
 		public TimeSpan h => TimeSpan.FromHours(@this);
-
-		/// <summary>
-		/// (<see cref="int"/> -> <see cref="TimeSpan"/>) in days.
-		/// </summary>
-		public TimeSpan d => TimeSpan.FromDays(@this);
-
-		/// <summary>
-		/// (<see cref="int"/> -> <see cref="TimeSpan"/>) in weeks.
-		/// </summary>
-		public TimeSpan week => TimeSpan.FromDays(@this * 7);
-
-		/// <summary>
-		/// (<see cref="int"/> -> <see cref="TimeSpan"/>) in months.
-		/// </summary>
-		public TimeSpan month => TimeSpan.FromDays(@this * 30);
-
-		/// <summary>
-		/// (<see cref="int"/> -> <see cref="TimeSpan"/>) in years.
-		/// </summary>
-		public TimeSpan year => TimeSpan.FromDays(@this * 365);
 	}
 
 	/// <summary>
@@ -78,25 +58,5 @@ public static class TimeSpanLiterals
 		/// (<see cref="double"/> -> <see cref="TimeSpan"/>) in hours.
 		/// </summary>
 		public TimeSpan h => TimeSpan.FromHours(@this);
-
-		/// <summary>
-		/// (<see cref="double"/> -> <see cref="TimeSpan"/>) in days.
-		/// </summary>
-		public TimeSpan d => TimeSpan.FromDays(@this);
-
-		/// <summary>
-		/// (<see cref="double"/> -> <see cref="TimeSpan"/>) in weeks.
-		/// </summary>
-		public TimeSpan week => TimeSpan.FromDays(@this * 7);
-
-		/// <summary>
-		/// (<see cref="double"/> -> <see cref="TimeSpan"/>) in months.
-		/// </summary>
-		public TimeSpan month => TimeSpan.FromDays(@this * 30);
-
-		/// <summary>
-		/// (<see cref="double"/> -> <see cref="TimeSpan"/>) in years.
-		/// </summary>
-		public TimeSpan year => TimeSpan.FromDays(@this * 365);
 	}
 }

@@ -7783,26 +7783,6 @@
             (<see cref="T:System.Int32"/> -> <see cref="T:System.TimeSpan"/>) in hours.
             </summary>
         </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__0.d">
-            <summary>
-            (<see cref="T:System.Int32"/> -> <see cref="T:System.TimeSpan"/>) in days.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__0.week">
-            <summary>
-            (<see cref="T:System.Int32"/> -> <see cref="T:System.TimeSpan"/>) in weeks.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__0.month">
-            <summary>
-            (<see cref="T:System.Int32"/> -> <see cref="T:System.TimeSpan"/>) in months.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__0.year">
-            <summary>
-            (<see cref="T:System.Int32"/> -> <see cref="T:System.TimeSpan"/>) in years.
-            </summary>
-        </member>
         <member name="M:System.TimeSpanLiterals.get_ms(System.Int32)">
             <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.ms"/>
         </member>
@@ -7814,18 +7794,6 @@
         </member>
         <member name="M:System.TimeSpanLiterals.get_h(System.Int32)">
             <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.h"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_d(System.Int32)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.d"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_week(System.Int32)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.week"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_month(System.Int32)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.month"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_year(System.Int32)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__0.year"/>
         </member>
         <member name="T:System.TimeSpanLiterals.&lt;&gt;E__1">
             <summary>
@@ -7852,26 +7820,6 @@
             (<see cref="T:System.Double"/> -> <see cref="T:System.TimeSpan"/>) in hours.
             </summary>
         </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__1.d">
-            <summary>
-            (<see cref="T:System.Double"/> -> <see cref="T:System.TimeSpan"/>) in days.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__1.week">
-            <summary>
-            (<see cref="T:System.Double"/> -> <see cref="T:System.TimeSpan"/>) in weeks.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__1.month">
-            <summary>
-            (<see cref="T:System.Double"/> -> <see cref="T:System.TimeSpan"/>) in months.
-            </summary>
-        </member>
-        <member name="P:System.TimeSpanLiterals.&lt;&gt;E__1.year">
-            <summary>
-            (<see cref="T:System.Double"/> -> <see cref="T:System.TimeSpan"/>) in years.
-            </summary>
-        </member>
         <member name="M:System.TimeSpanLiterals.get_ms(System.Double)">
             <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.ms"/>
         </member>
@@ -7883,18 +7831,6 @@
         </member>
         <member name="M:System.TimeSpanLiterals.get_h(System.Double)">
             <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.h"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_d(System.Double)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.d"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_week(System.Double)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.week"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_month(System.Double)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.month"/>
-        </member>
-        <member name="M:System.TimeSpanLiterals.get_year(System.Double)">
-            <inheritdoc cref="P:System.TimeSpanLiterals.&lt;&gt;E__1.year"/>
         </member>
         <member name="T:System.ValueTupleExtensions">
             <summary>

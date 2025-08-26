@@ -13108,18 +13108,18 @@
             </summary>
             <returns>The result fliped.</returns>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.LibraryExtensions">
+        <member name="T:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.IO.Library"/>.
             </summary>
             <seealso cref="T:Sudoku.IO.Library"/>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.LibraryExtensions.&lt;&gt;E__0">
+        <member name="T:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0">
             <summary>
             Provides extension members on <see cref="T:Sudoku.IO.Library"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.LibraryExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
@@ -13128,8 +13128,8 @@
             <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
             <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.LibraryExtensions.RandomReadOneAsync(Sudoku.IO.Library,Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.LibraryExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.RandomReadOneAsync(Sudoku.IO.Library,Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)"/>
         </member>
         <member name="T:Sudoku.Shuffling.Transforming.RandomShufflingExtensions">
             <summary>

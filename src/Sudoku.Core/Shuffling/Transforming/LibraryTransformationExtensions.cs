@@ -4,7 +4,7 @@ namespace Sudoku.Shuffling.Transforming;
 /// Provides with extension methods on <see cref="Library"/>.
 /// </summary>
 /// <seealso cref="Library"/>
-public static class LibraryExtensions
+public static class LibraryTransformationExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Library"/>.

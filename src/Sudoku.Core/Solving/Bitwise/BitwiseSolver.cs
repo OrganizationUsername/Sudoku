@@ -352,6 +352,7 @@ public sealed unsafe partial class BitwiseSolver : ISolutionEnumerableSolver
 	/// Core of fast processing.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 	private bool Update()
 	{
 		uint shrink = 1, a, b, c, cl;
@@ -646,6 +647,7 @@ public sealed unsafe partial class BitwiseSolver : ISolutionEnumerableSolver
 	/// Find singles, bi-value cells, and impossible cells.
 	/// </summary>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 	private bool ApplySingleOrEmptyCells()
 	{
 		_singleApplied = false;
@@ -911,6 +913,7 @@ public sealed unsafe partial class BitwiseSolver : ISolutionEnumerableSolver
 	/// Get as far as possible without guessing.
 	/// </summary>
 	/// <returns>A <see cref="byte"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 	private byte FullUpdate()
 	{
 		if (_numSolutions >= _limitSolutions)

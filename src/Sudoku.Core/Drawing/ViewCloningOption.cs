@@ -7,7 +7,7 @@ namespace Sudoku.Drawing;
 public enum ViewCloningOption
 {
 	/// <summary>
-	/// Indicates the cloneation behavior is default one, all nodes are copied into a new collection,
+	/// Indicates the cloning behavior is default one, all nodes are copied into a new collection,
 	/// but nodes themselves are not cloned with new instances.
 	/// </summary>
 	/// <remarks>
@@ -16,7 +16,7 @@ public enum ViewCloningOption
 	Default,
 
 	/// <summary>
-	/// Indicates the cloneation behavior includes nodes.
+	/// Indicates the cloning behavior includes nodes.
 	/// All nodes are copied into a new collection, and data from each node will be copied into a new instance.
 	/// </summary>
 	/// <remarks>

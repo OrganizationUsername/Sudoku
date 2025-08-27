@@ -164,6 +164,7 @@ public partial struct CellMap : CellMapBase
 	/// </remarks>
 	public readonly Mask BlockMask
 	{
+		[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 		get
 		{
 			var result = (Mask)0;
@@ -188,6 +189,7 @@ public partial struct CellMap : CellMapBase
 	/// </remarks>
 	public readonly Mask RowMask
 	{
+		[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 		get
 		{
 			var result = (Mask)0;
@@ -212,6 +214,7 @@ public partial struct CellMap : CellMapBase
 	/// </remarks>
 	public readonly Mask ColumnMask
 	{
+		[MethodImpl(MethodImplOptions.AggressiveOptimization)]
 		get
 		{
 			var result = (Mask)0;

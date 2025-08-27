@@ -29380,74 +29380,6 @@
         <member name="P:Sudoku.Ranking.PatternTooComplexException.Message">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Ranking.Queuing.CombinationQueueNode">
-            <summary>
-            Represents a queue node that is used in calculating assignment combinations.
-            </summary>
-            <param name="Set">Indicates the set (assignment).</param>
-            <param name="RemainingTruthIndices">Indicates the remaining truth indices.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="M:Sudoku.Ranking.Queuing.CombinationQueueNode.#ctor(System.Int32,System.Int32[],Sudoku.Ranking.Queuing.CombinationQueueNode)">
-            <summary>
-            Represents a queue node that is used in calculating assignment combinations.
-            </summary>
-            <param name="Set">Indicates the set (assignment).</param>
-            <param name="RemainingTruthIndices">Indicates the remaining truth indices.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CombinationQueueNode.Set">
-            <summary>Indicates the set (assignment).</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CombinationQueueNode.RemainingTruthIndices">
-            <summary>Indicates the remaining truth indices.</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CombinationQueueNode.Parent">
-            <summary>Indicates the parent node.</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CombinationQueueNode.State">
-            <summary>
-            Indicates the states of node (assignments in this branch).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Ranking.Queuing.CombinationQueueNode.GetProducedLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
-            <summary>
-            Find for produced links on this branch of nodes in the grid.
-            </summary>
-            <param name="grid">The original grid.</param>
-            <param name="truths">Indicates the truths.</param>
-            <returns>The spaces of the links.</returns>
-        </member>
-        <member name="T:Sudoku.Ranking.Queuing.CoverQueueNode">
-            <summary>
-            Represents a queue node that is used for covering candidates appeared in truths.
-            </summary>
-            <param name="Link">Indicates the appended link.</param>
-            <param name="UncoveredCandidates">Indicates the uncovered candidates.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="M:Sudoku.Ranking.Queuing.CoverQueueNode.#ctor(Sudoku.Concepts.Supersymmetry.Space,Sudoku.Concepts.CandidateMap@,Sudoku.Ranking.Queuing.CoverQueueNode)">
-            <summary>
-            Represents a queue node that is used for covering candidates appeared in truths.
-            </summary>
-            <param name="Link">Indicates the appended link.</param>
-            <param name="UncoveredCandidates">Indicates the uncovered candidates.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CoverQueueNode.Link">
-            <summary>Indicates the appended link.</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CoverQueueNode.UncoveredCandidates">
-            <summary>Indicates the uncovered candidates.</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CoverQueueNode.Parent">
-            <summary>Indicates the parent node.</summary>
-        </member>
-        <member name="P:Sudoku.Ranking.Queuing.CoverQueueNode.Links">
-            <summary>
-            Indicates the links.
-            </summary>
-        </member>
         <member name="T:Sudoku.Ranking.RankPattern">
             <summary>
             Represents an object that can calculate rank-related information via the specified grid, truths and links.
@@ -29748,6 +29680,44 @@
             Gets the full string of the current pattern, including its details (rank, eliminations and so on).
             </summary>
             <returns>The string.</returns>
+        </member>
+        <member name="T:Sudoku.Ranking.CombinationQueueNode">
+            <summary>
+            Represents a queue node that is used in calculating assignment combinations.
+            </summary>
+            <param name="Set">Indicates the set (assignment).</param>
+            <param name="RemainingTruthIndices">Indicates the remaining truth indices.</param>
+            <param name="Parent">Indicates the parent node.</param>
+        </member>
+        <member name="M:Sudoku.Ranking.CombinationQueueNode.#ctor(System.Int32,System.Int32[],Sudoku.Ranking.CombinationQueueNode)">
+            <summary>
+            Represents a queue node that is used in calculating assignment combinations.
+            </summary>
+            <param name="Set">Indicates the set (assignment).</param>
+            <param name="RemainingTruthIndices">Indicates the remaining truth indices.</param>
+            <param name="Parent">Indicates the parent node.</param>
+        </member>
+        <member name="P:Sudoku.Ranking.CombinationQueueNode.Set">
+            <summary>Indicates the set (assignment).</summary>
+        </member>
+        <member name="P:Sudoku.Ranking.CombinationQueueNode.RemainingTruthIndices">
+            <summary>Indicates the remaining truth indices.</summary>
+        </member>
+        <member name="P:Sudoku.Ranking.CombinationQueueNode.Parent">
+            <summary>Indicates the parent node.</summary>
+        </member>
+        <member name="P:Sudoku.Ranking.CombinationQueueNode.State">
+            <summary>
+            Indicates the states of node (assignments in this branch).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Ranking.CombinationQueueNode.GetProducedLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@)">
+            <summary>
+            Find for produced links on this branch of nodes in the grid.
+            </summary>
+            <param name="grid">The original grid.</param>
+            <param name="truths">Indicates the truths.</param>
+            <returns>The spaces of the links.</returns>
         </member>
         <member name="T:Sudoku.Resources.AnalyticsResources">
             <summary>

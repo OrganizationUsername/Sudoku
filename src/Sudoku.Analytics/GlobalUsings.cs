@@ -53,7 +53,6 @@ global using Sudoku.Generating.Filtering.Constraints;
 global using Sudoku.Generating.Qualified;
 global using Sudoku.Linq;
 global using Sudoku.Ranking;
-global using Sudoku.Ranking.Queuing;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.InterceptorServices;
 global using Sudoku.Runtime.InteropServices;

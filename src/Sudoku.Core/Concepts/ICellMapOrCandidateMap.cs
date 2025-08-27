@@ -492,6 +492,18 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 	static abstract bool operator !=(in TSelf left, in TSelf right);
 
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	static abstract bool operator >(in TSelf left, in TSelf right);
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	static abstract bool operator <(in TSelf left, in TSelf right);
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	static abstract bool operator >=(in TSelf left, in TSelf right);
+
+	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	static abstract bool operator <=(in TSelf left, in TSelf right);
+
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
 	/// and returns the added result.
@@ -622,10 +634,28 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	static bool ILogicalOperators<TSelf>.operator !(TSelf value) => !value;
 
 	/// <inheritdoc/>
+	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value.Count != 0;
+
+	/// <inheritdoc/>
+	static bool ILogicalOperators<TSelf>.operator false(TSelf value) => value.Count == 0;
+
+	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator ==(TSelf left, TSelf right) => left == right;
 
 	/// <inheritdoc/>
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator !=(TSelf left, TSelf right) => left != right;
+
+	/// <inheritdoc/>
+	static bool IComparisonOperators<TSelf, TSelf, bool>.operator >(TSelf left, TSelf right) => left > right;
+
+	/// <inheritdoc/>
+	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <(TSelf left, TSelf right) => left < right;
+
+	/// <inheritdoc/>
+	static bool IComparisonOperators<TSelf, TSelf, bool>.operator >=(TSelf left, TSelf right) => left >= right;
+
+	/// <inheritdoc/>
+	static bool IComparisonOperators<TSelf, TSelf, bool>.operator <=(TSelf left, TSelf right) => left <= right;
 
 	/// <inheritdoc/>
 	static TSelf IAdditionOperators<TSelf, TElement, TSelf>.operator +(TSelf left, TElement right) => left + right;

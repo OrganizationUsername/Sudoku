@@ -740,28 +740,28 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <inheritdoc/>
 	public static bool operator !(in CandidateMap value) => value.Count == 0;
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_True(TSelf)"/>
+	/// <inheritdoc/>
 	public static bool operator true(in CandidateMap value) => value.Count != 0;
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_False(TSelf)"/>
+	/// <inheritdoc/>
 	public static bool operator false(in CandidateMap value) => value.Count == 0;
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator ==(in CandidateMap left, in CandidateMap right) => left.Equals(right);
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator !=(in CandidateMap left, in CandidateMap right) => !(left == right);
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator >(in CandidateMap left, in CandidateMap right) => left.CompareTo(right) > 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator <(in CandidateMap left, in CandidateMap right) => left.CompareTo(right) < 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator >=(in CandidateMap left, in CandidateMap right) => left.CompareTo(right) >= 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator <=(in CandidateMap left, in CandidateMap right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
@@ -933,33 +933,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CandidateMap>.operator !(CandidateMap value) => value.Count == 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CandidateMap>.operator true(CandidateMap value) => value.Count != 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CandidateMap>.operator false(CandidateMap value) => value.Count == 0;
-
-	/// <inheritdoc/>
-	static bool IEqualityOperators<CandidateMap, CandidateMap, bool>.operator ==(CandidateMap left, CandidateMap right) => left == right;
-
-	/// <inheritdoc/>
-	static bool IEqualityOperators<CandidateMap, CandidateMap, bool>.operator !=(CandidateMap left, CandidateMap right) => left != right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CandidateMap, CandidateMap, bool>.operator >(CandidateMap left, CandidateMap right) => left > right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CandidateMap, CandidateMap, bool>.operator <(CandidateMap left, CandidateMap right) => left < right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CandidateMap, CandidateMap, bool>.operator >=(CandidateMap left, CandidateMap right) => left >= right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CandidateMap, CandidateMap, bool>.operator <=(CandidateMap left, CandidateMap right) => left <= right;
 }
 
 /// <summary>

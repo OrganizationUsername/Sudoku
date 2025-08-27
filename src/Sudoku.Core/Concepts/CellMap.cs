@@ -816,31 +816,31 @@ public partial struct CellMap : CellMapBase
 		=> _vector = _vector.WithElement(offset / Shifting, _vector[offset / Shifting] & ~(1UL << offset % Shifting));
 #endif
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_LogicalNot(TSelf)"/>
+	/// <inheritdoc/>
 	public static bool operator !(in CellMap value) => value.Count == 0;
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_True(TSelf)"/>
+	/// <inheritdoc/>
 	public static bool operator true(in CellMap value) => value.Count != 0;
 
-	/// <inheritdoc cref="ILogicalOperators{TSelf}.op_False(TSelf)"/>
+	/// <inheritdoc/>
 	public static bool operator false(in CellMap value) => value.Count == 0;
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator ==(in CellMap left, in CellMap right) => left.Equals(right);
 
-	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator !=(in CellMap left, in CellMap right) => !(left == right);
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator >(in CellMap left, in CellMap right) => left.CompareTo(right) > 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator <(in CellMap left, in CellMap right) => left.CompareTo(right) < 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator >=(in CellMap left, in CellMap right) => left.CompareTo(right) >= 0;
 
-	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+	/// <inheritdoc/>
 	public static bool operator <=(in CellMap left, in CellMap right) => left.CompareTo(right) <= 0;
 
 	/// <inheritdoc/>
@@ -1007,33 +1007,6 @@ public partial struct CellMap : CellMapBase
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CellMap>.operator !(CellMap value) => value.Count == 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CellMap>.operator true(CellMap value) => value.Count != 0;
-
-	/// <inheritdoc/>
-	static bool ILogicalOperators<CellMap>.operator false(CellMap value) => value.Count == 0;
-
-	/// <inheritdoc/>
-	static bool IEqualityOperators<CellMap, CellMap, bool>.operator ==(CellMap left, CellMap right) => left == right;
-
-	/// <inheritdoc/>
-	static bool IEqualityOperators<CellMap, CellMap, bool>.operator !=(CellMap left, CellMap right) => left != right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >(CellMap left, CellMap right) => left > right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <(CellMap left, CellMap right) => left < right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator >=(CellMap left, CellMap right) => left >= right;
-
-	/// <inheritdoc/>
-	static bool IComparisonOperators<CellMap, CellMap, bool>.operator <=(CellMap left, CellMap right) => left <= right;
 }
 
 /// <summary>

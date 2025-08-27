@@ -568,28 +568,28 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_True(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_False(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Equality(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Inequality(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_GreaterThan(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_LessThan(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_GreaterThanOrEqual(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_LessThanOrEqual(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_OnesComplement(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
@@ -630,33 +630,6 @@
             <param name="candidates">The candidates to be checked.</param>
             <param name="digit">The digit to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_LogicalNot(Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_True(Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#ILogicalOperators{Sudoku#Concepts#CandidateMap}#op_False(Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_Equality(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_Inequality(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_GreaterThan(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_LessThan(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_GreaterThanOrEqual(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap.Enumerator">
             <summary>
@@ -1080,31 +1053,31 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_LogicalNot(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_True(Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_False(Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Equality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Inequality(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_GreaterThan(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LessThan(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_GreaterThanOrEqual(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LessThanOrEqual(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_OnesComplement(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
@@ -1151,33 +1124,6 @@
             <param name="cells">The cells to be checked.</param>
             <param name="house">The house to be checked.</param>
             <returns>A <see cref="T:System.Int16"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_LogicalNot(Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_True(Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#ILogicalOperators{Sudoku#Concepts#CellMap}#op_False(Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_Equality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_Inequality(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_GreaterThan(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_LessThan(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_GreaterThanOrEqual(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.CellMap.Enumerator">
             <summary>
@@ -5980,6 +5926,18 @@
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_Inequality(`0@,`0@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_GreaterThan(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_LessThan(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_GreaterThanOrEqual(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_LessThanOrEqual(`0@,`0@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.op_Addition(`0@,`1)">
             <summary>
             Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -6109,10 +6067,28 @@
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#ILogicalOperators{TSelf}#op_LogicalNot(`0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#ILogicalOperators{TSelf}#op_True(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#ILogicalOperators{TSelf}#op_False(`0)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_GreaterThan(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThan(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_GreaterThanOrEqual(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IComparisonOperators{TSelf,TSelf,System#Boolean}#op_LessThanOrEqual(`0,`0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.System#Numerics#IAdditionOperators{TSelf,TElement,TSelf}#op_Addition(`0,`1)">

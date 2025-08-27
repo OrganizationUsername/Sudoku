@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Defines a chute.
+/// Represents a chute (a band or a tower, representing 27 cells in 3 aligned blocks).
 /// </summary>
 /// <param name="Index">Index of the chute. The value is between 0 and 6.</param>
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>

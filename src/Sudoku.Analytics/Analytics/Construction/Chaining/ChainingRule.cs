@@ -95,12 +95,8 @@ public abstract class ChainingRule
 	/// </summary>
 	/// <param name="grid">Indicates the grid.</param>
 	/// <param name="links">Indicates the links.</param>
-	/// <param name="conclusions">
-	/// Indicates the conclusions. Use operator <see cref="ConclusionSet.op_BitwiseOr(ConclusionSet, ConclusionSet)"/>
-	/// to collect conclusions.
-	/// </param>
+	/// <param name="conclusions">Indicates the conclusions.</param>
 	/// <returns>A list of found conclusions.</returns>
-	/// <seealso cref="ConclusionSet.op_BitwiseOr(ConclusionSet, ConclusionSet)"/>
 	[Cached]
 	public virtual void GetLoopConclusions(in Grid grid, ReadOnlySpan<Link> links, ref ConclusionSet conclusions)
 	{

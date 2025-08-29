@@ -1,4 +1,4 @@
-namespace Sudoku.Cognition.Bottlenecks;
+namespace Sudoku.Bottlenecks;
 
 /// <summary>
 /// Provides with extension methods on <see cref="AnalysisResult"/>.

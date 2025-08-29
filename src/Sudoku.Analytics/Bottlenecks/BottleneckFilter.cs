@@ -1,4 +1,4 @@
-namespace Sudoku.Cognition.Bottlenecks;
+namespace Sudoku.Bottlenecks;
 
 /// <summary>
 /// Represents a bottleneck filter consumed by method <see cref="AnalysisResultExtensions.GetBottlenecks(AnalysisResult, ReadOnlySpan{BottleneckFilter})"/>.

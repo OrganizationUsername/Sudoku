@@ -1,4 +1,4 @@
-namespace Sudoku.Cognition.Bottlenecks;
+namespace Sudoku.Bottlenecks;
 
 /// <summary>
 /// Represents a type of bottleneck.

@@ -32,7 +32,9 @@ public static partial class AnalyzerProperties
 	public static partial bool AnalyzerIsFullApplying { get; set; }
 
 
-	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
+	/// <summary>
+	/// <inheritdoc cref="DisorderedIttoryuFinder(TechniqueSet)" path="/param[@name='_supportedTechniques']"/>
+	/// </summary>
 	[DependencyProperty]
 	public static partial List<Technique> IttoryuSupportedTechniques { get; set; }
 

@@ -220,7 +220,9 @@ public sealed partial class AnalysisPreferenceGroup : PreferenceGroup
 	[DependencyProperty]
 	public partial Dictionary<LinkType, LinkOption> OverriddenLinkOptions { get; set; }
 
-	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
+	/// <summary>
+	/// <inheritdoc cref="DisorderedIttoryuFinder(TechniqueSet)" path="/param[@name='_supportedTechniques']"/>
+	/// </summary>
 	[DependencyProperty]
 	public partial List<Technique> IttoryuSupportedTechniques { get; set; }
 }

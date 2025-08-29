@@ -30,19 +30,14 @@ public ref struct EnumFlagsEnumerator<TEnum>(TEnum baseField) : IEnumerator<TEnu
 	readonly object IEnumerator.Current => Current;
 
 
-	/// <summary>
-	/// Indicates the size of <typeparamref name="TEnum"/>.
-	/// </summary>
-	private static unsafe int SizeOfT => sizeof(TEnum);
-
-
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public bool MoveNext()
+	public unsafe bool MoveNext()
 	{
+		var size = sizeof(TEnum);
 		for (var index = _index + 1; index < _fields.Length; index++)
 		{
 			var field = _fields[index];
-			switch (SizeOfT)
+			switch (size)
 			{
 				case 1 or 2 or 4 when IsPow2(Unsafe.As<TEnum, uint>(ref field)) && _baseField.HasFlag(field):
 				{

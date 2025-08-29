@@ -2973,11 +2973,6 @@
         <member name="P:System.Linq.Enumerators.EnumFlagsEnumerator`1.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="P:System.Linq.Enumerators.EnumFlagsEnumerator`1.SizeOfT">
-            <summary>
-            Indicates the size of <typeparamref name="TEnum"/>.
-            </summary>
-        </member>
         <member name="M:System.Linq.Enumerators.EnumFlagsEnumerator`1.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>

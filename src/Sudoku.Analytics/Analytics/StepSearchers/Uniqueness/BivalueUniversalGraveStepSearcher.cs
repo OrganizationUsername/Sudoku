@@ -50,7 +50,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
-		=> CandidatesCount > (EmptyCells.Count << 1) + PeersCount + 8
+		=> CandidatesCount > (EmptyCells.Count << 1) + CellMap.PeersCount + 8
 			? null
 			: CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep
 				? trueCandidateTypeFirstFoundStep

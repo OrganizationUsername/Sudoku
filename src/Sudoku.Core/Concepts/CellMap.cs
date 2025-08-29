@@ -13,6 +13,11 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 public partial struct CellMap : CellMapBase
 {
+	/// <summary>
+	/// Indicates the number of each cell's peer cells. The value is a constant.
+	/// </summary>
+	public const Cell PeersCount = 20;
+
 	/// <inheritdoc cref="CellMapBase.Shifting"/>
 	private const int Shifting = 41;
 

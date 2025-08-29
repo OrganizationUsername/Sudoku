@@ -6,12 +6,6 @@ namespace Sudoku;
 public static class SolutionFields
 {
 	/// <summary>
-	/// Indicates the number of each cell's peer cells. The value is a constant.
-	/// </summary>
-	public const Cell PeersCount = 20;
-
-
-	/// <summary>
 	/// Indicates the possible house types to be iterated.
 	/// </summary>
 	public static readonly HouseType[] HouseTypes = [HouseType.Block, HouseType.Row, HouseType.Column];
@@ -220,7 +214,7 @@ public static class SolutionFields
 							}
 						}
 					}
-					if (map.Count == PeersCount)
+					if (map.Count == CellMap.PeersCount)
 					{
 						break;
 					}

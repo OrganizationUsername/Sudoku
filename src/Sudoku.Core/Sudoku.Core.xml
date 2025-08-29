@@ -686,6 +686,11 @@
             </remarks>
             <seealso cref="T:System.Runtime.Intrinsics.Vector128`1"/>
         </member>
+        <member name="F:Sudoku.Concepts.CellMap.PeersCount">
+            <summary>
+            Indicates the number of each cell's peer cells. The value is a constant.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.ICellMapOrCandidateMap`2.Shifting"/>
         </member>
@@ -13389,11 +13394,6 @@
         <member name="T:Sudoku.SolutionFields">
             <summary>
             Provides with solution-wide read-only fields used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.PeersCount">
-            <summary>
-            Indicates the number of each cell's peer cells. The value is a constant.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.HouseTypes">

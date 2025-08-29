@@ -81,7 +81,7 @@ public static class BitArrayExtensions
 					}
 					for (; i < length; i++)
 					{
-						sum += BitOperations.PopCount(data[i]);
+						sum += PopCount(data[i]);
 					}
 					return sum;
 				}
@@ -108,7 +108,7 @@ public static class BitArrayExtensions
 					}
 					for (; i < length; i++)
 					{
-						sum += BitOperations.PopCount(data[i]);
+						sum += PopCount(data[i]);
 					}
 					return sum;
 				}

@@ -14,7 +14,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<BlossomLoopStep>();
-		if (ChainingDriver.CollectBlossomLoopCore(ref context, accumulator) is { } step)
+		if (ChainingReasoningHub.CollectBlossomLoopCore(ref context, accumulator) is { } step)
 		{
 			return step;
 		}

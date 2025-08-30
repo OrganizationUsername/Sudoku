@@ -53,6 +53,7 @@ global using Sudoku.Keywords;
 global using Sudoku.Linq;
 global using Sudoku.Reasoning.Chaining;
 global using Sudoku.Reasoning.Chaining.Rules;
+global using Sudoku.Reasoning.Hubs;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.InterceptorServices;
 global using Sudoku.Runtime.InteropServices;

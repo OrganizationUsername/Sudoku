@@ -40,14 +40,14 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
 	/// <para>
-	/// All implementations are extracted in type <see cref="ChainingDriver"/>. Please visit it to learn more information.
+	/// All implementations are extracted in type <see cref="ChainingReasoningHub"/>. Please visit it to learn more information.
 	/// </para>
 	/// </remarks>
-	/// <seealso cref="ChainingDriver"/>
+	/// <seealso cref="ChainingReasoningHub"/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<NormalChainStep>();
-		if (ChainingDriver.CollectCore(ref context, accumulator, false, MakeConclusionAroundBackdoors) is { } step)
+		if (ChainingReasoningHub.CollectCore(ref context, accumulator, false, MakeConclusionAroundBackdoors) is { } step)
 		{
 			return step;
 		}

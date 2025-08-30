@@ -1,6 +1,6 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Reasoning.Hubs;
 
-internal partial class ChainingDriver
+internal partial class ChainingReasoningHub
 {
 	/// <summary>
 	/// Collect all dynamic multiple forcing chains and dynamic binary forcing chains appeared in a grid.

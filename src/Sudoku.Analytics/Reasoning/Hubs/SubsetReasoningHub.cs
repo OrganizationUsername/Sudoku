@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Reasoning.Hubs;
 
 /// <summary>
 /// Represents a subset searching driver.
 /// </summary>
-internal static class SubsetDriver
+internal sealed class SubsetReasoningHub : ReasoningHubBase
 {
 	/// <summary>
 	/// Represents a method set.
@@ -11,6 +11,11 @@ internal static class SubsetDriver
 	private static readonly unsafe delegate*<ref StepAnalysisContext, in Grid, in CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>[]
 		MethodSet1 = [&HiddenSubset, &NakedSubset],
 		MethodSet2 = [&NakedSubset, &HiddenSubset];
+
+
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes
+		=> (Type[])[typeof(LockedSubsetStepSearcher), typeof(NormalSubsetStepSearcher)];
 
 
 	/// <summary>

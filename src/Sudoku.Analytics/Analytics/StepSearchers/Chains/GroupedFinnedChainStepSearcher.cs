@@ -14,7 +14,7 @@ public sealed partial class GroupedFinnedChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<ChainStep>();
-		if (ChainingDriver.CollectMultipleCore(ref context, accumulator, true, true) is { } step)
+		if (ChainingReasoningHub.CollectMultipleCore(ref context, accumulator, true, true) is { } step)
 		{
 			return step;
 		}

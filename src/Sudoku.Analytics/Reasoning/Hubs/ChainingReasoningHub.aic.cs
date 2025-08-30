@@ -6,9 +6,9 @@
 #warning 'STRICT_LENGTH_CHECKING_OPTIMIZATION' won't work if 'STRICT_LENGTH_CHECKING' is not configured.
 #endif
 
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Reasoning.Hubs;
 
-internal partial class ChainingDriver
+internal partial class ChainingReasoningHub
 {
 	/// <summary>
 	/// Collect all chains and loops appeared in a grid.

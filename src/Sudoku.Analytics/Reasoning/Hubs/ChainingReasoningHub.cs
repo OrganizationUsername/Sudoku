@@ -1,10 +1,25 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Reasoning.Hubs;
 
 /// <summary>
 /// Provides a driver that can generate normal chains and forcing chains.
 /// </summary>
-internal static partial class ChainingDriver
+internal sealed partial class ChainingReasoningHub : ReasoningHubBase
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes
+		=> (Type[])[
+			typeof(ChainStepSearcher),
+			typeof(FinnedChainStepSearcher),
+			typeof(GroupedChainStepSearcher),
+			typeof(GroupedFinnedChainStepSearcher),
+			typeof(MultipleForcingChainsStepSearcher),
+			typeof(BlossomLoopStepSearcher),
+			typeof(RectangleForcingChainsStepSearcher),
+			typeof(BivalueUniversalGraveForcingChainsStepSearcher),
+			typeof(DynamicForcingChainsStepSearcher)
+		];
+
+
 	/// <summary>
 	/// The collect method called by chain step searchers.
 	/// </summary>

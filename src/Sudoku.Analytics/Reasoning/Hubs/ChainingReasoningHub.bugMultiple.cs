@@ -1,6 +1,6 @@
-namespace Sudoku.Analytics.StepSearchers;
+namespace Sudoku.Reasoning.Hubs;
 
-internal partial class ChainingDriver
+internal partial class ChainingReasoningHub
 {
 	/// <summary>
 	/// Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.

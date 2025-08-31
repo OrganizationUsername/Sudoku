@@ -1,9 +1,9 @@
-namespace Sudoku.Reasoning.Hubs;
+namespace Sudoku.Analytics.StepSearcherHubs;
 
 /// <summary>
 /// Represents a type that can search for chains with general rules, which can be called by multiple different step searcher types.
 /// </summary>
-internal sealed partial class ChainingReasoningHub : ReasoningHubBase
+internal sealed partial class ChainingStepSearcherHub : StepSearcherHubBase
 {
 	/// <inheritdoc/>
 	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes

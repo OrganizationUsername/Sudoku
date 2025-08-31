@@ -1,9 +1,9 @@
-namespace Sudoku.Reasoning.Hubs;
+namespace Sudoku.Analytics.StepSearcherHubs;
 
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
 using HousesDistribution = Dictionary<HouseDigitIdentifier, SortedSet<Node>>;
 
-internal partial class ChainingReasoningHub
+internal partial class ChainingStepSearcherHub
 {
 	/// <summary>
 	/// Collect all blossom loops appeared in a grid.

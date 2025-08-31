@@ -1,9 +1,9 @@
-namespace Sudoku.Reasoning.Hubs;
+namespace Sudoku.Analytics.StepSearcherHubs;
 
 /// <summary>
 /// Represents a type that can search for subsets with general rules, which can be called by multiple different step searcher types.
 /// </summary>
-internal sealed class SubsetReasoningHub : ReasoningHubBase
+internal sealed class SubsetStepSearcherHub : StepSearcherHubBase
 {
 	/// <summary>
 	/// Represents a method set.

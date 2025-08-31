@@ -17,7 +17,7 @@ public sealed partial class MultipleForcingChainsStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		var accumulator = new SortedSet<ChainStep>();
-		if (ChainingReasoningHub.CollectMultipleCore(ref context, accumulator, true, false) is { } step)
+		if (ChainingStepSearcherHub.CollectMultipleCore(ref context, accumulator, true, false) is { } step)
 		{
 			return step;
 		}

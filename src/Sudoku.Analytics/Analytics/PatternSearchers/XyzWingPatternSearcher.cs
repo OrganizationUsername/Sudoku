@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.PatternSearchers;
 /// <summary>
 /// Represents a pattern searcher on XYZ-Wings.
 /// </summary>
-public sealed class XyzWingPatternSearcher : PatternSearcher<XyzWingPattern>
+public sealed class XyzWingPatternSearcher : PatternSearcherBase<XyzWingPattern>
 {
 	/// <inheritdoc/>
 	/// <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>

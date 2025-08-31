@@ -1,6 +1,6 @@
-namespace Sudoku.Reasoning.Hubs;
+namespace Sudoku.Analytics.StepSearcherHubs;
 
-internal partial class ChainingReasoningHub
+internal partial class ChainingStepSearcherHub
 {
 	/// <summary>
 	/// Collect all multiple forcing chains appeared in a grid.

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Represents a pattern searcher type.
 /// </summary>
 /// <typeparam name="TPattern">The type of pattern.</typeparam>
-public abstract class PatternSearcher<TPattern> where TPattern : Pattern
+public abstract class PatternSearcherBase<TPattern> where TPattern : Pattern
 {
 	/// <summary>
 	/// Try to search patterns and return them.

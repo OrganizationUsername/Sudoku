@@ -6866,12 +6866,19 @@
         <member name="M:System.Reflection.CustomAttributeProviderExtensions.GetAttributesCore``1(``0)">
             <inheritdoc cref="M:System.Reflection.CustomAttributeProviderExtensions.&lt;&gt;E__0`1.GetAttributesCore"/>
         </member>
-        <member name="M:System.Reflection.CustomAttributeProviderExtensions.IndexOfBacktick(System.String)">
+        <member name="T:System.Reflection.CustomAttributeProviderExtensions.&lt;&gt;E__1">
+            <summary>
+            Provides extension members on <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.&lt;&gt;E__1.IndexOfBacktick">
             <summary>
             Get the index of the text of the back tick.
             </summary>
-            <param name="this">The string text.</param>
             <returns>The index of the backtick in the string.</returns>
+        </member>
+        <member name="M:System.Reflection.CustomAttributeProviderExtensions.IndexOfBacktick(System.String)">
+            <inheritdoc cref="M:System.Reflection.CustomAttributeProviderExtensions.&lt;&gt;E__1.IndexOfBacktick"/>
         </member>
         <member name="T:System.Reflection.EnumFieldExtensions">
             <summary>

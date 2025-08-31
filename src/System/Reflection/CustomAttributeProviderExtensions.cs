@@ -11,7 +11,8 @@ public static class CustomAttributeProviderExtensions
 	/// where <typeparamref name="TCustomAttributeProvider"/> satisfies
 	/// <see langword="class"/> and <see cref="ICustomAttributeProvider"/> constraints.
 	/// </summary>
-	extension<TCustomAttributeProvider>(TCustomAttributeProvider @this) where TCustomAttributeProvider : class, ICustomAttributeProvider
+	extension<TCustomAttributeProvider>(TCustomAttributeProvider @this)
+		where TCustomAttributeProvider : class, ICustomAttributeProvider
 	{
 		/// <summary>
 		/// Gets the type arguments of the specified attribute type applied to the specified property.
@@ -72,9 +73,14 @@ public static class CustomAttributeProviderExtensions
 	}
 
 	/// <summary>
-	/// Get the index of the text of the back tick.
+	/// Provides extension members on <see cref="string"/>.
 	/// </summary>
-	/// <param name="this">The string text.</param>
-	/// <returns>The index of the backtick in the string.</returns>
-	private static int IndexOfBacktick(this string @this) => @this.IndexOf('`');
+	extension(string @this)
+	{
+		/// <summary>
+		/// Get the index of the text of the back tick.
+		/// </summary>
+		/// <returns>The index of the backtick in the string.</returns>
+		private int IndexOfBacktick() => @this.IndexOf('`');
+	}
 }

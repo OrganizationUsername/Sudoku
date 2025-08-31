@@ -8053,7 +8053,7 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AboutPageTitle">
             <summary>
-              Looks up a localized string similar to About....
+              Looks up a localized string similar to About.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AlmostLockedSetAndIntersectionSettingPageTitle">

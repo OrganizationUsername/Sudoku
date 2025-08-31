@@ -1045,7 +1045,7 @@
     <value>About</value>
   </data>
   <data name="MainWindow_AboutPageTitle" xml:space="preserve">
-    <value>About...</value>
+    <value>About</value>
   </data>
   <data name="MainWindow_AnalysisPreferenceItemsPageTitle" xml:space="preserve">
     <value>Analysis Options</value>

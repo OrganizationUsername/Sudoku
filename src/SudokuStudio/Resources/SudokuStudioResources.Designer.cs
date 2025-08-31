@@ -4330,7 +4330,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to About....
+        ///   Looks up a localized string similar to About.
         /// </summary>
         internal static string MainWindow_AboutPageTitle {
             get {

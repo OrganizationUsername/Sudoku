@@ -1045,7 +1045,7 @@
     <value>关于</value>
   </data>
   <data name="MainWindow_AboutPageTitle" xml:space="preserve">
-    <value>关于……</value>
+    <value>关于</value>
   </data>
   <data name="MainWindow_AnalysisPreferenceItemsPageTitle" xml:space="preserve">
     <value>题目分析设置</value>

@@ -217,12 +217,13 @@ public sealed class Analyzer : StepGatherer
 				// We should check whether the puzzle is a GSP firstly.
 				// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
 				var symmetricType = GridSymmetryChecker.GetSymmetry(puzzle, out var mappingDigits, out var selfPairedDigitsMask);
+				var isCanceled = false;
 
 				try
 				{
 					// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
 					// We will defer the checking inside this method stackframe.
-					return result = analyzeInternal(
+					var tempResult = analyzeInternal(
 						puzzle,
 						solution,
 						result,
@@ -230,8 +231,12 @@ public sealed class Analyzer : StepGatherer
 						mappingDigits,
 						selfPairedDigitsMask,
 						progress,
-						cancellationToken
+						cancellationToken,
+						ref isCanceled
 					);
+					return !isCanceled && tempResult is not null
+						? tempResult
+						: result with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
 				}
 				catch (Exception ex)
 				{
@@ -247,8 +252,6 @@ public sealed class Analyzer : StepGatherer
 							PuzzleInvalidException
 								=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
 						},
-						OperationCanceledException { CancellationToken: var c } when c == cancellationToken
-							=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
 						NotImplementedException or NotSupportedException
 							=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
 						_
@@ -265,7 +268,7 @@ public sealed class Analyzer : StepGatherer
 		}
 
 
-		AnalysisResult analyzeInternal(
+		AnalysisResult? analyzeInternal(
 			in Grid puzzle,
 			in Grid solution,
 			AnalysisResult resultBase,
@@ -273,7 +276,8 @@ public sealed class Analyzer : StepGatherer
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<StepGathererProgressPresenter>? progress,
-			CancellationToken cancellationToken
+			CancellationToken cancellationToken,
+			ref bool isCanceled
 		)
 		{
 			var playground = puzzle;
@@ -316,6 +320,12 @@ public sealed class Analyzer : StepGatherer
 			}
 
 		FindNextStep:
+			if (cancellationToken.IsCancellationRequested)
+			{
+				isCanceled = true;
+				return null;
+			}
+
 			Initialize(this, playground, solution);
 
 			string progressedStepSearcherName;
@@ -401,7 +411,8 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, step, context, ref playground,
-									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
+									|| isCanceled)
 								{
 									return result;
 								}
@@ -417,7 +428,8 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
+								|| isCanceled)
 							{
 								return result;
 							}
@@ -444,7 +456,8 @@ public sealed class Analyzer : StepGatherer
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, context, ref playground,
-							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
+							|| isCanceled)
 						{
 							return result;
 						}
@@ -472,7 +485,8 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
+								|| isCanceled)
 							{
 								return result;
 							}
@@ -488,7 +502,8 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-									resultBase, cancellationToken, out var result))
+									resultBase, cancellationToken, out var result)
+									|| isCanceled)
 								{
 									return result;
 								}
@@ -513,7 +528,8 @@ public sealed class Analyzer : StepGatherer
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-										resultBase, cancellationToken, out var result))
+										resultBase, cancellationToken, out var result)
+										|| isCanceled)
 									{
 										return result;
 									}
@@ -632,8 +648,6 @@ public sealed class Analyzer : StepGatherer
 
 					if (playground.IsSolved)
 					{
-						var gcSnapshot2 = GC.GetTotalMemory(false);
-
 						result = resultBase with
 						{
 							IsSolved = true,
@@ -650,8 +664,6 @@ public sealed class Analyzer : StepGatherer
 					// No steps are available.
 					goto ReturnFalse;
 				}
-
-				cancellationToken.ThrowIfCancellationRequested();
 
 			ReturnFalse:
 				result = null;

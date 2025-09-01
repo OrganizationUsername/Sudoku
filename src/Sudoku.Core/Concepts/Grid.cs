@@ -518,6 +518,16 @@ public struct Grid : InlineArrayGridBase
 		return this[..].SequenceEqual(other[..]);
 	}
 
+	/// <summary>
+	/// Compares two <see cref="Grid"/> instances and returns a <see cref="bool"/> value
+	/// indicating whether they are same under the specified comparison rule using <paramref name="comparer"/>.
+	/// </summary>
+	/// <param name="other">The other object to be compared.</param>
+	/// <param name="comparer">The comparer instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public readonly bool Equals(in Grid other, IEqualityComparer<Grid>? comparer)
+		=> (comparer ?? new GridEqualityComparer()).Equals(this, other);
+
 	/// <inheritdoc/>
 	public readonly bool ConflictWith(Cell cell, Digit digit)
 	{
@@ -563,6 +573,13 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public readonly override int GetHashCode()
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
+
+	/// <summary>
+	/// Serves as hash code function; with a comparer instance to calculate hash code.
+	/// </summary>
+	/// <param name="comparer">The comparer instance.</param>
+	/// <returns>A hash code.</returns>
+	public readonly int GetHashCode(IEqualityComparer<Grid>? comparer) => (comparer ?? new GridEqualityComparer()).GetHashCode(this);
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
@@ -1201,14 +1218,6 @@ public struct Grid : InlineArrayGridBase
 
 	/// <inheritdoc/>
 	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
-
-	/// <summary>
-	/// Creates an <see cref="IEqualityComparer{T}"/> instance from the basic grid checking rule.
-	/// </summary>
-	/// <param name="comparison">Indicates the comparison rule.</param>
-	/// <returns>An <see cref="IEqualityComparer{T}"/> instance.</returns>
-	public static IEqualityComparer<Grid> CreateEqualityComparer(GridComparison comparison)
-		=> EqualityComparer<Grid>.Create((a, b) => a.Equals(b, comparison), obj => obj.GetHashCode(comparison));
 
 	/// <inheritdoc/>
 	static void GridBase.OnValueChanged(ref Grid @this, Cell cell, Digit setValue) => OnValueChanged(ref @this, cell, setValue);

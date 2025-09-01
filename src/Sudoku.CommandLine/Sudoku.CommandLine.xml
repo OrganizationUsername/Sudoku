@@ -439,6 +439,23 @@
             <returns>A <see cref="T:System.Threading.CancellationTokenSource"/> instance.</returns>
             <seealso cref="F:System.Threading.Timeout.Infinite"/>
         </member>
+        <member name="T:Sudoku.CommandLine.GridComparison">
+            <summary>
+            Specifies the comparison rule of a <see cref="T:Sudoku.Concepts.IGrid`1"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.IGrid`1"/>
+        </member>
+        <member name="F:Sudoku.CommandLine.GridComparison.Default">
+            <summary>
+            Indicates two <see cref="T:Sudoku.Concepts.IGrid`1"/> instances compare with each other by using the default checking rule
+            (cell by cell, bit by bit).
+            </summary>
+        </member>
+        <member name="F:Sudoku.CommandLine.GridComparison.IncludingTransforms">
+            <summary>
+            Indicates two <see cref="T:Sudoku.Concepts.IGrid`1"/> instances compare with each other, including considerations on transforming cases.
+            </summary>
+        </member>
         <member name="T:Sudoku.CommandLine.IArgument`1">
             <summary>
             Represents an argument.
@@ -502,7 +519,7 @@
             Initializes a <see cref="T:Sudoku.CommandLine.Options.ComparingMethodOption"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#Shuffling#Transforming#GridComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
+        <member name="M:Sudoku.CommandLine.Options.ComparingMethodOption.Sudoku#CommandLine#IMySymbol{Sudoku#CommandLine#GridComparison}#ParseArgument(System.CommandLine.Parsing.ArgumentResult)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.CommandLine.Options.CountOption">

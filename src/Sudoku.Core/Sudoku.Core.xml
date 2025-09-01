@@ -4763,6 +4763,15 @@
         <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@,System.Collections.Generic.IEqualityComparer{Sudoku.Concepts.Grid})">
+            <summary>
+            Compares two <see cref="T:Sudoku.Concepts.Grid"/> instances and returns a <see cref="T:System.Boolean"/> value
+            indicating whether they are same under the specified comparison rule using <paramref name="comparer"/>.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <param name="comparer">The comparer instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ConflictWith(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -4780,6 +4789,13 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.GetHashCode(System.Collections.Generic.IEqualityComparer{Sudoku.Concepts.Grid})">
+            <summary>
+            Serves as hash code function; with a comparer instance to calculate hash code.
+            </summary>
+            <param name="comparer">The comparer instance.</param>
+            <returns>A hash code.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
@@ -5047,13 +5063,6 @@
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.CreateEqualityComparer(Sudoku.Shuffling.Transforming.GridComparison)">
-            <summary>
-            Creates an <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance from the basic grid checking rule.
-            </summary>
-            <param name="comparison">Indicates the comparison rule.</param>
-            <returns>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Sudoku#Concepts#IGrid{Sudoku#Concepts#Grid}#OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -5150,6 +5159,17 @@
             <summary>
             Indicates each value should minus one before creation.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.GridEqualityComparer">
+            <summary>
+            Represents a default grid equality comparer.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridEqualityComparer.Equals(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridEqualityComparer.GetHashCode(Sudoku.Concepts.Grid)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridPredicates">
             <summary>
@@ -12743,6 +12763,17 @@
             Indicates the result number of bits.
             </summary>
         </member>
+        <member name="T:Sudoku.Shuffling.Minlex.GridMinlexEqualityComparer">
+            <summary>
+            Represents an equality comparer that checks for min-lex transformations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexEqualityComparer.Equals(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexEqualityComparer.GetHashCode(Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Shuffling.Minlex.GridMinlexExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for minlex.
@@ -12779,50 +12810,11 @@
             Indicates the new grid form of the current grid, which is at the minimal-lexicographical order.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.Equals(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)">
-            <summary>
-            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
-            by using the specified comparison type.
-            </summary>
-            <param name="other">The instance to compare.</param>
-            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.GetHashCode(Sudoku.Shuffling.Transforming.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.GetHashCode"/>
-            <param name="comparisonType">
-            Indicates the comparison type that specifies the target grid to be calculated its hash code.
-            </param>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="comparisonType"/> isn't defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)">
-            <summary>
-            Compares the current instance with another object of the same type and returns an integer
-            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
-            </summary>
-            <param name="other">The other object to be compared.</param>
-            <param name="comparisonType">The comparison type to be used.</param>
-            <returns>A value that indicates the relative order of the objects being compared.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-        </member>
         <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.get_IsMinLex(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="P:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.IsMinLex"/>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.get_MinLexGrid(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="P:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.MinLexGrid"/>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.Equals(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)"/>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.GetHashCode(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.GetHashCode(Sudoku.Shuffling.Transforming.GridComparison)"/>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.GridComparison)"/>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.GridPattern">
             <summary>
@@ -12960,23 +12952,6 @@
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
-        </member>
-        <member name="T:Sudoku.Shuffling.Transforming.GridComparison">
-            <summary>
-            Specifies the comparison rule of a <see cref="T:Sudoku.Concepts.IGrid`1"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.IGrid`1"/>
-        </member>
-        <member name="F:Sudoku.Shuffling.Transforming.GridComparison.Default">
-            <summary>
-            Indicates two <see cref="T:Sudoku.Concepts.IGrid`1"/> instances compare with each other by using the default checking rule
-            (cell by cell, bit by bit).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Shuffling.Transforming.GridComparison.IncludingTransforms">
-            <summary>
-            Indicates two <see cref="T:Sudoku.Concepts.IGrid`1"/> instances compare with each other, including considerations on transforming cases.
-            </summary>
         </member>
         <member name="T:Sudoku.Shuffling.Transforming.IElementSwappingTransformable`2">
             <summary>

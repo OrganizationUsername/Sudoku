@@ -1,4 +1,4 @@
-namespace Sudoku.Shuffling.Transforming;
+namespace Sudoku.CommandLine;
 
 /// <summary>
 /// Specifies the comparison rule of a <see cref="IGrid{TSelf}"/> instance.

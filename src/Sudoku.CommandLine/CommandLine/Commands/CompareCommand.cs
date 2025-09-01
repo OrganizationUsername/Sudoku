@@ -38,7 +38,14 @@ internal sealed class CompareCommand : CommandBase
 		var result = context.ParseResult;
 		var (left, right) = result.GetValueForArgument(a1);
 		var comparison = result.GetValueForOption(o1);
-		var comparisonResult = left.Equals(right, comparison);
+		var comparisonResult = left.Equals(
+			right,
+			comparison switch
+			{
+				GridComparison.IncludingTransforms => new GridMinlexEqualityComparer(),
+				_ => new GridEqualityComparer()
+			}
+		);
 		Console.WriteLine(comparisonResult);
 	}
 }

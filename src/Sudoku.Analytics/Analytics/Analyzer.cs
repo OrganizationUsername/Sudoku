@@ -217,8 +217,6 @@ public sealed class Analyzer : StepGatherer
 				// We should check whether the puzzle is a GSP firstly.
 				// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
 				var symmetricType = GridSymmetryChecker.GetSymmetry(puzzle, out var mappingDigits, out var selfPairedDigitsMask);
-				var isCanceled = false;
-
 				try
 				{
 					// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
@@ -231,10 +229,9 @@ public sealed class Analyzer : StepGatherer
 						mappingDigits,
 						selfPairedDigitsMask,
 						progress,
-						cancellationToken,
-						ref isCanceled
+						cancellationToken
 					);
-					return !isCanceled && tempResult is not null
+					return !cancellationToken.IsCancellationRequested
 						? tempResult
 						: result with { IsSolved = false, FailedReason = FailedReason.UserCancelled };
 				}
@@ -268,7 +265,7 @@ public sealed class Analyzer : StepGatherer
 		}
 
 
-		AnalysisResult? analyzeInternal(
+		AnalysisResult analyzeInternal(
 			in Grid puzzle,
 			in Grid solution,
 			AnalysisResult resultBase,
@@ -276,8 +273,7 @@ public sealed class Analyzer : StepGatherer
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<StepGathererProgressPresenter>? progress,
-			CancellationToken cancellationToken,
-			ref bool isCanceled
+			CancellationToken cancellationToken
 		)
 		{
 			var playground = puzzle;
@@ -322,8 +318,7 @@ public sealed class Analyzer : StepGatherer
 		FindNextStep:
 			if (cancellationToken.IsCancellationRequested)
 			{
-				isCanceled = true;
-				return null;
+				return null!;
 			}
 
 			Initialize(this, playground, solution);
@@ -411,8 +406,7 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, step, context, ref playground,
-									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
-									|| isCanceled)
+									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -428,8 +422,7 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
-								|| isCanceled)
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -456,8 +449,7 @@ public sealed class Analyzer : StepGatherer
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, context, ref playground,
-							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
-							|| isCanceled)
+							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -485,8 +477,7 @@ public sealed class Analyzer : StepGatherer
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, context, ref playground,
-								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result)
-								|| isCanceled)
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -502,8 +493,7 @@ public sealed class Analyzer : StepGatherer
 
 								if (onCollectingSteps(
 									collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-									resultBase, cancellationToken, out var result)
-									|| isCanceled)
+									resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -528,8 +518,7 @@ public sealed class Analyzer : StepGatherer
 								{
 									if (onCollectingSteps(
 										collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
-										resultBase, cancellationToken, out var result)
-										|| isCanceled)
+										resultBase, cancellationToken, out var result))
 									{
 										return result;
 									}

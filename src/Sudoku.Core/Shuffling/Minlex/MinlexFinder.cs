@@ -235,7 +235,7 @@ public sealed unsafe class MinlexFinder
 								}
 								if (labelPerm[fromDigit] > minLex[toRow * 9 + col])
 								{
-									goto nextColsPerm;
+									goto NextColsPerm;
 								}
 
 								nSet++;
@@ -283,7 +283,7 @@ public sealed unsafe class MinlexFinder
 								}
 							}
 						}
-					nextColsPerm:;
+					NextColsPerm:;
 					}
 				}
 			}

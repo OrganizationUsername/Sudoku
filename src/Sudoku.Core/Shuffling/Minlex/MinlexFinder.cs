@@ -17,9 +17,6 @@ public sealed unsafe class MinlexFinder
 	private readonly List<Mapper> _mappers = [];
 
 
-	/// <inheritdoc cref="Find(string)"/>
-	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
-
 	/// <summary>
 	/// Finds the minimal lexicographical form of the source grid code.
 	/// </summary>
@@ -295,4 +292,7 @@ public sealed unsafe class MinlexFinder
 
 		return result.ToString();
 	}
+
+	/// <inheritdoc cref="Find(string)"/>
+	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
 }

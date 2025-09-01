@@ -12943,15 +12943,15 @@
             Indicates the internal mappers.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
-        </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)">
             <summary>
             Finds the minimal lexicographical form of the source grid code.
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
         </member>
         <member name="T:Sudoku.Shuffling.Transforming.IElementSwappingTransformable`2">
             <summary>

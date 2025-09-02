@@ -235,7 +235,7 @@ public sealed class Analyzer : StepGatherer
 					// Trigger the event.
 					ExceptionThrown?.Invoke(this, new(ex));
 
-					return result = ex switch
+					return ex switch
 					{
 						RuntimeAnalysisException e => e switch
 						{
@@ -251,7 +251,7 @@ public sealed class Analyzer : StepGatherer
 					};
 				}
 			}
-			return result = result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
+			return result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
 		}
 		finally
 		{

@@ -1881,63 +1881,6 @@
             Gets field <c><![CDATA[<Conclusions>k__BackingField]]></c> inside type <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
-            </summary>
-            <param name="exception"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.Exception" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.#ctor(System.Exception)">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
-            </summary>
-            <param name="exception"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.Exception" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerExceptionThrownEventArgs.Exception">
-            <summary>
-            Indicates the exception thrown.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerFinishedEventArgs">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.Finished"/>.
-            </summary>
-            <param name="result"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerFinishedEventArgs.Result" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.Finished"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFinishedEventArgs.#ctor(Sudoku.Analytics.AnalysisResult)">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.Finished"/>.
-            </summary>
-            <param name="result"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerFinishedEventArgs.Result" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.Finished"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerFinishedEventArgs.Result">
-            <summary>
-            Indicates the result created.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerStepFoundEventArgs">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.StepFound"/>.
-            </summary>
-            <param name="step"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerStepFoundEventArgs.Step" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.StepFound"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerStepFoundEventArgs.#ctor(Sudoku.Analytics.Step)">
-            <summary>
-            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.StepFound"/>.
-            </summary>
-            <param name="step"><inheritdoc cref="P:Sudoku.Analytics.AnalyzerStepFoundEventArgs.Step" path="/summary"/></param>
-            <seealso cref="E:Sudoku.Analytics.Analyzer.StepFound"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerStepFoundEventArgs.Step">
-            <summary>
-            Indicates the found step.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.AsyncAnalyzerAwaitable">
             <summary>
             Represents an awaitable rule on analysis for a puzzle.
@@ -3107,6 +3050,63 @@
         <member name="F:Sudoku.Analytics.DifficultyLevels.All">
             <summary>
             Indicates all difficulty levels.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.EventHandling.AnalyzerExceptionThrownEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
+            </summary>
+            <param name="exception"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerExceptionThrownEventArgs.Exception" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>
+        </member>
+        <member name="M:Sudoku.Analytics.EventHandling.AnalyzerExceptionThrownEventArgs.#ctor(System.Exception)">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>.
+            </summary>
+            <param name="exception"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerExceptionThrownEventArgs.Exception" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.ExceptionThrown"/>
+        </member>
+        <member name="P:Sudoku.Analytics.EventHandling.AnalyzerExceptionThrownEventArgs.Exception">
+            <summary>
+            Indicates the exception thrown.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.EventHandling.AnalyzerFinishedEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.Finished"/>.
+            </summary>
+            <param name="result"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerFinishedEventArgs.Result" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.Finished"/>
+        </member>
+        <member name="M:Sudoku.Analytics.EventHandling.AnalyzerFinishedEventArgs.#ctor(Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.Finished"/>.
+            </summary>
+            <param name="result"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerFinishedEventArgs.Result" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.Finished"/>
+        </member>
+        <member name="P:Sudoku.Analytics.EventHandling.AnalyzerFinishedEventArgs.Result">
+            <summary>
+            Indicates the result created.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.EventHandling.AnalyzerStepFoundEventArgs">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.StepFound"/>.
+            </summary>
+            <param name="step"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerStepFoundEventArgs.Step" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.StepFound"/>
+        </member>
+        <member name="M:Sudoku.Analytics.EventHandling.AnalyzerStepFoundEventArgs.#ctor(Sudoku.Analytics.Step)">
+            <summary>
+            Provides extra data for event handler <see cref="E:Sudoku.Analytics.Analyzer.StepFound"/>.
+            </summary>
+            <param name="step"><inheritdoc cref="P:Sudoku.Analytics.EventHandling.AnalyzerStepFoundEventArgs.Step" path="/summary"/></param>
+            <seealso cref="E:Sudoku.Analytics.Analyzer.StepFound"/>
+        </member>
+        <member name="P:Sudoku.Analytics.EventHandling.AnalyzerStepFoundEventArgs.Step">
+            <summary>
+            Indicates the found step.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException">

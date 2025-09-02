@@ -28,6 +28,7 @@ global using Sudoku.Algorithms.UniquenessTests;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Caching;
 global using Sudoku.Analytics.Configuration;
+global using Sudoku.Analytics.EventHandling;
 global using Sudoku.Analytics.ExceptionHandling;
 global using Sudoku.Analytics.PatternSearchers;
 global using Sudoku.Analytics.Primitives;

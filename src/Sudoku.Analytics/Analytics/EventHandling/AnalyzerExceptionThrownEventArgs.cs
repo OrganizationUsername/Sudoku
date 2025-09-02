@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.EventHandling;
 
 /// <summary>
 /// Provides extra data for event handler <see cref="Analyzer.ExceptionThrown"/>.

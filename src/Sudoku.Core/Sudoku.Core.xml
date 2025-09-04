@@ -12906,7 +12906,7 @@
             <summary>
             Initializes a <see cref="T:Sudoku.Shuffling.GenericTransform"/> via the base-mixed rank.
             </summary>
-            <param name="baseMixedRank">The base-mixed rank.</param>
+            <param name="rank">The base-mixed rank.</param>
         </member>
         <member name="P:Sudoku.Shuffling.GenericTransform.ShouldTranspose">
             <summary>
@@ -12960,6 +12960,15 @@
         <member name="M:Sudoku.Shuffling.GenericTransform.op_LessThanOrEqual(Sudoku.Shuffling.GenericTransform@,Sudoku.Shuffling.GenericTransform@)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_BitwiseAnd(Sudoku.Shuffling.GenericTransform@,Sudoku.Shuffling.GenericTransform@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_BitwiseOr(Sudoku.Shuffling.GenericTransform@,Sudoku.Shuffling.GenericTransform@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_ExclusiveOr(Sudoku.Shuffling.GenericTransform@,Sudoku.Shuffling.GenericTransform@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        </member>
         <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IEqualityOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,System#Boolean}#op_Equality(Sudoku.Shuffling.GenericTransform,Sudoku.Shuffling.GenericTransform)">
             <inheritdoc/>
         </member>
@@ -12976,6 +12985,18 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IComparisonOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,System#Boolean}#op_LessThanOrEqual(Sudoku.Shuffling.GenericTransform,Sudoku.Shuffling.GenericTransform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IBitwiseOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform}#op_BitwiseAnd(Sudoku.Shuffling.GenericTransform,Sudoku.Shuffling.GenericTransform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IBitwiseOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform}#op_BitwiseOr(Sudoku.Shuffling.GenericTransform,Sudoku.Shuffling.GenericTransform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IBitwiseOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform}#op_ExclusiveOr(Sudoku.Shuffling.GenericTransform,Sudoku.Shuffling.GenericTransform)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.System#Numerics#IBitwiseOperators{Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform,Sudoku#Shuffling#GenericTransform}#op_OnesComplement(Sudoku.Shuffling.GenericTransform)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Shuffling.GenericTransform.op_Explicit(System.Int64)~Sudoku.Shuffling.GenericTransform">
@@ -12996,6 +13017,14 @@
             Implicit cast from <see cref="T:Sudoku.Shuffling.GenericTransform"/> to <see cref="T:System.Int64"/>.
             </summary>
             <param name="transform">The transform.</param>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.SwapDigit(System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Shuffling.GenericTransform"/> with two digits swapped.
+            </summary>
+            <param name="digit1">Indicates the digit 1 to be swapped.</param>
+            <param name="digit2">Indicates the digit 2 to be swapped.</param>
+            <returns>The <see cref="T:Sudoku.Shuffling.GenericTransform"/> instance that swapped the digits.</returns>
         </member>
         <member name="T:Sudoku.Shuffling.GridTransformIdentifier">
             <summary>

@@ -7,7 +7,13 @@ namespace Sudoku.Shuffling;
 /// <param name="RelabeledRowsRank">Indicates the rank of relabeled rows.</param>
 /// <param name="RelabeledColumnsRank">Indicates the rank of relabeled columns.</param>
 /// <param name="RelabeledDigitsRank">Indicates the rank of relabeled digits.</param>
-public readonly record struct GenericTransform(int TransposeRank, int RelabeledRowsRank, int RelabeledColumnsRank, int RelabeledDigitsRank) :
+public readonly partial record struct GenericTransform(
+	int TransposeRank,
+	int RelabeledRowsRank,
+	int RelabeledColumnsRank,
+	int RelabeledDigitsRank
+) :
+	IBitwiseOperators<GenericTransform, GenericTransform, GenericTransform>,
 	IComparable<GenericTransform>,
 	IComparisonOperators<GenericTransform, GenericTransform, bool>,
 	IEqualityOperators<GenericTransform, GenericTransform, bool>
@@ -189,6 +195,33 @@ public readonly record struct GenericTransform(int TransposeRank, int RelabeledR
 	/// <inheritdoc cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
 	public static bool operator <=(in GenericTransform left, in GenericTransform right) => left.CompareTo(right) <= 0;
 
+	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseAnd(TSelf, TOther)"/>
+	public static GenericTransform operator &(in GenericTransform left, in GenericTransform right)
+		=> new(
+			left.TransposeRank & right.TransposeRank,
+			left.RelabeledRowsRank & right.RelabeledRowsRank,
+			left.RelabeledColumnsRank & right.RelabeledColumnsRank,
+			left.RelabeledDigitsRank & right.RelabeledDigitsRank
+		);
+
+	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_BitwiseOr(TSelf, TOther)"/>
+	public static GenericTransform operator |(in GenericTransform left, in GenericTransform right)
+		=> new(
+			left.TransposeRank | right.TransposeRank,
+			left.RelabeledRowsRank | right.RelabeledRowsRank,
+			left.RelabeledColumnsRank | right.RelabeledColumnsRank,
+			left.RelabeledDigitsRank | right.RelabeledDigitsRank
+		);
+
+	/// <inheritdoc cref="IBitwiseOperators{TSelf, TOther, TResult}.op_ExclusiveOr(TSelf, TOther)"/>
+	public static GenericTransform operator ^(in GenericTransform left, in GenericTransform right)
+		=> new(
+			left.TransposeRank ^ right.TransposeRank,
+			left.RelabeledRowsRank ^ right.RelabeledRowsRank,
+			left.RelabeledColumnsRank ^ right.RelabeledColumnsRank,
+			left.RelabeledDigitsRank ^ right.RelabeledDigitsRank
+		);
+
 	/// <inheritdoc/>
 	static bool IEqualityOperators<GenericTransform, GenericTransform, bool>.operator ==(GenericTransform left, GenericTransform right)
 		=> left == right;
@@ -212,6 +245,23 @@ public readonly record struct GenericTransform(int TransposeRank, int RelabeledR
 	/// <inheritdoc/>
 	static bool IComparisonOperators<GenericTransform, GenericTransform, bool>.operator <=(GenericTransform left, GenericTransform right)
 		=> left <= right;
+
+	/// <inheritdoc/>
+	static GenericTransform IBitwiseOperators<GenericTransform, GenericTransform, GenericTransform>.operator &(GenericTransform left, GenericTransform right)
+		=> left & right;
+
+	/// <inheritdoc/>
+	static GenericTransform IBitwiseOperators<GenericTransform, GenericTransform, GenericTransform>.operator |(GenericTransform left, GenericTransform right)
+		=> left | right;
+
+	/// <inheritdoc/>
+	static GenericTransform IBitwiseOperators<GenericTransform, GenericTransform, GenericTransform>.operator ^(GenericTransform left, GenericTransform right)
+		=> left ^ right;
+
+	/// <inheritdoc/>
+	[DoesNotReturn]
+	static GenericTransform IBitwiseOperators<GenericTransform, GenericTransform, GenericTransform>.operator ~(GenericTransform value)
+		=> throw new NotImplementedException();
 
 
 	/// <summary>

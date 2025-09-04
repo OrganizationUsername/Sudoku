@@ -13469,16 +13469,6 @@
             Indicates the number of all inequivalent solutions.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.RequiredBitsCount">
-            <summary>
-            Indicates the number of required bits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.TransposePermutationsCount">
-            <summary>
-            Indicates the number of transposing cases.
-            </summary>
-        </member>
         <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.RemapRowsPermutationsCount">
             <summary>
             Indicates the number of remapping row cases.
@@ -13487,6 +13477,16 @@
         <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.RemapColumnsPermutationsCount">
             <summary>
             Indicates the number of remapping column cases.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.RequiredBitsCount">
+            <summary>
+            Indicates the number of required bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.TransposePermutationsCount">
+            <summary>
+            Indicates the number of transposing cases.
             </summary>
         </member>
         <member name="F:Sudoku.Shuffling.Transforming.TransformIdentifier.RelabelDigitsPermutationsCount">
@@ -13589,20 +13589,6 @@
             <param name="startIndex">The start index.</param>
             <param name="count">The number of bits.</param>
             <returns>A <see cref="T:System.Collections.BitArray"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.TransformIdentifier.ShuffleInnerLines(System.Span{System.Int32},System.Int32)">
-            <summary>
-            Shuffle inner lines.
-            </summary>
-            <param name="indices">The indices of 3 values.</param>
-            <param name="i">The index in range [0, 6).</param>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.TransformIdentifier.ShuffleOuterlines(System.Span{System.Int32},System.Int32)">
-            <summary>
-            Shuffle outer lines.
-            </summary>
-            <param name="indices">The indices of 3 values.</param>
-            <param name="i">The index in range [0, 6).</param>
         </member>
         <member name="M:Sudoku.Shuffling.Transforming.TransformIdentifier.op_Equality(Sudoku.Shuffling.Transforming.TransformIdentifier@,Sudoku.Shuffling.Transforming.TransformIdentifier@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

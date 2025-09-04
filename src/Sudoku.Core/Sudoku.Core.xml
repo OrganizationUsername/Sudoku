@@ -13091,22 +13091,32 @@
         </member>
         <member name="F:Sudoku.Shuffling.TransformIdentifier.InequivalentSolutionsCount">
             <summary>
-            Indicates the number of all inequivalent solutions.
+            Indicates the number of all inequivalent permutations (i.e. solutions).
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.TransformIdentifier.RemapRowsPermutationsCount">
+        <member name="F:Sudoku.Shuffling.TransformIdentifier.DeficiencyPermutationsCount">
+            <summary>
+            Indicates the number of deficiency .
+            </summary>
+            <remarks>
+            <para>
+            The reason that there is a deficiency of grids is due to the fact
+            that some of the permutations create automorphic grids. Automorphic grids are the permutations which have duplicates.
+            </para>
+            <para>
+            The total number of sudoku permutations is equal to <b>6,671,248,172,291,458,990,080</b> (approximately <b>6.67e21</b>),
+            which is <b>5,472,730,538 * (2 * 1,296 * 1,296 * 362,880) - 344,420,270,386,053,120</b>.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Shuffling.TransformIdentifier.GeometryPermutationsCount">
+            <summary>
+            Indicates the number of geometry permutations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.TransformIdentifier.RelabelLinesPermutationsCount">
             <summary>
             Indicates the number of relabelling row cases.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Shuffling.TransformIdentifier.RemapColumnsPermutationsCount">
-            <summary>
-            Indicates the number of relabelling column cases.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Shuffling.TransformIdentifier.RequiredBitsCount">
-            <summary>
-            Indicates the number of required bits.
             </summary>
         </member>
         <member name="F:Sudoku.Shuffling.TransformIdentifier.TransposePermutationsCount">
@@ -13117,6 +13127,11 @@
         <member name="F:Sudoku.Shuffling.TransformIdentifier.RelabelDigitsPermutationsCount">
             <summary>
             Indicates the number of relabelling digit cases.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.TransformIdentifier.RequiredBitsCount">
+            <summary>
+            Indicates the number of required bits.
             </summary>
         </member>
         <member name="F:Sudoku.Shuffling.TransformIdentifier.MinlexPartBitsCount">

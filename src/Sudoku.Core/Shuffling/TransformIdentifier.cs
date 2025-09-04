@@ -61,40 +61,54 @@ public readonly struct TransformIdentifier :
 	/// <summary>
 	/// Indicates the numebr of all transformations permutation cases.
 	/// </summary>
-	public const long AllTransformationsPermutationsCount = (long)TransposePermutationsCount
-		* RemapRowsPermutationsCount
-		* RemapColumnsPermutationsCount
-		* RelabelDigitsPermutationsCount;
+	public const long AllTransformationsPermutationsCount = GeometryPermutationsCount * RelabelDigitsPermutationsCount;
 
 	/// <summary>
-	/// Indicates the number of all inequivalent solutions.
+	/// Indicates the number of all inequivalent permutations (i.e. solutions).
 	/// </summary>
 	public const long InequivalentSolutionsCount = 5_472_730_538L;
 
 	/// <summary>
-	/// Indicates the number of relabelling row cases.
+	/// Indicates the number of deficiency .
 	/// </summary>
-	internal const int RemapRowsPermutationsCount = 1_296;
+	/// <remarks>
+	/// <para>
+	/// The reason that there is a deficiency of grids is due to the fact
+	/// that some of the permutations create automorphic grids. Automorphic grids are the permutations which have duplicates.
+	/// </para>
+	/// <para>
+	/// The total number of sudoku permutations is equal to <b>6,671,248,172,291,458,990,080</b> (approximately <b>6.67e21</b>),
+	/// which is <b>5,472,730,538 * (2 * 1,296 * 1,296 * 362,880) - 344,420,270,386,053,120</b>.
+	/// </para>
+	/// </remarks>
+	public const long DeficiencyPermutationsCount = 344_420_270_386_053_120L;
 
 	/// <summary>
-	/// Indicates the number of relabelling column cases.
+	/// Indicates the number of geometry permutations.
 	/// </summary>
-	internal const int RemapColumnsPermutationsCount = RemapRowsPermutationsCount;
+	public const long GeometryPermutationsCount = (long)RelabelLinesPermutationsCount
+		* RelabelLinesPermutationsCount
+		* TransposePermutationsCount;
+
+	/// <summary>
+	/// Indicates the number of relabelling row cases.
+	/// </summary>
+	public const long RelabelLinesPermutationsCount = 1_296;
+
+	/// <summary>
+	/// Indicates the number of transposing cases.
+	/// </summary>
+	public const long TransposePermutationsCount = 2;
+
+	/// <summary>
+	/// Indicates the number of relabelling digit cases.
+	/// </summary>
+	public const long RelabelDigitsPermutationsCount = 362_880;
 
 	/// <summary>
 	/// Indicates the number of required bits.
 	/// </summary>
 	private const int RequiredBitsCount = 155;
-
-	/// <summary>
-	/// Indicates the number of transposing cases.
-	/// </summary>
-	private const int TransposePermutationsCount = 2;
-
-	/// <summary>
-	/// Indicates the number of relabelling digit cases.
-	/// </summary>
-	private const int RelabelDigitsPermutationsCount = 362_880;
 
 	/// <summary>
 	/// Indicates the number of bits used in min-lex part.
@@ -230,9 +244,9 @@ public readonly struct TransformIdentifier :
 			}
 
 			var relabelDigits = mask % RelabelDigitsPermutationsCount;
-			var remapColumns = mask / RelabelDigitsPermutationsCount % RemapColumnsPermutationsCount;
-			var remapRows = mask / RelabelDigitsPermutationsCount / RemapColumnsPermutationsCount % RemapRowsPermutationsCount;
-			var shouldTranspose = mask / RelabelDigitsPermutationsCount / RemapColumnsPermutationsCount / RemapRowsPermutationsCount % 2;
+			var remapColumns = mask / RelabelDigitsPermutationsCount % RelabelLinesPermutationsCount;
+			var remapRows = mask / RelabelDigitsPermutationsCount / RelabelLinesPermutationsCount % RelabelLinesPermutationsCount;
+			var shouldTranspose = mask / RelabelDigitsPermutationsCount / RelabelLinesPermutationsCount / RelabelLinesPermutationsCount % 2;
 			return (shouldTranspose != 0, (int)remapRows, (int)remapColumns, (int)relabelDigits);
 		}
 	}

@@ -33,7 +33,7 @@ namespace Sudoku.Shuffling;
 /// </list>
 /// </para>
 /// <para>
-/// All equivalent transformations of Sudoku puzzles can be achieved using the above four types,
+/// All equivalent transformations of puzzles can be achieved using the above four types,
 /// so this scheme can represent all transformation cases.
 /// </para>
 /// <para>

@@ -7,7 +7,7 @@ namespace Sudoku.Shuffling;
 /// <para><include file="../../global-doc-comments.xml" path="/g/developer-notes"/></para>
 /// <para>
 /// This data type is used to represent an encoding of a transformation.
-/// It stores a global code derived from a Sudoku puzzle through a minimum lexicographic order (min-lex) mapping.
+/// It stores a global mask derived from a Sudoku puzzle through a minimum lexicographic order (min-lex) mapping.
 /// The backing identifier is <b>globally unique</b>: identical identifiers represent identical grids,
 /// while different identifiers represent different grids.
 /// </para>

@@ -17,7 +17,7 @@ public static class CantorExpansion
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the permutation has incorrect value that cannot be found in source sequence.
 	/// </exception>
-	public static int RankDigit(ReadOnlySpan<Digit> perm, ReadOnlySpan<Digit> baseOrder)
+	public static int RankRelabeledDigits(ReadOnlySpan<Digit> perm, ReadOnlySpan<Digit> baseOrder)
 	{
 		var n = perm.Length;
 		ArgumentException.ThrowIfAssertionFailed(baseOrder.Length == n);
@@ -40,22 +40,22 @@ public static class CantorExpansion
 	/// <summary>
 	/// Rank the current label permutation (row or column labels).
 	/// </summary>
-	/// <param name="labels">The permutation sequence.</param>
+	/// <param name="lines">The permutation sequence.</param>
 	/// <returns>The rank.</returns>
 	/// <exception cref="ArgumentException">
-	/// Throws when the argument <paramref name="labels"/> doesn't contain 9 elements.
+	/// Throws when the argument <paramref name="lines"/> doesn't contain 9 elements.
 	/// </exception>
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the original label contains invalid digits.
 	/// </exception>
-	public static int RankLine(House[] labels)
+	public static int RankRelabeledLines(House[] lines)
 	{
-		ArgumentException.ThrowIfAssertionFailed(labels.Length == 9);
+		ArgumentException.ThrowIfAssertionFailed(lines.Length == 9);
 
 		var inversed = new int[9];
 		for (var originalLabel = 0; originalLabel < 9; originalLabel++)
 		{
-			var n = labels[originalLabel];
+			var n = lines[originalLabel];
 			inversed[n] = n is >= 0 and < 9 ? originalLabel : throw new InvalidOperationException("map values must be 0..8");
 		}
 
@@ -100,7 +100,7 @@ public static class CantorExpansion
 	/// <param name="baseOrder">The base-ordered sequence.</param>
 	/// <returns>The unranked permutation.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when rank is out of range.</exception>
-	public static ReadOnlySpan<Digit> UnrankDigit(int rank, ReadOnlySpan<Digit> baseOrder)
+	public static ReadOnlySpan<Digit> UnrankRelabeledDigits(int rank, ReadOnlySpan<Digit> baseOrder)
 	{
 		var n = baseOrder.Length;
 		var fact = Factorials(n);
@@ -130,7 +130,7 @@ public static class CantorExpansion
 	/// <param name="rank">The rank.</param>
 	/// <returns>The unranked sequence.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when rank is out of range.</exception>
-	public static House[] UnrankLine(int rank)
+	public static House[] UnrankRelabeledLines(int rank)
 	{
 		if (rank is < 0 or >= (int)TransformIdentifier.RelabelLinesPermutationsCount)
 		{

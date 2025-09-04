@@ -61,7 +61,7 @@ public readonly struct TransformIdentifier :
 	/// <summary>
 	/// Indicates the numebr of all transformations permutation cases.
 	/// </summary>
-	public const long AllTransformationsPermutationsCount = GeometryPermutationsCount * RelabelDigitsPermutationsCount;
+	public const long AllPermutationsCount = GeometryPermutationsCount * RelabelDigitsPermutationsCount;
 
 	/// <summary>
 	/// Indicates the number of all inequivalent permutations (i.e. solutions).
@@ -142,11 +142,6 @@ public readonly struct TransformIdentifier :
 
 
 	/// <summary>
-	/// Indicates whether to transpose.
-	/// </summary>
-	public bool ShouldTranspose => TransformationMasks.ShouldTranspose;
-
-	/// <summary>
 	/// Indicates the number of global min-lex index.
 	/// </summary>
 	public long GlobalMinlexIndex
@@ -187,20 +182,25 @@ public readonly struct TransformIdentifier :
 	}
 
 	/// <summary>
-	/// Represents a value that displays relabeled row indices.
+	/// Indicates target tranform.
 	/// </summary>
-	public ReadOnlySpan<RowIndex> RowIndicesRelabeled => CantorExpansion.UnrankLine(TransformationMasks.RelabeledRows);
-
-	/// <summary>
-	/// Represents a value that displays relabeled column indices.
-	/// </summary>
-	public ReadOnlySpan<ColumnIndex> ColumnIndicesRelabeled => CantorExpansion.UnrankLine(TransformationMasks.RelabeledColumns);
-
-	/// <summary>
-	/// Represents a value that displayes relabeled digits.
-	/// </summary>
-	public ReadOnlySpan<Digit> DigitsRelabeled
-		=> CantorExpansion.UnrankDigit(TransformationMasks.RelabeledDigits, SpanEnumerable.Range(9));
+	public GenericTransform Transform
+	{
+		get
+		{
+			var bits = GetSlice(TransformationPartShiftAmount, TransformationPartBitsCount);
+			var mask = BigInteger.Zero;
+			var one = BigInteger.One;
+			for (var i = 0; i < TransformationPartBitsCount; i++)
+			{
+				if (bits[i])
+				{
+					mask |= one << i;
+				}
+			}
+			return new((long)mask);
+		}
+	}
 
 	/// <summary>
 	/// Represents identifier value.
@@ -221,32 +221,6 @@ public readonly struct TransformIdentifier :
 				}
 			}
 			return result;
-		}
-	}
-
-	/// <summary>
-	/// Indicates the quadruple of tranformation masks.
-	/// </summary>
-	private (bool ShouldTranspose, int RelabeledRows, int RelabeledColumns, int RelabeledDigits) TransformationMasks
-	{
-		get
-		{
-			var bits = GetSlice(TransformationPartShiftAmount, TransformationPartBitsCount);
-			var mask = BigInteger.Zero;
-			var one = BigInteger.One;
-			for (var i = 0; i < TransformationPartBitsCount; i++)
-			{
-				if (bits[i])
-				{
-					mask |= one << i;
-				}
-			}
-
-			var relabelDigits = mask % RelabelDigitsPermutationsCount;
-			var remapColumns = mask / RelabelDigitsPermutationsCount % RelabelLinesPermutationsCount;
-			var remapRows = mask / RelabelDigitsPermutationsCount / RelabelLinesPermutationsCount % RelabelLinesPermutationsCount;
-			var shouldTranspose = mask / RelabelDigitsPermutationsCount / RelabelLinesPermutationsCount / RelabelLinesPermutationsCount % 2;
-			return (shouldTranspose != 0, (int)remapRows, (int)remapColumns, (int)relabelDigits);
 		}
 	}
 

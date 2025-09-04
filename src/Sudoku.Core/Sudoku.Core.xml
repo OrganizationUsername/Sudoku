@@ -12729,7 +12729,7 @@
             Provides a way to rank and unrank permutation. The ranking algorithm is called "Cantor Expansion".
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.CantorExpansion.RankDigit(System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Shuffling.CantorExpansion.RankRelabeledDigits(System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32})">
             <summary>
             Rank the current permutation from the base order.
             </summary>
@@ -12743,20 +12743,20 @@
             Throws when the permutation has incorrect value that cannot be found in source sequence.
             </exception>
         </member>
-        <member name="M:Sudoku.Shuffling.CantorExpansion.RankLine(System.Int32[])">
+        <member name="M:Sudoku.Shuffling.CantorExpansion.RankRelabeledLines(System.Int32[])">
             <summary>
             Rank the current label permutation (row or column labels).
             </summary>
-            <param name="labels">The permutation sequence.</param>
+            <param name="lines">The permutation sequence.</param>
             <returns>The rank.</returns>
             <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="labels"/> doesn't contain 9 elements.
+            Throws when the argument <paramref name="lines"/> doesn't contain 9 elements.
             </exception>
             <exception cref="T:System.InvalidOperationException">
             Throws when the original label contains invalid digits.
             </exception>
         </member>
-        <member name="M:Sudoku.Shuffling.CantorExpansion.UnrankDigit(System.Int32,System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Shuffling.CantorExpansion.UnrankRelabeledDigits(System.Int32,System.ReadOnlySpan{System.Int32})">
             <summary>
             Unrank the permutation via the base order.
             </summary>
@@ -12765,7 +12765,7 @@
             <returns>The unranked permutation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when rank is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.CantorExpansion.UnrankLine(System.Int32)">
+        <member name="M:Sudoku.Shuffling.CantorExpansion.UnrankRelabeledLines(System.Int32)">
             <summary>
             Unrank the permutation.
             </summary>
@@ -12794,6 +12794,163 @@
             <param name="rank">The rank.</param>
             <returns>The permutation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="rank"/> is out of range.</exception>
+        </member>
+        <member name="T:Sudoku.Shuffling.GenericTransform">
+            <summary>
+            Represents a generic transform that includes the ranks of morphing types.
+            </summary>
+            <param name="TransposeRank">Indicates the rank of transpose.</param>
+            <param name="RelabeledRowsRank">Indicates the rank of relabeled rows.</param>
+            <param name="RelabeledColumnsRank">Indicates the rank of relabeled columns.</param>
+            <param name="RelabeledDigitsRank">Indicates the rank of relabeled digits.</param>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Represents a generic transform that includes the ranks of morphing types.
+            </summary>
+            <param name="TransposeRank">Indicates the rank of transpose.</param>
+            <param name="RelabeledRowsRank">Indicates the rank of relabeled rows.</param>
+            <param name="RelabeledColumnsRank">Indicates the rank of relabeled columns.</param>
+            <param name="RelabeledDigitsRank">Indicates the rank of relabeled digits.</param>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.TransposeRank">
+            <summary>Indicates the rank of transpose.</summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.RelabeledRowsRank">
+            <summary>Indicates the rank of relabeled rows.</summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.RelabeledColumnsRank">
+            <summary>Indicates the rank of relabeled columns.</summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.RelabeledDigitsRank">
+            <summary>Indicates the rank of relabeled digits.</summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.Equivalent">
+            <summary>
+            Represents equivalent transform.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.ClockwiseRotate90Degrees">
+            <summary>
+            Represents a transform that rotates 90 degrees clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.ClockwiseRotate180Degrees">
+            <summary>
+            Represents a transform that rotates 180 degrees clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.ClockwiseRotate270Degrees">
+            <summary>
+            Represents a transform that rotates 270 degrees clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.CounterclockwiseRotate90Degrees">
+            <summary>
+            Represents a transform that rotates 90 degrees counterclockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.CounterclockwiseRotate180Degrees">
+            <summary>
+            Represents a transform that rotates 180 degrees counterclockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.CounterclockwiseRotate270Degrees">
+            <summary>
+            Represents a transform that rotates 270 degrees counterclockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.MirrorLeftRight">
+            <summary>
+            Represents a transform that mirrors left-right side.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.MirrorTopBottom">
+            <summary>
+            Represents a transform that mirrors top-bottom side.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.MirrorDiagonal">
+            <summary>
+            Represents a transform that mirrors diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.MirrorAntidiagonal">
+            <summary>
+            Represents a transform that mirrors anti-diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GenericTransform.Transpose">
+            <summary>
+            Represents a transpose transform.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Index,System.Index,System.Index)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Shuffling.GenericTransform"/> instance.
+            </summary>
+            <param name="transposeRank">
+            <inheritdoc cref="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" path="/param[@name='TransposeRank']"/>
+            </param>
+            <param name="relabeledRowsRank">
+            <inheritdoc cref="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" path="/param[@name='RelabeledRowsRank']"/>
+            </param>
+            <param name="relabeledColumnsRank">
+            <inheritdoc cref="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" path="/param[@name='RelabeledColumnsRank']"/>
+            </param>
+            <param name="relabeledDigitsRank">
+            <inheritdoc cref="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" path="/param[@name='RelabeledDigitsRank']"/>
+            </param>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.#ctor(System.Int64)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Shuffling.GenericTransform"/> via the base-mixed rank.
+            </summary>
+            <param name="baseMixedRank">The base-mixed rank.</param>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.ShouldTranspose">
+            <summary>
+            Indicates whether to transpose.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.BaseMixedRank">
+            <summary>
+            Indicates the base-mixed rank.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.RowIndicesRelabeled">
+            <summary>
+            Represents a value that displays relabeled row indices.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.ColumnIndicesRelabeled">
+            <summary>
+            Represents a value that displays relabeled column indices.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Shuffling.GenericTransform.DigitsRelabeled">
+            <summary>
+            Represents a value that displayes relabeled digits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_Explicit(System.Int64)~Sudoku.Shuffling.GenericTransform">
+            <summary>
+            Explicit cast from <see cref="T:System.Int64"/> to <see cref="T:Sudoku.Shuffling.GenericTransform"/>.
+            </summary>
+            <param name="baseMixedRank">The base-mixed rank.</param>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_CheckedExplicit(System.Int64)~Sudoku.Shuffling.GenericTransform">
+            <summary>
+            Explicit cast from <see cref="T:System.Int64"/> to <see cref="T:Sudoku.Shuffling.GenericTransform"/>, with range check.
+            </summary>
+            <param name="baseMixedRank">The base-mixed rank.</param>
+            <exception cref="T:System.OverflowException">Throws when <paramref name="baseMixedRank"/> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Shuffling.GenericTransform.op_Implicit(Sudoku.Shuffling.GenericTransform)~System.Int64">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Shuffling.GenericTransform"/> to <see cref="T:System.Int64"/>.
+            </summary>
+            <param name="transform">The transform.</param>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>
@@ -13084,7 +13241,7 @@
             </para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Shuffling.TransformIdentifier.AllTransformationsPermutationsCount">
+        <member name="F:Sudoku.Shuffling.TransformIdentifier.AllPermutationsCount">
             <summary>
             Indicates the numebr of all transformations permutation cases.
             </summary>
@@ -13165,11 +13322,6 @@
             Indicates the backing elements.
             </summary>
         </member>
-        <member name="P:Sudoku.Shuffling.TransformIdentifier.ShouldTranspose">
-            <summary>
-            Indicates whether to transpose.
-            </summary>
-        </member>
         <member name="P:Sudoku.Shuffling.TransformIdentifier.GlobalMinlexIndex">
             <summary>
             Indicates the number of global min-lex index.
@@ -13180,29 +13332,14 @@
             Indicates given cells.
             </summary>
         </member>
-        <member name="P:Sudoku.Shuffling.TransformIdentifier.RowIndicesRelabeled">
+        <member name="P:Sudoku.Shuffling.TransformIdentifier.Transform">
             <summary>
-            Represents a value that displays relabeled row indices.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Shuffling.TransformIdentifier.ColumnIndicesRelabeled">
-            <summary>
-            Represents a value that displays relabeled column indices.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Shuffling.TransformIdentifier.DigitsRelabeled">
-            <summary>
-            Represents a value that displayes relabeled digits.
+            Indicates target tranform.
             </summary>
         </member>
         <member name="P:Sudoku.Shuffling.TransformIdentifier.IdentifierValue">
             <summary>
             Represents identifier value.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Shuffling.TransformIdentifier.TransformationMasks">
-            <summary>
-            Indicates the quadruple of tranformation masks.
             </summary>
         </member>
         <member name="M:Sudoku.Shuffling.TransformIdentifier.Equals(System.Object)">

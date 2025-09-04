@@ -78,7 +78,8 @@ public readonly struct TransformIdentifier :
 	/// </para>
 	/// <para>
 	/// The total number of sudoku permutations is equal to <b>6,671,248,172,291,458,990,080</b> (approximately <b>6.67e21</b>),
-	/// which is <b>5,472,730,538 * (2 * 1,296 * 1,296 * 362,880) - 344,420,270,386,053,120</b>.
+	/// which is <b>5,472,730,538 * (2 * 1,296 * 1,296 * 362,880) - 344,420,270,386,053,120</b>,
+	/// where all constants in this expression can be found in this type.
 	/// </para>
 	/// </remarks>
 	public const long DeficiencyPermutationsCount = 344_420_270_386_053_120L;

@@ -5698,6 +5698,15 @@
             <param name="c">The third value.</param>
             <returns>The maximal one.</returns>
         </member>
+        <member name="M:System.MathExtensions.&lt;&gt;E__0.UnsignedMod``1(``0,``0)">
+            <summary>
+            Calculates unsigned modulo of the value <paramref name="value"/> divided by <paramref name="divisor"/>.
+            </summary>
+            <typeparam name="T">The type of value.</typeparam>
+            <param name="value">The value.</param>
+            <param name="divisor">The divisor.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:System.MathExtensions.Min(System.Int32,System.Int32,System.Int32)">
             <inheritdoc cref="M:System.MathExtensions.&lt;&gt;E__0.Min(System.Int32,System.Int32,System.Int32)"/>
         </member>
@@ -5715,6 +5724,9 @@
         </member>
         <member name="M:System.MathExtensions.Max``1(``0,``0,``0)">
             <inheritdoc cref="M:System.MathExtensions.&lt;&gt;E__0.Max``1(``0,``0,``0)"/>
+        </member>
+        <member name="M:System.MathExtensions.UnsignedMod``1(``0,``0)">
+            <inheritdoc cref="M:System.MathExtensions.&lt;&gt;E__0.UnsignedMod``1(``0,``0)"/>
         </member>
         <member name="T:System.ModuleInitializer">
             <target name="type">

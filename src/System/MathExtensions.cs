@@ -68,5 +68,14 @@ public static class MathExtensions
 		/// <returns>The maximal one.</returns>
 		public static T Max<T>(T a, T b, T c) where T : IComparisonOperators<T, T, bool>
 			=> a > b ? a > c ? a : c : b > c ? b : c;
+
+		/// <summary>
+		/// Calculates unsigned modulo of the value <paramref name="value"/> divided by <paramref name="divisor"/>.
+		/// </summary>
+		/// <typeparam name="T">The type of value.</typeparam>
+		/// <param name="value">The value.</param>
+		/// <param name="divisor">The divisor.</param>
+		/// <returns>The result.</returns>
+		public static T UnsignedMod<T>(T value, T divisor) where T : IBinaryInteger<T> => (value % divisor + divisor) % divisor;
 	}
 }

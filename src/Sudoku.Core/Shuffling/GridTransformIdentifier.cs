@@ -406,4 +406,30 @@ public readonly struct GridTransformIdentifier :
 	/// <inheritdoc/>
 	static bool IComparisonOperators<GridTransformIdentifier, GridTransformIdentifier, bool>.operator <=(GridTransformIdentifier left, GridTransformIdentifier right)
 		=> left <= right;
+
+
+	/// <summary>
+	/// Explicit cast from <see cref="BigInteger"/> to <see cref="GridTransformIdentifier"/>.
+	/// </summary>
+	/// <param name="identifierValue">The identifier value.</param>
+	public static explicit operator GridTransformIdentifier(BigInteger identifierValue)
+		=> new(Math.UnsignedMod(identifierValue, (BigInteger)AllPermutationsCount * InequivalentSolutionsCount));
+
+	/// <summary>
+	/// Explicit cast from <see cref="BigInteger"/> to <see cref="GenericTransform"/>, with range check.
+	/// </summary>
+	/// <param name="identifierValue">The identifier value.</param>
+	/// <exception cref="OverflowException">Throws when <paramref name="identifierValue"/> is invalid.</exception>
+	public static explicit operator checked GridTransformIdentifier(BigInteger identifierValue)
+		=> new(
+			identifierValue >= 0 && identifierValue < (BigInteger)AllPermutationsCount * InequivalentSolutionsCount
+				? identifierValue
+				: throw new OverflowException()
+		);
+
+	/// <summary>
+	/// Implicit cast from <see cref="GridTransformIdentifier"/> to <see cref="BigInteger"/>.
+	/// </summary>
+	/// <param name="transform">The transform.</param>
+	public static implicit operator BigInteger(GridTransformIdentifier transform) => transform.IdentifierValue;
 }

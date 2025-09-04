@@ -213,7 +213,7 @@ public readonly record struct GenericTransform(int TransposeRank, int RelabeledR
 	/// </summary>
 	/// <param name="baseMixedRank">The base-mixed rank.</param>
 	public static explicit operator GenericTransform(long baseMixedRank)
-		=> new(Math.Abs(baseMixedRank) % GridTransformIdentifier.AllPermutationsCount);
+		=> new(Math.UnsignedMod(baseMixedRank, GridTransformIdentifier.AllPermutationsCount));
 
 	/// <summary>
 	/// Explicit cast from <see cref="long"/> to <see cref="GenericTransform"/>, with range check.

@@ -13246,6 +13246,25 @@
         <member name="M:Sudoku.Shuffling.GridTransformIdentifier.System#Numerics#IComparisonOperators{Sudoku#Shuffling#GridTransformIdentifier,Sudoku#Shuffling#GridTransformIdentifier,System#Boolean}#op_LessThanOrEqual(Sudoku.Shuffling.GridTransformIdentifier,Sudoku.Shuffling.GridTransformIdentifier)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.op_Explicit(System.Numerics.BigInteger)~Sudoku.Shuffling.GridTransformIdentifier">
+            <summary>
+            Explicit cast from <see cref="T:System.Numerics.BigInteger"/> to <see cref="T:Sudoku.Shuffling.GridTransformIdentifier"/>.
+            </summary>
+            <param name="identifierValue">The identifier value.</param>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.op_CheckedExplicit(System.Numerics.BigInteger)~Sudoku.Shuffling.GridTransformIdentifier">
+            <summary>
+            Explicit cast from <see cref="T:System.Numerics.BigInteger"/> to <see cref="T:Sudoku.Shuffling.GenericTransform"/>, with range check.
+            </summary>
+            <param name="identifierValue">The identifier value.</param>
+            <exception cref="T:System.OverflowException">Throws when <paramref name="identifierValue"/> is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.op_Implicit(Sudoku.Shuffling.GridTransformIdentifier)~System.Numerics.BigInteger">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Shuffling.GridTransformIdentifier"/> to <see cref="T:System.Numerics.BigInteger"/>.
+            </summary>
+            <param name="transform">The transform.</param>
+        </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.

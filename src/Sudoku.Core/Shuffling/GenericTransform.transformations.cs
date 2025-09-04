@@ -69,7 +69,7 @@ public partial record struct GenericTransform
 	/// <returns>A <see cref="GenericTransform"/> instance.</returns>
 	public static GenericTransform SwapTower(int towerIndex1, int towerIndex2)
 	{
-		var indices = (Span<RowIndex>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
+		var indices = (Span<ColumnIndex>)[0, 1, 2, 3, 4, 5, 6, 7, 8];
 		var a = towerIndex1 * 3;
 		var b = towerIndex2 * 3;
 		for (var i = 0; i < 3; i++)

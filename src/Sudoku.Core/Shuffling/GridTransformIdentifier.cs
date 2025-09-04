@@ -56,7 +56,8 @@ public readonly struct GridTransformIdentifier :
 	IComparable<GridTransformIdentifier>,
 	IComparisonOperators<GridTransformIdentifier, GridTransformIdentifier, bool>,
 	IEquatable<GridTransformIdentifier>,
-	IEqualityOperators<GridTransformIdentifier, GridTransformIdentifier, bool>
+	IEqualityOperators<GridTransformIdentifier, GridTransformIdentifier, bool>,
+	IParsable<GridTransformIdentifier>
 {
 	/// <summary>
 	/// Indicates the numebr of all transformations permutation cases.
@@ -134,11 +135,39 @@ public readonly struct GridTransformIdentifier :
 	/// </summary>
 	private const int TransformationPartShiftAmount = CellStatePartBitsCount;
 
+	/// <summary>
+	/// Indicates the fixed serialization length.
+	/// </summary>
+	private const int FixedLength = 25;
+
+	/// <summary>
+	/// Indicates characters.
+	/// </summary>
+	private const string Characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz{}";
+
 
 	/// <summary>
 	/// Indicates the backing elements.
 	/// </summary>
 	private readonly InlineArray5<int> _elements;
+
+
+	/// <summary>
+	/// Initializes a <see cref="GridTransformIdentifier"/> instance.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	private GridTransformIdentifier(BigInteger value)
+	{
+		for (var i = 0; i < RequiredBitsCount; i++)
+		{
+			var index = i >> 5;
+			var position = i & (1 << 5) - 1;
+			if ((value >> i & 1) != 0)
+			{
+				_elements[index] |= 1 << position;
+			}
+		}
+	}
 
 
 	/// <summary>
@@ -237,6 +266,26 @@ public readonly struct GridTransformIdentifier :
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	public int CompareTo(in GridTransformIdentifier other) => IdentifierValue.CompareTo(other.IdentifierValue);
 
+	/// <inheritdoc cref="object.ToString"/>
+	public override string ToString()
+	{
+		var value = IdentifierValue;
+		if (value == BigInteger.Zero)
+		{
+			return new(Characters[0], FixedLength);
+		}
+
+		var sb = new StringBuilder();
+		while (value != BigInteger.Zero)
+		{
+			value = BigInteger.DivRem(value, 64, out var remainder);
+			sb.Insert(0, Characters[(int)remainder]);
+		}
+
+		// Pad with leading zeros to ensure fixed length.
+		return sb.ToString().PadLeft(FixedLength, Characters[0]);
+	}
+
 	/// <inheritdoc/>
 	bool IEquatable<GridTransformIdentifier>.Equals(GridTransformIdentifier other) => Equals(other);
 
@@ -260,6 +309,60 @@ public readonly struct GridTransformIdentifier :
 		}
 		return result;
 	}
+
+
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, out GridTransformIdentifier result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = default;
+				return false;
+			}
+
+			result = Parse(s);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	public static GridTransformIdentifier Parse(string s)
+	{
+		if (string.IsNullOrEmpty(s))
+		{
+			throw new ArgumentException("Input string cannot be null or empty.");
+		}
+		if (s.Length != FixedLength)
+		{
+			throw new ArgumentException($"Input string must be exactly {FixedLength} characters.");
+		}
+
+		var result = BigInteger.Zero;
+		foreach (var ch in s)
+		{
+			var index = Characters.IndexOf(ch);
+			if (index < 0)
+			{
+				throw new ArgumentException($"Invalid character '{ch}' in input string.");
+			}
+			result = (result << 6) + index;
+		}
+		return new(result);
+	}
+
+	/// <inheritdoc/>
+	static bool IParsable<GridTransformIdentifier>.TryParse([NotNullWhen(true)] string? s, [NotNullWhen(true)] IFormatProvider? provider, out GridTransformIdentifier result)
+		=> TryParse(s, out result);
+
+	/// <inheritdoc/>
+	static GridTransformIdentifier IParsable<GridTransformIdentifier>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>

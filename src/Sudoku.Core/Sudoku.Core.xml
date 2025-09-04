@@ -13128,10 +13128,26 @@
             Indicates the shift amount of transformation part.
             </summary>
         </member>
+        <member name="F:Sudoku.Shuffling.GridTransformIdentifier.FixedLength">
+            <summary>
+            Indicates the fixed serialization length.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Shuffling.GridTransformIdentifier.Characters">
+            <summary>
+            Indicates characters.
+            </summary>
+        </member>
         <member name="F:Sudoku.Shuffling.GridTransformIdentifier._elements">
             <summary>
             Indicates the backing elements.
             </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.#ctor(System.Numerics.BigInteger)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Shuffling.GridTransformIdentifier"/> instance.
+            </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="P:Sudoku.Shuffling.GridTransformIdentifier.GlobalMinlexIndex">
             <summary>
@@ -13165,6 +13181,9 @@
         <member name="M:Sudoku.Shuffling.GridTransformIdentifier.CompareTo(Sudoku.Shuffling.GridTransformIdentifier@)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
         </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Shuffling.GridTransformIdentifier.System#IEquatable{Sudoku#Shuffling#GridTransformIdentifier}#Equals(Sudoku.Shuffling.GridTransformIdentifier)">
             <inheritdoc/>
         </member>
@@ -13178,6 +13197,18 @@
             <param name="startIndex">The start index.</param>
             <param name="count">The number of bits.</param>
             <returns>A <see cref="T:System.Collections.BitArray"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.TryParse(System.String,Sudoku.Shuffling.GridTransformIdentifier@)">
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.Parse(System.String)">
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.System#IParsable{Sudoku#Shuffling#GridTransformIdentifier}#TryParse(System.String,System.IFormatProvider,Sudoku.Shuffling.GridTransformIdentifier@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Shuffling.GridTransformIdentifier.System#IParsable{Sudoku#Shuffling#GridTransformIdentifier}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Shuffling.GridTransformIdentifier.op_Equality(Sudoku.Shuffling.GridTransformIdentifier@,Sudoku.Shuffling.GridTransformIdentifier@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

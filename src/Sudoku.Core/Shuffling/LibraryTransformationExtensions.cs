@@ -1,4 +1,4 @@
-namespace Sudoku.Shuffling.Transforming;
+namespace Sudoku.Shuffling;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Library"/>.

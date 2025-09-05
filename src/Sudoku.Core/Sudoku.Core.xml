@@ -4984,7 +4984,7 @@
         <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
@@ -4996,25 +4996,25 @@
         <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#MirrorLeftRight">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#MirrorLeftRight">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#MirrorTopBottom">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#MirrorTopBottom">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#MirrorDiagonal">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#MirrorDiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#MirrorAntidiagonal">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#MirrorAntidiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#RotateClockwise">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#RotateClockwise">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#Grid}#RotateCounterclockwise">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#Grid}#RotateCounterclockwise">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#Transforming#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Shuffling#IElementSwappingTransformable{Sudoku#Concepts#Grid,System#Int32}#SwapElement(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Preserve(Sudoku.Concepts.CellMap@)">
@@ -7070,7 +7070,7 @@
         <member name="M:Sudoku.Concepts.MarkerGrid.System#IEquatable{Sudoku#Concepts#MarkerGrid}#Equals(Sudoku.Concepts.MarkerGrid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#Shuffle">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
@@ -7085,22 +7085,22 @@
         <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Concepts#IGrid{Sudoku#Concepts#MarkerGrid}#SetMask(System.Int32,System.Int16)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#MarkerGrid}#RotateClockwise">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#MarkerGrid}#RotateClockwise">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorLeftRight">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorLeftRight">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorTopBottom">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorTopBottom">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorDiagonal">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorDiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorAntidiagonal">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IGridTransformable{Sudoku#Concepts#MarkerGrid}#MirrorAntidiagonal">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#Transforming#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#SwapElement(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.MarkerGrid.Sudoku#Shuffling#IElementSwappingTransformable{Sudoku#Concepts#MarkerGrid,System#Int32}#SwapElement(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.MarkerGrid.Preserve(Sudoku.Concepts.CellMap@)">
@@ -13414,6 +13414,122 @@
             </summary>
             <param name="transform">The transform.</param>
         </member>
+        <member name="T:Sudoku.Shuffling.IElementSwappingTransformable`2">
+            <summary>
+            Represents an object that can swap elements of itself.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
+        </member>
+        <member name="M:Sudoku.Shuffling.IElementSwappingTransformable`2.SwapElement(`1,`1)">
+            <summary>
+            Swaps all elements whose values are equal to <paramref name="element1"/> and <paramref name="element2"/>.
+            </summary>
+            <param name="element1">The first element to be swapped.</param>
+            <param name="element2">The second element to be swapped.</param>
+            <returns>The result swapped.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IElementSwappingTransformable`2.Shuffle">
+            <summary>
+            Try to shuffle <typeparamref name="TSelf"/> instance of elements, keeping equality with the current instance.
+            </summary>
+            <returns>The result shuffled.</returns>
+        </member>
+        <member name="T:Sudoku.Shuffling.IGridTransformable`1">
+            <summary>
+            Represents an object that can be transformed into another kind of value.
+            </summary>
+            <typeparam name="TSelf"><self-type-constraint>
+		<para>Indicates the type implementing this interface.</para>
+		<para>
+			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
+			The type will include a <see langword="where" /> constraint that implements the interface itself
+			to declare such "self constraint" usage:
+			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
+			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
+		</para>
+	</self-type-constraint></typeparam>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.RotateClockwise">
+            <summary>
+            Rotate <typeparamref name="TSelf"/> instance clockwisely.
+            </summary>
+            <returns>The result rotated.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.RotateCounterclockwise">
+            <summary>
+            Rotate <typeparamref name="TSelf"/> instance counter-clockwisely.
+            </summary>
+            <returns>The result rotated.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.RotatePi">
+            <summary>
+            Rotate <typeparamref name="TSelf"/> instance 180 degrees.
+            </summary>
+            <returns>The result rotated.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.MirrorLeftRight">
+            <summary>
+            Mirror <typeparamref name="TSelf"/> instance in left-right side.
+            </summary>
+            <returns>The result fliped.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.MirrorTopBottom">
+            <summary>
+            Mirror <typeparamref name="TSelf"/> instance in top-bottom side.
+            </summary>
+            <returns>The result fliped.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.MirrorDiagonal">
+            <summary>
+            Mirror <typeparamref name="TSelf"/> instance in diagonal.
+            </summary>
+            <returns>The result fliped.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.Transpose">
+            <summary>
+            Simply calls <see cref="M:Sudoku.Shuffling.IGridTransformable`1.MirrorDiagonal"/>.
+            </summary>
+            <returns>The result fliped.</returns>
+        </member>
+        <member name="M:Sudoku.Shuffling.IGridTransformable`1.MirrorAntidiagonal">
+            <summary>
+            Mirror <typeparamref name="TSelf"/> instance in anti-diagonal.
+            </summary>
+            <returns>The result fliped.</returns>
+        </member>
+        <member name="T:Sudoku.Shuffling.LibraryTransformationExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.IO.Library"/>.
+            </summary>
+            <seealso cref="T:Sudoku.IO.Library"/>
+        </member>
+        <member name="T:Sudoku.Shuffling.LibraryTransformationExtensions.&lt;&gt;E__0">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.IO.Library"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Shuffling.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.TransformType,System.Threading.CancellationToken)">
+            <summary>
+            Randomly read one puzzle in the specified file, and return it.
+            </summary>
+            <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
+            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
+        </member>
+        <member name="M:Sudoku.Shuffling.LibraryTransformationExtensions.RandomReadOneAsync(Sudoku.IO.Library,Sudoku.Shuffling.TransformType,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Shuffling.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.TransformType,System.Threading.CancellationToken)"/>
+        </member>
         <member name="T:Sudoku.Shuffling.Minlex.BestTripletPermutation">
             <summary>
             Represents the permutation information for best triplet.
@@ -13704,134 +13820,18 @@
             <returns>The target string.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when label is invalid.</exception>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.IElementSwappingTransformable`2">
-            <summary>
-            Represents an object that can swap elements of itself.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-            <typeparam name="TElement">The type of each element.</typeparam>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IElementSwappingTransformable`2.SwapElement(`1,`1)">
-            <summary>
-            Swaps all elements whose values are equal to <paramref name="element1"/> and <paramref name="element2"/>.
-            </summary>
-            <param name="element1">The first element to be swapped.</param>
-            <param name="element2">The second element to be swapped.</param>
-            <returns>The result swapped.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IElementSwappingTransformable`2.Shuffle">
-            <summary>
-            Try to shuffle <typeparamref name="TSelf"/> instance of elements, keeping equality with the current instance.
-            </summary>
-            <returns>The result shuffled.</returns>
-        </member>
-        <member name="T:Sudoku.Shuffling.Transforming.IGridTransformable`1">
-            <summary>
-            Represents an object that can be transformed into another kind of value.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.RotateClockwise">
-            <summary>
-            Rotate <typeparamref name="TSelf"/> instance clockwisely.
-            </summary>
-            <returns>The result rotated.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.RotateCounterclockwise">
-            <summary>
-            Rotate <typeparamref name="TSelf"/> instance counter-clockwisely.
-            </summary>
-            <returns>The result rotated.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.RotatePi">
-            <summary>
-            Rotate <typeparamref name="TSelf"/> instance 180 degrees.
-            </summary>
-            <returns>The result rotated.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.MirrorLeftRight">
-            <summary>
-            Mirror <typeparamref name="TSelf"/> instance in left-right side.
-            </summary>
-            <returns>The result fliped.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.MirrorTopBottom">
-            <summary>
-            Mirror <typeparamref name="TSelf"/> instance in top-bottom side.
-            </summary>
-            <returns>The result fliped.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.MirrorDiagonal">
-            <summary>
-            Mirror <typeparamref name="TSelf"/> instance in diagonal.
-            </summary>
-            <returns>The result fliped.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.Transpose">
-            <summary>
-            Simply calls <see cref="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.MirrorDiagonal"/>.
-            </summary>
-            <returns>The result fliped.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.IGridTransformable`1.MirrorAntidiagonal">
-            <summary>
-            Mirror <typeparamref name="TSelf"/> instance in anti-diagonal.
-            </summary>
-            <returns>The result fliped.</returns>
-        </member>
-        <member name="T:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.IO.Library"/>.
-            </summary>
-            <seealso cref="T:Sudoku.IO.Library"/>
-        </member>
-        <member name="T:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.IO.Library"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
-            <summary>
-            Randomly read one puzzle in the specified file, and return it.
-            </summary>
-            <param name="transformTypes">Indicates the available transform type that the chosen grid can be transformed.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.Task`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instance as the result.</returns>
-            <exception cref="T:System.InvalidOperationException">Throw when the library file is not initialized.</exception>
-        </member>
-        <member name="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.RandomReadOneAsync(Sudoku.IO.Library,Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.LibraryTransformationExtensions.&lt;&gt;E__0.RandomReadOneAsync(Sudoku.Shuffling.Transforming.TransformType,System.Threading.CancellationToken)"/>
-        </member>
-        <member name="T:Sudoku.Shuffling.Transforming.RandomShufflingExtensions">
+        <member name="T:Sudoku.Shuffling.RandomShufflingExtensions">
             <summary>
             Provides with extension methods for <see cref="T:System.Random"/>.
             </summary>
             <seealso cref="T:System.Random"/>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0">
+        <member name="T:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0">
             <summary>
             Provides extension members on <see cref="T:System.Random"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextDigit">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextDigit">
             <summary>
             Returns a random integer that is within valid digit range (0..9).
             </summary>
@@ -13839,7 +13839,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextCell">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextCell">
             <summary>
             Returns a random integer that is within valid cell range (0..81).
             </summary>
@@ -13847,7 +13847,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextHouse">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextHouse">
             <summary>
             Returns a random integer that is within valid house range (0..27).
             </summary>
@@ -13855,7 +13855,7 @@
             An integer that represents a valid <see cref="T:System.Int32"/>.
             </returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Randomly select the specified number of elements from the current collection.
             </summary>
@@ -13863,7 +13863,7 @@
             <param name="count">The desired number of elements.</param>
             <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CandidateMap@,System.Int32)">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <summary>
             Randomly select the specified number of elements from the current collection.
             </summary>
@@ -13871,68 +13871,68 @@
             <param name="count">The desired number of elements.</param>
             <returns>The specified number of elements returned, represented as a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.CreateCellMap(System.Int32)">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.CreateCellMap(System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
             </summary>
             <param name="count">The desired number of elements.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.CreateCandidateMap(System.Int32)">
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.CreateCandidateMap(System.Int32)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, with the specified number of <see cref="T:System.Int32"/>s stored in the collection.
             </summary>
             <param name="count">The desired number of elements.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.NextDigit(System.Random)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextDigit"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.NextDigit(System.Random)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextDigit"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.NextCell(System.Random)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextCell"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.NextCell(System.Random)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextCell"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.NextHouse(System.Random)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.NextHouse"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.NextHouse(System.Random)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.NextHouse"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CellMap@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CandidateMap@,System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.RandomlySelect(System.Random,Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.RandomlySelect(Sudoku.Concepts.CandidateMap@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.CreateCellMap(System.Random,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.CreateCellMap(System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.CreateCellMap(System.Random,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.CreateCellMap(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.CreateCandidateMap(System.Random,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.RandomShufflingExtensions.&lt;&gt;E__0.CreateCandidateMap(System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.RandomShufflingExtensions.CreateCandidateMap(System.Random,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.RandomShufflingExtensions.&lt;&gt;E__0.CreateCandidateMap(System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.Transformation">
+        <member name="T:Sudoku.Shuffling.Transformation">
             <summary>
             Provides methods for <see cref="T:Sudoku.Concepts.Grid"/> instances on transformations.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.Transformation.ClockwiseTable">
+        <member name="F:Sudoku.Shuffling.Transformation.ClockwiseTable">
             <summary>
             The table of clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.Transformation.CounterclockwiseTable">
+        <member name="F:Sudoku.Shuffling.Transformation.CounterclockwiseTable">
             <summary>
             The table of counter-clockwise rotation.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.Transformation.PiRotateTable">
+        <member name="F:Sudoku.Shuffling.Transformation.PiRotateTable">
             <summary>
             The table of pi-rotation.
             </summary>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0">
+        <member name="T:Sudoku.Shuffling.Transformation.&lt;&gt;E__0">
             <summary>
             Provides extension members on <see langword="ref"/> <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0.Transform(Sudoku.Shuffling.Transforming.TransformType)">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__0.Transform(Sudoku.Shuffling.TransformType)">
             <summary>
             Transforms the grid by the specified type.
             </summary>
@@ -13940,17 +13940,17 @@
             The transform types can be applied.
             </param>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transform(Sudoku.Concepts.Grid@,Sudoku.Shuffling.Transforming.TransformType)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__0.Transform(Sudoku.Shuffling.Transforming.TransformType)"/>
+        <member name="M:Sudoku.Shuffling.Transformation.Transform(Sudoku.Concepts.Grid@,Sudoku.Shuffling.TransformType)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__0.Transform(Sudoku.Shuffling.TransformType)"/>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1">
+        <member name="T:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1">
             <summary>
             Provides extension members on <typeparamref name="TGrid"/>,
             where <typeparamref name="TGrid"/> satisfies <see langword="unmanaged"/>
             and <see cref="T:Sudoku.Concepts.IInlineArrayGrid`1"/> constraints.
             </summary>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorLeftRight">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorLeftRight">
             <summary>
             Mirror left-right the grid.
             </summary>
@@ -13960,7 +13960,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorTopBottom">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorTopBottom">
             <summary>
             Mirror top-bottom the grid.
             </summary>
@@ -13970,7 +13970,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorDiagonal">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorDiagonal">
             <summary>
             Mirror diagonal the grid.
             </summary>
@@ -13980,7 +13980,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.Transpose">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.Transpose">
             <summary>
             Transpose the grid.
             </summary>
@@ -13990,7 +13990,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorAntidiagonal">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorAntidiagonal">
             <summary>
             Mirror anti-diagonal the grid.
             </summary>
@@ -14000,7 +14000,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotateClockwise">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotateClockwise">
             <summary>
             Rotate the grid clockwise.
             </summary>
@@ -14010,7 +14010,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotateCounterclockwise">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotateCounterclockwise">
             <summary>
             Rotate the grid counterclockwise.
             </summary>
@@ -14020,7 +14020,7 @@
             in order to inline multiple transformation operations.
             </remarks>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotatePi">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotatePi">
             <summary>
             Rotate the grid <c><see cref="F:System.Math.PI"/></c> degrees.
             </summary>
@@ -14031,7 +14031,7 @@
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapDigit(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapDigit(System.Int32,System.Int32)">
             <summary>
             Swap two digits.
             </summary>
@@ -14040,7 +14040,7 @@
             <returns>The reference to the current grid.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapHouse(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapHouse(System.Int32,System.Int32)">
             <summary>
             Swap to houses.
             </summary>
@@ -14052,7 +14052,7 @@
             two houses are not in same house type, or are not swappable.
             </exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapChute(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapChute(System.Int32,System.Int32)">
             <summary>
             Swap chutes (i.e. mega-rows or mega-columns).
             </summary>
@@ -14061,40 +14061,40 @@
             <returns>The reference to the current grid.</returns>
             <exception cref="T:System.ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorLeftRight``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorLeftRight"/>
+        <member name="M:Sudoku.Shuffling.Transformation.MirrorLeftRight``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorLeftRight"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorTopBottom``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorTopBottom"/>
+        <member name="M:Sudoku.Shuffling.Transformation.MirrorTopBottom``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorTopBottom"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorDiagonal``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorDiagonal"/>
+        <member name="M:Sudoku.Shuffling.Transformation.MirrorDiagonal``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorDiagonal"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.Transpose``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.Transpose"/>
+        <member name="M:Sudoku.Shuffling.Transformation.Transpose``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.Transpose"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.MirrorAntidiagonal``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.MirrorAntidiagonal"/>
+        <member name="M:Sudoku.Shuffling.Transformation.MirrorAntidiagonal``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.MirrorAntidiagonal"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateClockwise``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotateClockwise"/>
+        <member name="M:Sudoku.Shuffling.Transformation.RotateClockwise``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotateClockwise"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotateCounterclockwise``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotateCounterclockwise"/>
+        <member name="M:Sudoku.Shuffling.Transformation.RotateCounterclockwise``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotateCounterclockwise"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.RotatePi``1(``0@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.RotatePi"/>
+        <member name="M:Sudoku.Shuffling.Transformation.RotatePi``1(``0@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.RotatePi"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapDigit``1(``0@,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapDigit(System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.Transformation.SwapDigit``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapDigit(System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapHouse``1(``0@,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapHouse(System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.Transformation.SwapHouse``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapHouse(System.Int32,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Shuffling.Transforming.Transformation.SwapChute``1(``0@,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Transforming.Transformation.&lt;&gt;E__1`1.SwapChute(System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Shuffling.Transformation.SwapChute``1(``0@,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Transformation.&lt;&gt;E__1`1.SwapChute(System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Shuffling.Transforming.TransformType">
+        <member name="T:Sudoku.Shuffling.TransformType">
             <summary>
             Represents a type of transformation.
             </summary>
@@ -14107,62 +14107,62 @@
 		</para>
 	</flags-attribute></remarks>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.None">
+        <member name="F:Sudoku.Shuffling.TransformType.None">
             <summary>
             The placeholder of this type.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.DigitSwap">
+        <member name="F:Sudoku.Shuffling.TransformType.DigitSwap">
             <summary>
             Indicates the transform type is to swap digits.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RowSwap">
+        <member name="F:Sudoku.Shuffling.TransformType.RowSwap">
             <summary>
             Indicates the transform type is to swap rows.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.ColumnSwap">
+        <member name="F:Sudoku.Shuffling.TransformType.ColumnSwap">
             <summary>
             Indicates the transform type is to swap columns.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.BandSwap">
+        <member name="F:Sudoku.Shuffling.TransformType.BandSwap">
             <summary>
             Indicates the transform type is to swap bands.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.TowerSwap">
+        <member name="F:Sudoku.Shuffling.TransformType.TowerSwap">
             <summary>
             Indicates the transform type is to swap towers.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorLeftRight">
+        <member name="F:Sudoku.Shuffling.TransformType.MirrorLeftRight">
             <summary>
             Indicates the transform type is to mirror left and right.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorTopBottom">
+        <member name="F:Sudoku.Shuffling.TransformType.MirrorTopBottom">
             <summary>
             Indicates the transform type is to mirror top and bottom.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorDiagonal">
+        <member name="F:Sudoku.Shuffling.TransformType.MirrorDiagonal">
             <summary>
             Indicates the transform type is to mirror diagonal.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.MirrorAntidiagonal">
+        <member name="F:Sudoku.Shuffling.TransformType.MirrorAntidiagonal">
             <summary>
             Indicates the transform type is to mirror anti-diagonal.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RotateClockwise">
+        <member name="F:Sudoku.Shuffling.TransformType.RotateClockwise">
             <summary>
             Indicates the transform type is to rotate clockwise.
             </summary>
         </member>
-        <member name="F:Sudoku.Shuffling.Transforming.TransformType.RotateCounterclockwise">
+        <member name="F:Sudoku.Shuffling.TransformType.RotateCounterclockwise">
             <summary>
             Indicates the transform type is to ratate counter-clockwise.
             </summary>

@@ -62,7 +62,7 @@ global using Sudoku.Runtime.InterceptorServices;
 global using Sudoku.Runtime.InteropServices;
 global using Sudoku.Runtime.InteropServices.Hodoku;
 global using Sudoku.Runtime.InteropServices.SudokuExplainer;
-global using Sudoku.Shuffling.Transforming;
+global using Sudoku.Shuffling;
 global using Sudoku.Solving;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Caching.MemoryCachedData;

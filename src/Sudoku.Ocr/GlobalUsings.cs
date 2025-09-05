@@ -16,4 +16,4 @@ global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.Concepts;
 global using Sudoku.Resources;
-global using Sudoku.Shuffling.Transforming;
+global using Sudoku.Shuffling;

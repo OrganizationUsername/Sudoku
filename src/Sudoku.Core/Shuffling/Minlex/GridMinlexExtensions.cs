@@ -29,12 +29,25 @@ public static class GridMinlexExtensions
 		/// </summary>
 		public bool IsMinLex
 			=> @this.PuzzleType != SudokuType.Sukaku && @this.Uniqueness == Uniqueness.Unique && @this.ToString("0") is var s
-				? new MinlexFinder().Find(s, out _) == s
+				? new MinlexFinder().Find(s) == s
 				: throw new InvalidOperationException(SR.ExceptionMessage("MinLexShouldBeUniqueAndNotSukaku"));
 
 		/// <summary>
 		/// Indicates the new grid form of the current grid, which is at the minimal-lexicographical order.
 		/// </summary>
 		public Grid MinLexGrid => new MinlexFinder().Find(in @this);
+
+
+		/// <summary>
+		/// Returns a <see cref="GenericTransform"/> instance that is the necessary transformation to the current grid,
+		/// starting from <paramref name="minlex"/>.
+		/// </summary>
+		/// <param name="minlex">The min-lex grid.</param>
+		/// <returns>The target transformation.</returns>
+		public GenericTransform GetTransformFromMinlex(out Grid minlex)
+		{
+			minlex = new MinlexFinder().Find(@this, out var result);
+			return result;
+		}
 	}
 }

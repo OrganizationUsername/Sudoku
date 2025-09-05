@@ -13806,11 +13806,22 @@
             Indicates the new grid form of the current grid, which is at the minimal-lexicographical order.
             </summary>
         </member>
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.GetTransformFromMinlex(Sudoku.Concepts.Grid@)">
+            <summary>
+            Returns a <see cref="T:Sudoku.Shuffling.GenericTransform"/> instance that is the necessary transformation to the current grid,
+            starting from <paramref name="minlex"/>.
+            </summary>
+            <param name="minlex">The min-lex grid.</param>
+            <returns>The target transformation.</returns>
+        </member>
         <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.get_IsMinLex(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="P:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.IsMinLex"/>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.get_MinLexGrid(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="P:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.MinLexGrid"/>
+        </member>
+        <member name="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.GetTransformFromMinlex(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.GridMinlexExtensions.&lt;&gt;E__1.GetTransformFromMinlex(Sudoku.Concepts.Grid@)"/>
         </member>
         <member name="T:Sudoku.Shuffling.Minlex.GridPattern">
             <summary>
@@ -13976,6 +13987,9 @@
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)">
             <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)"/>
         </member>
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
+        </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)">
             <summary>
             Finds the minimal lexicographical form of the source grid code.
@@ -13983,21 +13997,6 @@
             <param name="grid">Indicates the source grid.</param>
             <param name="transform">The transform.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@,Sudoku.Shuffling.GenericTransform@)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)"/>
-        </member>
-        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.FindWithMappers(System.String)">
-            <summary>
-            Calls <see cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>, with <see cref="T:Sudoku.Shuffling.Minlex.Mapper"/> instances returned.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The found result pair.</returns>
-            <seealso cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
-            <seealso cref="T:Sudoku.Shuffling.Minlex.Mapper"/>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.ReconstructOriginal(Sudoku.Shuffling.Minlex.Mapper@,System.String)">
             <summary>
@@ -14007,6 +14006,9 @@
             <param name="minlex">The min-lex grid string.</param>
             <returns>The target string.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when label is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(Sudoku.Concepts.Grid@,Sudoku.Shuffling.GenericTransform@)">
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)"/>
         </member>
         <member name="T:Sudoku.Shuffling.RandomShufflingExtensions">
             <summary>

@@ -293,16 +293,20 @@ public sealed unsafe class MinlexFinder
 		return result.ToString();
 	}
 
+	/// <inheritdoc cref="Find(string)"/>
+	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
+
 	/// <summary>
 	/// Finds the minimal lexicographical form of the source grid code.
 	/// </summary>
 	/// <param name="grid">Indicates the source grid.</param>
 	/// <param name="transform">The transform.</param>
 	/// <returns>The corresponding minimal lexicographical form of the grid.</returns>
-	public string Find(string grid, out GenericTransform transform)
+	internal string Find(string grid, out GenericTransform transform)
 	{
-		var (minlexed, mappers) = FindWithMappers(grid);
-		foreach (var mapper in mappers)
+		var minlexed = Find(grid);
+		var mappers = _mappers.AsSpan();
+		foreach (ref readonly var mapper in mappers)
 		{
 			var reconstructed = ReconstructOriginal(mapper, minlexed);
 			if (reconstructed == grid)
@@ -313,21 +317,6 @@ public sealed unsafe class MinlexFinder
 		}
 		throw new InvalidOperationException();
 	}
-
-	/// <inheritdoc cref="Find(string)"/>
-	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
-
-	/// <inheritdoc cref="Find(string, out GenericTransform)"/>
-	public Grid Find(in Grid grid, out GenericTransform transform) => Grid.Parse(Find(grid.ToString("0"), out transform));
-
-	/// <summary>
-	/// Calls <see cref="Find(string)"/>, with <see cref="Mapper"/> instances returned.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <returns>The found result pair.</returns>
-	/// <seealso cref="Find(string)"/>
-	/// <seealso cref="Mapper"/>
-	internal (string, Mapper[]) FindWithMappers(string grid) => (Find(grid), [.. _mappers]);
 
 	/// <summary>
 	/// Reconstruct original.
@@ -386,4 +375,7 @@ public sealed unsafe class MinlexFinder
 		}
 		return resultCharacters.ToString();
 	}
+
+	/// <inheritdoc cref="Find(string, out GenericTransform)"/>
+	internal Grid Find(in Grid grid, out GenericTransform transform) => Grid.Parse(Find(grid.ToString("0"), out transform));
 }

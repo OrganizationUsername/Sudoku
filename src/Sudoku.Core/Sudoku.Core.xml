@@ -13974,7 +13974,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)">
-            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String)"/>
+            <inheritdoc cref="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)"/>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexFinder.Find(System.String,Sudoku.Shuffling.GenericTransform@)">
             <summary>

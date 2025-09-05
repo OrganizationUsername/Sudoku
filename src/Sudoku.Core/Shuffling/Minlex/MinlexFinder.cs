@@ -22,7 +22,7 @@ public sealed unsafe class MinlexFinder
 	private readonly List<Mapper> _mappers = [];
 
 
-	/// <inheritdoc cref="Find(string)"/>
+	/// <inheritdoc cref="Find(string, out GenericTransform)"/>
 	public string Find(string grid)
 	{
 		_mappers.Clear();

@@ -20,7 +20,7 @@ public readonly partial record struct GenericTransform(
 	IEqualityOperators<GenericTransform, GenericTransform, bool>
 {
 	/// <summary>
-	/// Represents equivalent transform.
+	/// Represents equivalent transform (no transform).
 	/// </summary>
 	public static readonly GenericTransform Equivalent = new(0, 0, 0, 0);
 

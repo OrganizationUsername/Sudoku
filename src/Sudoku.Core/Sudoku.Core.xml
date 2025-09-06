@@ -12825,7 +12825,7 @@
         </member>
         <member name="F:Sudoku.Shuffling.GenericTransform.Equivalent">
             <summary>
-            Represents equivalent transform.
+            Represents equivalent transform (no transform).
             </summary>
         </member>
         <member name="F:Sudoku.Shuffling.GenericTransform.ClockwiseRotate90Degrees">
@@ -14163,11 +14163,20 @@
             Represents a ranker type that can rank a min-lex grid, or unrank a value to target grid.
             </summary>
         </member>
+        <member name="M:Sudoku.Shuffling.Minlex.MinlexRanker.GetRankFromGrid(System.String)">
+            <summary>
+            Gets the rank of the specified grid.
+            </summary>
+            <param name="grid">The min-lex grid.</param>
+            <returns>
+            The rank returned, or 0 if the source grid is invalid or not min-lex.
+            </returns>
+        </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexRanker.GetRankFromGrid(System.String,Sudoku.Shuffling.GenericTransform@)">
             <summary>
             Gets the rank of the specified grid.
             </summary>
-            <param name="grid">The grid, min-lex.</param>
+            <param name="grid">The grid with 81 digit characters.</param>
             <param name="transform">
             <para>The transform that the grid can be transform from min-lex state to <paramref name="grid"/>.</para>
             <para>
@@ -14177,8 +14186,9 @@
             </para>
             </param>
             <returns>
-            The rank returned, or 0 if the source grid is invalid (not a grid string of 81 digit characters, without empty cells).
+            The rank returned, or 0 if the source grid is invalid (not a grid string of 81 digit characters).
             </returns>
+            <seealso cref="F:Sudoku.Shuffling.GenericTransform.Equivalent"/>
         </member>
         <member name="M:Sudoku.Shuffling.Minlex.MinlexRanker.GetGridFromRank(System.UInt64)">
             <summary>

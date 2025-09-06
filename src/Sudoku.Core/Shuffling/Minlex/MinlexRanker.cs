@@ -8,7 +8,28 @@ public static class MinlexRanker
 	/// <summary>
 	/// Gets the rank of the specified grid.
 	/// </summary>
-	/// <param name="grid">The grid, min-lex.</param>
+	/// <param name="grid">The min-lex grid.</param>
+	/// <returns>
+	/// The rank returned, or 0 if the source grid is invalid or not min-lex.
+	/// </returns>
+	public static unsafe ulong GetRankFromGrid(string grid)
+	{
+		VCDESC* pvcdesc;
+		if (MinlexRankerInterop.SkvcatSetModeGetVCDESK(2, &pvcdesc) != 0)
+		{
+			return 0;
+		}
+
+		var givens = (sbyte*)Marshal.StringToHGlobalAnsi(grid);
+		var result = MinlexRankerInterop.SkvcatGetRankFromSolCharMin(givens);
+		Marshal.FreeHGlobal((nint)givens);
+		return result;
+	}
+
+	/// <summary>
+	/// Gets the rank of the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid with 81 digit characters.</param>
 	/// <param name="transform">
 	/// <para>The transform that the grid can be transform from min-lex state to <paramref name="grid"/>.</para>
 	/// <para>
@@ -18,23 +39,42 @@ public static class MinlexRanker
 	/// </para>
 	/// </param>
 	/// <returns>
-	/// The rank returned, or 0 if the source grid is invalid (not a grid string of 81 digit characters, without empty cells).
+	/// The rank returned, or 0 if the source grid is invalid (not a grid string of 81 digit characters).
 	/// </returns>
+	/// <seealso cref="GenericTransform.Equivalent"/>
 	public static unsafe ulong GetRankFromGrid(string grid, out GenericTransform transform)
 	{
-		new MinlexFinder().Find(grid, out transform);
+		if (!Grid.TryParse(grid, out var tempGrid))
+		{
+			goto InvalidGrid;
+		}
+
+		if (!tempGrid.IsSolved)
+		{
+			var buffer = stackalloc char[82];
+			buffer[81] = '\0';
+			if (new BitwiseSolver().SolveString(grid, buffer, 2) != 1)
+			{
+				goto InvalidGrid;
+			}
+			grid = new(buffer);
+		}
+
+		grid = new MinlexFinder().Find(grid, out transform);
 		VCDESC* pvcdesc;
 		if (MinlexRankerInterop.SkvcatSetModeGetVCDESK(2, &pvcdesc) != 0)
 		{
 			return 0;
 		}
 
-		var givens = stackalloc sbyte[81];
-		for (var i = 0; i < 81; i++)
-		{
-			givens[i] = (sbyte)grid[i];
-		}
-		return MinlexRankerInterop.SkvcatGetRankFromSolCharMin(givens);
+		var givens = (sbyte*)Marshal.StringToHGlobalAnsi(grid);
+		var result = MinlexRankerInterop.SkvcatGetRankFromSolCharMin(givens);
+		Marshal.FreeHGlobal((nint)givens);
+		return result;
+
+	InvalidGrid:
+		transform = default;
+		return 0;
 	}
 
 	/// <summary>
@@ -61,8 +101,7 @@ public static class MinlexRanker
 			return null;
 		}
 
-		var wsSpan = new Span<sbyte>(resultCharacters, 81);
-		new Span<sbyte>(pvcdesc->g.b1, 81).CopyTo(wsSpan);
-		return (from e in wsSpan select (char)e).ToString();
+		Unsafe.CopyBlock(resultCharacters, pvcdesc->g.b1, sizeof(sbyte) * 81);
+		return Encoding.ASCII.GetString((byte*)resultCharacters, 81);
 	}
 }

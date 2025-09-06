@@ -1,10 +1,9 @@
 namespace Sudoku.Shuffling;
 
 /// <summary>
-/// Provides with extension methods for <see cref="Random"/>.
+/// Provides with some methods that generates randomized elements or types defined in sudoku basic concepts.
 /// </summary>
-/// <seealso cref="Random"/>
-public static class RandomShufflingExtensions
+public static class ConceptRandomGeneratingExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Random"/>.

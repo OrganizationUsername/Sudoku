@@ -1,6 +1,4 @@
-using Sudoku.Transformations;
-
-namespace Sudoku.Shuffling;
+namespace Sudoku.Transformations;
 
 /// <summary>
 /// Represents a generic transform that includes the ranks of morphing types.

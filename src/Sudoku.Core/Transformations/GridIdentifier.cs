@@ -1,5 +1,3 @@
-using Sudoku.Transformations;
-
 namespace Sudoku.Transformations;
 
 /// <summary>

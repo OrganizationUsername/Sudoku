@@ -553,15 +553,15 @@ internal struct BestTripletPermutation(int bestResult, int resultMask, int resul
 	/// <summary>
 	/// Indicates the best result.
 	/// </summary>
-	public int BestResult { get; set; } = bestResult;
+	public int BestResult = bestResult;
 
 	/// <summary>
 	/// Indicates the result mask.
 	/// </summary>
-	public int ResultMask { get; set; } = resultMask;
+	public int ResultMask = resultMask;
 
 	/// <summary>
 	/// Indicates the result number of bits.
 	/// </summary>
-	public int ResultNumberOfBits { get; set; } = resultNumberOfBits;
+	public int ResultNumberOfBits = resultNumberOfBits;
 }

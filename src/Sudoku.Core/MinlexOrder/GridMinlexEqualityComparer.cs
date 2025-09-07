@@ -1,8 +1,9 @@
 namespace Sudoku.MinlexOrder;
 
 /// <summary>
-/// Represents an equality comparer that checks for min-lex transformations.
+/// Represents an equality comparer that checks for min-lex transformation for a <see cref="Grid"/>.
 /// </summary>
+/// <seealso cref="Grid"/>
 public sealed class GridMinlexEqualityComparer : IEqualityComparer<Grid>
 {
 	/// <inheritdoc/>

@@ -12205,17 +12205,17 @@
             <summary>
             Represents the permutation information for best triplet.
             </summary>
-            <param name="bestResult"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.BestResult" path="/summary"/></param>
-            <param name="resultMask"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask" path="/summary"/></param>
-            <param name="resultNumberOfBits"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits" path="/summary"/></param>
+            <param name="bestResult"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.BestResult" path="/summary"/></param>
+            <param name="resultMask"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask" path="/summary"/></param>
+            <param name="resultNumberOfBits"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.MinlexOrder.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Represents the permutation information for best triplet.
             </summary>
-            <param name="bestResult"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.BestResult" path="/summary"/></param>
-            <param name="resultMask"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask" path="/summary"/></param>
-            <param name="resultNumberOfBits"><inheritdoc cref="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits" path="/summary"/></param>
+            <param name="bestResult"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.BestResult" path="/summary"/></param>
+            <param name="resultMask"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask" path="/summary"/></param>
+            <param name="resultNumberOfBits"><inheritdoc cref="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits" path="/summary"/></param>
         </member>
         <member name="F:Sudoku.MinlexOrder.BestTripletPermutation.Perm">
             <summary>
@@ -12227,25 +12227,35 @@
             Indicates all best triplet permutations.
             </summary>
         </member>
-        <member name="P:Sudoku.MinlexOrder.BestTripletPermutation.BestResult">
+        <member name="F:Sudoku.MinlexOrder.BestTripletPermutation.BestResult">
             <summary>
             Indicates the best result.
             </summary>
         </member>
-        <member name="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask">
+        <member name="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultMask">
             <summary>
             Indicates the result mask.
             </summary>
         </member>
-        <member name="P:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits">
+        <member name="F:Sudoku.MinlexOrder.BestTripletPermutation.ResultNumberOfBits">
             <summary>
             Indicates the result number of bits.
             </summary>
         </member>
+        <member name="T:Sudoku.MinlexOrder.GridMinlexComparer">
+            <summary>
+            Represents a comparer object that checks for min-lex rank of two <see cref="T:Sudoku.Concepts.Grid"/> values and compare them.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.MinlexOrder.GridMinlexComparer.Compare(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.MinlexOrder.GridMinlexEqualityComparer">
             <summary>
-            Represents an equality comparer that checks for min-lex transformations.
+            Represents an equality comparer that checks for min-lex transformation for a <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
         <member name="M:Sudoku.MinlexOrder.GridMinlexEqualityComparer.Equals(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
@@ -12343,6 +12353,36 @@
             <param name="grid">Indicates the grid code to be used.</param>
             <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.MinlexOrder.GridPattern"/> instances for normal and transposed cases.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
+        </member>
+        <member name="T:Sudoku.MinlexOrder.GridRawStringMinlexComparer">
+            <summary>
+            Represents a comparer that checks for min-lex rank of two <see cref="T:System.String"/> values
+            representing two different grids, and compare them.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinlexOrder.GridRawStringMinlexComparer._finder">
+            <summary>
+            Indicates the backing min-lex finder object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinlexOrder.GridRawStringMinlexComparer.Compare(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.MinlexOrder.GridRawStringMinlexEqualityComparer">
+            <summary>
+            Represents an equality comparer that checks for min-lex transformation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinlexOrder.GridRawStringMinlexEqualityComparer._finder">
+            <summary>
+            Indicates the backing min-lex finder object.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinlexOrder.GridRawStringMinlexEqualityComparer.Equals(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.MinlexOrder.GridRawStringMinlexEqualityComparer.GetHashCode(System.String)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.MinlexOrder.Mapper">
             <summary>

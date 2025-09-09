@@ -15,19 +15,9 @@ public static class GridGenericTransformExtensions
 		/// Applies transform with the specified <see cref="GenericTransform"/>.
 		/// </summary>
 		/// <param name="transform">The transform.</param>
-		public void Apply(in GenericTransform transform) => @this >>= transform;
-
-
-#if EXTENSION_OPERATORS
-		/// <summary>
-		/// Applies transform with the specified <see cref="GenericTransform"/>.
-		/// </summary>
-		/// <param name="original">The original grid.</param>
-		/// <param name="transform">The transform.</param>
-		/// <returns>The grid transformed.</returns>
-		public static Grid operator >>(in Grid original, in GenericTransform transform)
+		public void Apply(in GenericTransform transform)
 		{
-			var @base = original.ToString("0");
+			var @base = @this.ToString("0");
 			var rows = transform.RowIndicesRelabeled;
 			var columns = transform.ColumnIndicesRelabeled;
 			var digits = transform.DigitsRelabeled;
@@ -52,8 +42,7 @@ public static class GridGenericTransformExtensions
 			}
 
 			var result = Grid.Parse(resultCharacters);
-			return transform.ShouldTranspose ? result.Transpose() : result;
+			@this = transform.ShouldTranspose ? result.Transpose() : result;
 		}
-#endif
 	}
 }

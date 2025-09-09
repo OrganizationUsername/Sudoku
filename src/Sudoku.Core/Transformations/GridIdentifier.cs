@@ -281,14 +281,10 @@ public readonly struct GridIdentifier :
 	{
 		get
 		{
-#if EXTENSION_OPERATORS
-			var g = OriginalGrid >> Transform;
+			var g = OriginalGrid;
+			g.Apply(Transform);
 			preserveGrid(ref g, GivenCells);
 			return g;
-#else
-#warning Don't use property 'TargetGrid' because it cannot return a correct value.
-			return Grid.Undefined;
-#endif
 
 
 			[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "Preserve")]

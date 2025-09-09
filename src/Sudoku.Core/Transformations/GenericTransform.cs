@@ -164,7 +164,7 @@ public readonly partial record struct GenericTransform(
 	/// <summary>
 	/// Represents a value that displays relabeled digits.
 	/// </summary>
-	public ReadOnlySpan<Digit> DigitsRelabeled => CantorExpansion.UnrankRelabeledDigits(RelabeledDigitsRank, SpanEnumerable.Range(9));
+	public ReadOnlySpan<Digit> DigitsRelabeled => CantorExpansion.UnrankRelabeledDigits(RelabeledDigitsRank);
 
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>

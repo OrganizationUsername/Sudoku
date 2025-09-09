@@ -95,11 +95,11 @@ public static class CantorExpansion
 	/// Unrank the permutation via the base order.
 	/// </summary>
 	/// <param name="rank">The rank.</param>
-	/// <param name="baseOrder">The base-ordered sequence.</param>
 	/// <returns>The unranked permutation.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when rank is out of range.</exception>
-	public static ReadOnlySpan<Digit> UnrankRelabeledDigits(int rank, ReadOnlySpan<Digit> baseOrder)
+	public static ReadOnlySpan<Digit> UnrankRelabeledDigits(int rank)
 	{
+		var baseOrder = SpanEnumerable.Range(9);
 		var n = baseOrder.Length;
 		var fact = Factorials(n);
 		if (rank < 0 || rank >= fact[n])

@@ -14639,12 +14639,11 @@
             Throws when the original label contains invalid digits.
             </exception>
         </member>
-        <member name="M:Sudoku.Transformations.CantorExpansion.UnrankRelabeledDigits(System.Int32,System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Transformations.CantorExpansion.UnrankRelabeledDigits(System.Int32)">
             <summary>
             Unrank the permutation via the base order.
             </summary>
             <param name="rank">The rank.</param>
-            <param name="baseOrder">The base-ordered sequence.</param>
             <returns>The unranked permutation.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when rank is out of range.</exception>
         </member>

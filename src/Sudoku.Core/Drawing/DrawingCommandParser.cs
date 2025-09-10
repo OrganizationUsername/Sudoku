@@ -139,7 +139,7 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 		var comparisonOption = IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		return str switch
 		{
-			['#', .. { Length: 6 or 8 } hex] => (from s in hex.Chunk(2) select (byte)Convert.ToInt32(s, 16)) switch
+			['#', .. { Length: 6 or 8 } hex] => (from s in hex / 2 select (byte)Convert.ToInt32(s, 16)) switch
 			{
 				[var r, var g, var b] => new ColorColorIdentifier(255, r, g, b),
 				[var a, var r, var g, var b] => new ColorColorIdentifier(a, r, g, b),

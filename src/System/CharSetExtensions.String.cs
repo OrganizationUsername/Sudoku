@@ -37,21 +37,6 @@ public partial class CharSetExtensions
 		/// <returns>An array of <see cref="string"/> elements.</returns>
 		public ReadOnlySpan<string> ExpandCharacters() => from c in @this.Span select c.ToString();
 
-		/// <summary>
-		/// Cut the array to multiple part, making them are all of length <paramref name="length"/>.
-		/// </summary>
-		/// <param name="length">The desired length.</param>
-		/// <returns>A list of <see cref="string"/> values.</returns>
-		public ReadOnlySpan<string> Chunk(int length)
-		{
-			var result = new string[@this.Length % length == 0 ? @this.Length / length : @this.Length / length + 1];
-			for (var i = 0; i < @this.Length / length; i++)
-			{
-				result[i] = @this.Span.Slice(i * length, length).ToString();
-			}
-			return result;
-		}
-
 
 		/// <summary>
 		/// Repeats the specified string specified times.
@@ -76,7 +61,15 @@ public partial class CharSetExtensions
 		/// <param name="value">The value.</param>
 		/// <param name="parts">The desired parts.</param>
 		/// <returns>The sequence of strings.</returns>
-		public static ReadOnlySpan<string> operator /(string value, int parts) => Chunk(value, parts);
+		public static ReadOnlySpan<string> operator /(string value, int parts)
+		{
+			var result = new string[(value.Length + parts - 1) / parts];
+			for (var i = 0; i < value.Length / parts; i++)
+			{
+				result[i] = value.Span.Slice(i * parts, parts).ToString();
+			}
+			return result;
+		}
 
 		/// <summary>
 		/// Splits a string into substrings based on a specified delimiting character.

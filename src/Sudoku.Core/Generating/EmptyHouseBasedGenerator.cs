@@ -151,7 +151,7 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 						if (PopCount((uint)previousHousesMask) >= 2)
 						{
 							var allSetBits = previousHousesMask.AllSets;
-							foreach (var pair in allSetBits.GetSubsets(2))
+							foreach (var pair in allSetBits & 2)
 							{
 								var index = pair[0] * 9 + pair[1];
 								if ((ValidBlockCombinations[index] >> house & 1) == 0)

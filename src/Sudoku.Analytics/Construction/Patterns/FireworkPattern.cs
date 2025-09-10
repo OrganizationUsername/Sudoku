@@ -49,7 +49,7 @@ public sealed class FireworkPattern(in CellMap map, Cell? pivot) : Pattern
 		foreach (var houseQuad in HouseCombinations)
 		{
 			// Collection for pattern triples.
-			foreach (var triple in houseQuad.AsReadOnlySpan().GetSubsets(3))
+			foreach (var triple in houseQuad & 3)
 			{
 				foreach (var a in HousesMap[triple[0]])
 				{

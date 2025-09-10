@@ -32,7 +32,7 @@ public sealed class MultisectorLockedSetPattern(in CellMap map, RowIndex rowCoun
 		for (var l = 0; l < PossibleSizes.Length; l++)
 		{
 			var (rows, columns) = PossibleSizes[l];
-			foreach (var rowList in digitsSpan.GetSubsets(rows))
+			foreach (var rowList in digitsSpan & rows)
 			{
 				var (rowMask, rowMap) = ((Mask)0, CellMap.Empty);
 				foreach (var row in rowList)
@@ -45,7 +45,7 @@ public sealed class MultisectorLockedSetPattern(in CellMap map, RowIndex rowCoun
 					continue;
 				}
 
-				foreach (var columnList in digitsSpan.GetSubsets(columns))
+				foreach (var columnList in digitsSpan & columns)
 				{
 					var (columnMask, columnMap) = ((Mask)0, CellMap.Empty);
 					foreach (var column in columnList)

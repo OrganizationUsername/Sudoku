@@ -28,7 +28,7 @@ public sealed class XyzWingPatternSearcher : PatternSearcherBase<XyzWingPattern>
 			var digitsMaskPivot = grid.GetCandidates(pivot);
 
 			// Fetch for two cells from two different houses.
-			foreach (var housePair in HouseTypes.AsReadOnlySpan().GetSubsets(2))
+			foreach (var housePair in HouseTypes & 2)
 			{
 				var house1 = pivot.ToHouse(housePair[0]);
 				var house2 = pivot.ToHouse(housePair[1]);

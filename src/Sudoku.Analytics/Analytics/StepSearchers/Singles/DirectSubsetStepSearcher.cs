@@ -131,7 +131,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			ref readonly var currentHouseCells = ref HousesMap[house];
 			var traversingMap = currentHouseCells & emptyCells;
 			var mask = grid[traversingMap];
-			foreach (var digits in mask.AllSets.GetSubsets(size))
+			foreach (var digits in mask.AllSets & size)
 			{
 				var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
 				foreach (var digit in digits)

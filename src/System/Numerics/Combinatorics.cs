@@ -54,29 +54,6 @@ public static class Combinatorics
 	extension<T>(ReadOnlySpan<T> @this)
 	{
 		/// <summary>
-		/// Get all subsets from the collection.
-		/// </summary>
-		/// <returns>
-		/// All possible subsets returned.
-		/// </returns>
-		public ReadOnlySpan<T[]> GetSubsets() => @this | @this.Length;
-
-		/// <summary>
-		/// Get all subsets from the specified number of the values to take.
-		/// </summary>
-		/// <param name="count">The number of elements you want to take.</param>
-		/// <returns>
-		/// The subsets of the list.
-		/// For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
-		/// <code><![CDATA[
-		/// [[1, 2], [1, 3], [2, 3]]
-		/// ]]></code>
-		/// 3 cases.
-		/// </returns>
-		/// <exception cref="ArgumentException">Throws when the argument is negative.</exception>
-		public ReadOnlySpan<T[]> GetSubsets(int count) => @this & count;
-
-		/// <summary>
 		/// Get all permutations from the collection.
 		/// </summary>
 		/// <returns>
@@ -220,10 +197,7 @@ public static class Combinatorics
 			var result = new List<T[]>();
 			for (var size = 1; size <= count; size++)
 			{
-				foreach (var element in value.GetSubsets(size))
-				{
-					result.Add(element);
-				}
+				result.AddRange(value & size);
 			}
 			return result.AsSpan();
 		}

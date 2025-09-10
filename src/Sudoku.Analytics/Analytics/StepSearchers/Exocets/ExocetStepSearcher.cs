@@ -98,7 +98,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				const int size = 3;
 #endif
 				// Iterate on each combination of houses as basic cross-line cells used.
-				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).AllSets.GetSubsets(size))
+				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).AllSets & size)
 				{
 					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, HouseMask.Create(houses));
 					foreach (var house in houses)
@@ -945,7 +945,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									foreach (var digitCombination in disappearedDigitsMask.AllSets.GetSubsets(endoTargetCellsGroup.Count - 1))
+									foreach (var digitCombination in disappearedDigitsMask.AllSets & endoTargetCellsGroup.Count - 1)
 									{
 										var appearingMap = CellMap.Empty;
 										foreach (var digit in digitCombination)
@@ -2493,7 +2493,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					foreach (ref readonly var extraCells in otherCells & size - 1)
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
-						foreach (var digitsMaskGroup in ((Mask)(grid[ahsCells] & ~baseCellsDigitsMask)).AllSets.GetSubsets(size))
+						foreach (var digitsMaskGroup in ((Mask)(grid[ahsCells] & ~baseCellsDigitsMask)).AllSets & size)
 						{
 							var extraDigitsMask = Mask.Create(digitsMaskGroup);
 							var lastHoldingMap = CellMap.Empty;

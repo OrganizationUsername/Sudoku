@@ -155,7 +155,7 @@ public partial struct RankPattern
 			var truthsArray = Truths.ToArray();
 			for (var i = 1; i < Truths.Count - 1; i++)
 			{
-				var truthCombinations = truthsArray.GetSubsets(i);
+				var truthCombinations = truthsArray & i;
 				foreach (var truthCombination in truthCombinations)
 				{
 					if (counter++ >= 100000)

@@ -29,7 +29,7 @@ internal partial class ChainingStepSearcherHub
 			}
 
 			// Iterate on each combination of pair of digits, as ones used by rectangle.
-			foreach (var digitPair in allDigitsMask.GetSubsets(2))
+			foreach (var digitPair in allDigitsMask & 2)
 			{
 				var (d1, d2) = (digitPair[0], digitPair[1]);
 

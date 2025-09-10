@@ -58,7 +58,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 		}
 
 		ref readonly var grid = ref context.Grid;
-		foreach (var blocks in satisfiedBlocksMask.AllSets.GetSubsets(4))
+		foreach (var blocks in satisfiedBlocksMask.AllSets & 4)
 		{
 			var blocksMask = Mask.Create(blocks);
 			var flag = false;
@@ -187,7 +187,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (var digits in allDigitsMask.AllSets.GetSubsets(3))
+		foreach (var digits in allDigitsMask.AllSets & 3)
 		{
 			var patternDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
 			var otherDigitsMask = (Mask)(allDigitsMask & ~patternDigitsMask);

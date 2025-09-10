@@ -25,7 +25,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.AllSets.GetSubsets(2))
+		foreach (var houseCombination in cells.Houses.AllSets & 2)
 		{
 			var houseCells = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((houseCells & cells) != cells)
@@ -134,7 +134,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.AllSets.GetSubsets(2))
+		foreach (var houseCombination in cells.Houses.AllSets & 2)
 		{
 			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)
@@ -300,7 +300,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.AllSets.GetSubsets(2))
+		foreach (var houseCombination in cells.Houses.AllSets & 2)
 		{
 			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)
@@ -462,7 +462,7 @@ public partial class UniqueRectangleStepSearcher
 		foreach (var (guardianDigit, nonGuardianDigit) in ((d1, d2), (d2, d1)))
 		{
 			// Iterates on each pair of houses where the UR pattern located.
-			foreach (var houses in cells.Houses.AllSets.GetSubsets(2))
+			foreach (var houses in cells.Houses.AllSets & 2)
 			{
 				if (HousesMap[houses[0]] & HousesMap[houses[1]])
 				{
@@ -682,7 +682,7 @@ public partial class UniqueRectangleStepSearcher
 		foreach (var (xDigit, nonGuardianDigit) in ((d1, d2), (d2, d1)))
 		{
 			// Iterates on each pair of houses where the UR pattern located.
-			foreach (var houses in cells.Houses.AllSets.GetSubsets(2))
+			foreach (var houses in cells.Houses.AllSets & 2)
 			{
 				if (HousesMap[houses[0]] & HousesMap[houses[1]])
 				{
@@ -735,7 +735,7 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				foreach (var weakLinkHouses in (a | b).AllSets.GetSubsets(2))
+				foreach (var weakLinkHouses in (a | b).AllSets & 2)
 				{
 					if (((HousesMap[weakLinkHouses[0]] | HousesMap[weakLinkHouses[1]]) & guardianCells) != guardianCells)
 					{
@@ -858,7 +858,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.AllSets.GetSubsets(2))
+		foreach (var houseCombination in cells.Houses.AllSets & 2)
 		{
 			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)
@@ -1155,7 +1155,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Iterate on two houses used.
-		foreach (var houseCombination in cells.Houses.AllSets.GetSubsets(2))
+		foreach (var houseCombination in cells.Houses.AllSets & 2)
 		{
 			var guardianMap = HousesMap[houseCombination[0]] | HousesMap[houseCombination[1]];
 			if ((guardianMap & cells) != cells)

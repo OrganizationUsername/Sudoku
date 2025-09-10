@@ -87,7 +87,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		// Iterate on each combination.
-		foreach (var digits in orMask.AllSets.GetSubsets(pattern.IsHeptagon ? 3 : 4))
+		foreach (var digits in orMask.AllSets & (pattern.IsHeptagon ? 3 : 4))
 		{
 			var tempMask = Mask.Create(digits);
 			var otherDigit = TrailingZeroCount((uint)(orMask & ~tempMask));
@@ -154,7 +154,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		// Iterate on each combination.
-		foreach (var digits in orMask.AllSets.GetSubsets(pattern.IsHeptagon ? 3 : 4))
+		foreach (var digits in orMask.AllSets & (pattern.IsHeptagon ? 3 : 4))
 		{
 			var tempMask = Mask.Create(digits);
 			var otherDigit = TrailingZeroCount((Mask)(orMask & ~tempMask));
@@ -213,7 +213,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var currentMap = HousesMap[houseIndex] & map;
 			var otherCellsMap = map & ~currentMap;
 			var otherMask = grid[otherCellsMap];
-			foreach (var digits in orMask.AllSets.GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (var digits in orMask.AllSets & (pattern.IsHeptagon ? 3 : 4))
 			{
 				var tempMask = Mask.Create(digits);
 				if (otherMask != tempMask)
@@ -329,7 +329,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			// Iterate on each possible digit combination.
 			// For example, if values are { 1, 2, 3 }, then all combinations taken 2 values
 			// are { 1, 2 }, { 2, 3 } and { 1, 3 }.
-			foreach (var digits in orMask.AllSets.GetSubsets(pattern.IsHeptagon ? 3 : 4))
+			foreach (var digits in orMask.AllSets & (pattern.IsHeptagon ? 3 : 4))
 			{
 				var tempMask = Mask.Create(digits);
 				if (otherMask != tempMask)
@@ -340,7 +340,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				// Iterate on each combination.
 				// Only one digit should be eliminated, and other digits should form a "conjugate house".
 				// In a so-called conjugate house, the digits can only appear in these cells in this house.
-				foreach (var combination in (tempMask & orMask).AllSets.GetSubsets(currentMap.Count - 1))
+				foreach (var combination in (tempMask & orMask).AllSets & currentMap.Count - 1)
 				{
 					var combinationMask = (Mask)0;
 					var combinationMap = CellMap.Empty;

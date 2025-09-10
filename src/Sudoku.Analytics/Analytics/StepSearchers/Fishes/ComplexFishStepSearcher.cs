@@ -161,7 +161,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 					}
 
 					// Iterate on each base set combinations.
-					foreach (var baseSets in baseTable.GetSubsets(size))
+					foreach (var baseSets in baseTable & size)
 					{
 						// Get the mask representing the base sets used.
 						var baseSetsMask = 0;
@@ -246,7 +246,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						var coverTable = z.AllSets;
 
 						// Iterate on each cover sets combination.
-						foreach (var coverSets in coverTable.GetSubsets(size - 1))
+						foreach (var coverSets in coverTable & size - 1)
 						{
 							// Now get the cover sets map.
 							var coverMap = CellMap.Empty;

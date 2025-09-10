@@ -57,7 +57,7 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 				return;
 			}
 
-			foreach (var bs in baseSetsToIterate.GetSubsets(size))
+			foreach (var bs in baseSetsToIterate & size)
 			{
 				var (baseSetsMap, baseSetIsValid) = (CellMap.Empty, true);
 				foreach (var p in bs)
@@ -78,7 +78,7 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 				}
 
 				var baseSetsMask = HouseMask.Create(bs);
-				foreach (var cs in coverSetsToIterate.GetSubsets(size))
+				foreach (var cs in coverSetsToIterate & size)
 				{
 					var coverSetsMap = CellMap.Empty;
 					foreach (var p in cs)

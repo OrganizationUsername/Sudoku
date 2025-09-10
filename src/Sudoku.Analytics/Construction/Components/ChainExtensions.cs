@@ -52,7 +52,7 @@ internal static class ChainExtensions
 		{
 			get
 			{
-				foreach (var nodePair in (from node in @this.ValidNodes select node.Map).GetSubsets(2))
+				foreach (var nodePair in (from node in @this.ValidNodes select node.Map) & 2)
 				{
 					ref readonly var map1 = ref nodePair[0];
 					ref readonly var map2 = ref nodePair[1];

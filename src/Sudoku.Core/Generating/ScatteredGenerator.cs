@@ -1,10 +1,10 @@
 namespace Sudoku.Generating;
 
 /// <summary>
-/// Defines a puzzle generator that makes the given pattern as a hard one.
-/// A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+/// Defines a puzzle generator that makes distribution of givens to be scattered.
+/// This generator can help you generate puzzles with scattered difficulty rating, especially for extreme puzzles.
 /// </summary>
-public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
+public readonly ref struct ScatteredGenerator() : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity

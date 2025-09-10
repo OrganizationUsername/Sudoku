@@ -40,7 +40,7 @@ internal sealed class GenerateHardCommand : CommandBase
 		var outputTargetGridRatherThanOriginalGrid = result.GetValueForOption(go6);
 		var separator = result.GetValueForOption(go7)!;
 		CommonPreprocessors.GeneratePuzzles(
-			new HardPatternPuzzleGenerator(),
+			new ScatteredGenerator(),
 			static (generator, cancellationToken) => generator.Generate(cancellationToken: cancellationToken),
 			outputFilePath,
 			timeout,

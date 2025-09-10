@@ -7,12 +7,10 @@ namespace Sudoku.Generating;
 /// <param name="seedPattern"><inheritdoc cref="_seedPattern" path="/summary"/></param>
 public ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seedPattern, Digit missingDigit = -1) : IGenerator<Grid>
 {
-#pragma warning disable IDE0052, CS0414
 	/// <summary>
 	/// Indicates whether the generator is canceled.
 	/// </summary>
 	private bool? _isCancelled;
-#pragma warning restore IDE0052, CS0414
 
 	/// <summary>
 	/// Indicates the predefind pattern used.

@@ -205,7 +205,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 			static void adjustToCenterCell(ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
-				if (targetCell.ToHouse(HouseType.Block) == 4 && pos == 4)
+				if (targetCell >> HouseType.Block == 4 && pos == 4)
 				{
 					return;
 				}
@@ -327,14 +327,15 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 				// We should adjust the givens and target cells to the specified position.
 				switch (Alignment)
 				{
-					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock when targetCell.ToHouse(HouseType.Block) is var b && b != 4:
+					case ConclusionCellAlignment.CenterHouse or ConclusionCellAlignment.CenterBlock
+					when targetCell >> HouseType.Block is var b and not 4:
 					{
 						adjustToBlock5(b, ref house, ref targetCell, ref puzzle);
 						break;
 					}
 					case ConclusionCellAlignment.CenterCell when targetCell != 40:
 					{
-						adjustToBlock5(targetCell.ToHouse(HouseType.Block), ref house, ref targetCell, ref puzzle);
+						adjustToBlock5(targetCell >> HouseType.Block, ref house, ref targetCell, ref puzzle);
 						adjustToCenterCell(ref house, ref targetCell, ref puzzle);
 						break;
 					}
@@ -405,7 +406,7 @@ public sealed class HiddenSingleGenerator : SingleGenerator
 			static void adjustToCenterCell(ref House house, ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
-				if (targetCell.ToHouse(HouseType.Block) == 4 && pos == 4)
+				if (targetCell >> HouseType.Block == 4 && pos == 4)
 				{
 					return;
 				}

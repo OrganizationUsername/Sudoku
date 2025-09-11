@@ -130,16 +130,16 @@ public readonly ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seed
 						continue;
 					}
 
-					if (i.ToHouse(HouseType.Block) == j.ToHouse(HouseType.Block)
-						|| i.ToHouse(HouseType.Row) == j.ToHouse(HouseType.Row)
-						|| i.ToHouse(HouseType.Column) == j.ToHouse(HouseType.Column))
+					if (i >> HouseType.Block == j >> HouseType.Block
+						|| i >> HouseType.Row == j >> HouseType.Row
+						|| i >> HouseType.Column == j >> HouseType.Column)
 					{
 						rating += isOrdered.Contains(j) ? 10000 : 100;
 					}
 
 					if (!isOrdered.Contains(j)
 						&& (i.Band == j.Band || i.Tower == j.Tower)
-						&& i.ToHouse(HouseType.Block) == j.ToHouse(HouseType.Block))
+						&& i >> HouseType.Block == j >> HouseType.Block)
 					{
 						rating++;
 					}

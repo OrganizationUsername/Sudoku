@@ -212,22 +212,22 @@ file static class Extensions
 		{
 			get
 			{
-				var block = @this.ToHouse(HouseType.Block);
+				var block = @this >> HouseType.Block;
 
 				var result = CellMap.Empty;
-				if (@this - 9 is var up && up >= 0 && up.ToHouse(HouseType.Block) == block)
+				if (@this - 9 is var up && up >= 0 && up >> HouseType.Block == block)
 				{
 					result.Add(up);
 				}
-				if (@this + 9 is var down && down < 81 && down.ToHouse(HouseType.Block) == block)
+				if (@this + 9 is var down && down < 81 && down >> HouseType.Block == block)
 				{
 					result.Add(down);
 				}
-				if (@this - 1 is var left && left >= 0 && left.ToHouse(HouseType.Block) == block)
+				if (@this - 1 is var left && left >= 0 && left >> HouseType.Block == block)
 				{
 					result.Add(left);
 				}
-				if (@this + 1 is var right && right < 81 && right.ToHouse(HouseType.Block) == block)
+				if (@this + 1 is var right && right < 81 && right >> HouseType.Block == block)
 				{
 					result.Add(right);
 				}

@@ -52,7 +52,7 @@ public sealed class NakedSingleStep(
 		DescriptionResourceKey = "NakedSingleStep_House_Description",
 		Minimum = 0,
 		Maximum = 27)]
-	public House House => Cell.ToHouse(LastingHouseType);
+	public House House => Cell >> LastingHouseType;
 
 
 	/// <inheritdoc/>

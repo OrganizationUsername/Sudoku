@@ -119,7 +119,7 @@ public sealed class DigitFirst : IBehaviorMetric
 			var mask = Grid.MaxCandidatesMask;
 			if (lastCell != -1)
 			{
-				var lastBlock = lastCell.ToHouse(HouseType.Block);
+				var lastBlock = lastCell >> HouseType.Block;
 				for (var block = 0; block < 9; block++)
 				{
 					if (lastBlock < block || !!(valuesMap[startDigit] & HousesMap[block]))
@@ -132,8 +132,8 @@ public sealed class DigitFirst : IBehaviorMetric
 			if (lastCell != -1
 				&& solution.GetDigit(lastCell) is var lastDigit
 				&& solution.GetDigit(currentCell) is var currentDigit
-				&& lastCell.ToHouse(HouseType.Block) is var lastHouse
-				&& currentCell.ToHouse(HouseType.Block) is var currentHouse
+				&& lastCell >> HouseType.Block is var lastHouse
+				&& currentCell >> HouseType.Block is var currentHouse
 				&& currentDigit == lastDigit && currentHouse < lastHouse)
 			{
 				// Directly measure the distance, ignoring whether two digits are filled with having reverted or not.

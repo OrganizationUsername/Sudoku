@@ -54,7 +54,7 @@ public partial class UniqueRectangleStepSearcher
 		var cells = urCells.AsCellMap();
 		foreach (var cell in cells - cornerCell)
 		{
-			if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(cell))
+			if (HousesMap[cornerCell >> HouseType.Block].Contains(cell))
 			{
 				sameBlockCell = cell;
 			}
@@ -89,7 +89,7 @@ public partial class UniqueRectangleStepSearcher
 
 			// Check for cells in line of cell 'same-block', which doesn't include cell 'cornerCell'.
 			// Then we should check for empty cells that doesn't overlap with UR pattern, to determine existence of subsets.
-			var sameBlockHouses = 1 << sameBlockCell.ToHouse(HouseType.Row) | 1 << sameBlockCell.ToHouse(HouseType.Column);
+			var sameBlockHouses = 1 << (sameBlockCell >> HouseType.Row) | 1 << (sameBlockCell >> HouseType.Column);
 			foreach (var house in sameBlockHouses)
 			{
 				if (HousesMap[house].Contains(cornerCell))
@@ -102,7 +102,7 @@ public partial class UniqueRectangleStepSearcher
 			// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
 			var subsetHouse = Log2((uint)sameBlockHouses);
 			var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
-				& ~HousesMap[sameBlockCell.ToHouse(HouseType.Block)] // won't overlap the block with same-block cell
+				& ~HousesMap[sameBlockCell >> HouseType.Block] // won't overlap the block with same-block cell
 				& ~cells // and won't overlap with UR pattern
 				& mapOfDigit1And2; // and must contain either digit 1 or digit 2
 			foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
@@ -251,7 +251,7 @@ public partial class UniqueRectangleStepSearcher
 	{
 		// Determine target cell, same-block cell and the last cell.
 		var cells = urCells.AsCellMap();
-		var sameBlockCell = (cells - cornerCell & HousesMap[cornerCell.ToHouse(HouseType.Block)])[0];
+		var sameBlockCell = (cells - cornerCell & HousesMap[cornerCell >> HouseType.Block])[0];
 		Unsafe.SkipInit(out int targetCell);
 		foreach (var cell in cells - cornerCell - sameBlockCell)
 		{
@@ -261,7 +261,7 @@ public partial class UniqueRectangleStepSearcher
 				break;
 			}
 		}
-		if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(targetCell))
+		if (HousesMap[cornerCell >> HouseType.Block].Contains(targetCell))
 		{
 			// :( Cells 'cornerCell' and 'targetCell' shouldn't in a same block.
 			return;
@@ -284,8 +284,8 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var cornerCellBlock = cornerCell.ToHouse(HouseType.Block);
-			var targetCellBlock = targetCell.ToHouse(HouseType.Block);
+			var cornerCellBlock = cornerCell >> HouseType.Block;
+			var targetCellBlock = targetCell >> HouseType.Block;
 			var line = (sameBlockCell.AsCellMap() + lastCell).SharedLine;
 			var outsideCellsRange = HousesMap[line] & mapOfDigit1And2 & ~cells;
 			foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)
@@ -298,7 +298,7 @@ public partial class UniqueRectangleStepSearcher
 				// Group them up, grouped them by block they are in.
 				var cellsGroupedByBlock =
 					from cell in outsideCells.ToArrayUnsafe().AsReadOnlySpan()
-					group cell by cell.ToHouse(HouseType.Block) into cellsGroup
+					group cell by cell >> HouseType.Block into cellsGroup
 					let block = cellsGroup.Key
 					select (Block: block, Cells: cellsGroup.AsSpan().AsCellMap());
 				var ocCorner = from p in cellsGroupedByBlock where p.Block == cornerCellBlock select p.Cells;
@@ -450,7 +450,7 @@ public partial class UniqueRectangleStepSearcher
 			var cells = urCells.AsCellMap();
 			foreach (var cell in cells - cornerCell)
 			{
-				if (HousesMap[cornerCell.ToHouse(HouseType.Block)].Contains(cell))
+				if (HousesMap[cornerCell >> HouseType.Block].Contains(cell))
 				{
 					sameBlockCell = cell;
 					break;
@@ -479,7 +479,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Check for cells in line of cell 'same-block', which doesn't include cell 'cornerCell'.
 				// Then we should check for empty cells that doesn't overlap with UR pattern, to determine existence of subsets.
-				var sameBlockHouses = 1 << sameBlockCell.ToHouse(HouseType.Row) | 1 << sameBlockCell.ToHouse(HouseType.Column);
+				var sameBlockHouses = 1 << (sameBlockCell >> HouseType.Row) | 1 << (sameBlockCell >> HouseType.Column);
 				foreach (var house in sameBlockHouses)
 				{
 					if (HousesMap[house].Contains(cornerCell))
@@ -493,7 +493,7 @@ public partial class UniqueRectangleStepSearcher
 				var conjugatePairHouse = TrailingZeroCount(pairMap2.SharedHouses);
 				var subsetHouse = Log2((uint)sameBlockHouses);
 				var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
-					& ~HousesMap[sameBlockCell.ToHouse(HouseType.Block)] // won't overlap the block with same-block cell
+					& ~HousesMap[sameBlockCell >> HouseType.Block] // won't overlap the block with same-block cell
 					& ~cells // and won't overlap with UR pattern
 					& mapOfDigit1And2; // and must contain either digit 1 or digit 2
 				foreach (ref readonly var outsideCells in outsideCellsRange | outsideCellsRange.Count)

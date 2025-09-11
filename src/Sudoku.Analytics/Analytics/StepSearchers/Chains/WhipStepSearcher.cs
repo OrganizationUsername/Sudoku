@@ -433,7 +433,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							if ((parentCandidates.Cells.PeerIntersection & currentCells) != currentCells)
 							{
 								var groupedCells = (parentCandidates.Cells | currentCells).PeerIntersection
-									& HousesMap[currentCells[0].ToHouse(houseType)]
+									& HousesMap[currentCells[0] >> houseType]
 									& CandidatesMap[currentDigit];
 								if (!groupedCells)
 								{

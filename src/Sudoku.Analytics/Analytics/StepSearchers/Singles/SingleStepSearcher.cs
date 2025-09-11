@@ -197,7 +197,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var emptyCellsCountFromAllPeerHouses = 0;
 				foreach (var houseType in HouseTypes)
 				{
-					var peerHouse = resultCell.ToHouse(houseType);
+					var peerHouse = resultCell >> houseType;
 					foreach (var cell in HousesCells[peerHouse])
 					{
 						if (grid.GetState(cell) == CellState.Empty)

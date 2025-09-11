@@ -323,7 +323,7 @@ public static class UniquenessChecker
 				{
 					var counter = 0;
 					targetCell = -1;
-					foreach (var eachCell in HousesMap[cell.ToHouse(houseType)])
+					foreach (var eachCell in HousesMap[cell >> houseType])
 					{
 						if (grid.Exists(eachCell, eachDigit) is true && (targetCell = eachCell) is var _ && ++counter >= 2)
 						{
@@ -356,9 +356,9 @@ public static class UniquenessChecker
 			var queue = new Queue<PatternTrialNode>();
 			var firstCell = cells[0];
 
-			var a = houseDigitsDictionary[firstCell.ToHouse(HouseType.Block)];
-			var b = houseDigitsDictionary[firstCell.ToHouse(HouseType.Row)];
-			var c = houseDigitsDictionary[firstCell.ToHouse(HouseType.Column)];
+			var a = houseDigitsDictionary[firstCell >> HouseType.Block];
+			var b = houseDigitsDictionary[firstCell >> HouseType.Row];
+			var c = houseDigitsDictionary[firstCell >> HouseType.Column];
 			foreach (var digit in (Mask)(a | (Mask)(b | c)))
 			{
 				queue.Enqueue(new(firstCell * 9 + digit, null));
@@ -408,13 +408,13 @@ public static class UniquenessChecker
 				// Otherwise, we should continue to iterate other cells.
 				foreach (var cell in unassignedCells)
 				{
-					var d = houseDigitsDictionary[cell.ToHouse(HouseType.Block)];
-					var e = houseDigitsDictionary[cell.ToHouse(HouseType.Row)];
-					var f = houseDigitsDictionary[cell.ToHouse(HouseType.Column)];
+					var d = houseDigitsDictionary[cell >> HouseType.Block];
+					var e = houseDigitsDictionary[cell >> HouseType.Row];
+					var f = houseDigitsDictionary[cell >> HouseType.Column];
 					var g = (Mask)0;
 					foreach (var houseType in HouseTypes)
 					{
-						foreach (var tempCell in cells & HousesMap[cell.ToHouse(houseType)] & ~unassignedCells)
+						foreach (var tempCell in cells & HousesMap[cell >> houseType] & ~unassignedCells)
 						{
 							g |= (Mask)(1 << appliedGrid.GetDigit(tempCell));
 						}

@@ -870,7 +870,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						// Check for all possible direction for the endo-target cell, to get intersected cells with cross-line cells.
 						foreach (var houseType in HouseTypes)
 						{
-							var endoTargetCellHouse = endoTargetCell.ToHouse(houseType);
+							var endoTargetCellHouse = endoTargetCell >> houseType;
 							if ((housesMask >> endoTargetCellHouse & 1) == 0 && extraHouse != endoTargetCellHouse)
 							{
 								// The current house is not valid to be iterated.

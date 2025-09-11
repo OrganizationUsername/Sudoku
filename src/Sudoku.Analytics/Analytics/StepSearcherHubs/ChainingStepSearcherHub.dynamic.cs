@@ -181,7 +181,7 @@ internal partial class ChainingStepSearcherHub
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouse(houseType);
+				var house = cell >> houseType;
 				var cellsInHouse = HousesMap[house] & CandidatesMap[digit];
 				if (cellsInHouse.Count <= 2)
 				{

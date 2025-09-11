@@ -354,7 +354,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouse(houseType);
+				var house = cell >> houseType;
 				var emptyCellsInHouse = HousesMap[house] & emptyCells;
 				if (emptyCellsInHouse.Count <= 1)
 				{
@@ -451,7 +451,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouse(houseType);
+				var house = cell >> houseType;
 				var eliminatedCells = (from c in conclusions where c % 9 == digit select c / 9).AsCellMap();
 				var availableCells = HousesMap[house] & candidatesMap[digit] & ~eliminatedCells;
 				if (availableCells is not [var lastCell])
@@ -622,7 +622,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouse(houseType);
+				var house = cell >> houseType;
 				var emptyCellsInHouse = HousesMap[house] & emptyCells;
 				if (emptyCellsInHouse.Count <= 1)
 				{
@@ -723,7 +723,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			foreach (var houseType in HouseTypes)
 			{
-				var house = cell.ToHouse(houseType);
+				var house = cell >> houseType;
 				var eliminatedCells = (from c in conclusions where c % 9 == digit select c / 9).AsCellMap();
 				var availableCells = HousesMap[house] & candidatesMap[digit] & ~eliminatedCells;
 				if (availableCells is not [var lastCell])

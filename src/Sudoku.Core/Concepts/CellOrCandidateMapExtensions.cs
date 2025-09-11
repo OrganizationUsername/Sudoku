@@ -55,9 +55,9 @@ public static class CellOrCandidateMapExtensions
 			get
 			{
 				var result = 0;
-				result |= 1 << @this.ToHouse(HouseType.Block);
-				result |= 1 << @this.ToHouse(HouseType.Row);
-				result |= 1 << @this.ToHouse(HouseType.Column);
+				result |= 1 << (@this >> HouseType.Block);
+				result |= 1 << (@this >> HouseType.Row);
+				result |= 1 << (@this >> HouseType.Column);
 				return result;
 			}
 		}
@@ -91,17 +91,18 @@ public static class CellOrCandidateMapExtensions
 		/// <summary>
 		/// Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
 		/// </summary>
+		/// <param name="cell">The cell.</param>
 		/// <param name="houseType">The house type.</param>
 		/// <returns>The house index. The return value must be between 0 and 26.</returns>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Throws when the argument <paramref name="houseType"/> is not defined.
 		/// </exception>
-		public House ToHouse(HouseType houseType)
+		public static House operator >>(Cell cell, HouseType houseType)
 			=> houseType switch
 			{
-				HouseType.Block => BlockTable[@this],
-				HouseType.Row => RowTable[@this],
-				HouseType.Column => ColumnTable[@this],
+				HouseType.Block => BlockTable[cell],
+				HouseType.Row => RowTable[cell],
+				HouseType.Column => ColumnTable[cell],
 				_ => throw new ArgumentOutOfRangeException(nameof(houseType))
 			};
 	}
@@ -133,7 +134,7 @@ public static class CellOrCandidateMapExtensions
 		/// Converts the specified <see cref="Candidate"/> into a singleton <see cref="CandidateMap"/> instance.
 		/// </summary>
 		/// <returns>A <see cref="CandidateMap"/> instance, containing only one element of the current candidate.</returns>
-		#if CACHE_CANDIDATE_MAPS
+#if CACHE_CANDIDATE_MAPS
 		public ref readonly CandidateMap AsCandidateMap() => ref CandidateMaps[@this];
 #else
 		public CandidateMap AsCandidateMap() => [@this];

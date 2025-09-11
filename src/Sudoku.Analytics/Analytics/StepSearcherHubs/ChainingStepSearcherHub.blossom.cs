@@ -129,9 +129,9 @@ internal partial class ChainingStepSearcherHub
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
 			{
-				if (startCell.ToHouse(HouseType.Block) == startCurrentHouse
-					|| startCell.ToHouse(HouseType.Row) == startCurrentHouse
-					|| startCell.ToHouse(HouseType.Column) == startCurrentHouse)
+				if (startCell >> HouseType.Block == startCurrentHouse
+					|| startCell >> HouseType.Row == startCurrentHouse
+					|| startCell >> HouseType.Column == startCurrentHouse)
 				{
 					continue;
 				}
@@ -177,9 +177,9 @@ internal partial class ChainingStepSearcherHub
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
 			{
-				if (currentStartCell.ToHouse(HouseType.Block) == startHouse
-					|| currentStartCell.ToHouse(HouseType.Row) == startHouse
-					|| currentStartCell.ToHouse(HouseType.Column) == startHouse)
+				if (currentStartCell >> HouseType.Block == startHouse
+					|| currentStartCell >> HouseType.Row == startHouse
+					|| currentStartCell >> HouseType.Column == startHouse)
 				{
 					continue;
 				}
@@ -285,7 +285,7 @@ internal partial class ChainingStepSearcherHub
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell.ToHouse(houseType);
+							var house = endCell >> houseType;
 							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{
@@ -316,7 +316,7 @@ internal partial class ChainingStepSearcherHub
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell.ToHouse(houseType);
+							var house = endCell >> houseType;
 							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{

@@ -220,7 +220,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			var lineType = TrailingZeroCount(pattern.Lines) < 18 ? HouseType.Row : HouseType.Column;
 			var lineTypeTransposed = lineType == HouseType.Row ? HouseType.Column : HouseType.Row;
-			var coveredCrossline = PeersMap[baseCell] & HousesMap[baseCell.ToHouse(lineTypeTransposed)] & pattern.Crossline;
+			var coveredCrossline = PeersMap[baseCell] & HousesMap[baseCell >> lineTypeTransposed] & pattern.Crossline;
 			if (!(coveredCrossline & EmptyCells))
 			{
 				atLeastOneCrosslineIsFullyCoveredByValueDigits = true;

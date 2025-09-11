@@ -211,7 +211,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					housesCount.Clear();
 					foreach (var houseType in HouseTypes)
 					{
-						housesCount[(int)houseType] = (candidatesMap[digit] & HousesMap[cell.ToHouse(houseType)]).Count;
+						housesCount[(int)houseType] = (candidatesMap[digit] & HousesMap[cell >> houseType]).Count;
 					}
 
 					if (housesCount is not [2, 2, 2])

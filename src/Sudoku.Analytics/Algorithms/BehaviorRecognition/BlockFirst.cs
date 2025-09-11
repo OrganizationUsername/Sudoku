@@ -73,9 +73,9 @@ public sealed class BlockFirst : IBehaviorMetric
 			foreach (var step in stepGroups[0])
 			{
 				if (lastStep is { Cell: var lastCell, Digit: var lastDigit }
-					&& step.Cell.ToHouse(HouseType.Block) == lastCell.ToHouse(HouseType.Block)
+					&& step.Cell >> HouseType.Block == lastCell >> HouseType.Block
 					&& lastDigit > step.Digit
-					&& lastCell.ToHouse(HouseType.Block) is var block
+					&& lastCell >> HouseType.Block is var block
 					&& (HousesMap[block] & playground.EmptyCells).Count != 1)
 				{
 					// Special rule:
@@ -113,7 +113,7 @@ public sealed class BlockFirst : IBehaviorMetric
 				{
 					var lastDigit = solution.GetDigit(lastStep!.Cell);
 					var currentDigit = solution.GetDigit(step.Cell);
-					var currentCellBlock = step.Cell.ToHouse(HouseType.Block);
+					var currentCellBlock = step.Cell >> HouseType.Block;
 					var baseScore = 0;
 					for (var (currentBlock, i) = (currentCellBlock, 0); i < 9; currentBlock = (currentBlock + 1) % 9, i++)
 					{
@@ -141,7 +141,7 @@ public sealed class BlockFirst : IBehaviorMetric
 			// Create index table. e.g. If block 1 is missing digit 2, 5 and 7, we should make them in queue.
 			var indexedList = new List<Cell>();
 			var emptyCells = playground.EmptyCells;
-			var startBlock = lastCell == -1 ? 0 : lastCell.ToHouse(HouseType.Block);
+			var startBlock = lastCell == -1 ? 0 : lastCell >> HouseType.Block;
 			for (var (block, i) = (startBlock, 0); i < 9; block = (block + 1) % 9, i++)
 			{
 				var emptyCellsInHouse = emptyCells & HousesMap[block];
@@ -183,7 +183,7 @@ public sealed class BlockFirst : IBehaviorMetric
 				&& solution.GetDigit(lastCell) is var lastDigit
 				&& solution.GetDigit(currentCell) is var currentDigit
 				&& currentDigit < lastDigit
-				&& (emptyCells & HousesMap[lastCell.ToHouse(HouseType.Block)]).Count == 1)
+				&& (emptyCells & HousesMap[lastCell >> HouseType.Block]).Count == 1)
 			{
 				// Directly measure the distance, ignoring whether two digits are filled with having reverted or not.
 				return 1;

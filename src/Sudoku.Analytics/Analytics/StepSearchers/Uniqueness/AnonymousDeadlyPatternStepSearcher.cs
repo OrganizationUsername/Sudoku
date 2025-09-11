@@ -39,8 +39,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			{
 				// Determine which side has more cells (row or column).
 				var lastPatternCells = patternCells - missingCell;
-				var row = missingCell.ToHouse(HouseType.Row);
-				var column = missingCell.ToHouse(HouseType.Column);
+				var row = missingCell >> HouseType.Row;
+				var column = missingCell >> HouseType.Column;
 				var rowCells = patternCells & HousesMap[row];
 				var columnCells = patternCells & HousesMap[column];
 				var isRow = rowCells.Count > columnCells.Count;

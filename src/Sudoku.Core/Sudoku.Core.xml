@@ -1262,8 +1262,8 @@
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
+        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
@@ -1324,10 +1324,11 @@
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of the current cell.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
+        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
             Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
             </summary>
+            <param name="cell">The cell.</param>
             <param name="houseType">The house type.</param>
             <returns>The house index. The return value must be between 0 and 26.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">

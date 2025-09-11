@@ -95,12 +95,12 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 				// Iterate on each house.
 				for (var house = 0; house < 27; house++)
 				{
-					if (house == c1.ToHouse(HouseType.Block)
-						|| house == c1.ToHouse(HouseType.Row)
-						|| house == c1.ToHouse(HouseType.Column)
-						|| house == c2.ToHouse(HouseType.Block)
-						|| house == c2.ToHouse(HouseType.Row)
-						|| house == c2.ToHouse(HouseType.Column))
+					if (house == c1 >> HouseType.Block
+						|| house == c1 >> HouseType.Row
+						|| house == c1 >> HouseType.Column
+						|| house == c2 >> HouseType.Block
+						|| house == c2 >> HouseType.Row
+						|| house == c2 >> HouseType.Column)
 					{
 						// The house to search for conjugate pairs shouldn't be the same as those two cells' houses.
 						continue;
@@ -236,7 +236,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								var tempCrosshatchingHouses = CellMap.Empty;
 								foreach (var cell in cells)
 								{
-									tempCrosshatchingHouses |= HousesMap[cell.ToHouse(crosshatchingHouseType)];
+									tempCrosshatchingHouses |= HousesMap[cell >> crosshatchingHouseType];
 								}
 								emptyCellsInThisHouse &= tempCrosshatchingHouses;
 								if (emptyCellsInThisHouse.Count != size)

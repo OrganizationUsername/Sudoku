@@ -84,9 +84,9 @@ public sealed class XChainingRule : ChainingRule
 		var resultNodes = new HashSet<Node>();
 		foreach (var houseType in HouseTypes)
 		{
-			if ((HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell is [var endCell])
+			if ((HousesMap[startCell >> houseType] & candidatesMap[digit]) - startCell is [var endCell])
 			{
-				var mapToCheck = HousesMap[endCell.ToHouse(houseType)] & (originalGrid.CandidatesMap[digit] & ~candidatesMap[digit]);
+				var mapToCheck = HousesMap[endCell >> houseType] & (originalGrid.CandidatesMap[digit] & ~candidatesMap[digit]);
 				resultNodes.Add(
 					new(
 						(endCell * 9 + digit).AsCandidateMap(),
@@ -118,7 +118,7 @@ public sealed class XChainingRule : ChainingRule
 		var resultNodes = new HashSet<Node>();
 		foreach (var houseType in HouseTypes)
 		{
-			foreach (var endCell in (HousesMap[startCell.ToHouse(houseType)] & candidatesMap[digit]) - startCell)
+			foreach (var endCell in (HousesMap[startCell >> houseType] & candidatesMap[digit]) - startCell)
 			{
 				resultNodes.Add(new((endCell * 9 + digit).AsCandidateMap(), false, currentNode));
 			}

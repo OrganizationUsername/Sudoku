@@ -15,7 +15,7 @@ public static class GridGenericTransformExtensions
 		/// Applies transform with the specified <see cref="GenericTransform"/>.
 		/// </summary>
 		/// <param name="transform">The transform.</param>
-		public void Apply(in GenericTransform transform)
+		public void operator >>=(in GenericTransform transform)
 		{
 			var @base = @this.ToString("0");
 			var rows = transform.RowIndicesRelabeled;
@@ -43,6 +43,20 @@ public static class GridGenericTransformExtensions
 
 			var result = Grid.Parse(resultCharacters);
 			@this = transform.ShouldTranspose ? result.Transpose() : result;
+		}
+
+
+		/// <summary>
+		/// Applies the grid with specified transform.
+		/// </summary>
+		/// <param name="grid">The grid.</param>
+		/// <param name="transform">The transform.</param>
+		/// <returns>The target grid.</returns>
+		public static Grid operator >>(in Grid grid, in GenericTransform transform)
+		{
+			var tempGrid = grid;
+			tempGrid >>= transform;
+			return tempGrid;
 		}
 	}
 }

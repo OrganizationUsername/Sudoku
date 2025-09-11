@@ -616,7 +616,7 @@ public sealed class Analyzer : StepGatherer
 				if (atLeastOneConclusionIsWorth)
 				{
 					steppingGrids.AddRef(playground);
-					playground.Apply(step);
+					playground >>= step;
 					steps.Add(step);
 
 					// Trigger the event.

@@ -281,8 +281,7 @@ public readonly struct GridIdentifier :
 	{
 		get
 		{
-			var g = OriginalGrid;
-			g.Apply(Transform);
+			var g = OriginalGrid >> Transform;
 			preserveGrid(ref g, GivenCells);
 			return g;
 

@@ -3022,8 +3022,8 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <inheritdoc cref="M:Sudoku.Analytics.GridAnalysisExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Analytics.Step)"/>
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.op_RightShiftAssignment(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <inheritdoc cref="M:Sudoku.Analytics.GridAnalysisExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Analytics.Step)"/>
         </member>
         <member name="M:Sudoku.Analytics.GridAnalysisExtensions.get_CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="P:Sudoku.Analytics.GridAnalysisExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.CanPrimaryFullHouse"/>
@@ -3039,7 +3039,7 @@
             Provides extension members on <see langword="ref"/> <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Analytics.GridAnalysisExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Analytics.Step)">
             <summary>
             Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
@@ -5530,15 +5530,15 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Construction.Components.Node)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Construction.Components.Node)"/>
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.op_RightShiftAssignment(Sudoku.Concepts.Grid@,Sudoku.Construction.Components.Node)">
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Construction.Components.Node)"/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.&lt;M&gt;$C812EAD7A0357933631E8D843481B582">
             <summary>
             Provides extension members on <see langword="ref"/> <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Construction.Components.Node)">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.GridNodeExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Construction.Components.Node)">
             <summary>
             Treat the specified node as a real conclusion, and apply to a grid.
             </summary>

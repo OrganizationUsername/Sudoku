@@ -108,7 +108,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	private void TechniqueGroupView_StepApplied(TechniqueGroupView sender, TechniqueGroupViewStepAppliedEventArgs e)
 	{
 		var appliedPuzzle = BasePage.SudokuPane.Puzzle;
-		appliedPuzzle.Apply(e.ChosenStep);
+		appliedPuzzle >>= e.ChosenStep;
 
 		BasePage.SudokuPane.Puzzle = appliedPuzzle;
 	}

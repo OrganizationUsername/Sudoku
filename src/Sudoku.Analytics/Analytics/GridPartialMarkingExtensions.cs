@@ -61,7 +61,7 @@ public static class GridPartialMarkingExtensions
 					{
 						if (techniques.HasFlag(PartialMarkingTechniques.Parse(step.Code.ToString())))
 						{
-							gridResetCandidates.Apply(step);
+							gridResetCandidates >>= step;
 						}
 					}
 					return @this != gridResetCandidates;

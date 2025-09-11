@@ -557,7 +557,7 @@ internal partial class ChainingStepSearcherHub
 				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
 				var supposedOn = GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, tempGrid, grid);
 
-				tempGrid.Apply(currentNode);
+				tempGrid >>= currentNode;
 
 				if (!supposedOn.IsEmpty)
 				{
@@ -655,7 +655,7 @@ file static class GridNodeExtensions
 		/// Treat the specified node as a real conclusion, and apply to a grid.
 		/// </summary>
 		/// <param name="node">The node.</param>
-		public void Apply(Node node)
+		public void operator >>=(Node node)
 		{
 			ref readonly var map = ref node.Map;
 			if (node.IsOn)

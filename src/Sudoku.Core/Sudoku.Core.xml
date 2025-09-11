@@ -4924,9 +4924,6 @@
         <member name="M:Sudoku.Concepts.Grid.Unfix">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Concepts.Conclusion)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.SetState(System.Int32,Sudoku.Concepts.CellState)">
             <inheritdoc/>
         </member>
@@ -15223,19 +15220,30 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Transformations.GenericTransform@)">
-            <inheritdoc cref="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Transformations.GenericTransform@)"/>
+        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.op_RightShiftAssignment(Sudoku.Concepts.Grid@,Sudoku.Transformations.GenericTransform@)">
+            <inheritdoc cref="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Transformations.GenericTransform@)"/>
+        </member>
+        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Transformations.GenericTransform@)">
+            <inheritdoc cref="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Transformations.GenericTransform@)"/>
         </member>
         <member name="T:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.&lt;M&gt;$25EDD80A63D287142C5EEC5FEE4D06CD">
             <summary>
             Provides extension members on <see langword="ref"/> <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Apply(Sudoku.Transformations.GenericTransform@)">
+        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShiftAssignment(Sudoku.Transformations.GenericTransform@)">
             <summary>
             Applies transform with the specified <see cref="T:Sudoku.Transformations.GenericTransform"/>.
             </summary>
             <param name="transform">The transform.</param>
+        </member>
+        <member name="M:Sudoku.Transformations.GridGenericTransformExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.op_RightShift(Sudoku.Concepts.Grid@,Sudoku.Transformations.GenericTransform@)">
+            <summary>
+            Applies the grid with specified transform.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="transform">The transform.</param>
+            <returns>The target grid.</returns>
         </member>
         <member name="T:Sudoku.Transformations.GridIdentifier">
             <summary>

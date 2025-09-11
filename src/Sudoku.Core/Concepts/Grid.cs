@@ -812,11 +812,6 @@ public struct Grid : InlineArrayGridBase
 	}
 
 	/// <inheritdoc/>
-	public readonly void Apply(Conclusion conclusion)
-	{
-	}
-
-	/// <inheritdoc/>
 	public void SetState(Cell cell, CellState state)
 	{
 		ref var mask = ref this[cell];

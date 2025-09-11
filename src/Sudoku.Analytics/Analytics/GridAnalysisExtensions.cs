@@ -15,7 +15,7 @@ public static class GridAnalysisExtensions
 		/// Applies for all conclusions into the current <see cref="Grid"/> instance.
 		/// </summary>
 		/// <param name="step">A conclusion-provider <see cref="Step"/> instance.</param>
-		public void Apply(Step step)
+		public void operator >>=(Step step)
 		{
 			foreach (var conclusion in step.Conclusions)
 			{

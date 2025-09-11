@@ -54,7 +54,7 @@ public sealed class BlockFirst : IBehaviorMetric
 			// If the puzzle cannot be solved here, we should apply with indirect techniques again and again.
 			var foundStep = possibleSteps[0];
 			resultStepsAll.Add(KeyValuePair.Create(foundStep, playground));
-			playground.Apply(foundStep);
+			playground >>= foundStep;
 		}
 
 		steps = resultSteps.AsSpan();

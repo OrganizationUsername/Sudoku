@@ -6,14 +6,21 @@ namespace System.Linq;
 /// <seealso cref="SortedDictionary{TKey, TValue}"/>
 public static class SortedDictionaryEnumerable
 {
-	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
-	public static KeyValuePair<TKey, TValue> First<TKey, TValue>(this SortedDictionary<TKey, TValue> @this) where TKey : notnull
+	/// <summary>
+	/// Provides extension members on <see cref="SortedDictionary{TKey, TValue}"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
+	/// where <typeparamref name="TKey"/> satisfies <see langword="notnull"/>.
+	/// </summary>
+	extension<TKey, TValue>(SortedDictionary<TKey, TValue> @this) where TKey : notnull
 	{
-		using var enumerator = @this.GetEnumerator();
-		if (enumerator.MoveNext())
+		/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
+		public KeyValuePair<TKey, TValue> First()
 		{
-			return enumerator.Current;
+			using var enumerator = @this.GetEnumerator();
+			if (enumerator.MoveNext())
+			{
+				return enumerator.Current;
+			}
+			throw new InvalidOperationException();
 		}
-		throw new InvalidOperationException();
 	}
 }

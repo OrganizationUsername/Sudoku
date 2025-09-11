@@ -7,46 +7,50 @@ namespace System.Linq;
 public static class HashSetEnumerable
 {
 	/// <summary>
-	/// Indicates the first element of the collection.
+	/// Provides extension members on <see cref="HashSet{T}"/> of <typeparamref name="TSource"/>.
 	/// </summary>
-	/// <typeparam name="TSource">The type of each element.</typeparam>
-	/// <param name="source">The collection.</param>
-	/// <returns>The first element of the collection.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the collection contains no elements.</exception>
-	public static TSource First<TSource>(this HashSet<TSource> source)
+	extension<TSource>(HashSet<TSource> source)
 	{
-		using var enumerator = source.GetEnumerator();
-		return enumerator.MoveNext()
-			? enumerator.Current
-			: throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
-	}
-
-	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static TSource First<TSource>(this HashSet<TSource> source, Func<TSource, bool> predicate)
-	{
-		foreach (var element in source)
+		/// <summary>
+		/// Indicates the first element of the collection.
+		/// </summary>
+		/// <returns>The first element of the collection.</returns>
+		/// <exception cref="InvalidOperationException">Throws when the collection contains no elements.</exception>
+		public TSource First()
 		{
-			if (predicate(element))
-			{
-				return element;
-			}
+			using var enumerator = source.GetEnumerator();
+			return enumerator.MoveNext()
+				? enumerator.Current
+				: throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 		}
-		throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
-	}
 
-	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
-	public static TSource? FirstOrDefault<TSource>(this HashSet<TSource> source) => source.Count == 0 ? default : source.First();
-
-	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static TSource? FirstOrDefault<TSource>(this HashSet<TSource> source, Func<TSource, bool> predicate)
-	{
-		foreach (var element in source)
+		/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+		public TSource First(Func<TSource, bool> predicate)
 		{
-			if (predicate(element))
+			foreach (var element in source)
 			{
-				return element;
+				if (predicate(element))
+				{
+					return element;
+				}
 			}
+			throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
 		}
-		return default;
+
+		/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
+		public TSource? FirstOrDefault() => source.Count == 0 ? default : source.First();
+
+		/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+		public TSource? FirstOrDefault(Func<TSource, bool> predicate)
+		{
+			foreach (var element in source)
+			{
+				if (predicate(element))
+				{
+					return element;
+				}
+			}
+			return default;
+		}
 	}
 }

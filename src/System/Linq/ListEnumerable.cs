@@ -7,6 +7,100 @@ namespace System.Linq;
 public static class ListEnumerable
 {
 	/// <summary>
+	/// Provides extension members on <see cref="List{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	extension<TSource>(List<TSource> @this)
+	{
+		/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+		public int Count(Func<TSource, bool> predicate)
+		{
+			var result = 0;
+			foreach (var element in @this)
+			{
+				if (predicate(element))
+				{
+					result++;
+				}
+			}
+			return result;
+		}
+
+		/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
+		public unsafe int CountUnsafe(delegate*<TSource, bool> predicate)
+		{
+			var result = 0;
+			foreach (var element in @this)
+			{
+				if (predicate(element))
+				{
+					result++;
+				}
+			}
+			return result;
+		}
+
+		/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+		public ReadOnlySpan<TSource> Where(Func<TSource, bool> condition)
+		{
+			var result = new List<TSource>(@this.Count);
+			foreach (var element in @this)
+			{
+				if (condition(element))
+				{
+					result.AddRef(element);
+				}
+			}
+			return result.AsSpan();
+		}
+
+		/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
+		public ReadOnlySpan<TResult> Select<TResult>(Func<TSource, TResult> selector)
+		{
+			var result = new TResult[@this.Count];
+			var i = 0;
+			foreach (var element in @this)
+			{
+				result[i++] = selector(element);
+			}
+			return result;
+		}
+
+		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		public ReadOnlySpan<TResult> SelectMany<TCollection, TResult>(
+			Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
+			Func<TSource, TCollection, TResult> resultSelector
+		)
+		{
+			var result = new List<TResult>(@this.Count << 1);
+			foreach (var element in @this)
+			{
+				foreach (ref readonly var collectionElement in collectionSelector(element))
+				{
+					result.AddRef(resultSelector(element, collectionElement));
+				}
+			}
+			return result.AsSpan();
+		}
+
+		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		public ReadOnlySpan<TResult> SelectMany<TCollection, TResult>(
+			Func<TSource, IEnumerable<TCollection>> collectionSelector,
+			Func<TSource, TCollection, TResult> resultSelector
+		)
+		{
+			var result = new List<TResult>(@this.Count << 1);
+			foreach (var element in @this)
+			{
+				foreach (var collectionElement in collectionSelector(element))
+				{
+					result.AddRef(resultSelector(element, collectionElement));
+				}
+			}
+			return result.AsSpan();
+		}
+	}
+
+	/// <summary>
 	/// Provides extension members on <see cref="List{T}"/>,
 	/// where <typeparamref name="T"/> satisfies <see cref="IAdditiveIdentity{TSelf, TResult}"/>, <see cref="IAdditionOperators{TSelf, TOther, TResult}"/> constraints.
 	/// </summary>
@@ -22,96 +116,5 @@ public static class ListEnumerable
 			}
 			return result;
 		}
-	}
-
-
-	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
-	public static int Count<T>(this List<T> @this, Func<T, bool> predicate)
-	{
-		var result = 0;
-		foreach (var element in @this)
-		{
-			if (predicate(element))
-			{
-				result++;
-			}
-		}
-		return result;
-	}
-
-	/// <inheritdoc cref="ArrayEnumerable.Count{T}(T[], Func{T, bool})"/>
-	public static unsafe int CountUnsafe<T>(this List<T> @this, delegate*<T, bool> predicate)
-	{
-		var result = 0;
-		foreach (var element in @this)
-		{
-			if (predicate(element))
-			{
-				result++;
-			}
-		}
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static ReadOnlySpan<TSource> Where<TSource>(this List<TSource> source, Func<TSource, bool> condition)
-	{
-		var result = new List<TSource>(source.Count);
-		foreach (var element in source)
-		{
-			if (condition(element))
-			{
-				result.AddRef(element);
-			}
-		}
-		return result.AsSpan();
-	}
-
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<TSource, TResult>(this List<TSource> source, Func<TSource, TResult> selector)
-	{
-		var result = new TResult[source.Count];
-		var i = 0;
-		foreach (var element in source)
-		{
-			result[i++] = selector(element);
-		}
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
-	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
-		this List<TSource> @this,
-		Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
-		Func<TSource, TCollection, TResult> resultSelector
-	)
-	{
-		var result = new List<TResult>(@this.Count << 1);
-		foreach (var element in @this)
-		{
-			foreach (ref readonly var collectionElement in collectionSelector(element))
-			{
-				result.AddRef(resultSelector(element, collectionElement));
-			}
-		}
-		return result.AsSpan();
-	}
-
-	/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
-	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
-		this List<TSource> @this,
-		Func<TSource, IEnumerable<TCollection>> collectionSelector,
-		Func<TSource, TCollection, TResult> resultSelector
-	)
-	{
-		var result = new List<TResult>(@this.Count << 1);
-		foreach (var element in @this)
-		{
-			foreach (var collectionElement in collectionSelector(element))
-			{
-				result.AddRef(resultSelector(element, collectionElement));
-			}
-		}
-		return result.AsSpan();
 	}
 }

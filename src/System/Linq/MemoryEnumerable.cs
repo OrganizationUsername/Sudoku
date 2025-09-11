@@ -6,11 +6,17 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlyMemory{T}"/>
 public static class MemoryEnumerable
 {
-	/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
-	public static ReadOnlyMemory<TResult> Select<T, TResult>(this ReadOnlyMemory<T> @this, Func<T, TResult> selector)
-		=> (from element in @this.Span select selector(element)).ToArray();
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlyMemory{T}"/> of <typeparamref name="T"/>.
+	/// </summary>
+	extension<T>(ReadOnlyMemory<T> @this)
+	{
+		/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
+		public ReadOnlyMemory<TResult> Select<TResult>(Func<T, TResult> selector)
+			=> (from element in @this.Span select selector(element)).ToArray();
 
-	/// <inheritdoc cref="SpanEnumerable.Where{T}(ReadOnlySpan{T}, Func{T, bool})"/>
-	public static ReadOnlyMemory<T> Where<T>(this ReadOnlyMemory<T> @this, Func<T, bool> predicate)
-		=> (from element in @this.Span where predicate(element) select element).ToArray();
+		/// <inheritdoc cref="SpanEnumerable.Where{T}(ReadOnlySpan{T}, Func{T, bool})"/>
+		public ReadOnlyMemory<T> Where(Func<T, bool> predicate)
+			=> (from element in @this.Span where predicate(element) select element).ToArray();
+	}
 }

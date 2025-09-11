@@ -6,27 +6,33 @@ namespace System.Linq;
 /// <seealso cref="ITuple"/>
 public static class TupleEnumerable
 {
-	/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
-	public static ReadOnlySpan<T> Cast<T>(this ITuple @this)
+	/// <summary>
+	/// Provides extension members on <see cref="ITuple"/>.
+	/// </summary>
+	extension(ITuple @this)
 	{
-		var result = new T[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
+		/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
+		public ReadOnlySpan<T> Cast<T>()
 		{
-			result[i++] = (T)element!;
+			var result = new T[@this.Length];
+			var i = 0;
+			foreach (var element in @this)
+			{
+				result[i++] = (T)element!;
+			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<T, TResult>(this ITuple @this, Func<T?, TResult> selector)
-	{
-		var result = new TResult[@this.Length];
-		var i = 0;
-		foreach (var element in from T? element in @this select element)
+		/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
+		public ReadOnlySpan<TResult> Select<T, TResult>(Func<T?, TResult> selector)
 		{
-			result[i++] = selector(element);
+			var result = new TResult[@this.Length];
+			var i = 0;
+			foreach (var element in from T? element in @this select element)
+			{
+				result[i++] = selector(element);
+			}
+			return result;
 		}
-		return result;
 	}
 }

@@ -2511,9 +2511,20 @@
             <seealso cref="T:System.Collections.ArrayList"/>
         </member>
         <member name="M:System.Linq.ArrayListEnumerable.Cast``1(System.Collections.ArrayList)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+            <inheritdoc cref="M:System.Linq.ArrayListEnumerable.&lt;G&gt;$215E7A10770FAF445011DF9D7C7D3A26.Cast``1"/>
         </member>
         <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
+            <inheritdoc cref="M:System.Linq.ArrayListEnumerable.&lt;G&gt;$215E7A10770FAF445011DF9D7C7D3A26.Select``1(System.Func{System.Object,``0})"/>
+        </member>
+        <member name="T:System.Linq.ArrayListEnumerable.&lt;G&gt;$215E7A10770FAF445011DF9D7C7D3A26.&lt;M&gt;$57DBC24700B784D7A396BB6CF685F3DB">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.ArrayList"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayListEnumerable.&lt;G&gt;$215E7A10770FAF445011DF9D7C7D3A26.Cast``1">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="M:System.Linq.ArrayListEnumerable.&lt;G&gt;$215E7A10770FAF445011DF9D7C7D3A26.Select``1(System.Func{System.Object,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Linq.ArrayOrderedEnumerable`1">
@@ -2664,71 +2675,98 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
         </member>
+        <member name="M:System.Linq.DictionaryEnumerable.ElementAt``2(System.Collections.Generic.Dictionary{``0,``1},System.Int32)">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61.ElementAt(System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.ElementAt``2(System.Collections.Generic.Dictionary{``0,``1},System.Index)">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61.ElementAt(System.Index)"/>
+        </member>
         <member name="M:System.Linq.DictionaryEnumerable.MaxByValue``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$2F4F47585A1BDDE61FFADE89EDF534AD.MaxByValue"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.MinByValue``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$2F4F47585A1BDDE61FFADE89EDF534AD.MinByValue"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AllKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AllKey(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AllValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AllValue(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AnyKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AnyKey(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.AnyValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AnyValue(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.DictionaryEnumerable.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61.&lt;M&gt;$B7AA086048C0CF24EA037F7AFEDF34D8">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.Dictionary`2"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
+            where <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint.
+            </summary>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61.ElementAt(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61.ElementAt(System.Index)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Index)"/>
+        </member>
+        <member name="T:System.Linq.DictionaryEnumerable.&lt;G&gt;$2F4F47585A1BDDE61FFADE89EDF534AD.&lt;M&gt;$E008B25791A5988E5F0D4FC932E495B4">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.Dictionary`2"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
+            where <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint,
+            and <typeparamref name="TValue"/> satisfies <see cref="T:System.IComparable`1"/>,
+            <see cref="T:System.Numerics.IComparisonOperators`3"/> and <see cref="T:System.Numerics.IMinMaxValue`1"/> constraints.
+            </summary>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$2F4F47585A1BDDE61FFADE89EDF534AD.MaxByValue">
             <summary>
             Get the maximal value in all <see cref="P:System.Collections.Generic.Dictionary`2.Values"/>.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary instance.</param>
             <returns>An instance of type <typeparamref name="TValue"/> as maximal-valued one.</returns>
             <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
         </member>
-        <member name="M:System.Linq.DictionaryEnumerable.MinByValue``2(System.Collections.Generic.Dictionary{``0,``1})">
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$2F4F47585A1BDDE61FFADE89EDF534AD.MinByValue">
             <summary>
             Get the minimal value in all <see cref="P:System.Collections.Generic.Dictionary`2.Values"/>.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary instance.</param>
             <returns>An instance of type <typeparamref name="TValue"/> as minimal-valued one.</returns>
             <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
         </member>
-        <member name="M:System.Linq.DictionaryEnumerable.AllKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+        <member name="T:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.&lt;M&gt;$DC6E17A8A1FF5BED01968B944D2EA2C8">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.IReadOnlyDictionary`2"/>
+            of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
+            where <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint.
+            </summary>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AllKey(System.Func{`0,System.Boolean})">
             <summary>
             Determine whether all keys in the dictionary satisfy the specified condition.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary to be checked.</param>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.DictionaryEnumerable.AllValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AllValue(System.Func{`1,System.Boolean})">
             <summary>
             Determine whether all values in the dictionary satisfy the specified condition.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary to be checked.</param>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.DictionaryEnumerable.AnyKey``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AnyKey(System.Func{`0,System.Boolean})">
             <summary>
             Determine whether at least one key in the dictionary satisfies the specified condition.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary to be checked.</param>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Linq.DictionaryEnumerable.AnyValue``2(System.Collections.Generic.IReadOnlyDictionary{``0,``1},System.Func{``1,System.Boolean})">
+        <member name="M:System.Linq.DictionaryEnumerable.&lt;G&gt;$66F93B7EBB5D1BD76D320F7CDF456CF6.AnyValue(System.Func{`1,System.Boolean})">
             <summary>
             Determine whether at least one value in the dictionary satisfies the specified condition.
             </summary>
-            <typeparam name="TKey">The type of each key.</typeparam>
-            <typeparam name="TValue">The type of each value.</typeparam>
-            <param name="this">The dictionary to be checked.</param>
             <param name="predicate">The condition to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Linq.DictionaryEnumerable.ElementAt``2(System.Collections.Generic.Dictionary{``0,``1},System.Int32)">
-            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
-        </member>
-        <member name="M:System.Linq.DictionaryEnumerable.ElementAt``2(System.Collections.Generic.Dictionary{``0,``1},System.Index)">
-            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Index)"/>
         </member>
         <member name="T:System.Linq.EnumerableExtensions">
             <summary>
@@ -3218,12 +3256,20 @@
             </summary>
         </member>
         <member name="M:System.Linq.EnumFlagsEnumerable.Select``2(``0,System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.EnumFlagsEnumerable.&lt;G&gt;$F7BAB7F8979284A7204DC29891C39285.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="T:System.Linq.EnumFlagsEnumerable.&lt;G&gt;$F7BAB7F8979284A7204DC29891C39285.&lt;M&gt;$87C03D23A722950C7671818D2D694A6E">
+            <summary>
+            Provides extension members on <typeparamref name="T"/>,
+            where <typeparamref name="T"/> satisfies <see langword="unmanaged"/> and <see cref="T:System.Enum"/> constraints.
+            </summary>
+        </member>
+        <member name="M:System.Linq.EnumFlagsEnumerable.&lt;G&gt;$F7BAB7F8979284A7204DC29891C39285.Select``1(System.Func{`0,``0})">
             <summary>
             Try to get all <typeparamref name="T"/> elements as flags stored in argument <paramref name="this"/>,
             and convert them into an array of <typeparamref name="TResult"/> instances via specified argument <paramref name="selector"/>,
             then return the array.
             </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
             <typeparam name="TResult">The type of the result elements.</typeparam>
             <param name="this">The enumeration type field.</param>
             <param name="selector">The selector that can convert the enumeration field into the target-typed instance.</param>
@@ -3239,21 +3285,36 @@
             <seealso cref="T:System.Collections.Generic.HashSet`1"/>
         </member>
         <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0})">
+            <inheritdoc cref="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.First"/>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.First(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.FirstOrDefault``1(System.Collections.Generic.HashSet{``0})">
+            <inheritdoc cref="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.FirstOrDefault"/>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.FirstOrDefault``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.FirstOrDefault(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.&lt;M&gt;$DA1C6BA4829D00B30115651AC70DABFB">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.HashSet`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.First">
             <summary>
             Indicates the first element of the collection.
             </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="source">The collection.</param>
             <returns>The first element of the collection.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the collection contains no elements.</exception>
         </member>
-        <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.First(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.HashSetEnumerable.FirstOrDefault``1(System.Collections.Generic.HashSet{``0})">
+        <member name="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.FirstOrDefault">
             <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
-        <member name="M:System.Linq.HashSetEnumerable.FirstOrDefault``1(System.Collections.Generic.HashSet{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.HashSetEnumerable.&lt;G&gt;$48D993973B7F81786721B9597BB507D2.FirstOrDefault(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:System.Linq.IMyGrouping`3">
@@ -3424,25 +3485,40 @@
             <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
         </member>
         <member name="M:System.Linq.LinkedListEnumerable.Select``2(System.Collections.Generic.LinkedList{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$393CC830F3795ED1B5227974F6805F3C.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.Reverse``1(System.Collections.Generic.LinkedList{``0})">
+            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$393CC830F3795ED1B5227974F6805F3C.Reverse"/>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.Select``2(System.Linq.LinkedListReversed{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$682CBC68EFA0127908536E2E5C6C51B0.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="T:System.Linq.LinkedListEnumerable.&lt;G&gt;$393CC830F3795ED1B5227974F6805F3C.&lt;M&gt;$F371186AA0D36CA5D80727EDA5DEB37B">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.LinkedList`1"/> of <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$393CC830F3795ED1B5227974F6805F3C.Select``1(System.Func{`0,``0})">
             <summary>
             Projects each element into a new form.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
             <typeparam name="TResult">The type of the transformed value.</typeparam>
-            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
             <param name="selector">The function to transform items.</param>
             <returns>The projected values.</returns>
         </member>
-        <member name="M:System.Linq.LinkedListEnumerable.Select``2(System.Linq.LinkedListReversed{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.Select``2(System.Collections.Generic.LinkedList{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.LinkedListEnumerable.Reverse``1(System.Collections.Generic.LinkedList{``0})">
+        <member name="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$393CC830F3795ED1B5227974F6805F3C.Reverse">
             <summary>
             Reverse the enumeration on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
             <returns>The reversed enumerator-provider instance.</returns>
+        </member>
+        <member name="T:System.Linq.LinkedListEnumerable.&lt;G&gt;$682CBC68EFA0127908536E2E5C6C51B0.&lt;M&gt;$59A83E54849A3ACEF392465B1FA9DB41">
+            <summary>
+            Provides extension members on <see cref="T:System.Linq.LinkedListReversed`1"/> of <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.&lt;G&gt;$682CBC68EFA0127908536E2E5C6C51B0.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.Select``2(System.Collections.Generic.LinkedList{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Linq.LinkedListReversed`1">
             <summary>
@@ -3511,25 +3587,48 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
+        <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Count(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.CountUnsafe``1(System.Collections.Generic.List{``0},)">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.CountUnsafe()"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Where(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.SelectMany``2(System.Func{`0,System.Collections.Generic.IEnumerable{``0}},System.Func{`0,``0,``1})"/>
+        </member>
         <member name="M:System.Linq.ListEnumerable.Sum``1(System.Collections.Generic.List{``0})">
             <inheritdoc cref="M:System.Linq.ListEnumerable.&lt;G&gt;$DFACCB925D3E652A055A74EFECB9ADBD.Sum"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.Count``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+        <member name="T:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.&lt;M&gt;$7E8A0D8FC64FE6277C988D2BDC1B47AB">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.List`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Count(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.CountUnsafe``1(System.Collections.Generic.List{``0},)">
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.CountUnsafe()">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.Where``1(System.Collections.Generic.List{``0},System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Where(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.Select``2(System.Collections.Generic.List{``0},System.Func{``0,``1})">
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.Select``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
-        <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ListEnumerable.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.SelectMany``2(System.Func{`0,System.Collections.Generic.IEnumerable{``0}},System.Func{`0,``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
         <member name="T:System.Linq.ListEnumerable.&lt;G&gt;$DFACCB925D3E652A055A74EFECB9ADBD.&lt;M&gt;$8C6D0C3649BA2615F5F409500534B535">
@@ -3548,9 +3647,20 @@
             <seealso cref="T:System.ReadOnlyMemory`1"/>
         </member>
         <member name="M:System.Linq.MemoryEnumerable.Select``2(System.ReadOnlyMemory{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.MemoryEnumerable.&lt;G&gt;$3387D7F181FA234A9158DADA9224047F.Select``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.MemoryEnumerable.Where``1(System.ReadOnlyMemory{``0},System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.MemoryEnumerable.&lt;G&gt;$3387D7F181FA234A9158DADA9224047F.Where(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.MemoryEnumerable.&lt;G&gt;$3387D7F181FA234A9158DADA9224047F.&lt;M&gt;$1FCEA6C6B1ECF461CCA0285D4B3E0329">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlyMemory`1"/> of <typeparamref name="T"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.MemoryEnumerable.&lt;G&gt;$3387D7F181FA234A9158DADA9224047F.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.MemoryEnumerable.&lt;G&gt;$3387D7F181FA234A9158DADA9224047F.Where(System.Func{`0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
         </member>
         <member name="T:System.Linq.MultidimensionalArrayEnumerable">
@@ -3559,9 +3669,20 @@
             </summary>
         </member>
         <member name="M:System.Linq.MultidimensionalArrayEnumerable.Select``2(``0[0:,0:],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.Select``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.MultidimensionalArrayEnumerable.Select``2(``0[0:,0:],System.Func{``0,System.Int32,System.Int32,``1})">
+            <inheritdoc cref="M:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.Select``1(System.Func{`0,System.Int32,System.Int32,``0})"/>
+        </member>
+        <member name="T:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.&lt;M&gt;$65582966316CBC0F1C52F7235738C8D0">
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[,].
+            </summary>
+        </member>
+        <member name="M:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.Select``1(System.Func{`0,System.Int32,System.Int32,``0})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,System.Int32,``1})"/>
         </member>
         <member name="T:System.Linq.Providers.IAggregateMethod`2">
@@ -4391,6 +4512,15 @@
             <seealso cref="T:System.Collections.Generic.SortedDictionary`2"/>
         </member>
         <member name="M:System.Linq.SortedDictionaryEnumerable.First``2(System.Collections.Generic.SortedDictionary{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SortedDictionaryEnumerable.&lt;G&gt;$160B45C8544EFFF2068E9F9BB2707076.First"/>
+        </member>
+        <member name="T:System.Linq.SortedDictionaryEnumerable.&lt;G&gt;$160B45C8544EFFF2068E9F9BB2707076.&lt;M&gt;$0C15FC47F2FE7C3D6FD3C6FDBC40A920">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.SortedDictionary`2"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
+            where <typeparamref name="TKey"/> satisfies <see langword="notnull"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.SortedDictionaryEnumerable.&lt;G&gt;$160B45C8544EFFF2068E9F9BB2707076.First">
             <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="T:System.Linq.SpanEnumerable">
@@ -4957,26 +5087,41 @@
             </summary>
         </member>
         <member name="M:System.Linq.StringEnumerable.Index(System.String)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
+            <inheritdoc cref="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Index"/>
         </member>
         <member name="M:System.Linq.StringEnumerable.Select``1(System.String,System.Func{System.Char,``0})">
+            <inheritdoc cref="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Select``1(System.Func{System.Char,``0})"/>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.Where(System.String,System.Func{System.Char,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Where(System.Func{System.Char,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.SelectMany(System.String,System.Func{System.Char,System.String},System.Func{System.Char,System.Char,System.String})">
+            <inheritdoc cref="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.SelectMany(System.Func{System.Char,System.String},System.Func{System.Char,System.Char,System.String})"/>
+        </member>
+        <member name="T:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.&lt;M&gt;$A56E4B15CBFDA0052F9BF9FD000FA868">
+            <summary>
+            Provides extension members on <see cref="T:System.String"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Index">
+            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Select``1(System.Func{System.Char,``0})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
             </summary>
-            <param name="this">The string instance.</param>
             <param name="selector">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='selector']"/>
             </param>
             <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result of invoking the transfrom function
-            on each element of <paramref name="this"/>.
+            A <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TResult"/> whose elements are the result
+            of invoking the transfrom function on each element of the current instance.
             </returns>
         </member>
-        <member name="M:System.Linq.StringEnumerable.Where(System.String,System.Func{System.Char,System.Boolean})">
+        <member name="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Where(System.Func{System.Char,System.Boolean})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
             </summary>
-            <param name="this">The string instance.</param>
             <param name="predicate">
             <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='selector']"/>
             </param>
@@ -4984,17 +5129,24 @@
             A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
             </returns>
         </member>
-        <member name="M:System.Linq.StringEnumerable.SelectMany(System.String,System.Func{System.Char,System.String},System.Func{System.Char,System.Char,System.String})">
+        <member name="M:System.Linq.StringEnumerable.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.SelectMany(System.Func{System.Char,System.String},System.Func{System.Char,System.Char,System.String})">
             <summary>
             Projects each element of a sequence to a <see cref="T:System.String"/>, flattens the resulting sequences into one sequence,
             and invokes a result selector function on each element therein.
             </summary>
-            <param name="this"></param>
-            <param name="collectionSelector"></param>
-            <param name="resultSelector"></param>
+            <param name="collectionSelector">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/param[@name=='collectionSelector']"/>
+            </param>
+            <param name="resultSelector">
+            <inheritdoc
+                cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"
+                path="/param[@name=='resultSelector']"/>
+            </param>
             <returns>
             A <see cref="T:System.String"/> whose elements are the result of invoking the one-to-many transform function
-            <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            <paramref name="collectionSelector"/> on each element of the current instance,
             and then mapping each of those sequence elements and their corresponding source element to a result element.
             </returns>
         </member>
@@ -5005,9 +5157,20 @@
             <seealso cref="T:System.Runtime.CompilerServices.ITuple"/>
         </member>
         <member name="M:System.Linq.TupleEnumerable.Cast``1(System.Runtime.CompilerServices.ITuple)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+            <inheritdoc cref="M:System.Linq.TupleEnumerable.&lt;G&gt;$2B8EA22D1C19260CD00EDC5E91F83A40.Cast``1"/>
         </member>
         <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.TupleEnumerable.&lt;G&gt;$2B8EA22D1C19260CD00EDC5E91F83A40.Select``2(System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Linq.TupleEnumerable.&lt;G&gt;$2B8EA22D1C19260CD00EDC5E91F83A40.&lt;M&gt;$60F62A24611AB3F986C4C7AB6ED6E567">
+            <summary>
+            Provides extension members on <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.TupleEnumerable.&lt;G&gt;$2B8EA22D1C19260CD00EDC5E91F83A40.Cast``1">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="M:System.Linq.TupleEnumerable.&lt;G&gt;$2B8EA22D1C19260CD00EDC5E91F83A40.Select``2(System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Linq.ValueLookup`2">
@@ -5156,31 +5319,45 @@
         <member name="M:System.Linq.ValueLookup`2.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="T:System.Text.RegularExpressions.CaptureCollectionEnumerable">
+        <member name="T:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable">
             <summary>
-            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.CaptureCollection"/>.
+            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>, <see cref="T:System.Text.RegularExpressions.GroupCollection"/> and <see cref="T:System.Text.RegularExpressions.CaptureCollection"/>.
             </summary>
             <seealso cref="T:System.Text.RegularExpressions.CaptureCollection"/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.CaptureCollectionEnumerable.Select``1(System.Text.RegularExpressions.CaptureCollection,System.Func{System.Text.RegularExpressions.Capture,``0})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="T:System.Text.RegularExpressions.GroupCollectionEnumerable">
-            <summary>
-            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.GroupCollection"/>.
-            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
             <seealso cref="T:System.Text.RegularExpressions.GroupCollection"/>
         </member>
-        <member name="M:System.Text.RegularExpressions.GroupCollectionEnumerable.Select``1(System.Text.RegularExpressions.GroupCollection,System.Func{System.Text.RegularExpressions.Group,``0})">
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
+            <inheritdoc cref="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$DBDD6C074C010D4F09C962D516962115.Select``1(System.Func{System.Text.RegularExpressions.Match,``0})"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.Select``1(System.Text.RegularExpressions.GroupCollection,System.Func{System.Text.RegularExpressions.Group,``0})">
+            <inheritdoc cref="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$31D61077F8A80A4F54C50FFF0DAA2298.Select``1(System.Func{System.Text.RegularExpressions.Group,``0})"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.Select``1(System.Text.RegularExpressions.CaptureCollection,System.Func{System.Text.RegularExpressions.Capture,``0})">
+            <inheritdoc cref="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$E5FB4B3514986E9CD0E66EE0CCFAC82C.Select``1(System.Func{System.Text.RegularExpressions.Capture,``0})"/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$DBDD6C074C010D4F09C962D516962115.&lt;M&gt;$ECBB3C481A24FEAB09A88D4DAC766A3E">
+            <summary>
+            Provides extension members on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>.
+            </summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$DBDD6C074C010D4F09C962D516962115.Select``1(System.Func{System.Text.RegularExpressions.Match,``0})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
+        <member name="T:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$31D61077F8A80A4F54C50FFF0DAA2298.&lt;M&gt;$E0F977A2BAB6C5DB665875CA492688EA">
             <summary>
-            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>.
+            Provides extension members on <see cref="T:System.Text.RegularExpressions.GroupCollection"/>.
             </summary>
-            <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
         </member>
-        <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$31D61077F8A80A4F54C50FFF0DAA2298.Select``1(System.Func{System.Text.RegularExpressions.Group,``0})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$E5FB4B3514986E9CD0E66EE0CCFAC82C.&lt;M&gt;$DB663C5AF4B3CBD7E3D79E1D7FCC538E">
+            <summary>
+            Provides extension members on <see cref="T:System.Text.RegularExpressions.CaptureCollection"/>.
+            </summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegularExpressionCollectionEnumerable.&lt;G&gt;$E5FB4B3514986E9CD0E66EE0CCFAC82C.Select``1(System.Func{System.Text.RegularExpressions.Capture,``0})">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
         <member name="T:System.Text.RegularExpressions.RegexExtensions">

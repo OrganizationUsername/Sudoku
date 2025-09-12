@@ -22,4 +22,6 @@ public static class DeprecatedMessages
 	//public const string ExtensionOperator_Equality = "Use extension operator 'operator ==' instead: 'left == right'";
 
 	public const string ExtensionOperator_Apply = "Use extension operator 'operator >>=' instead: 'instance >>= value'";
+
+	public const string ExtensionOperator_Repeat = "Use extension operator 'operator *' instead: 'string * times'";
 }

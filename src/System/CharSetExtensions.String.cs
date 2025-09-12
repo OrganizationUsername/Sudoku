@@ -35,6 +35,15 @@ public partial class CharSetExtensions
 		public ReadOnlySpan<char> Unpack() => -@this;
 
 
+		/// <inheritdoc cref="op_Multiply(string, int)"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Repeat, false)]
+		public static string Repeat(string value, int times) => value * times;
+
+		/// <inheritdoc cref="op_Division(string, int)"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Chunk, false)]
+		public static ReadOnlySpan<string> Chunk(string value, int size) => value / size;
+
+
 		/// <summary>
 		/// Unpacks a string into multiple characters.
 		/// For example, <c>-"hello!"</c>will become <c>['h', 'e', 'l', 'l', 'o', '!']</c>.
@@ -64,14 +73,14 @@ public partial class CharSetExtensions
 		/// Splits the string into specified parts, as same length as possible.
 		/// </summary>
 		/// <param name="value">The value.</param>
-		/// <param name="parts">The desired parts.</param>
+		/// <param name="size">The desired parts.</param>
 		/// <returns>The sequence of strings.</returns>
-		public static ReadOnlySpan<string> operator /(string value, int parts)
+		public static ReadOnlySpan<string> operator /(string value, int size)
 		{
-			var result = new string[(value.Length + parts - 1) / parts];
-			for (var i = 0; i < value.Length / parts; i++)
+			var result = new string[(value.Length + size - 1) / size];
+			for (var i = 0; i < value.Length / size; i++)
 			{
-				result[i] = value.Span.Slice(i * parts, parts).ToString();
+				result[i] = value.Span.Slice(i * size, size).ToString();
 			}
 			return result;
 		}

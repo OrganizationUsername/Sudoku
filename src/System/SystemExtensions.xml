@@ -12,18 +12,6 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="value">The value to be initialized.</param>
         </member>
-        <member name="T:System.BinaryIntegerExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Numerics.IBinaryInteger`1"/> instances.
-            </summary>
-            <seealso cref="T:System.Numerics.IBinaryInteger`1"/>
-        </member>
-        <member name="T:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.&lt;M&gt;$5D05DBCD4C42AAA64E2E6000D4646E95">
-            <summary>
-            Provides extension members on <typeparamref name="TSelf"/>,
-            where <typeparamref name="TSelf"/> satisfies <see cref="T:System.Numerics.IBinaryInteger`1"/> constraint.
-            </summary>
-        </member>
         <member name="T:System.Buffers.ReadOnlyMemoryOfCharComparer">
             <summary>
             Represents an equality comparer of <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Char"/> object,

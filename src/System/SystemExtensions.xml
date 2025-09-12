@@ -1746,6 +1746,51 @@
             Provides deprecated messages.
             </summary>
         </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Reverse">
+            <summary>
+            Describes extension "<c><see langword="operator"/> ~</c>" on collections to reverse them.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Chunk">
+            <summary>
+            Describes extension "<c><see langword="operator"/> /</c>" on collections to chunk them.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Subset">
+            <summary>
+            Describes extension "<c><see langword="operator"/> &amp;</c>" on collections to get subsets from them.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_AllSubset">
+            <summary>
+            Describes extension "<c><see langword="operator"/> |</c>" on collections to get subsets from them.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Pack">
+            <summary>
+            Describes extension "<c><see langword="operator"/> +</c>" on characters to get packed string.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Unpack">
+            <summary>
+            Describes extension "<c><see langword="operator"/> -</c>" on string to get unpacked sequence.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Equality">
+            <summary>
+            Describes extension "<c><see langword="operator"/> ==</c>" on instances to compare equality.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Apply">
+            <summary>
+            Describes extension "<c><see langword="operator"/> >>=</c>" on collections to apply instances to them.
+            </summary>
+        </member>
+        <member name="F:System.DeprecatedMessages.ExtensionOperator_Repeat">
+            <summary>
+            Describes extension "<c><see langword="operator"/> *</c>" on collections to repeat specified times of them.
+            </summary>
+        </member>
         <member name="T:System.EnumExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Enum"/>.

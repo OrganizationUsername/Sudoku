@@ -38,8 +38,13 @@ public partial class CharSetExtensions
 	/// <summary>
 	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <see cref="char"/>.
 	/// </summary>
-	extension(ReadOnlySpan<char>)
+	extension(ReadOnlySpan<char> @this)
 	{
+		/// <inheritdoc cref="op_UnaryPlus(ReadOnlySpan{char})"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Pack, false)]
+		public string Pack() => +@this;
+
+
 		/// <summary>
 		/// Pack characters into a string.
 		/// </summary>

@@ -151,6 +151,9 @@
         <member name="M:System.CharSetExtensions.get_LowerCasing(System.Char)">
             <inheritdoc cref="P:System.CharSetExtensions.&lt;G&gt;$617F055EF883302AD66AFAF0ACA83DC6.LowerCasing"/>
         </member>
+        <member name="M:System.CharSetExtensions.Pack(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.Pack"/>
+        </member>
         <member name="M:System.CharSetExtensions.op_UnaryPlus(System.ReadOnlySpan{System.Char})">
             <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.op_UnaryPlus(System.ReadOnlySpan{System.Char})"/>
         </member>
@@ -166,6 +169,9 @@
         <member name="M:System.CharSetExtensions.RemoveAll(System.String,System.Char)">
             <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.RemoveAll(System.Char)"/>
         </member>
+        <member name="M:System.CharSetExtensions.Unpack(System.String)">
+            <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Unpack"/>
+        </member>
         <member name="M:System.CharSetExtensions.op_UnaryNegation(System.String)">
             <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.op_UnaryNegation(System.String)"/>
         </member>
@@ -180,6 +186,9 @@
         </member>
         <member name="M:System.CharSetExtensions.op_Division(System.String,System.String)">
             <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.op_Division(System.String,System.String)"/>
+        </member>
+        <member name="M:System.CharSetExtensions.Pack(System.ReadOnlySpan{System.String})">
+            <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.Pack"/>
         </member>
         <member name="M:System.CharSetExtensions.op_UnaryPlus(System.ReadOnlySpan{System.String})">
             <inheritdoc cref="M:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.op_UnaryPlus(System.ReadOnlySpan{System.String})"/>
@@ -199,10 +208,13 @@
             Indicates the lower-casing of the current character.
             </summary>
         </member>
-        <member name="T:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.&lt;M&gt;$6B763DF8736ED423C3A2755D256AB881">
+        <member name="T:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.&lt;M&gt;$2B8079B5340FD88FDC7BDFF469EC47A1">
             <summary>
             Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Char"/>.
             </summary>
+        </member>
+        <member name="M:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.Pack">
+            <inheritdoc cref="M:System.CharSetExtensions.op_UnaryPlus(System.ReadOnlySpan{System.Char})"/>
         </member>
         <member name="M:System.CharSetExtensions.&lt;G&gt;$7E0B8C73485617FC5155886DD83A182C.op_UnaryPlus(System.ReadOnlySpan{System.Char})">
             <summary>
@@ -237,6 +249,9 @@
             </summary>
             <param name="character">The character to be removed from the base string.</param>
             <returns>The result string value after removal.</returns>
+        </member>
+        <member name="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.Unpack">
+            <inheritdoc cref="M:System.CharSetExtensions.op_UnaryNegation(System.String)"/>
         </member>
         <member name="M:System.CharSetExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.op_UnaryNegation(System.String)">
             <summary>
@@ -282,10 +297,13 @@
             An array whose elements contain the substrings from this instance that are delimited by separator.
             </returns>
         </member>
-        <member name="T:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.&lt;M&gt;$C0DC0E93A7552BE82F73E299271E4EC3">
+        <member name="T:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.&lt;M&gt;$4D43D857A26E0EE73FDD4A8B81059EAF">
             <summary>
             Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.String"/>.
             </summary>
+        </member>
+        <member name="M:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.Pack">
+            <inheritdoc cref="M:System.CharSetExtensions.op_UnaryPlus(System.ReadOnlySpan{System.String})"/>
         </member>
         <member name="M:System.CharSetExtensions.&lt;G&gt;$8FC959905A84761690F4F259EF1753AC.op_UnaryPlus(System.ReadOnlySpan{System.String})">
             <summary>

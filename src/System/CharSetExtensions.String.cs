@@ -30,6 +30,10 @@ public partial class CharSetExtensions
 		/// <returns>The result string value after removal.</returns>
 		public string RemoveAll(char character) => @this.Replace(character.ToString(), string.Empty);
 
+		/// <inheritdoc cref="op_UnaryNegation(string)"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Unpack, false)]
+		public ReadOnlySpan<char> Unpack() => -@this;
+
 
 		/// <summary>
 		/// Unpacks a string into multiple characters.
@@ -96,8 +100,13 @@ public partial class CharSetExtensions
 	/// <summary>
 	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <see cref="string"/>.
 	/// </summary>
-	extension(ReadOnlySpan<string>)
+	extension(ReadOnlySpan<string> @this)
 	{
+		/// <inheritdoc cref="op_UnaryPlus(ReadOnlySpan{string})"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Pack, false)]
+		public string Pack() => +@this;
+
+
 		/// <summary>
 		/// Pack strings into a string. For example, <c>+["hello", ", ", "world", "!"]</c> will become <c>"hello, world!"</c>.
 		/// </summary>

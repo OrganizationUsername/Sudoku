@@ -13492,11 +13492,6 @@
             Backing field of <see cref="P:Sudoku.SolutionFields.Chutes"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.ChuteHouses">
-            <summary>
-            Indicates the chute house triplets.
-            </summary>
-        </member>
         <member name="P:Sudoku.SolutionFields.HousesMap">
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.

@@ -18,7 +18,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates the houses ordered by column.
 	/// </summary>
-	public static readonly Digit[] HousesOrderedByColumn = [0, 3, 6, 1, 4, 7, 2, 5, 8];
+	public static readonly House[] HousesOrderedByColumn = [0, 3, 6, 1, 4, 7, 2, 5, 8];
 
 	/// <summary>
 	/// Indicates the first cell offset for each house.
@@ -139,11 +139,6 @@ public static class SolutionFields
 	/// </summary>
 	private static readonly Chute[] ChutesBackingField;
 
-	/// <summary>
-	/// Indicates the chute house triplets.
-	/// </summary>
-	private static readonly (House, House, House)[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
-
 
 	/// <summary>
 	/// Indicates a list of <see cref="CellMap"/> instances representing the cells belong to a house at the specified index.
@@ -238,6 +233,8 @@ public static class SolutionFields
 		}
 #endif
 
+		var chuteHouses = (ReadOnlySpan<(House, House, House)>)[(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
+
 		//
 		// ChuteMaps
 		//
@@ -245,7 +242,7 @@ public static class SolutionFields
 			ChuteMapsBackingField = new CellMap[6];
 			for (var chute = 0; chute < 3; chute++)
 			{
-				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
+				var ((r1, r2, r3), (c1, c2, c3)) = (chuteHouses[chute], chuteHouses[chute + 3]);
 				(ChuteMapsBackingField[chute], ChuteMapsBackingField[chute + 3]) = (HousesMap[r1] | HousesMap[r2] | HousesMap[r3], HousesMap[c1] | HousesMap[c2] | HousesMap[c3]);
 			}
 		}
@@ -257,7 +254,7 @@ public static class SolutionFields
 			ChutesBackingField = new Chute[6];
 			for (var chute = 0; chute < 3; chute++)
 			{
-				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
+				var ((r1, r2, r3), (c1, c2, c3)) = (chuteHouses[chute], chuteHouses[chute + 3]);
 				(ChutesBackingField[chute], ChutesBackingField[chute + 3]) = (
 					new(chute, true, 1 << r1 | 1 << r2 | 1 << r3),
 					new(chute + 3, false, 1 << c1 | 1 << c2 | 1 << c3)

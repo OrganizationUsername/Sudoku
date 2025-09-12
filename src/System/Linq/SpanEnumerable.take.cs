@@ -2,26 +2,32 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="ITakeMethod{TSelf, TSource}.Take(int)"/>
-	public static ReadOnlySpan<TSource> Take<TSource>(this ReadOnlySpan<TSource> @this, int count)
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var result = new List<TSource>(count);
-		result.AddRangeRef(@this[..Math.Min(count, @this.Length)]);
-		return result.AsSpan();
-	}
-
-	/// <inheritdoc cref="ITakeMethod{TSelf, TSource}.Take(Range)"/>
-	public static ReadOnlySpan<TSource> Take<TSource>(this ReadOnlySpan<TSource> @this, Range range)
-	{
-		var minIndex = range.Start.GetOffset(@this.Length);
-		var maxIndex = range.End.GetOffset(@this.Length);
-		if (maxIndex <= minIndex)
+		/// <inheritdoc cref="ITakeMethod{TSelf, TSource}.Take(int)"/>
+		public ReadOnlySpan<TSource> Take(int count)
 		{
-			throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
+			var result = new List<TSource>(count);
+			result.AddRangeRef(source[..Math.Min(count, source.Length)]);
+			return result.AsSpan();
 		}
 
-		var result = new List<TSource>(maxIndex - minIndex);
-		result.AddRangeRef(@this[Math.Min(minIndex, @this.Length)..Math.Min(maxIndex, @this.Length)]);
-		return result.AsSpan();
+		/// <inheritdoc cref="ITakeMethod{TSelf, TSource}.Take(Range)"/>
+		public ReadOnlySpan<TSource> Take(Range range)
+		{
+			var minIndex = range.Start.GetOffset(source.Length);
+			var maxIndex = range.End.GetOffset(source.Length);
+			if (maxIndex <= minIndex)
+			{
+				throw new InvalidOperationException(SR.ExceptionMessage("NoElementsFoundInCollection"));
+			}
+
+			var result = new List<TSource>(maxIndex - minIndex);
+			result.AddRangeRef(source[Math.Min(minIndex, source.Length)..Math.Min(maxIndex, source.Length)]);
+			return result.AsSpan();
+		}
 	}
 }

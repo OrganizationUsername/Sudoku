@@ -2,14 +2,22 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
-	public static ReadOnlySpan<(int Index, T Value)> Index<T>(this ReadOnlySpan<T> @this)
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var result = new (int, T)[@this.Length];
-		for (var i = 0; i < @this.Length; i++)
+		/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>
+		public ReadOnlySpan<(int Index, TSource Value)> Index()
 		{
-			result[i] = (i, @this[i]);
+			var result = new (int, TSource)[source.Length];
+			for (var i = 0; i < source.Length; i++)
+			{
+				result[i] = (i, source[i]);
+			}
+			return result;
 		}
-		return result;
 	}
 }

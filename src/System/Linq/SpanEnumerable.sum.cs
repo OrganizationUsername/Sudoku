@@ -2,45 +2,60 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="ISumMethod{TSelf, TSource}.Sum"/>
-	public static T Sum<T>(this ReadOnlySpan<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
+		where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 	{
-		var result = T.AdditiveIdentity;
-		foreach (ref readonly var element in @this)
+		/// <inheritdoc cref="ISumMethod{TSelf, TSource}.Sum"/>
+		public TSource Sum()
 		{
-			result += element;
+			var result = TSource.AdditiveIdentity;
+			foreach (ref readonly var element in source)
+			{
+				result += element;
+			}
+			return result;
 		}
-		return result;
 	}
 
 	/// <summary>
-	/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
 	/// </summary>
 	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <typeparam name="TKey">The type of key to add up.</typeparam>
-	/// <param name="this">The collection to be used and checked.</param>
-	/// <param name="keySelector">A function to extract the key for each element.</param>
-	/// <returns>The value with the sum key in the sequence.</returns>
-	public static TKey Sum<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var result = TKey.AdditiveIdentity;
-		foreach (var element in @this)
+		/// <summary>
+		/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.
+		/// </summary>
+		/// <typeparam name="TKey">The type of key to add up.</typeparam>
+		/// <param name="keySelector">A function to extract the key for each element.</param>
+		/// <returns>The value with the sum key in the sequence.</returns>
+		public TKey Sum<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
 		{
-			result += keySelector(element);
+			var result = TKey.AdditiveIdentity;
+			foreach (var element in source)
+			{
+				result += keySelector(element);
+			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Sum{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
-	public static unsafe TResult SumUnsafe<T, TResult>(this ReadOnlySpan<T> source, delegate*<T, TResult> selector)
-		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
-	{
-		var result = TResult.AdditiveIdentity;
-		foreach (var element in source)
+		/// <inheritdoc cref="Sum{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+		public unsafe TResult SumUnsafe<TResult>(delegate*<TSource, TResult> selector)
+			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{
-			result += selector(element);
+			var result = TResult.AdditiveIdentity;
+			foreach (var element in source)
+			{
+				result += selector(element);
+			}
+			return result;
 		}
-		return result;
 	}
 }

@@ -3,36 +3,42 @@ namespace System.Linq;
 public partial class ArrayEnumerable
 {
 	/// <summary>
-	/// Totals up the number of elements that satisfy the specified condition.
+	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <param name="predicate">The condition.</param>
-	/// <returns>The number of elements satisfying the specified condition.</returns>
-	public static int Count<T>(this T[] @this, Func<T, bool> predicate)
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="source">The array.</param>
+	extension<TSource>(TSource[] source)
 	{
-		var result = 0;
-		foreach (var element in @this)
+		/// <summary>
+		/// Totals up the number of elements that satisfy the specified condition.
+		/// </summary>
+		/// <param name="predicate">The condition.</param>
+		/// <returns>The number of elements satisfying the specified condition.</returns>
+		public int Count(Func<TSource, bool> predicate)
 		{
-			if (predicate(element))
+			var result = 0;
+			foreach (var element in source)
 			{
-				result++;
+				if (predicate(element))
+				{
+					result++;
+				}
 			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Count{T}(T[], Func{T, bool})"/>
-	public static unsafe int CountUnsafe<T>(this T[] @this, delegate*<T, bool> predicate)
-	{
-		var result = 0;
-		foreach (var element in @this)
+		/// <inheritdoc cref="Count{T}(T[], Func{T, bool})"/>
+		public unsafe int CountUnsafe(delegate*<TSource, bool> predicate)
 		{
-			if (predicate(element))
+			var result = 0;
+			foreach (var element in source)
 			{
-				result++;
+				if (predicate(element))
+				{
+					result++;
+				}
 			}
+			return result;
 		}
-		return result;
 	}
 }

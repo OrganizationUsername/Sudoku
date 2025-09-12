@@ -8,17 +8,17 @@ public static class MultidimensionalArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <typeparamref name="TSource"/>[,].
 	/// </summary>
-	extension<TSource>(TSource[,] @this)
+	extension<TSource>(TSource[,] source)
 	{
 		/// <inheritdoc cref="ArrayEnumerable.Select{T, TResult}(T[], Func{T, TResult})"/>
 		public TResult[,] Select<TResult>(Func<TSource, TResult> selector)
 		{
-			var result = new TResult[@this.GetLength(0), @this.GetLength(1)];
-			for (var i = 0; i < @this.GetLength(0); i++)
+			var result = new TResult[source.GetLength(0), source.GetLength(1)];
+			for (var i = 0; i < source.GetLength(0); i++)
 			{
-				for (var j = 0; j < @this.GetLength(1); j++)
+				for (var j = 0; j < source.GetLength(1); j++)
 				{
-					result[i, j] = selector(@this[i, j]);
+					result[i, j] = selector(source[i, j]);
 				}
 			}
 			return result;
@@ -27,12 +27,12 @@ public static class MultidimensionalArrayEnumerable
 		/// <inheritdoc cref="ArrayEnumerable.Select{T, TResult}(T[], Func{T, int, TResult})"/>
 		public TResult[,] Select<TResult>(Func<TSource, int, int, TResult> selector)
 		{
-			var result = new TResult[@this.GetLength(0), @this.GetLength(1)];
-			for (var i = 0; i < @this.GetLength(0); i++)
+			var result = new TResult[source.GetLength(0), source.GetLength(1)];
+			for (var i = 0; i < source.GetLength(0); i++)
 			{
-				for (var j = 0; j < @this.GetLength(1); j++)
+				for (var j = 0; j < source.GetLength(1); j++)
 				{
-					result[i, j] = selector(@this[i, j], i, j);
+					result[i, j] = selector(source[i, j], i, j);
 				}
 			}
 			return result;

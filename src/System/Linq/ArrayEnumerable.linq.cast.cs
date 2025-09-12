@@ -2,14 +2,20 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
-	public static TResult[] Cast<TResult>(this object[] @this)
+	/// <summary>
+	/// Provides extension members on <see cref="object"/>[].
+	/// </summary>
+	extension(object[] source)
 	{
-		var result = new TResult[@this.Length];
-		for (var i = 0; i < @this.Length; i++)
+		/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
+		public TResult[] Cast<TResult>()
 		{
-			result[i] = (TResult)@this[i];
+			var result = new TResult[source.Length];
+			for (var i = 0; i < source.Length; i++)
+			{
+				result[i] = (TResult)source[i];
+			}
+			return result;
 		}
-		return result;
 	}
 }

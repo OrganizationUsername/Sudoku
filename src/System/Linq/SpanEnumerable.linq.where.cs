@@ -2,33 +2,41 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, bool})"/>
-	public static ReadOnlySpan<TSource> Where<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, bool> predicate)
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var result = new TSource[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
+		/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, bool})"/>
+		public ReadOnlySpan<TSource> Where(Func<TSource, bool> predicate)
 		{
-			if (predicate(element))
+			var result = new TSource[source.Length];
+			var i = 0;
+			foreach (var element in source)
 			{
-				result[i++] = element;
+				if (predicate(element))
+				{
+					result[i++] = element;
+				}
 			}
+			return result.AsReadOnlySpan()[..i];
 		}
-		return result.AsReadOnlySpan()[..i];
-	}
 
-	/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, int, bool})"/>
-	public static ReadOnlySpan<TSource> Where<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, int, bool> predicate)
-	{
-		var result = new TSource[@this.Length];
-		var i = 0;
-		for (var j = 0; j < @this.Length; j++)
+		/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, int, bool})"/>
+		public ReadOnlySpan<TSource> Where(Func<TSource, int, bool> predicate)
 		{
-			if (predicate(@this[j], j))
+			var result = new TSource[source.Length];
+			var i = 0;
+			for (var j = 0; j < source.Length; j++)
 			{
-				result[i++] = @this[j];
+				if (predicate(source[j], j))
+				{
+					result[i++] = source[j];
+				}
 			}
+			return result.AsReadOnlySpan()[..i];
 		}
-		return result.AsReadOnlySpan()[..i];
 	}
 }

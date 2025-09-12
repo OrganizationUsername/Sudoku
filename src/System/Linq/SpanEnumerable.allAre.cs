@@ -3,21 +3,27 @@ namespace System.Linq;
 public partial class SpanEnumerable
 {
 	/// <summary>
-	/// Determines whether all elements are of type <typeparamref name="TDerived"/>.
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TBase"/>.
 	/// </summary>
-	/// <typeparam name="TBase">The type of each element.</typeparam>
-	/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
-	/// <param name="this">The collection to be used and checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool AllAre<TBase, TDerived>(this ReadOnlySpan<TBase> @this) where TDerived : class?, TBase?
+	/// <typeparam name="TBase">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TBase>(ReadOnlySpan<TBase> source)
 	{
-		foreach (ref readonly var element in @this)
+		/// <summary>
+		/// Determines whether all elements are of type <typeparamref name="TDerived"/>.
+		/// </summary>
+		/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public bool AllAre<TDerived>() where TDerived : TBase?
 		{
-			if (element is not TDerived)
+			foreach (ref readonly var element in source)
 			{
-				return false;
+				if (element is not TDerived)
+				{
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
 	}
 }

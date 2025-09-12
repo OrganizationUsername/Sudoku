@@ -1,7 +1,15 @@
 namespace System.Linq;
 
-public partial class SpanEnumerable
+public static partial class SpanEnumerable
 {
-	/// <inheritdoc cref="ISkipMethod{TSelf, TSource}.Skip(int)"/>
-	public static ReadOnlySpan<TSource> Skip<TSource>(this ReadOnlySpan<TSource> @this, int count) => @this[count..];
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
+	{
+		/// <inheritdoc cref="ISkipMethod{TSelf, TSource}.Skip(int)"/>
+		public ReadOnlySpan<TSource> Skip(int count) => source[count..];
+	}
 }

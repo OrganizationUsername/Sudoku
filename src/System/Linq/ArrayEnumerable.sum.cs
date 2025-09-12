@@ -3,50 +3,63 @@ namespace System.Linq;
 public partial class ArrayEnumerable
 {
 	/// <summary>
-	/// Sum all elements up and return the result.
+	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The array that contains a list of elements to be calculated.</param>
-	/// <returns>A <typeparamref name="T"/> instance as the result.</returns>
-	public static T Sum<T>(this T[] @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="source">The array that contains a list of elements to be calculated.</param>
+	extension<TSource>(TSource[] source)
+		where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 	{
-		var result = T.AdditiveIdentity;
-		foreach (ref readonly var element in @this.AsReadOnlySpan())
+		/// <summary>
+		/// Sum all elements up and return the result.
+		/// </summary>
+		/// <returns>A <typeparamref name="TSource"/> instance as the result.</returns>
+		public TSource Sum()
 		{
-			result += element;
+			var result = TSource.AdditiveIdentity;
+			foreach (ref readonly var element in source.AsReadOnlySpan())
+			{
+				result += element;
+			}
+			return result;
 		}
-		return result;
 	}
 
 	/// <summary>
-	/// Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
-	/// on each element of the input sequence.
+	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	/// <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
-	/// <typeparam name="TResult">The type of the return value.</typeparam>
+	/// <typeparam name="TSource">The type of element of <paramref name="source"/>.</typeparam>
 	/// <param name="source">Indicates the source values.</param>
-	/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
-	/// <returns>The result value.</returns>
-	public static TResult Sum<T, TResult>(this T[] source, Func<T, TResult> selector)
-		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
+	extension<TSource>(TSource[] source)
 	{
-		var result = TResult.AdditiveIdentity;
-		foreach (var element in source)
+		/// <summary>
+		/// Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
+		/// on each element of the input sequence.
+		/// </summary>
+		/// <typeparam name="TResult">The type of the return value.</typeparam>
+		/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
+		/// <returns>The result value.</returns>
+		public TResult Sum<TResult>(Func<TSource, TResult> selector)
+			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{
-			result += selector(element);
+			var result = TResult.AdditiveIdentity;
+			foreach (var element in source)
+			{
+				result += selector(element);
+			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Sum{T, TResult}(T[], Func{T, TResult})"/>
-	public static unsafe TResult SumUnsafe<T, TResult>(this T[] source, delegate*<T, TResult> selector)
-		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
-	{
-		var result = TResult.AdditiveIdentity;
-		foreach (var element in source)
+		/// <inheritdoc cref="Sum{T, TResult}(T[], Func{T, TResult})"/>
+		public unsafe TResult SumUnsafe<TResult>(delegate*<TSource, TResult> selector)
+			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{
-			result += selector(element);
+			var result = TResult.AdditiveIdentity;
+			foreach (var element in source)
+			{
+				result += selector(element);
+			}
+			return result;
 		}
-		return result;
 	}
 }

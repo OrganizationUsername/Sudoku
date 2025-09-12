@@ -2,17 +2,23 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="ICastMethod{TSelf, TSource}.Cast{TResult}"/>
-	public static ReadOnlySpan<TDerived> Cast<TBase, TDerived>(this ReadOnlySpan<TBase> @this)
-		where TBase : class
-		where TDerived : class, TBase
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source) where TSource : class
 	{
-		var result = new TDerived[@this.Length];
-		var i = 0;
-		foreach (ref readonly var element in @this)
+		/// <inheritdoc cref="ICastMethod{TSelf, TSource}.Cast{TResult}"/>
+		public ReadOnlySpan<TDerived> Cast<TDerived>() where TDerived : class, TSource
 		{
-			result[i++] = (TDerived)element;
+			var result = new TDerived[source.Length];
+			var i = 0;
+			foreach (ref readonly var element in source)
+			{
+				result[i++] = (TDerived)element;
+			}
+			return result;
 		}
-		return result;
 	}
 }

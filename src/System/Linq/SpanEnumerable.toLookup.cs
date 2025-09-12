@@ -2,48 +2,45 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static ValueLookup<TKey, TSource> ToLookup<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : notnull
-		=> @this.ToLookup(keySelector, Func<TSource>.Self, null);
-
-	/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey}?)"/>
-	public static ValueLookup<TKey, TSource> ToLookup<TSource, TKey>(
-		this ReadOnlySpan<TSource> @this,
-		Func<TSource, TKey> keySelector,
-		IEqualityComparer<TKey>? comparer
-	)
-		where TKey : notnull
-		=> @this.ToLookup(keySelector, Func<TSource>.Self, comparer);
-
-	/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
-	public static ValueLookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(
-		this ReadOnlySpan<TSource> @this,
-		Func<TSource, TKey> keySelector,
-		Func<TSource, TElement> elementSelector
-	)
-		where TKey : notnull
-		=> @this.ToLookup(keySelector, elementSelector, null);
-
-	/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, IEqualityComparer{TKey}?)"/>
-	public static ValueLookup<TKey, TElement> ToLookup<TSource, TKey, TElement>(
-		this ReadOnlySpan<TSource> @this,
-		Func<TSource, TKey> keySelector,
-		Func<TSource, TElement> elementSelector,
-		IEqualityComparer<TKey>? comparer
-	)
-		where TKey : notnull
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var dictionary = new Dictionary<TKey, List<TElement>>(comparer);
-		foreach (var source in @this)
+		/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		public ValueLookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : notnull
+			=> source.ToLookup(keySelector, Func<TSource>.Self, null);
+
+		/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey}?)"/>
+		public ValueLookup<TKey, TSource> ToLookup<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey>? comparer)
+			where TKey : notnull
+			=> source.ToLookup(keySelector, Func<TSource>.Self, comparer);
+
+		/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
+		public ValueLookup<TKey, TElement> ToLookup<TKey, TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
+			where TKey : notnull
+			=> source.ToLookup(keySelector, elementSelector, null);
+
+		/// <inheritdoc cref="Enumerable.ToLookup{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, IEqualityComparer{TKey}?)"/>
+		public ValueLookup<TKey, TElement> ToLookup<TKey, TElement>(
+			Func<TSource, TKey> keySelector,
+			Func<TSource, TElement> elementSelector,
+			IEqualityComparer<TKey>? comparer
+		)
+			where TKey : notnull
 		{
-			var key = keySelector(source);
-			var element = elementSelector(source);
-			if (!dictionary.TryAdd(key, [element]))
+			var dictionary = new Dictionary<TKey, List<TElement>>(comparer);
+			foreach (var sourceElement in source)
 			{
-				dictionary[key].AddRef(element);
+				var key = keySelector(sourceElement);
+				var element = elementSelector(sourceElement);
+				if (!dictionary.TryAdd(key, [element]))
+				{
+					dictionary[key].AddRef(element);
+				}
 			}
+			return new(dictionary.ToDictionary(static kvp => kvp.Key, static kvp => kvp.Value.ToArray()));
 		}
-		return new(dictionary.ToDictionary(static kvp => kvp.Key, static kvp => kvp.Value.ToArray()));
 	}
 }

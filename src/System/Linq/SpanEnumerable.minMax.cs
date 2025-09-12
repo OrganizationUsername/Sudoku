@@ -2,170 +2,178 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.Min()"/>
-	public static TSource Min<TSource>(this ReadOnlySpan<TSource> @this)
-		where TSource : IComparisonOperators<TSource, TSource, bool>, IMinMaxValue<TSource>
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source) where TSource : IComparisonOperators<TSource, TSource, bool>, IMinMaxValue<TSource>
 	{
-		var result = TSource.MaxValue;
-		foreach (ref readonly var element in @this)
+		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.Min()"/>
+		public TSource Min()
 		{
-			if (element <= result)
+			var result = TSource.MaxValue;
+			foreach (ref readonly var element in source)
 			{
-				result = element;
+				if (element <= result)
+				{
+					result = element;
+				}
 			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static TKey Min<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
-	{
-		var resultKey = TKey.MaxValue;
-		foreach (var element in @this)
+		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.Max()"/>
+		public TSource Max()
 		{
-			var key = keySelector(element);
-			if (key <= resultKey)
+			var result = TSource.MinValue;
+			foreach (ref readonly var element in source)
 			{
-				resultKey = key;
+				if (element >= result)
+				{
+					result = element;
+				}
 			}
+			return result;
 		}
-		return resultKey;
-	}
 
-	/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MinBy{TKey}(Func{TSource, TKey})"/>
-	public static TSource? MinBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
-	{
-		var (resultKey, result) = (TKey.MaxValue, default(TSource));
-		foreach (var element in @this)
+		/// <summary>
+		/// Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
+		/// </summary>
+		/// <param name="predicate">The condition to be checked.</param>
+		/// <returns>The maximum value.</returns>
+		public TSource MaxIf(Func<TSource, bool> predicate)
 		{
-			if (keySelector(element) <= resultKey)
+			var resultKey = TSource.MinValue;
+			foreach (var element in source)
 			{
-				result = element;
+				if (predicate(element) && element >= resultKey)
+				{
+					resultKey = element;
+				}
 			}
+			return resultKey;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="Min{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
-	public static unsafe TResult? MinUnsafe<T, TResult>(this ReadOnlySpan<T> @this, delegate*<T, TResult> selector)
-		where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
-	{
-		var result = TResult.MaxValue;
-		foreach (var element in @this)
+		/// <summary>
+		/// Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
+		/// </summary>
+		/// <param name="predicate">The condition to be checked.</param>
+		/// <param name="default">The default value if all elements in sequence are ignored.</param>
+		/// <returns>The maximum value.</returns>
+		public TSource MaxIf(Func<TSource, bool> predicate, TSource @default)
 		{
-			var elementCasted = selector(element);
-			if (elementCasted <= result)
+			var resultKey = TSource.MinValue;
+			foreach (var element in source)
 			{
-				result = elementCasted;
+				if (predicate(element) && element >= resultKey)
+				{
+					resultKey = element;
+				}
 			}
+			return resultKey == TSource.MinValue ? @default : resultKey;
 		}
-		return result;
-	}
-
-	/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.Max()"/>
-	public static TSource Max<TSource>(this ReadOnlySpan<TSource> @this)
-		where TSource : IComparisonOperators<TSource, TSource, bool>, IMinMaxValue<TSource>
-	{
-		var result = TSource.MinValue;
-		foreach (ref readonly var element in @this)
-		{
-			if (element >= result)
-			{
-				result = element;
-			}
-		}
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static TKey Max<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
-	{
-		var resultKey = TKey.MinValue;
-		foreach (var element in @this)
-		{
-			var key = keySelector(element);
-			if (key >= resultKey)
-			{
-				resultKey = key;
-			}
-		}
-		return resultKey;
-	}
-
-	/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MaxBy{TKey}(Func{TSource, TKey})"/>
-	public static TSource? MaxBy<TSource, TKey>(this ReadOnlySpan<TSource> @this, Func<TSource, TKey> keySelector)
-		where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
-	{
-		var (resultKey, result) = (TKey.MinValue, default(TSource));
-		foreach (var element in @this)
-		{
-			if (keySelector(element) >= resultKey)
-			{
-				result = element;
-			}
-		}
-		return result;
-	}
-
-	/// <inheritdoc cref="Max{TSource, TInterim}(ReadOnlySpan{TSource}, Func{TSource, TInterim})"/>
-	public static unsafe TResult MaxUnsafe<T, TResult>(this ReadOnlySpan<T> @this, delegate*<T, TResult> selector)
-		where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
-	{
-		var result = TResult.MinValue;
-		foreach (var element in @this)
-		{
-			var elementCasted = selector(element);
-			if (elementCasted >= result)
-			{
-				result = elementCasted;
-			}
-		}
-		return result;
 	}
 
 	/// <summary>
-	/// Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
 	/// </summary>
-	/// <typeparam name="TSource">The type of source elements.</typeparam>
-	/// <param name="this">The source sequence.</param>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <returns>The maximum value.</returns>
-	public static TSource MaxIf<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, bool> predicate)
-		where TSource : IMinMaxValue<TSource>, IComparisonOperators<TSource, TSource, bool>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var resultKey = TSource.MinValue;
-		foreach (var element in @this)
+		/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		public TKey Min<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
-			if (predicate(element) && element >= resultKey)
+			var resultKey = TKey.MaxValue;
+			foreach (var element in source)
 			{
-				resultKey = element;
+				var key = keySelector(element);
+				if (key <= resultKey)
+				{
+					resultKey = key;
+				}
 			}
+			return resultKey;
 		}
-		return resultKey;
-	}
 
-	/// <summary>
-	/// Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
-	/// </summary>
-	/// <typeparam name="TSource">The type of source elements.</typeparam>
-	/// <param name="this">The source sequence.</param>
-	/// <param name="predicate">The condition to be checked.</param>
-	/// <param name="default">The default value if all elements in sequence are ignored.</param>
-	/// <returns>The maximum value.</returns>
-	public static TSource MaxIf<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, bool> predicate, TSource @default)
-		where TSource : IMinMaxValue<TSource>, IComparisonOperators<TSource, TSource, bool>
-	{
-		var resultKey = TSource.MinValue;
-		foreach (var element in @this)
+		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MinBy{TKey}(Func{TSource, TKey})"/>
+		public TSource? MinBy<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
-			if (predicate(element) && element >= resultKey)
+			var (resultKey, result) = (TKey.MaxValue, default(TSource));
+			foreach (var element in source)
 			{
-				resultKey = element;
+				if (keySelector(element) <= resultKey)
+				{
+					result = element;
+				}
 			}
+			return result;
 		}
-		return resultKey == TSource.MinValue ? @default : resultKey;
+
+		/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		public TKey Max<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
+		{
+			var resultKey = TKey.MinValue;
+			foreach (var element in source)
+			{
+				var key = keySelector(element);
+				if (key >= resultKey)
+				{
+					resultKey = key;
+				}
+			}
+			return resultKey;
+		}
+
+		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MaxBy{TKey}(Func{TSource, TKey})"/>
+		public TSource? MaxBy<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
+		{
+			var (resultKey, result) = (TKey.MinValue, default(TSource));
+			foreach (var element in source)
+			{
+				if (keySelector(element) >= resultKey)
+				{
+					result = element;
+				}
+			}
+			return result;
+		}
+
+		/// <inheritdoc cref="Min{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+		public unsafe TResult? MinUnsafe<TResult>(delegate*<TSource, TResult> selector)
+			where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
+		{
+			var result = TResult.MaxValue;
+			foreach (var element in source)
+			{
+				var elementCasted = selector(element);
+				if (elementCasted <= result)
+				{
+					result = elementCasted;
+				}
+			}
+			return result;
+		}
+
+		/// <inheritdoc cref="Max{TSource, TInterim}(ReadOnlySpan{TSource}, Func{TSource, TInterim})"/>
+		public unsafe TResult MaxUnsafe<TResult>(delegate*<TSource, TResult> selector)
+			where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
+		{
+			var result = TResult.MinValue;
+			foreach (var element in source)
+			{
+				var elementCasted = selector(element);
+				if (elementCasted >= result)
+				{
+					result = elementCasted;
+				}
+			}
+			return result;
+		}
 	}
 }

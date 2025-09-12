@@ -2,30 +2,34 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="IAggregateMethod{TSelf, TSource}.Aggregate(Func{TSource, TSource, TSource})"/>
-	public static TSource Aggregate<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, TSource, TSource> func)
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		var result = default(TSource)!;
-		foreach (var element in @this)
+		/// <inheritdoc cref="IAggregateMethod{TSelf, TSource}.Aggregate(Func{TSource, TSource, TSource})"/>
+		public TSource Aggregate(Func<TSource, TSource, TSource> func)
 		{
-			result = func(result, element);
+			var result = default(TSource)!;
+			foreach (var element in source)
+			{
+				result = func(result, element);
+			}
+			return result;
 		}
-		return result;
-	}
 
-	/// <inheritdoc cref="IAggregateMethod{TSelf, TSource}.Aggregate{TAccumulate, TResult}(TAccumulate, Func{TAccumulate, TSource, TAccumulate}, Func{TAccumulate, TResult})"/>
-	public static TAccumulate Aggregate<TSource, TAccumulate>(
-		this ReadOnlySpan<TSource> @this,
-		TAccumulate seed,
-		Func<TAccumulate, TSource, TAccumulate> func
-	)
-		where TAccumulate : allows ref struct
-	{
-		var result = seed;
-		foreach (var element in @this)
+		/// <inheritdoc cref="IAggregateMethod{TSelf, TSource}.Aggregate{TAccumulate, TResult}(TAccumulate, Func{TAccumulate, TSource, TAccumulate}, Func{TAccumulate, TResult})"/>
+		public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+			where TAccumulate : allows ref struct
 		{
-			result = func(result, element);
+			var result = seed;
+			foreach (var element in source)
+			{
+				result = func(result, element);
+			}
+			return result;
 		}
-		return result;
 	}
 }

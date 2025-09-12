@@ -3,25 +3,31 @@ namespace System.Linq;
 public partial class ArrayEnumerable
 {
 	/// <summary>
-	/// Filters a sequence of values based on a predicate.
+	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	/// <typeparam name="T">The type of the elements of source.</typeparam>
-	/// <param name="this">An array of <typeparamref name="T"/> instances to filter.</param>
-	/// <param name="predicate">A function to test each element for a condition.</param>
-	/// <returns>
-	/// An array of <typeparamref name="T"/> instances that contains elements from the input sequence that satisfy the condition.
-	/// </returns>
-	public static T[] Where<T>(this T[] @this, Func<T, bool> predicate)
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">An array of <typeparamref name="TSource"/> instances to filter.</param>
+	extension<TSource>(TSource[] source)
 	{
-		var (length, finalIndex) = (@this.Length, 0);
-		var result = new T[length];
-		for (var i = 0; i < length; i++)
+		/// <summary>
+		/// Filters a sequence of values based on a predicate.
+		/// </summary>
+		/// <param name="predicate">A function to test each element for a condition.</param>
+		/// <returns>
+		/// An array of <typeparamref name="TSource"/> instances that contains elements from the input sequence that satisfy the condition.
+		/// </returns>
+		public TSource[] Where(Func<TSource, bool> predicate)
 		{
-			if (predicate(@this[i]))
+			var (length, finalIndex) = (source.Length, 0);
+			var result = new TSource[length];
+			for (var i = 0; i < length; i++)
 			{
-				result[finalIndex++] = @this[i];
+				if (predicate(source[i]))
+				{
+					result[finalIndex++] = source[i];
+				}
 			}
+			return result[..finalIndex];
 		}
-		return result[..finalIndex];
 	}
 }

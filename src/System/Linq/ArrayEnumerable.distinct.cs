@@ -3,99 +3,105 @@ namespace System.Linq;
 public partial class ArrayEnumerable
 {
 	/// <summary>
-	/// Filters duplicate items from an array.
+	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The array to be filtered.</param>
-	/// <returns>A new array of elements that doesn't contain any duplicate items.</returns>
-	public static T[] Distinct<T>(this T[] @this)
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="source">The array to be filtered.</param>
+	extension<TSource>(TSource[] source)
 	{
-		if (@this.Length == 0 || ReferenceEquals(@this, Array.Empty<T>()))
+		/// <summary>
+		/// Filters duplicate items from an array.
+		/// </summary>
+		/// <returns>A new array of elements that doesn't contain any duplicate items.</returns>
+		public TSource[] Distinct()
 		{
-			return [];
-		}
-
-		var tempSet = new HashSet<T>(@this.Length, EqualityComparer<T>.Default);
-		var result = new T[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
-		{
-			if (tempSet.Add(element))
+			if (source.Length == 0 || ReferenceEquals(source, Array.Empty<TSource>()))
 			{
-				result[i++] = element;
+				return [];
 			}
-		}
-		return result[..i];
-	}
 
-	/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static T[] DistinctBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector)
-		where TKey : notnull, IEqualityOperators<TKey, TKey, bool>
-	{
-		var result = new T[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
-		{
-			if (i == 0)
+			var tempSet = new HashSet<TSource>(source.Length, EqualityComparer<TSource>.Default);
+			var result = new TSource[source.Length];
+			var i = 0;
+			foreach (var element in source)
 			{
-				result[i++] = element;
-			}
-			else
-			{
-				var elementKey = keySelector(element);
-				var contains = false;
-				foreach (var recordedElement in result)
-				{
-					var recordedElementKey = keySelector(recordedElement);
-					if (elementKey == recordedElementKey)
-					{
-						contains = true;
-						break;
-					}
-				}
-				if (!contains)
+				if (tempSet.Add(element))
 				{
 					result[i++] = element;
 				}
 			}
+			return result[..i];
 		}
-		return result[..i];
-	}
 
-	/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey})"/>
-	public static T[] DistinctBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector, IEqualityComparer<TKey> equalityComparer)
-		where TKey : notnull
-	{
-		var result = new T[@this.Length];
-		var i = 0;
-		foreach (var element in @this)
+		/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		public TSource[] DistinctBy<TKey>(Func<TSource, TKey> keySelector)
+			where TKey : notnull, IEqualityOperators<TKey, TKey, bool>
 		{
-			if (i == 0)
+			var result = new TSource[source.Length];
+			var i = 0;
+			foreach (var element in source)
 			{
-				result[i++] = element;
-			}
-			else
-			{
-				var elementKey = keySelector(element);
-				var hashCodeThis = equalityComparer.GetHashCode(elementKey);
-
-				var contains = false;
-				foreach (ref readonly var recordedElement in result.AsReadOnlySpan()[..i])
-				{
-					var recordedElementKey = keySelector(recordedElement);
-					var hashCodeOther = equalityComparer.GetHashCode(recordedElementKey);
-					if (hashCodeThis == hashCodeOther && equalityComparer.Equals(elementKey, recordedElementKey))
-					{
-						contains = true;
-						break;
-					}
-				}
-				if (!contains)
+				if (i == 0)
 				{
 					result[i++] = element;
 				}
+				else
+				{
+					var elementKey = keySelector(element);
+					var contains = false;
+					foreach (var recordedElement in result)
+					{
+						var recordedElementKey = keySelector(recordedElement);
+						if (elementKey == recordedElementKey)
+						{
+							contains = true;
+							break;
+						}
+					}
+					if (!contains)
+					{
+						result[i++] = element;
+					}
+				}
 			}
+			return result[..i];
 		}
-		return result[..i];
+
+		/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey})"/>
+		public TSource[] DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey> equalityComparer)
+			where TKey : notnull
+		{
+			var result = new TSource[source.Length];
+			var i = 0;
+			foreach (var element in source)
+			{
+				if (i == 0)
+				{
+					result[i++] = element;
+				}
+				else
+				{
+					var elementKey = keySelector(element);
+					var hashCodeThis = equalityComparer.GetHashCode(elementKey);
+
+					var contains = false;
+					foreach (ref readonly var recordedElement in result.AsReadOnlySpan()[..i])
+					{
+						var recordedElementKey = keySelector(recordedElement);
+						var hashCodeOther = equalityComparer.GetHashCode(recordedElementKey);
+						if (hashCodeThis == hashCodeOther && equalityComparer.Equals(elementKey, recordedElementKey))
+						{
+							contains = true;
+							break;
+						}
+					}
+					if (!contains)
+					{
+						result[i++] = element;
+					}
+				}
+			}
+			return result[..i];
+		}
 	}
 }

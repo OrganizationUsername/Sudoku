@@ -2,55 +2,63 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.Any(Func{TSource, bool})"/>
-	public static bool Any<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, bool> match)
+	/// <summary>
+	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
+	/// </summary>
+	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
+	/// <param name="source">The collection to be used and checked.</param>
+	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
-		foreach (var element in @this)
+		/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.Any(Func{TSource, bool})"/>
+		public bool Any(Func<TSource, bool> match)
 		{
-			if (match(element))
+			foreach (var element in source)
 			{
-				return true;
+				if (match(element))
+				{
+					return true;
+				}
 			}
+			return false;
 		}
-		return false;
-	}
 
-	/// <inheritdoc cref="Any{TSource}(ReadOnlySpan{TSource}, Func{TSource, bool})"/>
-	public static unsafe bool AnyUnsafe<TSource>(this ReadOnlySpan<TSource> @this, delegate*<TSource, bool> match)
-	{
-		foreach (var element in @this)
+		/// <inheritdoc cref="Any{TSource}(ReadOnlySpan{TSource}, Func{TSource, bool})"/>
+		public unsafe bool AnyUnsafe(delegate*<TSource, bool> match)
 		{
-			if (match(element))
+			foreach (var element in source)
 			{
-				return true;
+				if (match(element))
+				{
+					return true;
+				}
 			}
+			return false;
 		}
-		return false;
-	}
 
-	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.All(Func{TSource, bool})"/>
-	public static bool All<TSource>(this ReadOnlySpan<TSource> @this, Func<TSource, bool> match)
-	{
-		foreach (var element in @this)
+		/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.All(Func{TSource, bool})"/>
+		public bool All(Func<TSource, bool> match)
 		{
-			if (!match(element))
+			foreach (var element in source)
 			{
-				return false;
+				if (!match(element))
+				{
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
-	}
 
-	/// <inheritdoc cref="All{TSource}(ReadOnlySpan{TSource}, Func{TSource, bool})"/>
-	public static unsafe bool AllUnsafe<TSource>(this ReadOnlySpan<TSource> @this, delegate*<TSource, bool> match)
-	{
-		foreach (var element in @this)
+		/// <inheritdoc cref="All{TSource}(ReadOnlySpan{TSource}, Func{TSource, bool})"/>
+		public unsafe bool AllUnsafe(delegate*<TSource, bool> match)
 		{
-			if (!match(element))
+			foreach (var element in source)
 			{
-				return false;
+				if (!match(element))
+				{
+					return false;
+				}
 			}
+			return true;
 		}
-		return true;
 	}
 }

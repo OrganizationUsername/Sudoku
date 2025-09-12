@@ -2251,119 +2251,278 @@
             <seealso cref="T:System.Array"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Aggregate(System.Func{`0,`0,`0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Aggregate``2(``0[],``1,System.Func{``1,``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Aggregate``1(``0,System.Func{``0,`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Append(`0)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Prepend(`0)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Count(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.CountUnsafe``1(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.CountUnsafe()"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Distinct``1(``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Distinct"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.DistinctBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.DistinctBy``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Index``1(``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Index"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.Cast``1"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupBy``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.OrderBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.OrderBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.OrderByDescending``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.OrderByDescending``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Select``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,System.Int32,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Select``1(System.Func{`0,System.Int32,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Where(System.Func{`0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Min``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinUnsafe``1()"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Max``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxUnsafe``1()"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinBy``3(``0[],System.Func{``0,``1},``2)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinBy``2(System.Func{`0,``0},``1)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxBy``3(``0[],System.Func{``0,``1},``2)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxBy``2(System.Func{`0,``0},``1)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.OfType``1(System.Object[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.OfType``1"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Shuffle``1(``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Shuffle"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Shuffle``1(``0[],System.Random)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Shuffle(System.Random)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Sum``1(``0[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$680A14DE9A907B5CE3C74E9F7B5BA2C1.Sum"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Sum``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.SumUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.SumUnsafe``1()"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.ToLookup``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.ToLookup``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.ToLookup``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.ToLookup``3(``0[],System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Zip``1(``0[])"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.&lt;M&gt;$6EB964B81CE124BD3475F312AC48B617">
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">An array of elements to be aggregated over.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The array.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The array to be filtered.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The object to be iterated.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">An array of <typeparamref name="TSource"/> instances to filter.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of the elements of <paramref name="source"/>.</typeparam>
+            <param name="source">A sequence of values to determine the minimum value of.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of element of <paramref name="source"/>.</typeparam>
+            <param name="source">Indicates the source values.</param>
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Aggregate(System.Func{`0,`0,`0})">
             <summary>
             Applies an accumulator function over a sequence.
             </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="this">An array of elements to be aggregated over.</param>
             <param name="func">The function that aggregates the values.</param>
             <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Aggregate``2(``0[],``1,System.Func{``1,``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Aggregate``1(``0,System.Func{``0,`0,``0})">
             <summary>
             Applies an accumulator function over a sequence. The initial value can be set in this method.
             </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
             <typeparam name="TAccumulate">The type of the accumulated values.</typeparam>
-            <param name="this">An array of elements to be aggregated over.</param>
             <param name="seed">The initial value.</param>
             <param name="func">The function that aggregates the values.</param>
             <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Append``1(``0[],``0)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Append(`0)">
             <inheritdoc cref="M:System.Linq.Enumerable.Append``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Prepend``1(``0[],``0)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Prepend(`0)">
             <inheritdoc cref="M:System.Linq.Enumerable.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Count(System.Func{`0,System.Boolean})">
             <summary>
             Totals up the number of elements that satisfy the specified condition.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array.</param>
             <param name="predicate">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.CountUnsafe``1(``0[],)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.CountUnsafe()">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Count``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Distinct``1(``0[])">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Distinct">
             <summary>
             Filters duplicate items from an array.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array to be filtered.</param>
             <returns>A new array of elements that doesn't contain any duplicate items.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.DistinctBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.DistinctBy``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Index``1(``0[])">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Index">
             <summary>
             Returns a new array instance that contains each element with its corresponding index.
             </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The object to be iterated.</param>
             <returns>A new array instance.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
-            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.GroupBy``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.GroupBy``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3},System.Collections.Generic.IEqualityComparer{``2})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.OrderBy``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.OrderBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.OrderByDescending``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.OrderByDescending``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Select``1(System.Func{`0,``0})">
             <returns>
             An array of <typeparamref name="TResult"/> instances being the result
             of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,System.Int32,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Select``1(System.Func{`0,System.Int32,``0})">
             <summary>
             An array of <typeparamref name="TResult"/> instances being the result
             of invoking the transform function on each element of <paramref name="source"/>, and its indices.
             </summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})">
             <summary>
             Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
             and invokes a result selector function on each element therein.
@@ -2375,105 +2534,153 @@
             </returns>
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Where(System.Func{`0,System.Boolean})">
             <summary>
             Filters a sequence of values based on a predicate.
             </summary>
-            <typeparam name="T">The type of the elements of source.</typeparam>
-            <param name="this">An array of <typeparamref name="T"/> instances to filter.</param>
             <param name="predicate">A function to test each element for a condition.</param>
             <returns>
-            An array of <typeparamref name="T"/> instances that contains elements from the input sequence that satisfy the condition.
+            An array of <typeparamref name="TSource"/> instances that contains elements from the input sequence that satisfy the condition.
             </returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Min``1(System.Func{`0,``0})">
             <summary>
             Invokes a transform function on each element of a sequence and returns the minimum <typeparamref name="TInterim"/> value.
             </summary>
-            <typeparam name="T">The type of the elements of <paramref name="this"/>.</typeparam>
             <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
-            <param name="this">A sequence of values to determine the minimum value of.</param>
             <param name="selector">A transform function to apply to each element.</param>
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the minimum value in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.MinUnsafe``2(``0[],)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinUnsafe``1()">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.MinBy``2(``0[],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.MinBy``3(``0[],System.Func{``0,``1},``2)">
-            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Max``1(System.Func{`0,``0})">
             <summary>
             Invokes a transform function on each element of a sequence and returns the maximum <typeparamref name="TInterim"/> value.
             </summary>
-            <typeparam name="T">The type of the elements of <paramref name="this"/>.</typeparam>
             <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
-            <param name="this">A sequence of values to determine the maximum value of.</param>
             <param name="selector">A transform function to apply to each element.</param>
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.MaxUnsafe``2(``0[],)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxUnsafe``1()">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.MaxBy``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MinBy``2(System.Func{`0,``0},``1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.MaxBy``3(``0[],System.Func{``0,``1},``2)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.MaxBy``2(System.Func{`0,``0},``1)">
             <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.OfType``1(System.Object[])">
-            <summary>
-            Filters the array, removing elements not of type <typeparamref name="TResult"/>.
-            </summary>
-            <typeparam name="TResult">The type of the target elements.</typeparam>
-            <param name="this">The array to be filtered.</param>
-            <returns>A list of <typeparamref name="TResult"/> elements.</returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Shuffle``1(``0[])">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Shuffle">
             <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Shuffle``1(``0[],System.Random)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Shuffle(System.Random)">
             <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle(System.Random)"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Sum``1(``0[])">
-            <summary>
-            Sum all elements up and return the result.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The array that contains a list of elements to be calculated.</param>
-            <returns>A <typeparamref name="T"/> instance as the result.</returns>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Sum``1(System.Func{`0,``0})">
             <summary>
             Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
             on each element of the input sequence.
             </summary>
-            <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
             <typeparam name="TResult">The type of the return value.</typeparam>
-            <param name="source">Indicates the source values.</param>
             <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
             <returns>The result value.</returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.SumUnsafe``2(``0[],)">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.SumUnsafe``1()">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.ToLookup``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.ToLookup``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.ToLookup``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.ToLookup``3(``0[],System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Zip``2(``0[],``1[])">
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.&lt;M&gt;$2737E39A56ABEAE7050A7517D3A344EB">
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3},System.Collections.Generic.IEqualityComparer{``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.&lt;M&gt;$2418CCE28AE2E57B04CE9E67C26463FC">
+            <summary>
+            Provides extension members on <typeparamref name="TFirst"/>[].
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9.Zip``1(``0[])">
             <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.&lt;M&gt;$A6393A9B643182B6649ED54EDB0719E5">
+            <summary>
+            Provides extension members on <see cref="T:System.Object"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <see cref="T:System.Object"/>[].
+            <param name="source">The array to be filtered.</param>
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.Cast``1">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.OfType``1">
+            <summary>
+            Filters the array, removing elements not of type <typeparamref name="TResult"/>.
+            </summary>
+            <typeparam name="TResult">The type of the target elements.</typeparam>
+            <returns>A list of <typeparamref name="TResult"/> elements.</returns>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$680A14DE9A907B5CE3C74E9F7B5BA2C1.&lt;M&gt;$6AC1B64AB830E1375BBB8054882BEDAB">
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="source">The array that contains a list of elements to be calculated.</param>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$680A14DE9A907B5CE3C74E9F7B5BA2C1.Sum">
+            <summary>
+            Sum all elements up and return the result.
+            </summary>
+            <returns>A <typeparamref name="TSource"/> instance as the result.</returns>
         </member>
         <member name="T:System.Linq.ArrayGrouping`2">
             <summary>
@@ -3736,7 +3943,7 @@
         <member name="M:System.Linq.MultidimensionalArrayEnumerable.Select``2(``0[0:,0:],System.Func{``0,System.Int32,System.Int32,``1})">
             <inheritdoc cref="M:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.Select``1(System.Func{`0,System.Int32,System.Int32,``0})"/>
         </member>
-        <member name="T:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.&lt;M&gt;$65582966316CBC0F1C52F7235738C8D0">
+        <member name="T:System.Linq.MultidimensionalArrayEnumerable.&lt;G&gt;$4C104B88EAF2F9EB2C224DCF19848054.&lt;M&gt;$A9BC34A66FBC4B2A9ECC83F3717B66C3">
             <summary>
             Provides extension members on <typeparamref name="TSource"/>[,].
             </summary>
@@ -4592,181 +4799,151 @@
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Aggregate``1(System.ReadOnlySpan{``0},System.Func{``0,``0,``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IAggregateMethod`2.Aggregate(System.Func{`1,`1,`1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Aggregate(System.Func{`0,`0,`0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Aggregate``2(System.ReadOnlySpan{``0},``1,System.Func{``1,``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IAggregateMethod`2.Aggregate``2(``0,System.Func{``0,`1,``0},System.Func{``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Aggregate``1(``0,System.Func{``0,`0,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
-            <summary>
-            Determines whether all elements are of type <typeparamref name="TDerived"/>.
-            </summary>
-            <typeparam name="TBase">The type of each element.</typeparam>
-            <typeparam name="TDerived">The derived type to be checked.</typeparam>
-            <param name="this">The collection to be used and checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AllAre``1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Any(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.AnyUnsafe``1(System.ReadOnlySpan{``0},)">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AnyUnsafe()"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.All(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.All(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.AllUnsafe``1(System.ReadOnlySpan{``0},)">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AllUnsafe()"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Average``2(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IAverageMethod`2.Average``2"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$26E446860FBBD207AF9A4FA2F5009A42.Average``1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Count``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.ICountMethod`2.Count(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Count(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.First``1(System.ReadOnlySpan{``0})">
-            <summary>
-            Returns <paramref name="this"/>[0].
-            </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="this">The source elements.</param>
-            <returns>The element.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.First"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0})">
-            <summary>
-            Returns first element of <paramref name="this"/> or <see langword="default"/>(<typeparamref name="TSource"/>)
-            if the list is empty.
-            </summary>
-            <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="this">The sourc elementse.</param>
-            <returns>The element.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstOrDefault"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.First``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.First(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.First(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.FirstRef``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.First(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstRef(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.FirstOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.FirstOrDefault(System.Func{`1,System.Boolean},`1)"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstOrDefault(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Last``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.Last(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Last(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.LastOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.LastOrDefault(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LastOrDefault(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Index``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Index"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Cast``2(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.ICastMethod`2.Cast``1"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$FFE330DE2BA1167974EAAD8D08BAC8F2.Cast``1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``1(System.Func{`1,``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupBy``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.GroupBy``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``2(System.Func{`1,``0},System.Func{`1,``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Join``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.Join``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Join``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Join``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.Join``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Join``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.GroupJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3})">
-            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.GroupJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,System.Collections.Generic.IEnumerable{``0},``2})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.GroupJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.GroupJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,System.Collections.Generic.IEnumerable{``0},``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.LeftJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LeftJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.LeftJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LeftJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IOrderByMethod`2.OrderBy``1(System.Func{`1,``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.OrderBy``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.OrderByDescending``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IOrderByMethod`2.OrderByDescending``1(System.Func{`1,``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.OrderByDescending``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.RightJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.RightJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.RightJoin``4(System.ReadOnlySpan{``0},System.ReadOnlySpan{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.RightJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Select``1(System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,System.Int32,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,System.Int32,``0})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Select``1(System.Func{`0,System.Int32,``0})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
-            <inheritdoc cref="M:System.Linq.Providers.ISelectManyMethod`2.SelectMany``2(System.Func{`1,System.Collections.Generic.IEnumerable{``0}},System.Func{`1,``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Where(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Int32,System.Boolean})">
-            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Int32,System.Boolean})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Where(System.Func{`0,System.Int32,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Min``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.Min"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.MinBy``1(System.Func{`1,``0})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.MinUnsafe``2(System.ReadOnlySpan{``0},)">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.Min"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Max``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.Max"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.MaxBy``1(System.Func{`1,``0})"/>
-        </member>
-        <member name="M:System.Linq.SpanEnumerable.MaxUnsafe``2(System.ReadOnlySpan{``0},)">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.Max"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.MaxIf``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
-            <summary>
-            Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
-            </summary>
-            <typeparam name="TSource">The type of source elements.</typeparam>
-            <param name="this">The source sequence.</param>
-            <param name="predicate">The condition to be checked.</param>
-            <returns>The maximum value.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.MaxIf(System.Func{`0,System.Boolean})"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.MaxIf``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean},``0)">
-            <summary>
-            Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
-            </summary>
-            <typeparam name="TSource">The type of source elements.</typeparam>
-            <param name="this">The source sequence.</param>
-            <param name="predicate">The condition to be checked.</param>
-            <param name="default">The default value if all elements in sequence are ignored.</param>
-            <returns>The maximum value.</returns>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.MaxIf(System.Func{`0,System.Boolean},`0)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Min``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MinBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Max``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MaxBy``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MinUnsafe``2(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MinUnsafe``1()"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.MaxUnsafe``2(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MaxUnsafe``1()"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.OfType``2(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$FFE330DE2BA1167974EAAD8D08BAC8F2.OfType``1"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Shuffle``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Shuffle"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Shuffle``1(System.ReadOnlySpan{``0},System.Random)">
-            <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle(System.Random)"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Shuffle(System.Random)"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Skip``1(System.ReadOnlySpan{``0},System.Int32)">
-            <inheritdoc cref="M:System.Linq.Providers.ISkipMethod`2.Skip(System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Skip(System.Int32)"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Range(System.Int32)">
             <summary>
@@ -4798,38 +4975,361 @@
             <returns>The result sequence.</returns>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Sum``1(System.ReadOnlySpan{``0})">
-            <inheritdoc cref="M:System.Linq.Providers.ISumMethod`2.Sum"/>
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$F368733711600E661078C53D2C8B3C54.Sum"/>
         </member>
         <member name="M:System.Linq.SpanEnumerable.Sum``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Sum``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.SumUnsafe``2(System.ReadOnlySpan{``0},)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.SumUnsafe``1()"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Int32)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Take(System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Range)">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Take(System.Range)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.ToLookup``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``1(System.Func{`0,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.ToLookup``2(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.ToLookup``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.ToLookup``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.&lt;M&gt;$2B9DCBEEBA9F43BDE8E1D0F175D95198">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Aggregate(System.Func{`0,`0,`0})">
+            <inheritdoc cref="M:System.Linq.Providers.IAggregateMethod`2.Aggregate(System.Func{`1,`1,`1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Aggregate``1(``0,System.Func{``0,`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IAggregateMethod`2.Aggregate``2(``0,System.Func{``0,`1,``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Any(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AnyUnsafe()">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Any``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.All(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.All(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AllUnsafe()">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.All``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Count(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.ICountMethod`2.Count(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.First">
+            <summary>
+            Returns the first element of sequence.
+            </summary>
+            <returns>The element.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstOrDefault">
+            <summary>
+            Returns first element of the current instance or <see langword="default"/>(<typeparamref name="TSource"/>)
+            if the list is empty.
+            </summary>
+            <returns>The element.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.First(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.First(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstRef(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.First(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.FirstOrDefault(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.FirstOrDefault(System.Func{`1,System.Boolean},`1)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Last(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.Last(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LastOrDefault(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IFirstLastMethod`2.LastOrDefault(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Index">
+            <inheritdoc cref="M:System.Linq.Enumerable.Index``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})">
+            <inheritdoc cref="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``2(System.Func{`1,``0},System.Func{`1,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.OrderBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IOrderByMethod`2.OrderBy``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.OrderByDescending``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IOrderByMethod`2.OrderByDescending``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectManyMethod`2.SelectMany``2(System.Func{`1,System.Collections.Generic.IEnumerable{``0}},System.Func{`1,``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Where(System.Func{`0,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Where(System.Func{`0,System.Int32,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IWhereMethod`2.Where(System.Func{`1,System.Int32,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Min``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MinBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.MinBy``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Max``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MaxBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.MaxBy``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MinUnsafe``1()">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.MaxUnsafe``1()">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Shuffle">
+            <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Shuffle(System.Random)">
+            <inheritdoc cref="M:System.Linq.Providers.IShuffleMethod`2.Shuffle(System.Random)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Skip(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Providers.ISkipMethod`2.Skip(System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Sum``1(System.Func{`0,``0})">
             <summary>
             Totals up all elements, and return the result of the sum by the specified property calculated from each element.
             </summary>
-            <typeparam name="TSource">The type of the elements of source.</typeparam>
             <typeparam name="TKey">The type of key to add up.</typeparam>
-            <param name="this">The collection to be used and checked.</param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the sum key in the sequence.</returns>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.SumUnsafe``2(System.ReadOnlySpan{``0},)">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.SumUnsafe``1()">
             <inheritdoc cref="M:System.Linq.SpanEnumerable.Sum``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Int32)">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Take(System.Int32)">
             <inheritdoc cref="M:System.Linq.Providers.ITakeMethod`2.Take(System.Int32)"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Range)">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Take(System.Range)">
             <inheritdoc cref="M:System.Linq.Providers.ITakeMethod`2.Take(System.Range)"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.ToLookup``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.ToLookup``2(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``1(System.Func{`0,``0},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.ToLookup``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
-        <member name="M:System.Linq.SpanEnumerable.ToLookup``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.ToLookup``2(System.Func{`0,``0},System.Func{`0,``1},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ToLookup``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.&lt;M&gt;$0A1F3DA87E0A1AC60375539DFE72F604">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TBase"/>.
+            </summary>
+            <typeparam name="TBase">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.AllAre``1">
+            <summary>
+            Determines whether all elements are of type <typeparamref name="TDerived"/>.
+            </summary>
+            <typeparam name="TDerived">The derived type to be checked.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.&lt;M&gt;$A560EF788370214EDB3C842C70D1E41F">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TOuter"/>.
+            </summary>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TOuter"/>.
+            </summary>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TOuter"/>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Join``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.Join``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Join``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.Join``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})">
+            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.GroupJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,System.Collections.Generic.IEnumerable{``0},``2})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.GroupJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.IJoinMethod`2.GroupJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,System.Collections.Generic.IEnumerable{``0},``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LeftJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.LeftJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.RightJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.RightJoin``3(System.ReadOnlySpan{``0},System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.&lt;M&gt;$8F7D9FC1D0F1BFA6C70A5BC51506BF85">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Select``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$CCC6C15EC93AA06816794B41FF241F94.Select``1(System.Func{`0,System.Int32,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,System.Int32,``0})"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$26E446860FBBD207AF9A4FA2F5009A42.&lt;M&gt;$29C6A1A890593500C952C2D0EA74287F">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$26E446860FBBD207AF9A4FA2F5009A42.Average``1">
+            <inheritdoc cref="M:System.Linq.Providers.IAverageMethod`2.Average``2"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$FFE330DE2BA1167974EAAD8D08BAC8F2.&lt;M&gt;$D8B9F2A326AD5E21093CFD8D850E2FC4">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$FFE330DE2BA1167974EAAD8D08BAC8F2.Cast``1">
+            <inheritdoc cref="M:System.Linq.Providers.ICastMethod`2.Cast``1"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$FFE330DE2BA1167974EAAD8D08BAC8F2.OfType``1">
+            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.&lt;M&gt;$61A865E0E47D95252423A847EC7BE94D">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.Min">
+            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.Min"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.Max">
+            <inheritdoc cref="M:System.Linq.Providers.IMinMaxMethod`2.Max"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.MaxIf(System.Func{`0,System.Boolean})">
+            <summary>
+            Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>The maximum value.</returns>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$9B32EBE4F7135650D6B2B0B731223DE0.MaxIf(System.Func{`0,System.Boolean},`0)">
+            <summary>
+            Gets the maximum value of the sequence, and ignore elements to be compared if they are not satisfy the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <param name="default">The default value if all elements in sequence are ignored.</param>
+            <returns>The maximum value.</returns>
+        </member>
+        <member name="T:System.Linq.SpanEnumerable.&lt;G&gt;$F368733711600E661078C53D2C8B3C54.&lt;M&gt;$F5C6868450D09C1AF65FDD8CAB816AD1">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="TSource"/>.
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">The collection to be used and checked.</param>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.&lt;G&gt;$F368733711600E661078C53D2C8B3C54.Sum">
+            <inheritdoc cref="M:System.Linq.Providers.ISumMethod`2.Sum"/>
         </member>
         <member name="T:System.Linq.SpanGrouping`2">
             <summary>

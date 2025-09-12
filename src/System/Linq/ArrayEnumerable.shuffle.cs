@@ -2,14 +2,20 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <inheritdoc cref="IShuffleMethod{TSelf, TSource}.Shuffle()"/>
-	public static T[] Shuffle<T>(this T[] @this) => @this.Shuffle(Random.Shared);
-
-	/// <inheritdoc cref="IShuffleMethod{TSelf, TSource}.Shuffle(Random)"/>
-	public static T[] Shuffle<T>(this T[] @this, Random random)
+	/// <summary>
+	/// Provides extension members on <typeparamref name="TSource"/>[].
+	/// </summary>
+	extension<TSource>(TSource[] source)
 	{
-		var result = @this[..];
-		random.Shuffle(result);
-		return result;
+		/// <inheritdoc cref="IShuffleMethod{TSelf, TSource}.Shuffle()"/>
+		public TSource[] Shuffle() => source.Shuffle(Random.Shared);
+
+		/// <inheritdoc cref="IShuffleMethod{TSelf, TSource}.Shuffle(Random)"/>
+		public TSource[] Shuffle(Random random)
+		{
+			var result = source[..];
+			random.Shuffle(result);
+			return result;
+		}
 	}
 }

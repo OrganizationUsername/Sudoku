@@ -90,6 +90,90 @@ public partial class SequenceExtensions
 		[Obsolete(DeprecatedMessages.ExtensionOperator_Chunk, false)]
 		public ReadOnlySpan<T[]> Chunk(int size) => @this / size;
 
+		/// <inheritdoc cref="op_BitwiseAnd{T}(ReadOnlySpan{T}, int)"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_Subset, false)]
+		public ReadOnlySpan<T[]> GetSubsets(int size) => @this & size;
+
+		/// <inheritdoc cref="op_BitwiseOr{T}(ReadOnlySpan{T}, int)"/>
+		[Obsolete(DeprecatedMessages.ExtensionOperator_AllSubset, false)]
+		public ReadOnlySpan<T[]> GetSubsets() => @this | @this.Length;
+
+		/// <summary>
+		/// Get all permutations from the collection.
+		/// </summary>
+		/// <returns>
+		/// All possible permutations returned.
+		/// </returns>
+		public ReadOnlySpan<ReadOnlyMemory<T>> GetPermutations()
+		{
+			var result = new List<ReadOnlyMemory<T>>();
+			for (var size = 1; size <= @this.Length; size++)
+			{
+				foreach (var element in @this.GetPermutations(size))
+				{
+					result.Add(element);
+				}
+			}
+			return result.AsSpan();
+		}
+
+		/// <summary>
+		/// Get all permutations from the specified number of the values to take.
+		/// </summary>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>
+		/// The permutations of the list.
+		/// For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
+		/// <code><![CDATA[
+		/// [[1, 2], [2, 1], [1, 3], [3, 1], [2, 3], [3, 2]]
+		/// ]]></code>
+		/// 6 cases.
+		/// </returns>
+		public ReadOnlySpan<ReadOnlyMemory<T>> GetPermutations(int count)
+		{
+			if (count == 0)
+			{
+				return [];
+			}
+
+			var result = new List<ReadOnlyMemory<T>>(Combinatorics.PermutationOf(@this.Length, count));
+			var used = (stackalloc bool[@this.Length]);
+			used.Clear();
+
+			getPermutationsCore(new(count), @this, used, count, result);
+			return result.AsSpan();
+
+
+			static void getPermutationsCore(
+				List<T> temp,
+				ReadOnlySpan<T> array,
+				Span<bool> used,
+				int count,
+				List<ReadOnlyMemory<T>> result
+			)
+			{
+				if (temp.Count == count)
+				{
+					result.Add(temp.ToArray());
+					return;
+				}
+
+				for (var i = 0; i < array.Length; i++)
+				{
+					if (!used[i])
+					{
+						used[i] = true;
+						temp.Add(array[i]);
+
+						getPermutationsCore(temp, array, used, count, result);
+
+						temp.RemoveAt(^1);
+						used[i] = false;
+					}
+				}
+			}
+		}
+
 
 		/// <summary>
 		/// Returns <paramref name="value"/>.
@@ -140,6 +224,80 @@ public partial class SequenceExtensions
 					subarray[j] = source[i * size + j];
 				}
 				result.Add(subarray);
+			}
+			return result.AsSpan();
+		}
+
+		/// <summary>
+		/// Get all subsets from the specified number of the values to take.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="count">The number of elements you want to take.</param>
+		/// <returns>
+		/// The subsets of the list.
+		/// For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
+		/// <code><![CDATA[
+		/// [[1, 2], [1, 3], [2, 3]]
+		/// ]]></code>
+		/// 3 cases.
+		/// </returns>
+		/// <exception cref="ArgumentException">Throws when the argument is negative.</exception>
+		public static ReadOnlySpan<T[]> operator &(ReadOnlySpan<T> value, int count)
+		{
+			ArgumentException.ThrowIfAssertionFailed(count >= 0);
+
+			if (count == 0)
+			{
+				return [];
+			}
+
+			var result = new List<T[]>();
+			getSubsetsCore(value.Length, count, count, stackalloc int[count], value, result);
+			return result.AsSpan();
+
+
+			static void getSubsetsCore(
+				int last,
+				int count,
+				int index,
+				Span<int> tempArray,
+				ReadOnlySpan<T> thisCopied,
+				List<T[]> resultList
+			)
+			{
+				for (var i = last; i >= index; i--)
+				{
+					tempArray[index - 1] = i - 1;
+					if (index > 1)
+					{
+						getSubsetsCore(i - 1, count, index - 1, tempArray, thisCopied, resultList);
+					}
+					else
+					{
+						var temp = new T[count];
+						for (var j = 0; j < tempArray.Length; j++)
+						{
+							temp[j] = thisCopied[tempArray[j]];
+						}
+						resultList.Add(temp);
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Get all subsets from the limited number of the values to take,
+		/// specified as maximum number of elements of each combination.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="count">The number of elements you want to take, as maximum possible value.</param>
+		/// <exception cref="ArgumentException">Throws when the argument is negative.</exception>
+		public static ReadOnlySpan<T[]> operator |(ReadOnlySpan<T> value, int count)
+		{
+			var result = new List<T[]>();
+			for (var size = 1; size <= count; size++)
+			{
+				result.AddRange(value & size);
 			}
 			return result.AsSpan();
 		}

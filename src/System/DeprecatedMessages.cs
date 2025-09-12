@@ -16,4 +16,6 @@ internal static class DeprecatedMessages
 	public const string ExtensionOperator_Pack = "Use extension operator 'operator +' instead: '+characters'";
 
 	public const string ExtensionOperator_Unpack = "Use extension operator 'operator -' instead: '-string'";
+
+	//public const string ExtensionOperator_Equality = "Use extension operator 'operator ==' instead: 'left == right'";
 }

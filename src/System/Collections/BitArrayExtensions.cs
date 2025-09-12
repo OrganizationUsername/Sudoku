@@ -160,6 +160,7 @@ public static class BitArrayExtensions
 
 
 		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+		//[Obsolete(DeprecatedMessages.ExtensionOperator_Equality, false)]
 		public bool SequenceEqual([NotNullWhen(true)] BitArray? other)
 			=> other is not null && @this.Length == other.Length
 			&& Entry.GetArrayField(@this).SequenceEqual(Entry.GetArrayField(other));
@@ -213,6 +214,88 @@ public static class BitArrayExtensions
 				internalBits[i] |= otherInternalBits[i];
 			}
 			return @this;
+		}
+
+
+		/// <summary>
+		/// Performs bitwise-and assignment.
+		/// </summary>
+		/// <param name="other">The other instance.</param>
+		public void operator &=(BitArray other) => @this.And(other);
+
+		/// <summary>
+		/// Performs bitwise-or assignment.
+		/// </summary>
+		/// <param name="other">The other instance.</param>
+		public void operator |=(BitArray other) => @this.Or(other);
+
+		/// <summary>
+		/// Performs bitwise-exclusive-or assignment.
+		/// </summary>
+		/// <param name="other">The other instance.</param>
+		public void operator ^=(BitArray other) => @this.Xor(other);
+
+
+		/// <summary>
+		/// Performs negation operation.
+		/// </summary>
+		/// <param name="value">The instance.</param>
+		/// <returns>The negated result.</returns>
+		public static BitArray operator ~(BitArray value)
+		{
+			var result = new BitArray(value);
+			result.Not();
+			return result;
+		}
+
+#if false
+		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+		[OverloadResolutionPriority(1)]
+		public static bool operator ==(BitArray? left, BitArray? right)
+			=> (left, right) switch { (null, null) => true, (not null, not null) => left.SequenceEqual(right), _ => false };
+
+		/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+		[OverloadResolutionPriority(1)]
+		public static bool operator !=(BitArray? left, BitArray? right) => !(left == right);
+#endif
+
+		/// <summary>
+		/// Performs bitwise-and operation.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The <see cref="BitArray"/> result.</returns>
+		public static BitArray operator &(BitArray left, BitArray right)
+		{
+			var result = new BitArray(left);
+			result &= right;
+			return result;
+		}
+
+		/// <summary>
+		/// Performs bitwise-or operation.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The <see cref="BitArray"/> result.</returns>
+		public static BitArray operator |(BitArray left, BitArray right)
+		{
+			var result = new BitArray(left);
+			result |= right;
+			return result;
+		}
+
+		/// <summary>
+		/// Performs bitwise-exclusive-or operation.
+		/// </summary>
+		/// <param name="left">The left instance.</param>
+		/// <param name="right">The right instance.</param>
+		/// <returns>The <see cref="BitArray"/> result.</returns>
+		public static BitArray operator ^(BitArray left, BitArray right)
+		{
+			var result = new BitArray(left);
+			result ^= right;
+			return result;
 		}
 	}
 }

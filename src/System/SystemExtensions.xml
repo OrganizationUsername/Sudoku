@@ -18,31 +18,11 @@
             </summary>
             <seealso cref="T:System.Numerics.IBinaryInteger`1"/>
         </member>
-        <member name="M:System.BinaryIntegerExtensions.op_True``1(``0)">
-            <inheritdoc cref="M:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.op_True(`0)"/>
-        </member>
-        <member name="M:System.BinaryIntegerExtensions.op_False``1(``0)">
-            <inheritdoc cref="M:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.op_False(`0)"/>
-        </member>
         <member name="T:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.&lt;M&gt;$5D05DBCD4C42AAA64E2E6000D4646E95">
             <summary>
             Provides extension members on <typeparamref name="TSelf"/>,
             where <typeparamref name="TSelf"/> satisfies <see cref="T:System.Numerics.IBinaryInteger`1"/> constraint.
             </summary>
-        </member>
-        <member name="M:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.op_True(`0)">
-            <summary>
-            Determine whether the specified value isn't equal to 0.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.BinaryIntegerExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.op_False(`0)">
-            <summary>
-            Determine whether the specified value is equal to 0.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:System.Buffers.ReadOnlyMemoryOfCharComparer">
             <summary>
@@ -554,6 +534,27 @@
         <member name="M:System.Collections.BitArrayExtensions.AlignedOr(System.Collections.BitArray,System.Collections.BitArray)">
             <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.AlignedOr(System.Collections.BitArray)"/>
         </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_BitwiseAndAssignment(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseAndAssignment(System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_BitwiseOrAssignment(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseOrAssignment(System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_ExclusiveOrAssignment(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_ExclusiveOrAssignment(System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_OnesComplement(System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_OnesComplement(System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_BitwiseAnd(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseAnd(System.Collections.BitArray,System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_BitwiseOr(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseOr(System.Collections.BitArray,System.Collections.BitArray)"/>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.op_ExclusiveOr(System.Collections.BitArray,System.Collections.BitArray)">
+            <inheritdoc cref="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_ExclusiveOr(System.Collections.BitArray,System.Collections.BitArray)"/>
+        </member>
         <member name="T:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.&lt;M&gt;$6D0F179ED1C3C8065D8C3D25A60849FE">
             <summary>
             Provides extension members on <see cref="T:System.Collections.BitArray"/>.
@@ -595,6 +596,55 @@
             </summary>
             <param name="other">The other object.</param>
             <returns>The current instance.</returns>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseAndAssignment(System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-and assignment.
+            </summary>
+            <param name="other">The other instance.</param>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseOrAssignment(System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-or assignment.
+            </summary>
+            <param name="other">The other instance.</param>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_ExclusiveOrAssignment(System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-exclusive-or assignment.
+            </summary>
+            <param name="other">The other instance.</param>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_OnesComplement(System.Collections.BitArray)">
+            <summary>
+            Performs negation operation.
+            </summary>
+            <param name="value">The instance.</param>
+            <returns>The negated result.</returns>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseAnd(System.Collections.BitArray,System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-and operation.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The <see cref="T:System.Collections.BitArray"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_BitwiseOr(System.Collections.BitArray,System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-or operation.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The <see cref="T:System.Collections.BitArray"/> result.</returns>
+        </member>
+        <member name="M:System.Collections.BitArrayExtensions.&lt;G&gt;$B5B861DD070448A37A7F15A6783AA476.op_ExclusiveOr(System.Collections.BitArray,System.Collections.BitArray)">
+            <summary>
+            Performs bitwise-exclusive-or operation.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The <see cref="T:System.Collections.BitArray"/> result.</returns>
         </member>
         <member name="T:System.Collections.Entry">
             <summary>

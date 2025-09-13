@@ -280,7 +280,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new NakedSingleStep(
 					new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
-					[[.. Excluder.GetNakedSingleExcluders(grid, cell, digit, out var excluderHouses)]],
+					[
+						[
+							..
+							Excluder.GetNakedSingleExcluders(grid, cell, digit, out var excluderHouses) is var iconOffsets
+								 && excluderHouses.Length == 8
+								 ? iconOffsets
+								 : []
+						]
+					],
 					context.Options,
 					cell,
 					digit,
@@ -469,7 +477,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = TrailingZeroCount(mask);
 			var step = new NakedSingleStep(
 				new SingletonArray<Conclusion>(new(Assignment, cell, digit)),
-				[[.. Excluder.GetNakedSingleExcluders(grid, cell, digit, out var excluderHouses)]],
+				[
+					[
+						..
+						Excluder.GetNakedSingleExcluders(grid, cell, digit, out var excluderHouses) is var iconOffsets
+							&& excluderHouses.Length == 8
+							? iconOffsets
+							: []
+					]
+				],
 				context.Options,
 				cell,
 				digit,
@@ -573,7 +589,12 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					var subtype when subtype.IsUnnecessary && grid.PuzzleType != SudokuType.Sukaku => null,
 					var subtype => new HiddenSingleStep(
 						new SingletonArray<Conclusion>(new(Assignment, resultCell, digit)),
-						[[.. cellOffsets2, new HouseViewNode(ColorIdentifier.Normal, house)]],
+						[
+							[
+								.. excluderInfo.ExcludedCells.Count == 0 ? cellOffsets2 : [],
+								new HouseViewNode(ColorIdentifier.Normal, house)
+							]
+						],
 						context.Options,
 						resultCell,
 						digit,

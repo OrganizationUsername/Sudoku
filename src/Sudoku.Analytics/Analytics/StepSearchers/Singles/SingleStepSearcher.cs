@@ -135,29 +135,37 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 
 		static int stepComparison(Step left, Step right)
-			=> ((SingleStep)left, (SingleStep)right) is var (l, r)
-			&& handleEasyTechnique(left.Code) is var leftEasyCode
-			&& handleEasyTechnique(right.Code) is var rightEasyCode
-			&& leftEasyCode.CompareTo(rightEasyCode) is var easyTechniqueComparisonResult and not 0
-				? easyTechniqueComparisonResult
-				: (((ILastingTrait)l).Lasting, ((ILastingTrait)r).Lasting) is var (ll, rl)
-				&& ll.CompareTo(rl) is var lastingComparisonResult and not 0
-					? lastingComparisonResult
-					: l.Code.CompareTo(r.Code) is var codeComparisonResult and not 0
-						? codeComparisonResult
-						: (l.Cell * 9 + l.Digit, r.Cell * 9 + r.Digit) is var (lc, rc)
-						&& lc.CompareTo(rc) is var candidateComparisonResult and not 0
-							? candidateComparisonResult
-							: 0;
-
-		static int handleEasyTechnique(Technique technique)
-			=> technique switch
+		{
+			var (l, r) = ((SingleStep)left, (SingleStep)right);
+			var (leftEasyCode, rightEasyCode) = (handleEasyTechnique(left.Code), handleEasyTechnique(right.Code));
+			if (leftEasyCode.CompareTo(rightEasyCode) is var easyTechniqueComparisonResult and not 0)
 			{
-				Technique.FullHouse => 0,
-				Technique.LastDigit => 1,
-				Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => 2,
-				_ => 3
-			};
+				return easyTechniqueComparisonResult;
+			}
+
+			var (ll, rl) = (((ILastingTrait)l).Lasting, ((ILastingTrait)r).Lasting);
+			if (ll.CompareTo(rl) is var lastingComparisonResult and not 0)
+			{
+				return lastingComparisonResult;
+			}
+
+			if (l.Code.CompareTo(r.Code) is var codeComparisonResult and not 0)
+			{
+				return codeComparisonResult;
+			}
+
+			return (l.Cell * 9 + l.Digit).CompareTo(r.Cell * 9 + r.Digit);
+
+
+			static int handleEasyTechnique(Technique technique)
+				=> technique switch
+				{
+					Technique.FullHouse => 0,
+					Technique.LastDigit => 1,
+					Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => 2,
+					_ => 3
+				};
+		}
 	}
 
 	/// <summary>

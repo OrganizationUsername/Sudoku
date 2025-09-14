@@ -139,7 +139,10 @@
   * [复杂鱼的命名系统](rank-theory/04-complex-fish/07-naming-system-of-complex-fish.md)
 * [守护者](rank-theory/05-guardian-logic/README.md)
   * [守护者的基本推理](rank-theory/05-guardian-logic/01-reasoning-of-guardian.md)
-  * [死环](rank-theory/05-guardian-logic/02-bivalue-oddagon.md)
+  * [死环的基本推理](rank-theory/05-guardian-logic/02-reasoning-of-bivalue-oddagon.md)
+  * [三顺一逆现象](rank-theory/05-guardian-logic/03-rebellious-block-phenomenon.md)
+  * [三值死环](rank-theory/05-guardian-logic/04-trivalue-oddagon.md)
+  * [负秩结构和无解局面的区别](rank-theory/05-guardian-logic/05-difference-between-negative-rank-patterns-and-invalid-grids.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

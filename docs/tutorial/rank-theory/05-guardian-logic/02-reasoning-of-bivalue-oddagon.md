@@ -1,8 +1,8 @@
 ---
-description: Bivalue Oddagon
+description: Reasoning of Bivalue Oddagon
 ---
 
-# 死环
+# 死环的基本推理
 
 前文我们介绍了守护者的矛盾逻辑，以及规避矛盾而衍生出的推理过程。下面我们将其推广到两个数字之间的关系，看看它还能有什么新鲜用法。
 

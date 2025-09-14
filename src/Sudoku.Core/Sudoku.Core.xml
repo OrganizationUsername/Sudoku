@@ -4411,8 +4411,23 @@
             Throws when the argument <paramref name="comparison"/> is not defined.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.IsAdjacentWithEachOther(System.Int32,System.Int32)">
+            <summary>
+            Determine whether two specified cells are adjacent with each other in the current cycle.
+            </summary>
+            <param name="cell1">Indicates the first cell to be checked.</param>
+            <param name="cell2">Indicates the second cell to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetHashCode">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.IndexOf(System.Int32)">
+            <summary>
+            Find for index of the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The index. If not found, -1 will be returned.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.HamiltonianCycle.GetHashCode(Sudoku.Concepts.Graphs.HamiltonianCycleComparison)">
             <summary>

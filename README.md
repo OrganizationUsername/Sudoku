@@ -177,7 +177,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Multi-sector Locked Sets
     * Negative Ranks
       * Guardian
-      * Bi-value Oddagon
+      * Bi-value Oddagon (Type 2, 3 and 4)
       * Tri-value Oddagon
   * Exocets
     * Junior Exocet (*JE*)

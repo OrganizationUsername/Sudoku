@@ -3266,6 +3266,16 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.BivalueOddagon,
 		Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
 	BivalueOddagonType3,
+
+	/// <summary>
+	/// Indicates bi-value oddagon type 4.
+	/// </summary>
+	[TechniqueMetadata<BivalueOddagonStepSearcher, BivalueOddagonType4Step>(
+		Rating = 60,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.BivalueOddagon,
+		Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
+	BivalueOddagonType4,
 	#endregion
 
 	//

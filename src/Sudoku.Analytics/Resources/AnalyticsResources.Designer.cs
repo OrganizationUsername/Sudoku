@@ -693,6 +693,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bi-value Oddagon Type 4.
+        /// </summary>
+        public static string BivalueOddagonType4 {
+            get {
+                return ResourceManager.GetString("BivalueOddagonType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bivalue Universal Grave False Candidate.
         /// </summary>
         public static string BivalueUniversalGraveFalseCandidateType {
@@ -7435,6 +7444,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BivalueOddagonType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cells: {0}, digits {1} and {2}, with conjugate pairs {3}.
+        /// </summary>
+        public static string TechniqueFormat_BivalueOddagonType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BivalueOddagonType4Step", resourceCulture);
             }
         }
         

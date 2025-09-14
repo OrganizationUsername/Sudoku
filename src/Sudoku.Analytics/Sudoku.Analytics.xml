@@ -8202,17 +8202,16 @@
             Provides with a <b>Bi-value Oddagon</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
+            <!--<item>Bi-value Oddagon Type 1</item>-->
             <item>Bi-value Oddagon Type 2</item>
             <item>Bi-value Oddagon Type 3</item>
+            <item>Bi-value Oddagon Type 4</item>
             </list>
             </para>
             <para>
-            <i>
-            In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-            and a type 4 cannot be formed as a stable pattern.
-            </i>
+            In practicing, type 1 doesn't exist. A bi-value oddagon type 1 is a remote pair.
+            A Remote Pair is a XY-Chain, only using two digits.
             </para>
-            <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.MaximumCount">
@@ -8223,14 +8222,19 @@
         <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType2(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Check for type 2.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType3(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Check for type 3.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher.CheckType4(System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BivalueOddagonStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.StepAnalysisContext@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Check for type 4.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher">
@@ -12269,6 +12273,44 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Sudoku#Analytics#Traits#IExtraCellListTrait#ExtraCellSize">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BivalueOddagonType4Step">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="loopCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.LoopCells" path="/summary"/></param>
+            <param name="digit1"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit1" path="/summary"/></param>
+            <param name="digit2"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit2" path="/summary"/></param>
+            <param name="conjugatePair"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.ConjugatePair" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType4Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.Conjugate)">
+            <summary>
+            Provides with a step that is a <b>Bivalue Oddagon Type 4</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="loopCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.LoopCells" path="/summary"/></param>
+            <param name="digit1"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit1" path="/summary"/></param>
+            <param name="digit2"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Digit2" path="/summary"/></param>
+            <param name="conjugatePair"><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.ConjugatePair" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.ConjugatePair">
+            <summary>
+            Indicates conjugate pair used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType4Step.Interpolations">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.GuardianStep">
@@ -20396,6 +20438,11 @@
         <member name="F:Sudoku.Categorization.Technique.BivalueOddagonType3">
             <summary>
             Indicates bi-value oddagon type 3.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.BivalueOddagonType4">
+            <summary>
+            Indicates bi-value oddagon type 4.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.TrivalueOddagonType1">
@@ -30354,6 +30401,11 @@
               Looks up a localized string similar to Bi-value Oddagon Type 3.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.BivalueOddagonType4">
+            <summary>
+              Looks up a localized string similar to Bi-value Oddagon Type 4.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BivalueUniversalGraveFalseCandidateType">
             <summary>
               Looks up a localized string similar to Bivalue Universal Grave False Candidate.
@@ -34106,6 +34158,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueOddagonType3Step">
             <summary>
               Looks up a localized string similar to To avoid the pattern {0} of digits {1} and {2} error, the only way is to form the subset (digits {3} in cells {4}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueOddagonType4Step">
+            <summary>
+              Looks up a localized string similar to Cells: {0}, digits {1} and {2}, with conjugate pairs {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BivalueUniversalGraveFalseCandidateTypeStep">

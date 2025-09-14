@@ -5,21 +5,20 @@ namespace Sudoku.Analytics.StepSearchers;
 /// Provides with a <b>Bi-value Oddagon</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <!--<item>Bi-value Oddagon Type 1</item>-->
 /// <item>Bi-value Oddagon Type 2</item>
 /// <item>Bi-value Oddagon Type 3</item>
+/// <item>Bi-value Oddagon Type 4</item>
 /// </list>
 /// </para>
 /// <para>
-/// <i>
-/// In practicing, type 1 and 4 do not exist. A bi-value oddagon type 1 is a remote pair
-/// and a type 4 cannot be formed as a stable pattern.
-/// </i>
+/// In practicing, type 1 doesn't exist. A bi-value oddagon type 1 is a remote pair.
+/// A Remote Pair is a XY-Chain, only using two digits.
 /// </para>
-/// <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_BivalueOddagonStepSearcher",
-	Technique.BivalueOddagonType2, Technique.BivalueOddagonType3)]
+	Technique.BivalueOddagonType2, Technique.BivalueOddagonType3, Technique.BivalueOddagonType4)]
 public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -36,7 +35,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultAccumulator = new SortedSet<BivalueOddagonStep>();
+		var tempAccumulator = context.OnlyFindOne ? null : new SortedSet<BivalueOddagonStep>();
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
@@ -51,39 +50,62 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		{
 			var d1 = TrailingZeroCount(comparer);
 			var d2 = comparer.GetNextSet(d1);
+			var hasType2HandledByNot1CaseBranch = false;
 			switch (extraCells.Count)
 			{
+				// This puzzle has no puzzle solutions.
 				case 0:
 				{
-					// This puzzle has no puzzle solutions.
 					throw new PuzzleInvalidException(grid, typeof(BivalueOddagonStepSearcher));
 				}
-				case not 1:
+
+#if false
+				// Type 1 (but here we can directly ignore the case).
+				case 1:
 				{
-					// Type 2, 3.
-					// Here use default label to ensure the order of the handling will be 1->2->3.
-					if (CheckType2(resultAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step2)
+					break;
+				}
+#endif
+
+				// Type 3 and 4.
+				case 2:
+				{
+					if (!hasType2HandledByNot1CaseBranch
+						&& CheckType2(tempAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer) is { } step2)
 					{
 						return step2;
 					}
-
-					if (extraCells.Count == 2
-						&& CheckType3(resultAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer, onlyFindOne) is { } step3)
+					if (CheckType3(tempAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer) is { } step3)
 					{
 						return step3;
 					}
+					if (CheckType4(tempAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer) is { } step4)
+					{
+						return step4;
+					}
 					break;
+				}
+
+				// Type 2.
+				case not 1:
+				{
+					if (CheckType2(tempAccumulator, grid, ref context, d1, d2, currentLoop, extraCells, comparer) is { } step2)
+					{
+						return step2;
+					}
+					hasType2HandledByNot1CaseBranch = true;
+					goto case 2;
 				}
 			}
 		}
 
-		if (context.OnlyFindOne && resultAccumulator.Count != 0)
+		if (context.OnlyFindOne && tempAccumulator is { Count: not 0 })
 		{
-			return resultAccumulator.Min;
+			return tempAccumulator.Min;
 		}
-		if (!context.OnlyFindOne && resultAccumulator.Count != 0)
+		if (!context.OnlyFindOne && tempAccumulator!.Count != 0)
 		{
-			context.Accumulator.AddRange(resultAccumulator);
+			context.Accumulator.AddRange(tempAccumulator);
 		}
 		return null;
 
@@ -132,7 +154,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			Mask extraDigitsMask
 		)
 		{
-			if (loopsCount > 100)
+			if (loopsCount > MaximumCount)
 			{
 				// There is no need to iterate more loops because they are same.
 				return;
@@ -218,15 +240,14 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// Check for type 2.
 	/// </summary>
 	private BivalueOddagonType2Step? CheckType2(
-		SortedSet<BivalueOddagonStep> accumulator,
+		SortedSet<BivalueOddagonStep>? accumulator,
 		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		in CellMap loop,
 		in CellMap extraCellsMap,
-		Mask comparer,
-		bool onlyFindOne
+		Mask comparer
 	)
 	{
 		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
@@ -267,12 +288,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			extraDigit
 		);
 
-		if (onlyFindOne)
+		if (context.OnlyFindOne)
 		{
 			return step;
 		}
 
-		accumulator.Add(step);
+		accumulator!.Add(step);
 
 	ReturnNull:
 		return null;
@@ -282,15 +303,14 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// Check for type 3.
 	/// </summary>
 	private BivalueOddagonType3Step? CheckType3(
-		SortedSet<BivalueOddagonStep> accumulator,
+		SortedSet<BivalueOddagonStep>? accumulator,
 		in Grid grid,
 		ref StepAnalysisContext context,
 		Digit d1,
 		Digit d2,
 		in CellMap loop,
 		in CellMap extraCellsMap,
-		Mask comparer,
-		bool onlyFindOne
+		Mask comparer
 	)
 	{
 		var notSatisfiedType3 = false;
@@ -390,15 +410,155 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 						mask
 					);
 
-					if (onlyFindOne)
+					if (context.OnlyFindOne)
 					{
 						return step;
 					}
 
-					accumulator.Add(step);
+					accumulator!.Add(step);
 				}
 			}
 		}
+
+	ReturnNull:
+		return null;
+	}
+
+	/// <summary>
+	/// Check for type 4.
+	/// </summary>
+	private BivalueOddagonType4Step? CheckType4(
+		SortedSet<BivalueOddagonStep>? accumulator,
+		in Grid grid,
+		ref StepAnalysisContext context,
+		Digit d1,
+		Digit d2,
+		in CellMap loop,
+		in CellMap extraCellsMap,
+		Mask comparer
+	)
+	{
+		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
+		if (!IsPow2(mask))
+		{
+			goto ReturnNull;
+		}
+		if (extraCellsMap is not [var firstExtraCell, var secondExtraCell])
+		{
+			goto ReturnNull;
+		}
+
+		var extraDigit = TrailingZeroCount(mask);
+
+		// Get hamiltonian cycle here.
+		// Why here? Because we should know two cells from extra cells map must be adjacent with each other in the loop.
+		// This is important.
+		var hamiltonianLoop = new CellGraph(loop).GetHamiltonianCycles() is [var l, ..] ? l : default;
+		if (!hamiltonianLoop.IsAdjacentWithEachOther(firstExtraCell, secondExtraCell))
+		{
+			goto ReturnNull;
+		}
+
+		// Find for two cells that is on the loop, and they can see one of the conjugate pair of 'extraDigit' here.
+		var loopCellsCanSeeAnyCellOfConjugatePair = loop & ~extraCellsMap & extraCellsMap.ExpandedPeers;
+
+		// Why we should know they are adjacent with each other?
+		// Because in the odd-length loop, the cells will be connected like:
+		//
+		//   inCell -> firstExtraCell -> secondExtraCell -> outCell
+		//
+		// if 'firstExtraCell' and 'secondExtraCell' are adjacent in the loop,
+		// we will know that they must be assumed with different digits.
+		// At the same time, we know that the number of all last cells
+		// not calculated in the conjugate pair is also an odd number (loopLength (odd) - 2 is also an odd value).
+		// Therefore, we can know that two cells in 'loopCellsCanSeeAnyCellOfConjugatePair' will be assumed with a same digit.
+
+		// Now check for two cells in the conjugate pair.
+		var isAnyLoopCellSeeingBothCells = false;
+		var elimMap = CandidateMap.Empty;
+		var elimMapTemplate = CandidatesMap[d1] | CandidatesMap[d2];
+		foreach (var extraCell in extraCellsMap)
+		{
+			// Get the cell that in loop that can see this cell.
+			if ((loopCellsCanSeeAnyCellOfConjugatePair & PeersMap[extraCell]) is not [var loopCellCanSeeExtraCell])
+			{
+				isAnyLoopCellSeeingBothCells = true;
+				break;
+			}
+
+			// Cells 'extraCell' and 'loopCellCanSeeExtraCell' here are always adjacent in loop,
+			// with different digits assumed.
+			// Here we should assume cells to form a naked pair of digits 'd1' and 'd2',
+			// and find for eliminations.
+			var localElimMap = CandidateMap.Empty;
+			foreach (var loopCellCanSeeConjugatePair in loopCellsCanSeeAnyCellOfConjugatePair)
+			{
+				foreach (var cell in (extraCell.AsCellMap() + loopCellCanSeeConjugatePair).PeerIntersection & elimMapTemplate)
+				{
+					if (grid.Exists(cell, d1) is true)
+					{
+						localElimMap.Add(cell * 9 + d1);
+					}
+					if (grid.Exists(cell, d2) is true)
+					{
+						localElimMap.Add(cell * 9 + d2);
+					}
+				}
+			}
+			if (elimMap)
+			{
+				elimMap &= localElimMap;
+			}
+			else
+			{
+				elimMap |= localElimMap;
+			}
+		}
+		if (isAnyLoopCellSeeingBothCells)
+		{
+			goto ReturnNull;
+		}
+		if (!elimMap)
+		{
+			goto ReturnNull;
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>();
+		foreach (var cell in loop)
+		{
+			foreach (var digit in grid.GetCandidates(cell))
+			{
+				candidateOffsets.Add(new(digit == extraDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell * 9 + digit));
+			}
+		}
+
+		var links = new List<CellLinkViewNode>();
+		foreach (var (first, second) in hamiltonianLoop.EnumerateAdjacentCells())
+		{
+			links.Add(new(ColorIdentifier.Normal, first, second));
+		}
+
+		var step = new BivalueOddagonType4Step(
+			(from candidate in elimMap select new Conclusion(Elimination, candidate)).ToArray(),
+			[
+				[
+					.. candidateOffsets,
+					.. links,
+					new ConjugateLinkViewNode(ColorIdentifier.Normal, extraCellsMap[0], extraCellsMap[1], extraDigit)
+				]
+			],
+			context.Options,
+			loop,
+			d1,
+			d2,
+			new(extraCellsMap, extraDigit)
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		accumulator!.Add(step);
 
 	ReturnNull:
 		return null;

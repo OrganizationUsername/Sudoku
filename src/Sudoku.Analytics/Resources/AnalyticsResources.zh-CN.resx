@@ -3377,4 +3377,11 @@
     <value>显性唯一</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_BivalueOddagonType4Step" xml:space="preserve">
+    <value>单元格：{0}，数字 {1} 和 {2}，带有共轭对 {3}</value>
+  </data>
+  <data name="BivalueOddagonType4" xml:space="preserve">
+    <value>死环类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

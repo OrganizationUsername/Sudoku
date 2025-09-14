@@ -3334,4 +3334,10 @@ Is pattern rank-0: {6}</value>
   <data name="NakedSingleIndirect" xml:space="preserve">
     <value>Naked Single</value>
   </data>
+  <data name="TechniqueFormat_BivalueOddagonType4Step" xml:space="preserve">
+    <value>Cells: {0}, digits {1} and {2}, with conjugate pairs {3}</value>
+  </data>
+  <data name="BivalueOddagonType4" xml:space="preserve">
+    <value>Bi-value Oddagon Type 4</value>
+  </data>
 </root>

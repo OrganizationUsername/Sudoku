@@ -102,8 +102,42 @@ public readonly struct HamiltonianCycle(Cell[] cells) :
 		return true;
 	}
 
+	/// <summary>
+	/// Determine whether two specified cells are adjacent with each other in the current cycle.
+	/// </summary>
+	/// <param name="cell1">Indicates the first cell to be checked.</param>
+	/// <param name="cell2">Indicates the second cell to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool IsAdjacentWithEachOther(Cell cell1, Cell cell2)
+	{
+		var i = IndexOf(cell1);
+		var j = IndexOf(cell2);
+		if (i == -1 || j == -1)
+		{
+			return false;
+		}
+		return i - j is 1 or -1;
+	}
+
 	/// <inheritdoc/>
 	public override int GetHashCode() => GetHashCode(HamiltonianCycleComparison.Default);
+
+	/// <summary>
+	/// Find for index of the specified cell.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The index. If not found, -1 will be returned.</returns>
+	public int IndexOf(Cell cell)
+	{
+		for (var i = 0; i < _cells.Length; i++)
+		{
+			if (_cells[i] == cell)
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	/// <summary>
 	/// Returns the hash code of the current instance, using the specified comparison rule.

@@ -739,6 +739,42 @@ public struct Grid : InlineArrayGridBase
 			_ => throw new InvalidOperationException(SR.ExceptionMessage("GridInvalidCellState"))
 		};
 
+	/// <summary>
+	/// Filters the candidates that satisfies the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to filter candidates.</param>
+	/// <returns>All candidates satisfied the specified condition.</returns>
+	public readonly ReadOnlySpan<Candidate> Where(Func<Candidate, bool> predicate)
+	{
+		var (result, i) = (new Candidate[CandidatesCount], 0);
+		foreach (var candidate in Candidates)
+		{
+			if (predicate(candidate))
+			{
+				result[i++] = candidate;
+			}
+		}
+		return result.AsReadOnlySpan()[..i];
+	}
+
+	/// <summary>
+	/// Projects each element of a sequence into a new form.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the value returned by <paramref name="selector"/>.</typeparam>
+	/// <param name="selector">A transform function to apply to each element.</param>
+	/// <returns>
+	/// An array of <typeparamref name="TResult"/> elements converted.
+	/// </returns>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
+	{
+		var (result, i) = (new TResult[CandidatesCount], 0);
+		foreach (var candidate in Candidates)
+		{
+			result[i++] = selector(candidate);
+		}
+		return result.AsReadOnlySpan()[..i];
+	}
+
 	/// <inheritdoc/>
 	public void Reset()
 	{
@@ -951,11 +987,11 @@ public struct Grid : InlineArrayGridBase
 
 	/// <inheritdoc/>
 	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
-		=> this.Where(predicate).ToArray();
+		=> Where(predicate).ToArray();
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
-		=> this.Select(selector).ToArray();
+		=> Select(selector).ToArray();
 
 	/// <inheritdoc/>
 	Grid ITransformable<Grid>.MirrorLeftRight() => this.MirrorLeftRight();

@@ -276,6 +276,15 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	public readonly void CopyTo(ref Candidate sequence, Candidate length)
 		=> Offsets.AsReadOnlySpan().TryCopyTo(Span<int>.Create(ref sequence, length));
 
+	/// <inheritdoc/>
+	public readonly void ForEach(Action<Candidate> action)
+	{
+		foreach (var element in this)
+		{
+			action(element);
+		}
+	}
+
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public readonly bool Equals(in CandidateMap other)
 	{
@@ -334,6 +343,40 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <inheritdoc/>
 	public readonly override bool Equals([NotNullWhen(true)] object? obj) => obj is CandidateMap comparer && Equals(comparer);
 
+	/// <summary>
+	/// Indicates whether at least one element satisfies the specified condition.
+	/// </summary>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
+	public readonly bool Exists(Func<Candidate, bool> match)
+	{
+		foreach (var candidate in this)
+		{
+			if (match(candidate))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Determine whether all <see cref="Candidate"/>s satisfy the specified condition.
+	/// </summary>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
+	public readonly bool TrueForAll(Func<Candidate, bool> match)
+	{
+		foreach (var candidate in this)
+		{
+			if (!match(candidate))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/// <inheritdoc/>
 	public readonly int CompareTo(in CandidateMap other)
 	{
@@ -354,15 +397,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 			}
 		}
 		return -1;
-	}
-
-	/// <inheritdoc/>
-	public readonly void ForEach(Action<Candidate> action)
-	{
-		foreach (var element in this)
-		{
-			action(element);
-		}
 	}
 
 	/// <inheritdoc cref="object.GetHashCode"/>
@@ -462,6 +496,123 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	}
 
 	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found candidate or -1 if none found.</returns>
+	public readonly Candidate First(Func<Candidate, bool> match)
+	{
+		foreach (var candidate in Offsets)
+		{
+			if (match(candidate))
+			{
+				return candidate;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// Finds the first candidate that satisfies the specified condition.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found candidate or -1 if none found.</returns>
+	public readonly Candidate First(in Grid grid, CellMapOrCandidateMapPredicate<CandidateMap, Candidate> match)
+	{
+		foreach (var candidate in Offsets)
+		{
+			if (match(candidate, grid))
+			{
+				return candidate;
+			}
+		}
+		return -1;
+	}
+
+	/// <inheritdoc cref="CellMap.Select{TResult}(Func{Cell, TResult})"/>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Candidate, TResult> selector)
+	{
+		var offsets = Offsets;
+		var result = new TResult[offsets.Length];
+		for (var i = 0; i < offsets.Length; i++)
+		{
+			result[i] = selector(offsets[i]);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Filters a <see cref="CandidateMap"/> collection based on a predicate.
+	/// </summary>
+	/// <param name="predicate">A function to test each element for a condition.</param>
+	/// <returns>
+	/// A <see cref="CandidateMap"/> that contains elements from the input <see cref="CandidateMap"/> satisfying the condition.
+	/// </returns>
+	public readonly CandidateMap Where(Func<Candidate, bool> predicate)
+	{
+		var result = this;
+		foreach (var cell in Offsets)
+		{
+			if (!predicate(cell))
+			{
+				result -= cell;
+			}
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="CellMap.GroupBy{TKey}(Func{Cell, TKey})"/>
+	public readonly ReadOnlySpan<CellMapOrCandidateMapGrouping<CandidateMap, Candidate, TKey>> GroupBy<TKey>(Func<Candidate, TKey> keySelector)
+		where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CandidateMap>();
+		foreach (var candidate in this)
+		{
+			var key = keySelector(candidate);
+			if (!dictionary.TryAdd(key, [candidate]))
+			{
+				dictionary.GetValueRef(key) += candidate;
+			}
+		}
+
+		var result = new CellMapOrCandidateMapGrouping<CandidateMap, Candidate, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var kvp in dictionary)
+		{
+			ref readonly var key = ref kvp.KeyRef;
+			ref readonly var value = ref kvp.ValueRef;
+			result[i++] = new(key, value);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Projects each candidate (of type <see cref="Candidate"/>) of a <see cref="CandidateMap"/> to a mask (of type <see cref="Mask"/>),
+	/// flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+	/// <param name="collectionSelector">A transform function to apply to each element of the input <see cref="CandidateMap"/>.</param>
+	/// <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="Mask"/>).</param>
+	/// <returns>
+	/// A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TResult"/> whose elements are the result
+	/// of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element
+	/// of the current instance and then mapping each of those sequences and their corresponding source element to a result element.
+	/// </returns>
+	public readonly ReadOnlySpan<TResult> SelectMany<TResult>(Func<Candidate, Mask> collectionSelector, Func<Candidate, Digit, TResult> resultSelector)
+	{
+		var result = new List<TResult>(Count << 1);
+		foreach (var candidate in this)
+		{
+			foreach (var digit in collectionSelector(candidate))
+			{
+				result.AddRef(resultSelector(candidate, digit));
+			}
+		}
+		return result.AsSpan();
+	}
+
+	/// <summary>
 	/// Add a new <see cref="Candidate"/> into the collection.
 	/// </summary>
 	/// <param name="item">The offset to be added.</param>
@@ -557,31 +708,32 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any(Func<Candidate, bool> predicate) => this.Any(predicate);
+	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any(Func<Candidate, bool> predicate) => Exists(predicate);
 
 	/// <inheritdoc/>
-	readonly bool IAnyAllMethod<CandidateMap, Candidate>.All(Func<Candidate, bool> predicate) => this.All(predicate);
+	readonly bool IAnyAllMethod<CandidateMap, Candidate>.All(Func<Candidate, bool> predicate) => TrueForAll(predicate);
 
 	/// <inheritdoc/>
-	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider as CultureInfo);
+	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
+		=> ToString(formatProvider as CultureInfo);
 
 	/// <inheritdoc/>
 	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First() => this[0];
 
 	/// <inheritdoc/>
-	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First(Func<Candidate, bool> predicate) => this.First(predicate);
+	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First(Func<Candidate, bool> predicate) => First(predicate);
 
 	/// <inheritdoc/>
 	readonly IEnumerable<Candidate> IWhereMethod<CandidateMap, Candidate>.Where(Func<Candidate, bool> predicate)
-		=> this.Where(predicate);
+		=> Where(predicate);
 
 	/// <inheritdoc/>
 	readonly IEnumerable<IGrouping<TKey, Candidate>> IGroupByMethod<CandidateMap, Candidate>.GroupBy<TKey>(Func<Candidate, TKey> keySelector)
-		=> this.GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Candidate>)element);
+		=> GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Candidate>)element);
 
 	/// <inheritdoc/>
 	readonly IEnumerable<TResult> ISelectMethod<CandidateMap, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
-		=> this.Select(selector).ToArray();
+		=> Select(selector).ToArray();
 
 
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>

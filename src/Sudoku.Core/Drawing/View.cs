@@ -48,7 +48,7 @@ public sealed class View :
 	/// <returns>The found node; or <see langword="null"/> if none found.</returns>
 	public CellViewNode? FindCell(Cell cell)
 	{
-		foreach (var node in this.OfType<CellViewNode>())
+		foreach (var node in OfType<CellViewNode>())
 		{
 			if (node.Cell == cell)
 			{
@@ -65,7 +65,7 @@ public sealed class View :
 	/// <returns>The found node; or <see langword="null"/> if none found.</returns>
 	public CandidateViewNode? FindCandidate(Candidate candidate)
 	{
-		foreach (var node in this.OfType<CandidateViewNode>())
+		foreach (var node in OfType<CandidateViewNode>())
 		{
 			if (node.Candidate == candidate)
 			{
@@ -122,11 +122,93 @@ public sealed class View :
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
 	public ReadOnlySpan<ViewNode> AsSpan() => from node in this select node;
 
+	/// <summary>
+	/// Projects with a new transform of elements.
+	/// </summary>
+	/// <typeparam name="T">The type of target element.</typeparam>
+	/// <param name="selector">The method to transform each element.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="T"/> elements.</returns>
+	public ReadOnlySpan<T> Select<T>(Func<ViewNode, T> selector)
+	{
+		var result = new List<T>(Count);
+		foreach (var element in this)
+		{
+			result.AddRef(selector(element));
+		}
+		return result.AsSpan();
+	}
+
+	/// <summary>
+	/// Filters a <see cref="View"/>, only reserves the <see cref="ViewNode"/> instances satisfying the specified condition.
+	/// </summary>
+	/// <param name="predicate">The filter.</param>
+	/// <returns>A list of <see cref="ViewNode"/> filtered.</returns>
+	public ReadOnlySpan<ViewNode> Where(Func<ViewNode, bool> predicate)
+	{
+		var result = new List<ViewNode>(Count);
+		foreach (var element in this)
+		{
+			if (predicate(element))
+			{
+				result.Add(element);
+			}
+		}
+		return result.AsSpan();
+	}
+
+	/// <summary>
+	/// Filters the view nodes, only returns nodes of type <typeparamref name="TViewNode"/>.
+	/// </summary>
+	/// <typeparam name="TViewNode">The type of the node.</typeparam>
+	/// <returns>The target collection of element type <typeparamref name="TViewNode"/>.</returns>
+	public ReadOnlySpan<TViewNode> OfType<TViewNode>() where TViewNode : ViewNode
+	{
+		var result = new List<TViewNode>();
+		foreach (var node in this)
+		{
+			if (node is TViewNode casted)
+			{
+				result.Add(casted);
+			}
+		}
+		return result.AsSpan();
+	}
+
+	/// <returns>
+	/// The first element that matches the conditions defined by the specified predicate, if found;
+	/// otherwise, throw an <see cref="InvalidOperationException"/>.
+	/// </returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the sequence has no elements satisfying the specified rule.
+	/// </exception>
+	/// <inheritdoc cref="FirstOrDefault(Func{ViewNode, bool})"/>
+	public ViewNode First(Func<ViewNode, bool> match) => FirstOrDefault(match)!;
+
+	/// <summary>
+	/// Searches for an element that matches the conditions defined by the specified predicate,
+	/// and returns the first occurrence within the entire <see cref="View"/>.
+	/// </summary>
+	/// <param name="match">The <see cref="Func{T, TResult}"/> delegate that defines the conditions of the element to search for.</param>
+	/// <returns>
+	/// The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
+	/// </returns>
+	public ViewNode? FirstOrDefault(Func<ViewNode, bool> match)
+	{
+		foreach (var element in this)
+		{
+			if (match(element))
+			{
+				return element;
+			}
+		}
+		return null;
+	}
+
 	/// <inheritdoc/>
 	ViewNode IFirstLastMethod<View, ViewNode>.First() => this.First();
 
 	/// <inheritdoc/>
-	ViewNode IFirstLastMethod<View, ViewNode>.First(Func<ViewNode, bool> predicate) => this.First(predicate);
+	ViewNode IFirstLastMethod<View, ViewNode>.First(Func<ViewNode, bool> predicate) => First(predicate);
 
 	/// <inheritdoc/>
 	ViewNode? IFirstLastMethod<View, ViewNode>.FirstOrDefault() => this.FirstOrDefault();
@@ -135,14 +217,14 @@ public sealed class View :
 	ViewNode IFirstLastMethod<View, ViewNode>.FirstOrDefault(ViewNode defaultValue) => this.FirstOrDefault() ?? defaultValue;
 
 	/// <inheritdoc/>
-	ViewNode? IFirstLastMethod<View, ViewNode>.FirstOrDefault(Func<ViewNode, bool> predicate) => this.FirstOrDefault(predicate);
+	ViewNode? IFirstLastMethod<View, ViewNode>.FirstOrDefault(Func<ViewNode, bool> predicate) => FirstOrDefault(predicate);
 
 	/// <inheritdoc/>
 	ViewNode IFirstLastMethod<View, ViewNode>.FirstOrDefault(Func<ViewNode, bool> predicate, ViewNode defaultValue)
-		=> this.FirstOrDefault(predicate) ?? defaultValue;
+		=> FirstOrDefault(predicate) ?? defaultValue;
 
 	/// <inheritdoc/>
-	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate) => this.Where(predicate).ToArray();
+	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate) => Where(predicate).ToArray();
 
 	/// <inheritdoc/>
 	IEnumerable<ViewNode> IExceptMethod<View, ViewNode>.Except(IEnumerable<ViewNode> second) => ExceptWith([.. second]);
@@ -153,10 +235,10 @@ public sealed class View :
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<View, ViewNode>.Select<TResult>(Func<ViewNode, TResult> selector)
-		=> this.Select(selector).ToArray();
+		=> Select(selector).ToArray();
 
 	/// <inheritdoc/>
-	IEnumerable<TResult> IOfTypeMethod<View, ViewNode>.OfType<TResult>() => this.OfType<TResult>().ToArray();
+	IEnumerable<TResult> IOfTypeMethod<View, ViewNode>.OfType<TResult>() => OfType<TResult>().ToArray();
 
 
 	/// <summary>

@@ -521,6 +521,40 @@ public partial struct CellMap : CellMapBase
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public readonly bool Equals(in CellMap other) => _vector.Equals(other._vector);
 
+	/// <summary>
+	/// Indicates whether at least one element satisfies the specified condition.
+	/// </summary>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether at least one element satisfies the specified condition.</returns>
+	public readonly bool Exists(Func<Cell, bool> match)
+	{
+		foreach (var cell in this)
+		{
+			if (match(cell))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Determine whether all <see cref="Cell"/>s satisfy the specified condition.
+	/// </summary>
+	/// <param name="match">The match method.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether all elements satisfy the specified condition.</returns>
+	public readonly bool TrueForAll(Func<Cell, bool> match)
+	{
+		foreach (var cell in this)
+		{
+			if (!match(cell))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public readonly override int GetHashCode() => _vector.GetHashCode();
 
@@ -579,6 +613,140 @@ public partial struct CellMap : CellMapBase
 			result += offsets[i];
 		}
 		return result;
+	}
+
+	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found cell or -1 if none found.</returns>
+	public readonly Cell First(Func<Cell, bool> match)
+	{
+		foreach (var cell in Offsets)
+		{
+			if (match(cell))
+			{
+				return cell;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// Finds the first cell that satisfies the specified condition.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <param name="match">The condition to be used.</param>
+	/// <returns>The first found cell or -1 if none found.</returns>
+	public readonly Cell First(in Grid grid, CellMapOrCandidateMapPredicate<CellMap, Cell> match)
+	{
+		foreach (var cell in Offsets)
+		{
+			if (match(cell, grid))
+			{
+				return cell;
+			}
+		}
+		return -1;
+	}
+
+	/// <summary>
+	/// Projects each element in the current instance into the target-typed <typeparamref name="TResult"/> array,
+	/// using the specified function to convert.
+	/// </summary>
+	/// <typeparam name="TResult">The type of target value.</typeparam>
+	/// <param name="selector">The selector.</param>
+	/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+	public readonly ReadOnlySpan<TResult> Select<TResult>(Func<Cell, TResult> selector)
+	{
+		var (result, i) = (new TResult[Count], 0);
+		foreach (var cell in Offsets)
+		{
+			result[i++] = selector(cell);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Filters a <see cref="CellMap"/> collection based on a predicate.
+	/// </summary>
+	/// <param name="predicate">A function to test each element for a condition.</param>
+	/// <returns>
+	/// A <see cref="CellMap"/> that contains elements from the input <see cref="CellMap"/> satisfying the condition.
+	/// </returns>
+	public readonly CellMap Where(Func<Cell, bool> predicate)
+	{
+		var result = this;
+		foreach (var cell in Offsets)
+		{
+			if (!predicate(cell))
+			{
+				result -= cell;
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Groups the elements of a sequence according to a specified key selector function.
+	/// </summary>
+	/// <typeparam name="TKey">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/typeparam[@name='TKey']"/>
+	/// </typeparam>
+	/// <param name="keySelector">
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})" path="/param[@name='keySelector']"/>
+	/// </param>
+	/// <returns>
+	/// A list of <see cref="CellMapOrCandidateMapGrouping{TMap, TElement, TKey}"/> instances where each value object contains a sequence of objects and a key.
+	/// </returns>
+	/// <seealso cref="CellMapOrCandidateMapGrouping{TMap, TElement, TKey}"/>
+	public readonly ReadOnlySpan<CellMapOrCandidateMapGrouping<CellMap, Cell, TKey>> GroupBy<TKey>(Func<Cell, TKey> keySelector)
+		where TKey : notnull
+	{
+		var dictionary = new Dictionary<TKey, CellMap>();
+		foreach (var cell in this)
+		{
+			var key = keySelector(cell);
+			if (!dictionary.TryAdd(key, cell.AsCellMap()))
+			{
+				dictionary.GetValueRef(key) += cell;
+			}
+		}
+
+		var result = new CellMapOrCandidateMapGrouping<CellMap, Cell, TKey>[dictionary.Count];
+		var i = 0;
+		foreach (var kvp in dictionary)
+		{
+			ref readonly var key = ref kvp.KeyRef;
+			ref readonly var value = ref kvp.ValueRef;
+			result[i++] = new(key, value);
+		}
+		return result;
+	}
+
+	/// <summary>
+	/// Projects each cell (of type <see cref="Cell"/>) of a <see cref="CellMap"/> to a mask (of type <see cref="Mask"/>),
+	/// flattens the resulting sequence into one sequence, and invokes a result selector function on each element therein.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the elements of the resulting sequence.</typeparam>
+	/// <param name="collectionSelector">A transform function to apply to each element of the input <see cref="CellMap"/>.</param>
+	/// <param name="resultSelector">A transform function to apply to each element of the intermediate mask (of type <see cref="Mask"/>).</param>
+	/// <returns>
+	/// A <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TResult"/> whose elements are the result
+	/// of invoking the one-to-many transform function <paramref name="collectionSelector"/> on each element
+	/// of the current instance and then mapping each of those sequences and their corresponding source element to a result element.
+	/// </returns>
+	public readonly ReadOnlySpan<TResult> SelectMany<TResult>(Func<Cell, Mask> collectionSelector, Func<Cell, Digit, TResult> resultSelector)
+	{
+		var result = new List<TResult>(Count << 1);
+		foreach (var cell in this)
+		{
+			foreach (var digit in collectionSelector(cell))
+			{
+				result.AddRef(resultSelector(cell, digit));
+			}
+		}
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -663,10 +831,10 @@ public partial struct CellMap : CellMapBase
 	readonly bool IAnyAllMethod<CellMap, Cell>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	readonly bool IAnyAllMethod<CellMap, Cell>.Any(Func<Cell, bool> predicate) => this.Any(predicate);
+	readonly bool IAnyAllMethod<CellMap, Cell>.Any(Func<Cell, bool> predicate) => Exists(predicate);
 
 	/// <inheritdoc/>
-	readonly bool IAnyAllMethod<CellMap, Cell>.All(Func<Cell, bool> predicate) => this.All(predicate);
+	readonly bool IAnyAllMethod<CellMap, Cell>.All(Func<Cell, bool> predicate) => TrueForAll(predicate);
 
 	/// <inheritdoc/>
 	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -675,17 +843,18 @@ public partial struct CellMap : CellMapBase
 	readonly Cell IFirstLastMethod<CellMap, Cell>.First() => this[0];
 
 	/// <inheritdoc/>
-	readonly Cell IFirstLastMethod<CellMap, Cell>.First(Func<Cell, bool> predicate) => this.First(predicate);
+	readonly Cell IFirstLastMethod<CellMap, Cell>.First(Func<Cell, bool> predicate) => First(predicate);
 
 	/// <inheritdoc/>
-	readonly IEnumerable<Cell> IWhereMethod<CellMap, Cell>.Where(Func<Cell, bool> predicate) => this.Where(predicate);
+	readonly IEnumerable<Cell> IWhereMethod<CellMap, Cell>.Where(Func<Cell, bool> predicate) => Where(predicate);
 
 	/// <inheritdoc/>
 	readonly IEnumerable<IGrouping<TKey, Cell>> IGroupByMethod<CellMap, Cell>.GroupBy<TKey>(Func<Cell, TKey> keySelector)
-		=> this.GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Cell>)element);
+		=> GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Cell>)element);
 
 	/// <inheritdoc/>
-	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector) => this.Select(selector).ToArray();
+	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector)
+		=> Select(selector).ToArray();
 
 
 	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string, IFormatProvider?, out TSelf)"/>

@@ -302,6 +302,21 @@ public sealed partial class TechniqueSet() :
 	/// <inheritdoc/>
 	public Technique[] ToArray() => [.. this];
 
+	/// <inheritdoc cref="ArrayEnumerable.Select{T, TResult}(T[], Func{T, TResult})"/>
+	public ReadOnlySpan<TResult> Select<TResult>(Func<Technique, TResult> selector)
+	{
+		var result = new TResult[Count];
+		var i = 0;
+		foreach (var technique in this)
+		{
+			result[i++] = selector(technique);
+		}
+		return result;
+	}
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	public Enumerator GetEnumerator() => new(_bitArray);
+
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public TechniqueSet Slice(int start, int count)
 	{
@@ -317,8 +332,19 @@ public sealed partial class TechniqueSet() :
 		return result;
 	}
 
-	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	public Enumerator GetEnumerator() => new(_bitArray);
+	/// <inheritdoc cref="ArrayEnumerable.Where{T}(T[], Func{T, bool})"/>
+	public TechniqueSet Where(Func<Technique, bool> selector)
+	{
+		var result = new List<Technique>(Count);
+		foreach (var technique in this)
+		{
+			if (selector(technique))
+			{
+				result.Add(technique);
+			}
+		}
+		return [.. result];
+	}
 
 	/// <inheritdoc/>
 	void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
@@ -453,11 +479,11 @@ public sealed partial class TechniqueSet() :
 	IEnumerable<Technique> ISliceMethod<TechniqueSet, Technique>.Slice(int start, int count) => Slice(start, count);
 
 	/// <inheritdoc/>
-	IEnumerable<Technique> IWhereMethod<TechniqueSet, Technique>.Where(Func<Technique, bool> predicate) => this.Where(predicate);
+	IEnumerable<Technique> IWhereMethod<TechniqueSet, Technique>.Where(Func<Technique, bool> predicate) => Where(predicate);
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<TechniqueSet, Technique>.Select<TResult>(Func<Technique, TResult> selector)
-		=> this.Select(selector).ToArray();
+		=> Select(selector).ToArray();
 
 
 	/// <summary>

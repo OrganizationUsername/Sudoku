@@ -434,6 +434,84 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]
 		=> StepsSpan.FindAll(step => step.DifficultyLevel == difficultyLevel);
 
+
+	/// <summary>
+	/// Cast the object into a <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TStep"/> instances.
+	/// </summary>
+	/// <typeparam name="TStep">The type of each element casted.</typeparam>
+	/// <returns>A list of <typeparamref name="TStep"/> instances.</returns>
+	public ReadOnlySpan<TStep> Cast<TStep>() where TStep : Step => from element in this select (TStep)element;
+
+	/// <summary>
+	/// Filters the current collection, preserving steps that are of type <typeparamref name="TStep"/>.
+	/// </summary>
+	/// <typeparam name="TStep">The type of the step you want to get.</typeparam>
+	/// <returns>An array of <typeparamref name="TStep"/> instances.</returns>
+	public ReadOnlySpan<TStep> OfType<TStep>() where TStep : Step
+	{
+		if (StepsSpan is not { Length: var stepsCount and not 0 } steps)
+		{
+			return [];
+		}
+
+		var list = new List<TStep>(stepsCount);
+		foreach (var element in steps)
+		{
+			if (element is TStep current)
+			{
+				list.Add(current);
+			}
+		}
+		return list.AsSpan();
+	}
+
+	/// <summary>
+	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition.
+	/// </summary>
+	/// <param name="condition">The condition to be satisfied.</param>
+	/// <returns>An array of <see cref="Step"/> instances.</returns>
+	public ReadOnlySpan<Step> Where(Func<Step, bool> condition)
+	{
+		if (StepsSpan is not { Length: var stepsCount and not 0 } steps)
+		{
+			return [];
+		}
+
+		var result = new List<Step>(stepsCount);
+		foreach (var step in steps)
+		{
+			if (condition(step))
+			{
+				result.Add(step);
+			}
+		}
+		return result.AsSpan();
+	}
+
+	/// <summary>
+	/// Projects the collection, to an immutable result of target type.
+	/// </summary>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
+	/// <param name="selector">
+	/// The selector to project the <see cref="Step"/> instance into type <typeparamref name="TResult"/>.
+	/// </param>
+	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
+	public ReadOnlySpan<TResult> Select<TResult>(Func<Step, TResult> selector)
+	{
+		if (StepsSpan is not { Length: var stepsCount and not 0 } steps)
+		{
+			return [];
+		}
+
+		var arr = new TResult[stepsCount];
+		var i = 0;
+		foreach (var step in steps)
+		{
+			arr[i++] = selector(step);
+		}
+		return arr;
+	}
+
 	/// <inheritdoc/>
 	Step IReadOnlyDictionary<Grid, Step>.this[Grid key] => this[key];
 
@@ -838,17 +916,17 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => StepsSpan.ToArray().AsEnumerable().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerable<Step> IWhereMethod<AnalysisResult, Step>.Where(Func<Step, bool> predicate) => this.Where(predicate).ToArray();
+	IEnumerable<Step> IWhereMethod<AnalysisResult, Step>.Where(Func<Step, bool> predicate) => Where(predicate).ToArray();
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<AnalysisResult, Step>.Select<TResult>(Func<Step, TResult> selector)
-		=> this.Select(selector).ToArray();
+		=> Select(selector).ToArray();
 
 	/// <inheritdoc/>
-	IEnumerable<TResult> ICastMethod<AnalysisResult, Step>.Cast<TResult>() => this.Cast<TResult>().ToArray();
+	IEnumerable<TResult> ICastMethod<AnalysisResult, Step>.Cast<TResult>() => Cast<TResult>().ToArray();
 
 	/// <inheritdoc/>
-	IEnumerable<TResult> IOfTypeMethod<AnalysisResult, Step>.OfType<TResult>() => this.OfType<TResult>().ToArray();
+	IEnumerable<TResult> IOfTypeMethod<AnalysisResult, Step>.OfType<TResult>() => OfType<TResult>().ToArray();
 
 
 	/// <summary>

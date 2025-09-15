@@ -55,13 +55,13 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					var count = PopCount((uint)grid.GetCandidates(excludingCell));
 					if (count >= 2 && count <= size)
 					{
-						excludingCells.Add(excludingCell);
+						excludingCells += excludingCell;
 					}
 				}
 
 				if (excludingCells)
 				{
-					candidateList.Add(cell);
+					candidateList += cell;
 					cellExcluders.Add(cell, excludingCells);
 				}
 			}

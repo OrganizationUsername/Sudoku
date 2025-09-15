@@ -176,7 +176,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				{
 					if ((grid.GetCandidates(cell) & extraDigitsMask) != 0)
 					{
-						extraCells.Add(cell);
+						extraCells += cell;
 					}
 				}
 				if (extraCells.Count >= 2 && extraCells.FirstSharedHouse == FallbackConstants.@int)
@@ -292,7 +292,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					{
 						if ((grid.GetCandidates(cell) & extraDigitsMask) != 0)
 						{
-							extraCells.Add(cell);
+							extraCells += cell;
 						}
 					}
 					if (extraCells.Count >= 2 && extraCells.FirstSharedHouse == FallbackConstants.@int)

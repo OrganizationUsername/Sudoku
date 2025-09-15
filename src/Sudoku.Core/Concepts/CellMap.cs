@@ -576,7 +576,7 @@ public partial struct CellMap : CellMapBase
 		var (result, offsets) = (Empty, Offsets);
 		for (int i = start, end = start + count; i < end; i++)
 		{
-			result.Add(offsets[i]);
+			result += offsets[i];
 		}
 		return result;
 	}
@@ -642,7 +642,13 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public void Toggle(Cell offset) => _ = Contains(offset) ? Remove(offset) : Add(offset);
+	public void Toggle(Cell offset)
+	{
+		if (!Add(offset))
+		{
+			this -= offset;
+		}
+	}
 
 	/// <summary>
 	/// Remove all elements stored in the current collection, and set the property <see cref="Count"/> to zero.
@@ -753,7 +759,7 @@ public partial struct CellMap : CellMapBase
 		var result = default(CellMap);
 		foreach (var cell in cells)
 		{
-			result.Add(cell);
+			result += cell;
 		}
 		return result;
 	}
@@ -854,7 +860,7 @@ public partial struct CellMap : CellMapBase
 	public static CellMap operator +(in CellMap collection, Cell offset)
 	{
 		var result = collection;
-		result.Add(offset);
+		result += offset;
 		return result;
 	}
 
@@ -862,7 +868,7 @@ public partial struct CellMap : CellMapBase
 	public static CellMap operator -(in CellMap collection, Cell offset)
 	{
 		var result = collection;
-		result.Remove(offset);
+		result -= offset;
 		return result;
 	}
 

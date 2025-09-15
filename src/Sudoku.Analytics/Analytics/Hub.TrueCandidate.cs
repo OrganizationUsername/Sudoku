@@ -55,7 +55,7 @@ public partial class Hub
 				foreach (var digit in grid.GetCandidates(cell))
 				{
 					ref var map = ref stack[0, digit];
-					map.Add(cell);
+					map += cell;
 
 					cell.CopyHouseInfo(ref peerHouses[0]);
 					for (var i = 0; i < 3; i++)
@@ -117,7 +117,7 @@ public partial class Hub
 					foreach (var digit in pairs[currentIndex - 1, i])
 					{
 						var temp = stack[currentIndex - 1, digit];
-						temp.Add(currentCell);
+						temp += currentCell;
 
 						currentCell.CopyHouseInfo(ref playground[0]);
 						foreach (var houseIndex in playground)
@@ -145,10 +145,8 @@ public partial class Hub
 					}
 
 					chosen[currentIndex] = i;
-					var pos1 = TrailingZeroCount(mask);
-
-					stack[currentIndex, pos1].Add(currentCell);
-					stack[currentIndex, mask.GetNextSet(pos1)].Add(currentCell);
+					stack[currentIndex, BitOperations.PopTwo((uint)mask, out var pos2)] += currentCell;
+					stack[currentIndex, pos2] += currentCell;
 					if (currentIndex == multivalueCellsCount)
 					{
 						// Iterate on each digit.

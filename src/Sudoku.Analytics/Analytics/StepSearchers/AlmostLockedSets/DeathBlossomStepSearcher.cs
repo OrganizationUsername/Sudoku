@@ -107,7 +107,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							// Try to delete it from playground, and check for whether the target cell has no possible candidates.
 							playground[pivot] &= (Mask)~(1 << currentSelectedDigit);
 							alsReferenceTable[pivot * 9 + currentSelectedDigit] = alsCurrentIndex;
-							availablePivots.Add(pivot);
+							availablePivots += pivot;
 
 							// Check for normal type.
 							if (playground[pivot] == 0
@@ -591,7 +591,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 				Debug.Assert(usedAlsesCount <= 10, "There's a special case that more than 10 branches found.");
 
-				alsesUsed[currentUsedIndex * 9 + digit].Add(cell);
+				alsesUsed[currentUsedIndex * 9 + digit] += cell;
 				if (zDigitsMask == 0)
 				{
 					zDigitsMask = (Mask)(alses[indexUsed2All[currentUsedIndex]].DigitsMask & ~(1 << digit));
@@ -654,7 +654,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 					cellOffsets.Add(node);
 					//clrCands[cell] &= (Mask)~tCand;
 
-					nTimesAlsCells.Add(cell);
+					nTimesAlsCells += cell;
 				}
 			}
 

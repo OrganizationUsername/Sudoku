@@ -99,7 +99,7 @@ public static class CellMapOrCandidateMapGroupingEnumerable
 		var result = CellMap.Empty;
 		foreach (var group in @this)
 		{
-			result.Add(selector(group));
+			result += selector(group);
 		}
 		return result;
 	}

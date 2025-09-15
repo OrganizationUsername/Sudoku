@@ -242,7 +242,7 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 						}
 					}
 					while (used.Contains(cell));
-					used.Add(cell);
+					used += cell;
 
 					if (_newValidSudoku.GetDigit(cell) == -1)
 					{

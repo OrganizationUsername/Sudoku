@@ -37,7 +37,7 @@ public sealed record ExcluderInfo(in CellMap BaseCells, in CellMap EmptyCells, i
 			}
 			else
 			{
-				emptyCellsNotNeedToBeCovered.Add(c);
+				emptyCellsNotNeedToBeCovered += c;
 			}
 		}
 

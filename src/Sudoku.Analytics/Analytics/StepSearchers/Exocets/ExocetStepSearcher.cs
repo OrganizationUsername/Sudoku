@@ -1976,7 +1976,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 				}
 
-				singleMirrors.Add(theOnlyMirrorCell);
+				singleMirrors += theOnlyMirrorCell;
 			}
 		}
 
@@ -3103,7 +3103,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			foreach (var cell in groupOfTargetCells)
 			{
-				targetCells.Add(cell);
+				targetCells += cell;
 
 				if (valueDigitCell != -1 || !PeersMap[cell].Contains(missingValueCell))
 				{
@@ -4396,7 +4396,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					}
 				}
 
-				singleMirrors.Add(theOnlyMirrorCell);
+				singleMirrors += theOnlyMirrorCell;
 			}
 		}
 

@@ -184,7 +184,7 @@ public static class SolutionFields
 			var cell = 0;
 			foreach (ref var map in span)
 			{
-				map.Add(cell++);
+				map += cell++;
 			}
 		}
 
@@ -204,7 +204,7 @@ public static class SolutionFields
 						{
 							if (HousesMap[cell >> houseType].Contains(peerCell))
 							{
-								map.Add(peerCell);
+								map += peerCell;
 								break;
 							}
 						}

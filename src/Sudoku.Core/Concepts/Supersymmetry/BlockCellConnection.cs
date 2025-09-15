@@ -102,7 +102,7 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 			var result = CellMap.Empty;
 			var queue = new LinkedList<Cell>();
 			queue.AddLast(start);
-			result.Add(start);
+			result += start;
 
 			while (queue.Count != 0)
 			{
@@ -111,7 +111,7 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 				{
 					if (available.Contains(neighbor) && !result.Contains(neighbor))
 					{
-						result.Add(neighbor);
+						result += neighbor;
 						queue.AddLast(neighbor);
 					}
 				}
@@ -159,7 +159,7 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 					}
 					if (bridge != -1)
 					{
-						allPoints.Add(bridge);
+						allPoints += bridge;
 						foreach (var p in allPoints)
 						{
 							toCheck.AddLast((bridge, p));
@@ -217,19 +217,19 @@ file static class Extensions
 				var result = CellMap.Empty;
 				if (@this - 9 is var up && up >= 0 && up >> HouseType.Block == block)
 				{
-					result.Add(up);
+					result += up;
 				}
 				if (@this + 9 is var down && down < 81 && down >> HouseType.Block == block)
 				{
-					result.Add(down);
+					result += down;
 				}
 				if (@this - 1 is var left && left >= 0 && left >> HouseType.Block == block)
 				{
-					result.Add(left);
+					result += left;
 				}
 				if (@this + 1 is var right && right < 81 && right >> HouseType.Block == block)
 				{
-					result.Add(right);
+					result += right;
 				}
 				return result;
 			}

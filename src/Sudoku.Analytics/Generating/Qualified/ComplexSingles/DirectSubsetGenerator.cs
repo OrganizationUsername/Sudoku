@@ -32,7 +32,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 						{
 							if ((digitsToCover >> g.GetDigit(peerCell) & 1) != 0)
 							{
-								result.Add(peerCell);
+								result += peerCell;
 							}
 						}
 					}
@@ -50,7 +50,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 								{
 									if (g.GetDigit(c) == digit)
 									{
-										result.Remove(c);
+										result -= c;
 									}
 								}
 								break;
@@ -94,7 +94,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 						{
 							if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
 							{
-								result.Add(cell);
+								result += cell;
 								break;
 							}
 						}
@@ -113,7 +113,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 					{
 						if (g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					goto default;
@@ -124,14 +124,14 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 					{
 						if (g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					foreach (var node in s.Views![0])
 					{
 						if (node is CircleViewNode { Cell: var cell } && g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					break;

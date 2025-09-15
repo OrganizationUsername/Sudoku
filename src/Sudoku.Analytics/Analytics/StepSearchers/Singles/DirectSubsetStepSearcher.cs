@@ -77,7 +77,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		{
 			if (IsPow2(grid.GetCandidates(cell)))
 			{
-				nakedSingleCells.Add(cell);
+				nakedSingleCells += cell;
 			}
 		}
 		emptyCells &= ~nakedSingleCells;
@@ -254,7 +254,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			{
 				if (IsPow2(grid.GetCandidates(cell)))
 				{
-					currentEmptyMap.Remove(cell);
+					currentEmptyMap -= cell;
 				}
 			}
 

@@ -55,7 +55,7 @@ public sealed class UniqueRectangleSingleSideExternalChainingRule : UniqueRectan
 				{
 					if ((grid.GetCandidates(cell) & otherDigitsMask) != 0)
 					{
-						urCellsContainingOtherDigits.Add(cell);
+						urCellsContainingOtherDigits += cell;
 					}
 				}
 				if (linkOption == LinkOption.Intersection && !urCellsContainingOtherDigits.IsInIntersection)

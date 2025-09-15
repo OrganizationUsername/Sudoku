@@ -100,7 +100,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					{
 						if (map.Contains(cell))
 						{
-							canL[digit].Add(cell);
+							canL[digit] += cell;
 						}
 
 						conclusions.Add(new(Elimination, cell, digit));

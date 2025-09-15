@@ -109,7 +109,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					{
 						if (grid.GetExistence(cell, digit))
 						{
-							extraCellsMap.Add(cell);
+							extraCellsMap += cell;
 							break;
 						}
 					}
@@ -358,7 +358,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								if ((grid.GetCandidates(cell) & digitsToCheck) == 0)
 								{
 									// No extra cells found.
-									finalCellsContainingExtraDigits.Remove(cell);
+									finalCellsContainingExtraDigits -= cell;
 								}
 							}
 							if (finalCellsContainingExtraDigits.Count != patternCellsCoveredInThisHouse.Count - 1)

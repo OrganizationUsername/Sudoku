@@ -47,7 +47,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 
 			if (str[cell] - '0' == 1)
 			{
-				result.Add(cell);
+				result += cell;
 				continue;
 			}
 

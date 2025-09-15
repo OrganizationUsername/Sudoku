@@ -576,7 +576,7 @@ public interface IGrid<TSelf> :
 		{
 			if (predicate(@this, cell))
 			{
-				result.Add(cell);
+				result += cell;
 			}
 		}
 		return result;
@@ -601,7 +601,7 @@ public interface IGrid<TSelf> :
 			{
 				if (predicate(@this, cell, digit))
 				{
-					map.Add(cell);
+					map += cell;
 				}
 			}
 		}

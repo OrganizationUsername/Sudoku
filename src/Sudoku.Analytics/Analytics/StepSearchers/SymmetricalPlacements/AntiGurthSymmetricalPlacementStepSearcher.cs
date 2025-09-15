@@ -110,8 +110,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 						return null;
 					}
 
-					cellsNotSymmetrical.Add(c1);
-					cellsNotSymmetrical.Add(c2);
+					cellsNotSymmetrical += c1;
+					cellsNotSymmetrical += c2;
 					continue;
 				}
 
@@ -247,8 +247,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 						return null;
 					}
 
-					cellsNotSymmetrical.Add(c1);
-					cellsNotSymmetrical.Add(c2);
+					cellsNotSymmetrical += c1;
+					cellsNotSymmetrical += c2;
 					continue;
 				}
 
@@ -385,8 +385,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 						return null;
 					}
 
-					cellsNotSymmetrical.Add(c1);
-					cellsNotSymmetrical.Add(c2);
+					cellsNotSymmetrical += c1;
+					cellsNotSymmetrical += c2;
 					continue;
 				}
 
@@ -492,8 +492,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 						return null;
 					}
 
-					cellsNotSymmetrical.Add(c1);
-					cellsNotSymmetrical.Add(c2);
+					cellsNotSymmetrical += c1;
+					cellsNotSymmetrical += c2;
 					continue;
 				}
 
@@ -596,8 +596,8 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 					return null;
 				}
 
-				cellsNotSymmetrical.Add(cell);
-				cellsNotSymmetrical.Add(anotherCell);
+				cellsNotSymmetrical += cell;
+				cellsNotSymmetrical += anotherCell;
 				continue;
 			}
 

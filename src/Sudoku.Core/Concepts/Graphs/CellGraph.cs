@@ -108,7 +108,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 			{
 				if (!coloringDictionary.TryAdd(isFirst, cell.AsCellMap()))
 				{
-					coloringDictionary.GetValueRef(isFirst).Add(cell);
+					coloringDictionary.GetValueRef(isFirst) += cell;
 				}
 				isFirst = !isFirst;
 			}
@@ -200,7 +200,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 			{
 				if (GetDegreeOf(cell) == degree)
 				{
-					result.Add(cell);
+					result += cell;
 				}
 			}
 			return new(result, _invalidCells);
@@ -326,7 +326,7 @@ public readonly partial struct CellGraph : IEquatable<CellGraph>, IFormattable, 
 				var depth = new CellGraphDepth(currentDepth + 1, peerCell);
 				queue.Enqueue(depth);
 				depthValues.Add(depth);
-				coveredCells.Add(peerCell);
+				coveredCells += peerCell;
 			}
 			currentGraph |= coveredCells;
 		}

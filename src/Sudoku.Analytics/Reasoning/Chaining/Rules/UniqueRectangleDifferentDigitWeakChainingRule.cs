@@ -49,7 +49,7 @@ public sealed class UniqueRectangleDifferentDigitWeakChainingRule : UniqueRectan
 				{
 					if ((grid.GetCandidates(cell) & ~urDigitsMask) != 0)
 					{
-						urCellsContainingOtherDigits.Add(cell);
+						urCellsContainingOtherDigits += cell;
 					}
 				}
 				if (linkOption == LinkOption.Intersection && !urCellsContainingOtherDigits.IsInIntersection)

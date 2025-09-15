@@ -147,7 +147,7 @@ public ref struct Generator() : IGenerator<Grid>
 				}
 			}
 			while (used.Contains(cell));
-			used.Add(cell);
+			used += cell;
 			usedCount--;
 
 			if (_newValidSudoku.GetDigit(cell) == -1)
@@ -182,7 +182,7 @@ public ref struct Generator() : IGenerator<Grid>
 			{
 				// Delete cell.
 				_newValidSudoku.SetDigit(candidateCell, -1);
-				used.Add(candidateCell);
+				used += candidateCell;
 				remainingClues--;
 				if (candidateCell != cell)
 				{

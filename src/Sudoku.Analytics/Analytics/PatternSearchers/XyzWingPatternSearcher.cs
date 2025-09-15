@@ -17,7 +17,7 @@ public sealed class XyzWingPatternSearcher : PatternSearcherBase<XyzWingPattern>
 		{
 			if (PopCount((uint)grid.GetCandidates(cell)) == 3)
 			{
-				trivalueCells.Add(cell);
+				trivalueCells += cell;
 			}
 		}
 

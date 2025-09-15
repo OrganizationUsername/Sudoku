@@ -1349,11 +1349,11 @@ file static class Extensions
 						var map = CellMap.Empty;
 						if (pos >= i)
 						{
-							map.Add(cells[pos - i]);
+							map += cells[pos - i];
 						}
 						if (pos + i < cells.Length)
 						{
-							map.Add(cells[pos + i]);
+							map += cells[pos + i];
 						}
 
 						if (map)
@@ -1374,11 +1374,11 @@ file static class Extensions
 						var map = CellMap.Empty;
 						if (pos >= i)
 						{
-							map.Add(cells[pos - i]);
+							map += cells[pos - i];
 						}
 						if (pos + i < cells.Length)
 						{
-							map.Add(cells[pos + i]);
+							map += cells[pos + i];
 						}
 
 						if (map)

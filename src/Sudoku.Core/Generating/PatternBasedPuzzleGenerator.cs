@@ -151,7 +151,8 @@ public readonly ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seed
 				}
 			}
 
-			(_, result[index]) = (isOrdered.Add(best), best);
+			isOrdered += best;
+			result[index] = best;
 		}
 
 		return result;

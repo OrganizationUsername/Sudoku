@@ -77,7 +77,7 @@ public static class CellMapEnumerable
 			{
 				if (!predicate(cell))
 				{
-					result.Remove(cell);
+					result -= cell;
 				}
 			}
 			return result;
@@ -105,9 +105,7 @@ public static class CellMapEnumerable
 				var key = keySelector(cell);
 				if (!dictionary.TryAdd(key, cell.AsCellMap()))
 				{
-					var originalElement = dictionary[key];
-					originalElement.Add(cell);
-					dictionary[key] = originalElement;
+					dictionary.GetValueRef(key) += cell;
 				}
 			}
 

@@ -69,7 +69,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		{
 			if (IsPow2(context.Grid.GetCandidates(cell)))
 			{
-				emptyCells.Remove(cell);
+				emptyCells -= cell;
 			}
 		}
 

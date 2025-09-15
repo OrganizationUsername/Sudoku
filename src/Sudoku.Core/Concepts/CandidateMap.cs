@@ -927,7 +927,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		{
 			if (element % 9 == digit)
 			{
-				result.Add(element / 9);
+				result += element / 9;
 			}
 		}
 		return result;

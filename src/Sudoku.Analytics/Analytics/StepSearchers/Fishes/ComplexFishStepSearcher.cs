@@ -410,7 +410,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 										}
 										if (coverSetCounter == 2)
 										{
-											elimMap.Add(cannibalism);
+											elimMap += cannibalism;
 											cannibal = true;
 										}
 									}

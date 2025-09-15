@@ -665,7 +665,7 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			bivalueCellsFiltered.Add(cell);
+			bivalueCellsFiltered += cell;
 			bivalueCellsDigitsMask |= digitsMask;
 		}
 

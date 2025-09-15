@@ -57,9 +57,9 @@ public readonly record struct Miniline(in MinilineBase Base, in MinilineResult R
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
 				{
 					ref var current = ref currentMinilineGroup[tempIndex++];
-					current.Add(houseCell);
-					current.Add(houseCell + (isRow ? 1 : 9));
-					current.Add(houseCell + (isRow ? 2 : 18));
+					current += houseCell;
+					current += houseCell + (isRow ? 1 : 9);
+					current += houseCell + (isRow ? 2 : 18);
 				}
 			}
 		}

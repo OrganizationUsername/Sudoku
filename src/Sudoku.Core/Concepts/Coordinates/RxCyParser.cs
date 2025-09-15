@@ -31,7 +31,7 @@ public sealed partial record RxCyParser : CoordinateParser
 				{
 					foreach (var column in columnDigits)
 					{
-						result.Add((row - '1') * 9 + column - '1');
+						result += (row - '1') * 9 + column - '1';
 					}
 				}
 			}

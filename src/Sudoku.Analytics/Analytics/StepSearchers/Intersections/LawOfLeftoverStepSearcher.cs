@@ -27,12 +27,12 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 			foreach (var cell in a & ~EmptyCells)
 			{
 				lineSetDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
-				mergedCells.Add(cell);
+				mergedCells += cell;
 			}
 			foreach (var cell in b & ~EmptyCells)
 			{
 				blockSetDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
-				mergedCells.Add(cell);
+				mergedCells += cell;
 			}
 
 			// The LoL technique requires value digits from two different sets should be merged into a big set containing 6 digits.

@@ -149,7 +149,7 @@ public partial class UniqueRectangleStepSearcher
 
 				if (CandidatesMap[extraDigit].Contains(cell))
 				{
-					extraCells.Add(cell);
+					extraCells += cell;
 				}
 			}
 		}
@@ -497,7 +497,7 @@ public partial class UniqueRectangleStepSearcher
 
 			if (CandidatesMap[extraDigit].Contains(cell))
 			{
-				extraCells.Add(cell);
+				extraCells += cell;
 			}
 		}
 

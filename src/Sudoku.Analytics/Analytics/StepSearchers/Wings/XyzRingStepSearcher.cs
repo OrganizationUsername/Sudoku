@@ -90,7 +90,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 		{
 			if (PopCount((uint)grid.GetCandidates(cell)) == 3)
 			{
-				trivalueCells.Add(cell);
+				trivalueCells += cell;
 			}
 		}
 

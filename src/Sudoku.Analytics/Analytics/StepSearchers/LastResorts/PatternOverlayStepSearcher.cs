@@ -62,11 +62,11 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 			{
 				if ((grid.GetCandidates(cell) >> digit & 1) == 0)
 				{
-					invalidPos[digit].Add(cell);
+					invalidPos[digit] += cell;
 				}
 				else if (grid.GetDigit(cell) == digit)
 				{
-					mustPos[digit].Add(cell);
+					mustPos[digit] += cell;
 				}
 			}
 		}

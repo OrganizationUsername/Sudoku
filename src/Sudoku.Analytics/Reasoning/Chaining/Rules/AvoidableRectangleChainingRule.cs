@@ -34,7 +34,7 @@ public sealed class AvoidableRectangleChainingRule : ChainingRule
 				{
 					case CellState.Modifiable:
 					{
-						modifiableCellsInPattern.Add(cell);
+						modifiableCellsInPattern += cell;
 						break;
 					}
 					case CellState.Given:
@@ -44,7 +44,7 @@ public sealed class AvoidableRectangleChainingRule : ChainingRule
 					}
 					default:
 					{
-						emptyCellsInPattern.Add(cell);
+						emptyCellsInPattern += cell;
 						break;
 					}
 				}
@@ -142,7 +142,7 @@ public sealed class AvoidableRectangleChainingRule : ChainingRule
 				if (!existsCell && processedViewNodesMap.TryAdd(id, (cell.AsCellMap(), CandidateMap.Empty)))
 				{
 					var pair = processedViewNodesMap[id];
-					pair.Cells.Add(cell);
+					pair.Cells += cell;
 					processedViewNodesMap[id] = pair;
 				}
 

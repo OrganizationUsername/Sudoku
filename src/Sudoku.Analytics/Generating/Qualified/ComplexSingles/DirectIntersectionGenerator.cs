@@ -33,7 +33,7 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 							{
 								if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
 								{
-									result.Add(cell);
+									result += cell;
 									break;
 								}
 							}
@@ -53,7 +53,7 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 					{
 						if (g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					goto default;
@@ -64,19 +64,19 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 					{
 						if (g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					foreach (var node in s.Views![0])
 					{
 						if (node is CircleViewNode { Cell: var cell } && g.GetState(cell) != CellState.Empty)
 						{
-							result.Add(cell);
+							result += cell;
 						}
 					}
 					foreach (var cell in step.IntersectionCells)
 					{
-						result.Remove(cell);
+						result -= cell;
 					}
 					break;
 				}

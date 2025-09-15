@@ -126,8 +126,8 @@ public sealed class ExtendedRectanglePattern(bool isFat, in CellMap patternCells
 					foreach (var pos in mask)
 					{
 						var (cell1, cell2) = (HousesCells[house1][pos], HousesCells[house2][pos]);
-						map.Add(cell1);
-						map.Add(cell2);
+						map += cell1;
+						map += cell2;
 						pairs.Add((cell1, cell2));
 					}
 					result.Add(new(true, map, [.. pairs], size));

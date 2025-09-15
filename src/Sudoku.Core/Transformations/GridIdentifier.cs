@@ -219,7 +219,7 @@ public readonly struct GridIdentifier :
 			{
 				if (bits[i])
 				{
-					result.Add(i);
+					result += i;
 				}
 			}
 			return result;

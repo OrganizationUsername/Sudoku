@@ -47,13 +47,13 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					{
 						var cell1 = HousesCells[h1][pos1];
 						cellsList1.Add(cell1);
-						cells1.Add(cell1);
+						cells1 += cell1;
 					}
 					foreach (var pos2 in mask2)
 					{
 						var cell2 = HousesCells[h2][pos2];
 						cellsList2.Add(cell2);
-						cells2.Add(cell2);
+						cells2 += cell2;
 					}
 
 					if (cells1 && cells2)

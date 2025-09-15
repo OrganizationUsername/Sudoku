@@ -178,7 +178,7 @@ public partial struct SpaceSet :
 			return false;
 		}
 
-		_field[(int)type].Add(id);
+		_field[(int)type] += id;
 		return true;
 	}
 
@@ -196,7 +196,7 @@ public partial struct SpaceSet :
 			return false;
 		}
 
-		_field[(int)type].Remove(id);
+		_field[(int)type] -= id;
 		return true;
 	}
 

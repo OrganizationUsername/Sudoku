@@ -32,7 +32,7 @@ public sealed partial record K9Parser : CoordinateParser
 					var finalRow = row is 'I' or 'i' or 'J' or 'j' or 'K' or 'k' ? 'I' : char.ToUpper(row);
 					foreach (var column in columns)
 					{
-						result.Add((finalRow - 'A') * 9 + column - '1');
+						result += (finalRow - 'A') * 9 + column - '1';
 					}
 				}
 			}

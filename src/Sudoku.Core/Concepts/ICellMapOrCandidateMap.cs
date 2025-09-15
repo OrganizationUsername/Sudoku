@@ -249,7 +249,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		TSelf otherCells = [];
 		foreach (var element in other)
 		{
-			otherCells.Add(element);
+			otherCells += element;
 		}
 		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
 	}
@@ -260,7 +260,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		TSelf otherCells = [];
 		foreach (var element in other)
 		{
-			otherCells.Add(element);
+			otherCells += element;
 		}
 		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
 	}
@@ -271,7 +271,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		TSelf otherCells = [];
 		foreach (var element in other)
 		{
-			otherCells.Add(element);
+			otherCells += element;
 		}
 		return (otherCells & (TSelf)this) == (TSelf)this;
 	}
@@ -282,7 +282,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		TSelf otherCells = [];
 		foreach (var element in other)
 		{
-			otherCells.Add(element);
+			otherCells += element;
 		}
 		return ((TSelf)this & otherCells) == otherCells;
 	}
@@ -310,7 +310,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		{
 			if (((ICollection<TElement>)this).Contains(element))
 			{
-				result.Add(element);
+				result += element;
 			}
 		}
 
@@ -328,7 +328,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 		var elements = other as TElement[] ?? [.. other];
 		foreach (var element in elements)
 		{
-			left.Remove(element);
+			left -= element;
 		}
 
 		var right = [.. elements] & ~(TSelf)this;

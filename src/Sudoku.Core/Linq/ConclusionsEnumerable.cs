@@ -22,7 +22,7 @@ public static class ConclusionsEnumerable
 			var result = CellMap.Empty;
 			foreach (var element in @this)
 			{
-				result.Add(selector(element));
+				result += selector(element);
 			}
 			return result;
 		}

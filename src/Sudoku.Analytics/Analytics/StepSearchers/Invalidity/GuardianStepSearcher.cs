@@ -34,7 +34,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			ref var currentMap = ref eliminationMaps[step.Digit];
 			foreach (var conclusion in step.Conclusions)
 			{
-				currentMap.Add(conclusion.Cell);
+				currentMap += conclusion.Cell;
 			}
 		}
 

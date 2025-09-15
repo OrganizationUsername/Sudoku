@@ -73,7 +73,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			if (grid.GetState(cell) != CellState.Empty)
 			{
-				valueCellsInBothLines.Add(cell);
+				valueCellsInBothLines += cell;
 			}
 		}
 
@@ -153,11 +153,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			if (HousesCells[l1][pos] is var cell1 && grid.GetState(cell1) == CellState.Empty)
 			{
-				emptyCellsInPairedCells.Add(cell1);
+				emptyCellsInPairedCells += cell1;
 			}
 			if (HousesCells[l2][pos] is var cell2 && grid.GetState(cell2) == CellState.Empty)
 			{
-				emptyCellsInPairedCells.Add(cell2);
+				emptyCellsInPairedCells += cell2;
 			}
 		}
 		if (emptyCellsInPairedCells.Count >= 2)

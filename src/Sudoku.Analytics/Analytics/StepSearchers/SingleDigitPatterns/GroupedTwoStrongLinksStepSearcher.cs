@@ -61,23 +61,19 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 					var (cellsForHouse1, cellsForHouse2) = ((CellMap[])[[], []], (CellMap[])[[], []]);
 					foreach (var pos in mask1Subgroups[0])
 					{
-						ref var currentMap = ref cellsForHouse1[0];
-						currentMap.Add(HousesCells[h1][pos]);
+						cellsForHouse1[0] += HousesCells[h1][pos];
 					}
 					foreach (var pos in mask1Subgroups[1])
 					{
-						ref var currentMap = ref cellsForHouse1[1];
-						currentMap.Add(HousesCells[h1][pos]);
+						cellsForHouse1[1] += HousesCells[h1][pos];
 					}
 					foreach (var pos in mask2Subgroups[0])
 					{
-						ref var currentMap = ref cellsForHouse2[0];
-						currentMap.Add(HousesCells[h2][pos]);
+						cellsForHouse2[0] += HousesCells[h2][pos];
 					}
 					foreach (var pos in mask2Subgroups[1])
 					{
-						ref var currentMap = ref cellsForHouse2[1];
-						currentMap.Add(HousesCells[h2][pos]);
+						cellsForHouse2[1] += HousesCells[h2][pos];
 					}
 					foreach (var (cells1, cells2, headCells, tailCells) in (
 						(cellsForHouse1[0], cellsForHouse2[0], cellsForHouse1[1], cellsForHouse2[1]),

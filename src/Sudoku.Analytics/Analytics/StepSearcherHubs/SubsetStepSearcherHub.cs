@@ -34,7 +34,7 @@ internal sealed class SubsetStepSearcherHub : StepSearcherHubBase
 		{
 			if (IsPow2(grid.GetCandidates(cell)))
 			{
-				nakedSingleCells.Add(cell);
+				nakedSingleCells += cell;
 			}
 		}
 		emptyCellsForGrid &= ~nakedSingleCells;
@@ -185,7 +185,7 @@ internal sealed class SubsetStepSearcherHub : StepSearcherHubBase
 			{
 				if (IsPow2(grid.GetCandidates(cell)))
 				{
-					currentEmptyMap.Remove(cell);
+					currentEmptyMap -= cell;
 				}
 			}
 

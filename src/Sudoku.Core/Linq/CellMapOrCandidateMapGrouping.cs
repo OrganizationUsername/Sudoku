@@ -72,7 +72,7 @@ public readonly struct CellMapOrCandidateMapGrouping<TMap, TElement, TKey>(TKey 
 		var result = CellMap.Empty;
 		foreach (ref readonly var group in groups)
 		{
-			result.Add(group.Key);
+			result += group.Key;
 		}
 		return result;
 	}

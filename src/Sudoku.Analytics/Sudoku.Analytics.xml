@@ -21109,12 +21109,13 @@
             This method today won't return <see langword="true"/> for such techniques now, but this rule might be changed in the future.
             </para>
             <para>
-            If you want to check whether the technique is a single, please call method <see cref="M:Sudoku.Categorization.TechniqueExtensions.get_IsDirect(Sudoku.Categorization.Technique)"/>
-            or <see cref="M:Sudoku.Categorization.TechniqueExtensions.get_IsSingle(Sudoku.Categorization.Technique)"/> instead.
+            If you want to check whether the technique is a single,
+            please call <see cref="P:Sudoku.Categorization.TechniqueExtensions.&lt;G&gt;$ECC22D9E429C37D2A85F42507A06382E.IsDirect"/>
+            or <see cref="P:Sudoku.Categorization.TechniqueExtensions.&lt;G&gt;$ECC22D9E429C37D2A85F42507A06382E.IsSingle"/> instead.
             </para>
             </remarks>
-            <seealso cref="M:Sudoku.Categorization.TechniqueExtensions.get_IsDirect(Sudoku.Categorization.Technique)"/>
-            <seealso cref="M:Sudoku.Categorization.TechniqueExtensions.get_IsSingle(Sudoku.Categorization.Technique)"/>
+            <seealso cref="P:Sudoku.Categorization.TechniqueExtensions.&lt;G&gt;$ECC22D9E429C37D2A85F42507A06382E.IsDirect"/>
+            <seealso cref="P:Sudoku.Categorization.TechniqueExtensions.&lt;G&gt;$ECC22D9E429C37D2A85F42507A06382E.IsSingle"/>
         </member>
         <member name="P:Sudoku.Categorization.TechniqueExtensions.&lt;G&gt;$ECC22D9E429C37D2A85F42507A06382E.IsSingle">
             <summary>

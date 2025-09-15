@@ -84,7 +84,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(byte @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -202,7 +202,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(short @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -294,7 +294,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(ushort @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -339,7 +339,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(int @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -432,7 +432,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(uint @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -477,7 +477,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(long @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -560,7 +560,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(ulong @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -618,7 +618,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(Int128 @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -663,7 +663,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(UInt128 @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -708,7 +708,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(nint @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -753,7 +753,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension(nuint @this)
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
@@ -821,7 +821,7 @@ public static partial class BitOperationsExtensions
 	/// </summary>
 	extension<TInteger>(TInteger @this) where TInteger : IBinaryInteger<TInteger>
 	{
-		/// <inheritdoc cref="get_AllSets(sbyte)"/>
+		/// <inheritdoc cref="BitOperationsExtensions.extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get

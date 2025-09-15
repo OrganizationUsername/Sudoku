@@ -21,12 +21,13 @@ public static class TechniqueExtensions
 		/// This method today won't return <see langword="true"/> for such techniques now, but this rule might be changed in the future.
 		/// </para>
 		/// <para>
-		/// If you want to check whether the technique is a single, please call method <see cref="get_IsDirect(Technique)"/>
-		/// or <see cref="get_IsSingle(Technique)"/> instead.
+		/// If you want to check whether the technique is a single,
+		/// please call <see cref="TechniqueExtensions.extension(Technique).IsDirect"/>
+		/// or <see cref="TechniqueExtensions.extension(Technique).IsSingle"/> instead.
 		/// </para>
 		/// </remarks>
-		/// <seealso cref="get_IsDirect(Technique)"/>
-		/// <seealso cref="get_IsSingle(Technique)"/>
+		/// <seealso cref="TechniqueExtensions.extension(Technique).IsDirect"/>
+		/// <seealso cref="TechniqueExtensions.extension(Technique).IsSingle"/>
 		public bool IsAssignment => @this.Group is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
 
 		/// <summary>

@@ -58,6 +58,6 @@ public partial class DelegateExtensions
 		/// ]]></code>
 		/// </summary>
 		/// <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
-		public Func<T, TResult> YCombinator => value => @this(get_YCombinator(@this))(value);
+		public Func<T, TResult> YCombinator => value => @this(@this.YCombinator)(value);
 	}
 }

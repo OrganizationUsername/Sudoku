@@ -21,7 +21,7 @@ public static class TechniqueIttoryuSets
 		/// Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
 		/// </summary>
 		/// <seealso cref="DisorderedIttoryuFinder"/>
-		public static TechniqueSet IttoryuNakedSingleNotIncluded => get_IttoryuTechniques() - Technique.NakedSingle;
+		public static TechniqueSet IttoryuNakedSingleNotIncluded => TechniqueSet.IttoryuTechniques - Technique.NakedSingle;
 
 		/// <summary>
 		/// Indicates the techniques that ittroyu path finder will use,

@@ -35529,45 +35529,6 @@
             </param>
             <returns>An <see cref="T:Sudoku.Resources.InterpolationArray" /> instance.</returns>
         </member>
-        <member name="T:Sudoku.Resources.InterpolationArray.Enumerator">
-            <summary>
-            Represents an enumerator type that can iterate on each element of an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.
-            </summary>
-            <param name="values">The internal values.</param>
-            <seealso cref="T:Sudoku.Resources.InterpolationArray"/>
-        </member>
-        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.#ctor(Sudoku.Resources.InterpolationArray@)">
-            <summary>
-            Represents an enumerator type that can iterate on each element of an <see cref="T:Sudoku.Resources.InterpolationArray"/> instance.
-            </summary>
-            <param name="values">The internal values.</param>
-            <seealso cref="T:Sudoku.Resources.InterpolationArray"/>
-        </member>
-        <member name="F:Sudoku.Resources.InterpolationArray.Enumerator._values">
-            <summary>
-            Indicates the backing span.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Resources.InterpolationArray.Enumerator._index">
-            <summary>
-            Indicates the current index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.InterpolationArray.Enumerator.Current">
-            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
-        </member>
-        <member name="P:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Resources.InterpolationArray.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Resources.KeywordResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.

@@ -6,7 +6,7 @@ namespace Sudoku.Resources;
 /// <param name="_values">Indicates the values.</param>
 /// <seealso cref="Interpolation"/>
 [CollectionBuilder(typeof(InterpolationArray), nameof(Create))]
-public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolation> _values) :
+public readonly ref struct InterpolationArray(ReadOnlyMemory<Interpolation> _values) :
 	IEnumerable<Interpolation>,
 	IToArrayMethod<InterpolationArray, Interpolation>,
 	IReadOnlyList<Interpolation>,
@@ -72,7 +72,7 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	{
 		get
 		{
-			var enumerator = new Enumerator(this);
+			var enumerator = GetEnumerator();
 			while (enumerator.MoveNext())
 			{
 				var element = enumerator.Current;
@@ -118,8 +118,7 @@ public readonly ref partial struct InterpolationArray(ReadOnlyMemory<Interpolati
 	}
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
-	[UnscopedRef]
-	public Enumerator GetEnumerator() => new(this);
+	public AnonymousSpanEnumerator<Interpolation> GetEnumerator() => new(_values.Span);
 
 	/// <inheritdoc/>
 	public Interpolation[] ToArray() => _values.ToArray();

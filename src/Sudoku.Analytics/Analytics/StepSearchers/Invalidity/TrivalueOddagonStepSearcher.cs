@@ -191,8 +191,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 		{
 			var patternDigitsMask = (Mask)(1 << digits[0] | 1 << digits[1] | 1 << digits[2]);
 			var otherDigitsMask = (Mask)(allDigitsMask & ~patternDigitsMask);
-			var d1 = TrailingZeroCount(otherDigitsMask);
-			var d2 = otherDigitsMask.GetNextSet(d1);
+			var d1 = BitOperations.PopTwo((uint)otherDigitsMask, out var d2);
 			var otherDigitsCells = pattern & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (otherDigitsCells is not [var c1, var c2])
 			{

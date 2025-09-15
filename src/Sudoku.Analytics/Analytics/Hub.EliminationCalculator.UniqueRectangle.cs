@@ -67,8 +67,7 @@ public partial class Hub
 					return [];
 				}
 
-				var digit1 = TrailingZeroCount(extraDigitsMask);
-				var digit2 = extraDigitsMask.GetNextSet(digit1);
+				var digit1 = BitOperations.PopTwo((uint)extraDigitsMask, out var digit2);
 				var cells1 = candidatesMap[digit1] & cells;
 				var cells2 = candidatesMap[digit2] & cells;
 
@@ -80,8 +79,7 @@ public partial class Hub
 				//
 				// Then we should find all peer intersection cells and make union.
 				var (nakedPairElims1, nakedPairElims2) = (CellMap.Empty, CellMap.Empty);
-				var urDigit1 = TrailingZeroCount(comparer);
-				var urDigit2 = comparer.GetNextSet(urDigit1);
+				var urDigit1 = BitOperations.PopTwo((uint)comparer, out var urDigit2);
 				var template = candidatesMap[urDigit1] | candidatesMap[urDigit2];
 				foreach (ref readonly var pair in cells & ~cells1 & 2)
 				{

@@ -908,8 +908,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// We know that cells holding two digits will form a strong link.
-		var extraDigit1 = (int)TrailingZeroCount(extraDigitsMask);
-		var extraDigit2 = extraDigitsMask.GetNextSet(extraDigit1);
+		var extraDigit1 = BitOperations.PopTwo((uint)extraDigitsMask, out var extraDigit2);
 		var extraCells1 = CandidatesMap[extraDigit1] & cells;
 		var extraCells2 = CandidatesMap[extraDigit2] & cells;
 		foreach (ref readonly var quadruple in (

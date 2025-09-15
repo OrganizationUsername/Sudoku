@@ -34,8 +34,7 @@ public sealed class XChainingRule : ChainingRule
 					continue;
 				}
 
-				var pos1 = TrailingZeroCount(mask);
-				var pos2 = mask.GetNextSet(pos1);
+				var pos1 = BitOperations.PopTwo((uint)mask, out var pos2);
 				var node1 = new Node((HousesCells[house][pos1] * 9 + digit).AsCandidateMap(), false);
 				var node2 = new Node((HousesCells[house][pos2] * 9 + digit).AsCandidateMap(), true);
 				strongLinks.AddEntry(node1, node2);

@@ -955,4 +955,40 @@ public static partial class BitOperationsExtensions
 			}
 		}
 	}
+
+	/// <summary>
+	/// Provides extension members on <see cref="BitOperations"/>.
+	/// </summary>
+	extension(BitOperations)
+	{
+		/// <summary>
+		/// Pops two bits from the integer.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="second">The second position set 1.</param>
+		/// <returns>The first position set 1.</returns>
+		public static int PopTwo(uint value, out int second)
+		{
+			var lowMask = value & (uint)-(int)value;
+			var result = Log2(lowMask);
+			value ^= lowMask;
+			second = Log2(value);
+			return result;
+		}
+
+		/// <summary>
+		/// Pops two bits from the integer.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="second">The second position set 1.</param>
+		/// <returns>The first position set 1.</returns>
+		public static int PopTwo(ulong value, out int second)
+		{
+			var lowMask = value & (ulong)-(long)value;
+			var result = Log2(lowMask);
+			value ^= lowMask;
+			second = Log2(value);
+			return result;
+		}
+	}
 }

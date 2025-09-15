@@ -50,8 +50,7 @@ public sealed class UniqueRectangleDifferentDigitChainingRule : UniqueRectangleC
 
 				var ur = new UniqueRectanglePattern(urCells, urDigitsMask, otherDigitsMask);
 
-				var theOtherDigit1 = TrailingZeroCount(otherDigitsMask);
-				var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
+				var theOtherDigit1 = BitOperations.PopTwo((uint)otherDigitsMask, out var theOtherDigit2);
 				var cells1 = __CandidatesMap[theOtherDigit1] & urCells;
 				var cells2 = __CandidatesMap[theOtherDigit2] & urCells;
 				if (linkOption == LinkOption.Intersection && (cells1.IsInIntersection || cells2.IsInIntersection)

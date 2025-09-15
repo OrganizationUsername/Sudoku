@@ -70,8 +70,7 @@ public sealed class AlmostLockedSetsChainingRule : ChainingRule
 					node2ExtraMap.AddRange(from digit in grid.GetCandidates(cell) select cell * 9 + digit);
 				}
 
-				var digit1 = TrailingZeroCount(digitsPair);
-				var digit2 = digitsPair.GetNextSet(digit1);
+				var digit1 = BitOperations.PopTwo((uint)digitsPair, out var digit2);
 				var node1Cells = HousesMap[house] & cells & __CandidatesMap[digit1];
 				var node2Cells = HousesMap[house] & cells & __CandidatesMap[digit2];
 				var node1 = new Node(node1Cells * digit1, false);

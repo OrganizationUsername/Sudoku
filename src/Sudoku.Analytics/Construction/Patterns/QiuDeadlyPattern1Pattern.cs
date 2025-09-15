@@ -80,8 +80,7 @@ public sealed class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines)
 	{
 		get
 		{
-			var l1 = TrailingZeroCount(Lines);
-			var l2 = Lines.GetNextSet(l1);
+			var l1 = BitOperations.PopTwo((uint)Lines, out var l2);
 			return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
 		}
 	}
@@ -94,8 +93,7 @@ public sealed class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines)
 		get
 		{
 			var block = Crossline.FirstSharedHouse;
-			var l1 = TrailingZeroCount(Lines);
-			var l2 = Lines.GetNextSet(l1);
+			var l1 = BitOperations.PopTwo((uint)Lines, out var l2);
 			return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);
 		}
 	}

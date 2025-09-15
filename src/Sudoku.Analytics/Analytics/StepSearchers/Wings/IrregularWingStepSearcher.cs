@@ -121,7 +121,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
 							{
 								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
-								2 when TrailingZeroCount(blocks) is var block1 && blocks.GetNextSet(block1) is var block2
+								2 when BitOperations.PopTwo((uint)blocks, out var block2) is var block1
 									=> (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 									{
 										var (bridgeInBlock1, bridgeInBlock2) => (

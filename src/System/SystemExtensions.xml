@@ -6724,6 +6724,12 @@
         <member name="M:System.Numerics.BitOperationsExtensions.SetBitAt(System.Byte[],System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$CFF5569F447ACD79F0E183612A282817.SetBitAt(System.Int32)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.PopTwo(System.UInt32,System.Int32@)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$30A69D40AF84CB8ABD3738BE05CB63CC.PopTwo(System.UInt32,System.Int32@)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.PopTwo(System.UInt64,System.Int32@)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$30A69D40AF84CB8ABD3738BE05CB63CC.PopTwo(System.UInt64,System.Int32@)"/>
+        </member>
         <member name="T:System.Numerics.BitOperationsExtensions.&lt;G&gt;$49699017F639EF34A5A9E25ACB3E4B14.&lt;M&gt;$F9E6CEBFCBBDD2F4A412CC49D121157F">
             <summary>
             Provides extension members on <see cref="T:System.SByte"/>.
@@ -7028,6 +7034,27 @@
             </summary>
             <param name="k">The index.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:System.Numerics.BitOperationsExtensions.&lt;G&gt;$30A69D40AF84CB8ABD3738BE05CB63CC.&lt;M&gt;$1A20C203E7E73D96D2A39DA48F03048D">
+            <summary>
+            Provides extension members on <see cref="T:System.Numerics.BitOperations"/>.
+            </summary>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$30A69D40AF84CB8ABD3738BE05CB63CC.PopTwo(System.UInt32,System.Int32@)">
+            <summary>
+            Pops two bits from the integer.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="second">The second position set 1.</param>
+            <returns>The first position set 1.</returns>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$30A69D40AF84CB8ABD3738BE05CB63CC.PopTwo(System.UInt64,System.Int32@)">
+            <summary>
+            Pops two bits from the integer.
+            </summary>
+            <param name="value">The value.</param>
+            <param name="second">The second position set 1.</param>
+            <returns>The first position set 1.</returns>
         </member>
         <member name="T:System.Numerics.Combinatorics">
             <summary>

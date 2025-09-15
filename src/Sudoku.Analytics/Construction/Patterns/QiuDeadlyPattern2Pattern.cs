@@ -66,10 +66,8 @@ public sealed class QiuDeadlyPattern2Pattern(HouseMask lines1, HouseMask lines2)
 	{
 		get
 		{
-			var l11 = TrailingZeroCount(Lines1);
-			var l21 = Lines1.GetNextSet(l11);
-			var l12 = TrailingZeroCount(Lines2);
-			var l22 = Lines2.GetNextSet(l12);
+			var l11 = BitOperations.PopTwo((uint)Lines1, out var l21);
+			var l12 = BitOperations.PopTwo((uint)Lines2, out var l22);
 			var result = CellMap.Empty;
 			foreach (var (a, b) in ((l11, l12), (l11, l22), (l21, l12), (l21, l22)))
 			{

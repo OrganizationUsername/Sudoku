@@ -18,8 +18,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 		{
 			var c1 = BivalueCells[i];
 			var mask = grid.GetCandidates(c1);
-			var d1 = TrailingZeroCount(mask);
-			var d2 = mask.GetNextSet(d1);
+			var d1 = BitOperations.PopTwo((uint)mask, out var d2);
 			for (var j = i + 1; j < length; j++)
 			{
 				var c2 = BivalueCells[j];

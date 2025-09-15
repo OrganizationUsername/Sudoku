@@ -30,8 +30,7 @@ public sealed class LockedCandidatesChainingRule : ChainingRule
 				}
 
 				var firstPair = pairHouse[0];
-				var h1 = TrailingZeroCount(firstPair);
-				var h2 = firstPair.GetNextSet(h1);
+				var h1 = BitOperations.PopTwo((uint)firstPair, out var h2);
 				var cells1 = cells & HousesMap[h1];
 				var cells2 = cells & HousesMap[h2];
 				var node1 = new Node(cells1 * digit, false);

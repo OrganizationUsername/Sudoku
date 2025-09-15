@@ -48,8 +48,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 		foreach (var (currentLoop, extraCells, comparer) in oddagonInfoList)
 		{
-			var d1 = TrailingZeroCount(comparer);
-			var d2 = comparer.GetNextSet(d1);
+			var d1 = BitOperations.PopTwo((uint)comparer, out var d2);
 			var hasType2HandledByNot1CaseBranch = false;
 			switch (extraCells.Count)
 			{

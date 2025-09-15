@@ -67,8 +67,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		// We should check for the distinction for the lines.
 		var lines = pattern.Lines;
-		var l1 = TrailingZeroCount(lines);
-		var l2 = lines.GetNextSet(l1);
+		var l1 = BitOperations.PopTwo((uint)lines, out var l2);
 		var valueCellsInBothLines = CellMap.Empty;
 		foreach (var cell in HousesMap[l1] | HousesMap[l2])
 		{
@@ -116,8 +115,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var lines = pattern.Lines;
-		var l1 = TrailingZeroCount(lines);
-		var l2 = lines.GetNextSet(l1);
+		var l1 = BitOperations.PopTwo((uint)lines, out var l2);
 
 		// Check whether both two lines are finished.
 		if (((HousesMap[l1] | HousesMap[l2]) & ~EmptyCells).Count == 18)

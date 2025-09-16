@@ -1,4 +1,4 @@
-namespace Sudoku.Reasoning.Chaining;
+namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
 /// Represents a list of <see cref="ChainingRule"/> instances.

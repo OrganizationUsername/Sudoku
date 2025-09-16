@@ -1,4 +1,4 @@
-namespace Sudoku.Reasoning.Chaining.Rules;
+namespace Sudoku.Analytics.Chaining.Rules;
 
 /// <summary>
 /// Represents a chaining rule on AUR rule (i.e. <see cref="LinkType.UniqueRectangle_SingleSideExternal"/>).

@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Caching;
 /// <remarks>
 /// Usage:
 /// <code><![CDATA[
-/// [Cached]
+/// [MemoryCached]
 /// public static ReadOnlySpan<AlmostLockedSetPattern> Collect(in Grid grid)
 /// {
 ///	    // VARIABLE_DECLARATION_BEGIN

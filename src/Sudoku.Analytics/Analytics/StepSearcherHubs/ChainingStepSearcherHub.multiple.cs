@@ -329,8 +329,8 @@ internal partial class ChainingStepSearcherHub
 	/// <seealso cref="ForcingChainsInfo"/>
 	private static ForcingChainsInfo FindForcingChains(Node startNode)
 	{
-		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new LinkedList<Node>(), new LinkedList<Node>());
-		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
+		var (pendingNodesSupposedOn, pendingNodesSupposedOff) = (new Queue<Node>(), new Queue<Node>());
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).Enqueue(startNode);
 
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var nodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
@@ -338,7 +338,7 @@ internal partial class ChainingStepSearcherHub
 		{
 			if (pendingNodesSupposedOn.Count != 0)
 			{
-				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOn.Dequeue();
 				if (WeakLinkDictionary.TryGetValue(currentNode, out var supposedOff))
 				{
 					foreach (var node in supposedOff)
@@ -352,14 +352,14 @@ internal partial class ChainingStepSearcherHub
 
 						if (nodesSupposedOff.Add(nextNode))
 						{
-							pendingNodesSupposedOff.AddLast(nextNode);
+							pendingNodesSupposedOff.Enqueue(nextNode);
 						}
 					}
 				}
 			}
 			else
 			{
-				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOff.Dequeue();
 				if (StrongLinkDictionary.TryGetValue(currentNode, out var supposedOn))
 				{
 					foreach (var node in supposedOn)
@@ -373,7 +373,7 @@ internal partial class ChainingStepSearcherHub
 
 						if (nodesSupposedOn.Add(nextNode))
 						{
-							pendingNodesSupposedOn.AddLast(nextNode);
+							pendingNodesSupposedOn.Enqueue(nextNode);
 						}
 					}
 				}

@@ -100,19 +100,19 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 		static CellMap bfs_GetReachableCells(Cell start, in CellMap available)
 		{
 			var result = CellMap.Empty;
-			var queue = new LinkedList<Cell>();
-			queue.AddLast(start);
+			var queue = new Queue<Cell>();
+			queue.Enqueue(start);
 			result += start;
 
 			while (queue.Count != 0)
 			{
-				var current = queue.RemoveFirstNode();
+				var current = queue.Dequeue();
 				foreach (var neighbor in current.Neighbors)
 				{
 					if (available.Contains(neighbor) && !result.Contains(neighbor))
 					{
 						result += neighbor;
-						queue.AddLast(neighbor);
+						queue.Enqueue(neighbor);
 					}
 				}
 			}
@@ -130,21 +130,21 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 
 		void fillWithSpirits(ref HamiltonianPathFinder @this)
 		{
-			var toCheck = new LinkedList<(Cell, Cell)>();
+			var toCheck = new Queue<(Cell, Cell)>();
 			var arr = @this._originalPoints.ToArray();
 
 			for (var i = 0; i < arr.Length - 1; i++)
 			{
 				for (var j = i + 1; j < arr.Length; j++)
 				{
-					toCheck.AddLast((arr[i], arr[j]));
+					toCheck.Enqueue((arr[i], arr[j]));
 				}
 			}
 
 			ref var allPoints = ref @this._allPoints;
 			while (toCheck.Count > 0)
 			{
-				var (a, b) = toCheck.RemoveFirstNode();
+				var (a, b) = toCheck.Dequeue();
 				var reachable = bfs_GetReachableCells(a, @this._allPoints);
 				if (!reachable.Contains(b))
 				{
@@ -162,7 +162,7 @@ file ref struct HamiltonianPathFinder(ref readonly CellMap points)
 						allPoints += bridge;
 						foreach (var p in allPoints)
 						{
-							toCheck.AddLast((bridge, p));
+							toCheck.Enqueue((bridge, p));
 						}
 					}
 				}

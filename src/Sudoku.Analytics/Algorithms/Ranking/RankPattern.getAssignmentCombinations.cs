@@ -18,8 +18,8 @@ public partial struct RankPattern
 		(links, var result) = (SpaceSet.Empty, new List<ReadOnlyMemory<Candidate>>());
 
 		// Create a queue to record all possible cases, in BFS way.
-		var queue = new LinkedList<CombinationQueueNode>();
-		queue.AddLast(new CombinationQueueNode(-1, [.. SpanEnumerable.Range(Truths.Count)], null));
+		var queue = new Queue<CombinationQueueNode>();
+		queue.Enqueue(new CombinationQueueNode(-1, [.. SpanEnumerable.Range(Truths.Count)], null));
 
 		// Iterate the whole queue until the queue becomes empty.
 		while (queue.Count != 0)
@@ -29,7 +29,7 @@ public partial struct RankPattern
 			//   * currentState: The current candidates applied. To combine all of them it'll be the current assignment combination.
 			//   * remainingTruths: The remaining truth, as corresponding indices of truth space set.
 			//   * parent: The parent node.
-			var currentNode = queue.RemoveFirstNode();
+			var currentNode = queue.Dequeue();
 			var (_, remainingTruths, parent) = currentNode;
 			var currentState = currentNode.State;
 
@@ -105,7 +105,7 @@ public partial struct RankPattern
 					newRemainingTruths.Remove(truthIndex);
 				}
 
-				queue.AddLast(new CombinationQueueNode(remainingCandidate, [.. newRemainingTruths], currentNode));
+				queue.Enqueue(new CombinationQueueNode(remainingCandidate, [.. newRemainingTruths], currentNode));
 
 				// Backtrack: Revert operation on removing on overlapped truths.
 				foreach (var truthIndex in overlapped)

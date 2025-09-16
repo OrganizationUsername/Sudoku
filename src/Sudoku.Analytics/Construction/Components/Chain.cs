@@ -59,14 +59,14 @@ public abstract partial class Chain :
 
 			var nodes = new HashSet<Node> { lastNode };
 			var links = new HashSet<Link>();
-			var queue = new LinkedList<Node>();
-			queue.AddLast(lastNode);
+			var queue = new Queue<Node>();
+			queue.Enqueue(lastNode);
 			while (queue.Count != 0)
 			{
-				var currentNode = queue.RemoveFirstNode();
+				var currentNode = queue.Dequeue();
 				foreach (var parentNode in currentNode.Parents ?? [])
 				{
-					queue.AddLast(parentNode);
+					queue.Enqueue(parentNode);
 					nodes.Add(parentNode);
 					links.Add(new(parentNode, currentNode, !parentNode.IsOn, null));
 				}

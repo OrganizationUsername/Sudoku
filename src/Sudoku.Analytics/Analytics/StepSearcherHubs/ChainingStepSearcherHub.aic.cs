@@ -157,9 +157,9 @@ internal partial class ChainingStepSearcherHub
 #endif
 	private static NamedChain? FindChains(Node startNode, in Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
-		var pendingNodesSupposedOn = new LinkedList<Node>();
-		var pendingNodesSupposedOff = new LinkedList<Node>();
-		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
+		var pendingNodesSupposedOn = new Queue<Node>();
+		var pendingNodesSupposedOff = new Queue<Node>();
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).Enqueue(startNode);
 
 		var visitedNodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
 		var visitedNodesSupposedOff = new HashSet<Node>(ChainingComparers.NodeMapComparer);
@@ -169,7 +169,7 @@ internal partial class ChainingStepSearcherHub
 		{
 			while (pendingNodesSupposedOn.Count != 0)
 			{
-				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOn.Dequeue();
 				if (WeakLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOff))
 				{
 					foreach (var nodeSupposedOff in nodesSupposedOff)
@@ -235,14 +235,14 @@ internal partial class ChainingStepSearcherHub
 						if (!nodeSupposedOff.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
 							&& visitedNodesSupposedOff.Add(nodeSupposedOff))
 						{
-							pendingNodesSupposedOff.AddLast(nextNode);
+							pendingNodesSupposedOff.Enqueue(nextNode);
 						}
 					}
 				}
 			}
 			while (pendingNodesSupposedOff.Count != 0)
 			{
-				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOff.Dequeue();
 				if (StrongLinkDictionary.TryGetValue(currentNode, out var nodesSupposedOn))
 				{
 					foreach (var nodeSupposedOn in nodesSupposedOn)
@@ -277,7 +277,7 @@ internal partial class ChainingStepSearcherHub
 						if (!nodeSupposedOn.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn)
 							&& visitedNodesSupposedOn.Add(nodeSupposedOn))
 						{
-							pendingNodesSupposedOn.AddLast(nextNode);
+							pendingNodesSupposedOn.Enqueue(nextNode);
 						}
 					}
 				}

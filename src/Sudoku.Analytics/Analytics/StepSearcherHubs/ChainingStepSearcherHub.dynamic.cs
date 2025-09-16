@@ -521,8 +521,8 @@ internal partial class ChainingStepSearcherHub
 		out (Node On, Node Off)? contradiction
 	)
 	{
-		(contradiction, var (pendingNodesSupposedOn, pendingNodesSupposedOff)) = (null, (new LinkedList<Node>(), new LinkedList<Node>()));
-		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).AddLast(startNode);
+		(contradiction, var (pendingNodesSupposedOn, pendingNodesSupposedOff)) = (null, (new Queue<Node>(), new Queue<Node>()));
+		(startNode.IsOn ? pendingNodesSupposedOn : pendingNodesSupposedOff).Enqueue(startNode);
 
 		var tempGrid = grid;
 		var nodesSupposedOn = new HashSet<Node>(ChainingComparers.NodeMapComparer);
@@ -533,7 +533,7 @@ internal partial class ChainingStepSearcherHub
 		{
 			if (pendingNodesSupposedOn.Count != 0)
 			{
-				var currentNode = pendingNodesSupposedOn.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOn.Dequeue();
 				if (GetNodesFromOnToOff(currentNode, chainingRules, options, tempGrid) is var supposedOff and not [])
 				{
 					foreach (var node in supposedOff)
@@ -547,14 +547,14 @@ internal partial class ChainingStepSearcherHub
 
 						if (nodesSupposedOff.Add(node))
 						{
-							pendingNodesSupposedOff.AddLast(node);
+							pendingNodesSupposedOff.Enqueue(node);
 						}
 					}
 				}
 			}
 			else
 			{
-				var currentNode = pendingNodesSupposedOff.RemoveFirstNode();
+				var currentNode = pendingNodesSupposedOff.Dequeue();
 				var supposedOn = GetNodesFromOffToOn(currentNode, chainingRules, nodesSupposedOff, options, tempGrid, grid);
 
 				tempGrid >>= currentNode;
@@ -572,7 +572,7 @@ internal partial class ChainingStepSearcherHub
 
 						if (nodesSupposedOn.Add(node))
 						{
-							pendingNodesSupposedOn.AddLast(node);
+							pendingNodesSupposedOn.Enqueue(node);
 						}
 					}
 				}

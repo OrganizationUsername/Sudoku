@@ -50,16 +50,16 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					var startCandidate = cell * 9 + digit;
 
 					// Create a pending queue to record all interim cases, and a collection recording visited nodes.
-					var pendingNodes = new LinkedList<WhipNode>();
+					var pendingNodes = new Queue<WhipNode>();
 					var startNode = new WhipNode(new NormalWhipAssignment(startCandidate, Technique.None));
 					startNode = new(startNode.Assignment, GetNextAssignments(grid, startNode, groupedWhip));
-					pendingNodes.AddLast(startNode);
+					pendingNodes.Enqueue(startNode);
 
 					// Iterate the pending queue and never stops, until all nodes are tried.
 					while (pendingNodes.Count != 0)
 					{
 						// Deconstruct the object and apply digit into playground.
-						var currentNode = pendingNodes.RemoveFirstNode();
+						var currentNode = pendingNodes.Dequeue();
 
 						// Here we should check for 2 kinds of contradictions:
 						//   1) No candidates in one empty cell
@@ -147,7 +147,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 							var nextNode = new WhipNode(assignment) >> currentNode;
 							nextNode = new WhipNode(assignment, GetNextAssignments(grid, nextNode, groupedWhip), nextNode.Parent);
-							pendingNodes.AddLast(nextNode);
+							pendingNodes.Enqueue(nextNode);
 						}
 					}
 				}

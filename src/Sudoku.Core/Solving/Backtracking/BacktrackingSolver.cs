@@ -107,13 +107,13 @@ public class BacktrackingSolver : ISolver
 
 		static void bfs(ref Digit[]? result, Digit[] gridValues)
 		{
-			var queue = new LinkedList<Digit[]>();
-			queue.AddLast(gridValues);
+			var queue = new Queue<Digit[]>();
+			queue.Enqueue(gridValues);
 
 			var resultGrids = new List<Digit[]>(2);
 			while (queue.Count != 0)
 			{
-				var currentGrid = queue.RemoveFirstNode();
+				var currentGrid = queue.Dequeue();
 
 				// Find for the last unfilled cell.
 				var lastUnfilledCell = currentGrid.IndexOf(0);
@@ -137,7 +137,7 @@ public class BacktrackingSolver : ISolver
 					var lastColumn = lastUnfilledCell % 9;
 					if (IsValid(copied, lastRow, lastColumn))
 					{
-						queue.AddLast(copied);
+						queue.Enqueue(copied);
 					}
 				}
 			}

@@ -15517,7 +15517,7 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="F:Sudoku.Solving.GridSolvingExtensions.PuzzleSolvingSynchronizer">
+        <member name="F:Sudoku.Solving.GridSolvingExtensions.PuzzleSolvingSyncRoot">
             <summary>
             The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Solving.GridSolvingExtensions.Solver"/>,
             keeping the type being thread-safe.
@@ -15640,18 +15640,20 @@
             </summary>
             <seealso cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/>
         </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.CountSolutionsAsync(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DBB59A14BD2A44CAF1B54CCA49EE1C43.CountSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.CountSolutionsAsync``1(``0,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DA9930F5B610C74A5D41270FE8F3E927.CountSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.EnumerateSolutionsAsync(Sudoku.Solving.ISolutionEnumerableSolver,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DBB59A14BD2A44CAF1B54CCA49EE1C43.EnumerateSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)"/>
+        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.EnumerateSolutionsAsync``1(``0,Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DA9930F5B610C74A5D41270FE8F3E927.EnumerateSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)"/>
         </member>
-        <member name="T:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DBB59A14BD2A44CAF1B54CCA49EE1C43.&lt;M&gt;$CAC81F987E024FA11FB59ADA88D3A3B4">
+        <member name="T:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DA9930F5B610C74A5D41270FE8F3E927.&lt;M&gt;$1EE44159915D5CFD5C7C9645DAAD0C61">
             <summary>
-            Provides extension members on <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/>.
+            Provides extension members on <typeparamref name="TSolver"/>,
+            where <typeparamref name="TSolver"/> satisfies <see cref="T:Sudoku.Solving.ISolutionEnumerableSolver"/> constraint.
             </summary>
+            <typeparam name="TSolver">The type of solver instance.</typeparam>
         </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DBB59A14BD2A44CAF1B54CCA49EE1C43.CountSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DA9930F5B610C74A5D41270FE8F3E927.CountSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <summary>
             Count the number of solutions can be found of a grid.
             </summary>
@@ -15662,7 +15664,7 @@
             with an <see cref="T:System.Int32"/> value indicating the result can be produced after the operation executed.
             </returns>
         </member>
-        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DBB59A14BD2A44CAF1B54CCA49EE1C43.EnumerateSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.SolutionEnumerableSolverExtensions.&lt;G&gt;$DA9930F5B610C74A5D41270FE8F3E927.EnumerateSolutionsAsync(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <summary>
             Try to enumerate all possible solutions of the specified grid, by using the current solver, in asynchronous way.
             </summary>

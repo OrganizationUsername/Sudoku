@@ -7,9 +7,11 @@ namespace Sudoku.Solving;
 public static class SolutionEnumerableSolverExtensions
 {
 	/// <summary>
-	/// Provides extension members on <see cref="ISolutionEnumerableSolver"/>.
+	/// Provides extension members on <typeparamref name="TSolver"/>,
+	/// where <typeparamref name="TSolver"/> satisfies <see cref="ISolutionEnumerableSolver"/> constraint.
 	/// </summary>
-	extension(ISolutionEnumerableSolver @this)
+	/// <typeparam name="TSolver">The type of solver instance.</typeparam>
+	extension<TSolver>(TSolver @this) where TSolver : ISolutionEnumerableSolver
 	{
 		/// <summary>
 		/// Count the number of solutions can be found of a grid.

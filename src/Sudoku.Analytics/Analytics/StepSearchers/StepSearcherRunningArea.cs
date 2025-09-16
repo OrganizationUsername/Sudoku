@@ -20,5 +20,10 @@ public enum StepSearcherRunningArea
 	/// <summary>
 	/// Indicates the mode is collecting.
 	/// </summary>
-	Collecting = 1 << 1
+	Collecting = 1 << 1,
+
+	/// <summary>
+	/// Represents both modes are included.
+	/// </summary>
+	Both = Searching | Collecting
 }

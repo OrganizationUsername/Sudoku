@@ -10026,15 +10026,9 @@
             Indicates the mode is collecting.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.StepSearcherRunningAreas">
+        <member name="F:Sudoku.Analytics.StepSearchers.StepSearcherRunningArea.Both">
             <summary>
-            Provides constants of <see cref="T:Sudoku.Analytics.StepSearchers.StepSearcherRunningArea"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.StepSearcherRunningArea"/>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.StepSearcherRunningAreas.Both">
-            <summary>
-            Indicates both areas are included.
+            Represents both modes are included.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.StepSearcherRuntimeFlags">

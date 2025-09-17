@@ -23,7 +23,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates the first cell offset for each house.
 	/// </summary>
-	public static readonly Cell[] HouseFirst = [0, 3, 6, 27, 30, 33, 54, 57, 60, 0, 9, 18, 27, 36, 45, 54, 63, 72, 0, 1, 2, 3, 4, 5, 6, 7, 8];
+	public static readonly Cell[] HouseFirst;
 
 	/// <summary>
 	/// <para>
@@ -48,62 +48,22 @@ public static class SolutionFields
 	/// <example>
 	/// '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
 	/// </example>
-	public static readonly Cell[][] HousesCells = [
-		[0, 1, 2, 9, 10, 11, 18, 19, 20], [3, 4, 5, 12, 13, 14, 21, 22, 23], [6, 7, 8, 15, 16, 17, 24, 25, 26],
-		[27, 28, 29, 36, 37, 38, 45, 46, 47], [30, 31, 32, 39, 40, 41, 48, 49, 50], [33, 34, 35, 42, 43, 44, 51, 52, 53],
-		[54, 55, 56, 63, 64, 65, 72, 73, 74], [57, 58, 59, 66, 67, 68, 75, 76, 77], [60, 61, 62, 69, 70, 71, 78, 79, 80],
-		[0, 1, 2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15, 16, 17], [18, 19, 20, 21, 22, 23, 24, 25, 26],
-		[27, 28, 29, 30, 31, 32, 33, 34, 35], [36, 37, 38, 39, 40, 41, 42, 43, 44], [45, 46, 47, 48, 49, 50, 51, 52, 53],
-		[54, 55, 56, 57, 58, 59, 60, 61, 62], [63, 64, 65, 66, 67, 68, 69, 70, 71], [72, 73, 74, 75, 76, 77, 78, 79, 80],
-		[0, 9, 18, 27, 36, 45, 54, 63, 72], [1, 10, 19, 28, 37, 46, 55, 64, 73], [2, 11, 20, 29, 38, 47, 56, 65, 74],
-		[3, 12, 21, 30, 39, 48, 57, 66, 75], [4, 13, 22, 31, 40, 49, 58, 67, 76], [5, 14, 23, 32, 41, 50, 59, 68, 77],
-		[6, 15, 24, 33, 42, 51, 60, 69, 78], [7, 16, 25, 34, 43, 52, 61, 70, 79], [8, 17, 26, 35, 44, 53, 62, 71, 80]
-	];
+	public static readonly Cell[][] HousesCells;
 
 	/// <summary>
 	/// Indicates a block list that each cell belongs to.
 	/// </summary>
-	internal static readonly BlockIndex[] BlockTable = [
-		0, 0, 0, 1, 1, 1, 2, 2, 2,
-		0, 0, 0, 1, 1, 1, 2, 2, 2,
-		0, 0, 0, 1, 1, 1, 2, 2, 2,
-		3, 3, 3, 4, 4, 4, 5, 5, 5,
-		3, 3, 3, 4, 4, 4, 5, 5, 5,
-		3, 3, 3, 4, 4, 4, 5, 5, 5,
-		6, 6, 6, 7, 7, 7, 8, 8, 8,
-		6, 6, 6, 7, 7, 7, 8, 8, 8,
-		6, 6, 6, 7, 7, 7, 8, 8, 8
-	];
+	internal static readonly BlockIndex[] BlockTable;
 
 	/// <summary>
 	/// Indicates a row list that each cell belongs to.
 	/// </summary>
-	internal static readonly RowIndex[] RowTable = [
-		9, 9, 9, 9, 9, 9, 9, 9, 9,
-		10, 10, 10, 10, 10, 10, 10, 10, 10,
-		11, 11, 11, 11, 11, 11, 11, 11, 11,
-		12, 12, 12, 12, 12, 12, 12, 12, 12,
-		13, 13, 13, 13, 13, 13, 13, 13, 13,
-		14, 14, 14, 14, 14, 14, 14, 14, 14,
-		15, 15, 15, 15, 15, 15, 15, 15, 15,
-		16, 16, 16, 16, 16, 16, 16, 16, 16,
-		17, 17, 17, 17, 17, 17, 17, 17, 17
-	];
+	internal static readonly RowIndex[] RowTable;
 
 	/// <summary>
 	/// Indicates a column list that each cell belongs to.
 	/// </summary>
-	internal static readonly ColumnIndex[] ColumnTable = [
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26,
-		18, 19, 20, 21, 22, 23, 24, 25, 26
-	];
+	internal static readonly ColumnIndex[] ColumnTable;
 
 	/// <summary>
 	/// Indicates a list of <see cref="CellMap"/> instances that are initialized as singleton element by its corresponding index.
@@ -164,6 +124,39 @@ public static class SolutionFields
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static SolutionFields()
 	{
+		//
+		// RowTable
+		//
+		{
+			RowTable = [.. from cell in SpanEnumerable.Range(0, 81) select cell / 9 + 9];
+			ColumnTable = [.. from cell in SpanEnumerable.Range(0, 81) select cell % 9 + 18];
+			BlockTable = [.. from cell in SpanEnumerable.Range(0, 81) select cell / 9 / 3 * 3 + cell % 9 / 3];
+		}
+
+		//
+		// HousesCells
+		//
+		{
+			HousesCells = [
+				..
+				from houseIndex in SpanEnumerable.Range(0, 9)
+				select from cell in BlockTable.Index() where cell.Value == houseIndex select cell.Index,
+				..
+				from houseIndex in SpanEnumerable.Range(9, 9)
+				select from cell in RowTable.Index() where cell.Value == houseIndex select cell.Index,
+				..
+				from houseIndex in SpanEnumerable.Range(18, 9)
+				select from cell in ColumnTable.Index() where cell.Value == houseIndex select cell.Index
+			];
+		}
+
+		//
+		// HouseFirst
+		//
+		{
+			HouseFirst = from h in HousesCells select h[0];
+		}
+
 		//
 		// HousesMap
 		//

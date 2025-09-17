@@ -1,0 +1,12 @@
+namespace Sudoku.Filtering.Constraints;
+
+/// <summary>
+/// Represents a type that supports for comparison operator.
+/// </summary>
+public interface IComparisonOperatorConstraint
+{
+	/// <summary>
+	/// Indicates the comparison operator used.
+	/// </summary>
+	ComparisonOperator Operator { get; set; }
+}

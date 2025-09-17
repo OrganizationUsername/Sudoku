@@ -273,6 +273,11 @@ file static class Extensions
 		/// <param name="predicate">The condition.</param>
 		/// <param name="count">The number of elements.</param>
 		/// <returns>An <see cref="int"/> result.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public int CountWithSameIndex<T2>(List<T2?> other, Func<T1?, T2?, bool> predicate, int count) where T2 : notnull
 		{
 			Debug.Assert(@this.Count == other.Count);

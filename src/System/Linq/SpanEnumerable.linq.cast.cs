@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source) where TSource : class
 	{
 		/// <inheritdoc cref="ICastMethod{TSelf, TSource}.Cast{TResult}"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TDerived> Cast<TDerived>() where TDerived : class, TSource
 		{
 			var result = new TDerived[source.Length];

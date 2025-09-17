@@ -54,6 +54,11 @@ public static class ListEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<TSource, TResult> selector)
 		{
 			var result = new TResult[@this.Count];
@@ -66,6 +71,11 @@ public static class ListEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> SelectMany<TCollection, TResult>(
 			Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 			Func<TSource, TCollection, TResult> resultSelector
@@ -83,6 +93,11 @@ public static class ListEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> SelectMany<TCollection, TResult>(
 			Func<TSource, IEnumerable<TCollection>> collectionSelector,
 			Func<TSource, TCollection, TResult> resultSelector

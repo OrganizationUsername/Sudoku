@@ -8,6 +8,11 @@ public partial class SpanEnumerable
 	extension<TOuter>(ReadOnlySpan<TOuter> outer)
 	{
 		/// <inheritdoc cref="ILeftJoinMethod{TSelf, TSource}.LeftJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult?> LeftJoin<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,
@@ -16,6 +21,11 @@ public partial class SpanEnumerable
 		) where TKey : notnull => LeftJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 		/// <inheritdoc cref="ILeftJoinMethod{TSelf, TSource}.LeftJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult}, IEqualityComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult?> LeftJoin<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,

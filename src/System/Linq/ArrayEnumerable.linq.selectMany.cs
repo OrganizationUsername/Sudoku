@@ -17,6 +17,11 @@ public partial class ArrayEnumerable
 		/// and their corresponding source element to a result element.
 		/// </returns>
 		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult[] SelectMany<TCollection, TResult>(
 			Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 			Func<TSource, TCollection, TResult> resultSelector

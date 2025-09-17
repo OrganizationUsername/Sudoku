@@ -21,6 +21,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="IAggregateMethod{TSelf, TSource}.Aggregate{TAccumulate, TResult}(TAccumulate, Func{TAccumulate, TSource, TAccumulate}, Func{TAccumulate, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 			where TAccumulate : allows ref struct
 		{

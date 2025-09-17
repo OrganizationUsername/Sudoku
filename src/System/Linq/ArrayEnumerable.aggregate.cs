@@ -31,6 +31,11 @@ public partial class ArrayEnumerable
 		/// <param name="seed">The initial value.</param>
 		/// <param name="func">The function that aggregates the values.</param>
 		/// <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 			where TAccumulate : allows ref struct
 		{

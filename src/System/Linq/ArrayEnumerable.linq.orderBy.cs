@@ -8,6 +8,11 @@ public partial class ArrayEnumerable
 	extension<TSource>(TSource[] source)
 	{
 		/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ArrayOrderedEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> selector)
 			=> new(
 				source,
@@ -19,6 +24,11 @@ public partial class ArrayEnumerable
 			);
 
 		/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ArrayOrderedEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> selector)
 			=> new(
 				source,

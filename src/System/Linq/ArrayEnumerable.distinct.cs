@@ -34,6 +34,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource[] DistinctBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : notnull, IEqualityOperators<TKey, TKey, bool>
 		{
@@ -68,6 +73,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.DistinctBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IEqualityComparer{TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource[] DistinctBy<TKey>(Func<TSource, TKey> keySelector, IEqualityComparer<TKey> equalityComparer)
 			where TKey : notnull
 		{

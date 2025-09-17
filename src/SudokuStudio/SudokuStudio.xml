@@ -17325,7 +17325,25 @@
             <param name="other">The other collection.</param>
             <param name="predicate">The condition.</param>
             <param name="count">The number of elements.</param>
-            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <returns>An <see cref="T:System.Int32" /> result.</returns>
+            <remarks>
+            <target name="generic-method">
+				<para>
+					Starting with C# 14, the <b>extension member</b> feature is supported.
+					When an <see langword="extension" /> block declaration has generic parameters
+					that are used by its formal parameters,
+					the method members inside the <see langword="extension" /> block will prepend those generic parameters
+					so that they become part of the method's signature.
+				</para>
+				<para>
+					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
+					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
+					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
+					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
+					following the rules of generic methods in C#.
+				</para>
+			</target>
+            </remarks>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Extensions.&lt;G&gt;$64B67F85FE78DDA587BDEEBA2FF0A5A2.&lt;M&gt;$2C2C34D30F0D33A0DD68C9EE7E68192F">
             <summary>
@@ -17924,16 +17942,34 @@
             Draws the specified UI control to the target file as a picture.
             </summary>
             <typeparam name="TStorageFileOrRandomAccessStream">
-            The type of the argument <paramref name="fileOrStream"/>.
-            The target type can be <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>;
-            otherwise, a <see cref="T:System.NotSupportedException"/> will be thrown.
+            The type of the argument <paramref name="fileOrStream" />.
+            The target type can be <see cref="T:Windows.Storage.StorageFile" /> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream" />;
+            otherwise, a <see cref="T:System.NotSupportedException" /> will be thrown.
             </typeparam>
             <param name="fileOrStream">
-            The target instance. This value can be a <see cref="T:Windows.Storage.StorageFile"/> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/>.
+            The target instance. This value can be a <see cref="T:Windows.Storage.StorageFile" /> or <see cref="T:Windows.Storage.Streams.IRandomAccessStream" />.
             </param>
             <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="fileOrStream"/> is not supported.
+            Throws when the argument <paramref name="fileOrStream" /> is not supported.
             </exception>
+            <remarks>
+            <target name="generic-method">
+				<para>
+					Starting with C# 14, the <b>extension member</b> feature is supported.
+					When an <see langword="extension" /> block declaration has generic parameters
+					that are used by its formal parameters,
+					the method members inside the <see langword="extension" /> block will prepend those generic parameters
+					so that they become part of the method's signature.
+				</para>
+				<para>
+					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
+					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
+					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
+					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
+					following the rules of generic methods in C#.
+				</para>
+			</target>
+            </remarks>
         </member>
         <member name="T:System.Numerics.Vector2Extensions">
             <summary>

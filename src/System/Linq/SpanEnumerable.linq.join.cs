@@ -8,6 +8,11 @@ public partial class SpanEnumerable
 	extension<TOuter>(ReadOnlySpan<TOuter> outer)
 	{
 		/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> Join<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,
@@ -16,6 +21,11 @@ public partial class SpanEnumerable
 		) where TKey : notnull => Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 		/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult}, IEqualityComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> Join<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,
@@ -55,6 +65,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.GroupJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, IEnumerable{TInner}, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> GroupJoin<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,
@@ -63,6 +78,11 @@ public partial class SpanEnumerable
 		) where TKey : notnull => GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 		/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.GroupJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> GroupJoin<TInner, TKey, TResult>(
 			ReadOnlySpan<TInner> inner,
 			Func<TOuter, TKey> outerKeySelector,

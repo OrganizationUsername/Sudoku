@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source) where TSource : INumberBase<TSource>
 	{
 		/// <inheritdoc cref="IAverageMethod{TSelf, TSource}.Average{TAccumulator, TResult}()"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult Average<TResult>() where TResult : INumberBase<TResult>
 		{
 			var sum = source.Sum();

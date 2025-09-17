@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source) where TSource : class
 	{
 		/// <inheritdoc cref="IOfTypeMethod{TSelf, TSource}.OfType{TResult}"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> OfType<TResult>() where TResult : class?, TSource?
 		{
 			var result = new TResult[source.Length];

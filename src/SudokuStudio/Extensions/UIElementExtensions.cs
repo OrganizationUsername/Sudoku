@@ -27,6 +27,11 @@ public static class UIElementExtensions
 		/// <exception cref="NotSupportedException">
 		/// Throws when the argument <paramref name="fileOrStream"/> is not supported.
 		/// </exception>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public async Task RenderToAsync<TStorageFileOrRandomAccessStream>(TStorageFileOrRandomAccessStream fileOrStream)
 			where TStorageFileOrRandomAccessStream : class
 		{

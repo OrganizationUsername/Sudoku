@@ -35,6 +35,11 @@ public partial class SpanEnumerable
 		/// <typeparam name="TKey">The type of key to add up.</typeparam>
 		/// <param name="keySelector">A function to extract the key for each element.</param>
 		/// <returns>The value with the sum key in the sequence.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TKey Sum<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
 		{
@@ -47,6 +52,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="Sum{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TResult SumUnsafe<TResult>(delegate*<TSource, TResult> selector)
 			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{

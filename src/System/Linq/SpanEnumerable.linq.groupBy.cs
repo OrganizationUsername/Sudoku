@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
 		/// <inheritdoc cref="IGroupByMethod{TSelf, TSource}.GroupBy{TKey}(Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : notnull
 		{
@@ -33,6 +38,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="IGroupByMethod{TSelf, TSource}.GroupBy{TKey, TElement}(Func{TSource, TKey}, Func{TSource, TElement})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<SpanGrouping<TElement, TKey>> GroupBy<TKey, TElement>(
 			Func<TSource, TKey> keySelector,
 			Func<TSource, TElement> elementSelector

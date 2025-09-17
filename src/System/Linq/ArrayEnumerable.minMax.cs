@@ -15,6 +15,11 @@ public partial class ArrayEnumerable
 		/// <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the minimum value in the sequence.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TInterim Min<TInterim>(Func<TSource, TInterim> selector)
 			where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
 		{
@@ -31,6 +36,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Min{T, TInterim}(T[], Func{T, TInterim})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TInterim MinUnsafe<TInterim>(delegate*<TSource, TInterim> selector)
 			where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
 		{
@@ -52,6 +62,11 @@ public partial class ArrayEnumerable
 		/// <typeparam name="TInterim">The type of projected values after the transform function invoked.</typeparam>
 		/// <param name="selector">A transform function to apply to each element.</param>
 		/// <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TInterim Max<TInterim>(Func<TSource, TInterim> selector)
 			where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
 		{
@@ -68,6 +83,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Max{T, TInterim}(T[], Func{T, TInterim})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TInterim MaxUnsafe<TInterim>(delegate*<TSource, TInterim> selector)
 			where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
 		{
@@ -84,6 +104,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MinBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IComparable<TKey>, allows ref struct
 		{
@@ -102,6 +127,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MinBy<TKey, TComparer>(Func<TSource, TKey> keySelector, TComparer? comparer)
 			where TKey : allows ref struct
 			where TComparer : IComparer<TKey>, new(), allows ref struct
@@ -123,6 +153,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MaxBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IComparable<TKey>, allows ref struct
 		{
@@ -141,6 +176,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MaxBy<TKey, TComparer>(Func<TSource, TKey> keySelector, TComparer? comparer)
 			where TKey : allows ref struct
 			where TComparer : IComparer<TKey>, new(), allows ref struct

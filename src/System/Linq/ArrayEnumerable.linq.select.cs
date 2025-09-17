@@ -12,6 +12,11 @@ public partial class ArrayEnumerable
 		/// of invoking the transform function on each element of <paramref name="source"/>.
 		/// </returns>
 		/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult[] Select<TResult>(Func<TSource, TResult> selector)
 		{
 			var length = source.Length;
@@ -28,6 +33,11 @@ public partial class ArrayEnumerable
 		/// of invoking the transform function on each element of <paramref name="source"/>, and its indices.
 		/// </summary>
 		/// <inheritdoc cref="Enumerable.Select{TSource, TResult}(IEnumerable{TSource}, Func{TSource, int, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult[] Select<TResult>(Func<TSource, int, TResult> selector)
 		{
 			var length = source.Length;

@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(scoped ReadOnlySpan<TSource> source)
 	{
 		/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<TSource, TResult> selector)
 		{
 			var result = new TResult[source.Length];
@@ -22,6 +27,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, int, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<TSource, int, TResult> selector)
 		{
 			var result = new TResult[source.Length];

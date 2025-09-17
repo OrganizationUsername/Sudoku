@@ -8,6 +8,11 @@ public partial class ArrayEnumerable
 	extension<TOuter>(TOuter[] outer)
 	{
 		/// <inheritdoc cref="IRightJoinMethod{TSelf, TSource}.RightJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult?[] RightJoin<TInner, TKey, TResult>(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,
@@ -16,6 +21,11 @@ public partial class ArrayEnumerable
 		) where TKey : notnull => RightJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, null);
 
 		/// <inheritdoc cref="IRightJoinMethod{TSelf, TSource}.RightJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult}, IEqualityComparer{TKey}?)"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult?[] RightJoin<TInner, TKey, TResult>(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,

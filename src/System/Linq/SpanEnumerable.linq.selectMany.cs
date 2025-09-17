@@ -10,6 +10,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
 		/// <inheritdoc cref="ISelectManyMethod{TSelf, TSource}.SelectMany{TCollection, TResult}(Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public ReadOnlySpan<TResult> SelectMany<TCollection, TResult>(
 			Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 			Func<TSource, TCollection, TResult> resultSelector

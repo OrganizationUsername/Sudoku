@@ -39,6 +39,11 @@ public partial class ArrayEnumerable
 		/// <typeparam name="TResult">The type of the return value.</typeparam>
 		/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
 		/// <returns>The result value.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TResult Sum<TResult>(Func<TSource, TResult> selector)
 			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{
@@ -51,6 +56,11 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Sum{T, TResult}(T[], Func{T, TResult})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TResult SumUnsafe<TResult>(delegate*<TSource, TResult> selector)
 			where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 		{

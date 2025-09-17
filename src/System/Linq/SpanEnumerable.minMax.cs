@@ -83,6 +83,11 @@ public partial class SpanEnumerable
 	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
 		/// <inheritdoc cref="Enumerable.MinBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TKey Min<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
@@ -99,6 +104,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MinBy{TKey}(Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MinBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
@@ -114,6 +124,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.MaxBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TKey Max<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
@@ -130,6 +145,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="IMinMaxMethod{TSelf, TSource}.MaxBy{TKey}(Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TSource? MaxBy<TKey>(Func<TSource, TKey> keySelector)
 			where TKey : IMinMaxValue<TKey>, IComparisonOperators<TKey, TKey, bool>
 		{
@@ -145,6 +165,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="Min{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TResult? MinUnsafe<TResult>(delegate*<TSource, TResult> selector)
 			where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
 		{
@@ -161,6 +186,11 @@ public partial class SpanEnumerable
 		}
 
 		/// <inheritdoc cref="Max{TSource, TInterim}(ReadOnlySpan{TSource}, Func{TSource, TInterim})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public unsafe TResult MaxUnsafe<TResult>(delegate*<TSource, TResult> selector)
 			where TResult : IMinMaxValue<TResult>, IComparisonOperators<TResult, TResult, bool>
 		{

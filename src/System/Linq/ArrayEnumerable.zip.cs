@@ -8,6 +8,11 @@ public partial class ArrayEnumerable
 	extension<TFirst>(TFirst[] first)
 	{
 		/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public (TFirst Left, TSecond Right)[] Zip<TSecond>(TSecond[] second)
 		{
 			ArgumentException.ThrowIfAssertionFailed(first.Length == second.Length);

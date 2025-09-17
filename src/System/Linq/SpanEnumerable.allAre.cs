@@ -14,6 +14,11 @@ public partial class SpanEnumerable
 		/// </summary>
 		/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public bool AllAre<TDerived>() where TDerived : TBase?
 		{
 			foreach (ref readonly var element in source)

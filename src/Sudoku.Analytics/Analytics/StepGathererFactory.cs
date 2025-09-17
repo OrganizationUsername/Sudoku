@@ -71,6 +71,11 @@ public static class StepGathererFactory
 		/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
 		/// <param name="setter">The value to be added.</param>
 		/// <returns>The instance same as the current instance.</returns>
+		/// <remarks>
+		/// <include
+		///     file="../../global-doc-comments.xml"
+		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
+		/// </remarks>
 		public TStepGatherer ApplySetter<TStepSearcher>(Action<TStepSearcher> setter) where TStepSearcher : StepSearcher
 		{
 			instance.Setters.Add(

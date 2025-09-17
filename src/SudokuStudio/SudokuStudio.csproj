@@ -70,7 +70,6 @@
 
 	<ItemGroup>
 		<EditorConfigFiles Remove="C:\Users\admin\source\repos\SunnieShine\Sudoku\src\SudokuStudio\.editorconfig" />
-		<None Include="C:\Users\admin\source\repos\SunnieShine\Sudoku\src\SudokuStudio\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -104,6 +103,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\TechniqueGroupSelector.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\CommandBasedDrawingPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

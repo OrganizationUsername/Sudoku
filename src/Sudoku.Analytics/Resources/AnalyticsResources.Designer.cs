@@ -8771,6 +8771,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string TechniqueGroup_None {
+            get {
+                return ResourceManager.GetString("TechniqueGroup_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal Fish.
         /// </summary>
         public static string TechniqueGroup_NormalFish {

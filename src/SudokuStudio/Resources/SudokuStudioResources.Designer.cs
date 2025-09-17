@@ -3187,6 +3187,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique group appearing times.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueGroupCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueGroupCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique group appearing times constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technique precedence.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_TechniquePrecedence {
@@ -8240,6 +8258,15 @@ namespace SudokuStudio.Resources {
         internal static string TechniqueGalleryPage_UniqueRectangles3 {
             get {
                 return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No technique groups selected.
+        /// </summary>
+        internal static string TechniqueGroupSelector_NoTechniqueSelected {
+            get {
+                return ResourceManager.GetString("TechniqueGroupSelector_NoTechniqueSelected", resourceCulture);
             }
         }
         

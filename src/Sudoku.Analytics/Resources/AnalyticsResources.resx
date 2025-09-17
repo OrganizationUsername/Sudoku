@@ -3346,4 +3346,7 @@ Is pattern rank-0: {6}</value>
   <data name="TechniqueGroupCountConstraint" xml:space="preserve">
     <value>Technique group appearing times rule: {0} appears {1} {2} time(s)</value>
   </data>
+  <data name="TechniqueGroup_None" xml:space="preserve">
+    <value>None</value>
+  </data>
 </root>

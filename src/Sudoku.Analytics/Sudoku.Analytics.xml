@@ -34931,6 +34931,11 @@
               Looks up a localized string similar to Multi-sector Locked Set.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_None">
+            <summary>
+              Looks up a localized string similar to None.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_NormalFish">
             <summary>
               Looks up a localized string similar to Normal Fish.

@@ -23,6 +23,8 @@
 				<Button Grid.Column="0" Content="{m:R Key=GeneratedPuzzleConstraintPage_AddNewConstraint}" Margin="12,12,30,12">
 					<Button.Flyout>
 						<MenuFlyout x:Name="MenuFlyout" Opening="MenuFlyout_Opening">
+							<!--#region Technique related-->
+							<!--CountBetweenConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_CountBetweenConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -32,6 +34,8 @@
 									<con:CountBetweenConstraint Range="{m:Range Range='24..28'}" CellState="Given" BetweenRule="BothClosed" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--SymmetryConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_SymmetryConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -41,6 +45,8 @@
 									<con:SymmetryConstraint SymmetricTypes="Central" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--TechniqueConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -55,6 +61,8 @@
 									</con:TechniqueConstraint>
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--TechniqueSetConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueSetConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -70,6 +78,8 @@
 									</con:TechniqueSetConstraint>
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--TechniqueCountConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueCountConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -79,6 +89,8 @@
 									<con:TechniqueCountConstraint Technique="NakedSingle" LimitCount="1" Operator="GreaterThanOrEqual" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--TechniquePrecedenceConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniquePrecedenceConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -91,6 +103,23 @@
 										Operator="Predecessor" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--TechniqueGroupCountConstraint-->
+							<MenuFlyoutItem
+								Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint}"
+								Click="MenuFlyoutItem_Click"
+								PointerEntered="MenuFlyoutItem_PointerEntered"
+								PointerExited="MenuFlyoutItem_PointerExited">
+								<MenuFlyoutItem.Tag>
+									<con:TechniqueGroupCountConstraint TechniqueGroup="Subset" LimitCount="3" Operator="Equality" />
+								</MenuFlyoutItem.Tag>
+							</MenuFlyoutItem>
+
+							<MenuFlyoutSeparator />
+							<!--#endregion-->
+
+							<!--#region Information related-->
+							<!--EliminationCountConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_EliminationCountConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -100,6 +129,8 @@
 									<con:EliminationCountConstraint Technique="LockedPair" LimitCount="5" Operator="GreaterThanOrEqual" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--DifficultyLevelConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_DifficultyLevelConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -109,6 +140,8 @@
 									<con:DifficultyLevelConstraint DifficultyLevel="Easy" Operator="Equality" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--ConclusionConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_ConclusionConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -118,6 +151,8 @@
 									<con:ConclusionConstraint Conclusion="{m:Conclusion Text='r5c5 = 5'}" ShouldAppear="True" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--BottleneckTechniqueConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -132,7 +167,14 @@
 									</con:BottleneckTechniqueConstraint>
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
 							<MenuFlyoutSeparator />
+
+							<!--#endregion-->
+							
+							<!--#region Puzzle feature related-->
+
+							<!--MissingDigitConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_MissingDigitConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -142,6 +184,8 @@
 									<con:MissingDigitConstraint Digit="4" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--EmptyHousesCountConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_EmptyHousesCountConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -151,7 +195,12 @@
 									<con:EmptyHousesCountConstraint HouseType="Block" Count="1" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
 							<MenuFlyoutSeparator />
+							<!--#endregion-->
+
+							<!--#region Puzzle attributes related-->
+							<!--PearlConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_PearlConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -161,6 +210,8 @@
 									<con:PearlConstraint ShouldBePearlOrDiamond="False" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--DiamondConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_DiamondConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -170,6 +221,8 @@
 									<con:DiamondConstraint ShouldBePearlOrDiamond="False" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--MinimalConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_MinimalConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -179,7 +232,12 @@
 									<con:MinimalConstraint ShouldBeMinimal="False" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
 							<MenuFlyoutSeparator />
+							<!--#endregion-->
+
+							<!--#region Miscellaneous features related-->
+							<!--IttoryuConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_IttoryuConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -189,6 +247,8 @@
 									<con:IttoryuConstraint LimitedSingle="NakedSingle" Operator="Equality" Rounds="1" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--PrimarySingleConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_PrimarySingleConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -198,6 +258,8 @@
 									<con:PrimarySingleConstraint Primary="HiddenSingle" AllowsHiddenSingleInLines="False" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+
+							<!--LastingConstraint-->
 							<MenuFlyoutItem
 								Text="{m:R Key=GeneratedPuzzleConstraintPage_LastingConstraint}"
 								Click="MenuFlyoutItem_Click"
@@ -207,6 +269,7 @@
 									<con:LastingConstraint TechniqueFlag="NakedSingle" LimitCount="3" Operator="Equality" />
 								</MenuFlyoutItem.Tag>
 							</MenuFlyoutItem>
+							<!--#endregion-->
 						</MenuFlyout>
 					</Button.Flyout>
 				</Button>

@@ -27,6 +27,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{ typeof(SymmetryConstraint), static (@this, s) => @this.Create_Symmetry((SymmetryConstraint)s) },
 		{ typeof(TechniqueConstraint), static (@this, s) => @this.Create_Technique((TechniqueConstraint)s) },
 		{ typeof(TechniqueCountConstraint), static (@this, s) => @this.Create_TechniqueCount((TechniqueCountConstraint)s) },
+		{ typeof(TechniqueGroupCountConstraint), static (@this, s) => @this.Create_TechniqueGroupCount((TechniqueGroupCountConstraint)s) },
 		{ typeof(TechniquePrecedenceConstraint), static (@this, s) => @this.Create_TechniquePrecedence((TechniquePrecedenceConstraint)s) },
 		{ typeof(TechniqueSetConstraint), static (@this, s) => @this.Create_TechniqueSet((TechniqueSetConstraint)s) }
 	};
@@ -152,6 +153,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	private partial SettingsCard? Create_Symmetry(SymmetryConstraint constraint);
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint);
 	private partial SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint);
+	private partial SettingsCard? Create_TechniqueGroupCount(TechniqueGroupCountConstraint constraint);
 	private partial SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint);
 	private partial SettingsCard? Create_TechniquePrecedence(TechniquePrecedenceConstraint constraint);
 

@@ -2954,4 +2954,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_TechniquePrecedenceConstraint" xml:space="preserve">
     <value>Technique precedence constraint</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint" xml:space="preserve">
+    <value>Technique group appearing times constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueGroupCount" xml:space="preserve">
+    <value>Technique group appearing times</value>
+  </data>
+  <data name="TechniqueGroupSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>No technique groups selected</value>
+  </data>
 </root>

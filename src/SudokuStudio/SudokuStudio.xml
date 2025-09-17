@@ -594,6 +594,21 @@
             Indicates the key of the group.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.TechniqueGroupBindableSource_IWillChangeThisTypeNameLater">
+            <summary>
+            Indicates the technique group bindable source.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueGroupBindableSource_IWillChangeThisTypeNameLater.TechniqueGroup">
+            <summary>
+            The technique enumeration field.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueGroupBindableSource_IWillChangeThisTypeNameLater.DisplayName">
+            <summary>
+            The display name.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.TechniquePageRoutingBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for technique page routing.
@@ -7424,6 +7439,16 @@
               Looks up a localized string similar to Technique appearing times constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueGroupCount">
+            <summary>
+              Looks up a localized string similar to Technique group appearing times.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint">
+            <summary>
+              Looks up a localized string similar to Technique group appearing times constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniquePrecedence">
             <summary>
               Looks up a localized string similar to Technique precedence.
@@ -10235,6 +10260,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueGalleryPage_UniqueRectangles3">
             <summary>
               Looks up a localized string similar to Unique Rectangles with Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueGroupSelector_NoTechniqueSelected">
+            <summary>
+              Looks up a localized string similar to No technique groups selected.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_Description">
@@ -13907,6 +13937,50 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.TechniqueGroupSelector">
+            <summary>
+            Represents a technique group selector.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupSelector.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueGroupSelector"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueGroupSelector.SelectedIndex">
+            <summary>
+            Indicates the selected index.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueGroupSelector.ItemsSource">
+            <summary>
+            Indicates the base items source.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.TechniqueGroupSelector.SelectionChanged">
+            <inheritdoc cref="E:Microsoft.UI.Xaml.Controls.Primitives.Selector.SelectionChanged"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupSelector.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupSelector.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueGroupSelector.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueGroupSelector.SelectedIndexProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueGroupSelector.SelectedIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueGroupSelector.SelectedIndex"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupView">
             <summary>

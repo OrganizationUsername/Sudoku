@@ -7,8 +7,10 @@
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:ColorSelector}">
-	<ComboBox ItemsSource="{x:Bind ItemsSource}" SelectedIndex="{x:Bind SelectedIndex,Mode=TwoWay}" SelectionChanged="ComboBox_SelectionChanged">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueSelector}">
+	<ComboBox
+		ItemsSource="{x:Bind ItemsSource}" SelectedIndex="{x:Bind SelectedIndex,Mode=TwoWay}"
+		SelectionChanged="ComboBox_SelectionChanged">
 		<ComboBox.ItemTemplate>
 			<DataTemplate x:DataType="bs:TechniqueBindableSource">
 				<Grid ColumnDefinitions="200,Auto">

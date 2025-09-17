@@ -2945,4 +2945,13 @@
   <data name="GeneratedPuzzleConstraintPage_TechniquePrecedenceConstraint" xml:space="preserve">
     <value>技巧先后次序约束</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueGroupCountConstraint" xml:space="preserve">
+    <value>技巧分组次数约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueGroupCount" xml:space="preserve">
+    <value>技巧所处分类出现的次数</value>
+  </data>
+  <data name="TechniqueGroupSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>未选择任何技巧分类</value>
+  </data>
 </root>

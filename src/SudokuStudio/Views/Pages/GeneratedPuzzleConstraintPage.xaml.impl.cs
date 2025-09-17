@@ -723,6 +723,60 @@ public partial class GeneratedPuzzleConstraintPage
 		};
 	}
 
+	private partial SettingsCard? Create_TechniqueGroupCount(TechniqueGroupCountConstraint constraint)
+	{
+		if (constraint is not { TechniqueGroup: var techniqueGroup, LimitCount: var appearingTimes, Operator: var @operator })
+		{
+			return null;
+		}
+
+		//
+		// technique group selector
+		//
+		var techniqueGroupSelector = new TechniqueGroupSelector { VerticalAlignment = VerticalAlignment.Center };
+		techniqueGroupSelector.SelectionChanged += (_, _) =>
+		{
+			var selectedIndex = techniqueGroupSelector.SelectedIndex;
+			var techniqueGroup = techniqueGroupSelector.ItemsSource[selectedIndex].TechniqueGroup;
+			constraint.TechniqueGroup = techniqueGroup;
+		};
+
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = $"{SR.Get("_Token_Comma2", App.CurrentCulture)}{SR.Get("GeneratedPuzzleConstraintPage_AppearingTimes", App.CurrentCulture)}"
+		};
+
+		//
+		// appearing times
+		//
+		var appearingTimesControl = LimitCountControl(appearingTimes, constraint);
+
+		//
+		// comparison operator
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		return new()
+		{
+			Header = SR.Get("GeneratedPuzzleConstraintPage_TechniqueGroupCount", App.CurrentCulture),
+			Description = constraint.Description,
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { techniqueGroupSelector, displayerControl, operatorControl, appearingTimesControl }
+			},
+			Tag = constraint
+		};
+	}
+
 	private partial SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint)
 	{
 		if (constraint is not { Techniques: var techniques })

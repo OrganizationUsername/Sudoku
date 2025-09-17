@@ -142,7 +142,7 @@ public static partial class GeneratorHub
 				},
 				reportAction,
 				specializedConditions is { HasNakedSingleConstraint: true } or { HasNakedSingleConstraintInTechniqueSet: true }
-					? analyzer.WithUserDefinedOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
+					? analyzer.WithOptions(analyzer.Options with { PrimarySingle = SingleTechniqueFlag.NakedSingle })
 					: analyzer,
 				ittoryuFinder,
 				filters,

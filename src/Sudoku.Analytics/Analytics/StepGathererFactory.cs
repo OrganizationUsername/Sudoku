@@ -8,6 +8,99 @@ namespace Sudoku.Analytics;
 public static class StepGathererFactory
 {
 	/// <summary>
+	/// Provides extension members on <typeparamref name="TStepGatherer"/>,
+	/// where <typeparamref name="TStepGatherer"/> satisfies <see cref="StepGatherer"/> constraint.
+	/// </summary>
+	/// <typeparam name="TStepGatherer">The type of step gatherer (<see cref="Analyzer"/> or <see cref="Collector"/>).</typeparam>
+	extension<TStepGatherer>(TStepGatherer instance) where TStepGatherer : StepGatherer
+	{
+		/// <summary>
+		/// Sets the property <see cref="StepGatherer.StepSearchers"/> with the target value.
+		/// </summary>
+		/// <param name="stepSearchers">The value to be set or updated.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		public TStepGatherer WithStepSearchers(params StepSearcher[] stepSearchers)
+		{
+			instance.StepSearchers = stepSearchers;
+			return instance;
+		}
+
+		/// <summary>
+		/// Try to set property <see cref="StepGatherer.StepSearchers"/> with the specified value.
+		/// </summary>
+		/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
+		/// <param name="level">Indicates the difficulty level preserved.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		/// <seealso cref="StepGatherer.StepSearchers"/>
+		/// <seealso cref="StepSearcher"/>
+		public TStepGatherer WithStepSearchers(StepSearcher[] stepSearchers, DifficultyLevel level = DifficultyLevel.Unknown)
+			=> instance.WithStepSearchers(
+				level == DifficultyLevel.Unknown
+					? stepSearchers
+					:
+					from stepSearcher in stepSearchers
+					where stepSearcher.Metadata.DifficultyLevelRange.Any(l => l <= level)
+					select stepSearcher
+			);
+
+		/// <summary>
+		/// Sets the property <see cref="StepGatherer.Options"/> with the target value.
+		/// </summary>
+		/// <param name="options">The value to be set or updated.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		public TStepGatherer WithOptions(StepGathererOptions options)
+		{
+			instance.Options = options;
+			return instance;
+		}
+
+		/// <summary>
+		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
+		/// </summary>
+		/// <param name="setters">The value to be added.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		public TStepGatherer ApplySetter(Action<StepSearcher> setters)
+		{
+			instance.Setters.Add(setters);
+			return instance;
+		}
+
+		/// <summary>
+		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
+		/// </summary>
+		/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
+		/// <param name="setter">The value to be added.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		public TStepGatherer ApplySetter<TStepSearcher>(Action<TStepSearcher> setter) where TStepSearcher : StepSearcher
+		{
+			instance.Setters.Add(
+				s =>
+				{
+					if (s is TStepSearcher target)
+					{
+						setter(target);
+					}
+				}
+			);
+			return instance;
+		}
+
+		/// <summary>
+		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
+		/// </summary>
+		/// <param name="setters">A list of values to be added.</param>
+		/// <returns>The instance same as the current instance.</returns>
+		public TStepGatherer ApplySetters(params ReadOnlySpan<Action<StepSearcher>> setters)
+		{
+			foreach (var element in setters)
+			{
+				instance.Setters.Add(element);
+			}
+			return instance;
+		}
+	}
+
+	/// <summary>
 	/// Provides extension members on <see cref="Analyzer"/>.
 	/// </summary>
 	extension(Analyzer instance)
@@ -31,91 +124,6 @@ public static class StepGathererFactory
 		public Analyzer WithApplyAll(bool applyAll)
 		{
 			instance.IsFullApplying = applyAll;
-			return instance;
-		}
-
-		/// <summary>
-		/// Sets the property <see cref="StepGatherer.StepSearchers"/> with the target value.
-		/// </summary>
-		/// <param name="stepSearchers">The value to be set or updated.</param>
-		/// <returns>The value same as <see cref="Analyzer"/>.</returns>
-		public Analyzer WithStepSearchers(params StepSearcher[] stepSearchers)
-		{
-			instance.StepSearchers = stepSearchers;
-			return instance;
-		}
-
-		/// <summary>
-		/// Sets the property <see cref="StepGatherer.Options"/> with the target value.
-		/// </summary>
-		/// <param name="options">The value to be set or updated.</param>
-		/// <returns>The value same as <see cref="Analyzer"/>.</returns>
-		public Analyzer WithUserDefinedOptions(StepGathererOptions options)
-		{
-			instance.Options = options;
-			return instance;
-		}
-
-		/// <summary>
-		/// Try to set property <see cref="StepGatherer.StepSearchers"/> with the specified value.
-		/// </summary>
-		/// <param name="stepSearchers">The custom collection of <see cref="StepSearcher"/>s.</param>
-		/// <param name="level">Indicates the difficulty level preserved.</param>
-		/// <returns>The result.</returns>
-		/// <seealso cref="StepGatherer.StepSearchers"/>
-		/// <seealso cref="StepSearcher"/>
-		public Analyzer WithStepSearchers(StepSearcher[] stepSearchers, DifficultyLevel level = DifficultyLevel.Unknown)
-			=> instance.WithStepSearchers(
-				level == DifficultyLevel.Unknown
-					? stepSearchers
-					:
-					from stepSearcher in stepSearchers
-					where stepSearcher.Metadata.DifficultyLevelRange.Any(l => l <= level)
-					select stepSearcher
-			);
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-		/// <param name="setter">The value to be added.</param>
-		/// <returns>The value same as <see cref="Analyzer"/>.</returns>
-		public Analyzer ApplySetter<TStepSearcher>(Action<TStepSearcher> setter) where TStepSearcher : StepSearcher
-		{
-			instance.Setters.Add(
-				s =>
-				{
-					if (s is TStepSearcher target)
-					{
-						setter(target);
-					}
-				}
-			);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <param name="setters">The value to be added.</param>
-		/// <returns>The value same as <see cref="Analyzer"/>.</returns>
-		public Analyzer ApplySetter(Action<StepSearcher> setters)
-		{
-			instance.Setters.Add(setters);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <param name="setters">A list of values to be added.</param>
-		/// <returns>The value same as <see cref="Analyzer"/>.</returns>
-		public Analyzer ApplySetters(params ReadOnlySpan<Action<StepSearcher>> setters)
-		{
-			foreach (var element in setters)
-			{
-				instance.Setters.Add(element);
-			}
 			return instance;
 		}
 	}
@@ -144,73 +152,6 @@ public static class StepGathererFactory
 		public Collector WithSameLevelConfiguration(CollectorDifficultyLevelMode collectingMode)
 		{
 			instance.DifficultyLevelMode = collectingMode;
-			return instance;
-		}
-
-		/// <summary>
-		/// Sets the property <see cref="StepGatherer.StepSearchers"/> with the target value.
-		/// </summary>
-		/// <param name="stepSearchers">The value to be set or updated.</param>
-		/// <returns>The value same as <see cref="Collector"/>.</returns>
-		public Collector WithStepSearchers(params StepSearcher[] stepSearchers)
-		{
-			instance.StepSearchers = stepSearchers;
-			return instance;
-		}
-
-		/// <summary>
-		/// Sets the property <see cref="StepGatherer.Options"/> with the target value.
-		/// </summary>
-		/// <param name="options">The value to be set or updated.</param>
-		/// <returns>The value same as <see cref="Collector"/>.</returns>
-		public Collector WithUserDefinedOptions(StepGathererOptions options)
-		{
-			instance.Options = options;
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-		/// <param name="setter">The value to be added.</param>
-		/// <returns>The value same as <see cref="Collector"/>.</returns>
-		public Collector ApplySetter<TStepSearcher>(Action<TStepSearcher> setter) where TStepSearcher : StepSearcher
-		{
-			instance.Setters.Add(
-				s =>
-				{
-					if (s is TStepSearcher target)
-					{
-						setter(target);
-					}
-				}
-			);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <param name="setters">The value to be added.</param>
-		/// <returns>The value same as <see cref="Collector"/>.</returns>
-		public Collector ApplySetter(Action<StepSearcher> setters)
-		{
-			instance.Setters.Add(setters);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <param name="setters">A list of values to be added.</param>
-		/// <returns>The value same as <see cref="Collector"/>.</returns>
-		public Collector ApplySetters(params ReadOnlySpan<Action<StepSearcher>> setters)
-		{
-			foreach (var element in setters)
-			{
-				instance.Setters.Add(element);
-			}
 			return instance;
 		}
 	}

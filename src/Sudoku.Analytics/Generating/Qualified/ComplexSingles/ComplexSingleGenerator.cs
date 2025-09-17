@@ -24,7 +24,7 @@ public abstract class ComplexSingleGenerator : TechniqueGenerator, IJustOneCellG
 				DirectNakedSubsetMaxSize = 4
 			}!
 		)
-		.WithUserDefinedOptions(new() { IsDirectMode = true });
+		.WithOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

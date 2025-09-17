@@ -218,7 +218,7 @@ public partial class App : Application
 		=> Analyzer
 			.WithStepSearchers(Current.AsApp().GetStepSearchers(), difficultyLevel)
 			.WithRuntimeIdentifierSetters(sudokuPane)
-			.WithUserDefinedOptions(CreateStepSearcherOptions());
+			.WithOptions(CreateStepSearcherOptions());
 
 	/// <inheritdoc/>
 	protected override void OnLaunched(LaunchActivatedEventArgs args)

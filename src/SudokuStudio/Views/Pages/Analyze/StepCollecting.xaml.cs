@@ -144,7 +144,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			.WithSameLevelConfiguration((CollectorDifficultyLevelMode)analysisPref.DifficultyLevelMode)
 			.WithStepSearchers(Application.Current.AsApp().GetStepSearchers())
 			.WithRuntimeIdentifierSetters(BasePage.SudokuPane)
-			.WithUserDefinedOptions(App.CreateStepSearcherOptions());
+			.WithOptions(App.CreateStepSearcherOptions());
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
 
 		try

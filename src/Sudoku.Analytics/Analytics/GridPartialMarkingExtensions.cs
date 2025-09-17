@@ -25,7 +25,7 @@ public static class GridPartialMarkingExtensions
 				DirectNakedSubsetMaxSize = 4
 			}!
 		)
-		.WithUserDefinedOptions(new() { IsDirectMode = true });
+		.WithOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

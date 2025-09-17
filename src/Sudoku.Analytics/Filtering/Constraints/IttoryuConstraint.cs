@@ -94,7 +94,7 @@ public sealed class IttoryuConstraint : Constraint, IComparisonOperatorConstrain
 					EnableOrderingStepsByLastingValue = false
 				}!
 			)
-			.WithUserDefinedOptions(
+			.WithOptions(
 				new()
 				{
 					IsDirectMode = true,

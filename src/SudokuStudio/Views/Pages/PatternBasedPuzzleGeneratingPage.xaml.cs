@@ -290,7 +290,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		var ratingScale = Application.Current.AsApp().Preference.TechniqueInfoPreferences.RatingScale;
 		var ratingScaleFormat = FactorMarshal.GetScaleFormatString(1 / ratingScale);
 		var analyzer = Application.Current.AsApp().GetAnalyzerConfigured(SudokuPane)
-			.WithUserDefinedOptions(new() { IsDirectMode = true });
+			.WithOptions(new() { IsDirectMode = true });
 		using var cts = new CancellationTokenSource();
 		try
 		{

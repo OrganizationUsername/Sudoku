@@ -37,7 +37,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerat
 		// ROSLYN_ISSUE: Remove null-forgiving operator
 		// due to wrong analysis for Roslyn on extension member with complex nullable argument types.
 		.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true }!)
-		.WithUserDefinedOptions(new() { IsDirectMode = true });
+		.WithOptions(new() { IsDirectMode = true });
 
 
 	/// <summary>

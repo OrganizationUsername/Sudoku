@@ -51,7 +51,7 @@ public sealed class EliminationCountConstraint : Constraint, IComparisonOperator
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
-		var @operator = Operator.GetOperator<int>();
+		var @operator = Operator.OperatorInt32;
 		foreach (var step in context.AnalysisResult)
 		{
 			if (step.Code == Technique && @operator(step.Conclusions.Length, LimitCount))

@@ -163,6 +163,6 @@ public sealed class IttoryuConstraint : Constraint, IComparisonOperatorConstrain
 			return false;
 		}
 
-		return Operator.GetOperator<int>()(roundsCount, Rounds);
+		return Operator.OperatorInt32(roundsCount, Rounds);
 	}
 }

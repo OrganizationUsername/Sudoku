@@ -63,6 +63,6 @@ public sealed class TechniqueGroupCountConstraint : Constraint, IComparisonOpera
 				times++;
 			}
 		}
-		return Operator.GetOperator<int>()(times, LimitCount);
+		return Operator.OperatorInt32(times, LimitCount);
 	}
 }

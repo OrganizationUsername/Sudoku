@@ -25,11 +25,7 @@ public sealed class NumberComparisonKeywordCondition : KeywordCondition
 
 	/// <inheritdoc/>
 	public override bool IsSatisifed(Step instance, string keyword)
-		=> GetValue(instance, keyword) switch
-		{
-			int keywordValue => Operator.GetOperator<int>()(keywordValue, Value),
-			_ => false
-		};
+		=> GetValue(instance, keyword) switch { int keywordValue => Operator.OperatorInt32(keywordValue, Value), _ => false };
 
 	/// <inheritdoc/>
 	public override int GetHashCode() => HashCode.Combine(Value, Operator);

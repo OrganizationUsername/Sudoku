@@ -74,7 +74,7 @@ public sealed class LastingConstraint : Constraint, ILimitCountConstraint<int>, 
 		foreach (var step in context.AnalysisResult)
 		{
 			if (step is not (SingleStep { Code: var technique } and ILastingTrait { Lasting: var factLasting })
-				|| desiredTechnique == technique && !Operator.GetOperator<int>()(factLasting, LimitCount))
+				|| desiredTechnique == technique && !Operator.OperatorInt32(factLasting, LimitCount))
 			{
 				return false;
 			}

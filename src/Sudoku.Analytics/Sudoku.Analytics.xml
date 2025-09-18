@@ -6068,24 +6068,24 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodSet1">
+        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodOrder_EnableFullHouseButIndirect">
             <summary>
-            Represents a method set.
+            Represents a field that stores different ordering on calculating single techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodSet2">
+        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodOrder_EnableFullHouseAndDirect">
             <summary>
-            Represents a method set.
+            Represents a field that stores different ordering on calculating single techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodSet3">
+        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodOrder_DisableFullHouseButIndirect">
             <summary>
-            Represents a method set.
+            Represents a field that stores different ordering on calculating single techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodSet4">
+        <member name="F:Sudoku.Analytics.StepSearchers.SingleStepSearcher.MethodOrder_DisableFullHouseAndDirect">
             <summary>
-            Represents a method set.
+            Represents a field that stores different ordering on calculating single techniques.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse">

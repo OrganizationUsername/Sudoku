@@ -37,13 +37,13 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Represents a method set.
+	/// Represents a field that stores different ordering on calculating single techniques.
 	/// </summary>
 	private static readonly unsafe delegate*<SingleStepSearcher, ref StepAnalysisContext, in Grid, Step?>[]
-		MethodSet1 = [&CheckFullHouse, &CheckNakedSingle, &CheckHiddenSingle],
-		MethodSet2 = [&CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle],
-		MethodSet3 = [&CheckNakedSingle, &CheckHiddenSingle],
-		MethodSet4 = [&CheckHiddenSingle, &CheckNakedSingle];
+		MethodOrder_EnableFullHouseButIndirect = [&CheckFullHouse, &CheckNakedSingle, &CheckHiddenSingle],
+		MethodOrder_EnableFullHouseAndDirect = [&CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle],
+		MethodOrder_DisableFullHouseButIndirect = [&CheckNakedSingle, &CheckHiddenSingle],
+		MethodOrder_DisableFullHouseAndDirect = [&CheckHiddenSingle, &CheckNakedSingle];
 
 
 	/// <summary>
@@ -318,18 +318,17 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
-		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
+		// that a step searcher should distinct with direct mode and indirect mode (i.e. all candidates are displayed),
 		// we should start with a naked single because they are "direct" in such mode.
-		var methodSet = (EnableFullHouse, !context.Options.IsDirectMode) switch
+		foreach (var method in (EnableFullHouse, !context.Options.IsDirectMode) switch
 		{
-			(true, true) => MethodSet1,
-			(true, _) => MethodSet2,
-			(_, true) => MethodSet3,
-			_ => MethodSet4
-		};
-		for (var i = 0; i < (ReferenceEquals(methodSet, MethodSet1) || ReferenceEquals(methodSet, MethodSet2) ? 3 : 2); i++)
+			(true, true) => MethodOrder_EnableFullHouseButIndirect,
+			(true, _) => MethodOrder_EnableFullHouseAndDirect,
+			(_, true) => MethodOrder_DisableFullHouseButIndirect,
+			_ => MethodOrder_DisableFullHouseAndDirect
+		})
 		{
-			if (methodSet[i](this, ref context, grid) is { } step)
+			if (method(this, ref context, grid) is { } step)
 			{
 				return step;
 			}

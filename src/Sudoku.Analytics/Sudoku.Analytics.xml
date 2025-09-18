@@ -27902,9 +27902,6 @@
         <member name="M:Sudoku.Filtering.ComparisonOperatorExtensions.get_OperatorInt32(Sudoku.Filtering.ComparisonOperator)">
             <inheritdoc cref="P:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.OperatorInt32"/>
         </member>
-        <member name="M:Sudoku.Filtering.ComparisonOperatorExtensions.get_OperatorDouble(Sudoku.Filtering.ComparisonOperator)">
-            <inheritdoc cref="P:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.OperatorDouble"/>
-        </member>
         <member name="M:Sudoku.Filtering.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Filtering.ComparisonOperator)">
             <inheritdoc cref="M:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.GetOperator``1"/>
         </member>
@@ -27921,11 +27918,6 @@
         <member name="P:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.OperatorInt32">
             <summary>
             Create a <see cref="T:System.Func`3"/> that compares two <see cref="T:System.Int32"/> values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.OperatorDouble">
-            <summary>
-            Creates a <see cref="T:System.Func`3"/> that compares two <see cref="T:System.Double"/> values.
             </summary>
         </member>
         <member name="M:Sudoku.Filtering.ComparisonOperatorExtensions.&lt;G&gt;$AF06263D0D0EB779A37A9054C8F42FBC.GetOperator``1">

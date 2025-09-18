@@ -12154,11 +12154,6 @@
             Represents a puzzle generator, implemented by HoDoKu.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.Generator.#ctor">
-            <summary>
-            Represents a puzzle generator, implemented by HoDoKu.
-            </summary>
-        </member>
         <member name="F:Sudoku.Generating.Generator._useCustomizedSolution">
             <summary>
             Indicates whether the solution grid can be configured by user.
@@ -12192,6 +12187,11 @@
         <member name="F:Sudoku.Generating.Generator._newValidSudoku">
             <summary>
             The final grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.Generator"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.Generating.Generator.#ctor(Sudoku.Concepts.Grid@)">

@@ -18,7 +18,7 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a puzzle generator, implemented by HoDoKu.
 /// </summary>
-public ref struct Generator() : IGenerator<Grid>
+public ref struct Generator : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates whether the solution grid can be configured by user.
@@ -52,6 +52,11 @@ public ref struct Generator() : IGenerator<Grid>
 
 
 	/// <summary>
+	/// Initializes a <see cref="Generator"/> instance.
+	/// </summary>
+	public Generator() => MissingDigit = -1;
+
+	/// <summary>
 	/// Initializes a <see cref="Generator"/> instance via the specified template.
 	/// </summary>
 	/// <param name="template">The template.</param>
@@ -60,12 +65,12 @@ public ref struct Generator() : IGenerator<Grid>
 		// 2024/10/25: Add this constructor as template initialization.
 		// 2024/10/28: Add '_useCustomizedSolution = true;'.
 		// 2025/7/10: Add property 'MissingDigit'.
+		// 2025/9/18: Extract 'MissingDigit' initialization.
 
 		ArgumentException.ThrowIfAssertionFailed(template.IsSolved);
 
 		_newFullSudoku = template.UnfixedGrid;
 		_useCustomizedSolution = true;
-		MissingDigit = -1;
 	}
 
 
@@ -106,13 +111,14 @@ public ref struct Generator() : IGenerator<Grid>
 		// 2024/10/25: Add this if block to skip initialization for templates.
 		// 2024/10/28: Change if statement from 'if (_newFullSudoku.IsUndefined)' to 'if (!_useCustomizedSolution)'.
 		// 2025/9/1: Use 'cancellationToken.IsCancellationRequested' flag instead of throwing exceptions.
+		// 2025/9/18: Simplify via extension operator 'cancellationToken.IsCancellationRequested' -> '!op_True(cancellationToken)'.
 		if (!_useCustomizedSolution)
 		{
 			while (!GenerateForFullGrid()) ;
 		}
 
 		GenerateInitPos(cluesCount, symmetricType, cancellationToken);
-		return cancellationToken.IsCancellationRequested ? Grid.Undefined : _newValidSudoku.FixedGrid;
+		return cancellationToken ? _newValidSudoku.FixedGrid : Grid.Undefined;
 	}
 
 	/// <summary>
@@ -128,7 +134,7 @@ public ref struct Generator() : IGenerator<Grid>
 		// Do until we have only 17 clues left or until all cells have been tried.
 		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)
 		{
-			if (cancellationToken.IsCancellationRequested)
+			if (!cancellationToken)
 			{
 				return;
 			}

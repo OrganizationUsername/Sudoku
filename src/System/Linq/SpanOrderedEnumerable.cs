@@ -349,11 +349,13 @@ public readonly ref struct SpanOrderedEnumerable<T>(
 	public static SpanOrderedEnumerable<T> Create<TKey>(ReadOnlySpan<T> values, Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
 	{
 		comparer ??= Comparer<TKey>.Default;
-		return new(values, (Func<T, T, int>[])[descending ? descendingComparer : ascendingComparer]);
-
-
-		int ascendingComparer(T left, T right) => comparer.Compare(keySelector(left), keySelector(right));
-
-		int descendingComparer(T left, T right) => -comparer.Compare(keySelector(left), keySelector(right));
+		return new(
+			values,
+			new SingletonArray<Func<T, T, int>>(
+				descending
+					? (left, right) => -comparer.Compare(keySelector(left), keySelector(right))
+					: (left, right) => comparer.Compare(keySelector(left), keySelector(right))
+			)
+		);
 	}
 }

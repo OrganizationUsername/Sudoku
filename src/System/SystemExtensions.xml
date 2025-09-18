@@ -45,69 +45,6 @@
         <member name="M:System.Buffers.ReadOnlyMemoryOfCharComparer.Create(System.ReadOnlySpan{System.Char})">
             <inheritdoc/>
         </member>
-        <member name="T:System.Buffers.SingletonArray`1">
-            <summary>
-            Represents an array with only one element.
-            </summary>
-            <typeparam name="T">The type of the only element of array.</typeparam>
-            <param name="value"><inheritdoc cref="F:System.Buffers.SingletonArray`1._value" path="/summary"/></param>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.#ctor(`0)">
-            <summary>
-            Represents an array with only one element.
-            </summary>
-            <typeparam name="T">The type of the only element of array.</typeparam>
-            <param name="value"><inheritdoc cref="F:System.Buffers.SingletonArray`1._value" path="/summary"/></param>
-        </member>
-        <member name="F:System.Buffers.SingletonArray`1._value">
-            <summary>
-            Indicates the value.
-            </summary>
-        </member>
-        <member name="P:System.Buffers.SingletonArray`1.Pointer">
-            <summary>
-            Indicates the pointer of the value.
-            </summary>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.Unpin">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.GetSpan">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.Pin(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.Dispose(System.Boolean)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.Span{`0}">
-            <summary>
-            Creates a <see cref="T:System.Span`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.ReadOnlySpan{`0}">
-            <summary>
-            Creates a <see cref="T:System.ReadOnlySpan`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.Memory{`0}">
-            <summary>
-            Creates a <see cref="T:System.Memory`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
-        <member name="M:System.Buffers.SingletonArray`1.op_Implicit(System.Buffers.SingletonArray{`0})~System.ReadOnlyMemory{`0}">
-            <summary>
-            Creates a <see cref="T:System.ReadOnlyMemory`1"/> from the current instance without any copy operation.
-            </summary>
-            <param name="value">The value to be casted from.</param>
-        </member>
         <member name="T:System.CharSetExtensions">
             <summary>
             Provides with extension members on <see cref="T:System.Char"/> and <see cref="T:System.String"/>.
@@ -9694,6 +9631,40 @@
             with reversed order.
             </summary>
             <returns>A new collection whose elements are in reversed order.</returns>
+        </member>
+        <member name="T:System.SingletonArray`1">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value"><inheritdoc cref="F:System.SingletonArray`1._value" path="/summary"/></param>
+        </member>
+        <member name="M:System.SingletonArray`1.#ctor(`0)">
+            <summary>
+            Represents an array with only one element.
+            </summary>
+            <typeparam name="T">The type of the only element of array.</typeparam>
+            <param name="value"><inheritdoc cref="F:System.SingletonArray`1._value" path="/summary"/></param>
+        </member>
+        <member name="F:System.SingletonArray`1._value">
+            <summary>
+            Indicates the value.
+            </summary>
+        </member>
+        <member name="M:System.SingletonArray`1.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlySpan{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlySpan`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
+        </member>
+        <member name="M:System.SingletonArray`1.op_Implicit(System.SingletonArray{`0})~System.ReadOnlyMemory{`0}">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlyMemory`1"/> from the current instance without any copy operation.
+            </summary>
+            <param name="value">The value to be casted from.</param>
         </member>
         <member name="T:System.SpanUnsafeExtensions">
             <summary>

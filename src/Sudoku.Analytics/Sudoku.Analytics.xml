@@ -3094,7 +3094,7 @@
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
-            <param name="grid"><inheritdoc/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.ExceptionHandling.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)" path="/param[@name='grid']"/></param>
             <param name="stepSearcherType"><inheritdoc cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType" path="/summary"/></param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
@@ -3107,7 +3107,7 @@
             <summary>
             Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
             </summary>
-            <param name="grid"><inheritdoc/></param>
+            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.ExceptionHandling.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)" path="/param[@name='grid']"/></param>
             <param name="stepSearcherType"><inheritdoc cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType" path="/summary"/></param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,

@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.ExceptionHandling;
 /// <summary>
 /// Represents an exception that will be thrown if an invalid case has been encountered during analyzing a sudoku puzzle.
 /// </summary>
-/// <param name="grid"><inheritdoc/></param>
+/// <param name="grid"><inheritdoc cref="RuntimeAnalysisException(in Grid)" path="/param[@name='grid']"/></param>
 /// <param name="stepSearcherType"><inheritdoc cref="StepSearcherType" path="/summary"/></param>
 /// <remarks>
 /// This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,

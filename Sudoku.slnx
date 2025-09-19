@@ -23,7 +23,7 @@
   <Folder Name="/Global Items/Licenses/">
     <File Path="LICENSE-CODE.txt" />
     <File Path="LICENSE-WIKI.txt" />
-    <File Path="src/Sudoku.Ocr/LICENSE-OCR.txt" />
+    <File Path="src/Sudoku.Drawing/LICENSE-OCR.txt" />
   </Folder>
   <Folder Name="/Global Items/ReadMe Files/">
     <File Path="README-zh-cn.md" />

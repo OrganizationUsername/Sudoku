@@ -10702,6 +10702,14 @@
         <member name="M:Sudoku.Drawing.Parsing.ChuteArgumentParser.Parse(System.ReadOnlySpan{System.String},Sudoku.Concepts.Grid@,Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Coordinates.CoordinateParser)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Drawing.Parsing.DigitArgumentParser">
+            <summary>
+            Represents a digit argument parser.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Parsing.DigitArgumentParser.Parse(System.ReadOnlySpan{System.String},Sudoku.Concepts.Grid@,Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Drawing.Parsing.HouseArgumentParser">
             <summary>
             Represents a house argument parser.

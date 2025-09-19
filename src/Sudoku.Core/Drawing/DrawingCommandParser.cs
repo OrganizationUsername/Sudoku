@@ -13,7 +13,7 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 	/// <summary>
 	/// Indicates the valid names.
 	/// </summary>
-	private static readonly string[] ValidNames = ["cell", "candidate", "icon", "house", "chute", "link", "baba", "truthset", "linkset"];
+	private static readonly string[] ValidNames = ["cell", "candidate", "digit", "icon", "house", "chute", "link", "baba", "truthset", "linkset"];
 
 	/// <summary>
 	/// Indicates the well-known identifiers, and their own key used in parsing.
@@ -46,6 +46,7 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 	private static readonly Dictionary<string, Func<ArgumentParser>> ArgumentParsers = new()
 	{
 		{ "cell", static () => new CellArgumentParser() },
+		{ "digit", static () => new DigitArgumentParser() },
 		{ "candidate", static () => new CandidateArgumentParser() },
 		{ "icon", static () => new IconArgumentParser() },
 		{ "house", static () => new HouseArgumentParser() },

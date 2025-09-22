@@ -6,7 +6,7 @@ using HousesDistribution = Dictionary<HouseDigitIdentifier, SortedSet<Node>>;
 /// <summary>
 /// Represents a type that can search for blossom loops.
 /// </summary>
-internal sealed class BlossomLoopStepSearcherHub : ChainingStepSearcherHub
+internal sealed class BlossomLoopStepSearcherHub : MultipleForcingChainsStepSearcherHub
 {
 	/// <inheritdoc/>
 	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes => (Type[])[typeof(BlossomLoopStepSearcher)];

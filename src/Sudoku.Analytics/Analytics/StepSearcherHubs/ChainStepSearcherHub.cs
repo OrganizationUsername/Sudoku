@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearcherHubs;
 /// Represents a type that can search for chains.
 /// This type can be used for searching both normal chains and grouped chains.
 /// </summary>
-internal sealed class ChainStepSearcherHub : StepSearcherHubBase
+internal sealed class ChainStepSearcherHub : ChainingStepSearcherHub
 {
 	/// <inheritdoc/>
 	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes

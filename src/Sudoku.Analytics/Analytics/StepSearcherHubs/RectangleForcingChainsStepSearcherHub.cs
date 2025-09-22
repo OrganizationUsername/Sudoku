@@ -18,7 +18,7 @@ internal sealed class RectangleForcingChainsStepSearcherHub : MultipleForcingCha
 	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
 	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
 	/// <returns>The first found step.</returns>
-	public static unsafe Step? CollectRectangleMultipleCore(
+	public static unsafe Step? CollectCore(
 		ref StepAnalysisContext context,
 		SortedSet<ChainStep> accumulator,
 		bool allowsAdvancedLinks,

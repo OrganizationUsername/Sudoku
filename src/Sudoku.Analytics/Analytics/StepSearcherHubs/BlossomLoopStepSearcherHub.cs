@@ -18,7 +18,7 @@ internal sealed class BlossomLoopStepSearcherHub : MultipleForcingChainsStepSear
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
+	public static Step? CollectCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
 	{
 		ref readonly var grid = ref context.Grid;
 		InitializeLinks(

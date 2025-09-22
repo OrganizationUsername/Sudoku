@@ -15,7 +15,7 @@ internal sealed class DynamicForcingChainsStepSearcherHub : MultipleForcingChain
 	/// <param name="context">The context.</param>
 	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
 	/// <returns>The first found step.</returns>
-	public static Step? CollectDynamicForcingChainsCore(ref StepAnalysisContext context, List<PatternBasedChainStep> accumulator)
+	public static Step? CollectCore(ref StepAnalysisContext context, List<PatternBasedChainStep> accumulator)
 	{
 		var linkTypes = LinkType.MergeFlags(ChainingRule.ElementaryLinkTypes);
 		ref readonly var grid = ref context.Grid;

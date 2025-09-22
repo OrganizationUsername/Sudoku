@@ -5604,7 +5604,7 @@
         <member name="P:Sudoku.Analytics.StepSearcherHubs.BivalueUniversalGraveForcingChainsStepSearcherHub.SupportedStepSearcherTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.BivalueUniversalGraveForcingChainsStepSearcherHub.CollectBivalueUniversalGraveMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.BivalueUniversalGraveForcingChainsStepSearcherHub.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by rectangle forcing chains step searcher.
             </summary>
@@ -5630,7 +5630,7 @@
         <member name="P:Sudoku.Analytics.StepSearcherHubs.BlossomLoopStepSearcherHub.SupportedStepSearcherTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.BlossomLoopStepSearcherHub.CollectBlossomLoopCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.BlossomLoopStepSearcherHub.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.BlossomLoopStep})">
             <summary>
             The collect method called by blossom loop step searchers.
             </summary>
@@ -5764,7 +5764,7 @@
         <member name="P:Sudoku.Analytics.StepSearcherHubs.DynamicForcingChainsStepSearcherHub.SupportedStepSearcherTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.DynamicForcingChainsStepSearcherHub.CollectDynamicForcingChainsCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.PatternBasedChainStep})">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.DynamicForcingChainsStepSearcherHub.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.PatternBasedChainStep})">
             <summary>
             The collect method called by dynamic forcing chains step searchers.
             </summary>
@@ -5884,7 +5884,7 @@
         <member name="P:Sudoku.Analytics.StepSearcherHubs.MultipleForcingChainsStepSearcherHub.SupportedStepSearcherTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.MultipleForcingChainsStepSearcherHub.CollectMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.MultipleForcingChainsStepSearcherHub.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by multiple forcing chains step searcher.
             </summary>
@@ -5949,7 +5949,7 @@
         <member name="P:Sudoku.Analytics.StepSearcherHubs.RectangleForcingChainsStepSearcherHub.SupportedStepSearcherTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherHubs.RectangleForcingChainsStepSearcherHub.CollectRectangleMultipleCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherHubs.RectangleForcingChainsStepSearcherHub.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.SortedSet{Sudoku.Analytics.Steps.ChainStep},System.Boolean,System.Boolean)">
             <summary>
             The collect method called by rectangle forcing chains step searcher.
             </summary>

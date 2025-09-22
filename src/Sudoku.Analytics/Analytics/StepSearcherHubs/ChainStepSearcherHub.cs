@@ -1,6 +1,7 @@
 #define ONLY_FIND_ONE_CHAIN_FOR_ONE_START
 #define STRICT_LENGTH_CHECKING
 #define STRICT_LENGTH_CHECKING_OPTIMIZATION
+#undef ENABLE_MINIMUM_REMAINING_VALUE_HEURISTIC
 #if !STRICT_LENGTH_CHECKING && STRICT_LENGTH_CHECKING_OPTIMIZATION
 #undef STRICT_LENGTH_CHECKING_OPTIMIZATION
 #warning 'STRICT_LENGTH_CHECKING_OPTIMIZATION' won't work if 'STRICT_LENGTH_CHECKING' is not configured.
@@ -177,7 +178,18 @@ internal sealed class ChainStepSearcherHub : ChainingStepSearcherHub
 			}
 		}
 
+#if ENABLE_MINIMUM_REMAINING_VALUE_HEURISTIC
+		// MRV heuristic: Order cells by its containing candidates count.
+		var mrvOrdered = new List<(Cell Cell, Digit CandidatesCount)>();
 		foreach (var cell in EmptyCells)
+		{
+			mrvOrdered.Add((cell, PopCount((uint)grid.GetCandidates(cell))));
+		}
+		mrvOrdered.Sort(static (left, right) => left.CandidatesCount.CompareTo(right.CandidatesCount));
+		foreach (var (cell, _) in mrvOrdered)
+#else
+		foreach (var cell in EmptyCells)
+#endif
 		{
 			var trueDigit = Solution.IsUndefined ? -1 : Solution.GetDigit(cell);
 			foreach (var digit in grid.GetCandidates(cell))

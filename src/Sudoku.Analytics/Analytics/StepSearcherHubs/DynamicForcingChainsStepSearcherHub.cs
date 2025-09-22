@@ -1,7 +1,53 @@
 namespace Sudoku.Analytics.StepSearcherHubs;
 
-internal partial class ChainingStepSearcherHub
+/// <summary>
+/// Represents a type that can search for dynamic multiple forcing chains.
+/// </summary>
+internal sealed class DynamicForcingChainsStepSearcherHub : ChainingStepSearcherHub
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes => (Type[])[typeof(DynamicForcingChainsStepSearcher)];
+
+
+	/// <summary>
+	/// The collect method called by dynamic forcing chains step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectDynamicForcingChainsCore(ref StepAnalysisContext context, List<PatternBasedChainStep> accumulator)
+	{
+		var linkTypes = LinkType.MergeFlags(ChainingRule.ElementaryLinkTypes);
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(grid, linkTypes, context.Options, out var supportedRules);
+
+		foreach (var forcingChains in CollectDynamicForcingChains(grid, in context, supportedRules))
+		{
+			PatternBasedChainStep step = forcingChains switch
+			{
+				BinaryForcingChains b => new BinaryForcingChainsStep(
+					Array.Single(b.Conclusion),
+					((IForcingChains)b).GetViews(grid, [b.Conclusion], supportedRules),
+					context.Options,
+					b
+				),
+				MultipleForcingChains m => new MultipleForcingChainsStep(
+					m.Conclusions,
+					((IForcingChains)m).GetViews(grid, m.Conclusions, supportedRules),
+					context.Options,
+					m
+				)
+			};
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+		return null;
+	}
+
 	/// <summary>
 	/// Collect all dynamic multiple forcing chains and dynamic binary forcing chains appeared in a grid.
 	/// </summary>

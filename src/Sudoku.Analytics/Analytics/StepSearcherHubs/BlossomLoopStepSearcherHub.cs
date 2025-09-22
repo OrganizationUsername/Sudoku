@@ -3,8 +3,86 @@ namespace Sudoku.Analytics.StepSearcherHubs;
 using CellsDistribution = Dictionary<Cell, SortedSet<Node>>;
 using HousesDistribution = Dictionary<HouseDigitIdentifier, SortedSet<Node>>;
 
-internal partial class ChainingStepSearcherHub
+/// <summary>
+/// Represents a type that can search for blossom loops.
+/// </summary>
+internal sealed class BlossomLoopStepSearcherHub : ChainingStepSearcherHub
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes => (Type[])[typeof(BlossomLoopStepSearcher)];
+
+
+	/// <summary>
+	/// The collect method called by blossom loop step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectBlossomLoopCore(ref StepAnalysisContext context, SortedSet<BlossomLoopStep> accumulator)
+	{
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			grid,
+			LinkType.MergeFlags([.. ChainingRule.ElementaryLinkTypes, .. ChainingRule.AdvancedLinkTypes]),
+			context.Options,
+			out var supportedRules
+		);
+
+		foreach (var blossomLoop in CollectBlossomLoops(context.Grid, context.OnlyFindOne, supportedRules))
+		{
+			var step = new BlossomLoopStep(
+				blossomLoop.Conclusions.ToArray(),
+				getViews(blossomLoop, grid, supportedRules),
+				context.Options,
+				blossomLoop
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+		return null;
+
+
+		static View[] getViews(BlossomLoop blossomLoop, in Grid grid, ChainingRuleCollection supportedRules)
+		{
+			var globalView = View.Empty;
+			var otherViews = new View[blossomLoop.Count];
+			Array.InitializeArray(otherViews, static ([NotNull] ref view) => view = View.Empty);
+
+			var i = 0;
+			foreach (var (startCandidate, branch) in blossomLoop)
+			{
+				var viewNodes = branch.GetViews_Monoparental(grid, supportedRules)[0];
+				globalView |= viewNodes;
+				otherViews[i] |= viewNodes;
+				i++;
+			}
+
+			var entryHouseOrCellViewNode = (ViewNode)(
+				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
+					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(entryCandidates.Cells.SharedHouses))
+			);
+			var exitHouseOrCellViewNode = (ViewNode)(
+				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
+					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifier.Auxiliary1, TrailingZeroCount(exitCandidates.Cells.SharedHouses))
+			);
+
+			globalView.Add(entryHouseOrCellViewNode);
+			globalView.Add(exitHouseOrCellViewNode);
+			foreach (ref var otherView in otherViews.AsSpan())
+			{
+				otherView.Add(entryHouseOrCellViewNode);
+				otherView.Add(exitHouseOrCellViewNode);
+			}
+			return [globalView, .. otherViews];
+		}
+	}
+
 	/// <summary>
 	/// Collect all blossom loops appeared in a grid.
 	/// </summary>

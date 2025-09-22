@@ -1,7 +1,54 @@
 namespace Sudoku.Analytics.StepSearcherHubs;
 
-internal partial class ChainingStepSearcherHub
+/// <summary>
+/// Represents a type that can search for rectangle forcing chains.
+/// </summary>
+internal sealed class RectangleForcingChainsStepSearcherHub : ChainingStepSearcherHub
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes
+		=> (Type[])[typeof(RectangleForcingChainsStepSearcher), typeof(FinnedRectangleChainStepSearcher)];
+
+
+	/// <summary>
+	/// The collect method called by rectangle forcing chains step searcher.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+	/// <returns>The first found step.</returns>
+	public static unsafe Step? CollectRectangleMultipleCore(
+		ref StepAnalysisContext context,
+		SortedSet<ChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool onlyFindFinnedChain
+	)
+	{
+		return CollectGeneralizedMultipleCore(
+			ref context,
+			accumulator,
+			allowsAdvancedLinks,
+			onlyFindFinnedChain,
+			&component,
+			&CollectRectangleMultipleForcingChains,
+			&stepCreator
+		);
+
+
+		static MultipleChainBasedComponent component(MultipleForcingChains mfc) => MultipleChainBasedComponent.Rectangle;
+
+		static RectangleForcingChainsStep stepCreator(
+			RectangleForcingChains chain,
+			in Grid grid,
+			in StepAnalysisContext context,
+			ChainingRuleCollection supportedRules
+		) => new(
+			chain.Conclusions,
+			((IForcingChains)chain).GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain
+		);
+	}
+
 	/// <summary>
 	/// Collect all multiple forcing chains on applying to a unique rectangle, appeared in a grid.
 	/// </summary>

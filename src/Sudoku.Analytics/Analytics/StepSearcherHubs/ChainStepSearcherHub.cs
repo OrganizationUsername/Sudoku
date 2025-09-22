@@ -8,8 +8,94 @@
 
 namespace Sudoku.Analytics.StepSearcherHubs;
 
-internal partial class ChainingStepSearcherHub
+/// <summary>
+/// Represents a type that can search for chains.
+/// This type can be used for searching both normal chains and grouped chains.
+/// </summary>
+internal sealed class ChainStepSearcherHub : StepSearcherHubBase
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes
+		=> (Type[])[typeof(ChainStepSearcher), typeof(GroupedChainStepSearcher)];
+
+
+	/// <summary>
+	/// The collect method called by chain step searchers.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="makeConclusionAroundBackdoors">
+	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors" path="/summary"/>
+	/// </param>
+	/// <returns>The first found step.</returns>
+	public static Step? CollectCore(
+		ref StepAnalysisContext context,
+		SortedSet<NormalChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool makeConclusionAroundBackdoors
+	)
+	{
+		ref readonly var grid = ref context.Grid;
+		InitializeLinks(
+			grid,
+			LinkType.MergeFlags([.. ChainingRule.ElementaryLinkTypes, .. allowsAdvancedLinks ? ChainingRule.AdvancedLinkTypes : []]),
+			context.Options,
+			out var supportedRules
+		);
+
+		foreach (var chain in CollectChains(context.Grid, allowsAdvancedLinks, context.OnlyFindOne, makeConclusionAroundBackdoors))
+		{
+			var step = new NormalChainStep(
+				CollectChainConclusions(chain, grid, supportedRules),
+				chain.GetViews_Monoparental(grid, supportedRules),
+				context.Options,
+				chain
+			);
+			if (chain.IsStrictlyGrouped ^ allowsAdvancedLinks)
+			{
+				continue;
+			}
+
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			accumulator.Add(step);
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// The backing method to collect chain conclusions.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="supportedRules">All supported rules used.</param>
+	/// <returns>Found conclusions.</returns>
+	[InterceptorMethodCaller]
+	[InterceptorPolymorphic(
+		typeof(AlmostLockedSetsChainingRule),
+		typeof(KrakenNormalFishChainingRule),
+		typeof(LockedCandidatesChainingRule),
+		typeof(UniqueRectangleSameDigitChainingRule),
+		typeof(UniqueRectangleDifferentDigitChainingRule),
+		typeof(UniqueRectangleSingleSideExternalChainingRule),
+		DefaultBehavior = InterceptorPolymorphicBehavior.DoNothingOrReturnDefault)]
+	private static Conclusion[] CollectChainConclusions(NamedChain pattern, in Grid grid, ChainingRuleCollection supportedRules)
+	{
+		var conclusions = pattern.GetConclusions(grid);
+		if (pattern is ContinuousNiceLoop { Links: var links })
+		{
+			foreach (var rule in supportedRules)
+			{
+				rule.GetLoopConclusions(grid, links, ref conclusions);
+			}
+		}
+		return [.. conclusions];
+	}
+
 	/// <summary>
 	/// Collect all chains and loops appeared in a grid.
 	/// </summary>

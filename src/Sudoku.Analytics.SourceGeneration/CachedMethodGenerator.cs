@@ -21,13 +21,13 @@ public sealed class CachedMethodGenerator : IIncrementalGenerator
 {
 	#region String constants
 
-	private const string InterceptorMethodCallerAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.InterceptorMethodCallerAttribute";
+	private const string InterceptorMethodCallerAttributeTypeFullName = "System.Diagnostics.CodeAnalysis.InterceptorMethodCallerAttribute";
 
-	private const string InterceptorPolymorphicAttributeTypeFullName = "Sudoku.Runtime.InterceptorServices.InterceptorPolymorphicAttribute";
+	private const string InterceptorPolymorphicAttributeTypeFullName = "System.Diagnostics.CodeAnalysis.InterceptorPolymorphicAttribute";
 
 	private const string CachedAttributeTypeFullName = "Sudoku.Analytics.Caching.MemoryCachedAttribute";
 
-	private const string GeneratedNamespace = "Sudoku.Runtime.InterceptorServices.Generated";
+	private const string GeneratedNamespace = "Sudoku.Analytics.InterceptorGenerated";
 
 	private const string InterceptsLocationAttributeFullName = "System.Runtime.CompilerServices.InterceptsLocationAttribute";
 
@@ -504,7 +504,7 @@ public sealed class CachedMethodGenerator : IIncrementalGenerator
 										public static class __{{referencedMethodSymbol.ContainingType.Name}}_{{referencedMethodName}}_Intercepted
 										{
 											/// <summary>
-											/// The backing entry that can route functions by checking the target type of instance parameter <paramref cref="this"/>.
+											/// The backing entry that can route functions by checking the target type of instance parameter <paramref name="this"/>.
 											/// </summary>
 											{{AttributeInsertionMatchString}}
 											[global::System.CodeDom.Compiler.GeneratedCodeAttribute("CachedMethodGenerator", "1.0")]

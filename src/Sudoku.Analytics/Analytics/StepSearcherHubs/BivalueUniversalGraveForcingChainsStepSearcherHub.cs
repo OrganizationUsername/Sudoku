@@ -1,7 +1,53 @@
 namespace Sudoku.Analytics.StepSearcherHubs;
 
-internal partial class ChainingStepSearcherHub
+/// <summary>
+/// Represents a type that can search for bivalue universal grave forcing chains.
+/// </summary>
+internal sealed class BivalueUniversalGraveForcingChainsStepSearcherHub : MultipleForcingChainsStepSearcherHubBase
 {
+	/// <inheritdoc/>
+	public override ReadOnlyMemory<Type> SupportedStepSearcherTypes => (Type[])[typeof(MultipleForcingChainsStepSearcher)];
+
+
+	/// <summary>
+	/// The collect method called by rectangle forcing chains step searcher.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The instance that temporarily records for chain steps.</param>
+	/// <param name="allowsAdvancedLinks">Indicates whether the method allows advanced links.</param>
+	/// <param name="onlyFindFinnedChain">Indicates whether the method only finds for (grouped) finned chains.</param>
+	/// <returns>The first found step.</returns>
+	public static unsafe Step? CollectCore(
+		ref StepAnalysisContext context,
+		SortedSet<ChainStep> accumulator,
+		bool allowsAdvancedLinks,
+		bool onlyFindFinnedChain
+	)
+	{
+		return CollectGeneralizedMultipleCore(
+			ref context,
+			accumulator,
+			allowsAdvancedLinks,
+			onlyFindFinnedChain,
+			&component,
+			&CollectBivalueUniversalGraveMultipleForcingChains,
+			&stepCreator
+		);
+
+
+		static MultipleChainBasedComponent component(MultipleForcingChains mfc) => MultipleChainBasedComponent.BivalueUniversalGrave;
+
+		static BivalueUniversalGraveForcingChainsStep stepCreator(
+			BivalueUniversalGraveForcingChains chain,
+			in Grid grid,
+			in StepAnalysisContext context,
+			ChainingRuleCollection supportedRules
+		) => new(
+			chain.Conclusions,
+			((IForcingChains)chain).GetViews(grid, chain.Conclusions, supportedRules), context.Options, chain
+		);
+	}
+
 	/// <summary>
 	/// Collect all multiple forcing chains on applying to a bi-value universal grave, appeared in a grid.
 	/// </summary>

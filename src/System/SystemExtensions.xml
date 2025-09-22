@@ -9767,27 +9767,6 @@
             </summary>
             <returns>A new collection whose elements are in reversed order.</returns>
         </member>
-        <member name="T:System.SpanUnsafeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Span`1"/>.
-            </summary>
-        </member>
-        <member name="M:System.SpanUnsafeExtensions.Create``1(``0@,System.Int32)">
-            <inheritdoc cref="M:System.SpanUnsafeExtensions.&lt;G&gt;$DF14BF232572D3470F1D92467B9113E3.Create(`0@,System.Int32)"/>
-        </member>
-        <member name="T:System.SpanUnsafeExtensions.&lt;G&gt;$DF14BF232572D3470F1D92467B9113E3.&lt;M&gt;$1D2E3AA84F36B7B078C9B5BDB088A59F">
-            <summary>
-            Provides extension members on <see cref="T:System.Span`1"/>.
-            </summary>
-        </member>
-        <member name="M:System.SpanUnsafeExtensions.&lt;G&gt;$DF14BF232572D3470F1D92467B9113E3.Create(`0@,System.Int32)">
-            <summary>
-            Creates a <see cref="T:System.Span`1"/> instance.
-            </summary>
-            <param name="reference">The reference to the first element.</param>
-            <param name="length">The length.</param>
-            <returns><see cref="T:System.Span`1"/> instance.</returns>
-        </member>
         <member name="T:System.Threading.CancellationTokenExtensions">
             <summary>
             Provides with extension members on <see cref="T:System.Threading.CancellationToken"/> instances.

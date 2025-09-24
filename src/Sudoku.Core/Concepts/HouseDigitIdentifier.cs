@@ -5,6 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="house"><inheritdoc cref="House" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="Digit" path="/summary"/></param>
+[method: JsonConstructor]
 public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	IAdditionOperators<HouseDigitIdentifier, byte, HouseDigitIdentifier>,
 	IAdditiveIdentity<HouseDigitIdentifier, HouseDigitIdentifier>,
@@ -70,11 +71,13 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	/// <summary>
 	/// Indicates the cells used.
 	/// </summary>
+	[JsonIgnore]
 	public ref readonly CellMap Cells => ref HousesMap[House];
 
 	/// <summary>
 	/// Indicates the candidates used.
 	/// </summary>
+	[JsonIgnore]
 	public CandidateMap Candidates => Cells * Digit;
 
 

@@ -9705,8 +9705,28 @@
             </list>
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.ChuteBlocks">
+            <summary>
+            Represents block table, grouped by chute.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.ChooseLink(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Span{System.Int16},System.Span{System.Int16},System.ReadOnlySpan{System.Int16},System.Int32,System.ReadOnlySpan{System.Int16},System.ReadOnlySpan{System.Int32})">
+            <summary>
+            To convert links in order to balance rank value, in order to make rank equal to 0.
+            </summary>
+            <param name="grid">The target grid.</param>
+            <param name="patternCells">The pattern cells.</param>
+            <param name="cellTruths">The cell truths.</param>
+            <param name="cellLinks">The cell links.</param>
+            <param name="rcTruths">The house-digit truths.</param>
+            <param name="rcLinks">The house-digit links.</param>
+            <param name="houseDigitTruths">The house-digit truths.</param>
+            <param name="house">The house.</param>
+            <param name="notSolved">Unsolved candidates table.</param>
+            <param name="removedHouses">Removed houses.</param>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BruteForceStepSearcher">
             <summary>

@@ -66,13 +66,8 @@ public static class MaskExtensions
 		/// <param name="totalWidth">The total width.</param>
 		/// <returns>The string.</returns>
 		public string ToStringBase(int @base, int totalWidth) => Convert.ToString(@this, @base).PadLeft(totalWidth, '0');
-	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Mask"/>.
-	/// </summary>
-	extension(Mask)
-	{
+
 		/// <summary>
 		/// Creates for a <see cref="Mask"/> instance via the specified digits.
 		/// </summary>

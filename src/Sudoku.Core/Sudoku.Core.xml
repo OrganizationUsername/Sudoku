@@ -7511,11 +7511,6 @@
             <param name="totalWidth">The total width.</param>
             <returns>The string.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.&lt;M&gt;$390DAE713F975834EF0C1ED2BEC2DBAC">
-            <summary>
-            Provides extension members on <see cref="T:System.Int16"/>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
             Creates for a <see cref="T:System.Int16" /> instance via the specified digits.

@@ -98,7 +98,7 @@ description: Reasoning of Multisector Locked Set
 
 ## 例子 5：带宫弱区域且有自噬的网 <a href="#example-5" id="example-5"></a>
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>带宫弱区域和自噬的网</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0647.png" alt="" width="375"><figcaption><p>带宫弱区域和自噬的网</p></figcaption></figure>
 
 如图所示。虽然看着复杂，但是这个例子反倒比前面那个例子要好理解一些。基础删数就不说了。直接来看 `r1c89(3)` 的自噬原理。
 

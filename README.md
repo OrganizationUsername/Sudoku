@@ -175,6 +175,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * 3-Dimensional Sue de Coq (*3D SdC*)
       * Domino Loop
       * Multi-sector Locked Sets
+      * Multi-fish
     * Negative Ranks
       * Guardian
       * Bi-value Oddagon (Type 2, 3 and 4)

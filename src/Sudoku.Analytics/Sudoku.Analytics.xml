@@ -9713,6 +9713,14 @@
         <member name="M:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.CollectCore(Sudoku.Analytics.StepAnalysisContext@,System.Collections.Generic.List{Sudoku.Analytics.Steps.MultifishStep})">
+            <summary>
+            The core method to find multifishes.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="accumulator">The accumulator.</param>
+            <returns>The step found.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.MultifishStepSearcher.ChooseLink(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Span{System.Int16},System.Span{System.Int16},System.ReadOnlySpan{System.Int16},System.Int32,System.ReadOnlySpan{System.Int16},System.ReadOnlySpan{System.Int32})">
             <summary>
             To convert links in order to balance rank value, in order to make rank equal to 0.

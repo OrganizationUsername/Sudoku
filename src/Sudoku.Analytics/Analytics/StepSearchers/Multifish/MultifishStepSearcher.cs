@@ -1,4 +1,4 @@
-#undef DRAW_TRUTH_SPACES
+#define DRAW_TRUTH_SPACES
 #define DRAW_LINK_SPACES
 #define USE_DIFFERENT_COLOR_FOR_CELL_VIEW_NODES
 
@@ -41,6 +41,12 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 		return null;
 	}
 
+	/// <summary>
+	/// The core method to find multifishes.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="accumulator">The accumulator.</param>
+	/// <returns>The step found.</returns>
 	private MultifishStep? CollectCore(ref readonly StepAnalysisContext context, List<MultifishStep> accumulator)
 	{
 		ref readonly var grid = ref context.Grid;
@@ -71,7 +77,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 					{
 						var chosenHouseOffsets = Mask.Create(h);
 
-						// Skip cases when the chosen houses don't use important 3 lines in a chute.
+						// Skip cases when the chosen houses only uses 3 lines in a same chute.
 						if ((chosenHouseOffsets & ~7) == 0 || (chosenHouseOffsets & ~56) == 0 || (chosenHouseOffsets & ~448) == 0)
 						{
 							continue;
@@ -646,7 +652,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 
 							var candidateOffsets = new List<CandidateViewNode>();
 							var cellOffsets = new List<CellViewNode>();
+#if DRAW_TRUTH_SPACES || DRAW_LINK_SPACES
 							var houseOffsets = new List<HouseViewNode>();
+#endif
 							var (truths, links) = (SpaceSet.Empty, SpaceSet.Empty);
 
 							// Collect for cell truths & candidate view nodes.
@@ -772,7 +780,15 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							// Add step to the target collection or just return if only-one mode is enabled.
 							var step = new MultifishStep(
 								conclusions.AsMemory(),
-								[[.. candidateOffsets, .. cellOffsets, .. houseOffsets]],
+								[
+									[
+										.. candidateOffsets,
+										.. cellOffsets,
+#if DRAW_TRUTH_SPACES || DRAW_LINK_SPACES
+										.. houseOffsets
+#endif
+									]
+								],
 								context.Options,
 								truths,
 								links

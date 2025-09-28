@@ -27,7 +27,7 @@ internal abstract class MultipleForcingChainsStepSearcherHubBase : ChainingStepS
 		bool onlyFindFinnedChain,
 		delegate*<TMultipleForcingChains, MultipleChainBasedComponent> componentCreator,
 		delegate*<in Grid, bool, ReadOnlySpan<TMultipleForcingChains>> chainsCollector,
-		delegate*<TMultipleForcingChains, in Grid, in StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
+		delegate*<TMultipleForcingChains, in Grid, ref readonly StepAnalysisContext, ChainingRuleCollection, TMultipleForcingChainsStep> stepCreator
 	)
 		where TMultipleForcingChains : MultipleForcingChains
 		where TMultipleForcingChainsStep : PatternBasedChainStep
@@ -71,7 +71,7 @@ internal abstract class MultipleForcingChainsStepSearcherHubBase : ChainingStepS
 
 			if (!onlyFindFinnedChain)
 			{
-				var rfcStep = stepCreator(chain, grid, context, supportedRules);
+				var rfcStep = stepCreator(chain, grid, in context, supportedRules);
 				if (context.OnlyFindOne)
 				{
 					return rfcStep;

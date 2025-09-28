@@ -40,7 +40,7 @@ internal sealed class BivalueUniversalGraveForcingChainsStepSearcherHub : Multip
 		static BivalueUniversalGraveForcingChainsStep stepCreator(
 			BivalueUniversalGraveForcingChains chain,
 			in Grid grid,
-			in StepAnalysisContext context,
+			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(
 			chain.Conclusions,

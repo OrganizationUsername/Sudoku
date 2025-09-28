@@ -289,7 +289,7 @@ public sealed class Analyzer : StepGatherer
 					if (verifyConclusionValidity(null, solution, step))
 					{
 						if (onCollectingSteps(
-							collectedSteps, step, context, ref playground, timestampOriginal,
+							collectedSteps, step, in context, ref playground, timestampOriginal,
 							stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
@@ -392,7 +392,7 @@ public sealed class Analyzer : StepGatherer
 								}
 
 								if (onCollectingSteps(
-									collectedSteps, step, context, ref playground,
+									collectedSteps, step, in context, ref playground,
 									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -408,7 +408,7 @@ public sealed class Analyzer : StepGatherer
 							}
 
 							if (onCollectingSteps(
-								collectedSteps, chosenStep, context, ref playground,
+								collectedSteps, chosenStep, in context, ref playground,
 								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
@@ -435,7 +435,7 @@ public sealed class Analyzer : StepGatherer
 						}
 
 						if (onCollectingSteps(
-							collectedSteps, chosenStep, context, ref playground,
+							collectedSteps, chosenStep, in context, ref playground,
 							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
@@ -463,7 +463,7 @@ public sealed class Analyzer : StepGatherer
 							}
 
 							if (onCollectingSteps(
-								collectedSteps, chosenStep, context, ref playground,
+								collectedSteps, chosenStep, in context, ref playground,
 								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
@@ -479,7 +479,7 @@ public sealed class Analyzer : StepGatherer
 								}
 
 								if (onCollectingSteps(
-									collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
+									collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -504,7 +504,7 @@ public sealed class Analyzer : StepGatherer
 								if (verifyConclusionValidity(searcher, solution, foundStep))
 								{
 									if (onCollectingSteps(
-										collectedSteps, foundStep, context, ref playground, timestampOriginal, stepGrids,
+										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
 										return result;
@@ -570,7 +570,7 @@ public sealed class Analyzer : StepGatherer
 			bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
-				in StepAnalysisContext context,
+				ref readonly StepAnalysisContext context,
 				ref Grid playground,
 				long timestampOriginal,
 				List<Grid> steppingGrids,

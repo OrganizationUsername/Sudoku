@@ -40,7 +40,7 @@ public sealed class MultifishStep(
 			var result = (Mask)0;
 			foreach (var truth in Truths | Links)
 			{
-				if (truth is { IsHouseRelated: true, Digit: var digit })
+				if (truth.Digit is var digit and not -1)
 				{
 					result |= (Mask)(1 << digit);
 				}

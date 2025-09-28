@@ -41,7 +41,7 @@ internal sealed class RectangleForcingChainsStepSearcherHub : MultipleForcingCha
 		static RectangleForcingChainsStep stepCreator(
 			RectangleForcingChains chain,
 			in Grid grid,
-			in StepAnalysisContext context,
+			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(
 			chain.Conclusions,

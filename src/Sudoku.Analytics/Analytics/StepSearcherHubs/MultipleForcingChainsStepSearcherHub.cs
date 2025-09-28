@@ -46,7 +46,7 @@ internal sealed class MultipleForcingChainsStepSearcherHub : MultipleForcingChai
 		static MultipleForcingChainsStep stepCreator(
 			MultipleForcingChains chain,
 			in Grid grid,
-			in StepAnalysisContext context,
+			ref readonly StepAnalysisContext context,
 			ChainingRuleCollection supportedRules
 		) => new(
 			chain.Conclusions,

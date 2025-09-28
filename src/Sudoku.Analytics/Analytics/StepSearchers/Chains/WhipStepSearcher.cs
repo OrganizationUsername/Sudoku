@@ -69,7 +69,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							&& IsGroupedWhip(currentNode) is var isGroupedWhip && !(groupedWhip ^ isGroupedWhip))
 						{
 							// Contradiction is found. Now we can construct a step instance and return.
-							var step = CreateStep(context, currentNode, startCandidate, grid, failedSpace, isGroupedWhip);
+							var step = CreateStep(in context, currentNode, startCandidate, grid, failedSpace, isGroupedWhip);
 							if (context.OnlyFindOne)
 							{
 								return step;
@@ -365,7 +365,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 	/// <param name="isGrouped">Indicates whether the pattern is grouped.</param>
 	/// <returns>The final <see cref="WhipStep"/> instance.</returns>
 	private static WhipStep CreateStep(
-		in StepAnalysisContext context,
+		ref readonly StepAnalysisContext context,
 		WhipNode contradictionNode,
 		Candidate startCandidate,
 		in Grid initialGrid,

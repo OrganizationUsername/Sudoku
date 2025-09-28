@@ -370,7 +370,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 		views = [
 			[
 				.. from candidate in fins select new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate),
-				.. finnedChain.GetViews_Monoparental(grid, supportedRules)[0]
+				.. finnedChain.MonoparentChainGetViews(grid, supportedRules)[0]
 			]
 		];
 

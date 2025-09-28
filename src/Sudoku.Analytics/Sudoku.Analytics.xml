@@ -24042,8 +24042,8 @@
         <member name="M:Sudoku.Construction.Components.ChainExtensions.get_IsWeakLinksStrictlyGrouped(Sudoku.Construction.Components.Chain)">
             <inheritdoc cref="P:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.IsWeakLinksStrictlyGrouped"/>
         </member>
-        <member name="M:Sudoku.Construction.Components.ChainExtensions.GetViews_Monoparental(Sudoku.Construction.Components.Chain,Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
-            <inheritdoc cref="M:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.GetViews_Monoparental(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)"/>
+        <member name="M:Sudoku.Construction.Components.ChainExtensions.MonoparentChainGetViews(Sudoku.Construction.Components.Chain,Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
+            <inheritdoc cref="M:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.MonoparentChainGetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)"/>
         </member>
         <member name="T:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.&lt;M&gt;$624CC8F94DBBC479FC1127D5D48FF5CB">
             <summary>
@@ -24082,7 +24082,7 @@
             and is not advanced node (i.e. contains grouped pattern).
             </summary>
         </member>
-        <member name="M:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.GetViews_Monoparental(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
+        <member name="M:Sudoku.Construction.Components.ChainExtensions.&lt;G&gt;$216A5CC00AB4232A7958EB7F525081CC.MonoparentChainGetViews(Sudoku.Concepts.Grid@,Sudoku.Analytics.Chaining.ChainingRuleCollection)">
             <summary>
             Collect views for the current chain, without nested paths checking.
             </summary>

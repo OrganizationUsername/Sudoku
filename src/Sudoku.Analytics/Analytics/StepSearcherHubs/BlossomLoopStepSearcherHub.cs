@@ -55,7 +55,7 @@ internal sealed class BlossomLoopStepSearcherHub : MultipleForcingChainsStepSear
 			var i = 0;
 			foreach (var (startCandidate, branch) in blossomLoop)
 			{
-				var viewNodes = branch.GetViews_Monoparental(grid, supportedRules)[0];
+				var viewNodes = branch.MonoparentChainGetViews(grid, supportedRules)[0];
 				globalView |= viewNodes;
 				otherViews[i] |= viewNodes;
 				i++;

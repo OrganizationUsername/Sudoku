@@ -49,7 +49,7 @@ internal sealed class ChainStepSearcherHub : ChainingStepSearcherHub
 		{
 			var step = new NormalChainStep(
 				CollectChainConclusions(chain, grid, supportedRules),
-				chain.GetViews_Monoparental(grid, supportedRules),
+				chain.MonoparentChainGetViews(grid, supportedRules),
 				context.Options,
 				chain
 			);
@@ -249,10 +249,6 @@ internal sealed class ChainStepSearcherHub : ChainingStepSearcherHub
 	/// </param>
 	/// <returns>The first found <see cref="NamedChain"/> pattern.</returns>
 	/// <seealso cref="NamedChain"/>
-#if STRICT_LENGTH_CHECKING
-#pragma warning disable IDE0079
-#pragma warning disable CA1859
-#endif
 	private static NamedChain? FindChains(Node startNode, in Grid grid, bool onlyFindOne, SortedSet<NamedChain> result)
 	{
 		var pendingNodesSupposedOn = new Queue<Node>();
@@ -383,8 +379,4 @@ internal sealed class ChainStepSearcherHub : ChainingStepSearcherHub
 		}
 		return null;
 	}
-#if STRICT_LENGTH_CHECKING
-#pragma warning restore CA1859
-#pragma warning restore IDE0079
-#endif
 }

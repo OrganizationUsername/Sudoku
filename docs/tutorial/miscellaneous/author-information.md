@@ -8,6 +8,8 @@ description: Author Information
 
 本教程项目作者为**杏山千纱（Kyōyama Kazusa）**。作者的网名取自游戏《蔚蓝档案》的角色杏山和纱。她真的很可爱。
 
+<figure><img src="../.gitbook/assets/kyoyama-kazusa.png" alt=""><figcaption></figcaption></figure>
+
 ## 联系方式 <a href="#contacts" id="contacts"></a>
 
 这是我的哔哩哔哩账号的链接：[https://space.bilibili.com/23736703](https://space.bilibili.com/23736703)

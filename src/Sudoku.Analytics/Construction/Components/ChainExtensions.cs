@@ -135,7 +135,7 @@ internal static class ChainExtensions
 		/// <param name="grid">The grid.</param>
 		/// <param name="supportedRules">The supported rules.</param>
 		/// <returns>The views.</returns>
-		public View[] GetViews_Monoparental(in Grid grid, ChainingRuleCollection supportedRules)
+		public View[] MonoparentChainGetViews(in Grid grid, ChainingRuleCollection supportedRules)
 		{
 			var result = (View[])[
 				[

@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+/// Provides with a step that is a <b>Multi-sector Locked Set</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="rowsCount"><inheritdoc cref="RowsCount" path="/summary"/></param>
 /// <param name="columnsCount"><inheritdoc cref="ColumnsCount" path="/summary"/></param>
 /// <param name="digitsMask"><inheritdoc cref="DigitsMask" path="/summary"/></param>
-public sealed class MultisectorLockedSetsStep(
+public sealed class MultisectorLockedSetStep(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
@@ -36,7 +36,7 @@ public sealed class MultisectorLockedSetsStep(
 	public int ColumnsCount { get; } = columnsCount;
 
 	/// <inheritdoc/>
-	public override Technique Code => Technique.MultisectorLockedSets;
+	public override Technique Code => Technique.MultisectorLockedSet;
 
 	/// <inheritdoc/>
 	public override Mask DigitsUsed => DigitsMask;
@@ -59,7 +59,7 @@ public sealed class MultisectorLockedSetsStep(
 	public override FactorArray Factors
 		=> [
 			Factor.Create(
-				"Factor_MultisectorLockedSetsSizeFactor",
+				"Factor_MultisectorLockedSetSizeFactor",
 				[nameof(ICellListTrait.CellSize)],
 				GetType(),
 				static args => DifficultyCalculator.OeisSequences.A002024((int)args[0]!)

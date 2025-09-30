@@ -372,7 +372,7 @@
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
     <value>数字 {0} 位于区域 {1}\{2} 里有区块结构</value>
   </data>
-  <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
+  <data name="TechniqueFormat_MultisectorLockedSetStep" xml:space="preserve">
     <value>共 {0} 个单元格 {1}</value>
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
@@ -1506,7 +1506,7 @@
     <value>多米诺环</value>
     <comment>Technique Name</comment>
   </data>
-  <data name="MultisectorLockedSets" xml:space="preserve">
+  <data name="MultisectorLockedSet" xml:space="preserve">
     <value>网</value>
     <comment>Technique Name</comment>
   </data>
@@ -1853,7 +1853,7 @@
     <value>区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
+  <data name="StepSearcherName_MultisectorLockedSetStepSearcher" xml:space="preserve">
     <value>网</value>
     <comment>Step Searcher Name</comment>
   </data>
@@ -2176,7 +2176,7 @@
   <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
     <value>区块</value>
   </data>
-  <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
+  <data name="TechniqueGroup_MultisectorLockedSet" xml:space="preserve">
     <value>网</value>
   </data>
   <data name="TechniqueGroup_NormalFish" xml:space="preserve">
@@ -2745,7 +2745,7 @@
   <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
     <value>唯一矩形里的数组规格</value>
   </data>
-  <data name="Factor_MultisectorLockedSetsSizeFactor" xml:space="preserve">
+  <data name="Factor_MultisectorLockedSetSizeFactor" xml:space="preserve">
     <value>网的规格</value>
   </data>
   <data name="Factor_RectangleIsAvoidableFactor" xml:space="preserve">

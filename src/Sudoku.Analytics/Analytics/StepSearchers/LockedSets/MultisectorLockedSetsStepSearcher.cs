@@ -1,14 +1,14 @@
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
-/// Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+/// Provides with a <b>Multi-sector Locked Set</b> step searcher.
 /// The step searcher will include the following techniques:
 /// <list type="bullet">
-/// <item>Multi-sector Locked Sets</item>
+/// <item>Multi-sector Locked Set</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_MultisectorLockedSetsStepSearcher", Technique.MultisectorLockedSets)]
-public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
+[StepSearcher("StepSearcherName_MultisectorLockedSetStepSearcher", Technique.MultisectorLockedSet)]
+public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
@@ -148,7 +148,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					}
 				}
 
-				var step = new MultisectorLockedSetsStep(
+				var step = new MultisectorLockedSetStep(
 					conclusions.AsMemory(),
 					[[.. candidateOffsets]],
 					context.Options,

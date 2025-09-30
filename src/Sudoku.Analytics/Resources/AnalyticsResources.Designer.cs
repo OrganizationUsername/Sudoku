@@ -2351,9 +2351,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Size of multi-sector locked set.
         /// </summary>
-        public static string Factor_MultisectorLockedSetsSizeFactor {
+        public static string Factor_MultisectorLockedSetSizeFactor {
             get {
-                return ResourceManager.GetString("Factor_MultisectorLockedSetsSizeFactor", resourceCulture);
+                return ResourceManager.GetString("Factor_MultisectorLockedSetSizeFactor", resourceCulture);
             }
         }
         
@@ -4008,11 +4008,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multi-sector Locked Sets.
+        ///   Looks up a localized string similar to Multi-sector Locked Set.
         /// </summary>
-        public static string MultisectorLockedSets {
+        public static string MultisectorLockedSet {
             get {
-                return ResourceManager.GetString("MultisectorLockedSets", resourceCulture);
+                return ResourceManager.GetString("MultisectorLockedSet", resourceCulture);
             }
         }
         
@@ -5675,11 +5675,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Multi-Sector Locked Sets.
+        ///   Looks up a localized string similar to Multi-Sector Locked Set.
         /// </summary>
-        public static string StepSearcherName_MultisectorLockedSetsStepSearcher {
+        public static string StepSearcherName_MultisectorLockedSetStepSearcher {
             get {
-                return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetsStepSearcher", resourceCulture);
+                return ResourceManager.GetString("StepSearcherName_MultisectorLockedSetStepSearcher", resourceCulture);
             }
         }
         
@@ -6505,9 +6505,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to MSLS.
         /// </summary>
-        public static string TechniqueAbbr_MultisectorLockedSets {
+        public static string TechniqueAbbr_MultisectorLockedSet {
             get {
-                return ResourceManager.GetString("TechniqueAbbr_MultisectorLockedSets", resourceCulture);
+                return ResourceManager.GetString("TechniqueAbbr_MultisectorLockedSet", resourceCulture);
             }
         }
         
@@ -7945,9 +7945,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to {0} cells {1}.
         /// </summary>
-        public static string TechniqueFormat_MultisectorLockedSetsStep {
+        public static string TechniqueFormat_MultisectorLockedSetStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetsStep", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_MultisectorLockedSetStep", resourceCulture);
             }
         }
         
@@ -8791,9 +8791,9 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Multi-sector Locked Set.
         /// </summary>
-        public static string TechniqueGroup_MultisectorLockedSets {
+        public static string TechniqueGroup_MultisectorLockedSet {
             get {
-                return ResourceManager.GetString("TechniqueGroup_MultisectorLockedSets", resourceCulture);
+                return ResourceManager.GetString("TechniqueGroup_MultisectorLockedSet", resourceCulture);
             }
         }
         

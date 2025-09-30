@@ -372,7 +372,7 @@
   <data name="TechniqueFormat_LockedCandidatesStep" xml:space="preserve">
     <value>{0} in {1}\{2}</value>
   </data>
-  <data name="TechniqueFormat_MultisectorLockedSetsStep" xml:space="preserve">
+  <data name="TechniqueFormat_MultisectorLockedSetStep" xml:space="preserve">
     <value>{0} cells {1}</value>
   </data>
   <data name="TechniqueFormat_NakedSubsetStep" xml:space="preserve">
@@ -1251,8 +1251,8 @@
   <data name="DominoLoop" xml:space="preserve">
     <value>Domino Loop</value>
   </data>
-  <data name="MultisectorLockedSets" xml:space="preserve">
-    <value>Multi-sector Locked Sets</value>
+  <data name="MultisectorLockedSet" xml:space="preserve">
+    <value>Multi-sector Locked Set</value>
   </data>
   <data name="PatternOverlay" xml:space="preserve">
     <value>Pattern Overlay</value>
@@ -1545,8 +1545,8 @@
   <data name="StepSearcherName_LockedCandidatesStepSearcher" xml:space="preserve">
     <value>Locked Candidates</value>
   </data>
-  <data name="StepSearcherName_MultisectorLockedSetsStepSearcher" xml:space="preserve">
-    <value>Multi-Sector Locked Sets</value>
+  <data name="StepSearcherName_MultisectorLockedSetStepSearcher" xml:space="preserve">
+    <value>Multi-Sector Locked Set</value>
   </data>
   <data name="StepSearcherName_NormalFishStepSearcher" xml:space="preserve">
     <value>Normal Fishes</value>
@@ -1758,7 +1758,7 @@
   <data name="TechniqueAbbr_JuniorExocet" xml:space="preserve">
     <value>JE</value>
   </data>
-  <data name="TechniqueAbbr_MultisectorLockedSets" xml:space="preserve">
+  <data name="TechniqueAbbr_MultisectorLockedSet" xml:space="preserve">
     <value>MSLS</value>
   </data>
   <data name="TechniqueAbbr_PatternOverlay" xml:space="preserve">
@@ -2133,7 +2133,7 @@
   <data name="TechniqueGroup_LockedCandidates" xml:space="preserve">
     <value>Locked Candidates</value>
   </data>
-  <data name="TechniqueGroup_MultisectorLockedSets" xml:space="preserve">
+  <data name="TechniqueGroup_MultisectorLockedSet" xml:space="preserve">
     <value>Multi-sector Locked Set</value>
   </data>
   <data name="TechniqueGroup_NormalFish" xml:space="preserve">
@@ -2721,7 +2721,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
     <value>Subset size in unique rectangle</value>
   </data>
-  <data name="Factor_MultisectorLockedSetsSizeFactor" xml:space="preserve">
+  <data name="Factor_MultisectorLockedSetSizeFactor" xml:space="preserve">
     <value>Size of multi-sector locked set</value>
   </data>
   <data name="Factor_RectangleIsAvoidableFactor" xml:space="preserve">

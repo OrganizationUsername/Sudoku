@@ -58,7 +58,7 @@ public partial class BivalueUniversalGraveForcingChainsStepSearcher	(): StepSear
 public partial class DeathBlossomStepSearcher						(): StepSearcher(48, 2);
 public partial class ExocetStepSearcher								(): StepSearcher(49, 3);
 public partial class DominoLoopStepSearcher							(): StepSearcher(50, 3);
-public partial class MultisectorLockedSetsStepSearcher				(): StepSearcher(51, 3);
+public partial class MultisectorLockedSetStepSearcher				(): StepSearcher(51, 3);
 public partial class MultifishStepSearcher							(): StepSearcher(52, 3);
 public partial class WhipStepSearcher								(): StepSearcher(53, 3);
 public partial class DynamicForcingChainsStepSearcher				(): StepSearcher(54, 3);

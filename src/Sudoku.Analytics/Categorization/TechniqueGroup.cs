@@ -238,10 +238,10 @@ public enum TechniqueGroup
 	DominoLoop,
 
 	/// <summary>
-	/// Indicates the multi-sector locked sets (MSLS) technique.
+	/// Indicates the multi-sector locked set (MSLS) technique.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "MSLS")]
-	MultisectorLockedSets,
+	MultisectorLockedSet,
 
 	/// <summary>
 	/// Indicates the multi-fish technique.

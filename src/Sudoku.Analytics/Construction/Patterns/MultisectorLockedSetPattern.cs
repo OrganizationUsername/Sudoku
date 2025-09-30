@@ -1,7 +1,7 @@
 namespace Sudoku.Construction.Patterns;
 
 /// <summary>
-/// Represents a pattern for multi-sector locked sets.
+/// Represents a pattern for multi-sector locked set.
 /// </summary>
 /// <param name="map"><inheritdoc cref="Map" path="/summary"/></param>
 /// <param name="rowCount"><inheritdoc cref="RowCount" path="/summary"/></param>

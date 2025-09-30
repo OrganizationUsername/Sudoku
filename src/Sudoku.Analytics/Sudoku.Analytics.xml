@@ -9510,16 +9510,16 @@
         <member name="M:Sudoku.Analytics.StepSearchers.DominoLoopStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher">
+        <member name="T:Sudoku.Analytics.StepSearchers.MultisectorLockedSetStepSearcher">
             <summary>
-            Provides with a <b>Multi-sector Locked Sets</b> step searcher.
+            Provides with a <b>Multi-sector Locked Set</b> step searcher.
             The step searcher will include the following techniques:
             <list type="bullet">
-            <item>Multi-sector Locked Sets</item>
+            <item>Multi-sector Locked Set</item>
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetsStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.MultisectorLockedSetStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.MultifishStepSearcher">
@@ -13167,66 +13167,66 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.MultisectorLockedSetsStep">
+        <member name="T:Sudoku.Analytics.Steps.MultisectorLockedSetStep">
             <summary>
-            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            Provides with a step that is a <b>Multi-sector Locked Set</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells" path="/summary"/></param>
-            <param name="rowsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.RowsCount" path="/summary"/></param>
-            <param name="columnsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ColumnsCount" path="/summary"/></param>
-            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsMask" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Cells" path="/summary"/></param>
+            <param name="rowsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.RowsCount" path="/summary"/></param>
+            <param name="columnsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.ColumnsCount" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.DigitsMask" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
-            Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
+            Provides with a step that is a <b>Multi-sector Locked Set</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells" path="/summary"/></param>
-            <param name="rowsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.RowsCount" path="/summary"/></param>
-            <param name="columnsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ColumnsCount" path="/summary"/></param>
-            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsMask" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Cells" path="/summary"/></param>
+            <param name="rowsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.RowsCount" path="/summary"/></param>
+            <param name="columnsCount"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.ColumnsCount" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.DigitsMask" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.RowsCount">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.RowsCount">
             <summary>
             Indicates the number of rows used.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.ColumnsCount">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.ColumnsCount">
             <summary>
             Indicates the number of columns used.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsUsed">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.DigitsUsed">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Cells">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Cells">
             <summary>
             Indicates the cells used in this pattern.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.DigitsMask">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.DigitsMask">
             <summary>
             Indicates the digits used.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Interpolations">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Interpolations">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Factors">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Factors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
+        <member name="P:Sudoku.Analytics.Steps.MultisectorLockedSetStep.Sudoku#Analytics#Traits#ICellListTrait#CellSize">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep">
@@ -21740,9 +21740,9 @@
             Indicates domino loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.Technique.MultisectorLockedSets">
+        <member name="F:Sudoku.Categorization.Technique.MultisectorLockedSet">
             <summary>
-            Indicates multi-sector locked sets.
+            Indicates multi-sector locked set.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.Multifish">
@@ -22230,9 +22230,9 @@
             Indicates the SK-Loop technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Categorization.TechniqueGroup.MultisectorLockedSets">
+        <member name="F:Sudoku.Categorization.TechniqueGroup.MultisectorLockedSet">
             <summary>
-            Indicates the multi-sector locked sets (MSLS) technique.
+            Indicates the multi-sector locked set (MSLS) technique.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.TechniqueGroup.Multifish">
@@ -27366,7 +27366,7 @@
         </member>
         <member name="T:Sudoku.Construction.Patterns.MultisectorLockedSetPattern">
             <summary>
-            Represents a pattern for multi-sector locked sets.
+            Represents a pattern for multi-sector locked set.
             </summary>
             <param name="map"><inheritdoc cref="P:Sudoku.Construction.Patterns.MultisectorLockedSetPattern.Map" path="/summary"/></param>
             <param name="rowCount"><inheritdoc cref="P:Sudoku.Construction.Patterns.MultisectorLockedSetPattern.RowCount" path="/summary"/></param>
@@ -27374,7 +27374,7 @@
         </member>
         <member name="M:Sudoku.Construction.Patterns.MultisectorLockedSetPattern.#ctor(Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
-            Represents a pattern for multi-sector locked sets.
+            Represents a pattern for multi-sector locked set.
             </summary>
             <param name="map"><inheritdoc cref="P:Sudoku.Construction.Patterns.MultisectorLockedSetPattern.Map" path="/summary"/></param>
             <param name="rowCount"><inheritdoc cref="P:Sudoku.Construction.Patterns.MultisectorLockedSetPattern.RowCount" path="/summary"/></param>
@@ -31730,7 +31730,7 @@
               Looks up a localized string similar to Length of multiple forcing chains.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultisectorLockedSetsSizeFactor">
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultisectorLockedSetSizeFactor">
             <summary>
               Looks up a localized string similar to Size of multi-sector locked set.
             </summary>
@@ -32653,9 +32653,9 @@
               Looks up a localized string similar to Multifish.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.MultisectorLockedSets">
+        <member name="P:Sudoku.Resources.AnalyticsResources.MultisectorLockedSet">
             <summary>
-              Looks up a localized string similar to Multi-sector Locked Sets.
+              Looks up a localized string similar to Multi-sector Locked Set.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.MutantJellyfish">
@@ -33584,9 +33584,9 @@
               Looks up a localized string similar to Multiple Forcing Chains.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultisectorLockedSetsStepSearcher">
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_MultisectorLockedSetStepSearcher">
             <summary>
-              Looks up a localized string similar to Multi-Sector Locked Sets.
+              Looks up a localized string similar to Multi-Sector Locked Set.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_NormalFishStepSearcher">
@@ -34044,7 +34044,7 @@
               Looks up a localized string similar to JE.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_MultisectorLockedSets">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_MultisectorLockedSet">
             <summary>
               Looks up a localized string similar to MSLS.
             </summary>
@@ -34844,7 +34844,7 @@
               Looks up a localized string similar to {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultisectorLockedSetsStep">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_MultisectorLockedSetStep">
             <summary>
               Looks up a localized string similar to {0} cells {1}.
             </summary>
@@ -35314,7 +35314,7 @@
               Looks up a localized string similar to Multifish.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_MultisectorLockedSets">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_MultisectorLockedSet">
             <summary>
               Looks up a localized string similar to Multi-sector Locked Set.
             </summary>

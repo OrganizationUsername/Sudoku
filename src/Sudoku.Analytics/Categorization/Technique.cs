@@ -4549,20 +4549,20 @@ public enum Technique
 	#endregion
 
 	//
-	// Multi-sector Locked Sets
+	// Multi-sector Locked Set
 	//
-	#region Multi-sector Locked Sets
+	#region Multi-sector Locked Set
 	/// <summary>
-	/// Indicates multi-sector locked sets.
+	/// Indicates multi-sector locked set.
 	/// </summary>
-	[TechniqueMetadata<MultisectorLockedSetsStepSearcher, MultisectorLockedSetsStep>(
+	[TechniqueMetadata<MultisectorLockedSetStepSearcher, MultisectorLockedSetStep>(
 		Rating = 94,
 		DifficultyLevel = DifficultyLevel.Nightmare,
-		ContainingGroup = TechniqueGroup.MultisectorLockedSets,
+		ContainingGroup = TechniqueGroup.MultisectorLockedSet,
 		Abbreviation = "MSLS",
 		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/exotic-patterns-a-resume-t30508-270.html"])]
-	MultisectorLockedSets,
+	MultisectorLockedSet,
 	#endregion
 
 	//
@@ -4572,7 +4572,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates multi-fish.
 	/// </summary>
-	[TechniqueMetadata<MultisectorLockedSetsStepSearcher, MultisectorLockedSetsStep>(
+	[TechniqueMetadata<MultisectorLockedSetStepSearcher, MultisectorLockedSetStep>(
 		Rating = 96,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Multifish,

@@ -32,11 +32,7 @@ public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 			{
 				ref var tempMap = ref linkForEachDigit[digit];
 				tempMap = CandidatesMap[digit] & map;
-				n += Math.Min(
-					PopCount((uint)tempMap.RowMask),
-					PopCount((uint)tempMap.ColumnMask),
-					PopCount((uint)tempMap.BlockMask)
-				);
+				n += Math.Min(PopCount((uint)tempMap.RowMask), PopCount((uint)tempMap.ColumnMask), PopCount((uint)tempMap.BlockMask));
 			}
 
 			if (n == count)

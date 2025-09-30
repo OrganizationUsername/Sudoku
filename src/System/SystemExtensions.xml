@@ -8009,9 +8009,6 @@
         <member name="M:System.Numerics.BitOperationsExtensions.get_AllSets``1(``0)">
             <inheritdoc cref="P:System.Numerics.BitOperationsExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.AllSets"/>
         </member>
-        <member name="M:System.Numerics.BitOperationsExtensions.EnumerateOf``1(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.EnumerateOf(System.Int32,System.Int32)"/>
-        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator``1(``0)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$B5716EECC652A20B2E3594FC042D97D3.GetEnumerator"/>
         </member>
@@ -8297,16 +8294,6 @@
         </member>
         <member name="P:System.Numerics.BitOperationsExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.AllSets">
             <inheritdoc cref="P:System.Numerics.BitOperationsExtensions.&lt;G&gt;$49699017F639EF34A5A9E25ACB3E4B14.AllSets"/>
-        </member>
-        <member name="M:System.Numerics.BitOperationsExtensions.&lt;G&gt;$588A1EAEEEB2BFC33F729C78B21D6BEB.EnumerateOf(System.Int32,System.Int32)">
-            <summary>
-            Creates a <see cref="T:System.Numerics.BitCombinationGenerator`1"/> instance that can generate a list of <see cref="T:System.Int64"/>
-            values that are all possibilities of combinations of integer values containing specified number of bits,
-            and the specified number of bits set 1.
-            </summary>
-            <param name="bitCount">Indicates how many bits should be enumerated.</param>
-            <param name="oneCount">Indicates how many bits set one contained in the value.</param>
-            <returns>A <see cref="T:System.Numerics.BitCombinationGenerator`1"/> instance.</returns>
         </member>
         <member name="T:System.Numerics.BitOperationsExtensions.&lt;G&gt;$B5716EECC652A20B2E3594FC042D97D3.&lt;M&gt;$44BC33AFC04E3A64502365D5573977F1">
             <summary>

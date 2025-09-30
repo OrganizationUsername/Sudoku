@@ -7,6 +7,7 @@ namespace System.Numerics;
 /// <param name="_bitCount">Indicates the number of bits.</param>
 /// <param name="_oneCount">Indicates the number of bits set <see langword="true"/>.</param>
 [DebuggerStepThrough]
+[Obsolete($"Use '{nameof(SequenceExtensions)}.operator &({nameof(ReadOnlySpan)}<T>, int)' to construct combinations instead.", false)]
 public readonly ref struct BitCombinationGenerator<TInteger>(int _bitCount, int _oneCount)
 	where TInteger : IBinaryInteger<TInteger>
 {

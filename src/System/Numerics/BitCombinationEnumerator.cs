@@ -6,6 +6,7 @@ namespace System.Numerics;
 /// <typeparam name="TInteger">The type of the target integer value.</typeparam>
 /// <param name="_bitCount">The number of bits.</param>
 /// <param name="_oneCount">The number of <see langword="true"/> bits.</param>
+[Obsolete($"Use '{nameof(SequenceExtensions)}.operator &({nameof(ReadOnlySpan)}<T>, int)' to construct combinations instead.", false)]
 public ref struct BitCombinationEnumerator<TInteger>(int _bitCount, int _oneCount) : IEnumerator<TInteger>
 	where TInteger : IBinaryInteger<TInteger>
 {

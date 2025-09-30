@@ -114,16 +114,16 @@ public sealed class ExtendedRectanglePattern(bool isFat, in CellMap patternCells
 			for (var i = 0; i < HouseCombinations.Length; i++)
 			{
 				var (house1, house2) = (HouseCombinations[i][0], HouseCombinations[i][1]);
-				foreach (var mask in Mask.EnumerateOf(9, size))
+				foreach (var combination in SpanEnumerable.Range(9) & size)
 				{
 					// Check whether all cells are in same house. If so, continue the loop immediately.
-					if (size == 3 && mask.SplitMask is not (not 7, not 7, not 7))
+					if (size == 3 && Mask.Create(combination).SplitMask is not (not 7, not 7, not 7))
 					{
 						continue;
 					}
 
 					var (map, pairs) = (CellMap.Empty, (List<(Cell, Cell)>)[]);
-					foreach (var pos in mask)
+					foreach (var pos in combination)
 					{
 						var (cell1, cell2) = (HousesCells[house1][pos], HousesCells[house2][pos]);
 						map += cell1;

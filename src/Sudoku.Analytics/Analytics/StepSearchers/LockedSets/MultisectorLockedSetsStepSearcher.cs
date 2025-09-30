@@ -17,7 +17,6 @@ public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 		linkForEachHouse.Clear();
 
 		var linkForEachDigit = (stackalloc CellMap[9]);
-		var canL = (stackalloc CellMap[9]);
 		ref readonly var grid = ref context.Grid;
 		foreach (var (pattern, rows, columns) in MultisectorLockedSetPattern.Patterns)
 		{
@@ -42,8 +41,6 @@ public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 
 			if (n == count)
 			{
-				canL.Clear();
-
 				var conclusions = new List<Conclusion>();
 				var candidateOffsets = new List<CandidateViewNode>();
 				for (var digit = 0; digit < 9; digit++)
@@ -98,11 +95,6 @@ public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 
 					foreach (var cell in elimMap)
 					{
-						if (map.Contains(cell))
-						{
-							canL[digit] += cell;
-						}
-
 						conclusions.Add(new(Elimination, cell, digit));
 					}
 				}
@@ -130,20 +122,17 @@ public sealed partial class MultisectorLockedSetStepSearcher : StepSearcher
 
 						foreach (var cand in cands)
 						{
-							if (!canL[cand].Contains(cell))
-							{
-								candidateOffsets.Add(
-									new(
-										house switch
-										{
-											< 9 => ColorIdentifier.Auxiliary2,
-											< 18 => ColorIdentifier.Normal,
-											_ => ColorIdentifier.Auxiliary1
-										},
-										cell * 9 + cand
-									)
-								);
-							}
+							candidateOffsets.Add(
+								new(
+									house switch
+									{
+										< 9 => ColorIdentifier.Auxiliary2,
+										< 18 => ColorIdentifier.Normal,
+										_ => ColorIdentifier.Auxiliary1
+									},
+									cell * 9 + cand
+								)
+							);
 						}
 					}
 				}

@@ -1,4 +1,4 @@
-﻿---
+---
 description: Reasoning of Unique Loop
 ---
 
@@ -40,6 +40,8 @@ description: Reasoning of Unique Loop
 
 ## 类型 3 <a href="#type-3" id="type-3"></a>
 
+### 标准摆放 <a href="#standard-subtype" id="standard-subtype"></a>
+
 <figure><img src="../../.gitbook/assets/images_0233.png" alt="" width="375"><figcaption><p>类型 3</p></figcaption></figure>
 
 如图所示。`r1c3(5)` 和 `r2c3(25)` 三个候选数不能同时从盘面里消失，否则会出现矛盾。所以我们只能拿出其中一个数，和 `r8c3` 搭配起来构成显性数对。
@@ -47,6 +49,18 @@ description: Reasoning of Unique Loop
 所以这个题的结论就是，`c3` 会形成显性数对，删除掉 `r6c3(2)`。
 
 这个就是类型 3 的用法。
+
+### 特殊摆放 <a href="#special-subtype" id="special-subtype"></a>
+
+和前面的例子不同，我这里补充一个比较奇怪的例子。因为毕竟是唯一环，所以它产生的和唯一矩形使用同一侧的两个单元格的这种摆放方式会有所不同。
+
+<figure><img src="../../.gitbook/assets/images_0648.png" alt="" width="375"><figcaption><p>类型 3，另一种摆放方式</p></figcaption></figure>
+
+如图所示。这个图里的 1 和 7 作为额外数字出现，会和 `r9c3` 构成显性数对。不过这个地方要注意的是，它一连同时借用了两个格子 `r8c3` 和 `r9c5`。这很显然，它俩并不在同一个行、列、宫，因此我们无法知晓它俩填入 1 和 7 的状态；但是，我们可以借用 `r9c3` 得知这一点。
+
+显然，`r8c3` 和 `r9c5` 是不可能同时填入 6 和 9 的，因为它会直接造成整个唯一环的环路上只有 6 和 9，出现矛盾；而又因为 `r9c3` 只能填 1 或 7，所以 `r8c3` 和 `r9c5` 势必会有至少一个单元格填 1 或者 7 的另外一个数。
+
+所以总体情况就是，`r8c3` 和 `r9c5` 不论有一个格子填 1 或 7，还是都填 1 或 7，总归会有一个数和 `r9c3` 填的数形成显性数对。如果 `r8c3` 填了，那么 `r89c3` 就会构成数对；如果是 `r9c5` 填了，那么 `r9c35` 就会构成数对。反正都有数对，所以 `r9c2` 自然就不可能是 1 或 7，因为这俩数对都能删这个单元格填的 1 或 7。所以，这次我们的结论是 `r9c2 <> 7`。
 
 ## 类型 4 <a href="#type-4" id="type-4"></a>
 

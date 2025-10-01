@@ -80,15 +80,15 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 			{
 				var digitsMask = Mask.Create(d);
 
-				// Iterate main line type. The multifish "bones" should be either in rows or in columns.
-				foreach (var isRow in (true, false))
+				// Iterate on houses offsets, also via bit enumerator.
+				for (var houseOffsetsSize = digitSize == 2 ? 3 : 2; houseOffsetsSize <= 5; houseOffsetsSize++)
 				{
-					// Iterate on houses offsets, also via bit enumerator.
-					for (var houseOffsetsSize = digitSize == 2 ? 3 : 2; houseOffsetsSize <= 5; houseOffsetsSize++)
+					// Here variable is a 9-bit integer, with some bits set 1 of length 'houseOffsetsSize' exactly.
+					// The variable will be used for house checking (via operations << 9 and << 18).
+					foreach (var h in Digits & houseOffsetsSize)
 					{
-						// Here variable is a 9-bit integer, with some bits set 1 of length 'houseOffsetsSize' exactly.
-						// The variable will be used for house checking (via operations << 9 and << 18).
-						foreach (var h in Digits & houseOffsetsSize)
+						// Iterate main line type. The multifish "bones" should be either in rows or in columns.
+						foreach (var isRow in (true, false))
 						{
 							var chosenHouseOffsets = Mask.Create(h);
 
@@ -810,10 +810,10 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							}
 
 							accumulator.Add(step);
-						}
-					}
 
 				NextLineTypeCase:;
+						}
+					}
 				}
 			}
 		}

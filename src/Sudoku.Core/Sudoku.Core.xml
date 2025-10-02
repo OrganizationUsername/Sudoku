@@ -7685,6 +7685,37 @@
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Orbit">
+            <summary>
+            Defines a type that is transparent encapsulation of a <see cref="T:Sudoku.Concepts.CellMap"/> instance,
+            representing cells defined in a symmetry field.
+            </summary>
+            <param name="Cells">Indicates the cells.</param>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Orbit.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Defines a type that is transparent encapsulation of a <see cref="T:Sudoku.Concepts.CellMap"/> instance,
+            representing cells defined in a symmetry field.
+            </summary>
+            <param name="Cells">Indicates the cells.</param>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Orbit.Cells">
+            <summary>Indicates the cells.</summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Orbit.op_Explicit(Sudoku.Concepts.CellMap@)~Sudoku.Concepts.Orbit">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Concepts.CellMap"/> to <see cref="T:Sudoku.Concepts.Orbit"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Orbit.op_Implicit(Sudoku.Concepts.Orbit@)~Sudoku.Concepts.CellMap">
+            <summary>
+            Implicit cast from <see cref="T:Sudoku.Concepts.Orbit"/> to <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>
             Represents a way to find a path that connects block cells.
@@ -8430,6 +8461,12 @@
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32,System.Int32)"/>
         </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetOrbit(Sudoku.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetOrbit(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetOrbit(Sudoku.SymmetricType,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetOrbit(System.Int32,System.Int32)"/>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.&lt;M&gt;$8D7D72B14CEB46EFF7D427CCB07CBAF9">
             <summary>
             Provides extension members on <see cref="T:Sudoku.SymmetricType"/>.
@@ -8498,7 +8535,7 @@
             <exception cref="T:System.InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
         </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32,System.Int32)"/>
             <param name="cell">Indicates the target cell to be checked.</param>
         </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32,System.Int32)">
@@ -8508,6 +8545,12 @@
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetOrbit(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetOrbit(System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.&lt;G&gt;$BC1BCDF0F678E530C54E7C578A063DA3.GetCells(System.Int32,System.Int32)"/>
         </member>
         <member name="T:Sudoku.Transformations.ConceptRandomExtensions">
             <summary>

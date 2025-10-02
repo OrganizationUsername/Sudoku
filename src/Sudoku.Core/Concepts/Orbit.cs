@@ -1,0 +1,22 @@
+namespace Sudoku.Concepts;
+
+/// <summary>
+/// Defines a type that is transparent encapsulation of a <see cref="CellMap"/> instance,
+/// representing cells defined in a symmetry field.
+/// </summary>
+/// <param name="Cells">Indicates the cells.</param>
+/// <seealso cref="CellMap"/>
+public readonly record struct Orbit(in CellMap Cells) : IEqualityOperators<Orbit, Orbit, bool>
+{
+	/// <summary>
+	/// Explicit cast from <see cref="CellMap"/> to <see cref="Orbit"/>.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	public static explicit operator Orbit(in CellMap value) => new(value);
+
+	/// <summary>
+	/// Implicit cast from <see cref="Orbit"/> to <see cref="CellMap"/>.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	public static implicit operator CellMap(in Orbit value) => value.Cells;
+}

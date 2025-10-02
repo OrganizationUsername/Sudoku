@@ -110,7 +110,7 @@ public static class SymmetricTypeExtensions
 				? SR.Get($"SymmetricType_{@this}", formatProvider as CultureInfo)
 				: throw new InvalidOperationException(SR.ExceptionMessage("MultipleFlagsExist"));
 
-		/// <inheritdoc cref="GetCells(SymmetricType, RowIndex, ColumnIndex)"/>
+		/// <inheritdoc cref="SymmetricTypeExtensions.extension(SymmetricType).GetCells(RowIndex, ColumnIndex)"/>
 		/// <param name="cell">Indicates the target cell to be checked.</param>
 		public CellMap GetCells(Cell cell) => @this.GetCells(cell / 9, cell % 9);
 
@@ -143,5 +143,11 @@ public static class SymmetricTypeExtensions
 				SymmetricType.None => [row * 9 + column],
 				_ => []
 			};
+
+		/// <inheritdoc cref="SymmetricTypeExtensions.extension(SymmetricType).GetCells(Cell)"/>
+		public Orbit GetOrbit(Cell cell) => @this.GetOrbit(cell / 9, cell % 9);
+
+		/// <inheritdoc cref="SymmetricTypeExtensions.extension(SymmetricType).GetCells(RowIndex, ColumnIndex)"/>
+		public Orbit GetOrbit(RowIndex row, ColumnIndex column) => (Orbit)@this.GetCells(row, column);
 	}
 }

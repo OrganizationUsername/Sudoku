@@ -153,6 +153,9 @@
   * [网的基本推理](rank-theory/06-multisector-locked-set/02-reasoning-of-multisector-locked-set.md)
   * [不规则网](rank-theory/06-multisector-locked-set/03-irregular-multisector-locked-set.md)
   * [网的直观和互补性](rank-theory/06-multisector-locked-set/04-direct-view-and-law-of-complement-of-multisector-locked-set.md)
+* [复数鱼](rank-theory/07-multifish/README.md)
+  * [复数鱼的基本推理](rank-theory/07-multifish/01-reasoning-of-multifish.md)
+  * [复杂复数鱼](rank-theory/07-multifish/02-complex-multifish.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

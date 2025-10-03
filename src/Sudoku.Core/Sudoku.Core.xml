@@ -10765,16 +10765,15 @@
         <member name="P:Sudoku.Drawing.Parsing.HouseArgumentParser.HouseWithDigitPattern">
             <remarks>
             Pattern:<br/>
-            <code>.+(?:\\([1-9]+\\))?</code><br/>
+            <code>.+\\([1-9]+\\)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
             <code>
             ○ Match a character other than '\n' greedily at least once.<br/>
-            ○ Optional (greedy).<br/>
-                ○ Match '('.<br/>
-                ○ Match a character in the set [1-9] atomically at least once.<br/>
-                ○ Match ')'.<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match ')'.<br/>
             </code>
             </remarks>
         </member>

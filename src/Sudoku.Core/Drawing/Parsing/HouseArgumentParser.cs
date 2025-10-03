@@ -13,10 +13,11 @@ internal sealed partial class HouseArgumentParser : ArgumentParser
 		CoordinateParser coordinateParser
 	)
 	{
-		if (arguments.All(argument => HouseWithDigitPattern.IsMatch(argument) || argument.StartsWith('+') || argument.StartsWith('-')))
+		if (arguments.All(static argument => HouseWithDigitPattern.IsMatch(argument)
+			|| argument.StartsWith('+') || argument.StartsWith('-')))
 		{
 			// Syntax:
-			// 'house' ' ' color_identifier ' ' houses ' ' '(' digits ')' ('+' cells)* ('-' cells)*
+			// 'house' ' ' color_identifier ' ' houses '(' digits ')' ('+' cells)* ('-' cells)*
 
 			if (Unsafe.IsNullRef(in grid))
 			{
@@ -84,6 +85,6 @@ internal sealed partial class HouseArgumentParser : ArgumentParser
 	}
 
 
-	[GeneratedRegex(""".+(?:\([1-9]+\))?""", RegexOptions.Compiled)]
+	[GeneratedRegex(""".+\([1-9]+\)""", RegexOptions.Compiled)]
 	private static partial Regex HouseWithDigitPattern { get; }
 }

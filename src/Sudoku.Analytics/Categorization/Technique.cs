@@ -3255,6 +3255,15 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.BrokenLoop)]
 	BrokenLoopType1,
+
+	/// <summary>
+	/// Indicates broken loop type 2.
+	/// </summary>
+	[TechniqueMetadata<BrokenLoopStepSearcher, BrokenLoopType2Step>(
+		Rating = 53,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.BrokenLoop)]
+	BrokenLoopType2,
 	#endregion
 
 	//

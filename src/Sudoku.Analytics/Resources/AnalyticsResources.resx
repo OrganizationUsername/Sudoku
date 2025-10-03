@@ -3373,4 +3373,7 @@ Is pattern rank-0: {6}</value>
   <data name="TechniqueFormat_BrokenLoopType1Step" xml:space="preserve">
     <value>Loop: {0}, guardians: {1}</value>
   </data>
+  <data name="BrokenLoopType2" xml:space="preserve">
+    <value>Broken Loop Type 2</value>
+  </data>
 </root>

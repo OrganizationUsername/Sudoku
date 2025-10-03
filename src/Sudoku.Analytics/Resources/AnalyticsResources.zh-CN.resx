@@ -3424,4 +3424,8 @@
   <data name="TechniqueFormat_BrokenLoopType1Step" xml:space="preserve">
     <value>环：{0}，守护者：{1}</value>
   </data>
+  <data name="BrokenLoopType2" xml:space="preserve">
+    <value>全强链死环类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

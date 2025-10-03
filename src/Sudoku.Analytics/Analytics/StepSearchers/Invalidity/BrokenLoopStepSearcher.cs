@@ -79,10 +79,8 @@ public sealed partial class BrokenLoopStepSearcher
 		}
 
 		// Check for subtypes.
-		foreach (var kvp in foundLoopsGroupedByGuardians)
+		foreach (var (guardians, loop) in foundLoopsGroupedByGuardians)
 		{
-			ref readonly var guardians = ref kvp.KeyRef;
-			var loop = kvp.Value;
 			switch (guardians)
 			{
 				// Invalid grid (no valid solutions found).
@@ -101,11 +99,17 @@ public sealed partial class BrokenLoopStepSearcher
 					break;
 				}
 
-				// TODO: Check for other types (2, 3, 4).
-				//case { Count: 2 }:
-				//{
-				//	break;
-				//}
+				// Check for other types (2, 3, 4).
+				case { Count: 2 }:
+				{
+					if (CheckType2(ref context, grid, guardians, loop) is { } type2Step)
+					{
+						return type2Step;
+					}
+
+					// TODO: Check type 3 and 4.
+					break;
+				}
 
 				// Advanced cases.
 				// The branch will be preserved for further considerations (like advanced types).
@@ -215,7 +219,7 @@ public sealed partial class BrokenLoopStepSearcher
 							foreach (var nextCell in nextPossibleCells)
 							{
 								var nextCandidate = nextCell * 9 + currentDigit;
-								var nextGuardian = (nextPossibleCells - nextCell)[0];
+								var nextGuardian = (nextPossibleCells - nextCell)[0] * 9 + currentDigit;
 								availableNext.AddRef((mode, nextCandidate, nextGuardian));
 							}
 							break;
@@ -357,6 +361,70 @@ public sealed partial class BrokenLoopStepSearcher
 			context.Options,
 			loop.AsMemory(),
 			guardian
+		);
+		if (context.OnlyFindOne)
+		{
+			return step;
+		}
+
+		context.Accumulator.Add(step);
+		return null;
+	}
+
+	/// <summary>
+	/// Check type 2.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="guardians">The guardians.</param>
+	/// <param name="loop">The loop.</param>
+	/// <returns>The step found.</returns>
+	private BrokenLoopType2Step? CheckType2(
+		ref StepAnalysisContext context,
+		in Grid grid,
+		List<Candidate> guardians,
+		List<Candidate> loop
+	)
+	{
+		// Check whether eliminations can be found.
+		var guardiansMap = guardians.AsSpan().AsCandidateMap();
+		var digitsMask = guardiansMap.Digits;
+		if (!IsPow2(digitsMask))
+		{
+			return null;
+		}
+
+		var guardianDigit = Log2((uint)digitsMask);
+		var elimMap = guardiansMap.Cells % CandidatesMap[guardianDigit];
+		if (!elimMap)
+		{
+			return null;
+		}
+
+		var candidateOffsets = new List<CandidateViewNode>();
+		foreach (var guardian in guardians)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, guardian));
+		}
+
+		var linkOffsets = new List<ChainLinkViewNode>();
+		foreach (var candidate in loop)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
+		}
+		for (var i = 0; i < loop.Count; i++)
+		{
+			var first = loop[i];
+			var second = loop[(i + 1) % loop.Count];
+			linkOffsets.Add(new(ColorIdentifier.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
+		}
+
+		var step = new BrokenLoopType2Step(
+			(from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)).ToArray(),
+			[[.. candidateOffsets, .. linkOffsets]],
+			context.Options,
+			loop.AsMemory(),
+			guardiansMap
 		);
 		if (context.OnlyFindOne)
 		{

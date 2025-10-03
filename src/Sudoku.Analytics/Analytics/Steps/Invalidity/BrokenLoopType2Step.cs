@@ -1,26 +1,24 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Broken Loop Type 1</b> technique.
+/// Provides with a step that is a <b>Broken Loop Type 2</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
 /// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
 /// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
 /// <param name="loop"><inheritdoc cref="BrokenLoopStep.Loop" path="/summary"/></param>
-/// <param name="guardian"><inheritdoc cref="Guardian" path="/summary"/></param>
-public sealed class BrokenLoopType1Step(
+/// <param name="guardians"><inheritdoc cref="BrokenLoopStep.Guardians" path="/summary"/></param>
+public sealed class BrokenLoopType2Step(
 	ReadOnlyMemory<Conclusion> conclusions,
 	View[]? views,
 	StepGathererOptions options,
 	ReadOnlyMemory<Candidate> loop,
-	Candidate guardian
-) : BrokenLoopStep(conclusions, views, options, loop, guardian.AsCandidateMap())
+	in CandidateMap guardians
+) : BrokenLoopStep(conclusions, views, options, loop, guardians)
 {
 	/// <inheritdoc/>
-	public override int Type => 1;
+	public override int Type => 2;
 
-	/// <summary>
-	/// Indicates the guardian.
-	/// </summary>
-	public Candidate Guardian { get; } = guardian;
+	/// <inheritdoc/>
+	public override int BaseDifficulty => base.BaseDifficulty + 1;
 }

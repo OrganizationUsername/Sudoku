@@ -71,6 +71,10 @@ public abstract class BrokenLoopStep(
 			)
 		];
 
+	/// <inheritdoc/>
+	public override InterpolationArray Interpolations
+		=> [new(SR.EnglishLanguage, [LoopStr, GuardiansStr]), new(SR.ChineseLanguage, [LoopStr, GuardiansStr])];
+
 	private protected string LoopStr
 	{
 		get

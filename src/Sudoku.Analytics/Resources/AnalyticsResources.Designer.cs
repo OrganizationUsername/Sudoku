@@ -864,6 +864,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broken Loop Type 2.
+        /// </summary>
+        public static string BrokenLoopType2 {
+            get {
+                return ResourceManager.GetString("BrokenLoopType2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardian.
         /// </summary>
         public static string BrokenWing {

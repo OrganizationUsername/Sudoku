@@ -3421,11 +3421,21 @@
   <data name="Factor_BrokenLoopLengthFactor" xml:space="preserve">
     <value>全强链死环的长度</value>
   </data>
-  <data name="TechniqueFormat_BrokenLoopType1Step" xml:space="preserve">
+  <data name="TechniqueFormat_BrokenLoopStep" xml:space="preserve">
     <value>环：{0}，守护者：{1}</value>
   </data>
   <data name="BrokenLoopType2" xml:space="preserve">
     <value>全强链死环类型 2</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="TechniqueFormat_BrokenLoopType3Step" xml:space="preserve">
+    <value>环：{0}，守护者：{1}，额外单元格：{2}，额外数字：{3}</value>
+  </data>
+  <data name="Factor_BrokenLoopSubsetSizeFactor" xml:space="preserve">
+    <value>全强链死环里的数组规格</value>
+  </data>
+  <data name="BrokenLoopType3" xml:space="preserve">
+    <value>全强链死环类型 3</value>
     <comment>Technique Name</comment>
   </data>
 </root>

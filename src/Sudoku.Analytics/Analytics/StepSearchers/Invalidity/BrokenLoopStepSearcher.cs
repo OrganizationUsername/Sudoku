@@ -106,17 +106,14 @@ public sealed partial class BrokenLoopStepSearcher
 					{
 						return type2Step;
 					}
+					if (CheckType3(ref context, grid, guardians, loop) is { } type3Step)
+					{
+						return type3Step;
+					}
 
-					// TODO: Check type 3 and 4.
+					// TODO: Check type 4.
 					break;
 				}
-
-				// Advanced cases.
-				// The branch will be preserved for further considerations (like advanced types).
-				//default:
-				//{
-				//	break;
-				//}
 			}
 		}
 		return null;
@@ -295,6 +292,13 @@ public sealed partial class BrokenLoopStepSearcher
 					continue;
 				}
 
+				// Check whether the next guardian is held by the loop.
+				// A valid guardian cannot be inside in a loop.
+				if (nextGuardianIfWorth.HasValue && loop.Contains(nextGuardianIfWorth.Value))
+				{
+					continue;
+				}
+
 				// Continue further searching. Update data temporarily.
 				loopCandidates.Add(nextCandidate);
 				if (nextGuardianIfWorth.HasValue)
@@ -342,19 +346,7 @@ public sealed partial class BrokenLoopStepSearcher
 		List<Candidate> loop
 	)
 	{
-		var candidateOffsets = new List<CandidateViewNode> { new(ColorIdentifier.Normal, guardian) };
-		var linkOffsets = new List<ChainLinkViewNode>();
-		foreach (var candidate in loop)
-		{
-			candidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
-		}
-		for (var i = 0; i < loop.Count; i++)
-		{
-			var first = loop[i];
-			var second = loop[(i + 1) % loop.Count];
-			linkOffsets.Add(new(ColorIdentifier.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
-		}
-
+		var linkOffsets = GetLinkViewNodes(loop, [guardian], out var candidateOffsets);
 		var step = new BrokenLoopType1Step(
 			Array.Single(new Conclusion(Assignment, guardian)),
 			[[.. candidateOffsets, .. linkOffsets]],
@@ -401,24 +393,7 @@ public sealed partial class BrokenLoopStepSearcher
 			return null;
 		}
 
-		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (var guardian in guardians)
-		{
-			candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, guardian));
-		}
-
-		var linkOffsets = new List<ChainLinkViewNode>();
-		foreach (var candidate in loop)
-		{
-			candidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
-		}
-		for (var i = 0; i < loop.Count; i++)
-		{
-			var first = loop[i];
-			var second = loop[(i + 1) % loop.Count];
-			linkOffsets.Add(new(ColorIdentifier.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
-		}
-
+		var linkOffsets = GetLinkViewNodes(loop, guardians, out var candidateOffsets);
 		var step = new BrokenLoopType2Step(
 			(from cell in elimMap select new Conclusion(Elimination, cell, guardianDigit)).ToArray(),
 			[[.. candidateOffsets, .. linkOffsets]],
@@ -433,5 +408,135 @@ public sealed partial class BrokenLoopStepSearcher
 
 		context.Accumulator.Add(step);
 		return null;
+	}
+
+	/// <summary>
+	/// Check type 3.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="guardians">The guardians.</param>
+	/// <param name="loop">The loop.</param>
+	/// <returns>The step found.</returns>
+	private BrokenLoopType3Step? CheckType3(
+		ref StepAnalysisContext context,
+		in Grid grid,
+		List<Candidate> guardians,
+		List<Candidate> loop
+	)
+	{
+		// Check guardian size.
+		if (guardians is not [var first, var second] || first / 9 == second / 9 || first % 9 == second % 9)
+		{
+			return null;
+		}
+
+		// Get cells of guardians.
+		var guardianCells = CellMap.Empty;
+		var guardianDigitsMask = (Mask)0;
+		foreach (var guardian in guardians)
+		{
+			guardianCells += guardian / 9;
+			guardianDigitsMask |= (Mask)(1 << guardian % 9);
+		}
+
+		// Iterate on each shared house.
+		foreach (var house in guardianCells.SharedHouses)
+		{
+			var availableCells = HousesMap[house] & EmptyCells & ~guardianCells;
+			if (availableCells.Count < 2)
+			{
+				// Not enough cells to be iterated.
+				continue;
+			}
+
+			// Iterate on each combination of cells.
+			foreach (ref readonly var cells in availableCells | availableCells.Count - 1)
+			{
+				// Determine whether size matches.
+				var digitsMask = (Mask)(guardianDigitsMask | grid[cells]);
+				if (PopCount((uint)digitsMask) != cells.Count + 1)
+				{
+					continue;
+				}
+
+				// Type 3 found.
+				var conclusions = new List<Conclusion>();
+				foreach (var digit in digitsMask)
+				{
+					foreach (var cell in HousesMap[house] & CandidatesMap[digit] & ~(cells | guardianCells))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					// No eliminations found.
+					continue;
+				}
+
+				var linkOffsets = GetLinkViewNodes(loop, guardians, out var candidateOffsets);
+				foreach (var cell in cells)
+				{
+					foreach (var digit in grid.GetCandidates(cell))
+					{
+						if (candidateOffsets.FindIndex(node => node.Candidate == cell * 9 + digit) is var i and not -1)
+						{
+							candidateOffsets.RemoveAt(i);
+						}
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+					}
+				}
+
+				var step = new BrokenLoopType3Step(
+					conclusions.AsMemory(),
+					[[.. candidateOffsets, .. linkOffsets]],
+					context.Options,
+					loop.AsMemory(),
+					[.. guardians],
+					cells,
+					digitsMask
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Construct view nodes.
+	/// </summary>
+	/// <param name="loop">The loop.</param>
+	/// <param name="guardians">The guardians.</param>
+	/// <param name="candidateOffsets">Candidate view nodes.</param>
+	/// <returns>Link view nodes.</returns>
+	private ReadOnlySpan<ChainLinkViewNode> GetLinkViewNodes(
+		List<Candidate> loop,
+		List<Candidate> guardians,
+		out List<CandidateViewNode> candidateOffsets
+	)
+	{
+		candidateOffsets = [];
+		var linkOffsets = new List<ChainLinkViewNode>();
+		foreach (var candidate in loop)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
+		}
+		foreach (var guardian in guardians)
+		{
+			candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, guardian));
+		}
+		for (var i = 0; i < loop.Count; i++)
+		{
+			var first = loop[i];
+			var second = loop[(i + 1) % loop.Count];
+			linkOffsets.Add(new(ColorIdentifier.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
+		}
+		return linkOffsets.AsSpan();
 	}
 }

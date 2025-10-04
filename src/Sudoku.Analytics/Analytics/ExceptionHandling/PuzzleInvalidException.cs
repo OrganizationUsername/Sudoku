@@ -7,8 +7,8 @@ namespace Sudoku.Analytics.ExceptionHandling;
 /// <param name="stepSearcherType"><inheritdoc cref="StepSearcherType" path="/summary"/></param>
 /// <remarks>
 /// This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
-/// but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-/// <see cref="StepSearcherType"/> to learn more information.
+/// but a step searcher may contain a bug that causes the problem throwing this exception.
+/// If you want to know which step searcher throws this exception, use <see cref="StepSearcherType"/> property.
 /// </remarks>
 /// <seealso cref="StepSearcherType"/>
 public sealed class PuzzleInvalidException(in Grid grid, Type stepSearcherType) : RuntimeAnalysisException(grid)

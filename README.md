@@ -180,7 +180,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Guardian
       * Bi-value Oddagon (Type 2, 3 and 4)
       * Tri-value Oddagon
-      * Broken Loop (Type 1 and 2)
+      * Broken Loop (Type 1, 2 and 3)
   * Exocets
     * Junior Exocet (*JE*)
     * Senior Exocet (*SE*)

@@ -21,4 +21,7 @@ public sealed class BrokenLoopType2Step(
 
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 1;
+
+	/// <inheritdoc/>
+	protected override bool TechniqueResourceKeyInheritsFromBase => true;
 }

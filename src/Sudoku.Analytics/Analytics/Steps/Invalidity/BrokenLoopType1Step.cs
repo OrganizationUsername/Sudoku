@@ -23,4 +23,7 @@ public sealed class BrokenLoopType1Step(
 	/// Indicates the guardian.
 	/// </summary>
 	public Candidate Guardian { get; } = guardian;
+
+	/// <inheritdoc/>
+	protected override bool TechniqueResourceKeyInheritsFromBase => true;
 }

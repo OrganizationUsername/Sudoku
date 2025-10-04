@@ -616,8 +616,9 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="map">The instance to check subsets.</param>
 	/// <param name="subsetSize">The desired size.</param>
 	/// <returns>
-	/// All possible subsets. If <paramref name="subsetSize"/> is greater than <see cref="Count"/>,
-	/// this method will return all possible subsets without throwing exceptions.
+	/// All possible subsets. If <paramref name="subsetSize"/> is greater than the number
+	/// of elements of this collection, all possible subsets will be returned,
+	/// without throwing any exceptions.
 	/// </returns>
 	static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, int subsetSize);
 

@@ -873,6 +873,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broken Loop Type 3.
+        /// </summary>
+        public static string BrokenLoopType3 {
+            get {
+                return ResourceManager.GetString("BrokenLoopType3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardian.
         /// </summary>
         public static string BrokenWing {
@@ -2138,6 +2147,15 @@ namespace Sudoku.Resources {
         public static string Factor_BrokenLoopLengthFactor {
             get {
                 return ResourceManager.GetString("Factor_BrokenLoopLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size of broken loop.
+        /// </summary>
+        public static string Factor_BrokenLoopSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_BrokenLoopSubsetSizeFactor", resourceCulture);
             }
         }
         
@@ -7630,9 +7648,18 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Loop: {0}, guardians: {1}.
         /// </summary>
-        public static string TechniqueFormat_BrokenLoopType1Step {
+        public static string TechniqueFormat_BrokenLoopStep {
             get {
-                return ResourceManager.GetString("TechniqueFormat_BrokenLoopType1Step", resourceCulture);
+                return ResourceManager.GetString("TechniqueFormat_BrokenLoopStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loop: {0}, guardians: {1}, extra cells: {2}, extra digits: {3}.
+        /// </summary>
+        public static string TechniqueFormat_BrokenLoopType3Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BrokenLoopType3Step", resourceCulture);
             }
         }
         

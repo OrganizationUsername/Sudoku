@@ -3098,8 +3098,8 @@
             <param name="stepSearcherType"><inheritdoc cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType" path="/summary"/></param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
-            but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            but a step searcher may contain a bug that causes the problem throwing this exception.
+            If you want to know which step searcher throws this exception, use <see cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/> property.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/>
         </member>
@@ -3111,8 +3111,8 @@
             <param name="stepSearcherType"><inheritdoc cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType" path="/summary"/></param>
             <remarks>
             This exception will be thrown as an unexpected behavior. For example, the puzzle is checked as a unique puzzle,
-            but a step searcher may contain a bug that causes the problem throwing this exception. Please check for property
-            <see cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/> to learn more information.
+            but a step searcher may contain a bug that causes the problem throwing this exception.
+            If you want to know which step searcher throws this exception, use <see cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/> property.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.ExceptionHandling.PuzzleInvalidException.StepSearcherType"/>
         </member>
@@ -8994,6 +8994,25 @@
             <param name="loop">The loop.</param>
             <returns>The step found.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.CheckType3(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Check type 3.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="grid">The grid.</param>
+            <param name="guardians">The guardians.</param>
+            <param name="loop">The loop.</param>
+            <returns>The step found.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.GetLinkViewNodes(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode}@)">
+            <summary>
+            Construct view nodes.
+            </summary>
+            <param name="loop">The loop.</param>
+            <param name="guardians">The guardians.</param>
+            <param name="candidateOffsets">Candidate view nodes.</param>
+            <returns>Link view nodes.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher">
             <summary>
             Provides with an <b>XYZ-Ring</b> step searcher.
@@ -12896,6 +12915,9 @@
             Indicates the guardian.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType1Step.TechniqueResourceKeyInheritsFromBase">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.BrokenLoopType2Step">
             <summary>
             Provides with a step that is a <b>Broken Loop Type 2</b> technique.
@@ -12920,6 +12942,63 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BrokenLoopType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType2Step.TechniqueResourceKeyInheritsFromBase">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.BrokenLoopType3Step">
+            <summary>
+            Provides with a step that is a <b>Broken Loop Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="loop"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopStep.Loop" path="/summary"/></param>
+            <param name="guardians"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopStep.Guardians" path="/summary"/></param>
+            <param name="extraCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraCells" path="/summary"/></param>
+            <param name="extraDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraDigitsMask" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BrokenLoopType3Step.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.ReadOnlyMemory{System.Int32},Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Provides with a step that is a <b>Broken Loop Type 3</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="loop"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopStep.Loop" path="/summary"/></param>
+            <param name="guardians"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopStep.Guardians" path="/summary"/></param>
+            <param name="extraCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraCells" path="/summary"/></param>
+            <param name="extraDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraDigitsMask" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraDigitsSize">
+            <summary>
+            Indicates the size of subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraCells">
+            <summary>
+            Indicates extra cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.ExtraDigitsMask">
+            <summary>
+            Indicates extra digits mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.DigitsUsed">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BrokenLoopType3Step.Interpolations">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.GuardianStep">
@@ -21314,6 +21393,11 @@
         <member name="F:Sudoku.Categorization.Technique.BrokenLoopType2">
             <summary>
             Indicates broken loop type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Categorization.Technique.BrokenLoopType3">
+            <summary>
+            Indicates broken loop type 3.
             </summary>
         </member>
         <member name="F:Sudoku.Categorization.Technique.BivalueOddagonType2">
@@ -31071,6 +31155,11 @@
               Looks up a localized string similar to Broken Loop Type 2.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.BrokenLoopType3">
+            <summary>
+              Looks up a localized string similar to Broken Loop Type 3.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BrokenWing">
             <summary>
               Looks up a localized string similar to Guardian.
@@ -31774,6 +31863,11 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BrokenLoopLengthFactor">
             <summary>
               Looks up a localized string similar to Length of Broken Loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BrokenLoopSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size of broken loop.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainGroupedFactor">
@@ -34830,9 +34924,14 @@
               Looks up a localized string similar to Try {0}.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BrokenLoopType1Step">
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BrokenLoopStep">
             <summary>
               Looks up a localized string similar to Loop: {0}, guardians: {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BrokenLoopType3Step">
+            <summary>
+              Looks up a localized string similar to Loop: {0}, guardians: {1}, extra cells: {2}, extra digits: {3}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_BruteForceStep">

@@ -109,12 +109,9 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		get
 		{
 			var result = (Mask)0;
-			for (var digit = 0; digit < 9; digit++)
+			foreach (var candidate in this)
 			{
-				if (this / digit)
-				{
-					result |= (Mask)(1 << digit);
-				}
+				result |= (Mask)(1 << candidate % 9);
 			}
 			return result;
 		}

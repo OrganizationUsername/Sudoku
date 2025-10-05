@@ -8981,7 +8981,7 @@
             <param name="loop">The loop.</param>
             <returns>The step found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.CheckType2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.CheckType2(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,System.Collections.Generic.List{System.Int32})">
             <summary>
             Check type 2.
             </summary>
@@ -8991,7 +8991,7 @@
             <param name="loop">The loop.</param>
             <returns>The step found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.CheckType3(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.CheckType3(Sudoku.Analytics.StepAnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,System.Collections.Generic.List{System.Int32})">
             <summary>
             Check type 3.
             </summary>
@@ -9001,7 +9001,7 @@
             <param name="loop">The loop.</param>
             <returns>The step found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.GetLinkViewNodes(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode}@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.BrokenLoopStepSearcher.GetLinkViewNodes(System.Collections.Generic.List{System.Int32},Sudoku.Concepts.CandidateMap@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode}@)">
             <summary>
             Construct view nodes.
             </summary>

@@ -19,31 +19,23 @@ public sealed partial class BrokenLoopStepSearcher
 	{
 		// Modes: 0 - Cell, 1 - Block, 2 - Row, 3 - Column.
 		const byte mode_CellNext = 0, mode_ColumnNext = 3;
-		var foundLoopsGroupedByGuardians = new Dictionary<List<Candidate>, List<Candidate>>(
-			EqualityComparer<List<Candidate>>.Create(
-				static (left, right) => left!.Count == right!.Count && left.Count switch
-				{
-					0 => true,
-					1 => left[0] == right[0],
-					_ => left[0] == right[0] && left[1] == right[1] || left[0] == right[1] && left[1] == right[0]
-				},
-				static obj => obj.Count switch { 0 => 0, 1 => obj[0], _ => obj[0] ^ obj[1] }
-			)
-		);
+		var foundLoopsGroupedByGuardians = new Dictionary<CandidateMap, List<Candidate>>();
 
 		ref readonly var grid = ref context.Grid;
 
 		// Iterate on all non-bivalue cells.
-		var tempCandidatesMap = CandidateMap.Empty;
-		var traversedCandidates = CandidateMap.Empty;
+		var tempLoop = CandidateMap.Empty;
+		var traversedSpaces = SpaceSet.Empty;
+		var tempGuardians = CandidateMap.Empty;
 		foreach (var cell in EmptyCells & BivalueCells)
 		{
 			// Iterate on each extra start.
 			var d1 = BitOperations.PopTwo((uint)grid.GetCandidates(cell), out var d2);
-			tempCandidatesMap.Clear();
-			tempCandidatesMap += cell * 9 + d1;
-			tempCandidatesMap += cell * 9 + d2;
-			traversedCandidates.Clear();
+			tempLoop.Clear();
+			tempLoop += cell * 9 + d1;
+			tempLoop += cell * 9 + d2;
+			traversedSpaces.Clear();
+			tempGuardians.Clear();
 			dfs(
 				ref context,
 				grid,
@@ -53,9 +45,9 @@ public sealed partial class BrokenLoopStepSearcher
 				d2,
 				byte.MaxValue,
 				[cell * 9 + d1, cell * 9 + d2],
-				[],
-				ref traversedCandidates,
-				ref tempCandidatesMap
+				tempGuardians,
+				ref traversedSpaces,
+				tempLoop
 			);
 			if (!context.CancellationToken)
 			{
@@ -65,8 +57,10 @@ public sealed partial class BrokenLoopStepSearcher
 		}
 
 		// Check for subtypes.
-		foreach (var (guardians, loop) in foundLoopsGroupedByGuardians)
+		foreach (var kvp in foundLoopsGroupedByGuardians)
 		{
+			ref readonly var guardians = ref kvp.KeyRef;
+			var loop = kvp.Value;
 			switch (guardians)
 			{
 				// Invalid grid (no valid solutions found).
@@ -85,19 +79,25 @@ public sealed partial class BrokenLoopStepSearcher
 					break;
 				}
 
-				// Check for other types (2, 3, 4).
+				// Check for type 3 and 4.
 				case { Count: 2 }:
 				{
-					if (CheckType2(ref context, grid, guardians, loop) is { } type2Step)
-					{
-						return type2Step;
-					}
 					if (CheckType3(ref context, grid, guardians, loop) is { } type3Step)
 					{
 						return type3Step;
 					}
 
 					// TODO: Check type 4.
+					goto default;
+				}
+
+				// Check for type 2.
+				default:
+				{
+					if (CheckType2(ref context, grid, guardians, loop) is { } type2Step)
+					{
+						return type2Step;
+					}
 					break;
 				}
 			}
@@ -114,9 +114,9 @@ public sealed partial class BrokenLoopStepSearcher
 			Digit previousDigit,
 			byte unitTypeMode,
 			List<Candidate> loopCandidates,
-			List<Candidate> guardians,
-			ref CandidateMap traversedCandidates,
-			ref CandidateMap loop
+			CandidateMap guardians,
+			ref SpaceSet traversedSpaces,
+			CandidateMap loop
 		)
 		{
 			if (!context.CancellationToken)
@@ -125,7 +125,14 @@ public sealed partial class BrokenLoopStepSearcher
 				return;
 			}
 
-			var availableNext = new List<(byte NextMode, Candidate NextCandidate, Candidate? NewGuardian)>(2);
+			if (!!guardians
+				&& PopCount((uint)guardians.Digits) != 1
+				&& (guardians.Cells.FirstSharedHouse == FallbackConstants.@int || guardians.Count > 2))
+			{
+				return;
+			}
+
+			var availableNext = new List<(byte NextMode, Candidate NextCandidate, Candidate? NewGuardian)>();
 			for (var mode = mode_CellNext; mode <= mode_ColumnNext; mode++)
 			{
 				if (mode == unitTypeMode)
@@ -219,36 +226,14 @@ public sealed partial class BrokenLoopStepSearcher
 			// Check for available cases for next.
 			foreach (var (nextMode, nextCandidate, nextGuardianIfWorth) in availableNext)
 			{
-				// Check guardian: we only allow at most 2 guardians in the pattern.
-				switch (guardians, nextGuardianIfWorth)
-				{
-					case ({ Count: 2 }, not null):
-					{
-						// Invalid.
-						continue;
-					}
-					case ([var firstGuardian], { } nextGuardian)
-					when !(
-						firstGuardian / 9 == nextGuardian / 9
-							|| firstGuardian % 9 == nextGuardian % 9
-							&& PeersMap[firstGuardian / 9].Contains(nextGuardian / 9)
-					):
-					{
-						// The new guardian must be either:
-						//   1. in same house with the previous guardian, with same digit
-						//   2. in same cell.
-						continue;
-					}
-				}
-
 				// Now check whether an odd-length loop is formed if we add next candidate into the loop.
 				if (nextCandidate == loopCandidates[0] && (loopCandidates.Count & 1) == 1)
 				{
 					// Construct guardians map.
-					var tempGuardians = new List<Candidate>(guardians);
-					if (nextGuardianIfWorth is { } nextGuardian)
+					var tempGuardians = guardians;
+					if (nextGuardianIfWorth.HasValue)
 					{
-						tempGuardians.Add(nextGuardian);
+						tempGuardians += nextGuardianIfWorth.Value;
 					}
 
 					// Check minimum length of all traversed loops.
@@ -262,20 +247,35 @@ public sealed partial class BrokenLoopStepSearcher
 
 					// Then add or update dictionary of loop with minimum length.
 					foundLoopsGroupedByGuardians[tempGuardians] = [.. loopCandidates];
-					continue;
+					return;
 				}
 
-				// Otherwise, check whether the cell has already been added or not.
-				if (!loop.Add(nextCandidate))
+				// Otherwise, check whether the cell has already been added or not. If so, invalid.
+				if (loop.Contains(nextCandidate))
 				{
 					continue;
 				}
+
+				// Check whether guardian candidates overlap with loop or not. If so, invalid.
+				if (guardians & loop)
+				{
+					continue;
+				}
+
+				var nextCell = nextCandidate / 9;
+				var nextSpace = nextMode switch
+				{
+					mode_CellNext => Space.RowColumn(nextCell / 9, nextCell % 9),
+					mode_CellNext + 1 => Space.BlockDigit(nextCell >> HouseType.Block, nextCandidate % 9),
+					mode_CellNext + 2 => Space.RowDigit((nextCell >> HouseType.Row) - 9, nextCandidate % 9),
+					_ => Space.RowDigit((nextCell >> HouseType.Column) - 18, nextCandidate % 9)
+				};
 
 				// Check whether the candidate is traversed.
 				// This pruning operation will miss some cases, but large faster than before.
 				// e.g. type 1:
 				//   456+2+398....+8+4+67+2+5...25+8+1+6.4..91+2+3+46.2.+1.4+5..8.4+3.+781+2.9.+4+8+527...+2+57+1+4.+8...73+9+6542:129 738 172
-				if (traversedCandidates.Contains(nextCandidate))
+				if (traversedSpaces.Contains(nextSpace))
 				{
 					continue;
 				}
@@ -288,20 +288,9 @@ public sealed partial class BrokenLoopStepSearcher
 					continue;
 				}
 
-				// Check whether the next guardian is held by the loop.
-				// A valid guardian cannot be inside in a loop.
-				if (nextGuardianIfWorth.HasValue && loop.Contains(nextGuardianIfWorth.Value))
-				{
-					continue;
-				}
-
 				// Continue further searching. Update data temporarily.
 				loopCandidates.Add(nextCandidate);
-				traversedCandidates += nextCandidate;
-				if (nextGuardianIfWorth.HasValue)
-				{
-					guardians.Add(nextGuardianIfWorth.Value);
-				}
+				traversedSpaces += nextSpace;
 
 				// Do DFS.
 				dfs(
@@ -313,18 +302,13 @@ public sealed partial class BrokenLoopStepSearcher
 					currentDigit,
 					nextMode,
 					loopCandidates,
-					guardians,
-					ref traversedCandidates,
-					ref loop
+					nextGuardianIfWorth.HasValue ? guardians + nextGuardianIfWorth.Value : guardians,
+					ref traversedSpaces,
+					loop + nextCandidate
 				);
 
 				// The branch has already been checked. Now do backtrack to revert variables' states.
-				loop -= nextCandidate;
 				loopCandidates.RemoveAt(^1);
-				if (nextGuardianIfWorth.HasValue)
-				{
-					guardians.RemoveAt(^1);
-				}
 			}
 		}
 	}
@@ -372,20 +356,19 @@ public sealed partial class BrokenLoopStepSearcher
 	private BrokenLoopType2Step? CheckType2(
 		ref StepAnalysisContext context,
 		in Grid grid,
-		List<Candidate> guardians,
+		in CandidateMap guardians,
 		List<Candidate> loop
 	)
 	{
 		// Check whether eliminations can be found.
-		var guardiansMap = guardians.AsSpan().AsCandidateMap();
-		var digitsMask = guardiansMap.Digits;
+		var digitsMask = guardians.Digits;
 		if (!IsPow2(digitsMask))
 		{
 			return null;
 		}
 
 		var guardianDigit = Log2((uint)digitsMask);
-		var elimMap = guardiansMap.Cells % CandidatesMap[guardianDigit];
+		var elimMap = guardians.Cells % CandidatesMap[guardianDigit];
 		if (!elimMap)
 		{
 			return null;
@@ -397,7 +380,7 @@ public sealed partial class BrokenLoopStepSearcher
 			[[.. candidateOffsets, .. linkOffsets]],
 			context.Options,
 			loop.AsMemory(),
-			guardiansMap
+			guardians
 		);
 		if (context.OnlyFindOne)
 		{
@@ -419,7 +402,7 @@ public sealed partial class BrokenLoopStepSearcher
 	private BrokenLoopType3Step? CheckType3(
 		ref StepAnalysisContext context,
 		in Grid grid,
-		List<Candidate> guardians,
+		in CandidateMap guardians,
 		List<Candidate> loop
 	)
 	{
@@ -515,7 +498,7 @@ public sealed partial class BrokenLoopStepSearcher
 	/// <returns>Link view nodes.</returns>
 	private ReadOnlySpan<ChainLinkViewNode> GetLinkViewNodes(
 		List<Candidate> loop,
-		List<Candidate> guardians,
+		in CandidateMap guardians,
 		out List<CandidateViewNode> candidateOffsets
 	)
 	{

@@ -34,46 +34,33 @@ public sealed partial class BrokenLoopStepSearcher
 		ref readonly var grid = ref context.Grid;
 
 		// Iterate on all non-bivalue cells.
-		foreach (var cell in EmptyCells & ~BivalueCells)
+		var tempCandidatesMap = CandidateMap.Empty;
+		var traversedCandidates = CandidateMap.Empty;
+		foreach (var cell in EmptyCells & BivalueCells)
 		{
-			var digitsMask = grid.GetCandidates(cell);
-			if (PopCount((uint)digitsMask) != 3)
-			{
-				// The cell must contain 3 candidates, otherwise:
-				//   1. The cell has only one candidate -> naked single.
-				//   2. The cell has 4 different candidates
-				//      -> we cannot find a valid loop using 2 extra guardians,
-				//      or it can be replaced with a coloring technique.
-				continue;
-			}
-
 			// Iterate on each extra start.
-			foreach (var digit in digitsMask)
+			var d1 = BitOperations.PopTwo((uint)grid.GetCandidates(cell), out var d2);
+			tempCandidatesMap.Clear();
+			tempCandidatesMap += cell * 9 + d1;
+			tempCandidatesMap += cell * 9 + d2;
+			traversedCandidates.Clear();
+			dfs(
+				ref context,
+				grid,
+				cell,
+				d2,
+				cell,
+				d2,
+				byte.MaxValue,
+				[cell * 9 + d1, cell * 9 + d2],
+				[],
+				ref traversedCandidates,
+				ref tempCandidatesMap
+			);
+			if (!context.CancellationToken)
 			{
-				var d1 = BitOperations.PopTwo((uint)(digitsMask & ~(1 << digit)), out var d2);
-				var tempCandidatesMap = CandidateMap.Empty + (cell * 9 + d1) + (cell * 9 + d2);
-				dfs(
-					ref context,
-					grid,
-					cell,
-					d2,
-					cell,
-					d2,
-					byte.MaxValue,
-					[cell * 9 + d1, cell * 9 + d2],
-					[cell * 9 + digit],
-					ref tempCandidatesMap
-				);
-				if (!context.CancellationToken)
-				{
-					// Canceled.
-					return null;
-				}
-			}
-			if (foundLoopsGroupedByGuardians.Count == 0)
-			{
-				// The cell cannot find any valid loops.
-				continue;
+				// Canceled.
+				return null;
 			}
 		}
 
@@ -128,6 +115,7 @@ public sealed partial class BrokenLoopStepSearcher
 			byte unitTypeMode,
 			List<Candidate> loopCandidates,
 			List<Candidate> guardians,
+			ref CandidateMap traversedCandidates,
 			ref CandidateMap loop
 		)
 		{
@@ -283,6 +271,15 @@ public sealed partial class BrokenLoopStepSearcher
 					continue;
 				}
 
+				// Check whether the candidate is traversed.
+				// This pruning operation will miss some cases, but large faster than before.
+				// e.g. type 1:
+				//   456+2+398....+8+4+67+2+5...25+8+1+6.4..91+2+3+46.2.+1.4+5..8.4+3.+781+2.9.+4+8+527...+2+57+1+4.+8...73+9+6542:129 738 172
+				if (traversedCandidates.Contains(nextCandidate))
+				{
+					continue;
+				}
+
 				// If the length is greater than minimum length, we should discard it,
 				// preventing greater-lengthed loops found.
 				if (foundLoopsGroupedByGuardians.TryGetValue(guardians, out var minimumLoopCurrentlyFound)
@@ -300,6 +297,7 @@ public sealed partial class BrokenLoopStepSearcher
 
 				// Continue further searching. Update data temporarily.
 				loopCandidates.Add(nextCandidate);
+				traversedCandidates += nextCandidate;
 				if (nextGuardianIfWorth.HasValue)
 				{
 					guardians.Add(nextGuardianIfWorth.Value);
@@ -316,6 +314,7 @@ public sealed partial class BrokenLoopStepSearcher
 					nextMode,
 					loopCandidates,
 					guardians,
+					ref traversedCandidates,
 					ref loop
 				);
 

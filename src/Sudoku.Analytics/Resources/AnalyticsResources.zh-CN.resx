@@ -3438,4 +3438,11 @@
     <value>全强链死环类型 3</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_BrokenLoopType4Step" xml:space="preserve">
+    <value>环：{0}，守护者：{1}，共轭对：{2}</value>
+  </data>
+  <data name="BrokenLoopType4" xml:space="preserve">
+    <value>全强链死环类型 4</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>

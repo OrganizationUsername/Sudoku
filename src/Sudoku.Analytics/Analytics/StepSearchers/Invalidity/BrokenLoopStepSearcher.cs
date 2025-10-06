@@ -7,11 +7,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Broken Loop Type 1</item>
 /// <item>Broken Loop Type 2</item>
 /// <item>Broken Loop Type 3</item>
+/// <item>Broken Loop Type 4</item>
 /// </list>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_BrokenLoopStepSearcher",
-	Technique.BrokenLoopType1, Technique.BrokenLoopType2, Technique.BrokenLoopType3)]
+	Technique.BrokenLoopType1, Technique.BrokenLoopType2,
+	Technique.BrokenLoopType3, Technique.BrokenLoopType4)]
 public sealed partial class BrokenLoopStepSearcher
 {
 	/// <inheritdoc/>
@@ -66,7 +68,7 @@ public sealed partial class BrokenLoopStepSearcher
 					throw new PuzzleInvalidException(grid, typeof(BrokenLoopStepSearcher));
 				}
 
-				// Only checks for type 1.
+				// Check for type 1.
 				case [var guardian]:
 				{
 					if (CheckType1(ref context, grid, guardian, loop) is { } type1Step)
@@ -76,24 +78,20 @@ public sealed partial class BrokenLoopStepSearcher
 					break;
 				}
 
-				// Check for type 3 and 4.
-				case { Count: 2 }:
-				{
-					if (CheckType3(ref context, grid, guardians, loop) is { } type3Step)
-					{
-						return type3Step;
-					}
-
-					// TODO: Check type 4.
-					goto default;
-				}
-
-				// Check for type 2.
+				// Check for type 2, 3, 4.
 				default:
 				{
 					if (CheckType2(ref context, grid, guardians, loop) is { } type2Step)
 					{
 						return type2Step;
+					}
+					if (CheckType3(ref context, grid, guardians, loop) is { } type3Step)
+					{
+						return type3Step;
+					}
+					if (CheckType4(ref context, grid, guardians, loop) is { } type4Step)
+					{
+						return type4Step;
 					}
 					break;
 				}
@@ -119,6 +117,12 @@ public sealed partial class BrokenLoopStepSearcher
 			if (!context.CancellationToken)
 			{
 				// User canceled.
+				return;
+			}
+
+			// Check whether guardian candidates overlap with loop or not. If so, invalid.
+			if (guardians & loop)
+			{
 				return;
 			}
 
@@ -233,6 +237,12 @@ public sealed partial class BrokenLoopStepSearcher
 						tempGuardians += nextGuardianIfWorth.Value;
 					}
 
+					if (loop & tempGuardians)
+					{
+						// Invalid as rescue check.
+						continue;
+					}
+
 					// Check minimum length of all traversed loops.
 					// If we find a new loop with greater length, we should discard it.
 					if (foundLoopsGroupedByGuardians.TryGetValue(tempGuardians, out var minimumLength)
@@ -249,12 +259,6 @@ public sealed partial class BrokenLoopStepSearcher
 
 				// Otherwise, check whether the cell has already been added or not. If so, invalid.
 				if (loop.Contains(nextCandidate))
-				{
-					continue;
-				}
-
-				// Check whether guardian candidates overlap with loop or not. If so, invalid.
-				if (guardians & loop)
 				{
 					continue;
 				}
@@ -429,11 +433,11 @@ public sealed partial class BrokenLoopStepSearcher
 			}
 
 			// Iterate on each combination of cells.
-			foreach (ref readonly var cells in availableCells | availableCells.Count - 1)
+			foreach (ref readonly var subsetCells in availableCells | availableCells.Count - 1)
 			{
 				// Determine whether size matches.
-				var digitsMask = (Mask)(guardianDigitsMask | grid[cells]);
-				if (PopCount((uint)digitsMask) != cells.Count + 1)
+				var digitsMask = (Mask)(guardianDigitsMask | grid[subsetCells]);
+				if (PopCount((uint)digitsMask) != subsetCells.Count + 1)
 				{
 					continue;
 				}
@@ -442,7 +446,7 @@ public sealed partial class BrokenLoopStepSearcher
 				var conclusions = new List<Conclusion>();
 				foreach (var digit in digitsMask)
 				{
-					foreach (var cell in HousesMap[house] & CandidatesMap[digit] & ~(cells | guardianCells))
+					foreach (var cell in HousesMap[house] & CandidatesMap[digit] & ~(subsetCells | guardianCells))
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -454,7 +458,7 @@ public sealed partial class BrokenLoopStepSearcher
 				}
 
 				var linkOffsets = GetLinkViewNodes(loop, guardians, out var candidateOffsets);
-				foreach (var cell in cells)
+				foreach (var cell in subsetCells)
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
@@ -462,7 +466,7 @@ public sealed partial class BrokenLoopStepSearcher
 						{
 							candidateOffsets.RemoveAt(i);
 						}
-						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + digit));
 					}
 				}
 
@@ -471,9 +475,93 @@ public sealed partial class BrokenLoopStepSearcher
 					[[.. candidateOffsets, .. linkOffsets]],
 					context.Options,
 					loop.AsMemory(),
-					[.. guardians],
-					cells,
+					guardians,
+					subsetCells,
 					digitsMask
+				);
+				if (context.OnlyFindOne)
+				{
+					return step;
+				}
+
+				context.Accumulator.Add(step);
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Check type 4.
+	/// </summary>
+	/// <param name="context">The context.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="guardians">The guardians.</param>
+	/// <param name="loop">The loop.</param>
+	/// <returns>The step found.</returns>
+	private BrokenLoopType4Step? CheckType4(
+		ref StepAnalysisContext context,
+		in Grid grid,
+		in CandidateMap guardians,
+		List<Candidate> loop
+	)
+	{
+		// Type 4 must use 2 cells.
+		if (guardians is not
+			{
+				Cells: { Count: 2, SharedHouses: var houses and not 0 } guardianCells,
+				Digits: var guardianDigitsMask
+			})
+		{
+			return null;
+		}
+
+		// Check whether two cells has a conjugate pair or not.
+		var cell1DigitsMask = (Mask)(grid.GetCandidates(guardianCells[0]) & ~guardianDigitsMask);
+		var cell2DigitsMask = (Mask)(grid.GetCandidates(guardianCells[1]) & ~guardianDigitsMask);
+		foreach (var conjugatePairDigit in (Mask)(cell1DigitsMask & cell2DigitsMask))
+		{
+			// Iterate on each shared house.
+			foreach (var house in houses)
+			{
+				// Check whether the digit has a conjugate pair.
+				if ((HousesMap[house] & CandidatesMap[conjugatePairDigit]) != guardianCells)
+				{
+					continue;
+				}
+
+				// Okay. Now the digit is a conjugate pair.
+				// Check eliminations.
+				var conclusions = new List<Conclusion>();
+				foreach (var cell in guardianCells)
+				{
+					var guardianDigitsMaskThisCell = guardians.GetDigitsFor(cell);
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~guardianDigitsMaskThisCell & ~(1 << conjugatePairDigit)))
+					{
+						conclusions.Add(new(Elimination, cell, digit));
+					}
+				}
+				if (conclusions.Count == 0)
+				{
+					continue;
+				}
+
+				var linkOffsets = GetLinkViewNodes(loop, guardians, out var candidateOffsets);
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, guardianCells[0] * 9 + conjugatePairDigit));
+				candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, guardianCells[1] * 9 + conjugatePairDigit));
+
+				var step = new BrokenLoopType4Step(
+					conclusions.AsMemory(),
+					[
+						[
+							.. candidateOffsets,
+							.. linkOffsets,
+							new ConjugateLinkViewNode(ColorIdentifier.Normal, guardianCells[0], guardianCells[1], conjugatePairDigit)
+						]
+					],
+					context.Options,
+					loop.AsMemory(),
+					guardians,
+					new(guardianCells, conjugatePairDigit)
 				);
 				if (context.OnlyFindOne)
 				{

@@ -882,6 +882,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Broken Loop Type 4.
+        /// </summary>
+        public static string BrokenLoopType4 {
+            get {
+                return ResourceManager.GetString("BrokenLoopType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardian.
         /// </summary>
         public static string BrokenWing {
@@ -7660,6 +7669,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_BrokenLoopType3Step {
             get {
                 return ResourceManager.GetString("TechniqueFormat_BrokenLoopType3Step", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loop: {0}, guardians: {1}, conjugate pair: {2}.
+        /// </summary>
+        public static string TechniqueFormat_BrokenLoopType4Step {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_BrokenLoopType4Step", resourceCulture);
             }
         }
         

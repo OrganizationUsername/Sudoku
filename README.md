@@ -178,9 +178,9 @@ This solution supports many kinds of human-friendly techniques. Here I will list
       * Multi-fish
     * Negative Ranks
       * Guardian
-      * Bi-value Oddagon (Type 2, 3 and 4)
+      * Bi-value Oddagon (Type 2, 3, 4)
       * Tri-value Oddagon
-      * Broken Loop (Type 1, 2 and 3)
+      * Broken Loop
   * Exocets
     * Junior Exocet (*JE*)
     * Senior Exocet (*SE*)

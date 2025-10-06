@@ -3385,4 +3385,10 @@ Is pattern rank-0: {6}</value>
   <data name="BrokenLoopType3" xml:space="preserve">
     <value>Broken Loop Type 3</value>
   </data>
+  <data name="TechniqueFormat_BrokenLoopType4Step" xml:space="preserve">
+    <value>Loop: {0}, guardians: {1}, conjugate pair: {2}</value>
+  </data>
+  <data name="BrokenLoopType4" xml:space="preserve">
+    <value>Broken Loop Type 4</value>
+  </data>
 </root>

@@ -1042,9 +1042,6 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc/>
-	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
 	public static CellMap operator &(in CellMap left, in CellMap right) => CellMap.Create(left._vector & right._vector);
 
 	/// <inheritdoc/>

@@ -942,10 +942,6 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
-		=> (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
 	public static CandidateMap operator &(in CandidateMap left, in CandidateMap right)
 	{
 		var l = left.Vectors;

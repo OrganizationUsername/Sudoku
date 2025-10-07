@@ -733,6 +733,26 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								}
 							}
 
+							// Check whether all candidates from truths are covered by links.
+							// This fixes GitHub #799:
+							//   https://github.com/kyoyama-kazusa/Sudoku/issues/799
+							// Counterexample:
+							//   .....735...2.5..49.....9..81..63....+28..+7..3.....24..73..5...+7.74..9.6.+5.257....+3:611 811 413 114 814 415 322 126 826 631 132 632 133 433 633 134 334 435 662 962 175 284 186 895
+							var candidatesToCheck = CandidateMap.Empty;
+							foreach (var truth in truths)
+							{
+								candidatesToCheck |= truth.GetAvailableRange(grid);
+							}
+							foreach (var link in links)
+							{
+								candidatesToCheck &= ~link.GetAvailableRange(grid);
+							}
+							if (candidatesToCheck)
+							{
+								// Not all candidates are covered.
+								continue;
+							}
+
 #if DRAW_TRUTH_SPACES
 							foreach (var truth in truths)
 							{
@@ -811,7 +831,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 
 							accumulator.Add(step);
 
-				NextLineTypeCase:;
+						NextLineTypeCase:;
 						}
 					}
 				}

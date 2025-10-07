@@ -164,6 +164,7 @@
 * [递归分析](rank-theory-advance/02-recursive-analysis.md)
 * [自增和自减](rank-theory-advance/03-auto-increment-and-auto-decrement.md)
 * [复杂结构的秩](rank-theory-advance/04-rank-of-complex-pattern.md)
+* [秩的修正](rank-theory-advance/05-rank-fixing.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

@@ -112,7 +112,8 @@ public static class SymmetricTypeExtensions
 
 		/// <inheritdoc cref="SymmetricTypeExtensions.extension(SymmetricType).GetCells(RowIndex, ColumnIndex)"/>
 		/// <param name="cell">Indicates the target cell to be checked.</param>
-		public CellMap GetCells(Cell cell) => @this.GetCells(cell / 9, cell % 9);
+		[Obsolete($"Use method '{nameof(GetOrbit)}' instead.", false)]
+		public CellMap GetCells(Cell cell) => @this.GetOrbit(cell / 9, cell % 9);
 
 		/// <summary>
 		/// Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
@@ -120,7 +121,14 @@ public static class SymmetricTypeExtensions
 		/// <param name="row">The row value.</param>
 		/// <param name="column">The column value.</param>
 		/// <returns>The cells.</returns>
-		public CellMap GetCells(RowIndex row, ColumnIndex column)
+		[Obsolete($"Use method '{nameof(GetOrbit)}' instead.", false)]
+		public CellMap GetCells(RowIndex row, ColumnIndex column) => @this.GetOrbit(row, column);
+
+		/// <inheritdoc cref="extension(SymmetricType).GetCells(Cell)"/>
+		public Orbit GetOrbit(Cell cell) => @this.GetOrbit(cell / 9, cell % 9);
+
+		/// <inheritdoc cref="extension(SymmetricType).GetCells(RowIndex, ColumnIndex)"/>
+		public Orbit GetOrbit(RowIndex row, ColumnIndex column)
 			=> @this switch
 			{
 				SymmetricType.Central => [row * 9 + column, (8 - row) * 9 + 8 - column],

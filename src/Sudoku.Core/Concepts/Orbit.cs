@@ -6,8 +6,27 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="Cells">Indicates the cells.</param>
 /// <seealso cref="CellMap"/>
-public readonly record struct Orbit(in CellMap Cells) : IEqualityOperators<Orbit, Orbit, bool>
+[CollectionBuilder(typeof(Orbit), nameof(Create))]
+public readonly record struct Orbit(in CellMap Cells) : IEnumerable<Cell>, IEqualityOperators<Orbit, Orbit, bool>
 {
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	public AnonymousSpanEnumerator<Cell> GetEnumerator() => Cells.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Cells).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Cell> IEnumerable<Cell>.GetEnumerator() => ((IEnumerable<Cell>)Cells).GetEnumerator();
+
+
+	/// <summary>
+	/// Creates a <see cref="Orbit"/> instance via a list of cells.
+	/// </summary>
+	/// <param name="cells">The cells.</param>
+	/// <returns>Result instance.</returns>
+	public static Orbit Create(params ReadOnlySpan<Cell> cells) => new(cells.AsCellMap());
+
+
 	/// <summary>
 	/// Explicit cast from <see cref="CellMap"/> to <see cref="Orbit"/>.
 	/// </summary>

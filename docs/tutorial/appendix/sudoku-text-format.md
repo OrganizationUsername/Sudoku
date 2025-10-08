@@ -14,7 +14,7 @@ Susser 格式是数独最常见的格式。它采用 81 个字符表示每一个
 
 拿这个题目举例：
 
-<figure><img src="../.gitbook/assets/image.png" alt="" width="375"><figcaption><p>一个题目</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0712.png" alt="" width="375"><figcaption><p>一个题目</p></figcaption></figure>
 
 如图所示。这个题目的 Susser 格式如下：
 
@@ -38,7 +38,7 @@ Susser 格式是数独最常见的格式。它采用 81 个字符表示每一个
 
 当盘面进行到中间某个局面时，我们会使用额外的字符表达来表述这些情况。比如上面的题目已经到达这里：
 
-<figure><img src="../.gitbook/assets/image (2).png" alt="" width="375"><figcaption><p>中间盘面</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/images_0713.png" alt="" width="375"><figcaption><p>中间盘面</p></figcaption></figure>
 
 此时它填入了一些数字的同时，也有一部分的候选数的删数状态。例如 `r8c46` 不含 4 和 6，但在未造成任何删数的盘面状态下是含有的，因为唯一余数的状态下，4 和 6 是不能排除到这里的。
 
@@ -60,7 +60,7 @@ Susser 格式是数独最常见的格式。它采用 81 个字符表示每一个
 
 有些时候也会将此文本排版为论坛可阅读的格式，所以会使用到多行文本格式。这个格式直接使用一些特殊字符对盘面进行打表处理。
 
-{% hint style="success" %}
+{% hint style="info" %}
 这种格式的名称就叫“多行文本格式”。后续的文本格式还会有若干也使用多行呈现的文本格式，但他们并非属于此文本格式的子集，是另外一套记号。
 {% endhint %}
 

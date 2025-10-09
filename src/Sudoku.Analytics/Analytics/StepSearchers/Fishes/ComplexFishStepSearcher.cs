@@ -487,8 +487,13 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		var context2 = new StepAnalysisContext(playground) { Accumulator = tempList, OnlyFindOne = false, Options = context.Options };
-		ElimsSearcher.Collect(ref context2);
+		var tempContext = new StepAnalysisContext(in playground)
+		{
+			Accumulator = tempList,
+			OnlyFindOne = false,
+			Options = context.Options
+		};
+		ElimsSearcher.Collect(ref tempContext);
 
 		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)

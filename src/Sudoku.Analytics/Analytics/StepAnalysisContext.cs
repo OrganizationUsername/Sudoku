@@ -7,7 +7,7 @@ namespace Sudoku.Analytics;
 /// <param name="initialGrid"><inheritdoc cref="InitialGrid" path="/summary"/></param>
 /// <seealso cref="Step"/>
 /// <seealso cref="Concepts.Grid"/>
-public ref struct StepAnalysisContext(in Grid grid, ref readonly Grid initialGrid)
+public ref struct StepAnalysisContext(ref readonly Grid grid, ref readonly Grid initialGrid)
 {
 	/// <summary>
 	/// Indicates the puzzle to be solved and analyzed.
@@ -24,7 +24,7 @@ public ref struct StepAnalysisContext(in Grid grid, ref readonly Grid initialGri
 	/// Initializes an <see cref="StepAnalysisContext"/> instance via the specified grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	public StepAnalysisContext(in Grid grid) : this(grid, in Grid.nullref)
+	public StepAnalysisContext(ref readonly Grid grid) : this(in grid, in Grid.nullref)
 	{
 	}
 

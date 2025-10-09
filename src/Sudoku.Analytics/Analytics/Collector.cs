@@ -75,7 +75,7 @@ public sealed class Collector : StepGatherer
 			Initialize(playground, playground.SolutionGrid);
 
 			var accumulator = new List<Step>();
-			var context = new StepAnalysisContext(playground, in puzzle)
+			var context = new StepAnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
 				OnlyFindOne = false,

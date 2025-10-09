@@ -82,7 +82,7 @@ public static class CellOrCandidateMapExtensions
 			Unsafe.Add(ref reference, 2) = ColumnTable[@this];
 		}
 
-		/// <inheritdoc cref="op_RightShift(int, HouseType)"/>
+		/// <inheritdoc cref="op_RightShift(Cell, HouseType)"/>
 		[Obsolete(DeprecatedMessages.ExtensionOperator_StateChange, false)]
 		public House ToHouse(HouseType houseType) => @this >> houseType;
 

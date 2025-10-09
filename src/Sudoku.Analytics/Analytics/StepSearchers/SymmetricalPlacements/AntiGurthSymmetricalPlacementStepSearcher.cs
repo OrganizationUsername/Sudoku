@@ -375,7 +375,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			for (var j = 0; j < 9; j++)
 			{
 				var c1 = i * 9 + j;
-				var c2 = (SymmetricType.XAxis.GetCells(c1) - c1)[0];
+				var c2 = ((CellMap)SymmetricType.XAxis.GetOrbit(c1) - c1)[0];
 				var condition = grid.GetState(c1) == CellState.Empty;
 				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{
@@ -482,7 +482,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 			for (var j = 0; j < 4; j++)
 			{
 				var c1 = i * 9 + j;
-				var c2 = (SymmetricType.YAxis.GetCells(c1) - c1)[0];
+				var c2 = ((CellMap)SymmetricType.YAxis.GetOrbit(c1) - c1)[0];
 				var condition = grid.GetState(c1) == CellState.Empty;
 				if (condition ^ grid.GetState(c2) == CellState.Empty)
 				{

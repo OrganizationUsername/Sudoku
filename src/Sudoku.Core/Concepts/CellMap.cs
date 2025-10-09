@@ -310,7 +310,7 @@ public partial struct CellMap : CellMapBase
 				var isThisSymmetry = true;
 				foreach (var cell in this)
 				{
-					var symmetricCells = symmetry.GetCells(cell);
+					var symmetricCells = symmetry.GetOrbit(cell);
 					if ((this & symmetricCells) != symmetricCells)
 					{
 						isThisSymmetry = false;

@@ -7621,7 +7621,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Orbit.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
-            Creates a <see cref="T:Sudoku.Concepts.Orbit"/> instance via a list of cells.
+            Creates an <see cref="T:Sudoku.Concepts.Orbit"/> instance via a list of cells.
             </summary>
             <param name="cells">The cells.</param>
             <returns>Result instance.</returns>

@@ -20,7 +20,7 @@ public readonly record struct Orbit(in CellMap Cells) : IEnumerable<Cell>, IEqua
 
 
 	/// <summary>
-	/// Creates a <see cref="Orbit"/> instance via a list of cells.
+	/// Creates an <see cref="Orbit"/> instance via a list of cells.
 	/// </summary>
 	/// <param name="cells">The cells.</param>
 	/// <returns>Result instance.</returns>

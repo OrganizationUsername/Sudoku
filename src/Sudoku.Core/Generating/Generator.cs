@@ -165,7 +165,7 @@ public ref struct Generator : IGenerator<Grid>
 			candidateCells.Clear();
 
 			var hasConflictWithMissingDigit = false;
-			foreach (var tempCell in symmetricType.GetCells(cell / 9, cell % 9))
+			foreach (var tempCell in symmetricType.GetOrbit(cell))
 			{
 				if (_newValidSudoku.GetDigit(tempCell) != -1)
 				{

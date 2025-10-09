@@ -123,7 +123,7 @@ public readonly struct Conclusion(Mask mask) :
 		{
 			0 or 1 => symmetricType.CellsInSymmetryAxis.Contains(Cell)
 				? new(ConclusionType, Cell, mappingDigit == -1 ? Digit : mappingDigit)
-				: new(ConclusionType, (symmetricType.GetCells(Cell) - Cell)[0], mappingDigit == -1 ? Digit : mappingDigit),
+				: new(ConclusionType, ((CellMap)symmetricType.GetOrbit(Cell) - Cell)[0], mappingDigit == -1 ? Digit : mappingDigit),
 			_ => throw new ArgumentOutOfRangeException(nameof(symmetricType))
 		};
 

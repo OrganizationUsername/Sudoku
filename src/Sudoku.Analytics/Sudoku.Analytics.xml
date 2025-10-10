@@ -1858,6 +1858,20 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.AnalysisResultOutput">
+            <summary>
+            Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
+            <summary>
+            Gets the output text.
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="options">The options.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>
             Provides an analyzer that solves a sudoku puzzle using the human-friendly logics,
@@ -36403,20 +36417,6 @@
             <summary>
             Represents brute force.
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.AnalysisResultOutput">
-            <summary>
-            Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
-            <summary>
-            Gets the output text.
-            </summary>
-            <param name="instance">The instance.</param>
-            <param name="options">The options.</param>
-            <param name="formatProvider">The format provider.</param>
-            <returns>The string.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
             <summary>

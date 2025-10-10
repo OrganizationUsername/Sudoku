@@ -1,4 +1,4 @@
-namespace Sudoku.Text;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides an easy way to output <see cref="AnalysisResult"/> with console colorization.

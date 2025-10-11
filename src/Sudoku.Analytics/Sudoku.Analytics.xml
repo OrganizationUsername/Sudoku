@@ -36485,7 +36485,7 @@
             Indicates limit maximum solutions to be checked.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.DancingLinks.#ctor(System.Int32,System.Boolean[])">
+        <member name="M:Sudoku.SetTheory.DancingLinks.#ctor(System.Int32,System.ReadOnlySpan{System.Boolean})">
             <summary>
             Initializes a <see cref="T:Sudoku.SetTheory.DancingLinks"/> instance via columns count and is-primary property to every column header.
             </summary>
@@ -36675,6 +36675,56 @@
             <param name="pattern">The pattern.</param>
             <returns>The permutations.</returns>
         </member>
+        <member name="T:Sudoku.SetTheory.Permutation">
+            <summary>
+            Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
+            </summary>
+            <param name="Assignments">Indicates the assignments.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32})">
+            <summary>
+            Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
+            </summary>
+            <param name="Assignments">Indicates the assignments.</param>
+        </member>
+        <member name="P:Sudoku.SetTheory.Permutation.Assignments">
+            <summary>Indicates the assignments.</summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Permutation.Candidates">
+            <summary>
+            Indicates candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.Equals(Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.CompareTo(Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.op_GreaterThan(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.op_LessThan(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.op_GreaterThanOrEqual(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Permutation.op_LessThanOrEqual(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.SetTheory.SetSolver">
             <summary>
             Represents an internal entry for dancing links solver.
@@ -36684,8 +36734,8 @@
             <summary>
             Solve for all selections of candidates that satisfy:
             <list type="bullet">
-            <item>Each truth: exactly one selected inside that <see cref="T:Sudoku.Concepts.CandidateMap"/></item>
-            <item>Each link: at most one selected inside that <see cref="T:Sudoku.Concepts.CandidateMap"/></item>
+            <item>Each truth: exactly one selected inside that set</item>
+            <item>Each link: at most one selected inside that set</item>
             </list>
             </summary>
             <param name="grid">

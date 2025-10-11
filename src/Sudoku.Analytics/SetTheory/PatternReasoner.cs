@@ -10,6 +10,6 @@ public static class PatternReasoner
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The permutations.</returns>
-	public static ReadOnlySpan<ReadOnlyMemory<Candidate>> GetPermutations(in Pattern pattern)
+	public static ReadOnlySpan<Permutation> GetPermutations(in Pattern pattern)
 		=> SetSolver.Solve(pattern.Grid, pattern.Truths, pattern.Links);
 }

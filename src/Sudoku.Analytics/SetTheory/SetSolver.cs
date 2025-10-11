@@ -10,8 +10,8 @@ internal static class SetSolver
 	/// <summary>
 	/// Solve for all selections of candidates that satisfy:
 	/// <list type="bullet">
-	/// <item>Each truth: exactly one selected inside that <see cref="CandidateMap"/></item>
-	/// <item>Each link: at most one selected inside that <see cref="CandidateMap"/></item>
+	/// <item>Each truth: exactly one selected inside that set</item>
+	/// <item>Each link: at most one selected inside that set</item>
 	/// </list>
 	/// </summary>
 	/// <param name="grid">
@@ -30,7 +30,7 @@ internal static class SetSolver
 	/// List of solutions; each solution is <see cref="Candidate"/>[] of candidates (0..728) that are true.
 	/// </returns>
 	/// <seealso cref="CandidateMap"/>
-	public static ReadOnlySpan<ReadOnlyMemory<Candidate>> Solve(
+	public static ReadOnlySpan<Permutation> Solve(
 		in Grid grid,
 		in SpaceSet truths,
 		in SpaceSet links,
@@ -38,107 +38,97 @@ internal static class SetSolver
 		bool includeUnconstrained = false
 	)
 	{
-		var strongRegions = new List<CandidateMap>();
-		var weakRegions = new List<CandidateMap>();
-		var candidateMap = CandidateMap.Empty;
+		var truthMaps = new List<CandidateMap>();
+		var linkMaps = new List<CandidateMap>();
+		var fullMap = CandidateMap.Empty;
 		foreach (var truth in truths)
 		{
 			var map = truth.GetAvailableRange(grid);
-			strongRegions.Add(map);
-			candidateMap |= map;
+			truthMaps.AddRef(map);
+			fullMap |= map;
 		}
 		foreach (var link in links)
 		{
-			weakRegions.Add(link.GetAvailableRange(grid) & candidateMap);
+			linkMaps.AddRef(link.GetAvailableRange(grid) & fullMap);
 		}
-
-		return Solve(in candidateMap, strongRegions, weakRegions, maxSolutions, includeUnconstrained);
+		return Solve(fullMap, truthMaps, linkMaps, maxSolutions, includeUnconstrained);
 	}
 
 	/// <inheritdoc cref="Solve(in Grid, in SpaceSet, in SpaceSet, int, bool)"/>
-	public static ReadOnlySpan<ReadOnlyMemory<Candidate>> Solve(
-		in Pattern pattern,
-		int maxSolutions = int.MaxValue,
-		bool includeUnconstrained = false
-	) => Solve(in pattern.Grid, pattern.Truths, pattern.Links, maxSolutions, includeUnconstrained);
+	public static ReadOnlySpan<Permutation> Solve(in Pattern pattern, int maxSolutions = int.MaxValue, bool includeUnconstrained = false)
+		=> Solve(pattern.Grid, pattern.Truths, pattern.Links, maxSolutions, includeUnconstrained);
 
 	/// <summary>
 	/// The backing method.
 	/// </summary>
-	private static ReadOnlySpan<ReadOnlyMemory<Candidate>> Solve(
-		scoped ref readonly CandidateMap fullMap,
+	private static ReadOnlySpan<Permutation> Solve(
+		scoped in CandidateMap fullMap,
 		List<CandidateMap> truths,
 		List<CandidateMap> links,
 		int maxSolutions = int.MaxValue,
 		bool includeUnconstrained = false
 	)
 	{
-		var strongCount = truths.Count;
-		var weakCount = links.Count;
-		var colCount = strongCount + weakCount;
-		var isPrimary = new bool[colCount];
-		for (var i = 0; i < strongCount; i++)
-		{
-			isPrimary[i] = true;
-		}
-		for (var i = 0; i < weakCount; i++)
-		{
-			isPrimary[strongCount + i] = false;
-		}
+		var truthsCount = truths.Count;
+		var linksCount = links.Count;
+		var allColumnsCount = truthsCount + linksCount;
+		var isPrimary = new bool[allColumnsCount].AsSpan();
+		isPrimary[..truthsCount].Fill(true);
+		isPrimary[truthsCount..].Clear();
 
-		var dlx = new DancingLinks(colCount, isPrimary);
+		var dlx = new DancingLinks(allColumnsCount, isPrimary);
 
 		// Map from candidateIndex -> list of column indices (where it's present).
-		var candidateToCols = new Dictionary<int, List<int>>();
+		var columnsLookup = new Dictionary<Candidate, List<Candidate>>();
 
 		// Gather mapping for truths.
-		for (var r = 0; r < strongCount; r++)
+		for (var r = 0; r < truthsCount; r++)
 		{
-			foreach (var idx in truths[r])
+			foreach (var candidate in truths[r])
 			{
-				if (!candidateToCols.TryGetValue(idx, out var list))
+				if (!columnsLookup.TryGetValue(candidate, out var list))
 				{
 					list = [];
-					candidateToCols[idx] = list;
+					columnsLookup[candidate] = list;
 				}
 				list.Add(r); // Primary column index.
 			}
 		}
 
 		// Gather mapping for links.
-		for (var r = 0; r < weakCount; r++)
+		for (var r = 0; r < linksCount; r++)
 		{
-			foreach (var idx in links[r])
+			foreach (var candidate in links[r])
 			{
-				if (!candidateToCols.TryGetValue(idx, out var list))
+				if (!columnsLookup.TryGetValue(candidate, out var list))
 				{
 					list = [];
-					candidateToCols[idx] = list;
+					columnsLookup[candidate] = list;
 				}
-				list.Add(strongCount + r);
+				list.Add(truthsCount + r);
 			}
 		}
 
 		// Decide which candidate to actually add as rows:
-		var bitsToConsider = includeUnconstrained
-			// Include every candidate allowed by 'fullMap'
+		var mapToConsider = includeUnconstrained
+			// Include every candidate allowed by 'fullMap'.
 			? fullMap
 			// Only include candidates that appear in at least one provided set.
-			: [.. candidateToCols.Keys];
+			: [.. columnsLookup.Keys];
 
 		// Add rows: each candidate present in candidateMap and considered will be a row.
 
 		// We will use 'rowId' == 'candidateIndex' for simplicity.
 		var rowId = 0;
-		foreach (var idx in bitsToConsider)
+		foreach (var candidate in mapToConsider)
 		{
-			if (!fullMap.Contains(idx))
+			if (!fullMap.Contains(candidate))
 			{
 				// Skip if not actually available.
 				continue;
 			}
 
-			if (!candidateToCols.TryGetValue(idx, out var cols) || cols is null || cols.Count == 0)
+			if (!columnsLookup.TryGetValue(candidate, out var columns) || columns is null || columns.Count == 0)
 			{
 				if (!includeUnconstrained)
 				{
@@ -147,11 +137,11 @@ internal static class SetSolver
 				}
 
 				// Row with no columns (free choice).
-				dlx.AddRow(idx, []);
+				dlx.AddRow(candidate, []);
 			}
 			else
 			{
-				dlx.AddRow(idx, cols);
+				dlx.AddRow(candidate, columns);
 			}
 			rowId++;
 		}
@@ -164,14 +154,14 @@ internal static class SetSolver
 		var rawSolutions = dlx.Solve(maxSolutions);
 
 		// Raw solutions are arrays of 'rowIds' which we set equal to candidates, so directly add them into result collection.
-		var results = new List<ReadOnlyMemory<Candidate>>();
+		var results = new List<Permutation>();
 		foreach (var solution in rawSolutions)
 		{
 			var arr = solution.ToArray();
 #if SORT_SOLUTION_ASSIGNMENTS
 			Array.Sort(arr);
 #endif
-			results.Add(arr);
+			results.Add(new(arr));
 		}
 
 		return results.AsSpan();

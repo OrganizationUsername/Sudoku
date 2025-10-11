@@ -46,7 +46,7 @@ public sealed class DancingLinks
 	/// </summary>
 	/// <param name="columnCount">The number of columns.</param>
 	/// <param name="isPrimary">Is-primary property to every column header.</param>
-	public DancingLinks(int columnCount, bool[] isPrimary)
+	public DancingLinks(int columnCount, ReadOnlySpan<bool> isPrimary)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(columnCount, isPrimary.Length);
 

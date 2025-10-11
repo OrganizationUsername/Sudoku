@@ -36668,6 +36668,21 @@
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
+        <member name="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)">
+            <summary>
+            Totals up how many truths and links covered for a specified candidate.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <param name="candidate">The candidate to check.</param>
+            <returns>A pair of numbers indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.SetTheory.PatternReasoner.GetExactCoveredCandidates(Sudoku.SetTheory.Pattern@)">
+            <summary>
+            Find for exact-covered candidates in the pattern.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <returns>All exact-covered candidates.</returns>
+        </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Pattern@)">
             <summary>
             Try to find all possible permutations.

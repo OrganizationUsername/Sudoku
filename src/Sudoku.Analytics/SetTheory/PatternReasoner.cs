@@ -6,6 +6,51 @@ namespace Sudoku.SetTheory;
 public static class PatternReasoner
 {
 	/// <summary>
+	/// Totals up how many truths and links covered for a specified candidate.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <param name="candidate">The candidate to check.</param>
+	/// <returns>A pair of numbers indicating that.</returns>
+	public static (int TruthsCount, int LinksCount) GetCoveredSetsCount(in Pattern pattern, Candidate candidate)
+	{
+		var truthsCount = 0;
+		var linksCount = 0;
+		foreach (var truth in pattern.Truths)
+		{
+			if (truth.Contains(candidate))
+			{
+				truthsCount++;
+			}
+		}
+		foreach (var link in pattern.Links)
+		{
+			if (link.Contains(candidate))
+			{
+				linksCount++;
+			}
+		}
+		return (truthsCount, linksCount);
+	}
+
+	/// <summary>
+	/// Find for exact-covered candidates in the pattern.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>All exact-covered candidates.</returns>
+	public static CandidateMap GetExactCoveredCandidates(in Pattern pattern)
+	{
+		var result = CandidateMap.Empty;
+		foreach (var candidate in pattern.Map)
+		{
+			if (GetCoveredSetsCount(pattern, candidate) == (1, 1))
+			{
+				result.Add(candidate);
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
 	/// Try to find all possible permutations.
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>

@@ -137,10 +137,10 @@ internal sealed class DancingLinks
 		c.L.R = c.R;
 
 		// For each row with a 1 in column c.
-		for (var i = c.D; i != c; i = i.D)
+		for (var i = c.D; !ReferenceEquals(i, c); i = i.D)
 		{
 			// For each node in that row, unlink vertically.
-			for (var j = i.R; j != i; j = j.R)
+			for (var j = i.R; !ReferenceEquals(j, i); j = j.R)
 			{
 				j.D.U = j.U;
 				j.U.D = j.D;
@@ -156,9 +156,9 @@ internal sealed class DancingLinks
 	private void Uncover(ColumnHeader c)
 	{
 		// Inverse of Cover: reinsert nodes and header.
-		for (var i = c.U; i != c; i = i.U)
+		for (var i = c.U; !ReferenceEquals(i, c); i = i.U)
 		{
-			for (var j = i.L; j != i; j = j.L)
+			for (var j = i.L; !ReferenceEquals(j, i); j = j.L)
 			{
 				j.C.Size++;
 				j.D.U = j;
@@ -225,7 +225,7 @@ internal sealed class DancingLinks
 	{
 		// If no primary columns remain, we have a valid partial cover -> record solution.
 		var hasPrimary = false;
-		for (var c = _head.R; c != _head; c = c.R)
+		for (var c = _head.R; !ReferenceEquals(c, _head); c = c.R)
 		{
 			var ch = (ColumnHeader)c;
 			if (ch.IsPrimary)
@@ -250,12 +250,12 @@ internal sealed class DancingLinks
 		}
 
 		Cover(col);
-		for (var r = col.D; r != col; r = r.D)
+		for (var r = col.D; !ReferenceEquals(r, col); r = r.D)
 		{
 			_solutionStack.Add(r.RowId);
 
 			// Cover other columns in this row.
-			for (var j = r.R; j != r; j = j.R)
+			for (var j = r.R; !ReferenceEquals(j, r); j = j.R)
 			{
 				Cover(j.C);
 			}
@@ -267,7 +267,7 @@ internal sealed class DancingLinks
 			}
 
 			// Backtrack.
-			for (var j = r.L; j != r; j = j.L)
+			for (var j = r.L; !ReferenceEquals(j, r); j = j.L)
 			{
 				Uncover(j.C);
 			}

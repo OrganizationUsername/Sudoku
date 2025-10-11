@@ -36418,6 +36418,301 @@
             Represents brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.SetTheory.ColumnHeader">
+            <summary>
+            Represents a column header.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.ColumnHeader.Size">
+            <summary>
+            Indicates the number of nodes in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.ColumnHeader.Id">
+            <summary>
+            Indicates the ID.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.ColumnHeader.IsPrimary">
+            <summary>
+            Indicates whether the column is primary (or secondary).
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.ColumnHeader.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.SetTheory.ColumnHeader"/> instance via ID and is-primary property.
+            </summary>
+            <param name="id">The ID.</param>
+            <param name="isPrimary">Is-primary property.</param>
+        </member>
+        <member name="T:Sudoku.SetTheory.DancingLinks">
+            <summary>
+            Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.
+            <list type="bullet">
+            <item>Columns are 0..(colCount - 1)</item>
+            <item>You add rows by listing the column indices this row has 1 in</item>
+            <item>Primary columns are covered/selected by algorithm; secondary columns are "optional"</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._head">
+            <summary>
+            Indicates head.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._columns">
+            <summary>
+            Indicates columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._rowNodes">
+            <summary>
+            Indicates row nodes, keeping references to row's first node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._solutionStack">
+            <summary>
+            Indicates list of row IDs chosen. This will be a solution stored.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._results">
+            <summary>
+            Indicates results.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.DancingLinks._limitMaxSolutions">
+            <summary>
+            Indicates limit maximum solutions to be checked.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.#ctor(System.Int32,System.Boolean[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.SetTheory.DancingLinks"/> instance via columns count and is-primary property to every column header.
+            </summary>
+            <param name="columnCount">The number of columns.</param>
+            <param name="isPrimary">Is-primary property to every column header.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.AddRow(System.Int32,System.Collections.Generic.IEnumerable{System.Int32})">
+            <summary>
+            Add a row with given <paramref name="rowId"/> and column indices <paramref name="colIndices"/> (may be empty list).
+            </summary>
+            <param name="rowId">The row ID.</param>
+            <param name="colIndices">Column indices.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.Cover(Sudoku.SetTheory.ColumnHeader)">
+            <summary>
+            Do cover operation.
+            </summary>
+            <param name="c">The column.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.Uncover(Sudoku.SetTheory.ColumnHeader)">
+            <summary>
+            Do uncover operation.
+            </summary>
+            <param name="c">The column.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.ChooseColumn">
+            <summary>
+            Choose a column.
+            </summary>
+            <returns>The chosen column. If failed to choose, <see langword="null"/> will be returned.</returns>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.Solve(System.Int32)">
+            <summary>
+            Enumerate solutions up to <paramref name="maxSolutions"/>.
+            The row IDs in each solution correspond to those given in <see cref="M:Sudoku.SetTheory.DancingLinks.AddRow(System.Int32,System.Collections.Generic.IEnumerable{System.Int32})"/>.
+            </summary>
+            <seealso cref="M:Sudoku.SetTheory.DancingLinks.AddRow(System.Int32,System.Collections.Generic.IEnumerable{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.DancingLinks.Search(System.Int32)">
+            <summary>
+            Perform depth-first searching to find solutions.
+            </summary>
+            <param name="k">The current index.</param>
+        </member>
+        <member name="T:Sudoku.SetTheory.Node">
+            <summary>
+            Represents a node. All fields in this type is nullable unaware.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.L">
+            <summary>
+            Provides up, down, left, right nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.R">
+            <summary>
+            Provides up, down, left, right nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.U">
+            <summary>
+            Provides up, down, left, right nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.D">
+            <summary>
+            Provides up, down, left, right nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.C">
+            <summary>
+            Indicates the column header.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Node.RowId">
+            <summary>
+            Indicates row ID.
+            This field is optional: identify which input row this node belongs to.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SetTheory.Pattern">
+            <summary>
+            Represents a pattern, defining sets of truths and links.
+            </summary>
+            <param name="truths"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Truths" path="/summary"/></param>
+            <param name="links"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Links" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Grid" path="/summary"/></param>
+            <remarks>
+            This type uses 400 bytes.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.#ctor(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a pattern, defining sets of truths and links.
+            </summary>
+            <param name="truths"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Truths" path="/summary"/></param>
+            <param name="links"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Links" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Grid" path="/summary"/></param>
+            <remarks>
+            This type uses 400 bytes.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.SetTheory.Pattern._truths">
+            <summary>
+            Indicates truths and links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Pattern._links">
+            <summary>
+            Indicates truths and links.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Pattern._map">
+            <summary>
+            Indicates grid candidates used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.Pattern._originalGrid">
+            <summary>
+            Indicates original grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.Truths">
+            <summary>
+            Indicates truths.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.Links">
+            <summary>
+            Indicates links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.Map">
+            <summary>
+            Indicates the target candidates used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.Grid">
+            <summary>
+            Indicates original grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.Equals(Sudoku.SetTheory.Pattern@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.System#IEquatable{Sudoku#SetTheory#Pattern}#Equals(Sudoku.SetTheory.Pattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.BuildMap(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified truths.
+            </summary>
+            <param name="truths">The truths.</param>
+            <param name="grid">The grid.</param>
+            <returns>The grid.</returns>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.op_Equality(Sudoku.SetTheory.Pattern@,Sudoku.SetTheory.Pattern@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.op_Inequality(Sudoku.SetTheory.Pattern@,Sudoku.SetTheory.Pattern@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.System#Numerics#IEqualityOperators{Sudoku#SetTheory#Pattern,Sudoku#SetTheory#Pattern,System#Boolean}#op_Equality(Sudoku.SetTheory.Pattern,Sudoku.SetTheory.Pattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.System#Numerics#IEqualityOperators{Sudoku#SetTheory#Pattern,Sudoku#SetTheory#Pattern,System#Boolean}#op_Inequality(Sudoku.SetTheory.Pattern,Sudoku.SetTheory.Pattern)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SetTheory.PatternReasoner">
+            <summary>
+            Provides a list of members to get pattern detailed information that should be inferred.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Pattern@)">
+            <summary>
+            Try to find all possible permutations.
+            </summary>
+            <param name="pattern">The pattern.</param>
+            <returns>The permutations.</returns>
+        </member>
+        <member name="T:Sudoku.SetTheory.SetSolver">
+            <summary>
+            Represents an internal entry for dancing links solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.SetSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,System.Int32,System.Boolean)">
+            <summary>
+            Solve for all selections of candidates that satisfy:
+            <list type="bullet">
+            <item>Each truth: exactly one selected inside that <see cref="T:Sudoku.Concepts.CandidateMap"/></item>
+            <item>Each link: at most one selected inside that <see cref="T:Sudoku.Concepts.CandidateMap"/></item>
+            </list>
+            </summary>
+            <param name="grid">
+            The grid that represents overall available candidates (i.e. <see cref="T:Sudoku.Concepts.CandidateMap"/>)
+            - but only bits that appear in at least one set are actually added as DLX rows by default.
+            </param>
+            <param name="truths">Lists of <see cref="T:Sudoku.Concepts.CandidateMap"/> describing which candidates belong to each set.</param>
+            <param name="links">Lists of <see cref="T:Sudoku.Concepts.CandidateMap"/> describing which candidates belong to each set.</param>
+            <param name="maxSolutions">The limit maximum solutions can be found.</param>
+            <param name="includeUnconstrained">
+            Indicates whether unconstrained candidates will be included to check.
+            By default we <b>skip</b> candidates that are not present in any set (to avoid combinatorial explosion).
+            If you really want to include unconstrained candidates (combinatorial), set <see langword="true"/> (dangerous).
+            </param>
+            <returns>
+            List of solutions; each solution is <see cref="T:System.Int32"/>[] of candidates (0..728) that are true.
+            </returns>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.SetSolver.Solve(Sudoku.SetTheory.Pattern@,System.Int32,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.SetTheory.SetSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,System.Int32,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.SetSolver.Solve(Sudoku.Concepts.CandidateMap@,System.Collections.Generic.List{Sudoku.Concepts.CandidateMap},System.Collections.Generic.List{Sudoku.Concepts.CandidateMap},System.Int32,System.Boolean)">
+            <summary>
+            The backing method.
+            </summary>
+        </member>
         <member name="T:System.Runtime.CompilerServices.InterceptsLocationAttribute">
             <summary>
             <para>

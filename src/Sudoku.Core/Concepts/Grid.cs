@@ -9,7 +9,7 @@ using InlineArrayGridBase = IInlineArrayGrid<Grid>;
 /// Represents a sudoku grid.
 /// </summary>
 /// <remarks>
-/// This type uses 162 bits.
+/// This type uses 162 bytes.
 /// </remarks>
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]

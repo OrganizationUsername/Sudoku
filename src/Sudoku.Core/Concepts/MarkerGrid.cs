@@ -16,7 +16,7 @@ using InlineArrayGridBase = IInlineArrayGrid<MarkerGrid>;
 /// however, <see cref="MarkerGrid"/> instances won't contain any candidates at initial state.
 /// All candicates should be manually appended into grid.
 /// </para>
-/// <para>This type uses 162 bits.</para>
+/// <para>This type uses 162 bytes.</para>
 /// </remarks>
 /// <seealso cref="Grid"/>
 /// <seealso cref="Grid.SetCandidates(Cell, Mask)"/>

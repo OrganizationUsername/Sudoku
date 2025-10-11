@@ -179,7 +179,7 @@
             Encapsulates a binary series of candidate state table.
             </summary>
             <remarks>
-            This type uses 96 bits.
+            This type uses 96 bytes.
             </remarks>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap.CellDigitEnumerator">
@@ -705,7 +705,7 @@
             Encapsulates a binary series of cell state table.
             </summary>
             <remarks>
-            This type uses 16 bits.
+            This type uses 16 bytes.
             </remarks>
             <seealso cref="T:System.Runtime.Intrinsics.Vector128`1"/>
         </member>
@@ -4626,7 +4626,7 @@
             Represents a sudoku grid.
             </summary>
             <remarks>
-            This type uses 162 bits.
+            This type uses 162 bytes.
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
@@ -6955,7 +6955,7 @@
             however, <see cref="T:Sudoku.Concepts.MarkerGrid"/> instances won't contain any candidates at initial state.
             All candicates should be manually appended into grid.
             </para>
-            <para>This type uses 162 bits.</para>
+            <para>This type uses 162 bytes.</para>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="M:Sudoku.Concepts.Grid.SetCandidates(System.Int32,System.Int16)"/>

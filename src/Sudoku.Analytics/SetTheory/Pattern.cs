@@ -14,14 +14,9 @@ public readonly struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern
 	private readonly SpaceSet _truths, _links;
 
 	/// <summary>
-	/// Indicates all candidates used in truths.
+	/// Indicates all candidates used in truths and links.
 	/// </summary>
-	private readonly CandidateMap _map;
-
-	/// <summary>
-	/// Indicates all candidates used in both truths and links.
-	/// </summary>
-	private readonly CandidateMap _mapIncludingLinks;
+	private readonly CandidateMap _map, _mapIncludingLinks;
 
 	/// <summary>
 	/// Indicates original grid.
@@ -43,6 +38,12 @@ public readonly struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern
 		_originalGrid = grid;
 	}
 
+
+	/// <summary>
+	/// Indicates the number of candidates used in the pattern.
+	/// Candidates from links (but not from truths) will be ignored.
+	/// </summary>
+	public int CandidatesCount => Map.Count;
 
 	/// <summary>
 	/// Indicates truths.
@@ -69,6 +70,26 @@ public readonly struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern
 	public ref readonly CandidateMap FullMap => ref _mapIncludingLinks;
 
 	/// <summary>
+	/// Find for exact-covered candidates in the pattern.
+	/// </summary>
+	/// <returns>All exact-covered candidates.</returns>
+	public CandidateMap ExactCoveredCandidates
+	{
+		get
+		{
+			var result = CandidateMap.Empty;
+			foreach (var candidate in Map)
+			{
+				if (GetCoveredSetsCount(candidate).IsExactCovered)
+				{
+					result.Add(candidate);
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates original grid.
 	/// </summary>
 	[UnscopedRef]
@@ -79,13 +100,49 @@ public readonly struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Pattern comparer && Equals(comparer);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public bool Equals(in Pattern other) => Truths == other.Truths && Links == other.Links;
+	public bool Equals(in Pattern other)
+		=> Map == other.Map && FullMap == other.FullMap
+		&& Grid == other.Grid
+		&& Truths == other.Truths && Links == other.Links;
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => HashCode.Combine(Truths, Links);
+	public override int GetHashCode()
+		=> HashCode.Combine(
+			Map.GetHashCode(),
+			FullMap.GetHashCode(),
+			Grid.GetHashCode(),
+			Truths.GetHashCode(),
+			Links.GetHashCode()
+		);
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => $"T{_truths.Count} = {_truths}, L{_links.Count} = {_links}";
+
+	/// <summary>
+	/// Totals up how many truths and links covered for a specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate to check.</param>
+	/// <returns>A pair of numbers indicating that.</returns>
+	public CoveredSetsCount GetCoveredSetsCount(Candidate candidate)
+	{
+		var truthsCount = 0;
+		var linksCount = 0;
+		foreach (var truth in Truths)
+		{
+			if (truth.Contains(candidate))
+			{
+				truthsCount++;
+			}
+		}
+		foreach (var link in Links)
+		{
+			if (link.Contains(candidate))
+			{
+				linksCount++;
+			}
+		}
+		return new(truthsCount, linksCount);
+	}
 
 	/// <inheritdoc/>
 	bool IEquatable<Pattern>.Equals(Pattern other) => Equals(other);

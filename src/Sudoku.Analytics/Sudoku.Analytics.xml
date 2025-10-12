@@ -36447,19 +36447,19 @@
         </member>
         <member name="T:Sudoku.SetTheory.CoveredSetsCount">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)"/>.
+            Represents a result value of covered sets, returned by <see cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)"/>.
+            <seealso cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
         </member>
         <member name="M:Sudoku.SetTheory.CoveredSetsCount.#ctor(System.Int32,System.Int32)">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)"/>.
+            Represents a result value of covered sets, returned by <see cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)"/>.
+            <seealso cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
         </member>
         <member name="P:Sudoku.SetTheory.CoveredSetsCount.TruthsCount">
             <summary>Indicates the number of truths covered.</summary>
@@ -36626,12 +36626,12 @@
         </member>
         <member name="F:Sudoku.SetTheory.Pattern._map">
             <summary>
-            Indicates all candidates used in truths.
+            Indicates all candidates used in truths and links.
             </summary>
         </member>
         <member name="F:Sudoku.SetTheory.Pattern._mapIncludingLinks">
             <summary>
-            Indicates all candidates used in both truths and links.
+            Indicates all candidates used in truths and links.
             </summary>
         </member>
         <member name="F:Sudoku.SetTheory.Pattern._originalGrid">
@@ -36646,6 +36646,12 @@
             <param name="truths"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Truths" path="/summary"/></param>
             <param name="links"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Links" path="/summary"/></param>
             <param name="grid"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Grid" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.CandidatesCount">
+            <summary>
+            Indicates the number of candidates used in the pattern.
+            Candidates from links (but not from truths) will be ignored.
+            </summary>
         </member>
         <member name="P:Sudoku.SetTheory.Pattern.Truths">
             <summary>
@@ -36667,6 +36673,12 @@
             Indicates all candidates used in both truths and links.
             </summary>
         </member>
+        <member name="P:Sudoku.SetTheory.Pattern.ExactCoveredCandidates">
+            <summary>
+            Find for exact-covered candidates in the pattern.
+            </summary>
+            <returns>All exact-covered candidates.</returns>
+        </member>
         <member name="P:Sudoku.SetTheory.Pattern.Grid">
             <summary>
             Indicates original grid.
@@ -36683,6 +36695,13 @@
         </member>
         <member name="M:Sudoku.SetTheory.Pattern.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.GetCoveredSetsCount(System.Int32)">
+            <summary>
+            Totals up how many truths and links covered for a specified candidate.
+            </summary>
+            <param name="candidate">The candidate to check.</param>
+            <returns>A pair of numbers indicating that.</returns>
         </member>
         <member name="M:Sudoku.SetTheory.Pattern.System#IEquatable{Sudoku#SetTheory#Pattern}#Equals(Sudoku.SetTheory.Pattern)">
             <inheritdoc/>
@@ -36714,19 +36733,22 @@
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetExactCoveredCandidates(Sudoku.SetTheory.Pattern@)">
-            <summary>
-            Find for exact-covered candidates in the pattern.
-            </summary>
-            <param name="pattern">The pattern.</param>
-            <returns>All exact-covered candidates.</returns>
-        </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Pattern@)">
             <summary>
+            <para>
             Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
+            </para>
+            <para>
+            Please note that the return value may not be a stable number
+            because sometimes the pattern may not be stable always.
+            For example, if a pattern produces multiple eliminations from different sub-patterns,
+            the result may uses different number of assignments to satisfy all sets (truths and links).
+            Please check type <see cref="T:Sudoku.SetTheory.AssignmentCountRange"/> to learn more details of result.
+            </para>
             </summary>
             <param name="pattern">The pattern.</param>
             <returns>The permutation count value.</returns>
+            <seealso cref="T:Sudoku.SetTheory.AssignmentCountRange"/>
         </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Pattern@)">
             <summary>
@@ -36755,14 +36777,6 @@
             </summary>
             <param name="pattern">The pattern.</param>
             <returns>All rank-0 eliminations.</returns>
-        </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetCoveredSetsCount(Sudoku.SetTheory.Pattern@,System.Int32)">
-            <summary>
-            Totals up how many truths and links covered for a specified candidate.
-            </summary>
-            <param name="pattern">The pattern.</param>
-            <param name="candidate">The candidate to check.</param>
-            <returns>A pair of numbers indicating that.</returns>
         </member>
         <member name="T:Sudoku.SetTheory.Permutation">
             <summary>

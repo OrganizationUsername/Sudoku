@@ -79,8 +79,14 @@ internal sealed class DancingLinks
 
 	/// <summary>
 	/// Enumerate solutions up to <paramref name="maxSolutions"/>.
-	/// The row IDs in each solution correspond to those given in <see cref="AddRow(Candidate, ReadOnlySpan{Candidate})"/>.
+	/// The row IDs in each solution correspond to those
+	/// given in <see cref="AddRow(Candidate, ReadOnlySpan{Candidate})"/>.
 	/// </summary>
+	/// <param name="maxSolutions">
+	/// Specify the desired number of solutions this algorithm can detect.
+	/// If limit is reached, an exception of type <see cref="DancingLinksToComplexException"/> will be thrown
+	/// if symbol <c>SET_THROW_IF_LIMIT_IS_REACHED</c> is configured, or return all found solutions if not.
+	/// </param>
 	/// <exception cref="DancingLinksToComplexException">
 	/// Throws when pattern is too complex to be calculated,
 	/// and symbol <c>SET_THROW_IF_LIMIT_IS_REACHED</c> is enabled.

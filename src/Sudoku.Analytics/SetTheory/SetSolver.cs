@@ -151,10 +151,6 @@ internal static class SetSolver
 		// If any primary column has size 0 -> no solution.
 		// We can inspect columns by trying to cover via a small helper (not exposing internals).
 		// For simplicity, we skip extra check here; DLX will simply produce no results.
-
-		var rawSolutions = dlx.Solve(maxSolutions);
-
-		// Raw solutions are arrays of 'rowIds' which we set equal to candidates, so directly add them into result collection.
-		return rawSolutions.AsSpan();
+		return dlx.Solve(maxSolutions).AsSpan();
 	}
 }

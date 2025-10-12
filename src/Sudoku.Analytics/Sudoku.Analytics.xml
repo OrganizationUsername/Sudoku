@@ -36448,12 +36448,8 @@
         <member name="T:Sudoku.SetTheory.DancingLinks">
             <summary>
             Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.
-            <list type="bullet">
-            <item>Columns are 0..(colCount - 1)</item>
-            <item>You add rows by listing the column indices this row has 1 in</item>
-            <item>Primary columns are covered/selected by algorithm; secondary columns are "optional"</item>
-            </list>
             </summary>
+            <!--Primary columns are covered/selected by algorithm; secondary columns are "optional".-->
         </member>
         <member name="F:Sudoku.SetTheory.DancingLinks._head">
             <summary>
@@ -36511,10 +36507,10 @@
         </member>
         <member name="M:Sudoku.SetTheory.DancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})">
             <summary>
-            Add a row with given <paramref name="rowId"/> and column indices <paramref name="colIndices"/> (may be empty list).
+            Add a row with given <paramref name="rowId"/> and column indices <paramref name="columnIndices"/> (may be empty list).
             </summary>
             <param name="rowId">The row ID.</param>
-            <param name="colIndices">Column indices.</param>
+            <param name="columnIndices">Column indices.</param>
         </member>
         <member name="M:Sudoku.SetTheory.DancingLinks.Cover(Sudoku.SetTheory.ColumnHeader)">
             <summary>

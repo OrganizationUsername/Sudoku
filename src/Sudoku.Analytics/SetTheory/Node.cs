@@ -1,5 +1,3 @@
-#nullable disable
-
 namespace Sudoku.SetTheory;
 
 /// <summary>
@@ -10,12 +8,12 @@ internal class Node
 	/// <summary>
 	/// Provides up, down, left, right nodes.
 	/// </summary>
-	public Node L, R, U, D;
+	public Node? L, R, U, D;
 
 	/// <summary>
 	/// Indicates the column header.
 	/// </summary>
-	public ColumnHeader C;
+	public ColumnHeader? C;
 
 	/// <summary>
 	/// Indicates row ID.

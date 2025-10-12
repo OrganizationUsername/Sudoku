@@ -7,12 +7,8 @@ namespace Sudoku.SetTheory;
 
 /// <summary>
 /// Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.
-/// <list type="bullet">
-/// <item>Columns are 0..(colCount - 1)</item>
-/// <item>You add rows by listing the column indices this row has 1 in</item>
-/// <item>Primary columns are covered/selected by algorithm; secondary columns are "optional"</item>
-/// </list>
 /// </summary>
+/// <!--Primary columns are covered/selected by algorithm; secondary columns are "optional".-->
 internal sealed class DancingLinks
 {
 	/// <summary>
@@ -62,17 +58,16 @@ internal sealed class DancingLinks
 		_columns = new ColumnHeader[columnCount];
 		for (var i = 0; i < columnCount; i++)
 		{
-			var ch = new ColumnHeader(i, isPrimary[i]);
+			var header = new ColumnHeader(i, isPrimary[i]);
 			{
 				// Link into header's horizontal list.
-				ch.R = _head;
-				ch.L = _head.L;
-				_head.L.R = ch;
-				_head.L = ch;
-				ch.U = ch.D = ch;
+				header.R = _head;
+				header.L = _head.L;
+				_head.L.R = header;
+				_head.L = header;
+				header.U = header.D = header;
 			}
-
-			_columns[i] = ch;
+			_columns[i] = header;
 		}
 	}
 
@@ -106,28 +101,29 @@ internal sealed class DancingLinks
 	}
 
 	/// <summary>
-	/// Add a row with given <paramref name="rowId"/> and column indices <paramref name="colIndices"/> (may be empty list).
+	/// Add a row with given <paramref name="rowId"/> and column indices <paramref name="columnIndices"/> (may be empty list).
 	/// </summary>
 	/// <param name="rowId">The row ID.</param>
-	/// <param name="colIndices">Column indices.</param>
-	public void AddRow(Candidate rowId, ReadOnlySpan<Candidate> colIndices)
+	/// <param name="columnIndices">Column indices.</param>
+	public void AddRow(Candidate rowId, ReadOnlySpan<Candidate> columnIndices)
 	{
 		var first = default(Node);
 		var prev = default(Node);
-		foreach (var cidx in colIndices)
+		foreach (var columnIndex in columnIndices)
 		{
-			ArgumentOutOfRangeException.ThrowIfNegative(cidx);
-			ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(cidx, _columns.Length);
+			ArgumentOutOfRangeException.ThrowIfNegative(columnIndex);
+			ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(columnIndex, _columns.Length);
 
-			var col = _columns[cidx];
-			var node = new Node { C = col, RowId = rowId };
+			var column = _columns[columnIndex];
+			var node = new Node { C = column, RowId = rowId };
 			{
 				// Vertical link: insert node at bottom of column.
-				node.D = col;
-				node.U = col.U;
-				col.U.D = node;
-				col.U = node;
-				col.Size++;
+				node.D = column;
+				node.U = column.U;
+				Debug.Assert(column.U is not null);
+				column.U.D = node;
+				column.U = node;
+				column.Size++;
 			}
 
 			// Horizontal link among row.
@@ -151,11 +147,7 @@ internal sealed class DancingLinks
 		if (first is null)
 		{
 			// Create a singleton placeholder node not linked to any column (for row with no columns).
-			var placeholder = new Node
-			{
-				C = null,
-				RowId = rowId
-			};
+			var placeholder = new Node { C = null, RowId = rowId };
 			placeholder.L = placeholder.R = placeholder;
 			first = placeholder;
 		}
@@ -169,15 +161,19 @@ internal sealed class DancingLinks
 	private void Cover(ColumnHeader c)
 	{
 		// Remove column header.
+		Debug.Assert(c is { R: not null, L: not null });
 		c.R.L = c.L;
 		c.L.R = c.R;
 
 		// For each row with a 1 in column c.
 		for (var i = c.D; !ReferenceEquals(i, c); i = i.D)
 		{
+			Debug.Assert(i is not null);
+
 			// For each node in that row, unlink vertically.
 			for (var j = i.R; !ReferenceEquals(j, i); j = j.R)
 			{
+				Debug.Assert(j is { D: not null, U: not null, C: not null });
 				j.D.U = j.U;
 				j.U.D = j.D;
 				j.C.Size--;
@@ -194,14 +190,17 @@ internal sealed class DancingLinks
 		// Inverse of Cover: reinsert nodes and header.
 		for (var i = c.U; !ReferenceEquals(i, c); i = i.U)
 		{
+			Debug.Assert(i is not null);
 			for (var j = i.L; !ReferenceEquals(j, i); j = j.L)
 			{
+				Debug.Assert(j is { D: not null, U: not null, C: not null });
 				j.C.Size++;
 				j.D.U = j;
 				j.U.D = j;
 			}
 		}
 
+		Debug.Assert(c is { R: not null, L: not null });
 		c.R.L = c;
 		c.L.R = c;
 	}
@@ -217,6 +216,7 @@ internal sealed class DancingLinks
 		var bestSize = int.MaxValue;
 		for (var c = _head.R; !ReferenceEquals(c, _head); c = c.R)
 		{
+			Debug.Assert(c is not null);
 			var ch = (ColumnHeader)c;
 			if (!ch.IsPrimary)
 			{
@@ -248,6 +248,7 @@ internal sealed class DancingLinks
 		var hasPrimary = false;
 		for (var c = _head.R; !ReferenceEquals(c, _head); c = c.R)
 		{
+			Debug.Assert(c is not null);
 			var ch = (ColumnHeader)c;
 			if (ch.IsPrimary)
 			{
@@ -273,11 +274,13 @@ internal sealed class DancingLinks
 		Cover(col);
 		for (var r = col.D; !ReferenceEquals(r, col); r = r.D)
 		{
+			Debug.Assert(r is not null);
 			_solutionStack.Add(r.RowId);
 
 			// Cover other columns in this row.
 			for (var j = r.R; !ReferenceEquals(j, r); j = j.R)
 			{
+				Debug.Assert(j is { C: not null });
 				Cover(j.C);
 			}
 
@@ -294,6 +297,7 @@ internal sealed class DancingLinks
 			// Backtrack.
 			for (var j = r.L; !ReferenceEquals(j, r); j = j.L)
 			{
+				Debug.Assert(j is { C: not null });
 				Uncover(j.C);
 			}
 			_solutionStack.RemoveAt(^1);

@@ -165,6 +165,9 @@
   * [秩的修正方式](rank-theory/10-rank-fixing/03-solution-to-rank-fixing.md)
   * [守护者的秩的修正](rank-theory/10-rank-fixing/04-rank-fixing-on-guardian-pattern.md)
 * [不饱和鱼](rank-theory/11-unsaturated-fish.md)
+* [解鱼](rank-theory/12-jye-fish/README.md)
+  * [虚拟区域](rank-theory/12-jye-fish/01-virtual-set.md)
+  * [解鱼的基本推理](rank-theory/12-jye-fish/02-reasoning-of-jye-fish.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

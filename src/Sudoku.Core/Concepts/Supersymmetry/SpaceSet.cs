@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Supersymmetry;
 /// Represents a set of <see cref="Space"/> instances.
 /// </summary>
 /// <remarks>
-/// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
+/// This type uses 64 bytes.
 /// </remarks>
 /// <seealso cref="Space"/>
 public partial struct SpaceSet :

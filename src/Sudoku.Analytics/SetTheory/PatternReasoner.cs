@@ -24,12 +24,34 @@ public static class PatternReasoner
 	}
 
 	/// <summary>
+	/// Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
+	/// </summary>
+	/// <param name="pattern">The pattern.</param>
+	/// <returns>The permutation count value.</returns>
+	public static PermutationCountRange GetPermutationCount(in Pattern pattern)
+	{
+		var (min, max) = (int.MaxValue, int.MinValue);
+		foreach (var permutation in GetPermutations(pattern))
+		{
+			var count = permutation.Assignments.Length;
+			if (count <= min)
+			{
+				min = count;
+			}
+			if (count >= max)
+			{
+				max = count;
+			}
+		}
+		return (min, max) is ( >= 0, >= 0) ? new(min, max) : new();
+	}
+
+	/// <summary>
 	/// Try to find all possible permutations.
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The permutations.</returns>
-	public static ReadOnlySpan<Permutation> GetPermutations(in Pattern pattern)
-		=> SetSolver.Solve(pattern.Grid, pattern.Truths, pattern.Links);
+	public static ReadOnlySpan<Permutation> GetPermutations(in Pattern pattern) => SetSolver.Solve(pattern);
 
 	/// <summary>
 	/// Try to find all conclusions.

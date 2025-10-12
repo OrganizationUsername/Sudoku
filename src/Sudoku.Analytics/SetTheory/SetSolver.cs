@@ -14,12 +14,7 @@ internal static class SetSolver
 	/// <item>Each link: at most one selected inside that set</item>
 	/// </list>
 	/// </summary>
-	/// <param name="grid">
-	/// The grid that represents overall available candidates (i.e. <see cref="CandidateMap"/>)
-	/// - but only bits that appear in at least one set are actually added as DLX rows by default.
-	/// </param>
-	/// <param name="truths">Lists of <see cref="CandidateMap"/> describing which candidates belong to each set.</param>
-	/// <param name="links">Lists of <see cref="CandidateMap"/> describing which candidates belong to each set.</param>
+	/// <param name="pattern">The pattern to be used.</param>
 	/// <param name="maxSolutions">The limit maximum solutions can be found.</param>
 	/// <param name="includeUnconstrained">
 	/// Indicates whether unconstrained candidates will be included to check.
@@ -29,16 +24,12 @@ internal static class SetSolver
 	/// <returns>
 	/// List of solutions; each solution is a <see cref="Permutation"/> of assigned candidates (0..728).
 	/// </returns>
-	/// <seealso cref="CandidateMap"/>
 	/// <seealso cref="Permutation"/>
-	public static ReadOnlySpan<Permutation> Solve(
-		in Grid grid,
-		in SpaceSet truths,
-		in SpaceSet links,
-		int maxSolutions = int.MaxValue,
-		bool includeUnconstrained = false
-	)
+	public static ReadOnlySpan<Permutation> Solve(in Pattern pattern, int maxSolutions = int.MaxValue, bool includeUnconstrained = false)
 	{
+		ref readonly var truths = ref pattern.Truths;
+		ref readonly var links = ref pattern.Links;
+		ref readonly var grid = ref pattern.Grid;
 		var truthMaps = new List<CandidateMap>();
 		var linkMaps = new List<CandidateMap>();
 		var fullMap = CandidateMap.Empty;
@@ -52,26 +43,22 @@ internal static class SetSolver
 		{
 			linkMaps.AddRef(link.GetAvailableRange(grid) & fullMap);
 		}
-		return Solve(fullMap, truthMaps, linkMaps, maxSolutions, includeUnconstrained);
+		return Solve(fullMap, truthMaps.AsSpan(), linkMaps.AsSpan(), maxSolutions, includeUnconstrained);
 	}
-
-	/// <inheritdoc cref="Solve(in Grid, in SpaceSet, in SpaceSet, int, bool)"/>
-	public static ReadOnlySpan<Permutation> Solve(in Pattern pattern, int maxSolutions = int.MaxValue, bool includeUnconstrained = false)
-		=> Solve(pattern.Grid, pattern.Truths, pattern.Links, maxSolutions, includeUnconstrained);
 
 	/// <summary>
 	/// The backing method.
 	/// </summary>
 	private static ReadOnlySpan<Permutation> Solve(
 		scoped in CandidateMap fullMap,
-		List<CandidateMap> truths,
-		List<CandidateMap> links,
+		ReadOnlySpan<CandidateMap> truths,
+		ReadOnlySpan<CandidateMap> links,
 		int maxSolutions = int.MaxValue,
 		bool includeUnconstrained = false
 	)
 	{
-		var truthsCount = truths.Count;
-		var linksCount = links.Count;
+		var truthsCount = truths.Length;
+		var linksCount = links.Length;
 		var allColumnsCount = truthsCount + linksCount;
 		var isPrimary = new bool[allColumnsCount].AsSpan();
 		isPrimary[..truthsCount].Fill(true);

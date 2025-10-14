@@ -34,7 +34,7 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 	{
 		_truths = truths;
 		_links = links;
-		_map = BuildMap(in truths, in links, in grid, out _mapIncludingLinks);
+		_map = RebuildMap(in truths, ref _links, in grid, out _mapIncludingLinks);
 		_originalGrid = grid;
 	}
 
@@ -149,21 +149,69 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 		return new(truthsCount, linksCount);
 	}
 
+	/// <summary>
+	/// Add a new truth to the pattern.
+	/// </summary>
+	/// <param name="truth">The truth to add.</param>
+	public void AddTruth(Space truth)
+	{
+		if (_truths.Add(truth))
+		{
+			_map = RebuildMap(in _truths, ref _links, in _originalGrid, out _mapIncludingLinks);
+		}
+	}
+
+	/// <summary>
+	/// Add a new link to the pattern.
+	/// </summary>
+	/// <param name="link">The link to add.</param>
+	public void AddLink(Space link)
+	{
+		if (_links.Add(link))
+		{
+			_map = RebuildMap(in _truths, ref _links, in _originalGrid, out _mapIncludingLinks);
+		}
+	}
+
+	/// <summary>
+	/// Remove a truth from the pattern.
+	/// </summary>
+	/// <param name="truth">The truth to remove.</param>
+	public void RemoveTruth(Space truth)
+	{
+		if (!_truths.Remove(truth))
+		{
+			_map = RebuildMap(in _truths, ref _links, in _originalGrid, out _mapIncludingLinks);
+		}
+	}
+
+	/// <summary>
+	/// Remove a link from the pattern.
+	/// </summary>
+	/// <param name="link">The link to remove.</param>
+	public void RemoveLink(Space link)
+	{
+		if (_links.Remove(link))
+		{
+			_map = RebuildMap(in _truths, ref _links, in _originalGrid, out _mapIncludingLinks);
+		}
+	}
+
 	/// <inheritdoc/>
 	readonly bool IEquatable<Pattern>.Equals(Pattern other) => Equals(other);
 
 
 	/// <summary>
-	/// Creates a <see cref="CandidateMap"/> via the specified truths.
+	/// Creates a <see cref="CandidateMap"/> via the specified truths and links.
 	/// </summary>
 	/// <param name="truths">The truths.</param>
-	/// <param name="links">The links.</param>
+	/// <param name="links">The links. Isolated links are ignored to be added.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="mapIncludingLinks">The map including links.</param>
 	/// <returns>The candidates used only in truths.</returns>
-	private static CandidateMap BuildMap(
+	private static CandidateMap RebuildMap(
 		ref readonly SpaceSet truths,
-		ref readonly SpaceSet links,
+		ref SpaceSet links,
 		ref readonly Grid grid,
 		out CandidateMap mapIncludingLinks
 	)
@@ -175,9 +223,19 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 			result |= map;
 			mapIncludingLinks |= map;
 		}
-		foreach (var link in links)
+
+		var tempLinks = links;
+		foreach (var link in tempLinks)
 		{
-			mapIncludingLinks |= link.GetAvailableRange(grid);
+			// Check whether any links are isolated - no candidates connected to map.
+			var map = link.GetAvailableRange(grid);
+			if (!(map & result))
+			{
+				// Isolated link.
+				links -= link;
+				continue;
+			}
+			mapIncludingLinks |= map;
 		}
 		return result;
 	}

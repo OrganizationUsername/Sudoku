@@ -36734,15 +36734,39 @@
             <param name="candidate">The candidate to check.</param>
             <returns>A pair of numbers indicating that.</returns>
         </member>
+        <member name="M:Sudoku.SetTheory.Pattern.AddTruth(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Add a new truth to the pattern.
+            </summary>
+            <param name="truth">The truth to add.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.AddLink(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Add a new link to the pattern.
+            </summary>
+            <param name="link">The link to add.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.RemoveTruth(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Remove a truth from the pattern.
+            </summary>
+            <param name="truth">The truth to remove.</param>
+        </member>
+        <member name="M:Sudoku.SetTheory.Pattern.RemoveLink(Sudoku.Concepts.Supersymmetry.Space)">
+            <summary>
+            Remove a link from the pattern.
+            </summary>
+            <param name="link">The link to remove.</param>
+        </member>
         <member name="M:Sudoku.SetTheory.Pattern.System#IEquatable{Sudoku#SetTheory#Pattern}#Equals(Sudoku.SetTheory.Pattern)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Pattern.BuildMap(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.SetTheory.Pattern.RebuildMap(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@)">
             <summary>
-            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified truths.
+            Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified truths and links.
             </summary>
             <param name="truths">The truths.</param>
-            <param name="links">The links.</param>
+            <param name="links">The links. Isolated links are ignored to be added.</param>
             <param name="grid">The grid.</param>
             <param name="mapIncludingLinks">The map including links.</param>
             <returns>The candidates used only in truths.</returns>

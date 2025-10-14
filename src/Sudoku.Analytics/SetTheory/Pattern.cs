@@ -40,6 +40,11 @@ public readonly struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern
 
 
 	/// <summary>
+	/// Indicates whether all candidates used in truths are exact-covered or not.
+	/// </summary>
+	public bool IsExactCovered => ExactCoveredCandidates == Map;
+
+	/// <summary>
 	/// Indicates the number of candidates used in the pattern.
 	/// Candidates from links (but not from truths) will be ignored.
 	/// </summary>

@@ -36473,19 +36473,19 @@
         </member>
         <member name="T:Sudoku.SetTheory.CoveredSetsCount">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
+            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.Pattern.GetCoveredSetsCount(System.Int32)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
+            <seealso cref="M:Sudoku.SetTheory.Pattern.GetCoveredSetsCount(System.Int32)"/>.
         </member>
         <member name="M:Sudoku.SetTheory.CoveredSetsCount.#ctor(System.Int32,System.Int32)">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
+            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.Pattern.GetCoveredSetsCount(System.Int32)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="!:PatternReasoner.GetCoveredSetsCount(in Pattern, int)"/>.
+            <seealso cref="M:Sudoku.SetTheory.Pattern.GetCoveredSetsCount(System.Int32)"/>.
         </member>
         <member name="P:Sudoku.SetTheory.CoveredSetsCount.TruthsCount">
             <summary>Indicates the number of truths covered.</summary>
@@ -36672,6 +36672,11 @@
             <param name="truths"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Truths" path="/summary"/></param>
             <param name="links"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Links" path="/summary"/></param>
             <param name="grid"><inheritdoc cref="P:Sudoku.SetTheory.Pattern.Grid" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.SetTheory.Pattern.IsExactCovered">
+            <summary>
+            Indicates whether all candidates used in truths are exact-covered or not.
+            </summary>
         </member>
         <member name="P:Sudoku.SetTheory.Pattern.CandidatesCount">
             <summary>

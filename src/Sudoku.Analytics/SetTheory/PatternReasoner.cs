@@ -20,30 +20,12 @@ public static class PatternReasoner
 			var lightupLinks = SpaceSet.Empty;
 			foreach (var assigned in permutation)
 			{
-				var cell = assigned / 9;
-				var digit = assigned % 9;
-				var cellLink = Space.RowColumn(cell / 9, cell % 9);
-				if (links.Contains(cellLink))
+				foreach (var link in assigned.Spaces)
 				{
-					lightupLinks += cellLink;
-				}
-
-				var blockLink = Space.BlockDigit(cell >> HouseType.Block, digit);
-				if (links.Contains(blockLink))
-				{
-					lightupLinks += blockLink;
-				}
-
-				var rowLink = Space.RowDigit((cell >> HouseType.Row) - 9, digit);
-				if (links.Contains(rowLink))
-				{
-					lightupLinks += rowLink;
-				}
-
-				var columnLink = Space.ColumnDigit((cell >> HouseType.Column) - 18, digit);
-				if (links.Contains(columnLink))
-				{
-					lightupLinks += columnLink;
+					if (links.Contains(link))
+					{
+						lightupLinks += link;
+					}
 				}
 			}
 
@@ -161,14 +143,9 @@ public static class PatternReasoner
 		foreach (var permutation in permutations)
 		{
 			var lightUpLinks = SpaceSet.Empty;
-			foreach (var candidate in permutation)
+			foreach (var assigned in permutation)
 			{
-				var cell = candidate / 9;
-				var digit = candidate % 9;
-				lightUpLinks.Add(Space.RowColumn(cell / 9, cell % 9));
-				lightUpLinks.Add(Space.BlockDigit(cell >> HouseType.Block, digit));
-				lightUpLinks.Add(Space.RowDigit((cell >> HouseType.Row) - 9, digit));
-				lightUpLinks.Add(Space.ColumnDigit((cell >> HouseType.Column) - 18, digit));
+				lightUpLinks.AddRange(assigned.Spaces);
 			}
 			result &= lightUpLinks;
 		}

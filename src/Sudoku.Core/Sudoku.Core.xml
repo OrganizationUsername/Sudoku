@@ -1338,6 +1338,9 @@
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap"/>
         </member>
+        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Spaces(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces"/>
+        </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap"/>
         </member>
@@ -1404,6 +1407,11 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="houseType"/> is not defined.
             </exception>
+        </member>
+        <member name="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces">
+            <summary>
+            Indicates spaces of the current candidate.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap">
             <summary>

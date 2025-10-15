@@ -135,6 +135,25 @@ public static class CellOrCandidateMapExtensions
 	extension(Candidate @this)
 	{
 		/// <summary>
+		/// Indicates spaces of the current candidate.
+		/// </summary>
+		public ReadOnlySpan<Space> Spaces
+		{
+			get
+			{
+				var cell = @this / 9;
+				var digit = @this % 9;
+				return (Space[])[
+					Space.RowColumn(cell / 9, cell % 9),
+					Space.BlockDigit(cell >> HouseType.Block, digit),
+					Space.RowDigit((cell >> HouseType.Row) - 9, digit),
+					Space.ColumnDigit((cell >> HouseType.Column) - 18, digit)
+				];
+			}
+		}
+
+
+		/// <summary>
 		/// Converts the specified <see cref="Candidate"/> into a singleton <see cref="CandidateMap"/> instance.
 		/// </summary>
 		/// <returns>A <see cref="CandidateMap"/> instance, containing only one element of the current candidate.</returns>

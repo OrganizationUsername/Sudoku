@@ -254,9 +254,7 @@ public partial struct RankPattern
 			{
 				if (!result.TryAdd(candidate, [truth]))
 				{
-					var original = result[candidate];
-					original.Add(truth);
-					result[candidate] = original;
+					result.GetValueRef(candidate) += truth;
 				}
 			}
 		}

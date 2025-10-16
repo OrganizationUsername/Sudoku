@@ -77,7 +77,7 @@ public partial struct SpaceSet :
 	/// <inheritdoc/>
 	public readonly void CopyTo(Space[] array, int arrayIndex)
 	{
-		ArgumentException.ThrowIfAssertionFailed(array.Length >= Count);
+		ArgumentException.ThrowIf(array.Length >= Count);
 
 		ToArray().AsReadOnlySpan().CopyTo(array.AsSpan()[arrayIndex..]);
 	}

@@ -15,7 +15,7 @@ public partial class ArrayEnumerable
 		/// </remarks>
 		public (TFirst Left, TSecond Right)[] Zip<TSecond>(TSecond[] second)
 		{
-			ArgumentException.ThrowIfAssertionFailed(first.Length == second.Length);
+			ArgumentException.ThrowIf(first.Length == second.Length);
 
 			var result = new (TFirst, TSecond)[first.Length];
 			for (var i = 0; i < first.Length; i++)

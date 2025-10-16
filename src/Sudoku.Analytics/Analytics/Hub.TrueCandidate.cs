@@ -22,7 +22,7 @@ public partial class Hub
 				return [];
 			}
 
-			ArgumentException.ThrowIfAssertionFailed(grid.PuzzleType == SudokuType.Standard);
+			ArgumentException.ThrowIf(grid.PuzzleType == SudokuType.Standard);
 
 			// VARIABLE_DECLARATION_BEGIN
 			_ = grid is { EmptyCells: var __EmptyCells, BivalueCells: var __BivalueCells, CandidatesMap: var __CandidatesMap };

@@ -108,24 +108,28 @@ public static class UniquenessChecker
 		static ReadOnlySpan<Grid> getCombinations(in Grid grid, in CellMap cellsUsed)
 		{
 			var result = new List<Grid>();
-
 			var truths = SpaceSet.Empty;
+			var links = SpaceSet.Empty;
 			foreach (var cell in cellsUsed)
 			{
-				truths.Add(Space.RowColumn(cell / 9, cell % 9));
+				truths += Space.RowColumn(cell / 9, cell % 9);
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					links.AddRange((cell * 9 + digit).Spaces);
+				}
 			}
 
-			var rankPattern = new RankPattern(in grid, in truths);
-			var combinations = rankPattern.GetAssignmentCombinations();
-			if (combinations.Length > 10000)
+			var pattern = new Pattern(truths, links, grid);
+			var permutations = PatternReasoner.GetPermutations(pattern);
+			if (permutations.Length > 10000)
 			{
 				throw new DeadlyPatternInferrerLimitReachedException();
 			}
 
-			foreach (var combination in combinations)
+			foreach (var permutation in permutations)
 			{
 				var emptyGrid = Grid.Empty;
-				foreach (var candidate in combination)
+				foreach (var candidate in permutation)
 				{
 					emptyGrid[candidate / 9] = (Mask)(Grid.ModifiableMask | 1 << candidate % 9);
 				}

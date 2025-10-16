@@ -8,11 +8,11 @@ public static partial class PatternReasoner
 	/// <summary>
 	/// Gets rank of specified elimination. The rank of elimination is defined as <c>n(links) - n(lightup_links)</c>.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <param name="candidate">The candidate.</param>
 	/// <returns>The rank of elimination. -1 will be returned if candidate is not an eliminiation.</returns>
-	public static int GetEliminationRank(in Pattern pattern, Candidate candidate)
-		=> Cached.GetEliminationRank(pattern, candidate, GetPermutations(pattern));
+	public static int GetEliminationRank(in Logic logic, Candidate candidate)
+		=> Cached.GetEliminationRank(logic, candidate, GetPermutations(logic));
 
 	/// <summary>
 	/// <para>
@@ -26,47 +26,46 @@ public static partial class PatternReasoner
 	/// Please check type <see cref="AssignmentCountRange"/> to learn more details of result.
 	/// </para>
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutation count value.</returns>
 	/// <seealso cref="AssignmentCountRange"/>
-	public static AssignmentCountRange GetAssignmentsCount(in Pattern pattern)
-		=> Cached.GetAssignmentsCount(pattern, GetPermutations(pattern));
+	public static AssignmentCountRange GetAssignmentsCount(in Logic logic)
+		=> Cached.GetAssignmentsCount(logic, GetPermutations(logic));
 
 	/// <summary>
 	/// Try to find all possible permutations.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutations.</returns>
-	public static ReadOnlySpan<Permutation> GetPermutations(in Pattern pattern) => SetSolver.Solve(pattern);
+	public static ReadOnlySpan<Permutation> GetPermutations(in Logic logic) => SetSolver.Solve(logic);
 
 	/// <summary>
 	/// Try to find all conclusions.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ReadOnlySpan<Conclusion> GetConclusions(in Pattern pattern)
-		=> Cached.GetConclusions(pattern, GetPermutations(pattern), true);
+	public static ReadOnlySpan<Conclusion> GetConclusions(in Logic logic)
+		=> Cached.GetConclusions(logic, GetPermutations(logic), true);
 
 	/// <summary>
-	/// Try to find all conclusions, without checking <see cref="Pattern.Links"/>.
+	/// Try to find all conclusions, without checking <see cref="Logic.Links"/>.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ReadOnlySpan<Conclusion> GetConclusionsWithoutCheckingLinks(in Pattern pattern)
-		=> Cached.GetConclusions(pattern, GetPermutations(pattern), false);
+	public static ReadOnlySpan<Conclusion> GetConclusionsWithoutCheckingLinks(in Logic logic)
+		=> Cached.GetConclusions(logic, GetPermutations(logic), false);
 
 	/// <summary>
 	/// Gets all rank-0 links.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>All rank-0 links.</returns>
-	public static SpaceSet GetRank0Links(in Pattern pattern) => Cached.GetRank0Links(pattern, GetPermutations(pattern));
+	public static SpaceSet GetRank0Links(in Logic logic) => Cached.GetRank0Links(logic, GetPermutations(logic));
 
 	/// <summary>
 	/// Gets all rank-0 eliminations.
 	/// </summary>
-	/// <param name="pattern">The pattern.</param>
+	/// <param name="logic">The pattern.</param>
 	/// <returns>All rank-0 eliminations.</returns>
-	public static CandidateMap GetRank0Eliminations(in Pattern pattern)
-		=> Cached.GetRank0Eliminations(pattern, GetPermutations(pattern));
+	public static CandidateMap GetRank0Eliminations(in Logic logic) => Cached.GetRank0Eliminations(logic, GetPermutations(logic));
 }

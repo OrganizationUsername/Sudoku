@@ -9,22 +9,22 @@ namespace Sudoku.SetTheory;
 /// Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.
 /// </summary>
 /// <!--Primary columns are covered/selected by algorithm; secondary columns are "optional".-->
-internal sealed class DancingLinks
+internal sealed class SetTheoryDancingLinks
 {
 	/// <summary>
 	/// Indicates head.
 	/// </summary>
-	private readonly ColumnHeader _head;
+	private readonly SetTheoryColumnHeader _head;
 
 	/// <summary>
 	/// Indicates columns.
 	/// </summary>
-	private readonly ColumnHeader[] _columns;
+	private readonly SetTheoryColumnHeader[] _columns;
 
 	/// <summary>
 	/// Indicates row nodes, keeping references to row's first node.
 	/// </summary>
-	private readonly List<Node> _rowNodes = [];
+	private readonly List<SetTheoryNode> _rowNodes = [];
 
 	/// <summary>
 	/// Indicates list of row IDs chosen. This will be a solution stored.
@@ -45,20 +45,20 @@ internal sealed class DancingLinks
 
 
 	/// <summary>
-	/// Initializes a <see cref="DancingLinks"/> instance via columns count and is-primary property to every column header.
+	/// Initializes a <see cref="SetTheoryDancingLinks"/> instance via columns count and is-primary property to every column header.
 	/// </summary>
 	/// <param name="columnCount">The number of columns.</param>
 	/// <param name="isPrimary">Is-primary property to every column header.</param>
-	public DancingLinks(int columnCount, ReadOnlySpan<bool> isPrimary)
+	public SetTheoryDancingLinks(int columnCount, ReadOnlySpan<bool> isPrimary)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(columnCount, isPrimary.Length);
 
-		_head = new ColumnHeader(-1, true);
+		_head = new SetTheoryColumnHeader(-1, true);
 		_head.L = _head.R = _head;
-		_columns = new ColumnHeader[columnCount];
+		_columns = new SetTheoryColumnHeader[columnCount];
 		for (var i = 0; i < columnCount; i++)
 		{
-			var header = new ColumnHeader(i, isPrimary[i]);
+			var header = new SetTheoryColumnHeader(i, isPrimary[i]);
 			{
 				// Link into header's horizontal list.
 				header.R = _head;
@@ -107,15 +107,15 @@ internal sealed class DancingLinks
 	/// <param name="columnIndices">Column indices.</param>
 	public void AddRow(Candidate rowId, ReadOnlySpan<Candidate> columnIndices)
 	{
-		var first = default(Node);
-		var prev = default(Node);
+		var first = default(SetTheoryNode);
+		var prev = default(SetTheoryNode);
 		foreach (var columnIndex in columnIndices)
 		{
 			ArgumentOutOfRangeException.ThrowIfNegative(columnIndex);
 			ArgumentOutOfRangeException.ThrowIfGreaterThanOrEqual(columnIndex, _columns.Length);
 
 			var column = _columns[columnIndex];
-			var node = new Node { C = column, RowId = rowId };
+			var node = new SetTheoryNode { C = column, RowId = rowId };
 			{
 				// Vertical link: insert node at bottom of column.
 				node.D = column;
@@ -147,7 +147,7 @@ internal sealed class DancingLinks
 		if (first is null)
 		{
 			// Create a singleton placeholder node not linked to any column (for row with no columns).
-			var placeholder = new Node { C = null, RowId = rowId };
+			var placeholder = new SetTheoryNode { C = null, RowId = rowId };
 			placeholder.L = placeholder.R = placeholder;
 			first = placeholder;
 		}
@@ -158,7 +158,7 @@ internal sealed class DancingLinks
 	/// Do cover operation.
 	/// </summary>
 	/// <param name="c">The column.</param>
-	private void Cover(ColumnHeader c)
+	private void Cover(SetTheoryColumnHeader c)
 	{
 		// Remove column header.
 		Debug.Assert(c is { R: not null, L: not null });
@@ -185,7 +185,7 @@ internal sealed class DancingLinks
 	/// Do uncover operation.
 	/// </summary>
 	/// <param name="c">The column.</param>
-	private void Uncover(ColumnHeader c)
+	private void Uncover(SetTheoryColumnHeader c)
 	{
 		// Inverse of Cover: reinsert nodes and header.
 		for (var i = c.U; !ReferenceEquals(i, c); i = i.U)
@@ -209,15 +209,15 @@ internal sealed class DancingLinks
 	/// Choose a column.
 	/// </summary>
 	/// <returns>The chosen column. If failed to choose, <see langword="null"/> will be returned.</returns>
-	private ColumnHeader? ChooseColumn()
+	private SetTheoryColumnHeader? ChooseColumn()
 	{
 		// Pick primary column of minimal size.
-		var best = default(ColumnHeader);
+		var best = default(SetTheoryColumnHeader);
 		var bestSize = int.MaxValue;
 		for (var c = _head.R; !ReferenceEquals(c, _head); c = c.R)
 		{
 			Debug.Assert(c is not null);
-			var ch = (ColumnHeader)c;
+			var ch = (SetTheoryColumnHeader)c;
 			if (!ch.IsPrimary)
 			{
 				// Skip secondary columns.
@@ -249,7 +249,7 @@ internal sealed class DancingLinks
 		for (var c = _head.R; !ReferenceEquals(c, _head); c = c.R)
 		{
 			Debug.Assert(c is not null);
-			var ch = (ColumnHeader)c;
+			var ch = (SetTheoryColumnHeader)c;
 			if (ch.IsPrimary)
 			{
 				hasPrimary = true;

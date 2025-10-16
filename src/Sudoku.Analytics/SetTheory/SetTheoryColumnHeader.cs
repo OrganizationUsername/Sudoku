@@ -3,7 +3,7 @@ namespace Sudoku.SetTheory;
 /// <summary>
 /// Represents a column header.
 /// </summary>
-internal sealed class ColumnHeader : Node
+internal sealed class SetTheoryColumnHeader : SetTheoryNode
 {
 	/// <summary>
 	/// Indicates the number of nodes in column.
@@ -22,9 +22,9 @@ internal sealed class ColumnHeader : Node
 
 
 	/// <summary>
-	/// Initializes a <see cref="ColumnHeader"/> instance via ID and is-primary property.
+	/// Initializes a <see cref="SetTheoryColumnHeader"/> instance via ID and is-primary property.
 	/// </summary>
 	/// <param name="id">The ID.</param>
 	/// <param name="isPrimary">Is-primary property.</param>
-	public ColumnHeader(int id, bool isPrimary) => (Id, IsPrimary, Size, U, D) = (id, isPrimary, 0, this, this);
+	public SetTheoryColumnHeader(int id, bool isPrimary) => (Id, IsPrimary, Size, U, D) = (id, isPrimary, 0, this, this);
 }

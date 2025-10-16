@@ -119,7 +119,7 @@ public static class UniquenessChecker
 				}
 			}
 
-			var pattern = new Pattern(truths, links, grid);
+			var pattern = new Logic(truths, links, grid);
 			var permutations = PatternReasoner.GetPermutations(pattern);
 			if (permutations.Length > 10000)
 			{

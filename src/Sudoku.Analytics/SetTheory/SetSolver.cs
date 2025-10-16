@@ -12,17 +12,17 @@ internal static class SetSolver
 	/// <item>Each link: at most one selected inside that set</item>
 	/// </list>
 	/// </summary>
-	/// <param name="pattern">The pattern to be used.</param>
+	/// <param name="logic">The pattern to be used.</param>
 	/// <param name="maxSolutions">The limit maximum solutions can be found.</param>
 	/// <returns>
 	/// List of solutions; each solution is a <see cref="Permutation"/> of assigned candidates (0..728).
 	/// </returns>
 	/// <seealso cref="Permutation"/>
-	public static ReadOnlySpan<Permutation> Solve(in Pattern pattern, int maxSolutions = int.MaxValue)
+	public static ReadOnlySpan<Permutation> Solve(in Logic logic, int maxSolutions = int.MaxValue)
 	{
-		ref readonly var truths = ref pattern.Truths;
-		ref readonly var links = ref pattern.Links;
-		ref readonly var grid = ref pattern.Grid;
+		ref readonly var truths = ref logic.Truths;
+		ref readonly var links = ref logic.Links;
+		ref readonly var grid = ref logic.Grid;
 		var truthMaps = new List<CandidateMap>();
 		var linkMaps = new List<CandidateMap>();
 		var fullMap = CandidateMap.Empty;
@@ -56,7 +56,7 @@ internal static class SetSolver
 		isPrimary[..truthsCount].Fill(true);
 		isPrimary[truthsCount..].Clear();
 
-		var dlx = new DancingLinks(allColumnsCount, isPrimary);
+		var dlx = new SetTheoryDancingLinks(allColumnsCount, isPrimary);
 
 		// Map from candidateIndex -> list of column indices (where it's present).
 		var columnsLookup = new Dictionary<Candidate, List<Candidate>>();

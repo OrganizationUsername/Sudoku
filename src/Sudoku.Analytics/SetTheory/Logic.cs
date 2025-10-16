@@ -1,12 +1,12 @@
 namespace Sudoku.SetTheory;
 
 /// <summary>
-/// Represents a pattern, defining sets of truths and links.
+/// Represents a logic pattern, defining sets of truths and links.
 /// </summary>
 /// <remarks>
 /// This type uses 496 bytes.
 /// </remarks>
-public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern, bool>
+public struct Logic : IEquatable<Logic>, IEqualityOperators<Logic, Logic, bool>
 {
 	/// <summary>
 	/// Indicates original grid.
@@ -25,12 +25,12 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 
 
 	/// <summary>
-	/// Initializes a <see cref="Pattern"/> instance via the specified truths, links and original grid.
+	/// Initializes a <see cref="Logic"/> instance via the specified truths, links and original grid.
 	/// </summary>
 	/// <param name="truths"><inheritdoc cref="Truths" path="/summary"/></param>
 	/// <param name="links"><inheritdoc cref="Links" path="/summary"/></param>
 	/// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
-	public Pattern(in SpaceSet truths, in SpaceSet links, in Grid grid)
+	public Logic(in SpaceSet truths, in SpaceSet links, in Grid grid)
 	{
 		_truths = truths;
 		_links = links;
@@ -102,10 +102,10 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 
 
 	/// <inheritdoc/>
-	public readonly override bool Equals([NotNullWhen(true)] object? obj) => obj is Pattern comparer && Equals(comparer);
+	public readonly override bool Equals([NotNullWhen(true)] object? obj) => obj is Logic comparer && Equals(comparer);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public readonly bool Equals(in Pattern other)
+	public readonly bool Equals(in Logic other)
 		=> Map == other.Map && FullMap == other.FullMap
 		&& Grid == other.Grid
 		&& Truths == other.Truths && Links == other.Links;
@@ -198,7 +198,7 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 	}
 
 	/// <inheritdoc/>
-	readonly bool IEquatable<Pattern>.Equals(Pattern other) => Equals(other);
+	readonly bool IEquatable<Logic>.Equals(Logic other) => Equals(other);
 
 
 	/// <summary>
@@ -224,6 +224,8 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 			mapIncludingLinks |= map;
 		}
 
+		// Ignore links that is already collected in truths.
+		links &= ~truths;
 		var tempLinks = links;
 		foreach (var link in tempLinks)
 		{
@@ -242,14 +244,14 @@ public struct Pattern : IEquatable<Pattern>, IEqualityOperators<Pattern, Pattern
 
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
-	public static bool operator ==(in Pattern left, in Pattern right) => left.Equals(right);
+	public static bool operator ==(in Logic left, in Logic right) => left.Equals(right);
 
 	/// <inheritdoc cref="IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
-	public static bool operator !=(in Pattern left, in Pattern right) => !(left == right);
+	public static bool operator !=(in Logic left, in Logic right) => !(left == right);
 
 	/// <inheritdoc/>
-	static bool IEqualityOperators<Pattern, Pattern, bool>.operator ==(Pattern left, Pattern right) => left == right;
+	static bool IEqualityOperators<Logic, Logic, bool>.operator ==(Logic left, Logic right) => left == right;
 
 	/// <inheritdoc/>
-	static bool IEqualityOperators<Pattern, Pattern, bool>.operator !=(Pattern left, Pattern right) => left != right;
+	static bool IEqualityOperators<Logic, Logic, bool>.operator !=(Logic left, Logic right) => left != right;
 }

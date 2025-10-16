@@ -7,9 +7,9 @@ public partial class PatternReasoner
 	/// </summary>
 	private static class Cached
 	{
-		public static int GetEliminationRank(in Pattern pattern, Candidate candidate, ReadOnlySpan<Permutation> permutations)
+		public static int GetEliminationRank(in Logic logic, Candidate candidate, ReadOnlySpan<Permutation> permutations)
 		{
-			ref readonly var links = ref pattern.Links;
+			ref readonly var links = ref logic.Links;
 			var (maxOccupied, minOccupied) = (0, links.Count);
 			foreach (var permutation in permutations)
 			{
@@ -38,7 +38,7 @@ public partial class PatternReasoner
 			return maxOccupied - minOccupied;
 		}
 
-		public static AssignmentCountRange GetAssignmentsCount(in Pattern pattern, ReadOnlySpan<Permutation> permutations)
+		public static AssignmentCountRange GetAssignmentsCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			var (min, max) = (int.MaxValue, int.MinValue);
 			foreach (var permutation in permutations)
@@ -57,13 +57,13 @@ public partial class PatternReasoner
 		}
 
 		public static ReadOnlySpan<Conclusion> GetConclusions(
-			in Pattern pattern,
+			in Logic logic,
 			ReadOnlySpan<Permutation> permutations,
 			bool checkingLinks
 		)
 		{
-			ref readonly var grid = ref pattern.Grid;
-			ref readonly var fullMap = ref pattern.FullMap;
+			ref readonly var grid = ref logic.Grid;
+			ref readonly var fullMap = ref logic.FullMap;
 			var candidatesMap = grid.CandidatesMap;
 
 			var result = ConclusionSet.Empty;
@@ -121,9 +121,9 @@ public partial class PatternReasoner
 			return result.AsSpan();
 		}
 
-		public static SpaceSet GetRank0Links(in Pattern pattern, ReadOnlySpan<Permutation> permutations)
+		public static SpaceSet GetRank0Links(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
-			var result = pattern.Links;
+			var result = logic.Links;
 			foreach (var permutation in permutations)
 			{
 				var lightUpLinks = SpaceSet.Empty;
@@ -136,9 +136,9 @@ public partial class PatternReasoner
 			return result;
 		}
 
-		public static CandidateMap GetRank0Eliminations(in Pattern pattern, ReadOnlySpan<Permutation> permutations)
+		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
-			var conclusions = GetConclusions(pattern, permutations, true);
+			var conclusions = GetConclusions(logic, permutations, true);
 			var result = CandidateMap.Empty;
 			foreach (var (type, candidate) in conclusions)
 			{
@@ -147,7 +147,7 @@ public partial class PatternReasoner
 					continue;
 				}
 
-				foreach (var link in GetRank0Links(pattern, permutations))
+				foreach (var link in GetRank0Links(logic, permutations))
 				{
 					if (link.Contains(candidate))
 					{

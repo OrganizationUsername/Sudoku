@@ -3,17 +3,17 @@ namespace Sudoku.SetTheory;
 /// <summary>
 /// Represents a node. All fields in this type is nullable unaware.
 /// </summary>
-internal class Node
+internal class SetTheoryNode
 {
 	/// <summary>
 	/// Provides up, down, left, right nodes.
 	/// </summary>
-	public Node? L, R, U, D;
+	public SetTheoryNode? L, R, U, D;
 
 	/// <summary>
 	/// Indicates the column header.
 	/// </summary>
-	public ColumnHeader? C;
+	public SetTheoryColumnHeader? C;
 
 	/// <summary>
 	/// Indicates row ID.

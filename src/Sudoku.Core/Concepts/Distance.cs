@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a way to calculate distances between two cells.

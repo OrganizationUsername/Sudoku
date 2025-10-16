@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.BehaviorRecognition;
+namespace Sudoku.Analytics.BehaviorRecognition;
 
 /// <summary>
 /// Represents a kind of user behavior.

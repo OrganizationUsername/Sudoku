@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Ittoryu;
+namespace Sudoku.Analytics.Ittoryu;
 
 /// <summary>
 /// Represents for a path node in a whole solving path via ittoryu solving logic.

@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithms.Ittoryu;
+namespace Sudoku.Analytics.Ittoryu;
 
 /// <summary>
 /// Indicates the target digit path.

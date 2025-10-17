@@ -11,22 +11,17 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher",
 	Technique.AntiGurthSymmetricalPlacement,
 	IsCachingSafe = true)]
-public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
+public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the functions that are searchers for subtypes.
 	/// </summary>
-	private static readonly unsafe delegate*<in Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>[] AntiTypeCheckers = [
-		&Diagonal,
-		&Antidiagonal,
-		&XAxis,
-		&YAxis,
-		&Central
-	];
+	private static readonly delegate*<in Grid, ref StepAnalysisContext, AntiGurthSymmetricalPlacementStep?>[] AntiTypeCheckers =
+		[&Diagonal, &Antidiagonal, &XAxis, &YAxis, &Central];
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(ref StepAnalysisContext context)
+	protected internal override Step? Collect(ref StepAnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
 		if (grid.PuzzleType == SudokuType.Sukaku)
@@ -75,7 +70,6 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 				colorIndices[relatedDigit] = colorIndexCurrent;
 				digitsMaskBucket |= (Mask)(1 << relatedDigit);
 			}
-
 			colorIndexCurrent++;
 		}
 

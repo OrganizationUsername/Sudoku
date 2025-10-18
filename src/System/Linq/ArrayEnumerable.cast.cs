@@ -5,10 +5,10 @@ public partial class ArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <see cref="object"/>[].
 	/// </summary>
-	extension(object[] source)
+	extension<TResult>(object[] source)
 	{
 		/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
-		public TResult[] Cast<TResult>()
+		public TResult[] Cast()
 		{
 			var result = new TResult[source.Length];
 			for (var i = 0; i < source.Length; i++)

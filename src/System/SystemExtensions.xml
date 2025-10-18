@@ -2312,246 +2312,163 @@
             <seealso cref="T:System.Array"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Cast``1(System.Object[])">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.Cast``1"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$CFF0EB830F50CA3C33A41D994ADB0598`1.Cast"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.GroupBy``2(``0[],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupBy``1(System.Func{`0,``0})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.GroupBy(System.Func{`0,`1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.GroupBy``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.GroupBy``1(System.Func{`0,`1},System.Func{`0,``0})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.Join(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Join``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.Join(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.GroupJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1[],`3})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.GroupJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1[],``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.GroupJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1[],`3},System.Collections.Generic.IEqualityComparer{`2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.LeftJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.LeftJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.LeftJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.OrderBy``2(``0[],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.OrderBy``1(System.Func{`0,``0})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.OrderBy(System.Func{`0,`1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.OrderByDescending``2(``0[],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.OrderByDescending``1(System.Func{`0,``0})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.OrderByDescending(System.Func{`0,`1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.RightJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.RightJoin``4(``0[],``1[],System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.RightJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Select``1(System.Func{`0,``0})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.Select(System.Func{`0,`1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Select``2(``0[],System.Func{``0,System.Int32,``1})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Select``1(System.Func{`0,System.Int32,``0})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.Select(System.Func{`0,System.Int32,`1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,System.ReadOnlySpan{``1}},System.Func{``0,``1,``2})">
-            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})"/>
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$ABA2D2F1225E1523AE65D6A43B3B18E2`3.SelectMany(System.Func{`0,System.ReadOnlySpan{`1}},System.Func{`0,`1,`2})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Where(System.Func{`0,System.Boolean})"/>
         </member>
-        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.&lt;M&gt;$A6393A9B643182B6649ED54EDB0719E5">
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$CFF0EB830F50CA3C33A41D994ADB0598`1.&lt;M&gt;$CA88D78B836D131B1DAC48C52E3D1D70">
             <summary>
             Provides extension members on <see cref="T:System.Object"/>[].
             </summary>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$8B246D26940F9C51BF3AB90E7FD796D9.Cast``1">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$CFF0EB830F50CA3C33A41D994ADB0598`1.Cast">
             <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
         </member>
-        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.&lt;M&gt;$6EB964B81CE124BD3475F312AC48B617">
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.&lt;M&gt;$5463B3A90959BAD64F617E54B9D3C34A">
             <summary>
             Provides extension members on <typeparamref name="TSource"/>[].
             </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.GroupBy(System.Func{`0,`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.GroupBy``1(System.Func{`0,`1},System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.&lt;M&gt;$5B7279E741C9DFFA7CFFDCF32BEE2723">
             <summary>
             Provides extension members on <typeparamref name="TSource"/>[].
             </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.OrderBy(System.Func{`0,`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.OrderByDescending(System.Func{`0,`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.&lt;M&gt;$3F2E140B7CC634553C97053D61E0FC7F">
             <summary>
             Provides extension members on <typeparamref name="TSource"/>[].
             </summary>
-            <summary>
-            Provides extension members on <typeparamref name="TSource"/>[].
-            </summary>
-            <summary>
-            Provides extension members on <typeparamref name="TSource"/>[].
-            </summary>
-            <typeparam name="TSource">The type of the elements of source.</typeparam>
-            <param name="source">An array of <typeparamref name="TSource"/> instances to filter.</param>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupBy``1(System.Func{`0,``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.OrderBy``1(System.Func{`0,``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.OrderByDescending``1(System.Func{`0,``0})">
-            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Select``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.Select(System.Func{`0,`1})">
             <returns>
-            An array of <typeparamref name="TResult" /> instances being the result
-            of invoking the transform function on each element of <paramref name="source" />.
+            An array of <typeparamref name="TResult"/> instances being the result
+            of invoking the transform function on each element of <paramref name="source"/>.
             </returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Select``1(System.Func{`0,System.Int32,``0})">
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5A862DC626EC76F88AEDBFA53B2704B4`2.Select(System.Func{`0,System.Int32,`1})">
             <summary>
-            An array of <typeparamref name="TResult" /> instances being the result
-            of invoking the transform function on each element of <paramref name="source" />, and its indices.
+            An array of <typeparamref name="TResult"/> instances being the result
+            of invoking the transform function on each element of <paramref name="source"/>, and its indices.
             </summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
+            <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})"/>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.SelectMany``2(System.Func{`0,System.ReadOnlySpan{``0}},System.Func{`0,``0,``1})">
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.&lt;M&gt;$8B40B8AEA29B31D8852E458960849B97">
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+            <summary>
+            Provides extension members on <typeparamref name="TOuter"/>[].
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.Join(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.Join(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.GroupJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1[],`3})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.GroupJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1[],`3},System.Collections.Generic.IEqualityComparer{`2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3},System.Collections.Generic.IEqualityComparer{``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.LeftJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.LeftJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})">
+            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.RightJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$5EC1A88D5814B1111B903222182F4371`4.RightJoin(`1[],System.Func{`0,`2},System.Func{`1,`2},System.Func{`0,`1,`3},System.Collections.Generic.IEqualityComparer{`2})">
+            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$ABA2D2F1225E1523AE65D6A43B3B18E2`3.&lt;M&gt;$AD1E636D2110C1304EFBC81F72F88980">
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$ABA2D2F1225E1523AE65D6A43B3B18E2`3.SelectMany(System.Func{`0,System.ReadOnlySpan{`1}},System.Func{`0,`1,`2})">
             <summary>
             Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
             and invokes a result selector function on each element therein.
             </summary>
             <returns>
             A same type of collection whose elements are the result of invoking the one-to-many transform function
-            <paramref name="collectionSelector" /> on each element of <paramref name="source" /> and then mapping each of those sequence elements
+            <paramref name="collectionSelector"/> on each element of <paramref name="source"/> and then mapping each of those sequence elements
             and their corresponding source element to a result element.
             </returns>
-            <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
+            <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
+        </member>
+        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.&lt;M&gt;$6EB964B81CE124BD3475F312AC48B617">
+            <summary>
+            Provides extension members on <typeparamref name="TSource"/>[].
+            </summary>
+            <typeparam name="TSource">The type of the elements of source.</typeparam>
+            <param name="source">An array of <typeparamref name="TSource"/> instances to filter.</param>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Where(System.Func{`0,System.Boolean})">
             <summary>
@@ -2561,185 +2478,6 @@
             <returns>
             An array of <typeparamref name="TSource"/> instances that contains elements from the input sequence that satisfy the condition.
             </returns>
-        </member>
-        <member name="T:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.&lt;M&gt;$2737E39A56ABEAE7050A7517D3A344EB">
-            <summary>
-            Provides extension members on <typeparamref name="TOuter"/>[].
-            </summary>
-            <summary>
-            Provides extension members on <typeparamref name="TOuter"/>[].
-            </summary>
-            <summary>
-            Provides extension members on <typeparamref name="TOuter"/>[].
-            </summary>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.Join``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3},System.Collections.Generic.IEqualityComparer{``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.GroupJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0[],``2},System.Collections.Generic.IEqualityComparer{``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3},System.Collections.Generic.IEqualityComparer{``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.LeftJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
-            <inheritdoc cref="M:System.Linq.Providers.ILeftJoinMethod`2.LeftJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:System.Linq.ArrayEnumerable.&lt;G&gt;$51ABFD8B8D8A5142371F514AE52D9AA9`1.RightJoin``3(``0[],System.Func{`0,``1},System.Func{``0,``1},System.Func{`0,``0,``2},System.Collections.Generic.IEqualityComparer{``1})">
-            <inheritdoc cref="M:System.Linq.Providers.IRightJoinMethod`2.RightJoin``3(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``1},System.Func{``0,``1},System.Func{`1,``0,``2},System.Collections.Generic.IEqualityComparer{``1})" />
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
         </member>
         <member name="T:System.Linq.ArrayGrouping`2">
             <summary>

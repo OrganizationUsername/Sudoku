@@ -5,16 +5,10 @@ public partial class ArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	extension<TSource>(TSource[] source)
+	extension<TSource, TKey>(TSource[] source) where TKey : notnull
 	{
 		/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public ArrayGrouping<TSource, TKey>[] GroupBy<TKey>(Func<TSource, TKey> keySelector)
-			where TKey : notnull
+		public ArrayGrouping<TSource, TKey>[] GroupBy(Func<TSource, TKey> keySelector)
 		{
 			var tempDictionary = new Dictionary<TKey, List<TSource>>(source.Length >> 2);
 			foreach (var element in source)
@@ -36,15 +30,7 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public ArrayGrouping<TElement, TKey>[] GroupBy<TKey, TElement>(
-			Func<TSource, TKey> keySelector,
-			Func<TSource, TElement> elementSelector
-		) where TKey : notnull
+		public ArrayGrouping<TElement, TKey>[] GroupBy<TElement>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector)
 		{
 			var tempDictionary = new Dictionary<TKey, List<TSource>>(source.Length >> 2);
 			foreach (var element in source)

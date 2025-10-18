@@ -5,15 +5,10 @@ public partial class ArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	extension<TSource>(TSource[] source)
+	extension<TSource, TKey>(TSource[] source)
 	{
 		/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public ArrayOrderedEnumerable<TSource> OrderBy<TKey>(Func<TSource, TKey> selector)
+		public ArrayOrderedEnumerable<TSource> OrderBy(Func<TSource, TKey> selector)
 			=> new(
 				source,
 				(l, r) => (selector(l), selector(r)) switch
@@ -24,12 +19,7 @@ public partial class ArrayEnumerable
 			);
 
 		/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public ArrayOrderedEnumerable<TSource> OrderByDescending<TKey>(Func<TSource, TKey> selector)
+		public ArrayOrderedEnumerable<TSource> OrderByDescending(Func<TSource, TKey> selector)
 			=> new(
 				source,
 				(l, r) => (selector(l), selector(r)) switch

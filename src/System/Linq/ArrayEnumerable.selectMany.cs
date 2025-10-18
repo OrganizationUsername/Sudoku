@@ -5,7 +5,7 @@ public partial class ArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <typeparamref name="TSource"/>[].
 	/// </summary>
-	extension<TSource>(TSource[] source)
+	extension<TSource, TCollection, TResult>(TSource[] source)
 	{
 		/// <summary>
 		/// Projects each element of a sequence of a collection, flattens the resulting sequence into one sequence,
@@ -17,12 +17,7 @@ public partial class ArrayEnumerable
 		/// and their corresponding source element to a result element.
 		/// </returns>
 		/// <inheritdoc cref="Enumerable.SelectMany{TSource, TCollection, TResult}(IEnumerable{TSource}, Func{TSource, IEnumerable{TCollection}}, Func{TSource, TCollection, TResult})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TResult[] SelectMany<TCollection, TResult>(
+		public TResult[] SelectMany(
 			Func<TSource, ReadOnlySpan<TCollection>> collectionSelector,
 			Func<TSource, TCollection, TResult> resultSelector
 		)

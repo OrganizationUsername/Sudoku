@@ -5,34 +5,24 @@ public partial class ArrayEnumerable
 	/// <summary>
 	/// Provides extension members on <typeparamref name="TOuter"/>[].
 	/// </summary>
-	extension<TOuter>(TOuter[] outer)
+	extension<TOuter, TInner, TKey, TResult>(TOuter[] outer) where TKey : notnull
 	{
 		/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TResult[] Join<TInner, TKey, TResult>(
+		public TResult[] Join(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,
 			Func<TInner, TKey> innerKeySelector,
 			Func<TOuter, TInner, TResult> resultSelector
-		) where TKey : notnull => Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
+		) => Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
 
 		/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult}, IEqualityComparer{TKey}?)"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TResult[] Join<TInner, TKey, TResult>(
+		public TResult[] Join(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,
 			Func<TInner, TKey> innerKeySelector,
 			Func<TOuter, TInner, TResult> resultSelector,
 			IEqualityComparer<TKey>? comparer
-		) where TKey : notnull
+		)
 		{
 			comparer ??= EqualityComparer<TKey>.Default;
 
@@ -64,31 +54,21 @@ public partial class ArrayEnumerable
 		}
 
 		/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TResult[] GroupJoin<TInner, TKey, TResult>(
+		public TResult[] GroupJoin(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,
 			Func<TInner, TKey> innerKeySelector,
 			Func<TOuter, TInner[], TResult> resultSelector
-		) where TKey : notnull => GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
+		) => GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
 
 		/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TResult[] GroupJoin<TInner, TKey, TResult>(
+		public TResult[] GroupJoin(
 			TInner[] inner,
 			Func<TOuter, TKey> outerKeySelector,
 			Func<TInner, TKey> innerKeySelector,
 			Func<TOuter, TInner[], TResult> resultSelector,
 			IEqualityComparer<TKey>? comparer
-		) where TKey : notnull
+		)
 		{
 			comparer ??= EqualityComparer<TKey>.Default;
 

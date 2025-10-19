@@ -181,7 +181,7 @@ r3c4(6) 假
 
 然后我们可以得到显性数对删掉 `r5c5(9)`，即 `r5c5(9)` 为假。
 
-<figure><img src="../../.gitbook/assets/image_0747.png" alt="" width="375"><figcaption><p>r5c5(9) 为假后二阶鱼成立删 r3c7(9)</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0747.png" alt="" width="375"><figcaption><p>r5c5(9) 为假后二阶鱼成立删 r3c7(9)</p></figcaption></figure>
 
 接着，我们又有二阶鱼成立，得到 `r3c7(9)` 为假的结论。于是，`r3c1(9)` 必须为真。这样传递过去的。非常麻烦是不是？
 

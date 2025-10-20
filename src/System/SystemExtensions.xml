@@ -2290,6 +2290,14 @@
             </summary>
         </member>
         <member name="M:System.IO.FileSplitter.SplitFileByPartsAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:System.IO.FileSplitter.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.SplitFileByPartsAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:System.IO.FileSplitter.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.&lt;M&gt;$7EB003DF1356C09489AE0CE8FF102DD7">
+            <summary>
+            Provides extension members on <see cref="T:System.IO.File"/>.
+            </summary>
+        </member>
+        <member name="M:System.IO.FileSplitter.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.SplitFileByPartsAsync(System.String,System.String,System.Int32,System.Threading.CancellationToken)">
             <summary>
             Split file into multiple parts. Output file names will be <c>&lt;file-name&gt;_&lt;index&gt;.&lt;extension&gt;</c>.
             </summary>

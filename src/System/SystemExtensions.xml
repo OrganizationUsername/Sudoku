@@ -2284,6 +2284,53 @@
             <param name="skipFirstLine">Indicates whether the first line should be skipped.</param>
             <returns>An enumerable sequence of lines.</returns>
         </member>
+        <member name="T:System.IO.FileMerger">
+            <summary>
+            Provides a way to merge files.
+            </summary>
+        </member>
+        <member name="M:System.IO.FileMerger.MergeAsync(System.String,System.String,System.Nullable{System.Boolean},System.Threading.CancellationToken)">
+            <inheritdoc cref="M:System.IO.FileMerger.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.MergeAsync(System.String,System.String,System.Nullable{System.Boolean},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="T:System.IO.FileMerger.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.&lt;M&gt;$7EB003DF1356C09489AE0CE8FF102DD7">
+            <summary>
+            Provides extension members on <see cref="T:System.IO.File"/>.
+            </summary>
+        </member>
+        <member name="M:System.IO.FileMerger.&lt;G&gt;$F8AA2908BAC5E2DCE9609C46C9D7AE18.MergeAsync(System.String,System.String,System.Nullable{System.Boolean},System.Threading.CancellationToken)">
+            <summary>
+            Merge all found text files into one file.
+            </summary>
+            <param name="folder">The folder.</param>
+            <param name="filePath">The file path.</param>
+            <param name="onlyRecordHeaderFromFirstFile">
+            Indicates whether the output file only records header line from the first file.
+            There're 3 possible values:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>Only records header line for the first file</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Always including the first line (ignoring header line rule)</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>
+            Always excluding the first line (treating the first lines from all files to be header and ignore them)
+            </description>
+            </item>
+            </list>
+            </param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A task of <see cref="T:System.Boolean"/> value.</returns>
+            <exception cref="T:System.OperationCanceledException">Throws when operation is canceled.</exception>
+        </member>
         <member name="T:System.IO.FileSplitter">
             <summary>
             Represents a way to split files.

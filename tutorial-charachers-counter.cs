@@ -1,5 +1,8 @@
 #:property LangVersion=preview
 #:property TargetFramework=net10.0
+#:property ImplicitUsings=false
+
+#nullable enable
 
 using System;
 using System.IO;

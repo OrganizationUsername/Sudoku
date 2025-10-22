@@ -1,9 +1,8 @@
-#!usr/bin/env dotnet
-#:sdk Microsoft.NET.Sdk
 #:property TargetFramework=net10.0
 #:property LangVersion=preview
-#:property Nullable=enable
 #:property ImplicitUsings=false
+
+#nullable enable
 
 using System;
 using System.Collections.Generic;

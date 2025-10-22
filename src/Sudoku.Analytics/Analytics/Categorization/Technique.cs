@@ -3344,7 +3344,7 @@ public enum Technique
 	[TechniqueMetadata<TrivalueOddagonStepSearcher, TrivalueOddagonType1Step>(
 		Rating = 65,
 		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.RankTheory,
+		ContainingGroup = TechniqueGroup.TrivalueOddagon,
 		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	TrivalueOddagonType1,
@@ -3354,7 +3354,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.RankTheory,
+		ContainingGroup = TechniqueGroup.TrivalueOddagon,
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	TrivalueOddagonType2,
@@ -3364,7 +3364,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.RankTheory,
+		ContainingGroup = TechniqueGroup.TrivalueOddagon,
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	TrivalueOddagonType3,
@@ -3374,7 +3374,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.RankTheory,
+		ContainingGroup = TechniqueGroup.TrivalueOddagon,
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	TrivalueOddagonType4,
@@ -3385,7 +3385,7 @@ public enum Technique
 	[TechniqueMetadata<TrivalueOddagonStepSearcher, TrivalueOddagonXzStep>(
 		Rating = 67,
 		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.RankTheory,
+		ContainingGroup = TechniqueGroup.TrivalueOddagon,
 		Features = TechniqueFeatures.HardToBeGenerated)]
 	TrivalueOddagonXzRule,
 	#endregion

@@ -4291,11 +4291,6 @@
             Indicates the symmetry technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.RankTheory">
-            <summary>
-            Indicates the technique checked and searched relies on the rank theory.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BowmanBingo">
             <summary>
             Indicates the bowman bingo technique.
@@ -34526,11 +34521,6 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_QiuDeadlyPattern">
             <summary>
               Looks up a localized string similar to Qiu&apos;s Deadly Pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_RankTheory">
-            <summary>
-              Looks up a localized string similar to Rank Theory.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_RegularWing">

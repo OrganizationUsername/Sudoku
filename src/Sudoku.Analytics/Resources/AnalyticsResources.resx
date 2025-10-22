@@ -2145,9 +2145,6 @@
   <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
     <value>Qiu's Deadly Pattern</value>
   </data>
-  <data name="TechniqueGroup_RankTheory" xml:space="preserve">
-    <value>Rank Theory</value>
-  </data>
   <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
     <value>Reverse Bi-value Universal Grave</value>
   </data>

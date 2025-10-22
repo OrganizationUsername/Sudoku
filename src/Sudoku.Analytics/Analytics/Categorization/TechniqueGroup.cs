@@ -269,11 +269,6 @@ public enum TechniqueGroup
 	Symmetry,
 
 	/// <summary>
-	/// Indicates the technique checked and searched relies on the rank theory.
-	/// </summary>
-	RankTheory,
-
-	/// <summary>
 	/// Indicates the bowman bingo technique.
 	/// </summary>
 	BowmanBingo,

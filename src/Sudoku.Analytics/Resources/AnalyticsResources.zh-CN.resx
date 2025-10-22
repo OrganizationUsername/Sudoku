@@ -2188,9 +2188,6 @@
   <data name="TechniqueGroup_QiuDeadlyPattern" xml:space="preserve">
     <value>淑芬致命结构</value>
   </data>
-  <data name="TechniqueGroup_RankTheory" xml:space="preserve">
-    <value>秩理论技巧</value>
-  </data>
   <data name="TechniqueGroup_ReverseBivalueUniversalGrave" xml:space="preserve">
     <value>反双数致命结构</value>
   </data>

@@ -9092,13 +9092,34 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="P:Sudoku.Analytics.StepGatherer.Setters">
+        <member name="P:Sudoku.Analytics.StepGatherer.Setter">
             <summary>
             Represents a list of <see cref="T:System.Action`1"/> of <see cref="T:Sudoku.Analytics.StepSearcher"/> instances
             to assign extra configuration to step searcher instances.
             </summary>
+            <remarks>
+            <para>
+            This setter can be useful if step searchers are predefined.
+            All possible step searchers can be use this setter to configure options.
+            <code>
+            analyzer.Setter = static searcher =>
+            {
+                (searcher as StepSearcher1)?.Property = true;
+                (searcher as StepSearcher2)?.AnotherProperty = 42;
+                (searcher as StepSearcher3)?.Value = -1;
+            };
+            </code>
+            By using <see langword="null"/> conditional assignment <c>searcher?.Property = value</c>,
+            you can simply check the step searcher type and set property value if type matched.
+            </para>
+            <para>
+            This property can also be set using
+            <see cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter(System.Action{Sudoku.Analytics.StepSearcher})"/>.
+            </para>
+            </remarks>
             <seealso cref="T:System.Action`1"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter(System.Action{Sudoku.Analytics.StepSearcher})"/>
         </member>
         <member name="P:Sudoku.Analytics.StepGatherer.RunningArea">
             <summary>
@@ -9129,12 +9150,6 @@
         </member>
         <member name="M:Sudoku.Analytics.StepGathererFactory.ApplySetter``1(``0,System.Action{Sudoku.Analytics.StepSearcher})">
             <inheritdoc cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter(System.Action{Sudoku.Analytics.StepSearcher})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepGathererFactory.ApplySetter``2(``0,System.Action{``1})">
-            <inheritdoc cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter``1(System.Action{``0})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepGathererFactory.ApplySetters``1(``0,System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
-            <inheritdoc cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetters(System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})"/>
         </member>
         <member name="M:Sudoku.Analytics.StepGathererFactory.WithRandomizedChoosing(Sudoku.Analytics.Analyzer,System.Boolean)">
             <inheritdoc cref="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$9A39AEA43E9CBA20DE81811823A51AAE.WithRandomizedChoosing(System.Boolean)"/>
@@ -9181,42 +9196,9 @@
         </member>
         <member name="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter(System.Action{Sudoku.Analytics.StepSearcher})">
             <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.StepGatherer.Setters"/>.
+            Appends an element into the property <see cref="P:Sudoku.Analytics.StepGatherer.Setter"/>.
             </summary>
             <param name="setters">The value to be added.</param>
-            <returns>The instance same as the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetter``1(System.Action{``0})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.StepGatherer.Setters" />.
-            </summary>
-            <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-            <param name="setter">The value to be added.</param>
-            <returns>The instance same as the current instance.</returns>
-            <remarks>
-            <target name="generic-method">
-				<para>
-					Starting with C# 14, the <b>extension member</b> feature is supported.
-					When an <see langword="extension" /> block declaration has generic parameters
-					that are used by its formal parameters,
-					the method members inside the <see langword="extension" /> block will prepend those generic parameters
-					so that they become part of the method's signature.
-				</para>
-				<para>
-					For example, if you have <c>extension&lt;T&gt;(T instance)</c> that contains a method
-					<c>DoSomething&lt;TAnother&gt;()</c>, then the actual generic parameters of <c>DoSomething</c> are
-					<c>DoSomething&lt;T, TAnother&gt;</c>. Even if <c>T</c> does not need to be specified,
-					when <c>TAnother</c> must be provided, both generic parameters still need to be declared,
-					following the rules of generic methods in C#.
-				</para>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$FADAECEBD681235227010BB9198D85DE`1.ApplySetters(System.ReadOnlySpan{System.Action{Sudoku.Analytics.StepSearcher}})">
-            <summary>
-            Appends an element into the property <see cref="P:Sudoku.Analytics.StepGatherer.Setters"/>.
-            </summary>
-            <param name="setters">A list of values to be added.</param>
             <returns>The instance same as the current instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepGathererFactory.&lt;G&gt;$9A39AEA43E9CBA20DE81811823A51AAE.&lt;M&gt;$9614E6D752CC1A73D67AD56A9DAB04FF">

@@ -45,9 +45,30 @@ public abstract class StepGatherer
 	/// Represents a list of <see cref="Action{T}"/> of <see cref="StepSearcher"/> instances
 	/// to assign extra configuration to step searcher instances.
 	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// This setter can be useful if step searchers are predefined.
+	/// All possible step searchers can be use this setter to configure options.
+	/// <code>
+	/// analyzer.Setter = static searcher =>
+	/// {
+	///     (searcher as StepSearcher1)?.Property = true;
+	///     (searcher as StepSearcher2)?.AnotherProperty = 42;
+	///     (searcher as StepSearcher3)?.Value = -1;
+	/// };
+	/// </code>
+	/// By using <see langword="null"/> conditional assignment <c>searcher?.Property = value</c>,
+	/// you can simply check the step searcher type and set property value if type matched.
+	/// </para>
+	/// <para>
+	/// This property can also be set using
+	/// <see cref="StepGathererFactory.extension{TStepGatherer}(TStepGatherer).ApplySetter(Action{StepSearcher})"/>.
+	/// </para>
+	/// </remarks>
 	/// <seealso cref="Action{T}"/>
 	/// <seealso cref="StepSearcher"/>
-	public ICollection<Action<StepSearcher>> Setters { get; } = [];
+	/// <seealso cref="StepGathererFactory.extension{TStepGatherer}(TStepGatherer).ApplySetter(Action{StepSearcher})"/>
+	public Action<StepSearcher>? Setter { get; set; }
 
 	/// <summary>
 	/// Indicates the running area.
@@ -61,12 +82,14 @@ public abstract class StepGatherer
 	/// <param name="instance">The instance itself.</param>
 	public static void ApplySetters(StepGatherer instance)
 	{
-		foreach (var setter in instance.Setters)
+		if (instance.Setter is not { } setter)
 		{
-			foreach (var stepSearcher in instance.ResultStepSearchers)
-			{
-				setter(stepSearcher);
-			}
+			return;
+		}
+
+		foreach (var stepSearcher in instance.ResultStepSearchers)
+		{
+			setter(stepSearcher);
 		}
 	}
 }

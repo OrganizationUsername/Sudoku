@@ -55,52 +55,13 @@ public static class StepGathererFactory
 		}
 
 		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
+		/// Appends an element into the property <see cref="StepGatherer.Setter"/>.
 		/// </summary>
 		/// <param name="setters">The value to be added.</param>
 		/// <returns>The instance same as the current instance.</returns>
 		public TStepGatherer ApplySetter(Action<StepSearcher> setters)
 		{
-			instance.Setters.Add(setters);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <typeparam name="TStepSearcher">The type of step searcher.</typeparam>
-		/// <param name="setter">The value to be added.</param>
-		/// <returns>The instance same as the current instance.</returns>
-		/// <remarks>
-		/// <include
-		///     file="../../global-doc-comments.xml"
-		///     path="g/csharp14/feature[@name='extension-container']/target[@name='generic-method']"/>
-		/// </remarks>
-		public TStepGatherer ApplySetter<TStepSearcher>(Action<TStepSearcher> setter) where TStepSearcher : StepSearcher
-		{
-			instance.Setters.Add(
-				s =>
-				{
-					if (s is TStepSearcher target)
-					{
-						setter(target);
-					}
-				}
-			);
-			return instance;
-		}
-
-		/// <summary>
-		/// Appends an element into the property <see cref="StepGatherer.Setters"/>.
-		/// </summary>
-		/// <param name="setters">A list of values to be added.</param>
-		/// <returns>The instance same as the current instance.</returns>
-		public TStepGatherer ApplySetters(params ReadOnlySpan<Action<StepSearcher>> setters)
-		{
-			foreach (var element in setters)
-			{
-				instance.Setters.Add(element);
-			}
+			instance.Setter = setters;
 			return instance;
 		}
 	}

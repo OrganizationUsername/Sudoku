@@ -13,7 +13,7 @@ if (!Directory.Exists(folderPath))
 	return;
 }
 
-// Findf for all Markdown files in the specified folder.
+// Find for all Markdown files in the specified folder.
 var files = Directory.GetFiles(folderPath, "*.md", SearchOption.AllDirectories);
 if (files.Length == 0)
 {

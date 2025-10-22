@@ -65,6 +65,8 @@
 * 其他分析软件的兼容
   * HoDoKu 所有技巧信息的集成，以及绝大部分技巧的实现
   * Sudoku Explainer 绝大部分技巧信息的集成，以及绝大部分技巧的实现
+  
+如果你要了解这些功能，请查看 [DeepWiki](https://deepwiki.com/kyoyama-kazusa/Sudoku) 提供的介绍信息。
 
 ### 技巧支持
 

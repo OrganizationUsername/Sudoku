@@ -65,6 +65,8 @@ This repository is created for the following users:
   * Integrated information on all HoDoKu techniques, and analysis supports
   * Integrated information on most of Sudoku Explainer techniques, and analysis supports
 
+If you want to learn about architecture of this repository, please visit [DeepWiki](https://deepwiki.com/kyoyama-kazusa/Sudoku).
+
 ## Technique Supports
 
 This solution supports many kinds of human-friendly techniques. Here I will list them.

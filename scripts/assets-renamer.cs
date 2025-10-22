@@ -10,8 +10,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-var assetsDir = @"./tutorial/.gitbook/assets";
-var markdownDir = @"./tutorial";
+var assetsDir = @"../docs/tutorial/.gitbook/assets";
+var markdownDir = @"../docs/tutorial";
 
 // Step 1: Find all PNG files and sort them.
 var pngFiles = Directory.GetFiles(assetsDir, "*.png").OrderBy(Path.GetFileName).ToList();

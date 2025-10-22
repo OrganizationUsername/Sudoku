@@ -29,10 +29,6 @@
     <File Path="README-zh-cn.md" />
     <File Path="README.md" />
   </Folder>
-  <Folder Name="/Global Items/Scripts/">
-    <File Path="docs/assets-renamer.cs" />
-    <File Path="tutorial-charachers-counter.cs" />
-  </Folder>
   <Folder Name="/Global Items/Source Generators/" />
   <Project Path="src/ConsoleTest/MyPrivateWorks.csproj" />
   <Project Path="src/Sudoku.Analytics.SourceGeneration/Sudoku.Analytics.SourceGeneration.csproj" />

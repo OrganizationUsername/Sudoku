@@ -59,7 +59,6 @@ global using Sudoku.SetTheory;
 global using Sudoku.Solving;
 global using Sudoku.Transformations;
 global using Sudoku.UniquenessTests;
-global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Caching.MemoryCached;
 global using static Sudoku.Analytics.Hub;
 global using static Sudoku.Concepts.ConclusionType;

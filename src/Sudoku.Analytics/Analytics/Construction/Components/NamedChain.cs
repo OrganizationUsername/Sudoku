@@ -43,7 +43,7 @@ public abstract class NamedChain(Node lastNode, bool isLoop) : Chain(lastNode, i
 					case (_, _, true, not (AlmostLockedSetPattern or null)):
 					case (_, _, false, not null):
 					case ({ Map.Digits: var d1 }, { Map.Digits: var d2 }, var isStrong)
-					when !isStrong && (d1 != d2 || !IsPow2(d1)) || isStrong && d1 == d2:
+						when !isStrong && (d1 != d2 || !BitOperations.IsPow2(d1)) || isStrong && d1 == d2:
 					{
 						return false;
 					}

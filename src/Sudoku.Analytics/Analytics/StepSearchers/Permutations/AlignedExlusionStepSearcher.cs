@@ -30,7 +30,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 		var tempAccumulator = new HashSet<AlignedExclusionStep>();
 		foreach (var cell in EmptyCells)
 		{
-			if (IsPow2(grid.GetCandidates(cell)))
+			if (BitOperations.IsPow2(grid.GetCandidates(cell)))
 			{
 				// This technique shouldn't be used for a grid containing naked singles.
 				return null;
@@ -43,7 +43,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			var (candidateList, cellExcluders) = (CellMap.Empty, new Dictionary<Cell, CellMap>());
 			foreach (var cell in EmptyCells)
 			{
-				if (PopCount((uint)grid.GetCandidates(cell)) < 2)
+				if (BitOperations.PopCount((uint)grid.GetCandidates(cell)) < 2)
 				{
 					continue;
 				}
@@ -52,7 +52,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				var excludingCells = CellMap.Empty;
 				foreach (var excludingCell in PeersMap[cell])
 				{
-					var count = PopCount((uint)grid.GetCandidates(excludingCell));
+					var count = BitOperations.PopCount((uint)grid.GetCandidates(excludingCell));
 					if (count >= 2 && count <= size)
 					{
 						excludingCells += excludingCell;
@@ -82,7 +82,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			{
 				// Setup the first two cells.
 				var (cell1, cell2) = (cellPair[0], cellPair[1]);
-				var (cell1Count, cell2Count) = (PopCount((uint)grid.GetCandidates(cell1)), PopCount((uint)grid.GetCandidates(cell2)));
+				var (cell1Count, cell2Count) = (BitOperations.PopCount((uint)grid.GetCandidates(cell1)), BitOperations.PopCount((uint)grid.GetCandidates(cell2)));
 
 				// Create the twin area: set of cells visible by one of the two first cells.
 				var twinArea = ((cellExcluders[cell1] | cellExcluders[cell2]) & candidateList) - cell1 - cell2;
@@ -106,7 +106,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					for (var i = 0; i < tIndices.Count; i++)
 					{
 						cells[i + 2] = tIndices[i];
-						cardinalities[i + 2] = PopCount((uint)grid.GetCandidates(cells[i + 2]));
+						cardinalities[i + 2] = BitOperations.PopCount((uint)grid.GetCandidates(cells[i + 2]));
 					}
 
 					// Build the list of common excluding cells for the base cells 'cells'.
@@ -160,7 +160,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 						for (var i = 0; i < size; i++)
 						{
 							var values = grid.GetCandidates(cells[i]);
-							var p = TrailingZeroCount(values);
+							var p = BitOperations.TrailingZeroCount(values);
 							for (var j = 0; j < potentialIndices[i]; j++)
 							{
 								p = values.GetNextSet(p);

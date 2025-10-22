@@ -64,12 +64,12 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 			var entryHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
 					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(entryCandidates.Cells.SharedHouses))
+					: new HouseViewNode(ColorIdentifier.Normal, BitOperations.TrailingZeroCount(entryCandidates.Cells.SharedHouses))
 			);
 			var exitHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
 					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Auxiliary1, TrailingZeroCount(exitCandidates.Cells.SharedHouses))
+					: new HouseViewNode(ColorIdentifier.Auxiliary1, BitOperations.TrailingZeroCount(exitCandidates.Cells.SharedHouses))
 			);
 
 			globalView.Add(entryHouseOrCellViewNode);
@@ -167,7 +167,7 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 				}
 
 				var digitsMask = grid.GetCandidates(startCell);
-				if (cellDistribution.Count != PopCount((uint)digitsMask))
+				if (cellDistribution.Count != BitOperations.PopCount((uint)digitsMask))
 				{
 					continue;
 				}
@@ -215,7 +215,7 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 				}
 
 				var digitsMask = grid.GetCandidates(startCell);
-				if (houseDistribution.Count != PopCount((uint)digitsMask))
+				if (houseDistribution.Count != BitOperations.PopCount((uint)digitsMask))
 				{
 					continue;
 				}

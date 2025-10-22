@@ -62,7 +62,7 @@ public partial class Hub
 			{
 				var candidatesMap = grid.CandidatesMap;
 				var extraDigitsMask = (Mask)(grid[cells] & ~comparer);
-				if (PopCount((uint)extraDigitsMask) != 2)
+				if (BitOperations.PopCount((uint)extraDigitsMask) != 2)
 				{
 					return [];
 				}
@@ -178,8 +178,8 @@ public partial class Hub
 					ref readonly var externalSide = ref mapPair.Item2;
 
 					// Check whether two maps only hold one digit for each.
-					var internalSideDigit = TrailingZeroCount(internalSide.Digits);
-					var externalSideDigit = TrailingZeroCount(externalSide.Digits);
+					var internalSideDigit = BitOperations.TrailingZeroCount(internalSide.Digits);
+					var externalSideDigit = BitOperations.TrailingZeroCount(externalSide.Digits);
 					if (internalSideDigit == FallbackConstants.@int || externalSideDigit == FallbackConstants.@int)
 					{
 						continue;
@@ -265,7 +265,7 @@ public partial class Hub
 							{
 								// Check whether the intersection cell 'abcCellCanSeeExternalCell' only contains one extra digit.
 								var digitsMaskOnAbcCell = (Mask)(grid.GetCandidates(abcCellCanSeeExternalCell) & ~comparer);
-								if (TrailingZeroCount(digitsMaskOnAbcCell) == digit)
+								if (BitOperations.TrailingZeroCount(digitsMaskOnAbcCell) == digit)
 								{
 									// Invalid.
 									goto FastFail;

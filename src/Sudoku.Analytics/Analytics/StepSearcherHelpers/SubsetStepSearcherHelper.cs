@@ -32,7 +32,7 @@ internal sealed class SubsetStepSearcherHelper : StepSearcherHelper
 		var nakedSingleCells = CellMap.Empty;
 		foreach (var cell in emptyCellsForGrid)
 		{
-			if (IsPow2(grid.GetCandidates(cell)))
+			if (BitOperations.IsPow2(grid.GetCandidates(cell)))
 			{
 				nakedSingleCells += cell;
 			}
@@ -118,7 +118,7 @@ internal sealed class SubsetStepSearcherHelper : StepSearcherHelper
 					{
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
-						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
+						var eliminatingHouse = BitOperations.TrailingZeroCount(cells.SharedHouses & ~(1 << house));
 						foreach (var cell in HousesMap[eliminatingHouse] & emptyCellsForGrid & ~cells)
 						{
 							foreach (var digit in digitsMask)
@@ -183,7 +183,7 @@ internal sealed class SubsetStepSearcherHelper : StepSearcherHelper
 			// Remove cells that only contain 1 candidate (Naked Singles).
 			foreach (var cell in HousesMap[house] & emptyCellsForGrid)
 			{
-				if (IsPow2(grid.GetCandidates(cell)))
+				if (BitOperations.IsPow2(grid.GetCandidates(cell)))
 				{
 					currentEmptyMap -= cell;
 				}
@@ -193,7 +193,7 @@ internal sealed class SubsetStepSearcherHelper : StepSearcherHelper
 			foreach (ref readonly var cells in currentEmptyMap & size)
 			{
 				var digitsMask = grid[cells];
-				if (PopCount((uint)digitsMask) != size)
+				if (BitOperations.PopCount((uint)digitsMask) != size)
 				{
 					continue;
 				}

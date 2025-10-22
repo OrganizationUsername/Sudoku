@@ -23,7 +23,7 @@ internal static class ChainExtensions
 				{
 					digitsMask |= node.Map.Digits;
 				}
-				return IsPow2(digitsMask);
+				return BitOperations.IsPow2(digitsMask);
 			}
 		}
 

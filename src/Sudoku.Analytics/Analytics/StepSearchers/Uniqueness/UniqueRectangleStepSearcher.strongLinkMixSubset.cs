@@ -100,7 +100,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
-			var subsetHouse = Log2((uint)sameBlockHouses);
+			var subsetHouse = BitOperations.Log2((uint)sameBlockHouses);
 			var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
 				& ~HousesMap[sameBlockCell >> HouseType.Block] // won't overlap the block with same-block cell
 				& ~cells // and won't overlap with UR pattern
@@ -115,7 +115,7 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				if (PopCount((uint)extraDigitsMaskInOutsideCell) != outsideCells.Count)
+				if (BitOperations.PopCount((uint)extraDigitsMaskInOutsideCell) != outsideCells.Count)
 				{
 					// :( The size of the extra cell must be equal to the number of extra digits.
 					continue;
@@ -307,7 +307,7 @@ public partial class UniqueRectangleStepSearcher
 				ref readonly var outsideCellsSameTargetCell = ref ocTarget.Length != 0 ? ref ocTarget[0] : ref CellMap.Empty;
 				var otherCells = outsideCells & ~outsideCellsSameCornerCell & ~outsideCellsSameTargetCell;
 				var extraDigitsMask = (Mask)(grid[outsideCells + lastCell + sameBlockCell] & ~comparer);
-				if (PopCount((uint)extraDigitsMask) != outsideCells.Count)
+				if (BitOperations.PopCount((uint)extraDigitsMask) != outsideCells.Count)
 				{
 					// :( The number of extra digits appeared in subset cells should be equal to the number of subset cells.
 					continue;
@@ -379,7 +379,7 @@ public partial class UniqueRectangleStepSearcher
 							]
 						],
 						context.Options,
-						outsideCells.Count == 2 && !IsPow2(outsideCells.BlockMask)
+						outsideCells.Count == 2 && !BitOperations.IsPow2(outsideCells.BlockMask)
 							? Technique.UniqueRectangle4X1L
 							: Technique.UniqueRectangle4X1U,
 						d1,
@@ -472,7 +472,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Determine whether there're two conjugate pairs, with both connected with cell 'targetCell', of same digit.
 				if (!IsConjugatePair(conjugatePairDigit, pairMap1, pairMap1.SharedLine)
-					|| !IsConjugatePair(conjugatePairDigit, pairMap2, TrailingZeroCount(pairMap2.SharedHouses)))
+					|| !IsConjugatePair(conjugatePairDigit, pairMap2, BitOperations.TrailingZeroCount(pairMap2.SharedHouses)))
 				{
 					continue;
 				}
@@ -490,8 +490,8 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				// Then iterate empty cells lying in the target house, to determine whether a subset can be formed.
-				var conjugatePairHouse = TrailingZeroCount(pairMap2.SharedHouses);
-				var subsetHouse = Log2((uint)sameBlockHouses);
+				var conjugatePairHouse = BitOperations.TrailingZeroCount(pairMap2.SharedHouses);
+				var subsetHouse = BitOperations.Log2((uint)sameBlockHouses);
 				var outsideCellsRange = HousesMap[subsetHouse] // Subset house that:
 					& ~HousesMap[sameBlockCell >> HouseType.Block] // won't overlap the block with same-block cell
 					& ~cells // and won't overlap with UR pattern
@@ -506,7 +506,7 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					if (PopCount((uint)extraDigitsMaskInOutsideCell) != outsideCells.Count)
+					if (BitOperations.PopCount((uint)extraDigitsMaskInOutsideCell) != outsideCells.Count)
 					{
 						// :( The size of the extra cell must be equal to the number of extra digits.
 						continue;

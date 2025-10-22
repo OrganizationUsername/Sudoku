@@ -51,7 +51,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 			}
 		}
 
-		if (PopCount((uint)satisfiedBlocksMask) < 4)
+		if (BitOperations.PopCount((uint)satisfiedBlocksMask) < 4)
 		{
 			// At least four blocks should contain at least 3 cells.
 			return null;
@@ -92,7 +92,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 				foreach (var cell in pattern)
 				{
 					var candidatesMask = grid.GetCandidates(cell);
-					if (IsPow2(candidatesMask))
+					if (BitOperations.IsPow2(candidatesMask))
 					{
 						containsNakedSingle = true;
 						break;
@@ -131,7 +131,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 		{
 			var otherCells = pattern - extraCell;
 			var digitsMask = grid[otherCells];
-			if (PopCount((uint)digitsMask) != 3)
+			if (BitOperations.PopCount((uint)digitsMask) != 3)
 			{
 				continue;
 			}
@@ -179,7 +179,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 	{
 		ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid[pattern];
-		if (PopCount((uint)allDigitsMask) != 5)
+		if (BitOperations.PopCount((uint)allDigitsMask) != 5)
 		{
 			// The pattern cannot find any possible eliminations because the number of extra digits
 			// are not 2 will cause the extra digits not forming a valid strong link

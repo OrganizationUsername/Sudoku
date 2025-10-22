@@ -118,8 +118,8 @@ public partial class Hub
 								_,
 								({ Map.Cells: var cells21 }, { Map.Cells: var cells22 })
 							] when (
-								TrailingZeroCount((cells11 | cells12).SharedHouses).HouseType,
-								TrailingZeroCount((cells21 | cells22).SharedHouses).HouseType
+								BitOperations.TrailingZeroCount((cells11 | cells12).SharedHouses).HouseType,
+								BitOperations.TrailingZeroCount((cells21 | cells22).SharedHouses).HouseType
 							) is var (p1, p2) => (p1, p2) switch
 							{
 								(HouseType.Block, _) or (_, HouseType.Block)

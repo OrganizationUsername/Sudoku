@@ -118,7 +118,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								|| (c1.AsCellMap() + b).FirstSharedHouse != FallbackConstants.@int
 								&& (c2.AsCellMap() + a).FirstSharedHouse != FallbackConstants.@int
 								=> true,
-							{ Count: > 2 and <= 6, BlockMask: var blocks } => PopCount((uint)blocks) switch
+							{ Count: > 2 and <= 6, BlockMask: var blocks } => BitOperations.PopCount((uint)blocks) switch
 							{
 								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
 								2 when BitOperations.PopTwo((uint)blocks, out var block2) is var block1
@@ -146,7 +146,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						}
 
 						// Check for eliminations.
-						var anotherDigit = TrailingZeroCount((Mask)(grid.GetCandidates(c1) & ~(1 << digit)));
+						var anotherDigit = BitOperations.TrailingZeroCount((Mask)(grid.GetCandidates(c1) & ~(1 << digit)));
 						var elimMap = CandidatesMap[anotherDigit] & (c1.AsCellMap() + c2).PeerIntersection;
 						if (!elimMap)
 						{

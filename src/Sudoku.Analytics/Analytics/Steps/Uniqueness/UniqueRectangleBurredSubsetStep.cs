@@ -81,7 +81,7 @@ public sealed class UniqueRectangleBurredSubsetStep(
 	bool IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize => PopCount((uint)ExtraDigitsMask);
+	int IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize => BitOperations.PopCount((uint)ExtraDigitsMask);
 
 	/// <inheritdoc/>
 	Mask IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetDigitsMask => ExtraDigitsMask;

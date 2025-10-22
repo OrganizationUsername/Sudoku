@@ -43,7 +43,7 @@ public sealed class Link(Node firstNode, Node secondNode, bool isStrong, Pattern
 	/// </summary>
 	public bool IsBivalueCellLink
 		=> this is ({ Map: { Cells: [var c1], Digits: var d1 } }, { Map: { Cells: [var c2], Digits: var d2 } })
-		&& c1 == c2 && d1 != d2 && IsPow2(d1) && IsPow2(d2);
+		&& c1 == c2 && d1 != d2 && BitOperations.IsPow2(d1) && BitOperations.IsPow2(d2);
 
 	/// <summary>
 	/// Indicates whether the link type is a strong link or not.

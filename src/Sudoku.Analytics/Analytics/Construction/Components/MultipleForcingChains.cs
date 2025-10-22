@@ -27,7 +27,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 	public virtual bool IsCellMultiple => Candidates.Cells.Count == 1;
 
 	/// <inheritdoc/>
-	public virtual bool IsHouseMultiple => IsPow2(Candidates.Digits);
+	public virtual bool IsHouseMultiple => BitOperations.IsPow2(Candidates.Digits);
 
 	/// <inheritdoc/>
 	public virtual bool IsAdvancedMultiple => false;
@@ -394,7 +394,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 		=> (ViewNode[])[
 			IsCellMultiple
 				? new CellViewNode(ColorIdentifier.Normal, this.First().Key / 9)
-				: new HouseViewNode(ColorIdentifier.Normal, TrailingZeroCount(Candidates.Cells.SharedHouses))
+				: new HouseViewNode(ColorIdentifier.Normal, BitOperations.TrailingZeroCount(Candidates.Cells.SharedHouses))
 		];
 
 	/// <inheritdoc/>

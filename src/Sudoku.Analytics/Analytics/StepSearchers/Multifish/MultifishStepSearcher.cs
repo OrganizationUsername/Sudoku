@@ -122,7 +122,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 									patternCells |= cells;
 								}
 
-								if (PopCount((uint)rcTruthsCurrentHouse) < 2)
+								if (BitOperations.PopCount((uint)rcTruthsCurrentHouse) < 2)
 								{
 									// We cannot choose such houses with specified line type.
 									goto NextLineTypeCase;
@@ -189,7 +189,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 											}
 
 											var cells = patternCells & HousesMap[line];
-											llk += Math.Min(PopCount((uint)tcl[line]), cells.Count);
+											llk += Math.Min(BitOperations.PopCount((uint)tcl[line]), cells.Count);
 										}
 										foreach (var block in ChuteBlocks[targetChuteIndex])
 										{
@@ -199,7 +199,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 											}
 
 											var cells = patternCells & HousesMap[block];
-											blk += Math.Min(PopCount((uint)tcl[block]), cells.Count);
+											blk += Math.Min(BitOperations.PopCount((uint)tcl[block]), cells.Count);
 										}
 										if (blk < llk)
 										{
@@ -234,7 +234,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										{
 											var currentHouse = house + offset;
 											var cells = patternCells & HousesMap[currentHouse];
-											llk += minInLine[offset] = Math.Min(PopCount((uint)tcl[currentHouse]), cells.Count);
+											llk += minInLine[offset] = Math.Min(BitOperations.PopCount((uint)tcl[currentHouse]), cells.Count);
 										}
 
 										var flag = false;
@@ -251,7 +251,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 												flag = true;
 											}
 
-											blk += Math.Min(PopCount((uint)tcl[block]), cells.Count);
+											blk += Math.Min(BitOperations.PopCount((uint)tcl[block]), cells.Count);
 										}
 
 										var (state, count) = blk < llk || blk == llk && flag ? (4, blk) : (0, llk);
@@ -279,7 +279,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 													{
 														boxLk[offset3] |= (Mask)(grid.GetCandidates(cell) & digitsMask);
 													}
-													deletedCount += Math.Min(PopCount((uint)boxLk[offset3]), t.Count);
+													deletedCount += Math.Min(BitOperations.PopCount((uint)boxLk[offset3]), t.Count);
 												}
 												if (deletedCount + minInLine[3 - offset1 - offset2] is var p && p < count)
 												{
@@ -365,11 +365,11 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							var linksCount = cellLinks.Count;
 							foreach (var mask in rct)
 							{
-								truthsCount += PopCount((uint)mask);
+								truthsCount += BitOperations.PopCount((uint)mask);
 							}
 							foreach (var mask in rcl)
 							{
-								linksCount += PopCount((uint)mask);
+								linksCount += BitOperations.PopCount((uint)mask);
 							}
 
 							// Try to merge cell links into block links in order to make pattern valid.
@@ -382,7 +382,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								{
 									var linkHouse = cell >> (isRow ? HouseType.Column : HouseType.Row);
 									var candidates = (Mask)((Mask)(grid.GetCandidates(cell) & digitsMask) | rct[linkHouse]);
-									if (PopCount((uint)candidates) != 1)
+									if (BitOperations.PopCount((uint)candidates) != 1)
 									{
 										continue;
 									}
@@ -401,7 +401,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 											continue;
 										}
 
-										var tempCells = CandidatesMap[Log2((uint)candidates)]
+										var tempCells = CandidatesMap[BitOperations.Log2((uint)candidates)]
 											& HousesMap[house]
 											& (patternCells | other);
 										if (tempCells.PeerIntersection.Contains(cell))
@@ -538,11 +538,11 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										linksCount = cellLinks.Count;
 										foreach (var mask in rct)
 										{
-											truthsCount += PopCount((uint)mask);
+											truthsCount += BitOperations.PopCount((uint)mask);
 										}
 										foreach (var mask in rcl)
 										{
-											linksCount += PopCount((uint)mask);
+											linksCount += BitOperations.PopCount((uint)mask);
 										}
 									}
 								}
@@ -604,7 +604,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								}
 
 								if ((HousesMap[house] & (patternCells | other) & ~cellLinks) is var rebalancedLinkCells
-									&& rebalancedLinkCells.Count == PopCount((uint)rcl[house]))
+									&& rebalancedLinkCells.Count == BitOperations.PopCount((uint)rcl[house]))
 								{
 									foreach (var cell in rebalancedLinkCells)
 									{
@@ -887,7 +887,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 		var reduction = 0;
 		var addRct = (Mask)0;
 		var addedCellLink = CellMap.Empty;
-		if (cells.Count <= PopCount((uint)tcl[house]))
+		if (cells.Count <= BitOperations.PopCount((uint)tcl[house]))
 		{
 			// Add line truths.
 			var candidatesMask = (Mask)(notSolved[house] & ~(tcl[house] | possibleTruthTripletDigitsMask));
@@ -916,14 +916,14 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 				return;
 			}
 
-			if (cells.Count < PopCount((uint)tcl[house]))
+			if (cells.Count < BitOperations.PopCount((uint)tcl[house]))
 			{
 				cellLinks |= cells;
 			}
 		}
 
 		var isAnyCellsAdded = false;
-		if (cells.Count >= PopCount((uint)tcl[house]))
+		if (cells.Count >= BitOperations.PopCount((uint)tcl[house]))
 		{
 			// Add cell truths.
 			var tempCells = HousesMap[house] & EmptyCells & ~cells;
@@ -958,7 +958,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 					}
 					candidates &= (Mask)~tcl[house];
 
-					if (PopCount((uint)candidates) < cellSize)
+					if (BitOperations.PopCount((uint)candidates) < cellSize)
 					{
 						other |= cellCombination;
 						rcl[house] |= (Mask)(candidates | tcl[house]);
@@ -967,13 +967,13 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 				}
 			}
 
-			if (cells.Count > PopCount((uint)tcl[house]))
+			if (cells.Count > BitOperations.PopCount((uint)tcl[house]))
 			{
 				rcl[house] |= tcl[house];
 			}
 		}
 
-		if (cells.Count == PopCount((uint)tcl[house]))
+		if (cells.Count == BitOperations.PopCount((uint)tcl[house]))
 		{
 			rcl[house] |= tcl[house];
 		}

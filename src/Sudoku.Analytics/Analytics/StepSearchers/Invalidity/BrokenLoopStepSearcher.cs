@@ -127,7 +127,7 @@ public sealed partial class BrokenLoopStepSearcher
 			}
 
 			if (!!guardians
-				&& PopCount((uint)guardians.Digits) != 1 // Type 1 and 2
+				&& BitOperations.PopCount((uint)guardians.Digits) != 1 // Type 1 and 2
 				&& guardians.Cells is not { Count: 2, FirstSharedHouse: not FallbackConstants.@int }) // Type 3 and 4
 			{
 				return;
@@ -152,7 +152,7 @@ public sealed partial class BrokenLoopStepSearcher
 					// Check digits in the current cell.
 					var digitsMask = grid.GetCandidates(currentCell);
 					var otherDigitsMask = (Mask)(digitsMask & ~(1 << currentDigit));
-					switch (PopCount((uint)otherDigitsMask))
+					switch (BitOperations.PopCount((uint)otherDigitsMask))
 					{
 						default:
 						{
@@ -161,7 +161,7 @@ public sealed partial class BrokenLoopStepSearcher
 						}
 						case 1:
 						{
-							var otherDigit = Log2((uint)otherDigitsMask);
+							var otherDigit = BitOperations.Log2((uint)otherDigitsMask);
 							var nextCandidate = currentCell * 9 + otherDigit;
 							availableNext.AddRef((mode, nextCandidate, null));
 							break;
@@ -172,7 +172,7 @@ public sealed partial class BrokenLoopStepSearcher
 							foreach (var digit in otherDigitsMask)
 							{
 								var nextCandidate = currentCell * 9 + digit;
-								var nextGuardian = currentCell * 9 + Log2((uint)(otherDigitsMask & ~(1 << digit)));
+								var nextGuardian = currentCell * 9 + BitOperations.Log2((uint)(otherDigitsMask & ~(1 << digit)));
 								availableNext.AddRef((mode, nextCandidate, nextGuardian));
 							}
 							break;
@@ -363,12 +363,12 @@ public sealed partial class BrokenLoopStepSearcher
 	{
 		// Check whether eliminations can be found.
 		var digitsMask = guardians.Digits;
-		if (!IsPow2(digitsMask))
+		if (!BitOperations.IsPow2(digitsMask))
 		{
 			return null;
 		}
 
-		var guardianDigit = Log2((uint)digitsMask);
+		var guardianDigit = BitOperations.Log2((uint)digitsMask);
 		var elimMap = guardians.Cells % CandidatesMap[guardianDigit];
 		if (!elimMap)
 		{
@@ -437,7 +437,7 @@ public sealed partial class BrokenLoopStepSearcher
 			{
 				// Determine whether size matches.
 				var digitsMask = (Mask)(guardianDigitsMask | grid[subsetCells]);
-				if (PopCount((uint)digitsMask) != subsetCells.Count + 1)
+				if (BitOperations.PopCount((uint)digitsMask) != subsetCells.Count + 1)
 				{
 					continue;
 				}

@@ -127,7 +127,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 							-1,
 							cellsContainingBothTwoDigits,
 							cell.AsCellMap(),
-							PopCount((uint)grid.GetCandidates(cell)) > 2 ? [cell] : [],
+							BitOperations.PopCount((uint)grid.GetCandidates(cell)) > 2 ? [cell] : [],
 							result,
 							ref foundLoopsCount,
 							comparer,
@@ -207,12 +207,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					else
 					{
 						var newExtraDigitsMask = (Mask)(extraDigitsMask | (Mask)(grid.GetCandidates(cell) & ~comparer));
-						var newExtraCells = PopCount((uint)grid.GetCandidates(cell)) > 2
+						var newExtraCells = BitOperations.PopCount((uint)grid.GetCandidates(cell)) > 2
 							? extraCells + cell
 							: extraCells;
 						if (newExtraCells.FirstSharedHouse != FallbackConstants.@int
-							|| IsPow2(newExtraDigitsMask)
-							&& !!(newExtraCells.PeerIntersection & CandidatesMap[Log2((uint)newExtraDigitsMask)])
+							|| BitOperations.IsPow2(newExtraDigitsMask)
+							&& !!(newExtraCells.PeerIntersection & CandidatesMap[BitOperations.Log2((uint)newExtraDigitsMask)])
 							|| newExtraCells.Count < 3)
 						{
 							dfs(
@@ -250,12 +250,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	)
 	{
 		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
-		if (!IsPow2(mask))
+		if (!BitOperations.IsPow2(mask))
 		{
 			goto ReturnNull;
 		}
 
-		var extraDigit = TrailingZeroCount(mask);
+		var extraDigit = BitOperations.TrailingZeroCount(mask);
 		if (extraCellsMap % CandidatesMap[extraDigit] is not (var elimMap and not []))
 		{
 			goto ReturnNull;
@@ -343,12 +343,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			}
 
 			var otherCells = HousesMap[house] & EmptyCells & ~loop;
-			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
+			for (var size = BitOperations.PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (ref readonly var cells in otherCells & size)
 				{
 					var mask = grid[cells];
-					if (PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
+					if (BitOperations.PopCount((uint)mask) != size + 1 || (mask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
 					}
@@ -438,7 +438,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	)
 	{
 		var mask = (Mask)(grid[extraCellsMap] & ~comparer);
-		if (!IsPow2(mask))
+		if (!BitOperations.IsPow2(mask))
 		{
 			goto ReturnNull;
 		}
@@ -447,7 +447,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			goto ReturnNull;
 		}
 
-		var extraDigit = TrailingZeroCount(mask);
+		var extraDigit = BitOperations.TrailingZeroCount(mask);
 
 		// Get hamiltonian cycle here.
 		// Why here? Because we should know two cells from extra cells map must be adjacent with each other in the loop.

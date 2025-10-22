@@ -29,7 +29,7 @@ public sealed class BrokenLoopType3Step(
 	/// <summary>
 	/// Indicates the size of subset.
 	/// </summary>
-	public int ExtraDigitsSize => PopCount((uint)ExtraDigitsMask);
+	public int ExtraDigitsSize => BitOperations.PopCount((uint)ExtraDigitsMask);
 
 	/// <summary>
 	/// Indicates extra cells.

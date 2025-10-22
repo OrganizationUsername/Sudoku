@@ -28,13 +28,13 @@ public partial class Hub
 				{
 					// Check row.
 					var list = new List<HouseMask>(2);
-					if (cells.RowMask << 9 is var rowsSpanned && PopCount((uint)rowsSpanned) == 2)
+					if (cells.RowMask << 9 is var rowsSpanned && BitOperations.PopCount((uint)rowsSpanned) == 2)
 					{
 						list.Add(rowsSpanned);
 					}
 
 					// Check column.
-					if (cells.ColumnMask << 18 is var columnSpanned && PopCount((uint)columnSpanned) == 2)
+					if (cells.ColumnMask << 18 is var columnSpanned && BitOperations.PopCount((uint)columnSpanned) == 2)
 					{
 						list.Add(columnSpanned);
 					}
@@ -48,10 +48,10 @@ public partial class Hub
 					goto default;
 				}
 				case HouseType.Row or HouseType.Column
-				when cells.BlockMask is var blocksSpanned && PopCount((uint)blocksSpanned) == 2:
+				when cells.BlockMask is var blocksSpanned && BitOperations.PopCount((uint)blocksSpanned) == 2:
 				{
 					// Check block.
-					spannedHousesList = (HouseMask[])[blocksSpanned];
+					spannedHousesList = Array.Single<HouseMask>(blocksSpanned);
 					return true;
 				}
 				default:

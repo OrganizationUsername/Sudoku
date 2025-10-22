@@ -67,7 +67,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var emptyCells = EmptyCells;
 		foreach (var cell in EmptyCells)
 		{
-			if (IsPow2(context.Grid.GetCandidates(cell)))
+			if (BitOperations.IsPow2(context.Grid.GetCandidates(cell)))
 			{
 				emptyCells -= cell;
 			}
@@ -236,7 +236,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var step = new ReverseBivalueUniversalGraveType1Step(
-			Array.Single(new Conclusion(Elimination, extraCell, TrailingZeroCount(elimDigitsMask))),
+			Array.Single(new Conclusion(Elimination, extraCell, BitOperations.TrailingZeroCount(elimDigitsMask))),
 			[[.. cellOffsets, .. GetLinkViewNodes(separatedLoops)]],
 			context.Options,
 			d1,
@@ -277,12 +277,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	)
 	{
 		var lastDigitsMask = (Mask)(context.Grid[cellsChosen] & ~comparer);
-		if (!IsPow2(lastDigitsMask))
+		if (!BitOperations.IsPow2(lastDigitsMask))
 		{
 			return null;
 		}
 
-		var extraDigit = TrailingZeroCount(lastDigitsMask);
+		var extraDigit = BitOperations.TrailingZeroCount(lastDigitsMask);
 		var elimMap = cellsChosen.PeerIntersection & EmptyCells & CandidatesMap[extraDigit];
 		if (!elimMap)
 		{
@@ -365,14 +365,14 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		ref readonly var grid = ref context.Grid;
 		var (digitsMask1, digitsMask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 		var otherDigitsMask = (Mask)((digitsMask1 | digitsMask2) & ~comparer);
-		if (IsPow2(otherDigitsMask))
+		if (BitOperations.IsPow2(otherDigitsMask))
 		{
 			// Only one digit is categorized as "other digits". In this case we can only use an extra cell to form a type 3.
 			// However, the extra cell is a naked single. The naked single must be handled before this technique.
 			return null;
 		}
 
-		var numbersOfOtherDigits = PopCount((uint)otherDigitsMask);
+		var numbersOfOtherDigits = BitOperations.PopCount((uint)otherDigitsMask);
 		foreach (var house in cellsChosen.SharedHouses)
 		{
 			var otherEmptyCells = EmptyCells & HousesMap[house] & ~cellsChosen;
@@ -505,12 +505,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var cell1Digit = (Mask)(grid.GetCandidates(cell1) & comparer);
 		var cell2Digit = (Mask)(grid.GetCandidates(cell2) & comparer);
 		var mergedDigitMask = (Mask)(cell1Digit | cell2Digit);
-		if (!IsPow2(mergedDigitMask))
+		if (!BitOperations.IsPow2(mergedDigitMask))
 		{
 			return null;
 		}
 
-		var selectedDigit = TrailingZeroCount(mergedDigitMask);
+		var selectedDigit = BitOperations.TrailingZeroCount(mergedDigitMask);
 		if (!((grid.Exists(cell1, selectedDigit) ?? false) && (grid.Exists(cell2, selectedDigit) ?? false)))
 		{
 			// We should ensure all chosen cells (empty cells) contain the selected digit.
@@ -639,9 +639,9 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 		// The pattern must span n/2 rows, n/2 columns and n/2 blocks, and n is the length of the pattern).
 		var halfLength = length >> 1;
-		if (PopCount((uint)r) != halfLength
-			|| PopCount((uint)c) != halfLength
-			|| PopCount((uint)b) != halfLength)
+		if (BitOperations.PopCount((uint)r) != halfLength
+			|| BitOperations.PopCount((uint)c) != halfLength
+			|| BitOperations.PopCount((uint)b) != halfLength)
 		{
 			return false;
 		}

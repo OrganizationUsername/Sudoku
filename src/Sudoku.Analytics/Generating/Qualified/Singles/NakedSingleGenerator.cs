@@ -73,7 +73,7 @@ public sealed class NakedSingleGenerator : SingleGenerator
 			digitsMask &= (Mask)~(1 << digit);
 		}
 
-		var targetDigit = Log2((uint)digitsMask);
+		var targetDigit = BitOperations.Log2((uint)digitsMask);
 		Excluder.GetNakedSingleExcluders(puzzle, targetCell, targetDigit, out var excluderHouses);
 		step = new NakedSingleStep(
 			null!,

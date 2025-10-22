@@ -124,7 +124,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Type 2 or 5 found. Now check elimination.
-		var extraDigit = TrailingZeroCount(extraMask);
+		var extraDigit = BitOperations.TrailingZeroCount(extraMask);
 		var elimMap = (corner1.AsCellMap() + corner2).PeerIntersection & CandidatesMap[extraDigit];
 		if (!elimMap)
 		{
@@ -246,12 +246,12 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var iterationMap = HousesMap[houseIndex] & EmptyCells & ~otherCellsMap;
-			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
+			for (var size = BitOperations.PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
 				foreach (ref readonly var iteratedCells in iterationMap & size)
 				{
 					var tempMask = grid[iteratedCells];
-					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size
+					if ((tempMask & comparer) != 0 || BitOperations.PopCount((uint)tempMask) - 1 != size
 						|| (tempMask & otherDigitsMask) != otherDigitsMask)
 					{
 						continue;
@@ -364,7 +364,7 @@ public partial class UniqueRectangleStepSearcher
 
 			// Yes, Type 4 found.
 			// Now check elimination.
-			var elimDigit = TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
+			var elimDigit = BitOperations.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
 			if ((otherCellsMap & CandidatesMap[elimDigit]) is not (var elimMap and not []))
 			{
 				continue;
@@ -467,7 +467,7 @@ public partial class UniqueRectangleStepSearcher
 		}
 
 		// Type 5 found. Now check elimination.
-		var extraDigit = TrailingZeroCount(extraMask);
+		var extraDigit = BitOperations.TrailingZeroCount(extraMask);
 		var cellsThatContainsExtraDigit = otherCellsMap & CandidatesMap[extraDigit];
 
 		// Degenerate to type 1.
@@ -700,7 +700,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			// Hidden UR/AR found. Now check eliminations.
-			var elimDigit = TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
+			var elimDigit = BitOperations.TrailingZeroCount((Mask)(comparer ^ (1 << digit)));
 			if (!CandidatesMap[elimDigit].Contains(abzCell))
 			{
 				continue;

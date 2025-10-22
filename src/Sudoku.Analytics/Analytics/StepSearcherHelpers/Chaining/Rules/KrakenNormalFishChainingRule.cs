@@ -103,7 +103,7 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 
 					// Strong.
 					var cells1 = baseSetsMap & ~fins;
-					if (cells1.Count < size << 1 || IsPow2(cells1.BlockMask))
+					if (cells1.Count < size << 1 || BitOperations.IsPow2(cells1.BlockMask))
 					{
 						// A valid fish node cannot be degenerated, or all cells are inside a block.
 						continue;
@@ -113,7 +113,7 @@ public sealed class KrakenNormalFishChainingRule : ChainingRule
 					// This will fix issue #672: https://github.com/kyoyama-kazusa/Sudoku/issues/672
 					// Counter-example:
 					//   .+1..6...5..9....1.3....12..2..4+98...+9.1.5..8..68..39...9..3......4..5..91..2+4+97..:714 814 724 824 327 734 834 657 659 169 571 674 184 885
-					if (PopCount((uint)cells1.BlockMask) == 2)
+					if (BitOperations.PopCount((uint)cells1.BlockMask) == 2)
 					{
 						continue;
 					}

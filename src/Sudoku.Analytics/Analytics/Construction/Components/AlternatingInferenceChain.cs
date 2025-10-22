@@ -128,9 +128,11 @@ public sealed class AlternatingInferenceChain(Node lastNode) : NamedChain(lastNo
 				{ Map.Digits: var m4 },
 				{ Map.Digits: var m5 },
 				{ Map.Digits: var m6 }
-			] => IsPow2(m1) && IsPow2(m2) && IsPow2(m3) && IsPow2(m4) && IsPow2(m5) && IsPow2(m6)
-				? (true, m1, m2, m3, m4, m5, m6)
-				: (false, m1, m2, m3, m4, m5, m6),
+			]
+				=> BitOperations.IsPow2(m1) && BitOperations.IsPow2(m2) && BitOperations.IsPow2(m3)
+				&& BitOperations.IsPow2(m4) && BitOperations.IsPow2(m5) && BitOperations.IsPow2(m6)
+					? (true, m1, m2, m3, m4, m5, m6)
+					: (false, m1, m2, m3, m4, m5, m6),
 			_ => null
 		};
 

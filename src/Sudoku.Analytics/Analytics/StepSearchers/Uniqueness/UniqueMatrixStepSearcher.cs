@@ -105,7 +105,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// </summary>
 	private UniqueMatrixType1Step? CheckType1(in Grid grid, ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
-		if (PopCount((uint)mask) != 5)
+		if (BitOperations.PopCount((uint)mask) != 5)
 		{
 			goto ReturnNull;
 		}
@@ -113,7 +113,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		foreach (var digits in mask.AllSets & 4)
 		{
 			var digitsMask = Mask.Create(digits);
-			var extraDigit = TrailingZeroCount((Mask)(mask & ~digitsMask));
+			var extraDigit = BitOperations.TrailingZeroCount((Mask)(mask & ~digitsMask));
 			var extraDigitMap = CandidatesMap[extraDigit] & pattern;
 			if (extraDigitMap is not [var elimCell])
 			{
@@ -160,7 +160,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// </summary>
 	private UniqueMatrixType2Step? CheckType2(ref StepAnalysisContext context, in CellMap pattern, Mask mask)
 	{
-		if (PopCount((uint)mask) != 5)
+		if (BitOperations.PopCount((uint)mask) != 5)
 		{
 			goto ReturnNull;
 		}
@@ -168,7 +168,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		foreach (var digits in mask.AllSets & 4)
 		{
 			var digitsMask = Mask.Create(digits);
-			var extraDigit = TrailingZeroCount((Mask)(mask & ~digitsMask));
+			var extraDigit = BitOperations.TrailingZeroCount((Mask)(mask & ~digitsMask));
 			if (pattern % CandidatesMap[extraDigit] is not (var elimMap and not []))
 			{
 				continue;
@@ -228,12 +228,12 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 			foreach (var house in tempMap.SharedHouses)
 			{
 				var allCells = HousesMap[house] & EmptyCells & ~pattern;
-				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
+				for (var size = BitOperations.PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
 					foreach (ref readonly var cells in allCells & size)
 					{
 						var tempMask = grid[cells];
-						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
+						if (BitOperations.PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)
 						{
 							continue;
 						}

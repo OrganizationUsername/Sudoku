@@ -301,7 +301,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					}
 				}
 
-				var targetCandidate = fullHouseCell * 9 + Log2((uint)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
+				var targetCandidate = fullHouseCell * 9 + BitOperations.Log2((uint)(Grid.MaxCandidatesMask & ~appearedDigitsMask));
 				if (concludedCells.Add(fullHouseCell))
 				{
 					result.Add(new NormalWhipAssignment(targetCandidate, Technique.FullHouse));
@@ -340,9 +340,9 @@ public sealed partial class WhipStepSearcher : StepSearcher
 		foreach (var nakedSingleCell in emptyCells)
 		{
 			var digitsMask = playground.GetCandidates(nakedSingleCell);
-			if (IsPow2(digitsMask))
+			if (BitOperations.IsPow2(digitsMask))
 			{
-				var digit = Log2((uint)digitsMask);
+				var digit = BitOperations.Log2((uint)digitsMask);
 				var targetCandidate = nakedSingleCell * 9 + digit;
 				if (concludedCells.Add(nakedSingleCell))
 				{
@@ -422,7 +422,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
 
 							var currentCells = currentCandidates.Cells;
-							var currentDigit = Log2((uint)currentCandidates.Digits);
+							var currentDigit = BitOperations.Log2((uint)currentCandidates.Digits);
 							var houseType = type switch
 							{
 								Technique.CrosshatchingBlock => HouseType.Block,
@@ -538,7 +538,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					({ Digits: var d1, Cells: [var c1] }, { Digits: var d2, Cells: [var c2] }) when d1 != d2 && c1 == c2
 						=> Space.RowColumn(c1 / 9, c1 % 9),
 					({ Digits: var d1, Cells: var c1 }, { Digits: var d2, Cells: var c2 })
-					when d1 == d2 && IsPow2(d1) && Log2((uint)d1) is var digit && (c1 | c2).FirstSharedHouse is var house
+					when d1 == d2 && BitOperations.IsPow2(d1) && BitOperations.Log2((uint)d1) is var digit && (c1 | c2).FirstSharedHouse is var house
 						=> house switch
 						{
 							< 9 => Space.BlockDigit(house, digit),

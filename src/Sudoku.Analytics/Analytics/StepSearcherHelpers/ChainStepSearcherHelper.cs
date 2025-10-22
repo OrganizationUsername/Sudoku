@@ -183,7 +183,7 @@ internal sealed class ChainStepSearcherHelper : ChainingStepSearcherHelper
 		var mrvOrdered = new List<(Cell Cell, Digit CandidatesCount)>();
 		foreach (var cell in EmptyCells)
 		{
-			mrvOrdered.Add((cell, PopCount((uint)grid.GetCandidates(cell))));
+			mrvOrdered.Add((cell, BitOperations.PopCount((uint)grid.GetCandidates(cell))));
 		}
 		mrvOrdered.Sort(static (left, right) => left.CandidatesCount.CompareTo(right.CandidatesCount));
 		foreach (var (cell, _) in mrvOrdered)

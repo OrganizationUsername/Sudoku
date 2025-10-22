@@ -43,7 +43,7 @@ public sealed class UniqueRectangleDoubleSideExternalChainingRule : UniqueRectan
 
 				var urDigitsMask = (Mask)(1 << digitPair[0] | 1 << digitPair[1]);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
-				if (PopCount((uint)otherDigitsMask) < 2)
+				if (BitOperations.PopCount((uint)otherDigitsMask) < 2)
 				{
 					continue;
 				}
@@ -95,7 +95,7 @@ public sealed class UniqueRectangleDoubleSideExternalChainingRule : UniqueRectan
 							continue;
 						}
 
-						var lastUrDigit = Log2((uint)(urDigitsMask & ~lockedUrDigitsMask));
+						var lastUrDigit = BitOperations.Log2((uint)(urDigitsMask & ~lockedUrDigitsMask));
 						var otherCellsContainingLastUrDigit = HousesMap[lockedHouse] & __CandidatesMap[lastUrDigit] & ~urCells;
 						if (linkOption == LinkOption.Intersection && !otherCellsContainingLastUrDigit.IsInIntersection)
 						{

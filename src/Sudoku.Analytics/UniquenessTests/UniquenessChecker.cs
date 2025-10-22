@@ -321,9 +321,9 @@ public static class UniquenessChecker
 		static bool isNakedSingle(in Grid grid, Cell cell, out Digit digit)
 		{
 			var mask = (uint)(grid.GetCandidates(cell) & Grid.MaxCandidatesMask);
-			if (IsPow2(mask))
+			if (BitOperations.IsPow2(mask))
 			{
-				digit = Log2(mask);
+				digit = BitOperations.Log2(mask);
 				return true;
 			}
 			digit = -1;

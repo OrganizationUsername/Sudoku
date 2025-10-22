@@ -43,16 +43,16 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 
 				var urDigitsMask = (Mask)(1 << d1 | 1 << d2);
 				var otherDigitsMask = (Mask)(allDigitsMask & ~urDigitsMask);
-				if (!IsPow2(otherDigitsMask))
+				if (!BitOperations.IsPow2(otherDigitsMask))
 				{
 					continue;
 				}
 
 				var ur = new UniqueRectanglePattern(urCells, urDigitsMask, otherDigitsMask);
-				var otherOnlyDigit = Log2((uint)otherDigitsMask);
+				var otherOnlyDigit = BitOperations.Log2((uint)otherDigitsMask);
 				var cellsContainingThisDigit = __CandidatesMap[otherOnlyDigit] & urCells;
 				var rowsSpanned = cellsContainingThisDigit.RowMask << 9;
-				if (PopCount((uint)rowsSpanned) == 2)
+				if (BitOperations.PopCount((uint)rowsSpanned) == 2)
 				{
 					var row1 = BitOperations.PopTwo((uint)rowsSpanned, out var row2);
 					var cells1 = cellsContainingThisDigit & HousesMap[row1];
@@ -67,7 +67,7 @@ public sealed class UniqueRectangleSameDigitChainingRule : UniqueRectangleChaini
 				}
 
 				var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
-				if (PopCount((uint)columnsSpanned) == 2)
+				if (BitOperations.PopCount((uint)columnsSpanned) == 2)
 				{
 					var column1 = BitOperations.PopTwo((uint)columnsSpanned, out var column2);
 					var cells3 = cellsContainingThisDigit & HousesMap[column1];

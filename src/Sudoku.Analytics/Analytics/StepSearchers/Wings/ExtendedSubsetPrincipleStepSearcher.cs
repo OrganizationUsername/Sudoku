@@ -39,7 +39,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 			foreach (ref readonly var currentInterMap in list.AsSpan())
 			{
 				var selectedInterMask = grid[currentInterMap];
-				if (PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
+				if (BitOperations.PopCount((uint)selectedInterMask) <= currentInterMap.Count + 1)
 				{
 					// The intersection combination is an ALS or a normal subset, which is invalid in ESPs.
 					continue;
@@ -74,7 +74,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 								// where the digit 'c' has spanned two different houses (both block and line).
 
 								var zDigitsMask = (Mask)(blockMask & lineMask);
-								if (!IsPow2(zDigitsMask))
+								if (!BitOperations.IsPow2(zDigitsMask))
 								{
 									// Z-digit cannot be used as elimination,
 									// like multiple z-digits found, or an SdC pattern that has already handled
@@ -82,9 +82,9 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 									continue;
 								}
 
-								var zDigit = Log2((uint)zDigitsMask);
+								var zDigit = BitOperations.Log2((uint)zDigitsMask);
 								var isolatedDigitsMask = (Mask)(selectedInterMask & ~(blockMask | lineMask));
-								var digitsCount = PopCount((uint)((Mask)(blockMask | lineMask) | isolatedDigitsMask));
+								var digitsCount = BitOperations.PopCount((uint)((Mask)(blockMask | lineMask) | isolatedDigitsMask));
 								var cellsCount = currentInterMap.Count + i + j;
 								var pattern = currentBlockMap | currentLineMap | currentInterMap;
 								var elimMap = pattern % CandidatesMap[zDigit];

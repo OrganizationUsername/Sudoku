@@ -73,9 +73,9 @@ public partial class Hub
 							return result.AsSpan();
 						}
 					}
-					case var _ when IsPow2(p) && IsPow2(q) && p == q:
+					case var _ when BitOperations.IsPow2(p) && BitOperations.IsPow2(q) && p == q:
 					{
-						var digit = Log2((uint)p);
+						var digit = BitOperations.Log2((uint)p);
 						return from cell in (c1 | c2).PeerIntersection & candidatesMap[digit] select new Conclusion(Elimination, cell, digit);
 					}
 					default:

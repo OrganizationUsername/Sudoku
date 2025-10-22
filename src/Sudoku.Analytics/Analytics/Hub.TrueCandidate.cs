@@ -33,7 +33,7 @@ public partial class Hub
 			var multivalueCellsCount = 0;
 			foreach (var cell in __EmptyCells)
 			{
-				switch (PopCount((uint)grid.GetCandidates(cell)))
+				switch (BitOperations.PopCount((uint)grid.GetCandidates(cell)))
 				{
 					case 1:
 					{

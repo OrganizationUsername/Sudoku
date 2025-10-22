@@ -412,7 +412,7 @@ public abstract partial class Chain :
 				var endDigits = end.Digits;
 				var startCells = start.Cells;
 				var endCells = end.Cells;
-				if (startDigits == endDigits && IsPow2(startDigits))
+				if (startDigits == endDigits && BitOperations.IsPow2(startDigits))
 				{
 					// Check for cells.
 					var combined = startCells | endCells;
@@ -421,9 +421,9 @@ public abstract partial class Chain :
 						spaces.Add(
 							house switch
 							{
-								< 9 => Space.BlockDigit(house, Log2((uint)startDigits)),
-								< 18 => Space.RowDigit(house - 9, Log2((uint)startDigits)),
-								_ => Space.ColumnDigit(house - 18, Log2((uint)startDigits))
+								< 9 => Space.BlockDigit(house, BitOperations.Log2((uint)startDigits)),
+								< 18 => Space.RowDigit(house - 9, BitOperations.Log2((uint)startDigits)),
+								_ => Space.ColumnDigit(house - 18, BitOperations.Log2((uint)startDigits))
 							}
 						);
 					}

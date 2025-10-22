@@ -42,7 +42,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 			foreach (var pivot in EmptyCells)
 			{
 				var mask = grid.GetCandidates(pivot);
-				var candsCount = PopCount((uint)mask);
+				var candsCount = BitOperations.PopCount((uint)mask);
 				if (candsCount != size && candsCount != size - 1)
 				{
 					// Candidates are not enough.
@@ -89,7 +89,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						inter &= m;
 					}
 
-					if (PopCount((uint)union) != size || inter != 0 && !IsPow2(inter))
+					if (BitOperations.PopCount((uint)union) != size || inter != 0 && !BitOperations.IsPow2(inter))
 					{
 						continue;
 					}
@@ -98,13 +98,13 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					var isIncomplete = inter == 0;
 					var interWithoutPivot = (Mask)(union & ~grid.GetCandidates(pivot));
 					var maskToCheck = isIncomplete ? interWithoutPivot : inter;
-					if (!IsPow2(maskToCheck))
+					if (!BitOperations.IsPow2(maskToCheck))
 					{
 						continue;
 					}
 
 					// The pattern should be "az, bz, cz, dz, ... , abcd(z)".
-					var zDigit = TrailingZeroCount(maskToCheck);
+					var zDigit = BitOperations.TrailingZeroCount(maskToCheck);
 					var petals = cells;
 					if ((petals + pivot & CandidatesMap[zDigit]).Count != (isIncomplete ? size - 1 : size))
 					{
@@ -142,7 +142,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 						[[.. candidateOffsets]],
 						context.Options,
 						pivot,
-						PopCount((uint)mask),
+						BitOperations.PopCount((uint)mask),
 						union,
 						in petals
 					);

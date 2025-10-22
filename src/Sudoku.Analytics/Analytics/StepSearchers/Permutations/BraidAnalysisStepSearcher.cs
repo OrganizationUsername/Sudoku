@@ -58,7 +58,7 @@ public sealed partial class BraidAnalysisStepSearcher : StepSearcher
 					var digitsMask = grid[a];
 
 					// Check whether digits are enough to be checked.
-					if (PopCount((uint)digitsMask) <= 2)
+					if (BitOperations.PopCount((uint)digitsMask) <= 2)
 					{
 						continue;
 					}

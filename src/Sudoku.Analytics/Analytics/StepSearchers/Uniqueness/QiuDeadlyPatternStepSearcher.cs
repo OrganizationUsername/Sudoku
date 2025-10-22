@@ -138,9 +138,9 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				l2AlignedMask |= (Mask)(1 << pos);
 			}
 		}
-		if (PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(
-			PopCount((uint)l1AlignedMask),
-			PopCount((uint)l2AlignedMask)
+		if (BitOperations.PopCount((uint)(l1AlignedMask | l2AlignedMask)) > Math.Max(
+			BitOperations.PopCount((uint)l1AlignedMask),
+			BitOperations.PopCount((uint)l2AlignedMask)
 		))
 		{
 			// Distinction is not 1.
@@ -169,7 +169,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Check whether the digits contain only 1 digit different.
 		var nonEmptyCellsDigitsMaskForLine1 = grid[valueCellsInBothLines & HousesMap[l1]];
 		var nonEmptyCellsDigitsMaskForLine2 = grid[valueCellsInBothLines & HousesMap[l2]];
-		if (PopCount((uint)(nonEmptyCellsDigitsMaskForLine1 ^ nonEmptyCellsDigitsMaskForLine2)) >= 2)
+		if (BitOperations.PopCount((uint)(nonEmptyCellsDigitsMaskForLine1 ^ nonEmptyCellsDigitsMaskForLine2)) >= 2)
 		{
 			return null;
 		}
@@ -186,7 +186,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] & ~crossline];
 		var allDigitsMaskAppearedInCrossline = grid[crossline];
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
-		if (PopCount((uint)cornerLockedDigitsMask) < 2)
+		if (BitOperations.PopCount((uint)cornerLockedDigitsMask) < 2)
 		{
 			return null;
 		}
@@ -216,7 +216,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var atLeastOneCrosslineIsFullyCoveredByValueDigits = false;
 		foreach (var baseCell in pattern.Corner)
 		{
-			var lineType = TrailingZeroCount(pattern.Lines) < 18 ? HouseType.Row : HouseType.Column;
+			var lineType = BitOperations.TrailingZeroCount(pattern.Lines) < 18 ? HouseType.Row : HouseType.Column;
 			var lineTypeTransposed = lineType == HouseType.Row ? HouseType.Column : HouseType.Row;
 			var coveredCrossline = PeersMap[baseCell] & HousesMap[baseCell >> lineTypeTransposed] & pattern.Crossline;
 			if (!(coveredCrossline & EmptyCells))
@@ -291,7 +291,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			// Check whether the number of empty cross-line cells are same as the number of locked digits.
 			// Counter-example:
 			//   .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:211 711 412 213 713 215 235 251 451 751 452 261 761
-			if (PopCount((uint)cornerDigitsMask) > (crossline & EmptyCells).Count)
+			if (BitOperations.PopCount((uint)cornerDigitsMask) > (crossline & EmptyCells).Count)
 			{
 				return null;
 			}
@@ -410,12 +410,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		in CellMap cornerContainingExtraDigit
 	)
 	{
-		if (!IsPow2(extraDigitsMask))
+		if (!BitOperations.IsPow2(extraDigitsMask))
 		{
 			return null;
 		}
 
-		var extraDigit = Log2((uint)extraDigitsMask);
+		var extraDigit = BitOperations.Log2((uint)extraDigitsMask);
 		var elimMap = corner % CandidatesMap[extraDigit];
 		if (!elimMap)
 		{
@@ -495,12 +495,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		in CellMap cornerContainingExtraDigit
 	)
 	{
-		if (IsPow2(digitsMaskAppearedInCorner))
+		if (BitOperations.IsPow2(digitsMaskAppearedInCorner))
 		{
 			return null;
 		}
 
-		if (IsPow2(extraDigitsMask))
+		if (BitOperations.IsPow2(extraDigitsMask))
 		{
 			return null;
 		}
@@ -510,7 +510,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		var size = PopCount((uint)digitsMaskAppearedInCorner);
+		var size = BitOperations.PopCount((uint)digitsMaskAppearedInCorner);
 		foreach (var cornerCellCoveredHouse in corner.SharedHouses)
 		{
 			var emptyCellsInCurrentHouse = HousesMap[cornerCellCoveredHouse] & EmptyCells;
@@ -711,7 +711,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var currentDigitsMask = grid[corner];
-		if (PopCount((uint)currentDigitsMask) > 4)
+		if (BitOperations.PopCount((uint)currentDigitsMask) > 4)
 		{
 			// Corner cells hold at least 5 digits, which is disallowed in the pattern.
 			return null;
@@ -719,12 +719,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		var digitsShouldBeLocked = (Mask)(cornerLockedDigitsMask & currentDigitsMask);
 		var currentDigitsNotLocked = (Mask)(currentDigitsMask & ~digitsShouldBeLocked);
-		if (!IsPow2(currentDigitsNotLocked))
+		if (!BitOperations.IsPow2(currentDigitsNotLocked))
 		{
 			return null;
 		}
 
-		var elimDigit = Log2((uint)currentDigitsNotLocked);
+		var elimDigit = BitOperations.Log2((uint)currentDigitsNotLocked);
 		var elimMap = crossline & CandidatesMap[elimDigit];
 		if (!elimMap)
 		{
@@ -822,7 +822,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// contains empty cells if it is not categorized as cross-line or the target cell (where eliminations are raised).
 		// Counter-example:
 		//   +67+13..9..+3.+85..+61.52.+1.6+38.8+6......+1.35+61.72.+1.......6+28.7..+163+71+3.+62....+56.+31+27.:425 426 443 943 245 446 948 956 459 463 963 864 964 265 965 466 866 966 467 476
-		var cellsShouldNotBeEmpty = (HousesMap[Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror) - targetCell;
+		var cellsShouldNotBeEmpty = (HousesMap[BitOperations.Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror) - targetCell;
 		if (cellsShouldNotBeEmpty & EmptyCells)
 		{
 			return null;
@@ -902,13 +902,13 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	)
 	{
 		var elimDigits = (Mask)(grid[mirror] & externalDigitsMaskToBeChecked);
-		if (!IsPow2(elimDigits))
+		if (!BitOperations.IsPow2(elimDigits))
 		{
 			return null;
 		}
 
-		var elimDigit = Log2((uint)elimDigits);
-		var range = HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells & ~crossline;
+		var elimDigit = BitOperations.Log2((uint)elimDigits);
+		var range = HousesMap[BitOperations.TrailingZeroCount(mirror.BlockMask)] & EmptyCells & ~crossline;
 		var truth = range & CandidatesMap[elimDigit];
 		var elimMap = range % CandidatesMap[elimDigit];
 		if (!elimMap)
@@ -918,7 +918,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		// Check whether the block where cross-line cells is lying,
 		// contains empty cells if it is not categorized as cross-line or the target cell (where eliminations are raised).
-		var cellsShouldNotBeEmpty = HousesMap[Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror & ~truth;
+		var cellsShouldNotBeEmpty = HousesMap[BitOperations.Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror & ~truth;
 		if (cellsShouldNotBeEmpty & EmptyCells)
 		{
 			return null;
@@ -928,7 +928,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		// Counter-example:
 		//   .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:825 826 833 837 839 844 254 854 255 256 864 477 877 779 789 495 496 499 799
 		var allOtherDigitsAreLockedInCrosslineCells = true;
-		var crosslineBlock = HousesMap[Log2((uint)crossline.BlockMask)] & EmptyCells;
+		var crosslineBlock = HousesMap[BitOperations.Log2((uint)crossline.BlockMask)] & EmptyCells;
 		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & ~(1 << elimDigit)))
 		{
 			if (crosslineBlock & CandidatesMap[digit] & ~crossline)

@@ -100,7 +100,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					possiblePatternDigitsMask |= (Mask)(1 << digit);
 				}
 			}
-			if (PopCount((uint)possiblePatternDigitsMask) < 3)
+			if (BitOperations.PopCount((uint)possiblePatternDigitsMask) < 3)
 			{
 				continue;
 			}
@@ -131,7 +131,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
-				switch (PopCount((uint)extraDigitsMask))
+				switch (BitOperations.PopCount((uint)extraDigitsMask))
 				{
 					case 0:
 					{
@@ -139,7 +139,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						var extraDigit = Log2((uint)extraDigitsMask);
+						var extraDigit = BitOperations.Log2((uint)extraDigitsMask);
 						if (CheckType1Or2(
 							ref context, grid, pattern, currentCombinationDigitsMask, extraDigit, p,
 							(pattern & CandidatesMap[extraDigit]).Count == 1
@@ -232,9 +232,9 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					greaterThan4Digits |= (Mask)(1 << digit);
 				}
 			}
-			if (PopCount((uint)greaterThan6Digits) < 2
+			if (BitOperations.PopCount((uint)greaterThan6Digits) < 2
 				|| (Mask)(greaterThan4Digits | greaterThan6Digits) is var possiblePatternDigitsMask
-				&& PopCount((uint)possiblePatternDigitsMask) < 3)
+				&& BitOperations.PopCount((uint)possiblePatternDigitsMask) < 3)
 			{
 				continue;
 			}
@@ -265,7 +265,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
-				switch (PopCount((uint)extraDigitsMask))
+				switch (BitOperations.PopCount((uint)extraDigitsMask))
 				{
 					case 0:
 					{
@@ -273,7 +273,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					}
 					case 1:
 					{
-						var extraDigit = Log2((uint)extraDigitsMask);
+						var extraDigit = BitOperations.Log2((uint)extraDigitsMask);
 						if (CheckType1Or2(
 							ref context, grid, pattern, currentCombinationDigitsMask, extraDigit, p,
 							(pattern & CandidatesMap[extraDigit]).Count == 1
@@ -350,7 +350,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						possiblePatternDigitsMask |= (Mask)(1 << digit);
 					}
 				}
-				if (PopCount((uint)possiblePatternDigitsMask) < 4)
+				if (BitOperations.PopCount((uint)possiblePatternDigitsMask) < 4)
 				{
 					continue;
 				}
@@ -381,7 +381,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						continue;
 					}
 
-					switch (PopCount((uint)extraDigitsMask))
+					switch (BitOperations.PopCount((uint)extraDigitsMask))
 					{
 						case 0:
 						{
@@ -389,7 +389,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						}
 						case 1:
 						{
-							var extraDigit = Log2((uint)extraDigitsMask);
+							var extraDigit = BitOperations.Log2((uint)extraDigitsMask);
 							if (CheckType1Or2(
 								ref context, grid, pattern, currentCombinationDigitsMask, extraDigit, p,
 								(pattern & CandidatesMap[extraDigit]).Count == 1
@@ -593,7 +593,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			foreach (ref readonly var subsetCells in availableCells | availableCells.Count - 1)
 			{
 				var subsetDigitsMask = (Mask)(grid[subsetCells] | extraDigitsMask);
-				if (PopCount((uint)subsetDigitsMask) != subsetCells.Count + 1)
+				if (BitOperations.PopCount((uint)subsetDigitsMask) != subsetCells.Count + 1)
 				{
 					// The (n) digits should be inside (n - 1) cells.
 					continue;
@@ -696,7 +696,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				conjugatePairDigitsMask |= (Mask)(1 << digit);
 			}
 		}
-		if (PopCount((uint)conjugatePairDigitsMask) != extraCells.Count - 1)
+		if (BitOperations.PopCount((uint)conjugatePairDigitsMask) != extraCells.Count - 1)
 		{
 			// The number of conjugate pairs must be less than the number of extra cells of 1.
 			return null;
@@ -793,7 +793,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 					+ (rowsCombination[2] * 9 + columnsCombination[0])
 					+ (rowsCombination[2] * 9 + columnsCombination[1])
 					+ (rowsCombination[2] * 9 + columnsCombination[2]);
-				if (PopCount((uint)originalPatternCells.BlockMask) != 3)
+				if (BitOperations.PopCount((uint)originalPatternCells.BlockMask) != 3)
 				{
 					// Skip for same-block cells.
 					continue;

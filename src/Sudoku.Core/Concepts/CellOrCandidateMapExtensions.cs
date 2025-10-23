@@ -19,7 +19,7 @@ public static class CellOrCandidateMapExtensions
 			{
 				for (var i = 0; i < 3; i++)
 				{
-					if (Chutes[i].Cells.Contains(@this))
+					if (Chute.Chutes[i].Cells.Contains(@this))
 					{
 						return i;
 					}
@@ -38,7 +38,7 @@ public static class CellOrCandidateMapExtensions
 			{
 				for (var i = 3; i < 6; i++)
 				{
-					if (Chutes[i].Cells.Contains(@this))
+					if (Chute.Chutes[i].Cells.Contains(@this))
 					{
 						return i;
 					}

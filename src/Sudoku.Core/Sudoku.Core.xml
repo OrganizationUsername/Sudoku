@@ -1341,9 +1341,42 @@
             Indicates the maximum chute index.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Chute.ChuteMapsBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.Concepts.Chute.ChuteMaps"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Chute.ChutesBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.Concepts.Chute.Chutes"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Chute.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
         <member name="P:Sudoku.Concepts.Chute.Cells">
             <summary>
             Indicates the cells in this chute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.ChuteMaps">
+            <summary>
+            Indicates the chute maps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chute.Chutes">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Chute.ToString(System.IFormatProvider)">
@@ -13473,26 +13506,6 @@
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
             For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.ChuteMapsBackingField">
-            <summary>
-            Backing field of <see cref="P:Sudoku.SolutionFields.ChuteMaps"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.ChutesBackingField">
-            <summary>
-            Backing field of <see cref="P:Sudoku.SolutionFields.Chutes"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SolutionFields.ChuteMaps">
-            <summary>
-            Indicates the chute maps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SolutionFields.Chutes">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
         <member name="M:Sudoku.SolutionFields.#cctor">

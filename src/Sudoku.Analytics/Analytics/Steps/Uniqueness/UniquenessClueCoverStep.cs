@@ -68,7 +68,7 @@ public sealed class UniquenessClueCoverStep(
 	/// <inheritdoc/>
 	int IExtraCellListTrait.ExtraCellSize => ExtraCells.Count;
 
-	private string ChuteString => Options.Converter.ChuteConverter([Chutes[ChuteIndex]]);
+	private string ChuteString => Options.Converter.ChuteConverter([Chute.Chutes[ChuteIndex]]);
 
-	private string ChuteCellsString => Options.Converter.CellConverter(in Chutes[ChuteIndex].Cells);
+	private string ChuteCellsString => Options.Converter.CellConverter(in Chute.Chutes[ChuteIndex].Cells);
 }

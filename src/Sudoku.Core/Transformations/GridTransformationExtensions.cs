@@ -426,8 +426,8 @@ public static class GridTransformationExtensions
 				return ref @this;
 			}
 
-			ref readonly var chuteCells1 = ref Chutes[chuteIndex1].Cells;
-			ref readonly var chuteCells2 = ref Chutes[chuteIndex2].Cells;
+			ref readonly var chuteCells1 = ref Chute.Chutes[chuteIndex1].Cells;
+			ref readonly var chuteCells2 = ref Chute.Chutes[chuteIndex2].Cells;
 			for (var i = 0; i < 27; i++)
 			{
 				Unsafe.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);

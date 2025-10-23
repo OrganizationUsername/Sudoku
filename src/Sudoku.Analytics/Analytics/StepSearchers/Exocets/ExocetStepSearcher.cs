@@ -123,8 +123,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					// determining whether it can be used as a base.
 					for (var (i, timesOfI) = (isRow ? 3 : 0, 0); timesOfI < 3; i++, timesOfI++)
 					{
-						var (_, _, chuteHouses) = Chutes[i];
-						ref readonly var chuteCells = ref ChuteMaps[i];
+						var (_, _, chuteHouses) = Chute.Chutes[i];
+						ref readonly var chuteCells = ref Chute.ChuteMaps[i];
 
 						// Now iterate by size of base cells. The minimum value is 1, e.g.:
 						//   ..64.....1....39.7.5.............3..2....1.89....59....4......83....2....126...7.
@@ -1182,7 +1182,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
 		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
 		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
-		foreach (ref readonly var chuteCells in ChuteMaps[isRow ? ..3 : 3..])
+		foreach (ref readonly var chuteCells in Chute.ChuteMaps[isRow ? ..3 : 3..])
 		{
 			if (chuteCells & baseCells)
 			{
@@ -1437,7 +1437,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Try to calculate the target cells.
-			var theOtherTargetCells = Chutes[chuteIndex].Cells & housesEmptyCells & EmptyCells & ~theOtherBaseCells.PeerIntersection;
+			var theOtherTargetCells = Chute.Chutes[chuteIndex].Cells
+				& housesEmptyCells
+				& EmptyCells
+				& ~theOtherBaseCells.PeerIntersection;
 			var theOtherTargetCellsDigitsMask = grid[theOtherTargetCells];
 
 			// Check whether all digits appeared in base cells can be filled in target empty cells.
@@ -2054,7 +2057,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Now try to fetch the defining cells. First, try to get uncovered 4 blocks that the final cells should be located in.
 		var cellsDoNotCover = CellMap.Empty;
-		foreach (ref readonly var chuteCells in ChuteMaps)
+		foreach (ref readonly var chuteCells in Chute.ChuteMaps)
 		{
 			if (chuteCells & baseCells)
 			{
@@ -3270,7 +3273,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		Unsafe.SkipInit<Chute>(out var sharedChute);
-		foreach (var chute in Chutes[isRow ? 3.. : ..3])
+		foreach (var chute in Chute.Chutes[isRow ? 3.. : ..3])
 		{
 			if (chute.Cells.Contains(valueDigitCell))
 			{

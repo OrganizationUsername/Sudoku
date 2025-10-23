@@ -3423,6 +3423,7 @@
             Provides extension members on <typeparamref name="T"/>,
             where <typeparamref name="T"/> satisfies <see langword="unmanaged"/> and <see cref="T:System.Enum"/> constraints.
             </summary>
+            <param name="this">The enumeration type field.</param>
         </member>
         <member name="M:System.Linq.EnumFlagsEnumerable.&lt;G&gt;$F7BAB7F8979284A7204DC29891C39285`1.Select``1(System.Func{`0,``0})">
             <summary>
@@ -3431,7 +3432,6 @@
             then return the array.
             </summary>
             <typeparam name="TResult">The type of the result elements.</typeparam>
-            <param name="this">The enumeration type field.</param>
             <param name="selector">The selector that can convert the enumeration field into the target-typed instance.</param>
             <returns>An array of <typeparamref name="TResult"/> elements.</returns>
             <exception cref="T:System.InvalidOperationException">

@@ -187,12 +187,12 @@ public sealed partial record RxCyParser : CoordinateParser
 				{
 					case [_, 'R' or 'r', var r and >= '1' and <= '3']:
 					{
-						result.AddRef(Chutes[r - '1']);
+						result.AddRef(Chute.Chutes[r - '1']);
 						break;
 					}
 					case [_, 'C' or 'c', var c and >= '1' and <= '3']:
 					{
-						result.AddRef(Chutes[c + 3 - '1']);
+						result.AddRef(Chute.Chutes[c + 3 - '1']);
 						break;
 					}
 				}

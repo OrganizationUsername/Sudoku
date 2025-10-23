@@ -51,7 +51,7 @@ public readonly record struct Miniline(in MinilineBase Base, in MinilineResult R
 			ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
 			currentMinilineGroup = new CellMap[9];
 
-			var ((_, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
+			var ((_, _, chuteHouses), isRow, tempIndex) = (Chute.Chutes[i], i is 0 or 1 or 2, 0);
 			foreach (var chuteHouse in chuteHouses)
 			{
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)

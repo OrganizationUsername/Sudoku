@@ -9,6 +9,7 @@ public static class EnumFlagsEnumerable
 	/// Provides extension members on <typeparamref name="T"/>,
 	/// where <typeparamref name="T"/> satisfies <see langword="unmanaged"/> and <see cref="Enum"/> constraints.
 	/// </summary>
+	/// <param name="this">The enumeration type field.</param>
 	extension<T>(T @this) where T : unmanaged, Enum
 	{
 		/// <summary>
@@ -17,7 +18,6 @@ public static class EnumFlagsEnumerable
 		/// then return the array.
 		/// </summary>
 		/// <typeparam name="TResult">The type of the result elements.</typeparam>
-		/// <param name="this">The enumeration type field.</param>
 		/// <param name="selector">The selector that can convert the enumeration field into the target-typed instance.</param>
 		/// <returns>An array of <typeparamref name="TResult"/> elements.</returns>
 		/// <exception cref="InvalidOperationException">

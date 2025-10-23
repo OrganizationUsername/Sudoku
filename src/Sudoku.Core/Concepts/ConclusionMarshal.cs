@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Provides with extension methods on <see cref="Conclusion"/>.
 /// </summary>
 /// <seealso cref="Conclusion"/>
-public static class ConclusionExtensions
+public static class ConclusionMarshal
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Conclusion"/>[].

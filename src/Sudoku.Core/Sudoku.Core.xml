@@ -1222,6 +1222,24 @@
         <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap"/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.get_Band(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Band"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.get_Tower(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Tower"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.get_Houses(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Houses"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.CopyHouseInfo(System.Int32,System.Int32@)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.CopyHouseInfo(System.Int32@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
         </member>
@@ -1238,6 +1256,50 @@
             Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of the current cell.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Band">
+            <summary>
+            Try to get the band index (mega-row) of the specified cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Tower">
+            <summary>
+            Try to get the tower index (mega-column) of the specified cell.
+            </summary>
+            <returns>The chute index.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Houses">
+            <summary>
+            Get the houses for the specified cell, representing as a <see cref="T:System.Int32"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.CopyHouseInfo(System.Int32@)">
+            <summary>
+            Gets the row, column and block value and copies to the specified array that represents by a pointer
+            of 3 elements, where the first element stores the block index, second element stores the row index
+            and the third element stores the column index.
+            </summary>
+            <param name="reference">
+            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
+            only if the sequence can store at least 3 values.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
+            <summary>
+            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="houseType">The house type.</param>
+            <returns>The house index. The return value must be between 0 and 26.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="houseType"/> is not defined.
+            </exception>
         </member>
         <member name="T:Sudoku.Concepts.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
             <summary>
@@ -1257,89 +1319,6 @@
             Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from the current sequence.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Band(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Band"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Tower(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Tower"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Houses(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Houses"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.CopyHouseInfo(System.Int32,System.Int32@)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.CopyHouseInfo(System.Int32@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Spaces(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces"/>
-        </member>
-        <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
-            <summary>
-            Provides extension members on <see cref="T:System.Int32"/>.
-            </summary>
-            <summary>
-            Provides extension members on <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Band">
-            <summary>
-            Try to get the band index (mega-row) of the specified cell.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Tower">
-            <summary>
-            Try to get the tower index (mega-column) of the specified cell.
-            </summary>
-            <returns>The chute index.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Houses">
-            <summary>
-            Get the houses for the specified cell, representing as a <see cref="T:System.Int32"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.CopyHouseInfo(System.Int32@)">
-            <summary>
-            Gets the row, column and block value and copies to the specified array that represents by a pointer
-            of 3 elements, where the first element stores the block index, second element stores the row index
-            and the third element stores the column index.
-            </summary>
-            <param name="reference">
-            The specified reference to the first element in a sequence. The sequence type can be an array or a <see cref="T:System.Span`1"/>,
-            only if the sequence can store at least 3 values.
-            </param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
-            <summary>
-            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="houseType">The house type.</param>
-            <returns>The house index. The return value must be between 0 and 26.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="houseType"/> is not defined.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces">
-            <summary>
-            Indicates spaces of the current candidate.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
@@ -1733,47 +1712,47 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions">
+        <member name="T:Sudoku.Concepts.ConclusionMarshal">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
-            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.AsSet"/>
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.AsSet(Sudoku.Concepts.Conclusion[])">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.AsSet"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion})">
-            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.AsSet"/>
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.AsSet(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion})">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.AsSet"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.AsSet(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
-            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.AsSet"/>
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.AsSet(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.AsSet"/>
         </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.&lt;M&gt;$3217E973E5C6652D86536AB880A7AC1E">
+        <member name="T:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.&lt;M&gt;$3217E973E5C6652D86536AB880A7AC1E">
             <summary>
             Provides extension members on <see cref="T:Sudoku.Concepts.Conclusion"/>[].
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.AsSet">
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$4A6EC717C1993C9B01AD2F9B9255EB83.AsSet">
             <summary>
             Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.&lt;M&gt;$47EA408E4EB465E3326B768E6E3A546B">
+        <member name="T:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.&lt;M&gt;$47EA408E4EB465E3326B768E6E3A546B">
             <summary>
             Provides extension members on <see cref="T:System.ReadOnlyMemory`1"/> of <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.AsSet">
-            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])"/>
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$970916A189419611DDDEAC9AB092AA10.AsSet">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionMarshal.AsSet(Sudoku.Concepts.Conclusion[])"/>
         </member>
-        <member name="T:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.&lt;M&gt;$6F5495E2C90DA8EF0802749C6857C9BE">
+        <member name="T:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.&lt;M&gt;$6F5495E2C90DA8EF0802749C6857C9BE">
             <summary>
             Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionExtensions.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.AsSet">
-            <inheritdoc cref="M:Sudoku.Concepts.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])"/>
+        <member name="M:Sudoku.Concepts.ConclusionMarshal.&lt;G&gt;$8D3A0BABF83D596289F435C91830C8CC.AsSet">
+            <inheritdoc cref="M:Sudoku.Concepts.ConclusionMarshal.AsSet(Sudoku.Concepts.Conclusion[])"/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionSet">
             <summary>
@@ -8028,6 +8007,24 @@
         <member name="P:Sudoku.Concepts.Supersymmetry.Extensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Neighbors">
             <summary>
             Indicates the neighbors.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.CandidateSpaces">
+            <summary>
+            Provides spaces for a certain candidate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.CandidateSpaces.get_Spaces(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.Supersymmetry.CandidateSpaces.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Supersymmetry.CandidateSpaces.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
+            <summary>
+            Provides extension members on <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Supersymmetry.CandidateSpaces.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces">
+            <summary>
+            Indicates spaces of the current candidate.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.Space">

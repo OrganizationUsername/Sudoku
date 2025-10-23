@@ -148,7 +148,7 @@ public static partial class GeneratorHub
 				filters,
 				cts.Token
 			);
-			return (result, cts.Token.IsCancellationRequested);
+			return (result, !cts.Token);
 		}
 	}
 
@@ -207,7 +207,7 @@ public static partial class GeneratorHub
 
 		ReportState:
 			progress.Report(TProgressDataProvider.Create(++generatingCount, generatingFilteredCount));
-			if (cancellationToken.IsCancellationRequested)
+			if (!cancellationToken)
 			{
 				return Grid.Undefined;
 			}

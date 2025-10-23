@@ -111,7 +111,7 @@ public sealed class Collector : StepGatherer
 							}
 						}
 
-						if (ct.IsCancellationRequested)
+						if (!ct)
 						{
 							return null;
 						}

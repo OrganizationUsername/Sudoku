@@ -329,7 +329,7 @@ public sealed partial class BrokenLoopStepSearcher
 		List<Candidate> loop
 	)
 	{
-		var linkOffsets = GetLinkViewNodes(loop, [guardian], out var candidateOffsets);
+		var linkOffsets = GetLinkViewNodes(loop, guardian.AsCandidateMap(), out var candidateOffsets);
 		var step = new BrokenLoopType1Step(
 			Array.Single(new Conclusion(Assignment, guardian)),
 			[[.. candidateOffsets, .. linkOffsets]],

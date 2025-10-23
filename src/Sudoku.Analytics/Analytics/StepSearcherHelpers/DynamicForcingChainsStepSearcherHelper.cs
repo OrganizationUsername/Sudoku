@@ -27,7 +27,7 @@ internal sealed class DynamicForcingChainsStepSearcherHelper : ForcingChainsStep
 			{
 				BinaryForcingChains b => new BinaryForcingChainsStep(
 					Array.Single(b.Conclusion),
-					((IForcingChains)b).GetViews(grid, [b.Conclusion], supportedRules),
+					((IForcingChains)b).GetViews(grid, Array.Single(b.Conclusion), supportedRules),
 					context.Options,
 					b
 				),

@@ -1721,7 +1721,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				grid,
 				baseCellsDigitsMask,
 				baseCells,
-				[targetCell],
+				targetCell.AsCellMap(),
 				crosslineIncludingTarget - targetCell - endoTargetCell,
 				size - 1,
 				out var digitsMaskExactlySizeMinusOneTimes,
@@ -1770,7 +1770,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				{
 					// Check for base SE type.
 					if (CheckJuniorOrSeniorBase(
-						ref context, grid, baseCells, [targetCell], endoTargetCell, crossline, crosslineIncludingTarget,
+						ref context, grid, baseCells, targetCell.AsCellMap(), endoTargetCell, crossline, crosslineIncludingTarget,
 						baseCellsDigitsMask, housesMask, out _
 					) is { } baseTypeStep)
 					{

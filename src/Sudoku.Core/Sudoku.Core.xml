@@ -530,6 +530,69 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.CandidateMapMarshal">
+            <summary>
+            Represents extra data set defined in <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMapMarshal.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMarshal">
+            <summary>
+            Represents a concept "Candidate".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCandidateMap"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
+            <summary>
+            Provides extension members on <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of the current candidate.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
+            <summary>
+            Provides extension members on <see cref="T:System.Int32"/>[].
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCandidateMap"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.&lt;M&gt;$829E9885FD980264090E88AD231E9578">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCandidateMap">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing all elements come from the current sequence.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
             Encapsulates a binary series of cell state table.
@@ -1065,26 +1128,46 @@
         <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.CellMapCreator">
+        <member name="T:Sudoku.Concepts.CellMapMarshal">
             <summary>
-            Represents a list of creating methods.
+            Represents extra data set defined in <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMapMarshal.CellMaps">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
+            For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.Create(System.Int64,System.Int64)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int64,System.Int64)"/>
+        <member name="M:Sudoku.Concepts.CellMapMarshal.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.Create(System.Int32,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int32,System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Concepts.CellMapMarshal.Create(System.Int64,System.Int64)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int64,System.Int64)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)"/>
+        <member name="M:Sudoku.Concepts.CellMapMarshal.Create(System.Int32,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int32,System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.&lt;M&gt;$4B60D02A5F703296D232D9A415F3C20B">
+        <member name="M:Sudoku.Concepts.CellMapMarshal.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.&lt;M&gt;$4B60D02A5F703296D232D9A415F3C20B">
             <summary>
             Provides extension members on <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int64,System.Int64)">
+        <member name="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int64,System.Int64)">
             <summary>
             Initializes an instance with two binary values.
             </summary>
@@ -1092,7 +1175,7 @@
             <param name="low">Lower 41 bits.</param>
             <returns>The result instance created.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Int32,System.Int32,System.Int32)">
             <summary>
             Initializes an instance with three binary values.
             </summary>
@@ -1101,7 +1184,7 @@
             <param name="low">Lower 27 bits.</param>
             <returns>The result instance created.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapCreator.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)">
+        <member name="M:Sudoku.Concepts.CellMapMarshal.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Create(System.Runtime.Intrinsics.Vector128{System.Int64}@)">
             <summary>
             Initializes an instance with a <see cref="T:System.Runtime.Intrinsics.Vector128`1"/> of <see cref="T:System.Int64"/>.
             </summary>
@@ -1131,6 +1214,50 @@
             <param name="grid">The grid as candidate reference.</param>
             <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.CellMarshal">
+            <summary>
+            Represents a concept "Cell".
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCellMap"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
+            <summary>
+            Provides extension members on <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of the current cell.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
+            <summary>
+            Provides extension members on <see cref="T:System.Int32"/>[].
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCellMap"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CellMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.&lt;M&gt;$829E9885FD980264090E88AD231E9578">
+            <summary>
+            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCellMap">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from the current sequence.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
@@ -1151,29 +1278,11 @@
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap"/>
-        </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap"/>
-        </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.get_Spaces(System.Int32)">
             <inheritdoc cref="P:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Spaces"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCellMap"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCandidateMap"/>
         </member>
         <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
             <summary>
@@ -1216,12 +1325,6 @@
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCellMap">
-            <summary>
-            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of the current cell.</returns>
-        </member>
         <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
             <summary>
             Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
@@ -1237,46 +1340,6 @@
             <summary>
             Indicates spaces of the current candidate.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap">
-            <summary>
-            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of the current candidate.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
-            <summary>
-            Provides extension members on <see cref="T:System.Int32"/>[].
-            </summary>
-            <summary>
-            Provides extension members on <see cref="T:System.Int32"/>[].
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCellMap(System.ReadOnlySpan{System.Int32})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap">
-            <inheritdoc cref="M:Sudoku.Concepts.CellOrCandidateMapExtensions.AsCandidateMap(System.ReadOnlySpan{System.Int32})"/>
-        </member>
-        <member name="T:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.&lt;M&gt;$829E9885FD980264090E88AD231E9578">
-            <summary>
-            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-            <summary>
-            Provides extension members on <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCellMap">
-            <summary>
-            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from the current sequence.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrCandidateMapExtensions.&lt;G&gt;$301197DBC8562E78358289E8D1164F5F.AsCandidateMap">
-            <summary>
-            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing all elements come from the current sequence.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
@@ -13496,30 +13559,6 @@
             </summary>
             <param name="otherName">The other name to be compared.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.SolutionFields">
-            <summary>
-            Provides with solution-wide read-only fields used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.CellMaps">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
-            For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SolutionFields.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
         </member>
         <member name="T:Sudoku.Solving.Backtracking.BacktrackingSolver">
             <summary>

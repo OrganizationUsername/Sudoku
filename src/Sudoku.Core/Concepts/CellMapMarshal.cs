@@ -1,10 +1,31 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a list of creating methods.
+/// Represents extra data set defined in <see cref="CellMap"/>.
 /// </summary>
-public static class CellMapCreator
+/// <seealso cref="CellMap"/>
+public static class CellMapMarshal
 {
+	/// <summary>
+	/// Indicates a list of <see cref="CellMap"/> instances that are initialized as singleton element by its corresponding index.
+	/// For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
+	/// </summary>
+	internal static readonly CellMap[] CellMaps;
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static CellMapMarshal()
+	{
+		CellMaps = new CellMap[81];
+		var span = CellMaps.AsSpan();
+		var cell = 0;
+		foreach (ref var map in span)
+		{
+			map += cell++;
+		}
+	}
+
+
 	/// <summary>
 	/// Provides extension members on <see cref="CellMap"/>.
 	/// </summary>

@@ -125,6 +125,7 @@ global using WinRT.Interop;
 global using static System.Math;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.Hub;
+global using static Sudoku.Concepts.CellMapMarshal;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.Concepts.HouseMarshal;
 global using static Sudoku.Concepts.HouseMaskMarshal;

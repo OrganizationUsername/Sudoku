@@ -57,7 +57,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo<Grid>
 				// Compares the values.
 				var comparer = Math.Max(
 					candidatesCount,
-					MaskOperations.MaskToCellState(value) switch
+					MaskToCellState(value) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
 						CellState.Given => Math.Max(candidatesCount, IsCompatibleMode ? 1 : 3),
@@ -150,7 +150,7 @@ public sealed partial class PencilmarkGridFormatInfo : GridFormatInfo<Grid>
 			{
 				// Get digit.
 				var value = valuesByRow[i];
-				var state = MaskOperations.MaskToCellState(value);
+				var state = MaskToCellState(value);
 
 				value &= Grid.MaxCandidatesMask;
 				var d = value == 0 ? -1 : (state != CellState.Empty ? TrailingZeroCount(value) : -1) + 1;

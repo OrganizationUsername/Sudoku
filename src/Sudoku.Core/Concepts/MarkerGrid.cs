@@ -386,7 +386,7 @@ public struct MarkerGrid : InlineArrayGridBase
 	public readonly string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc/>
-	public readonly CellState GetState(Cell cell) => MaskOperations.MaskToCellState(this[cell]);
+	public readonly CellState GetState(Cell cell) => MaskToCellState(this[cell]);
 
 	/// <inheritdoc/>
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & Grid.MaxCandidatesMask);

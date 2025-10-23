@@ -397,7 +397,7 @@ public sealed partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> 
 				for (var cell = 0; cell < 81; cell++)
 				{
 					ref var mask = ref result[cell];
-					if (MaskOperations.MaskToCellState(mask) == CellState.Empty)
+					if (MaskToCellState(mask) == CellState.Empty)
 					{
 						mask = distribution.TryGetValue(cell, out var digitsMask)
 							? (Mask)((Mask)((Mask)(mask >> 9 & 7) << 9) | digitsMask)

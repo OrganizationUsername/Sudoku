@@ -5505,21 +5505,105 @@
             </summary>
             <param name="value">The instance.</param>
         </member>
-        <member name="T:Sudoku.Concepts.HouseExtensions">
+        <member name="T:Sudoku.Concepts.HouseMarshal">
             <summary>
-            Represents a list of extension methods that operates with house instances, as <see cref="T:System.Int32"/> representation.
+            Represents concept for a "House". A house is a region that includes 9 cells, with different digits filled in.
+            Types of a valid house can be "row", "column" and "block" (i.e. "box").
             </summary>
-            <seealso cref="T:System.Int32"/>
         </member>
-        <member name="M:Sudoku.Concepts.HouseExtensions.get_HouseType(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.HouseExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.HouseType"/>
+        <member name="F:Sudoku.Concepts.HouseMarshal.HouseTypes">
+            <summary>
+            Indicates the possible house types to be iterated.
+            </summary>
         </member>
-        <member name="T:Sudoku.Concepts.HouseExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$2A4213606AAAEC0C3831644A774099F0">
+        <member name="F:Sudoku.Concepts.HouseMarshal.Digits">
+            <summary>
+            Indicates the digits used. The value can be also used for ordered houses by rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.HousesOrderedByColumn">
+            <summary>
+            Indicates the houses ordered by column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.HouseFirst">
+            <summary>
+            Indicates the first cell offset for each house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.HousesCells">
+            <summary>
+            <para>
+            The map of all cell offsets in its specified house.
+            The indices are between 0 and 26, where:
+            <list type="table">
+            <item>
+            <term><c>0..9</c></term>
+            <description>Block 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>9..18</c></term>
+            <description>Row 1 to 9.</description>
+            </item>
+            <item>
+            <term><c>18..27</c></term>
+            <description>Column 1 to 9.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <example>
+            '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
+            </example>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.BlockTable">
+            <summary>
+            Indicates a block list that each cell belongs to.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.RowTable">
+            <summary>
+            Indicates a row list that each cell belongs to.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.ColumnTable">
+            <summary>
+            Indicates a column list that each cell belongs to.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMarshal.HousesMapBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.Concepts.HouseMarshal.HousesMap"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseMarshal.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Concepts.HouseMarshal.HousesMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseMarshal.get_HouseType(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.HouseMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.HouseType"/>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$2A4213606AAAEC0C3831644A774099F0">
             <summary>
             Provides extension members on <see cref="T:System.Int32"/>.
             </summary>
+            <param name="houseIndex">The house index.</param>
         </member>
-        <member name="P:Sudoku.Concepts.HouseExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.HouseType">
+        <member name="P:Sudoku.Concepts.HouseMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.HouseType">
             <summary>
             Get the house type for the specified house index.
             </summary>
@@ -5545,64 +5629,53 @@
             </list>
             </returns>
         </member>
-        <member name="T:Sudoku.Concepts.HouseMaskExtensions">
+        <member name="T:Sudoku.Concepts.HouseMaskMarshal">
             <summary>
-            Provides with extension methods on <see cref="T:System.Int32"/>.
+            Represents a concept "House Mask". A house mask is a list of house indices represented as a 27-bit integer value.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.HouseMaskExtensions.get_SplitMask(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.SplitMask"/>
+        <member name="F:Sudoku.Concepts.HouseMaskMarshal.AllBlocksMask">
+            <summary>
+            Indicates the mask that means all blocks.
+            </summary>
         </member>
-        <member name="M:Sudoku.Concepts.HouseMaskExtensions.Create(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Create(System.ReadOnlySpan{System.Int32})"/>
+        <member name="F:Sudoku.Concepts.HouseMaskMarshal.AllRowsMask">
+            <summary>
+            Indicates the mask that means all rows.
+            </summary>
         </member>
-        <member name="T:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
+        <member name="F:Sudoku.Concepts.HouseMaskMarshal.AllColumnsMask">
+            <summary>
+            Indicates the mask that means all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.HouseMaskMarshal.AllHousesMask">
+            <summary>
+            Indicates the mask that means all houses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseMaskMarshal.get_SplitMask(System.Int32)">
+            <inheritdoc cref="P:Sudoku.Concepts.HouseMaskMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.SplitMask"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseMaskMarshal.Create(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.HouseMaskMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Create(System.ReadOnlySpan{System.Int32})"/>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseMaskMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$51B2989A609F7566ED3112AEC750A666">
             <summary>
             Provides extension members on <see cref="T:System.Int32"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.SplitMask">
+        <member name="P:Sudoku.Concepts.HouseMaskMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.SplitMask">
             <summary>
             Indicates the triplet of masks that describes the blocks, rows and columns.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.&lt;M&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69">
-            <summary>
-            Provides extension members on <see cref="T:System.Int32"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.HouseMaskExtensions.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Create(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.HouseMaskMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
             Creates for a <see cref="T:System.Int32"/> instance via the specified houses.
             </summary>
             <param name="houses">The houses.</param>
             <returns>A <see cref="T:System.Int32"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.HouseMaskOperations">
-            <summary>
-            Represents a list of methods handling with <see cref="T:System.Int32"/> instances.
-            </summary>
-            <seealso cref="T:System.Int32"/>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseMaskOperations.AllBlocksMask">
-            <summary>
-            Indicates the mask that means all blocks.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseMaskOperations.AllRowsMask">
-            <summary>
-            Indicates the mask that means all rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseMaskOperations.AllColumnsMask">
-            <summary>
-            Indicates the mask that means all columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.HouseMaskOperations.AllHousesMask">
-            <summary>
-            Indicates the mask that means all houses.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.HouseType">
             <summary>
@@ -7350,50 +7423,72 @@
             Indicates the method is "and not".
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.MaskExtensions">
+        <member name="T:Sudoku.Concepts.MaskMarshal">
             <summary>
-            Provides with extension methods on <see cref="T:System.Int16"/>.
+            Represents a concept "Mask". A mask is a list of candidates represented as a 9-bit integer value.
             </summary>
-            <seealso cref="T:System.Int16"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.get_SplitMask(System.Int16)">
-            <inheritdoc cref="P:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.SplitMask"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.MaskToSudokuType(System.Int16)">
+            <summary>
+            Gets the sudoku type for the specified cell mask inside a <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <param name="mask">The cell mask.</param>
+            <returns>The sudoku type configured.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.ToBinaryString(System.Int16,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToBinaryString(System.Boolean)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.MaskToCellState(System.Int16)">
+            <summary>
+            Gets the cell state for a mask value. The mask is an inner representation to describe a cell's state.
+            For more information please visit the details of the design for type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <param name="mask">The mask.</param>
+            <returns>The cell state.</returns>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.ToOctalString(System.Int16,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToOctalString(System.Boolean)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.MaskToDigits(System.Int16)">
+            <summary>
+            Gets the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
+            </summary>
+            <param name="digitMask">The digit mask.</param>
+            <returns>The digits returned.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.ToHexadecimalString(System.Int16,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToHexadecimalString(System.Boolean)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.get_SplitMask(System.Int16)">
+            <inheritdoc cref="P:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.SplitMask"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.ToStringBase(System.Int16,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.ToBinaryString(System.Int16,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToBinaryString(System.Boolean)"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.ToStringBase(System.Int16,System.Int32,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32,System.Int32)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.ToOctalString(System.Int16,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToOctalString(System.Boolean)"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.Create(System.ReadOnlySpan{System.Int32})">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.ReadOnlySpan{System.Int32})"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.ToHexadecimalString(System.Int16,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToHexadecimalString(System.Boolean)"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.Create(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.Int32[])"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.ToStringBase(System.Int16,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.Create``1(``0)">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create``1(``0)"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.ToStringBase(System.Int16,System.Int32,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.&lt;M&gt;$D511367ABC9C5BD33E665354AA08DFAC">
+        <member name="M:Sudoku.Concepts.MaskMarshal.Create(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.ReadOnlySpan{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MaskMarshal.Create(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.Int32[])"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MaskMarshal.Create``1(``0)">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create``1(``0)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.&lt;M&gt;$D511367ABC9C5BD33E665354AA08DFAC">
             <summary>
             Provides extension members on <see cref="T:System.Int16"/>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.SplitMask">
+        <member name="P:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.SplitMask">
             <summary>
             Indicates a triplet of mask parts by splitting mask, with each element of length 3.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToBinaryString(System.Boolean)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToBinaryString(System.Boolean)">
             <summary>
             Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of binary format.
             </summary>
@@ -7403,7 +7498,7 @@
             </param>
             <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToOctalString(System.Boolean)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToOctalString(System.Boolean)">
             <summary>
             Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of octal format.
             </summary>
@@ -7413,7 +7508,7 @@
             </param>
             <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToHexadecimalString(System.Boolean)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToHexadecimalString(System.Boolean)">
             <summary>
             Try to convert the current mask value into a valid <see cref="T:System.String"/> representation of hexadecimal format.
             </summary>
@@ -7423,7 +7518,7 @@
             </param>
             <returns>A <see cref="T:System.String"/> result representing the current mask value.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32)">
             <summary>
             Convert the current instance into a <see cref="T:System.String"/> representation in numeral literal,
             with the specified base (2, 8, 10 or 16).
@@ -7431,7 +7526,7 @@
             <param name="base">The base value. The value must be 2, 8, 10 or 16.</param>
             <returns>The string.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.ToStringBase(System.Int32,System.Int32)">
             <summary>
             Convert the current instance into a <see cref="T:System.String"/> representation in numeral literal,
             with the specified base (2, 8, 10 or 16), padding some zeros.
@@ -7440,7 +7535,7 @@
             <param name="totalWidth">The total width.</param>
             <returns>The string.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
             Creates for a <see cref="T:System.Int16" /> instance via the specified digits.
             </summary>
@@ -7459,40 +7554,12 @@
             </param>
             <returns>A <see cref="T:System.Int16" /> instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.Int32[])">
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.Create(System.ReadOnlySpan{System.Int32})"/>
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
-        <member name="M:Sudoku.Concepts.MaskExtensions.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create``1(``0)">
+        <member name="M:Sudoku.Concepts.MaskMarshal.&lt;G&gt;$390DAE713F975834EF0C1ED2BEC2DBAC.Create``1(``0)">
             <typeparam name="TDigits">The type of the enumerable sequence.</typeparam>
-            <inheritdoc cref="M:Sudoku.Concepts.MaskExtensions.Create(System.ReadOnlySpan{System.Int32})"/>
-        </member>
-        <member name="T:Sudoku.Concepts.MaskOperations">
-            <summary>
-            Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.MaskOperations.MaskToDigits(System.Int16)">
-            <summary>
-            To get the digits that the current mask represents for. The mask must be between 0 and 512, and exclude 512.
-            </summary>
-            <param name="digitMask">The digit mask.</param>
-            <returns>The digits returned.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.MaskOperations.MaskToSudokuType(System.Int16)">
-            <summary>
-            To get the sudoku type for the specified cell mask inside a <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <param name="mask">The cell mask.</param>
-            <returns>The sudoku type configured.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.MaskOperations.MaskToCellState(System.Int16)">
-            <summary>
-            To get the cell state for a mask value. The mask is an inner representation to describe a cell's state.
-            For more information please visit the details of the design for type <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <param name="mask">The mask.</param>
-            <returns>The cell state.</returns>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <inheritdoc cref="M:Sudoku.Concepts.MaskMarshal.Create(System.ReadOnlySpan{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Concepts.MaximalEmptyArea">
             <summary>
@@ -7746,8 +7813,7 @@
         </member>
         <member name="T:Sudoku.Concepts.Peer">
             <summary>
-            Represents a concept called "Peer". A peer is a cell that can see a certain cell.
-            Every cell has 20 peers in a grid.
+            Represents a concept called "Peer". A peer is a cell that can see a certain cell. Every cell has 20 peers in a grid.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Peer.PeersCount">
@@ -13403,75 +13469,10 @@
             Provides with solution-wide read-only fields used.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.HouseTypes">
-            <summary>
-            Indicates the possible house types to be iterated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.Digits">
-            <summary>
-            Indicates the digits used. The value can be also used for ordered houses by rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.HousesOrderedByColumn">
-            <summary>
-            Indicates the houses ordered by column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.HouseFirst">
-            <summary>
-            Indicates the first cell offset for each house.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.HousesCells">
-            <summary>
-            <para>
-            The map of all cell offsets in its specified house.
-            The indices are between 0 and 26, where:
-            <list type="table">
-            <item>
-            <term><c>0..9</c></term>
-            <description>Block 1 to 9.</description>
-            </item>
-            <item>
-            <term><c>9..18</c></term>
-            <description>Row 1 to 9.</description>
-            </item>
-            <item>
-            <term><c>18..27</c></term>
-            <description>Column 1 to 9.</description>
-            </item>
-            </list>
-            </para>
-            </summary>
-            <example>
-            '<c>HouseCells[0]</c>': all cell offsets in the house 0 (block 1).
-            </example>
-        </member>
-        <member name="F:Sudoku.SolutionFields.BlockTable">
-            <summary>
-            Indicates a block list that each cell belongs to.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.RowTable">
-            <summary>
-            Indicates a row list that each cell belongs to.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.ColumnTable">
-            <summary>
-            Indicates a column list that each cell belongs to.
-            </summary>
-        </member>
         <member name="F:Sudoku.SolutionFields.CellMaps">
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
             For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionFields.HousesMapBackingField">
-            <summary>
-            Backing field of <see cref="P:Sudoku.SolutionFields.HousesMap"/>.
             </summary>
         </member>
         <member name="F:Sudoku.SolutionFields.ChuteMapsBackingField">
@@ -13482,11 +13483,6 @@
         <member name="F:Sudoku.SolutionFields.ChutesBackingField">
             <summary>
             Backing field of <see cref="P:Sudoku.SolutionFields.Chutes"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SolutionFields.HousesMap">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
             </summary>
         </member>
         <member name="P:Sudoku.SolutionFields.ChuteMaps">

@@ -47,4 +47,7 @@ global using Sudoku.Solving.EnumerableQuery;
 global using Sudoku.Transformations;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
+global using static Sudoku.Concepts.HouseMarshal;
+global using static Sudoku.Concepts.HouseMaskMarshal;
+global using static Sudoku.Concepts.MaskMarshal;
 global using static Sudoku.SolutionFields;

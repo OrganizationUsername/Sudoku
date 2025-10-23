@@ -100,7 +100,7 @@ public partial class GridCanvas
 		for (var cell = 0; cell < 81; cell++)
 		{
 			var mask = grid[cell];
-			switch (MaskOperations.MaskToCellState(mask))
+			switch (MaskMarshal.MaskToCellState(mask))
 			{
 				case 0 when showCandidates: // Draw candidates.
 				{

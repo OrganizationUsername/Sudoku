@@ -98,7 +98,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				const int size = 3;
 #endif
 				// Iterate on each combination of houses as basic cross-line cells used.
-				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).AllSets & size)
+				foreach (var houses in (isRow ? AllRowsMask : AllColumnsMask).AllSets & size)
 				{
 					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, HouseMask.Create(houses));
 					foreach (var house in houses)
@@ -1397,7 +1397,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Check for the other pair of base cells.
-		var blocksMask = HouseMaskOperations.AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
+		var blocksMask = AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
 		var lastCells = CellMap.Empty;
 		foreach (var block in blocksMask)
 		{
@@ -4668,8 +4668,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="baseCells">The base cells.</param>
 	/// <returns>A mask that holds a list of houses that can be complex houses.</returns>
 	private static HouseMask GetComplexHouses(bool isRow, in CellMap baseCells)
-		=> HouseMaskOperations.AllHousesMask
-			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask)
+		=> AllHousesMask
+			& ~(isRow ? AllRowsMask : AllColumnsMask)
 			& ~baseCells.SharedHouses;
 
 	/// <summary>

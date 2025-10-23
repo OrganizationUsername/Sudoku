@@ -224,7 +224,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 						foreach (var xDigit in (digit1, digit2))
 						{
 							// Gets the target house that can place root cells.
-							foreach (var house in (HouseMaskOperations.AllRowsMask | HouseMaskOperations.AllColumnsMask) & ~cells.Houses)
+							foreach (var house in (AllRowsMask | AllColumnsMask) & ~cells.Houses)
 							{
 								var crosshatchingHouseType = house >= 18 ? HouseType.Row : HouseType.Column;
 								var emptyCellsInThisHouse = HousesMap[house] & CandidatesMap[xDigit];

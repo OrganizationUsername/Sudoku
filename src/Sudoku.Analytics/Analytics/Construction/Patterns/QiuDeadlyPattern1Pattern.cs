@@ -49,7 +49,7 @@ public sealed class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines)
 		var patterns = new List<QiuDeadlyPattern1Pattern>();
 		foreach (var isRow in (true, false))
 		{
-			var (@base, fullHousesMask) = isRow ? (9, HouseMaskOperations.AllRowsMask) : (18, HouseMaskOperations.AllColumnsMask);
+			var (@base, fullHousesMask) = isRow ? (9, AllRowsMask) : (18, AllColumnsMask);
 			foreach (var lineOffsetPair in LineOffsets)
 			{
 				var (l1, l2, l3) = (lineOffsetPair[0] + @base, lineOffsetPair[1] + @base, lineOffsetPair[2] + @base);

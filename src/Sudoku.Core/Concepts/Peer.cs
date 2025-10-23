@@ -1,8 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a concept called "Peer". A peer is a cell that can see a certain cell.
-/// Every cell has 20 peers in a grid.
+/// Represents a concept called "Peer". A peer is a cell that can see a certain cell. Every cell has 20 peers in a grid.
 /// </summary>
 public static class Peer
 {

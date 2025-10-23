@@ -728,7 +728,7 @@ public struct Grid : InlineArrayGridBase
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
 
 	/// <inheritdoc/>
-	public readonly CellState GetState(Cell cell) => MaskOperations.MaskToCellState(this[cell]);
+	public readonly CellState GetState(Cell cell) => MaskToCellState(this[cell]);
 
 	/// <inheritdoc/>
 	public readonly Digit GetDigit(Cell cell)

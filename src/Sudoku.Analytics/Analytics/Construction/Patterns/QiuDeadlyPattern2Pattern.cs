@@ -38,8 +38,8 @@ public sealed class QiuDeadlyPattern2Pattern(HouseMask lines1, HouseMask lines2)
 	{
 		// Case 2: 2 rows + 2 columns.
 		var patterns = new List<QiuDeadlyPattern2Pattern>();
-		var rows = HouseMaskOperations.AllRowsMask.AllSets;
-		var columns = HouseMaskOperations.AllColumnsMask.AllSets;
+		var rows = AllRowsMask.AllSets;
+		var columns = AllColumnsMask.AllSets;
 		foreach (var lineOffsetPairRow in QiuDeadlyPattern1Pattern.LineOffsets)
 		{
 			var rowsMask = 1 << rows[lineOffsetPairRow[0]] | 1 << rows[lineOffsetPairRow[1]];

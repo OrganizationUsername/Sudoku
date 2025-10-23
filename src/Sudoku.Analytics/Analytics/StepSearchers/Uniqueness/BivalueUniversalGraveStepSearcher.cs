@@ -50,7 +50,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref StepAnalysisContext context)
-		=> CandidatesCount > (EmptyCells.Count << 1) + CellMap.PeersCount + 8
+		=> CandidatesCount > (EmptyCells.Count << 1) + Peer.PeersCountCandidates
 			? null
 			: CheckForTrueCandidateTypes(ref context) is { } trueCandidateTypeFirstFoundStep
 				? trueCandidateTypeFirstFoundStep
@@ -529,7 +529,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var (c1, d1, c2, d2) = (cand1 / 9, cand1 % 9, cand2 / 9, cand2 % 9);
 		var mask = (Mask)(1 << d1 | 1 << d2);
-		foreach (var cell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
+		foreach (var cell in (Peer.PeersMap[c1] ^ Peer.PeersMap[c2]) & BivalueCells)
 		{
 			if (grid.GetCandidates(cell) != mask)
 			{

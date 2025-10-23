@@ -148,7 +148,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
-					var possibleMap = (CandidatesMap[digit] & ~PeersMap[cell]) - cell;
+					var possibleMap = (CandidatesMap[digit] & ~Peer.PeersMap[cell]) - cell;
 
 					// Get the table of all possible houses that contains that digit.
 					var baseTable = possibleMap.Houses.AllSets;

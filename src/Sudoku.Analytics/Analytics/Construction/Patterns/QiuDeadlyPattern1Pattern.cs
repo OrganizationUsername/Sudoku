@@ -81,7 +81,7 @@ public sealed class QiuDeadlyPattern1Pattern(in CellMap corner, HouseMask lines)
 		get
 		{
 			var l1 = BitOperations.PopTwo((uint)Lines, out var l2);
-			return (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & PeersMap[Corner[1]];
+			return (HousesMap[l1] | HousesMap[l2]) & Peer.PeersMap[Corner[0]] | (HousesMap[l1] | HousesMap[l2]) & Peer.PeersMap[Corner[1]];
 		}
 	}
 

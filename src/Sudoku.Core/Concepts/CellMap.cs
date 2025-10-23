@@ -13,11 +13,6 @@ using CellMapBase = ICellMapOrCandidateMap<CellMap, Cell>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 public partial struct CellMap : CellMapBase
 {
-	/// <summary>
-	/// Indicates the number of each cell's peer cells. The value is a constant.
-	/// </summary>
-	public const Cell PeersCount = 20;
-
 	/// <inheritdoc cref="CellMapBase.Shifting"/>
 	private const int Shifting = 41;
 
@@ -333,10 +328,10 @@ public partial struct CellMap : CellMapBase
 	/// <remarks>
 	/// An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
 	/// appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
-	/// this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
-	/// where the member <c>PeersMap</c> corresponds to the array <see cref="PeersMap"/>.
+	/// this collection will be the result of the expression <c>Peer.PeersMap[r1c1] | Peer.PeersMap[r1c2] | Peer.PeersMap[r1c3]</c>,
+	/// where the member <c>Peer.PeersMap</c> corresponds to the array <see cref="Peer.PeersMap"/>.
 	/// </remarks>
-	/// <seealso cref="PeersMap"/>
+	/// <seealso cref="Peer.PeersMap"/>
 	public readonly CellMap ExpandedPeers
 	{
 		get
@@ -344,7 +339,7 @@ public partial struct CellMap : CellMapBase
 			var result = Empty;
 			foreach (var cell in Offsets)
 			{
-				result |= PeersMap[cell];
+				result |= Peer.PeersMap[cell];
 			}
 			return result;
 		}
@@ -359,7 +354,7 @@ public partial struct CellMap : CellMapBase
 			foreach (var offset in Offsets)
 			{
 				var (low, high) = (0L, 0L);
-				foreach (var peer in PeersMap[offset])
+				foreach (var peer in Peer.PeersMap[offset])
 				{
 					(peer / Shifting == 0 ? ref low : ref high) |= 1L << peer % Shifting;
 				}

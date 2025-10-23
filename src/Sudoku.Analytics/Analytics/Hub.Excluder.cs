@@ -118,7 +118,7 @@ public partial class Hub
 			}
 			foreach (var otherDigit in lastDigitsMask)
 			{
-				foreach (var otherCell in PeersMap[cell])
+				foreach (var otherCell in Peer.PeersMap[cell])
 				{
 					if (grid.GetDigit(otherCell) == otherDigit)
 					{

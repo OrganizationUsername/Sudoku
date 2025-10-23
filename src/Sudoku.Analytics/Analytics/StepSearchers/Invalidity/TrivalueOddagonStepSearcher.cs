@@ -198,7 +198,7 @@ public sealed partial class TrivalueOddagonStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var extraCell in (PeersMap[c1] ^ PeersMap[c2]) & BivalueCells)
+			foreach (var extraCell in (Peer.PeersMap[c1] ^ Peer.PeersMap[c2]) & BivalueCells)
 			{
 				if (grid.GetCandidates(extraCell) != otherDigitsMask)
 				{

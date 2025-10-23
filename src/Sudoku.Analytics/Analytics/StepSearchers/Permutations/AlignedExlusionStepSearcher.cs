@@ -50,7 +50,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 				// Look for potentially excluding cells (whose number of candidates is less than size).
 				var excludingCells = CellMap.Empty;
-				foreach (var excludingCell in PeersMap[cell])
+				foreach (var excludingCell in Peer.PeersMap[cell])
 				{
 					var count = BitOperations.PopCount((uint)grid.GetCandidates(excludingCell));
 					if (count >= 2 && count <= size)
@@ -177,7 +177,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 							if ((potentials[cellIndices[0]], potentials[cellIndices[1]]) is var (p1, p2)
 								&& p1 == p2
 								&& (cells[cellIndices[0]], cells[cellIndices[1]]) is var (c1, c2)
-								&& PeersMap[c1].Contains(c2))
+								&& Peer.PeersMap[c1].Contains(c2))
 							{
 								// Hidden single: Using the same candidate value for 2 cells of the set is only allowed
 								// if they don't share a house.

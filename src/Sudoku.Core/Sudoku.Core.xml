@@ -539,11 +539,6 @@
             </remarks>
             <seealso cref="T:System.Runtime.Intrinsics.Vector128`1"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.PeersCount">
-            <summary>
-            Indicates the number of each cell's peer cells. The value is a constant.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.ICellMapOrCandidateMap`2.Shifting"/>
         </member>
@@ -701,10 +696,10 @@
             <remarks>
             An <b>Expanded Peers</b> is a list of cells that contains all peer cells of each cell
             appeared in the current collection. For example, if a collection contains cells <c>r1c123</c>,
-            this collection will be the result of the expression <c>PeersMap[r1c1] | PeersMap[r1c2] | PeersMap[r1c3]</c>,
-            where the member <c>PeersMap</c> corresponds to the array <see cref="P:Sudoku.SolutionFields.PeersMap"/>.
+            this collection will be the result of the expression <c>Peer.PeersMap[r1c1] | Peer.PeersMap[r1c2] | Peer.PeersMap[r1c3]</c>,
+            where the member <c>Peer.PeersMap</c> corresponds to the array <see cref="P:Sudoku.Concepts.Peer.PeersMap"/>.
             </remarks>
-            <seealso cref="P:Sudoku.SolutionFields.PeersMap"/>
+            <seealso cref="P:Sudoku.Concepts.Peer.PeersMap"/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.PeerIntersection">
             <inheritdoc/>
@@ -7749,6 +7744,45 @@
             </summary>
             <param name="value">The value.</param>
         </member>
+        <member name="T:Sudoku.Concepts.Peer">
+            <summary>
+            Represents a concept called "Peer". A peer is a cell that can see a certain cell.
+            Every cell has 20 peers in a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Peer.PeersCount">
+            <summary>
+            Indicates the number of each cell's peers. The value is a constant.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Peer.PeersCountCandidates">
+            <summary>
+            Indicates the number of each candidate's peers. The value is a constant.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Peer.PeersMapBackingField">
+            <summary>
+            Backing field of <see cref="P:Sudoku.Concepts.Peer.PeersMap"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Peer.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Concepts.Peer.PeersMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>
             Represents a way to find a path that connects block cells.
@@ -13440,11 +13474,6 @@
             Backing field of <see cref="P:Sudoku.SolutionFields.HousesMap"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.PeersMapBackingField">
-            <summary>
-            Backing field of <see cref="P:Sudoku.SolutionFields.PeersMap"/>.
-            </summary>
-        </member>
         <member name="F:Sudoku.SolutionFields.ChuteMapsBackingField">
             <summary>
             Backing field of <see cref="P:Sudoku.SolutionFields.ChuteMaps"/>.
@@ -13458,11 +13487,6 @@
         <member name="P:Sudoku.SolutionFields.HousesMap">
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
-            </summary>
-        </member>
-        <member name="P:Sudoku.SolutionFields.PeersMap">
-            <summary>
-            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
             </summary>
         </member>
         <member name="P:Sudoku.SolutionFields.ChuteMaps">

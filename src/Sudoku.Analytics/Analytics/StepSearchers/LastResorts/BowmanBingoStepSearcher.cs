@@ -185,7 +185,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
 	private static (CandidateMap Candidates, Mask Mask) RecordUndoInfo(in Grid grid, Cell cell, Digit digit)
-		=> ((from c in PeersMap[cell] & CandidatesMap[digit] select c * 9 + digit).AsCandidateMap(), grid[cell]);
+		=> ((from c in Peer.PeersMap[cell] & CandidatesMap[digit] select c * 9 + digit).AsCandidateMap(), grid[cell]);
 
 	/// <summary>
 	/// Undo the grid.
@@ -213,7 +213,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	private static bool IsValidGrid(in Grid grid, Cell cell)
 	{
 		var result = true;
-		foreach (var peerCell in PeersMap[cell])
+		foreach (var peerCell in Peer.PeersMap[cell])
 		{
 			var state = grid.GetState(peerCell);
 			if ((state != CellState.Empty && grid.GetDigit(peerCell) != grid.GetDigit(cell) || state == CellState.Empty)

@@ -479,7 +479,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		foreach (var extraCell in extraCellsMap)
 		{
 			// Get the cell that in loop that can see this cell.
-			if ((loopCellsCanSeeAnyCellOfConjugatePair & PeersMap[extraCell]) is not [var loopCellCanSeeExtraCell])
+			if ((loopCellsCanSeeAnyCellOfConjugatePair & Peer.PeersMap[extraCell]) is not [var loopCellCanSeeExtraCell])
 			{
 				isAnyLoopCellSeeingBothCells = true;
 				break;

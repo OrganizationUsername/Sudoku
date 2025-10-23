@@ -29,7 +29,7 @@ public sealed class DirectIntersectionGenerator : ComplexSingleGenerator
 					{
 						if (digit != targetDigit && digit != interimDigit)
 						{
-							foreach (var cell in PeersMap[targetCell])
+							foreach (var cell in Peer.PeersMap[targetCell])
 							{
 								if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
 								{

@@ -42,7 +42,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 				continue;
 			}
 
-			if (PeersMap[c1].Contains(c2) || PeersMap[c2].Contains(c1))
+			if (Peer.PeersMap[c1].Contains(c2) || Peer.PeersMap[c2].Contains(c1))
 			{
 				// The two value cells cannot lie in a same house.
 				continue;

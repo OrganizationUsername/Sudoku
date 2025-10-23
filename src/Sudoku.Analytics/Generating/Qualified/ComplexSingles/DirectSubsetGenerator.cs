@@ -28,7 +28,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 					foreach (var cell in step.SubsetCells)
 					{
 						var digitsToCover = (Mask)(Grid.MaxCandidatesMask & ~g.GetCandidates(cell));
-						foreach (var peerCell in PeersMap[cell])
+						foreach (var peerCell in Peer.PeersMap[cell])
 						{
 							if ((digitsToCover >> g.GetDigit(peerCell) & 1) != 0)
 							{
@@ -75,7 +75,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 						}
 
 						// Check whether the digit has already marked according to the former steps.
-						var cellsToCheck = PeersMap[targetCell] & result;
+						var cellsToCheck = Peer.PeersMap[targetCell] & result;
 						var digitHasAlreadyMarked = false;
 						foreach (var cell in cellsToCheck)
 						{
@@ -90,7 +90,7 @@ public sealed class DirectSubsetGenerator : ComplexSingleGenerator
 							continue;
 						}
 
-						foreach (var cell in PeersMap[targetCell])
+						foreach (var cell in Peer.PeersMap[targetCell])
 						{
 							if (g.GetState(cell) != CellState.Empty && g.GetDigit(cell) == digit)
 							{

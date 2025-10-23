@@ -384,7 +384,7 @@ public ref partial struct EmptyHouseBasedGenerator() : IGenerator<Grid>
 
 		static bool checkValidityOnDuplicate(in Grid grid, Cell cell)
 		{
-			foreach (var peer in PeersMap[cell])
+			foreach (var peer in Peer.PeersMap[cell])
 			{
 				var digit = grid.GetDigit(peer);
 				if (digit == grid.GetDigit(cell) && digit != -1)

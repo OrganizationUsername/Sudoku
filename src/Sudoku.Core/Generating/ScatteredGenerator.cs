@@ -170,9 +170,9 @@ public readonly ref struct ScatteredGenerator() : IGenerator<Grid>
 	private static bool CheckDuplicate(Span<char> gridString, Cell cell)
 	{
 		var value = gridString[cell];
-		foreach (var c in PeersMap[cell])
+		foreach (var peer in Peer.PeersMap[cell])
 		{
-			if (value != '0' && gridString[c] == value)
+			if (value != '0' && gridString[peer] == value)
 			{
 				return true;
 			}

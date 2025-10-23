@@ -85,11 +85,6 @@ public static class SolutionFields
 	private static readonly CellMap[] HousesMapBackingField;
 
 	/// <summary>
-	/// Backing field of <see cref="PeersMap"/>.
-	/// </summary>
-	private static readonly CellMap[] PeersMapBackingField;
-
-	/// <summary>
 	/// Backing field of <see cref="ChuteMaps"/>.
 	/// </summary>
 	private static readonly CellMap[] ChuteMapsBackingField;
@@ -104,11 +99,6 @@ public static class SolutionFields
 	/// Indicates a list of <see cref="CellMap"/> instances representing the cells belong to a house at the specified index.
 	/// </summary>
 	public static ReadOnlySpan<CellMap> HousesMap => HousesMapBackingField;
-
-	/// <summary>
-	/// Indicates a list of <see cref="CellMap"/> instances representing the peer cells of a cell at the specified index.
-	/// </summary>
-	public static ReadOnlySpan<CellMap> PeersMap => PeersMapBackingField;
 
 	/// <summary>
 	/// Indicates the chute maps.
@@ -178,36 +168,6 @@ public static class SolutionFields
 			foreach (ref var map in span)
 			{
 				map += cell++;
-			}
-		}
-
-		//
-		// PeersMap
-		//
-		{
-			PeersMapBackingField = new CellMap[81];
-			for (var cell = 0; cell < 81; cell++)
-			{
-				var map = CellMap.Empty;
-				for (var peerCell = 0; peerCell < 81; peerCell++)
-				{
-					if (cell != peerCell)
-					{
-						foreach (var houseType in HouseTypes)
-						{
-							if (HousesMap[cell >> houseType].Contains(peerCell))
-							{
-								map += peerCell;
-								break;
-							}
-						}
-					}
-					if (map.Count == CellMap.PeersCount)
-					{
-						break;
-					}
-				}
-				PeersMapBackingField[cell] = map;
 			}
 		}
 

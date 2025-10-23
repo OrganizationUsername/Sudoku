@@ -58,7 +58,7 @@ public partial class UniqueRectangleStepSearcher
 			{
 				sameBlockCell = cell;
 			}
-			else if (PeersMap[cornerCell].Contains(cell))
+			else if (Peer.PeersMap[cornerCell].Contains(cell))
 			{
 				targetCell = cell;
 			}

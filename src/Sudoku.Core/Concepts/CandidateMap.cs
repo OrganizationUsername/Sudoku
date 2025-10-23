@@ -65,7 +65,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	private CandidateMap(Candidate candidate, bool withItself)
 	{
 		(this, var (cell, digit)) = ([], (candidate / 9, candidate % 9));
-		foreach (var c in PeersMap[cell])
+		foreach (var c in Peer.PeersMap[cell])
 		{
 			this += c * 9 + digit;
 		}

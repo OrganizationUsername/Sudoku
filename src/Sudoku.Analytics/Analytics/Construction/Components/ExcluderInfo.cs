@@ -30,7 +30,7 @@ public sealed record ExcluderInfo(in CellMap BaseCells, in CellMap EmptyCells, i
 		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells & ~cells & emptyCells, CellMap.Empty, CellMap.Empty);
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
-			var tempValues = PeersMap[c] & valueCells;
+			var tempValues = Peer.PeersMap[c] & valueCells;
 			if (tempValues)
 			{
 				values |= tempValues;

@@ -49,7 +49,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				var map = PeersMap[pivot] & BivalueCells;
+				var map = Peer.PeersMap[pivot] & BivalueCells;
 				if (map.Count < size - 1)
 				{
 					// Bi-value cells are not enough.
@@ -115,7 +115,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					var elimMap = petals.PeerIntersection;
 					if (!isIncomplete)
 					{
-						elimMap &= PeersMap[pivot];
+						elimMap &= Peer.PeersMap[pivot];
 					}
 					elimMap &= CandidatesMap[zDigit];
 					if (!elimMap)

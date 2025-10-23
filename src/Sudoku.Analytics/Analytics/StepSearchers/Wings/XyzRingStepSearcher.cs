@@ -143,7 +143,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 				var isNice = false;
 				foreach (var (leaf, theOtherLeaf) in ((leafCell1, leafCell2), (leafCell2, leafCell1)))
 				{
-					var linkCellsIntersect = cellsShouldBeCovered & PeersMap[leaf];
+					var linkCellsIntersect = cellsShouldBeCovered & Peer.PeersMap[leaf];
 					foreach (var linkCellHouse in linkCellsIntersect.SharedHouses)
 					{
 						foreach (var leafCellHouse in (pivot.AsCellMap() + leaf).SharedHouses)

@@ -66,7 +66,7 @@ public readonly partial struct CellGraph :
 		_directlyConnectedCellsDictionary = new(cells.Count);
 		foreach (var cell in cells)
 		{
-			_directlyConnectedCellsDictionary.Add(cell, cells & PeersMap[cell]);
+			_directlyConnectedCellsDictionary.Add(cell, cells & Peer.PeersMap[cell]);
 		}
 	}
 
@@ -122,7 +122,7 @@ public readonly partial struct CellGraph :
 			{
 				foreach (var cell in coloringDictionary[@switch])
 				{
-					foreach (var peer in PeersMap[cell] & _cells)
+					foreach (var peer in Peer.PeersMap[cell] & _cells)
 					{
 						if (coloringDictionary[@switch].Contains(peer))
 						{
@@ -272,7 +272,7 @@ public readonly partial struct CellGraph :
 				return;
 			}
 
-			foreach (var next in lastCells & PeersMap[current])
+			foreach (var next in lastCells & Peer.PeersMap[current])
 			{
 				path.Add(next);
 				dfs(lastCells - next, next, path, paths);

@@ -134,7 +134,7 @@ public struct Grid : InlineArrayGridBase
 					case CellState.Given or CellState.Modifiable:
 					{
 						var curDigit = GetDigit(i);
-						foreach (var cell in PeersMap[i])
+						foreach (var cell in Peer.PeersMap[i])
 						{
 							if (curDigit == GetDigit(cell))
 							{
@@ -531,7 +531,7 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public readonly bool ConflictWith(Cell cell, Digit digit)
 	{
-		foreach (var tempCell in PeersMap[cell])
+		foreach (var tempCell in Peer.PeersMap[cell])
 		{
 			if (GetDigit(tempCell) == digit)
 			{
@@ -1291,7 +1291,7 @@ public struct Grid : InlineArrayGridBase
 			return;
 		}
 
-		foreach (var peerCell in PeersMap[cell])
+		foreach (var peerCell in Peer.PeersMap[cell])
 		{
 			if (@this.GetState(peerCell) == CellState.Empty)
 			{
@@ -1309,7 +1309,7 @@ public struct Grid : InlineArrayGridBase
 			{
 				// Remove all appeared digits.
 				var mask = MaxCandidatesMask;
-				foreach (var currentCell in PeersMap[cell])
+				foreach (var currentCell in Peer.PeersMap[cell])
 				{
 					if (@this.GetDigit(currentCell) is var digit and not -1)
 					{

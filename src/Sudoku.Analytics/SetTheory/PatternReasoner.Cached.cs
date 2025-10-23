@@ -78,7 +78,7 @@ public partial class PatternReasoner
 					if (checkingLinks)
 					{
 						// We should check whether a conclusion is on a link or not.
-						foreach (var c in PeersMap[cell] & candidatesMap[digit])
+						foreach (var c in Peer.PeersMap[cell] & candidatesMap[digit])
 						{
 							if (fullMap.Contains(c * 9 + digit))
 							{
@@ -97,7 +97,7 @@ public partial class PatternReasoner
 					else
 					{
 						// If candidates exists, we can eliminate or set it without checking whether it is on a link or not.
-						foreach (var c in PeersMap[cell] & candidatesMap[digit])
+						foreach (var c in Peer.PeersMap[cell] & candidatesMap[digit])
 						{
 							tempConclusions.Add(new(Elimination, c, digit));
 						}

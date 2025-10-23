@@ -557,7 +557,9 @@ public partial class UniqueRectangleStepSearcher
 							}
 
 							// A turbot fish found. Now check eliminations.
-							var elimMap = (guardianCells & ~(HousesMap[weakLinkHouse] & guardianCells)).PeerIntersection & PeersMap[finalCell] & CandidatesMap[guardianDigit];
+							var elimMap = (guardianCells & ~(HousesMap[weakLinkHouse] & guardianCells)).PeerIntersection
+								& Peer.PeersMap[finalCell]
+								& CandidatesMap[guardianDigit];
 							if (!elimMap)
 							{
 								// No eliminations.
@@ -899,7 +901,7 @@ public partial class UniqueRectangleStepSearcher
 			{
 				foreach (var cell2 in cellsToEnumerate)
 				{
-					if (!PeersMap[cell1].Contains(cell2))
+					if (!Peer.PeersMap[cell1].Contains(cell2))
 					{
 						// Two cells cannot see each other.
 						continue;
@@ -1043,8 +1045,8 @@ public partial class UniqueRectangleStepSearcher
 				var cell2UrDigit = BitOperations.TrailingZeroCount((Mask)(mask2 & ~intersectionMask));
 				var guardianCellsThatContainsDigit1 = guardianCells & CandidatesMap[cell1UrDigit];
 				var guardianCellsThatContainsDigit2 = guardianCells & CandidatesMap[cell2UrDigit];
-				if ((PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
-					|| (PeersMap[cell2] & guardianCellsThatContainsDigit2) != guardianCellsThatContainsDigit2)
+				if ((Peer.PeersMap[cell1] & guardianCellsThatContainsDigit1) != guardianCellsThatContainsDigit1
+					|| (Peer.PeersMap[cell2] & guardianCellsThatContainsDigit2) != guardianCellsThatContainsDigit2)
 				{
 					// Two cells must see all guardian cells.
 					continue;

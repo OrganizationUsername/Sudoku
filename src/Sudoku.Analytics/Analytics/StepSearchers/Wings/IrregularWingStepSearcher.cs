@@ -71,7 +71,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 			// Iterate on each cells which are not peers in 'c1'.
 			var digits = grid.GetCandidates(c1).AllSets;
-			foreach (var c2 in BivalueCells & ~(PeersMap[c1] + c1))
+			foreach (var c2 in BivalueCells & ~(Peer.PeersMap[c1] + c1))
 			{
 				if (c2 < c1)
 				{
@@ -85,7 +85,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 					continue;
 				}
 
-				var intersection = PeersMap[c1] & PeersMap[c2];
+				var intersection = Peer.PeersMap[c1] & Peer.PeersMap[c2];
 				if (!(EmptyCells & intersection))
 				{
 					// The pattern doesn't contain any possible eliminations.
@@ -120,15 +120,15 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								=> true,
 							{ Count: > 2 and <= 6, BlockMask: var blocks } => BitOperations.PopCount((uint)blocks) switch
 							{
-								1 => ((PeersMap[c1] | PeersMap[c2]) & bridge) == bridge,
+								1 => ((Peer.PeersMap[c1] | Peer.PeersMap[c2]) & bridge) == bridge,
 								2 when BitOperations.PopTwo((uint)blocks, out var block2) is var block1
 									=> (HousesMap[block1] & bridge, HousesMap[block2] & bridge) switch
 									{
 										var (bridgeInBlock1, bridgeInBlock2) => (
-											(PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1,
-											(PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2,
-											(PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2,
-											(PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1
+											(Peer.PeersMap[c1] & bridgeInBlock1) == bridgeInBlock1,
+											(Peer.PeersMap[c2] & bridgeInBlock2) == bridgeInBlock2,
+											(Peer.PeersMap[c1] & bridgeInBlock2) == bridgeInBlock2,
+											(Peer.PeersMap[c2] & bridgeInBlock1) == bridgeInBlock1
 										) switch
 										{
 											(true, true, _, _) => true,

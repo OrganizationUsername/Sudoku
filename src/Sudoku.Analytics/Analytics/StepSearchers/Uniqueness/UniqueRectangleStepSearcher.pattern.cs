@@ -443,9 +443,9 @@ public partial class UniqueRectangleStepSearcher
 
 		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
 		var cells = urCells.AsCellMap();
-		foreach (var endCell1 in PeersMap[otherCellsMap[0]] & BivalueCells & CandidatesMap[otherDigit1])
+		foreach (var endCell1 in Peer.PeersMap[otherCellsMap[0]] & BivalueCells & CandidatesMap[otherDigit1])
 		{
-			foreach (var endCell2 in (PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
+			foreach (var endCell2 in (Peer.PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
 			{
 				// Check whether two cells are same, or in a same house. If so, the pattern will be degenerated to a normal type 3.
 				if ((endCell1.AsCellMap() + endCell2).FirstSharedHouse != FallbackConstants.@int)
@@ -1175,7 +1175,7 @@ public partial class UniqueRectangleStepSearcher
 					continue;
 				}
 
-				var otherCells = HousesMap[houseIndex] & CandidatesMap[otherDigit] & PeersMap[anotherCell];
+				var otherCells = HousesMap[houseIndex] & CandidatesMap[otherDigit] & Peer.PeersMap[anotherCell];
 				var sameHouses = (otherCells + anotherCell).SharedHouses;
 				foreach (var sameHouse in sameHouses)
 				{

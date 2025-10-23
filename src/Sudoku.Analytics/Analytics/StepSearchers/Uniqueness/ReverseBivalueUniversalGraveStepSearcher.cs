@@ -688,7 +688,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			HashSet<HamiltonianCycle[]> paths
 		)
 		{
-			if (!lastCells && path is [var f, .., var l] && PeersMap[l].Contains(f))
+			if (!lastCells && path is [var f, .., var l] && Peer.PeersMap[l].Contains(f))
 			{
 				paths.Add([new([.. path]), .. internalLoops]);
 				internalLoops.Clear();
@@ -698,7 +698,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			if (path is [var pathFirstCell, .. { Count: >= 3 }])
 			{
 				// Check whether we can connect back to the first cell.
-				foreach (var cell in originalCells & PeersMap[current])
+				foreach (var cell in originalCells & Peer.PeersMap[current])
 				{
 					if (cell == pathFirstCell
 						&& path.AsSpan().AsCellMap() is var excludedCells
@@ -712,7 +712,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				}
 			}
 
-			foreach (var next in lastCells & PeersMap[current])
+			foreach (var next in lastCells & Peer.PeersMap[current])
 			{
 				path.Add(next);
 				dfs(originalCells, lastCells - next, next, path, internalLoops, paths);

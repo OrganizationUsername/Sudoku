@@ -92,7 +92,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 						continue;
 					}
 
-					if ((PeersMap[head] & PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
+					if ((Peer.PeersMap[head] & Peer.PeersMap[tail] & CandidatesMap[digit]) is not (var elimMap and not []))
 					{
 						// Eliminations may not found.
 						continue;

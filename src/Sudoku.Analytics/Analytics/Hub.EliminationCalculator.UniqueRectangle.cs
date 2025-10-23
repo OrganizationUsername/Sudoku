@@ -230,7 +230,7 @@ public partial class Hub
 						var digit = candidate % 9;
 
 						// Check intersection of peers of 'cell' and 'internalSideCells', to know which cell is filled with 'a'.
-						switch (internalSideCells & PeersMap[cell])
+						switch (internalSideCells & Peer.PeersMap[cell])
 						{
 							// No intersection found. Sketch:
 							//
@@ -275,7 +275,7 @@ public partial class Hub
 								// Therefore, the other cell in 'internalSideCells' can only be filled with 'a'.
 								// Now check for the other two cells 'abX' and 'abY'.
 								var theOtherTwoCells = cells & ~internalSideCellPair;
-								var abyCells = theOtherTwoCells & PeersMap[abcCellCanSeeExternalCell];
+								var abyCells = theOtherTwoCells & Peer.PeersMap[abcCellCanSeeExternalCell];
 								var abxCells = theOtherTwoCells & ~abyCells;
 
 								// Because of assigning 'b' into 'abcCellCanSeeExternalCell',

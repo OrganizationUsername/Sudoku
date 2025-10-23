@@ -320,7 +320,7 @@ public struct MarkerGrid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public readonly bool ConflictWith(Cell cell, Digit digit)
 	{
-		foreach (var tempCell in PeersMap[cell])
+		foreach (var tempCell in Peer.PeersMap[cell])
 		{
 			if (GetDigit(tempCell) == digit)
 			{

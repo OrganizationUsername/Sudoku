@@ -153,7 +153,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				// (i.e. (n) cells only contain at most (n - 1) kinds of digits).
 
 				// Try to suppose for the target wrong digit, removing from its peer cells.
-				foreach (var deletionCell in PeersMap[entryElimCell] & CandidatesMap[wrongDigit])
+				foreach (var deletionCell in Peer.PeersMap[entryElimCell] & CandidatesMap[wrongDigit])
 				{
 					playground[deletionCell] &= (Mask)~(1 << wrongDigit);
 				}

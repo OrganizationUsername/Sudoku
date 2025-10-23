@@ -44,7 +44,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 
 				// Check the block that two cells both see.
 				var interMap = (c1.AsCellMap() + c2).PeerIntersection;
-				var unionMap = (PeersMap[c1] | PeersMap[c2]) + c1 + c2;
+				var unionMap = (Peer.PeersMap[c1] | Peer.PeersMap[c2]) + c1 + c2;
 				foreach (var interCell in interMap)
 				{
 					var block = interCell >> HouseType.Block;

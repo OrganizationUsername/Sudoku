@@ -21,8 +21,8 @@ namespace Sudoku.Analytics.Caching;
 ///     {
 ///         var eliminationMap = new CellMap[9];
 ///         foreach (var digit in grid.GetCandidates(cell))
-///             eliminationMap[digit] = PeersMap[cell] & __CandidatesMap[digit];
-///         result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), PeersMap[cell] & __EmptyCells, eliminationMap));
+///             eliminationMap[digit] = Peer.PeersMap[cell] & __CandidatesMap[digit];
+///         result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), Peer.PeersMap[cell] & __EmptyCells, eliminationMap));
 ///     }
 ///
 ///     // ...
@@ -37,8 +37,8 @@ namespace Sudoku.Analytics.Caching;
 /// {
 ///     var eliminationMap = new CellMap[9];
 ///     foreach (var digit in grid.GetCandidates(cell))
-///         eliminationMap[digit] = PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
-///     result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
+///         eliminationMap[digit] = Peer.PeersMap[cell] & MemoryCachedData.CandidatesMap[digit];
+///     result.Add(new(grid.GetCandidates(cell), cell.AsCellMap(), Peer.PeersMap[cell] & MemoryCachedData.EmptyCells, eliminationMap));
 /// }
 /// ]]></code>
 /// </remarks>

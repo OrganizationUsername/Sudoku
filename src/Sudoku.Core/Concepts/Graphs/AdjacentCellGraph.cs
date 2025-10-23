@@ -44,7 +44,7 @@ public readonly ref struct AdjacentCellGraph : IEquatable<AdjacentCellGraph>, IF
 			{
 				foreach (var cell in cells)
 				{
-					lastCells &= ~PeersMap[cell];
+					lastCells &= ~Peer.PeersMap[cell];
 					if (!verify(lastCells))
 					{
 						return false;

@@ -1212,7 +1212,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			foreach (var cell in HousesMap[block] & ~EmptyCells & ~crossline)
 			{
-				if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell))
+				if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !Peer.PeersMap[missingValueCell].Contains(cell))
 				{
 					if (valueDigitsPos.Count == 6)
 					{
@@ -3107,8 +3107,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			foreach (var cell in groupOfTargetCells)
 			{
 				targetCells += cell;
-
-				if (valueDigitCell != -1 || !PeersMap[cell].Contains(missingValueCell))
+				if (valueDigitCell != -1 || !Peer.PeersMap[cell].Contains(missingValueCell))
 				{
 					foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~baseCellsDigitsMask))
 					{

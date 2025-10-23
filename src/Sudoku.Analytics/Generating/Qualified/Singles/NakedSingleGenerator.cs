@@ -52,11 +52,11 @@ public sealed class NakedSingleGenerator : SingleGenerator
 		var targetCell = Alignment switch
 		{
 			ConclusionCellAlignment.NotLimited => Rng.NextCell(),
-			ConclusionCellAlignment.CenterHouse => Rng.Choose(PeersMap[40] + 40),
+			ConclusionCellAlignment.CenterHouse => Rng.Choose(Peer.PeersMap[40] + 40),
 			ConclusionCellAlignment.CenterBlock => HousesMap[4][Rng.NextDigit()],
 			_ => 40
 		};
-		var peerCells = PeersMap[targetCell].ToArray();
+		var peerCells = Peer.PeersMap[targetCell].ToArray();
 
 		// Generate extra digits.
 		// Different with other techniques, naked single can be failed to be generated - it'll produce a puzzle that has no solution.

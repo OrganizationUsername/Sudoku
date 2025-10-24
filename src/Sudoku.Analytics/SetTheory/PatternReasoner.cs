@@ -105,12 +105,7 @@ public static partial class PatternReasoner
 	/// <param name="elimination">The elimination.</param>
 	/// <returns>A minimal <see cref="Logic"/> instance that can remove the specified elimination.</returns>
 	public static Logic GetMinimalPattern(in Logic logic, Candidate elimination)
-	{
-		var permutations = GetPermutations(logic);
-		var truths = Cached.GetMinimalTruths(logic, elimination, permutations);
-		var subpattern = new Logic(truths, logic.Links, logic.Grid);
-		return Cached.TrimExcessLinks(subpattern, [new(Elimination, elimination)], GetPermutations(subpattern));
-	}
+		=> Cached.GetMinimalPattern(logic, elimination, GetPermutations(logic));
 
 	/// <summary>
 	/// Trims for all excess links, and return a new <see cref="Logic"/> instance.

@@ -117,7 +117,8 @@ public partial class PatternReasoner
 							}
 						}
 
-						// Traverse all light-up links. Find whether the current conclusion to check is covered by any light-up links.
+						// Traverse all light-up links.
+						// Find whether the current conclusion to check is covered by any light-up links.
 						var anyLinksIncludesConclusion = false;
 						foreach (var link in lightupLinks)
 						{
@@ -163,9 +164,8 @@ public partial class PatternReasoner
 
 		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
-			var conclusions = GetConclusions(logic, permutations, true);
 			var result = CandidateMap.Empty;
-			foreach (var (type, candidate) in conclusions)
+			foreach (var (type, candidate) in GetConclusions(logic, permutations, true))
 			{
 				if (type != Elimination)
 				{
@@ -216,27 +216,41 @@ public partial class PatternReasoner
 			}
 
 			var truths = truthsRef.ToArray();
-
-			// Otherwise, we should iterate on each combination of truths to get eliminations.
-			for (var truthsSize = 2; truthsSize <= truths.Length - 1; truthsSize++)
+			var tempFoundTruthCombinations = default(Space[]);
+			bool found;
+			do
 			{
+				found = false;
+
 				// Iterate on each combination of truths.
-				foreach (var truthCombination in truths & truthsSize)
+				var targetTruths = tempFoundTruthCombinations ?? truths;
+				foreach (var truthCombination in targetTruths & targetTruths.Length - 1)
 				{
-					var sublogicTruths = truthCombination.AsSpaceSet();
-					var sublogic = new Logic(sublogicTruths, logic.Links, logic.Grid);
+					var sublogic = new Logic([.. truthCombination], logic.Links, logic.Grid);
 					var sublogicConclusions = GetConclusions(sublogic, GetPermutations(sublogic), true);
 					if (sublogicConclusions.Contains(new(Elimination, elimination)))
 					{
-						// If the pattern can delete such candidate, we'll know that the pattern has a minimal size of truths.
-						// All patterns greater than this (with larger size of truths) is redundant.
-						return sublogicTruths;
+						// If the pattern (with lower-sized truths) can delete such candidate,
+						// we should continue to check, until the candidate cannot be eliminiated.
+						tempFoundTruthCombinations = truthCombination;
+						found = true;
+						break;
 					}
 				}
-			}
+			} while (found);
 
 			// Otherwise, we cannot find any subpatterns that can remove that candidate - all truths are necessary.
-			return truthsRef;
+			return tempFoundTruthCombinations?.AsSpaceSet() ?? truthsRef;
+		}
+
+		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
+		{
+			var sublogic = new Logic(GetMinimalTruths(logic, elimination, permutations), logic.Links, logic.Grid);
+			return TrimExcessLinks(
+				sublogic,
+				[new(Elimination, elimination)],
+				sublogic == logic ? permutations : GetPermutations(sublogic)
+			);
 		}
 
 		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)

@@ -5,8 +5,9 @@ public partial class PatternReasoner
 	/// <summary>
 	/// Represents equivalent implementation of the parent type, but an extra parameter <c>permutations</c> is required.
 	/// </summary>
-	private static class Cached
+	public static class Cached
 	{
+		/// <inheritdoc cref="PatternReasoner.GetEliminationRank(in Logic, Candidate)"/>
 		public static int GetEliminationRank(in Logic logic, Candidate candidate, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var links = ref logic.Links;
@@ -38,6 +39,7 @@ public partial class PatternReasoner
 			return maxOccupied - minOccupied;
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetAssignmentsCount(in Logic)"/>
 		public static AssignmentCountRange GetAssignmentsCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			var (min, max) = (int.MaxValue, int.MinValue);
@@ -56,6 +58,7 @@ public partial class PatternReasoner
 			return (min, max) is ( >= 0, >= 0) ? new(min, max) : new();
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetConclusions(in Logic)"/>
 		public static ReadOnlySpan<Conclusion> GetConclusions(in Logic logic, ReadOnlySpan<Permutation> permutations, bool checkingLinks)
 		{
 			ref readonly var grid = ref logic.Grid;
@@ -125,6 +128,7 @@ public partial class PatternReasoner
 			return result.AsSpan();
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetRank0Links(in Logic)"/>
 		public static SpaceSet GetRank0Links(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = logic.Links;
@@ -140,6 +144,7 @@ public partial class PatternReasoner
 			return result;
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetRank0Eliminations(in Logic)"/>
 		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = CandidateMap.Empty;
@@ -161,6 +166,7 @@ public partial class PatternReasoner
 			return result;
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetMinimalTruths(in Logic, Candidate)"/>
 		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var truthsRef = ref logic.Truths;
@@ -221,6 +227,7 @@ public partial class PatternReasoner
 			return tempFoundTruthCombinations?.AsSpaceSet() ?? truthsRef;
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetMinimalPattern(in Logic, Candidate)"/>
 		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
 		{
 			var sublogic = new Logic(GetMinimalTruths(logic, elimination, permutations), logic.Links, logic.Grid);
@@ -231,6 +238,7 @@ public partial class PatternReasoner
 			);
 		}
 
+		/// <inheritdoc cref="PatternReasoner.TrimExcessLinks(in Logic)"/>
 		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			// Just remove the link and find conclusions.

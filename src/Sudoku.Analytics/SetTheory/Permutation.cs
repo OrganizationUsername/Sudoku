@@ -4,7 +4,12 @@ namespace Sudoku.SetTheory;
 /// Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
 /// </summary>
 /// <param name="Assignments">Indicates the assignments.</param>
-public readonly record struct Permutation(ReadOnlyMemory<Candidate> Assignments) :
+/// <param name="LightupLinks">
+/// Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
+/// Check <see cref="PatternReasoner.GetPermutations(in Logic)"/> to learn more details about light-up links.
+/// </param>
+/// <seealso cref="PatternReasoner.GetPermutations(in Logic)"/>
+public readonly record struct Permutation(ReadOnlyMemory<Candidate> Assignments, ReadOnlyMemory<Space> LightupLinks) :
 	IComparable<Permutation>,
 	IComparisonOperators<Permutation, Permutation, bool>,
 	IEqualityOperators<Permutation, Permutation, bool>,

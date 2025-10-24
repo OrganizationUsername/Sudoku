@@ -57,7 +57,28 @@ public static partial class PatternReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutations.</returns>
-	public static ReadOnlySpan<Permutation> GetPermutations(in Logic logic) => SetTheorySolver.Solve(logic);
+	public static ReadOnlySpan<Permutation> GetPermutations(in Logic logic)
+	{
+		var permutationsRaw = SetTheorySolver.Solve(logic);
+		var linksLookup = logic.LinksLightupLookup;
+		var result = new List<Permutation>(permutationsRaw.Length);
+		foreach (var permutation in permutationsRaw)
+		{
+			var lightupLinks = new List<Space>();
+			foreach (var candidate in permutation)
+			{
+				foreach (var link in logic.Links)
+				{
+					if (linksLookup![link].Contains(candidate))
+					{
+						lightupLinks.Add(link);
+					}
+				}
+			}
+			result.Add(new(permutation, lightupLinks.AsMemory()));
+		}
+		return result.AsSpan();
+	}
 
 	/// <summary>
 	/// Try to find all conclusions.

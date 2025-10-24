@@ -35809,6 +35809,11 @@
             Indicates original grid.
             </summary>
         </member>
+        <member name="P:Sudoku.SetTheory.Logic.LinksLightupLookup">
+            <summary>
+            Represents links light-up lookup table.
+            </summary>
+        </member>
         <member name="M:Sudoku.SetTheory.Logic.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -35983,15 +35988,31 @@
             Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
             </summary>
             <param name="Assignments">Indicates the assignments.</param>
+            <param name="LightupLinks">
+            Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
+            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            </param>
+            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32})">
+        <member name="M:Sudoku.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
             <summary>
             Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
             </summary>
             <param name="Assignments">Indicates the assignments.</param>
+            <param name="LightupLinks">
+            Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
+            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            </param>
+            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="P:Sudoku.SetTheory.Permutation.Assignments">
             <summary>Indicates the assignments.</summary>
+        </member>
+        <member name="P:Sudoku.SetTheory.Permutation.LightupLinks">
+            <summary>
+            Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
+            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            </summary>
         </member>
         <member name="P:Sudoku.SetTheory.Permutation.Map">
             <summary>

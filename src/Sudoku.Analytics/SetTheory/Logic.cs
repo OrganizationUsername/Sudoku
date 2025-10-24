@@ -100,6 +100,22 @@ public struct Logic : IEquatable<Logic>, IEqualityOperators<Logic, Logic, bool>
 	[UnscopedRef]
 	public readonly ref readonly Grid Grid => ref _originalGrid;
 
+	/// <summary>
+	/// Represents links light-up lookup table.
+	/// </summary>
+	public readonly FrozenDictionary<Space, CandidateMap> LinksLightupLookup
+	{
+		get
+		{
+			var result = new Dictionary<Space, CandidateMap>();
+			foreach (var link in Links)
+			{
+				result.Add(link, link.GetAvailableRange(Grid));
+			}
+			return result.ToFrozenDictionary();
+		}
+	}
+
 
 	/// <inheritdoc/>
 	public readonly override bool Equals([NotNullWhen(true)] object? obj) => obj is Logic comparer && Equals(comparer);

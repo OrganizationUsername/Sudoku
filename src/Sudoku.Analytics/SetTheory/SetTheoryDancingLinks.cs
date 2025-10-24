@@ -34,7 +34,7 @@ internal sealed class SetTheoryDancingLinks
 	/// <summary>
 	/// Indicates results.
 	/// </summary>
-	private readonly List<Permutation> _results = [];
+	private readonly List<ReadOnlyMemory<Candidate>> _results = [];
 
 #if SET_LIMIT_MAX_SOLUTIONS
 	/// <summary>
@@ -87,7 +87,7 @@ internal sealed class SetTheoryDancingLinks
 	/// and symbol <c>SET_THROW_IF_LIMIT_IS_REACHED</c> is enabled.
 	/// </exception>
 	/// <seealso cref="AddRow(Candidate, ReadOnlySpan{Candidate})"/>
-	public List<Permutation> Solve(int maxSolutions)
+	public List<ReadOnlyMemory<Candidate>> Solve(int maxSolutions)
 	{
 #if SET_LIMIT_MAX_SOLUTIONS
 		_limitMaxSolutions = maxSolutions;
@@ -259,7 +259,7 @@ internal sealed class SetTheoryDancingLinks
 		if (!hasPrimary)
 		{
 			// Record current copy.
-			_results.Add(new(_solutionStack.ToArray()));
+			_results.Add(_solutionStack.ToArray());
 			return;
 		}
 

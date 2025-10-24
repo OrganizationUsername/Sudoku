@@ -65,15 +65,6 @@ public partial class PatternReasoner
 			// Construct a link lookup. This lookup table records candidates covered in the grid.
 			// We'll use this variable in checking light-up links for each permutation, in order to find strict conclusions
 			// when option 'checkingLinks' is on.
-			var linksLookup = checkingLinks ? new Dictionary<Space, CandidateMap>() : null;
-			if (checkingLinks)
-			{
-				foreach (var link in links)
-				{
-					linksLookup!.Add(link, link.GetAvailableRange(grid));
-				}
-			}
-
 			var result = ConclusionSet.Empty;
 			var i = 0;
 			foreach (var permutation in permutations)
@@ -104,23 +95,10 @@ public partial class PatternReasoner
 					// If the elimination doesn't include in every links, we should remove it.
 					foreach (var conclusion in tempConclusions.ToArray())
 					{
-						// Construct light-up links.
-						var lightupLinks = SpaceSet.Empty;
-						foreach (var candidate in permutation)
-						{
-							foreach (var link in links)
-							{
-								if (linksLookup![link].Contains(candidate))
-								{
-									lightupLinks += link;
-								}
-							}
-						}
-
 						// Traverse all light-up links.
 						// Find whether the current conclusion to check is covered by any light-up links.
 						var anyLinksIncludesConclusion = false;
-						foreach (var link in lightupLinks)
+						foreach (var link in permutation.LightupLinks)
 						{
 							if (link.Contains(conclusion.Candidate))
 							{

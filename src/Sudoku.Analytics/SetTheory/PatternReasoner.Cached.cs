@@ -169,11 +169,11 @@ public partial class PatternReasoner
 		/// <inheritdoc cref="PatternReasoner.GetMinimalTruths(in Logic, Candidate)"/>
 		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
 		{
-			ref readonly var truthsRef = ref logic.Truths;
-			if (truthsRef.Count <= 2)
+			ref readonly var truths = ref logic.Truths;
+			if (truths.Count <= 2)
 			{
 				// There's nothing to do - A minimum pattern is an X-Wing which cannot reduce.
-				return truthsRef;
+				return truths;
 			}
 
 			var allEliminations = CandidateMap.Empty;
@@ -187,7 +187,7 @@ public partial class PatternReasoner
 			if (GetRank0Eliminations(logic, permutations) == allEliminations)
 			{
 				// All candidates are rank-0 eliminations.
-				return truthsRef;
+				return truths;
 			}
 			if (!allEliminations.Contains(elimination))
 			{
@@ -199,7 +199,7 @@ public partial class PatternReasoner
 				);
 			}
 
-			var truths = truthsRef.ToArray();
+			var truthsArray = truths.ToArray();
 			var tempFoundTruthCombinations = default(Space[]);
 			bool found;
 			do
@@ -207,7 +207,7 @@ public partial class PatternReasoner
 				found = false;
 
 				// Iterate on each combination of truths.
-				var targetTruths = tempFoundTruthCombinations ?? truths;
+				var targetTruths = tempFoundTruthCombinations ?? truthsArray;
 				foreach (var truthCombination in targetTruths & targetTruths.Length - 1)
 				{
 					var sublogic = new Logic([.. truthCombination], logic.Links, logic.Grid);
@@ -224,18 +224,14 @@ public partial class PatternReasoner
 			} while (found);
 
 			// Otherwise, we cannot find any subpatterns that can remove that candidate - all truths are necessary.
-			return tempFoundTruthCombinations?.AsSpaceSet() ?? truthsRef;
+			return tempFoundTruthCombinations?.AsSpaceSet() ?? truths;
 		}
 
 		/// <inheritdoc cref="PatternReasoner.GetMinimalPattern(in Logic, Candidate)"/>
 		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
 		{
 			var sublogic = new Logic(GetMinimalTruths(logic, elimination, permutations), logic.Links, logic.Grid);
-			return TrimExcessLinks(
-				sublogic,
-				[new(Elimination, elimination)],
-				sublogic == logic ? permutations : GetPermutations(sublogic)
-			);
+			return TrimExcessLinks(sublogic, [new(Elimination, elimination)], sublogic == logic ? permutations : GetPermutations(sublogic));
 		}
 
 		/// <inheritdoc cref="PatternReasoner.TrimExcessLinks(in Logic)"/>

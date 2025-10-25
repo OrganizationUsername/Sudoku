@@ -35924,12 +35924,18 @@
             <param name="candidate">The candidate.</param>
             <returns>The rank of elimination. -1 will be returned if candidate is not an eliminiation.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetRank(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.PatternReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
             <summary>
+            <para>
             Gets the rank of the pattern. If the pattern is not minimal, it may contains multiple ranks,
             corresponding to different subpatterns eliminates for different candidates.
+            </para>
+            <para>
+            This method also returns corresponding sublogic to each elimination.
+            </para>
             </summary>
             <param name="logic">The logic.</param>
+            <param name="sublogics">Represents sublogic views for each eliminations.</param>
             <returns>A <see cref="T:Sudoku.SetTheory.Rank"/> instance representing the result.</returns>
         </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)">

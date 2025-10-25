@@ -15,22 +15,32 @@ public static partial class PatternReasoner
 		=> Cached.GetEliminationRank(logic, candidate, GetPermutations(logic));
 
 	/// <summary>
+	/// <para>
 	/// Gets the rank of the pattern. If the pattern is not minimal, it may contains multiple ranks,
 	/// corresponding to different subpatterns eliminates for different candidates.
+	/// </para>
+	/// <para>
+	/// This method also returns corresponding sublogic to each elimination.
+	/// </para>
 	/// </summary>
 	/// <param name="logic">The logic.</param>
+	/// <param name="sublogics">Represents sublogic views for each eliminations.</param>
 	/// <returns>A <see cref="Rank"/> instance representing the result.</returns>
-	public static Rank GetRank(in Logic logic)
+	public static Rank GetRank(in Logic logic, out FrozenDictionary<Conclusion, Logic> sublogics)
 	{
 		var rankList = new SortedSet<int>();
+		var resultViews = new Dictionary<Conclusion, Logic>();
 		foreach (var elimination in
 			from conclusion in GetConclusions(logic)
 			where conclusion.ConclusionType == Elimination
 			select conclusion)
 		{
-			var minimalPattern = GetMinimalPattern(logic, elimination.Candidate);
-			rankList.Add(minimalPattern.Links.Count - minimalPattern.Truths.Count);
+			var minimal = GetMinimalPattern(logic, elimination.Candidate);
+			resultViews.Add(elimination, minimal);
+			rankList.Add(minimal.Links.Count - minimal.Truths.Count);
 		}
+
+		sublogics = resultViews.ToFrozenDictionary();
 		return rankList.Count == 1 ? rankList.First() : (int[])[.. rankList];
 	}
 

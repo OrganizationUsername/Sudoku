@@ -28,20 +28,8 @@ public static partial class PatternReasoner
 	/// <returns>A <see cref="Rank"/> instance representing the result.</returns>
 	public static Rank GetRank(in Logic logic, out FrozenDictionary<Conclusion, Logic> sublogics)
 	{
-		var rankList = new SortedSet<int>();
-		var resultViews = new Dictionary<Conclusion, Logic>();
-		foreach (var elimination in
-			from conclusion in GetConclusions(logic)
-			where conclusion.ConclusionType == Elimination
-			select conclusion)
-		{
-			var minimal = GetMinimalPattern(logic, elimination.Candidate);
-			resultViews.Add(elimination, minimal);
-			rankList.Add(minimal.Links.Count - minimal.Truths.Count);
-		}
-
-		sublogics = resultViews.ToFrozenDictionary();
-		return rankList.Count == 1 ? rankList.First() : (int[])[.. rankList];
+		var permutations = GetPermutations(logic);
+		return Cached.GetRank(logic, Cached.GetConclusions(logic, permutations, true), permutations, out sublogics);
 	}
 
 	/// <summary>

@@ -39,6 +39,35 @@ public partial class PatternReasoner
 			return maxOccupied - minOccupied;
 		}
 
+		/// <inheritdoc cref="PatternReasoner.GetRank0Links(in Logic)"/>
+		public static Rank GetRank(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
+		{
+			var resultViews = new Dictionary<Conclusion, Logic>();
+			if (logic.Truths.Count == logic.Links.Count)
+			{
+				// Optimization: If n(truths) == n(links), just return 0.
+				// Collect sublogics.
+				foreach (var conclusion in conclusions)
+				{
+					resultViews.Add(conclusion, logic);
+				}
+
+				sublogics = resultViews.ToFrozenDictionary();
+				return 0;
+			}
+
+			var rankList = new SortedSet<int>();
+			foreach (var elimination in from conclusion in conclusions where conclusion.ConclusionType == Elimination select conclusion)
+			{
+				var minimal = TrimExcessLinks(logic, [elimination], permutations);
+				resultViews.Add(elimination, minimal);
+				rankList.Add(minimal.Links.Count - minimal.Truths.Count);
+			}
+
+			sublogics = resultViews.ToFrozenDictionary();
+			return rankList.Count == 1 ? rankList.First() : (int[])[.. rankList];
+		}
+
 		/// <inheritdoc cref="PatternReasoner.GetAssignmentsCount(in Logic)"/>
 		public static AssignmentCountRange GetAssignmentsCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
@@ -237,6 +266,12 @@ public partial class PatternReasoner
 		/// <inheritdoc cref="PatternReasoner.TrimExcessLinks(in Logic)"/>
 		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
+			// Optimization: If n(truths) == n(links), we cannot remove any possible links because it is already a minimal case.
+			if (logic.Truths.Count == logic.Links.Count)
+			{
+				return logic;
+			}
+
 			// Just remove the link and find conclusions.
 			// If we can find all possible conclusions of the pattern if removed,
 			// we can know that the link having been removed is redundant.

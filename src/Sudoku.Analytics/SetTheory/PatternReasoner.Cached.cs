@@ -31,18 +31,6 @@ public partial class PatternReasoner
 		public static Rank GetRank(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
 		{
 			var resultViews = new Dictionary<Conclusion, Logic>();
-			if (logic.Truths.Count == logic.Links.Count)
-			{
-				// Optimization: If n(truths) == n(links), just return 0.
-				// Collect sublogics.
-				foreach (var conclusion in conclusions)
-				{
-					resultViews.Add(conclusion, logic);
-				}
-
-				sublogics = resultViews.ToFrozenDictionary();
-				return 0;
-			}
 
 			// Create a minimal logic lookup table as cache.
 			var cachedMinimalLogics = new Dictionary<List<Space>, Logic>(
@@ -84,7 +72,7 @@ public partial class PatternReasoner
 				}
 
 				// Otherwise, a conclusion with different origin should be checked.
-				var minimal = TrimExcessLinks(logic, [elimination], permutations);
+				var minimal = GetMinimalPattern(logic, elimination.Candidate, conclusions, permutations);
 
 				// Optimization: If the current minimal pattern is equal to the whole pattern,
 				// we cannot find out any other eliminations corresponding to a smaller pattern.

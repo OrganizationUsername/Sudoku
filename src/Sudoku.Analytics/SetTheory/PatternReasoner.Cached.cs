@@ -156,7 +156,21 @@ public partial class PatternReasoner
 				{
 					var cell = candidate / 9;
 					var digit = candidate % 9;
+					if (checkingLinks)
+					{
+						// We should find for all light-up links, and find eliminations.
+						// If the elimination doesn't include in every links, the candidate may not be a valid conclusion.
+						foreach (var link in permutation.LightupLinks)
+						{
+							if (link.Contains(candidate))
+							{
+								goto CheckExistence;
+							}
+						}
+						continue;
+					}
 
+				CheckExistence:
 					// If candidates exists, we can eliminate or set it without checking whether it is on a link or not.
 					foreach (var c in Peer.PeersMap[cell] & candidatesMap[digit])
 					{
@@ -167,30 +181,6 @@ public partial class PatternReasoner
 						tempConclusions.Add(new(Elimination, cell, d));
 					}
 					tempConclusions.Add(new(Assignment, cell, digit));
-				}
-
-				if (checkingLinks)
-				{
-					// We should find for all light-up links, and find eliminations.
-					// If the elimination doesn't include in every links, we should remove it.
-					foreach (var conclusion in tempConclusions.ToArray())
-					{
-						// Traverse all light-up links.
-						// Find whether the current conclusion to check is covered by any light-up links.
-						var anyLinksIncludesConclusion = false;
-						foreach (var link in permutation.LightupLinks)
-						{
-							if (link.Contains(conclusion.Candidate))
-							{
-								anyLinksIncludesConclusion = true;
-								break;
-							}
-						}
-						if (!anyLinksIncludesConclusion)
-						{
-							tempConclusions -= conclusion;
-						}
-					}
 				}
 
 				if (i++ == 0)

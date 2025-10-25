@@ -106,18 +106,9 @@ public sealed class ConclusionSet :
 	/// <returns>The found <see cref="Conclusion"/> instance at the specified index.</returns>
 	/// <exception cref="IndexOutOfRangeException">Throws when the index is out of range.</exception>
 	public Conclusion this[int index]
-	{
-		get
-		{
-			if (index < 0 || index >= Count)
-			{
-				throw new IndexOutOfRangeException();
-			}
-
-			var internalField = _bitArray.GetInternalArrayField();
-			return new((Mask)internalField.SetBitAt(index));
-		}
-	}
+		=> index < 0 || index >= Count
+			? throw new IndexOutOfRangeException()
+			: new((Mask)_bitArray.GetInternalArrayField().SetBitAt(index));
 
 
 	/// <inheritdoc/>

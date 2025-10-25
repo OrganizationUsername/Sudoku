@@ -14,19 +14,7 @@ public partial class PatternReasoner
 			var (maxOccupied, minOccupied) = (0, links.Count);
 			foreach (var permutation in permutations)
 			{
-				var lightupLinks = SpaceSet.Empty;
-				foreach (var assigned in permutation)
-				{
-					foreach (var link in assigned.Spaces)
-					{
-						if (links.Contains(link))
-						{
-							lightupLinks += link;
-						}
-					}
-				}
-
-				var occupied = lightupLinks.Count;
+				var occupied = permutation.LightupLinks.Length;
 				if (occupied >= maxOccupied)
 				{
 					maxOccupied = occupied;
@@ -56,12 +44,37 @@ public partial class PatternReasoner
 				return 0;
 			}
 
+			// Create a minimal logic lookup table as cache.
+			var cachedMinimalLogics = new Dictionary<SpaceSet, Logic>();
 			var rankList = new SortedSet<int>();
 			foreach (var elimination in from conclusion in conclusions where conclusion.ConclusionType == Elimination select conclusion)
 			{
+				// Find for lightup links.
+				var lightupLinks = SpaceSet.Empty;
+				foreach (var link in elimination.Candidate.Spaces)
+				{
+					if (logic.Links.Contains(link))
+					{
+						lightupLinks += link;
+					}
+				}
+
+				// Read cache. If minimal pattern is found in cached field,
+				// we can directly return the value and its corresponding rank.
+				if (cachedMinimalLogics.TryGetValue(lightupLinks, out var minimalCached))
+				{
+					resultViews.Add(elimination, minimalCached);
+					rankList.Add(minimalCached.Links.Count - minimalCached.Truths.Count);
+					continue;
+				}
+
+				// Otherwise, a conclusion with different origin should be checked.
 				var minimal = TrimExcessLinks(logic, [elimination], permutations);
 				resultViews.Add(elimination, minimal);
 				rankList.Add(minimal.Links.Count - minimal.Truths.Count);
+
+				// Cache eliminations.
+				cachedMinimalLogics.Add(lightupLinks, minimal);
 			}
 
 			sublogics = resultViews.ToFrozenDictionary();
@@ -163,21 +176,19 @@ public partial class PatternReasoner
 			var result = logic.Links;
 			foreach (var permutation in permutations)
 			{
-				var lightUpLinks = SpaceSet.Empty;
-				foreach (var assigned in permutation)
+				if (!(result &= [.. permutation.LightupLinks.Span]))
 				{
-					lightUpLinks.AddRange(assigned.Spaces);
+					break;
 				}
-				result &= lightUpLinks;
 			}
 			return result;
 		}
 
 		/// <inheritdoc cref="PatternReasoner.GetRank0Eliminations(in Logic)"/>
-		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Permutation> permutations)
+		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = CandidateMap.Empty;
-			foreach (var (type, candidate) in GetConclusions(logic, permutations, true))
+			foreach (var (type, candidate) in conclusions)
 			{
 				if (type != Elimination)
 				{
@@ -196,7 +207,7 @@ public partial class PatternReasoner
 		}
 
 		/// <inheritdoc cref="PatternReasoner.GetMinimalTruths(in Logic, Candidate)"/>
-		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
+		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var truths = ref logic.Truths;
 			if (truths.Count <= 2)
@@ -206,14 +217,14 @@ public partial class PatternReasoner
 			}
 
 			var allEliminations = CandidateMap.Empty;
-			foreach (var (type, candidate) in GetConclusions(logic, permutations, true))
+			foreach (var (type, candidate) in conclusions)
 			{
 				if (type == Elimination)
 				{
 					allEliminations += candidate;
 				}
 			}
-			if (GetRank0Eliminations(logic, permutations) == allEliminations)
+			if (GetRank0Eliminations(logic, conclusions, permutations) == allEliminations)
 			{
 				// All candidates are rank-0 eliminations.
 				return truths;
@@ -257,9 +268,9 @@ public partial class PatternReasoner
 		}
 
 		/// <inheritdoc cref="PatternReasoner.GetMinimalPattern(in Logic, Candidate)"/>
-		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Permutation> permutations)
+		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
-			var sublogic = new Logic(GetMinimalTruths(logic, elimination, permutations), logic.Links, logic.Grid);
+			var sublogic = new Logic(GetMinimalTruths(logic, elimination, conclusions, permutations), logic.Links, logic.Grid);
 			return TrimExcessLinks(sublogic, [new(Elimination, elimination)], sublogic == logic ? permutations : GetPermutations(sublogic));
 		}
 

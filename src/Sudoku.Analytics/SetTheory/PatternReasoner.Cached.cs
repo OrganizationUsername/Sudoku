@@ -97,6 +97,12 @@ public partial class PatternReasoner
 		/// <inheritdoc cref="PatternReasoner.GetAssignmentsCount(in Logic)"/>
 		public static AssignmentCountRange GetAssignmentsCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
+			// Optimize: If there're only cell truths, just return the size of truths.
+			if (logic.Truths == SpaceSet.AllCells)
+			{
+				return new(logic.Truths.Count, logic.Truths.Count);
+			}
+
 			var (min, max) = (int.MaxValue, int.MinValue);
 			foreach (var permutation in permutations)
 			{

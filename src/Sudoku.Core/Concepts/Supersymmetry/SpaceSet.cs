@@ -31,11 +31,27 @@ public partial struct SpaceSet :
 	/// </summary>
 	public static readonly SpaceSet Empty;
 
+	/// <summary>
+	/// Indicates all cases on each kind of space defined in grid (cell, block, row and column).
+	/// </summary>
+	public static readonly SpaceSet AllCells, AllBlocks, AllRows, AllColumns;
+
 
 	/// <summary>
 	/// Indicates the buffer entry field.
 	/// </summary>
 	private InlineArray4<CellMap> _field;
+
+
+	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	static SpaceSet()
+	{
+		AllCells = AllBlocks = AllRows = AllColumns = default;
+		AllCells._field[0] = CellMap.Full;
+		AllBlocks._field[1] = CellMap.Full;
+		AllRows._field[2] = CellMap.Full;
+		AllColumns._field[3] = CellMap.Full;
+	}
 
 
 	/// <inheritdoc/>

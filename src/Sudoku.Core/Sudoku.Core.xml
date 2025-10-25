@@ -8308,10 +8308,43 @@
             Indicates the empty instance.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.AllCells">
+            <summary>
+            Indicates all cases on each kind of space defined in grid (cell, block, row and column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.AllBlocks">
+            <summary>
+            Indicates all cases on each kind of space defined in grid (cell, block, row and column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.AllRows">
+            <summary>
+            Indicates all cases on each kind of space defined in grid (cell, block, row and column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet.AllColumns">
+            <summary>
+            Indicates all cases on each kind of space defined in grid (cell, block, row and column).
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Supersymmetry.SpaceSet._field">
             <summary>
             Indicates the buffer entry field.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Supersymmetry.SpaceSet.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="P:Sudoku.Concepts.Supersymmetry.SpaceSet.Count">
             <inheritdoc/>

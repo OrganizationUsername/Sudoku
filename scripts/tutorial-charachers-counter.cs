@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-const string folderPath = @"docs\tutorial";
+const string folderPath = @"..\docs\tutorial";
 if (!Directory.Exists(folderPath))
 {
 	// Folder not found.

@@ -6,15 +6,6 @@ namespace Sudoku.SetTheory;
 public static partial class LogicReasoner
 {
 	/// <summary>
-	/// Gets rank of specified elimination. The rank of elimination is defined as <c>n(links) - n(lightup_links)</c>.
-	/// </summary>
-	/// <param name="logic">The pattern.</param>
-	/// <param name="candidate">The candidate.</param>
-	/// <returns>The rank of elimination. -1 will be returned if candidate is not an eliminiation.</returns>
-	public static int GetEliminationRank(in Logic logic, Candidate candidate)
-		=> Cached.GetEliminationRank(logic, candidate, GetPermutations(logic));
-
-	/// <summary>
 	/// <para>
 	/// Gets the rank of the pattern. If the pattern is not minimal, it may contains multiple ranks,
 	/// corresponding to different subpatterns eliminates for different candidates.

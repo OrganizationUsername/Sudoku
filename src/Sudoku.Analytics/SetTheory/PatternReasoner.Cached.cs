@@ -7,26 +7,6 @@ public partial class LogicReasoner
 	/// </summary>
 	public static class Cached
 	{
-		/// <inheritdoc cref="LogicReasoner.GetEliminationRank(in Logic, Candidate)"/>
-		public static int GetEliminationRank(in Logic logic, Candidate candidate, ReadOnlySpan<Permutation> permutations)
-		{
-			ref readonly var links = ref logic.Links;
-			var (maxOccupied, minOccupied) = (0, links.Count);
-			foreach (var permutation in permutations)
-			{
-				var occupied = permutation.LightupLinks.Length;
-				if (occupied >= maxOccupied)
-				{
-					maxOccupied = occupied;
-				}
-				if (occupied <= minOccupied)
-				{
-					minOccupied = occupied;
-				}
-			}
-			return maxOccupied - minOccupied;
-		}
-
 		/// <inheritdoc cref="LogicReasoner.GetRank(in Logic, out FrozenDictionary{Conclusion, Logic})"/>
 		public static Rank GetRank(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
 		{

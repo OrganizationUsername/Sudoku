@@ -35861,9 +35861,6 @@
             Represents equivalent implementation of the parent type, but an extra parameter <c>permutations</c> is required.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)"/>
-        </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetRank(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
         </member>
@@ -35887,14 +35884,6 @@
         </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.TrimExcessLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)">
-            <summary>
-            Gets rank of specified elimination. The rank of elimination is defined as <c>n(links) - n(lightup_links)</c>.
-            </summary>
-            <param name="logic">The pattern.</param>
-            <param name="candidate">The candidate.</param>
-            <returns>The rank of elimination. -1 will be returned if candidate is not an eliminiation.</returns>
         </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
             <summary>

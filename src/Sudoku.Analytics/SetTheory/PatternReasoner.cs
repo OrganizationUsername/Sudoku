@@ -3,7 +3,7 @@ namespace Sudoku.SetTheory;
 /// <summary>
 /// Provides a list of members to get pattern detailed information that should be inferred.
 /// </summary>
-public static partial class PatternReasoner
+public static partial class LogicReasoner
 {
 	/// <summary>
 	/// Gets rank of specified elimination. The rank of elimination is defined as <c>n(links) - n(lightup_links)</c>.

@@ -35642,20 +35642,20 @@
         <member name="T:Sudoku.SetTheory.AssignmentCountRange">
             <summary>
             Represents a range of number of permutations found in a pattern.
-            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
+            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="M:Sudoku.SetTheory.AssignmentCountRange.#ctor(System.Int32,System.Int32)">
             <summary>
             Represents a range of number of permutations found in a pattern.
-            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
+            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="P:Sudoku.SetTheory.AssignmentCountRange.Min">
             <summary>Indicates the minimum number of a permutation.</summary>
@@ -35851,44 +35851,44 @@
         <member name="M:Sudoku.SetTheory.Logic.System#Numerics#IEqualityOperators{Sudoku#SetTheory#Logic,Sudoku#SetTheory#Logic,System#Boolean}#op_Inequality(Sudoku.SetTheory.Logic,Sudoku.SetTheory.Logic)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SetTheory.PatternReasoner">
+        <member name="T:Sudoku.SetTheory.LogicReasoner">
             <summary>
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.PatternReasoner.Cached">
+        <member name="T:Sudoku.SetTheory.LogicReasoner.Cached">
             <summary>
             Represents equivalent implementation of the parent type, but an extra parameter <c>permutations</c> is required.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetRank(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetRank(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetAssignmentsCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetAssignmentsCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetConclusions(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Boolean)">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetConclusions(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetConclusions(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Boolean)">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetConclusions(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetRank0Links(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetRank0Links(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetRank0Eliminations(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetRank0Eliminations(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.TrimExcessLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.Cached.TrimExcessLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)">
             <summary>
             Gets rank of specified elimination. The rank of elimination is defined as <c>n(links) - n(lightup_links)</c>.
             </summary>
@@ -35896,7 +35896,7 @@
             <param name="candidate">The candidate.</param>
             <returns>The rank of elimination. -1 will be returned if candidate is not an eliminiation.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
             <summary>
             <para>
             Gets the rank of the pattern. If the pattern is not minimal, it may contains multiple ranks,
@@ -35910,7 +35910,7 @@
             <param name="sublogics">Represents sublogic views for each eliminations.</param>
             <returns>A <see cref="T:Sudoku.SetTheory.Rank"/> instance representing the result.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)">
             <summary>
             <para>
             Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
@@ -35927,42 +35927,42 @@
             <returns>The permutation count value.</returns>
             <seealso cref="T:Sudoku.SetTheory.AssignmentCountRange"/>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)">
             <summary>
             Try to find all possible permutations.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>The permutations.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetConclusions(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetConclusions(Sudoku.SetTheory.Logic@)">
             <summary>
             Try to find all conclusions.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All conclusions.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetConclusionsWithoutCheckingLinks(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetConclusionsWithoutCheckingLinks(Sudoku.SetTheory.Logic@)">
             <summary>
             Try to find all conclusions, without checking <see cref="P:Sudoku.SetTheory.Logic.Links"/>.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All conclusions.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)">
             <summary>
             Gets all rank-0 links.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All rank-0 links.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)">
             <summary>
             Gets all rank-0 eliminations.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All rank-0 eliminations.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)">
             <summary>
             Finds for minimal truths that covers the candidate as elimination.
             </summary>
@@ -35970,7 +35970,7 @@
             <param name="elimination">The elimination.</param>
             <returns>The minimal truths.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)">
             <summary>
             Finds for minimal <see cref="T:Sudoku.SetTheory.Logic"/> instance that can eliminate the specified elimination.
             </summary>
@@ -35978,7 +35978,7 @@
             <param name="elimination">The elimination.</param>
             <returns>A minimal <see cref="T:Sudoku.SetTheory.Logic"/> instance that can remove the specified elimination.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.PatternReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)">
             <summary>
             Trims for all excess links, and return a new <see cref="T:Sudoku.SetTheory.Logic"/> instance.
             </summary>
@@ -35992,9 +35992,9 @@
             <param name="Assignments">Indicates the assignments.</param>
             <param name="LightupLinks">
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
             </param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="M:Sudoku.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
             <summary>
@@ -36003,9 +36003,9 @@
             <param name="Assignments">Indicates the assignments.</param>
             <param name="LightupLinks">
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
             </param>
-            <seealso cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="P:Sudoku.SetTheory.Permutation.Assignments">
             <summary>Indicates the assignments.</summary>
@@ -36013,7 +36013,7 @@
         <member name="P:Sudoku.SetTheory.Permutation.LightupLinks">
             <summary>
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.PatternReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
             </summary>
         </member>
         <member name="P:Sudoku.SetTheory.Permutation.Map">

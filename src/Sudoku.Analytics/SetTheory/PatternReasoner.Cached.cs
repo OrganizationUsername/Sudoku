@@ -1,13 +1,13 @@
 namespace Sudoku.SetTheory;
 
-public partial class PatternReasoner
+public partial class LogicReasoner
 {
 	/// <summary>
 	/// Represents equivalent implementation of the parent type, but an extra parameter <c>permutations</c> is required.
 	/// </summary>
 	public static class Cached
 	{
-		/// <inheritdoc cref="PatternReasoner.GetEliminationRank(in Logic, Candidate)"/>
+		/// <inheritdoc cref="LogicReasoner.GetEliminationRank(in Logic, Candidate)"/>
 		public static int GetEliminationRank(in Logic logic, Candidate candidate, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var links = ref logic.Links;
@@ -27,7 +27,7 @@ public partial class PatternReasoner
 			return maxOccupied - minOccupied;
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetRank(in Logic, out FrozenDictionary{Conclusion, Logic})"/>
+		/// <inheritdoc cref="LogicReasoner.GetRank(in Logic, out FrozenDictionary{Conclusion, Logic})"/>
 		public static Rank GetRank(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
 		{
 			var resultViews = new Dictionary<Conclusion, Logic>();
@@ -110,7 +110,7 @@ public partial class PatternReasoner
 			return rankList.Count == 1 ? rankList.First() : (int[])[.. rankList];
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetAssignmentsCount(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.GetAssignmentsCount(in Logic)"/>
 		public static AssignmentCountRange GetAssignmentsCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			// Optimize: If there're only cell truths, just return the size of truths.
@@ -135,7 +135,7 @@ public partial class PatternReasoner
 			return (min, max) is ( >= 0, >= 0) ? new(min, max) : new();
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetConclusions(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.GetConclusions(in Logic)"/>
 		public static ReadOnlySpan<Conclusion> GetConclusions(in Logic logic, ReadOnlySpan<Permutation> permutations, bool checkingLinks)
 		{
 			ref readonly var grid = ref logic.Grid;
@@ -195,7 +195,7 @@ public partial class PatternReasoner
 			return result.AsSpan();
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetRank0Links(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.GetRank0Links(in Logic)"/>
 		public static SpaceSet GetRank0Links(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = logic.Links;
@@ -209,7 +209,7 @@ public partial class PatternReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetRank0Eliminations(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.GetRank0Eliminations(in Logic)"/>
 		public static CandidateMap GetRank0Eliminations(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = CandidateMap.Empty;
@@ -231,7 +231,7 @@ public partial class PatternReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetMinimalTruths(in Logic, Candidate)"/>
+		/// <inheritdoc cref="LogicReasoner.GetMinimalTruths(in Logic, Candidate)"/>
 		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var truths = ref logic.Truths;
@@ -292,14 +292,14 @@ public partial class PatternReasoner
 			return tempFoundTruthCombinations?.AsSpaceSet() ?? truths;
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetMinimalPattern(in Logic, Candidate)"/>
+		/// <inheritdoc cref="LogicReasoner.GetMinimalPattern(in Logic, Candidate)"/>
 		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			var sublogic = new Logic(GetMinimalTruths(logic, elimination, conclusions, permutations), logic.Links, logic.Grid);
 			return TrimExcessLinks(sublogic, [new(Elimination, elimination)], sublogic == logic ? permutations : GetPermutations(sublogic));
 		}
 
-		/// <inheritdoc cref="PatternReasoner.TrimExcessLinks(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.TrimExcessLinks(in Logic)"/>
 		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			// Optimization: If n(truths) == n(links), we cannot remove any possible links because it is already a minimal case.

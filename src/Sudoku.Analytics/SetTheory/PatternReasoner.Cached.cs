@@ -27,7 +27,7 @@ public partial class PatternReasoner
 			return maxOccupied - minOccupied;
 		}
 
-		/// <inheritdoc cref="PatternReasoner.GetRank0Links(in Logic)"/>
+		/// <inheritdoc cref="PatternReasoner.GetRank(in Logic, out FrozenDictionary{Conclusion, Logic})"/>
 		public static Rank GetRank(in Logic logic, ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
 		{
 			var resultViews = new Dictionary<Conclusion, Logic>();

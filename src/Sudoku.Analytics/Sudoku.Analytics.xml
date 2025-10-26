@@ -35865,7 +35865,7 @@
             <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetEliminationRank(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetRank(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
-            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)"/>
+            <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
         </member>
         <member name="M:Sudoku.SetTheory.PatternReasoner.Cached.GetAssignmentsCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.PatternReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>

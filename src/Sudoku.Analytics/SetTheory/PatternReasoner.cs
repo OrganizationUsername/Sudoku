@@ -20,7 +20,12 @@ public static partial class LogicReasoner
 	public static Rank GetRank(in Logic logic, out FrozenDictionary<Conclusion, Logic> sublogics)
 	{
 		var permutations = GetPermutations(logic);
-		return PermutationRequiredEntry.GetRank(logic, PermutationRequiredEntry.GetConclusions(logic, permutations, true, false), permutations, out sublogics);
+		return PermutationRequiredEntry.GetRank(
+			logic,
+			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			permutations,
+			out sublogics
+		);
 	}
 
 	/// <summary>
@@ -28,18 +33,18 @@ public static partial class LogicReasoner
 	/// Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
 	/// </para>
 	/// <para>
-	/// Please note that the return value may not be a stable number
-	/// because sometimes the pattern may not be stable always.
+	/// <para>
+	/// Please note that there's a possible case that cause a pattern
+	/// that can accommodate different number of assigned values.
 	/// For example, if a pattern produces multiple eliminations from different sub-patterns,
 	/// the result may uses different number of assignments to satisfy all sets (truths and links).
-	/// Please check type <see cref="AssignmentCountRange"/> to learn more details of result.
+	/// </para>
 	/// </para>
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutation count value.</returns>
-	/// <seealso cref="AssignmentCountRange"/>
-	public static AssignmentCountRange GetAssignmentsCount(in Logic logic)
-		=> PermutationRequiredEntry.GetAssignmentsCount(logic, GetPermutations(logic));
+	public static AssignedCount GetAssignedCount(in Logic logic)
+		=> PermutationRequiredEntry.GetAssignedCount(logic, GetPermutations(logic));
 
 	/// <summary>
 	/// Try to find all possible permutations.
@@ -74,7 +79,7 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ReadOnlySpan<Conclusion> GetConclusions(in Logic logic)
+	public static ConclusionSet GetConclusions(in Logic logic)
 		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), true, false);
 
 	/// <summary>
@@ -82,7 +87,7 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ReadOnlySpan<Conclusion> GetConclusionsWithoutCheckingLinks(in Logic logic)
+	public static ConclusionSet GetConclusionsWithoutCheckingLinks(in Logic logic)
 		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), false, false);
 
 	/// <summary>
@@ -91,7 +96,7 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions, ignoring existence of conclusions.</returns>
-	public static ReadOnlySpan<Conclusion> GetConclusionZone(in Logic logic)
+	public static ConclusionSet GetConclusionZone(in Logic logic)
 		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), true, true);
 
 	/// <summary>
@@ -109,7 +114,11 @@ public static partial class LogicReasoner
 	public static CandidateMap GetRank0Eliminations(in Logic logic)
 	{
 		var permutations = GetPermutations(logic);
-		return PermutationRequiredEntry.GetRank0Eliminations(logic, PermutationRequiredEntry.GetConclusions(logic, permutations, true, false), permutations);
+		return PermutationRequiredEntry.GetRank0Eliminations(
+			logic,
+			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			permutations
+		);
 	}
 
 	/// <summary>
@@ -121,7 +130,12 @@ public static partial class LogicReasoner
 	public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination)
 	{
 		var permutations = GetPermutations(logic);
-		return PermutationRequiredEntry.GetMinimalTruths(logic, elimination, PermutationRequiredEntry.GetConclusions(logic, permutations, true, false), permutations);
+		return PermutationRequiredEntry.GetMinimalTruths(
+			logic,
+			elimination,
+			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			permutations
+		);
 	}
 
 	/// <summary>
@@ -133,7 +147,12 @@ public static partial class LogicReasoner
 	public static Logic GetMinimalPattern(in Logic logic, Candidate elimination)
 	{
 		var permutations = GetPermutations(logic);
-		return PermutationRequiredEntry.GetMinimalPattern(logic, elimination, PermutationRequiredEntry.GetConclusions(logic, permutations, true, false), permutations);
+		return PermutationRequiredEntry.GetMinimalPattern(
+			logic,
+			elimination,
+			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			permutations
+		);
 	}
 
 	/// <summary>
@@ -144,6 +163,10 @@ public static partial class LogicReasoner
 	public static Logic TrimExcessLinks(in Logic logic)
 	{
 		var permutations = GetPermutations(logic);
-		return PermutationRequiredEntry.TrimExcessLinks(logic, PermutationRequiredEntry.GetConclusions(logic, permutations, true, false).AsSet(), permutations);
+		return PermutationRequiredEntry.TrimExcessLinks(
+			logic,
+			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			permutations
+		);
 	}
 }

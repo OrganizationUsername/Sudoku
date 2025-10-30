@@ -1,14 +1,13 @@
 namespace Sudoku.SetTheory;
 
 /// <summary>
-/// Represents a range of number of permutations found in a pattern.
-/// Instances of this type will be returned by method <see cref="LogicReasoner.GetAssignmentsCount(in Logic)"/>.
+/// Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,
+/// created by method <see cref="LogicReasoner.GetAssignedCount(in Logic)"/>.
 /// </summary>
 /// <param name="Min">Indicates the minimum number of a permutation.</param>
 /// <param name="Max">Indicates the maximum number of a permutation.</param>
-/// <seealso cref="LogicReasoner.GetAssignmentsCount(in Logic)"/>
-public readonly record struct AssignmentCountRange(int Min, int Max) :
-	IEqualityOperators<AssignmentCountRange, AssignmentCountRange, bool>
+/// <seealso cref="LogicReasoner.GetAssignedCount(in Logic)"/>
+public readonly record struct AssignedCount(int Min, int Max) : IEqualityOperators<AssignedCount, AssignedCount, bool>
 {
 	/// <summary>
 	/// Indicates whether the pattern is stable.

@@ -35639,36 +35639,36 @@
             Represents brute force.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.AssignmentCountRange">
+        <member name="T:Sudoku.SetTheory.AssignedCount">
             <summary>
-            Represents a range of number of permutations found in a pattern.
-            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
+            Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,
+            created by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.AssignmentCountRange.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.SetTheory.AssignedCount.#ctor(System.Int32,System.Int32)">
             <summary>
-            Represents a range of number of permutations found in a pattern.
-            Instances of this type will be returned by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>.
+            Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,
+            created by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignmentCountRange.Min">
+        <member name="P:Sudoku.SetTheory.AssignedCount.Min">
             <summary>Indicates the minimum number of a permutation.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignmentCountRange.Max">
+        <member name="P:Sudoku.SetTheory.AssignedCount.Max">
             <summary>Indicates the maximum number of a permutation.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignmentCountRange.IsStable">
+        <member name="P:Sudoku.SetTheory.AssignedCount.IsStable">
             <summary>
             Indicates whether the pattern is stable.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignmentCountRange.Delta">
+        <member name="P:Sudoku.SetTheory.AssignedCount.Delta">
             <summary>
             Indicates the delta value.
             </summary>
@@ -35868,11 +35868,11 @@
             </summary>
             <seealso cref="T:Sudoku.SetTheory.LogicReasoner"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetAssignmentsCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetAssignedCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
         </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetConclusions(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Boolean,System.Boolean)">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetConclusions(Sudoku.SetTheory.Logic@)"/>
@@ -35880,13 +35880,13 @@
         <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Links(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Eliminations(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Eliminations(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32,System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
             <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)"/>
         </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.TrimExcessLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
@@ -35906,22 +35906,22 @@
             <param name="sublogics">Represents sublogic views for each eliminations.</param>
             <returns>A <see cref="T:Sudoku.SetTheory.Rank"/> instance representing the result.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetAssignmentsCount(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)">
             <summary>
             <para>
             Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
             </para>
             <para>
-            Please note that the return value may not be a stable number
-            because sometimes the pattern may not be stable always.
+            <para>
+            Please note that there's a possible case that cause a pattern
+            that can accommodate different number of assigned values.
             For example, if a pattern produces multiple eliminations from different sub-patterns,
             the result may uses different number of assignments to satisfy all sets (truths and links).
-            Please check type <see cref="T:Sudoku.SetTheory.AssignmentCountRange"/> to learn more details of result.
+            </para>
             </para>
             </summary>
             <param name="logic">The pattern.</param>
             <returns>The permutation count value.</returns>
-            <seealso cref="T:Sudoku.SetTheory.AssignmentCountRange"/>
         </member>
         <member name="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)">
             <summary>

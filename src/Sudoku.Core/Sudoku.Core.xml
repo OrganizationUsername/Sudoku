@@ -1799,6 +1799,16 @@
             Indicates the number of bit array elements.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Assignments">
+            <summary>
+            Indicates assignments of the conclusion set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Eliminations">
+            <summary>
+            Indicates eliminations of the conclusion set.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#IsReadOnly">
             <inheritdoc/>
         </member>
@@ -1807,8 +1817,31 @@
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Empty">
             <summary>
-            An empty instance.
+            Represents an empty instance that has no conclusions.
             </summary>
+            <remarks>
+            This instance can be used as a mutable object,
+            meaning you can call any members that may update backing data of the instance.
+            This type will always create a new instance.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.All">
+            <summary>
+            Represents an instance that includes all possible conclusions that can be produced in a sudoku grid.
+            </summary>
+            <remarks><b><i>This property should be used as a read-only and an immutable instance.</i></b></remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.AllAssignments">
+            <summary>
+            Represents an instance that holds all possible assignment cases.
+            </summary>
+            <remarks><b><i>This property should be used as a read-only and an immutable instance.</i></b></remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.AllEliminations">
+            <summary>
+            Represents an instance that holds all possible elimination cases.
+            </summary>
+            <remarks><b><i>This property should be used as a read-only and an immutable instance.</i></b></remarks>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Item(System.Int32)">
             <summary>
@@ -1841,6 +1874,16 @@
             Removes all elements in the collection and add all elements from <paramref name="conclusions"/>.
             </summary>
             <param name="conclusions">The conclusions provider to replace with the current instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.PreserveAssignments">
+            <summary>
+            Only preserve assignments; eliminations will be removed from the current instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.PreserveEliminations">
+            <summary>
+            Only preserve eliminations; assignments will be removed from the current instance.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.CopyTo(System.Span{Sudoku.Concepts.Conclusion})">
             <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>

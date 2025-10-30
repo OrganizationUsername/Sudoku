@@ -1954,9 +1954,23 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">
             <summary>
-            Try to get an enumerator type that iterates on each conclusion.
+            Create an <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance that iterates on all conclusions stored in the current collection.
             </summary>
-            <returns>An enumerator type that iterates on each conclusion.</returns>
+            <returns>An <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance as an enumerator.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.EnumerateAssignments">
+            <summary>
+            Create an <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance that iterates on assignments,
+            without creating a new instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance as an enumerator.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.EnumerateEliminations">
+            <summary>
+            Create an <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance that iterates on eliminations,
+            without creating a new instance.
+            </summary>
+            <returns>An <see cref="T:Sudoku.Concepts.ConclusionSet.Enumerator"/> instance as an enumerator.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
@@ -2115,6 +2129,56 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_ExclusiveOr(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionSet.Enumerator">
+            <summary>
+            Represents an enumerator object that can iterate conclusions of the parent type.
+            </summary>
+            <param name="_bitArray">The backing bit array.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="_endIndexExcluded">The end index, excluded.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.#ctor(System.Collections.BitArray,System.Int32,System.Int32)">
+            <summary>
+            Represents an enumerator object that can iterate conclusions of the parent type.
+            </summary>
+            <param name="_bitArray">The backing bit array.</param>
+            <param name="startIndex">The start index.</param>
+            <param name="_endIndexExcluded">The end index, excluded.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.Enumerator._startIndex">
+            <summary>
+            Indicates the start index.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.Enumerator._index">
+            <summary>
+            Indicates backing index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Conclusion}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionType">

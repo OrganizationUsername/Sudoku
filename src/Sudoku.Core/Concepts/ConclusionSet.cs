@@ -93,38 +93,12 @@ public sealed class ConclusionSet :
 	/// <summary>
 	/// Indicates whether the collection contains any assignment conclusions.
 	/// </summary>
-	public bool ContainsAssignment
-	{
-		get
-		{
-			for (var i = 0; i < HalfBitsCount; i++)
-			{
-				if (_bitArray[i])
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-	}
+	public bool ContainsAssignment => !!(this & Assignments);
 
 	/// <summary>
 	/// Indicates whether the collection contains any elimination conclusions.
 	/// </summary>
-	public bool ContainsElimination
-	{
-		get
-		{
-			for (var i = HalfBitsCount; i < BitsCount; i++)
-			{
-				if (_bitArray[i])
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-	}
+	public bool ContainsElimination => !!(this & Eliminations);
 
 	/// <summary>
 	/// Indicates the number of bit array elements.
@@ -367,10 +341,24 @@ public sealed class ConclusionSet :
 	public ReadOnlySpan<Conclusion> AsSpan() => ToArray();
 
 	/// <summary>
-	/// Try to get an enumerator type that iterates on each conclusion.
+	/// Create an <see cref="Enumerator"/> instance that iterates on all conclusions stored in the current collection.
 	/// </summary>
-	/// <returns>An enumerator type that iterates on each conclusion.</returns>
-	public AnonymousSpanEnumerator<Conclusion> GetEnumerator() => new(ToArray());
+	/// <returns>An <see cref="Enumerator"/> instance as an enumerator.</returns>
+	public Enumerator GetEnumerator() => new(_bitArray, 0, BitsCount);
+
+	/// <summary>
+	/// Create an <see cref="Enumerator"/> instance that iterates on assignments,
+	/// without creating a new instance.
+	/// </summary>
+	/// <returns>An <see cref="Enumerator"/> instance as an enumerator.</returns>
+	public Enumerator EnumerateAssignments() => new(_bitArray, 0, HalfBitsCount);
+
+	/// <summary>
+	/// Create an <see cref="Enumerator"/> instance that iterates on eliminations,
+	/// without creating a new instance.
+	/// </summary>
+	/// <returns>An <see cref="Enumerator"/> instance as an enumerator.</returns>
+	public Enumerator EnumerateEliminations() => new(_bitArray, HalfBitsCount, BitsCount);
 
 	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public ConclusionSet Slice(int start, int count) => [.. ToArray().AsReadOnlySpan()[start..(start + count)]];
@@ -636,5 +624,90 @@ public sealed class ConclusionSet :
 		var result = left[..];
 		result._bitArray.Xor(right._bitArray);
 		return result;
+	}
+
+
+	/// <summary>
+	/// Represents an enumerator object that can iterate conclusions of the parent type.
+	/// </summary>
+	/// <param name="_bitArray">The backing bit array.</param>
+	/// <param name="startIndex">The start index.</param>
+	/// <param name="_endIndexExcluded">The end index, excluded.</param>
+	public ref struct Enumerator(BitArray _bitArray, int startIndex, int _endIndexExcluded) :
+		IEnumerable<Conclusion>,
+		IEnumerator<Conclusion>
+	{
+		/// <summary>
+		/// Indicates the start index.
+		/// </summary>
+		private readonly int _startIndex = startIndex;
+
+		/// <summary>
+		/// Indicates backing index.
+		/// </summary>
+		private int _index = startIndex - 1;
+
+
+		/// <inheritdoc/>
+		public Conclusion Current { get; private set; }
+
+		/// <inheritdoc/>
+		readonly object IEnumerator.Current => Current;
+
+
+		/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+		public readonly Enumerator GetEnumerator() => this;
+
+		/// <inheritdoc/>
+		public bool MoveNext()
+		{
+			for (var i = _index + 1; i < _endIndexExcluded; i++)
+			{
+				if (_bitArray[i])
+				{
+					Current = new((ConclusionType)(i / HalfBitsCount), i % HalfBitsCount);
+					_index = i;
+					return true;
+				}
+			}
+			return false;
+		}
+
+		/// <inheritdoc/>
+		readonly void IDisposable.Dispose()
+		{
+		}
+
+		/// <inheritdoc/>
+		[DoesNotReturn]
+		readonly void IEnumerator.Reset() => throw new NotImplementedException();
+
+		/// <inheritdoc/>
+		readonly IEnumerator IEnumerable.GetEnumerator()
+		{
+			var result = new List<Conclusion>();
+			for (var i = _startIndex; i < _endIndexExcluded; i++)
+			{
+				if (_bitArray[i])
+				{
+					result.Add(new((ConclusionType)(i / HalfBitsCount), i % HalfBitsCount));
+				}
+			}
+			return result.GetEnumerator();
+		}
+
+		/// <inheritdoc/>
+		readonly IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator()
+		{
+			var result = new List<Conclusion>();
+			for (var i = _startIndex; i < _endIndexExcluded; i++)
+			{
+				if (_bitArray[i])
+				{
+					result.Add(new((ConclusionType)(i / HalfBitsCount), i % HalfBitsCount));
+				}
+			}
+			return result.GetEnumerator();
+		}
 	}
 }

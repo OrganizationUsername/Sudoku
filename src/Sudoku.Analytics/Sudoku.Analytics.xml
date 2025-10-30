@@ -35947,6 +35947,22 @@
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
+        <member name="T:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer">
+            <summary>
+            Represents a temporary equality comparer for comparison of <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Instance">
+            <summary>
+            Indicates the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Equals(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space},System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.GetHashCode(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry">
             <summary>
             Represents equivalent implementation of the parent type <see cref="T:Sudoku.SetTheory.LogicReasoner"/>,

@@ -33,20 +33,7 @@ public partial class LogicReasoner
 			}
 
 			// Create a minimal logic lookup table as cache.
-			var cachedMinimalLogics = new Dictionary<List<Space>, Logic>(
-				EqualityComparer<List<Space>>.Create(
-					static (left, right) => left!.AsSpan().SequenceEqual(right!.AsSpan()),
-					static obj =>
-					{
-						var result = new HashCode();
-						foreach (var member in obj)
-						{
-							result.Add(member);
-						}
-						return result.ToHashCode();
-					}
-				)
-			);
+			var cachedMinimalLogics = new Dictionary<List<Space>, Logic>(ListOfSpaceEqualityComparer.Instance);
 			var rankList = new SortedSet<int>();
 			var onlyEliminations = conclusions.Eliminations;
 			foreach (var elimination in onlyEliminations)

@@ -174,6 +174,13 @@
   * [解鱼的基本推理](rank-theory/12-jye-fish/02-reasoning-of-jye-fish.md)
   * [带有解鱼的环](rank-theory/12-jye-fish/03-loop-with-jye-fish.md)
 
+## 飞鱼 <a href="#exocet" id="exocet"></a>
+
+* [飞鱼的基本推理](exocet/01-reasoning-of-exocet.md)
+* [目标单元格的拓展](exocet/02-extension-on-target-cells.md)
+* [单基准单元格](exocet/03-solo-base-cell.md)
+* [交叉单元格的拓展](exocet/04-extension-on-crossline-cells.md)
+
 ## 附录 <a href="#appendix" id="appendix"></a>
 
 * [术语索引](appendix/01-terms.md)

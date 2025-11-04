@@ -112,6 +112,9 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be added.</returns>
+	/// <remarks>
+	/// This method is nearly equivalent to <c><![CDATA[map |= elements]]></c>.
+	/// </remarks>
 	int AddRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
@@ -122,6 +125,9 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
+	/// <remarks>
+	/// This method is nearly equivalent to <c><![CDATA[map &= ~elements]]></c>.
+	/// </remarks>
 	int RemoveRange(ReadOnlySpan<TElement> offsets);
 
 	/// <summary>

@@ -5999,6 +5999,9 @@
 			</target>
             </param>
             <returns>The number of offsets succeeded to be added.</returns>
+            <remarks>
+            This method is nearly equivalent to <c><![CDATA[map |= elements]]></c>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.RemoveRange(System.ReadOnlySpan{`1})">
             <summary>
@@ -6018,6 +6021,9 @@
 			</target>
             </param>
             <returns>The number of offsets succeeded to be removed.</returns>
+            <remarks>
+            This method is nearly equivalent to <c><![CDATA[map &= ~elements]]></c>.
+            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.ICellMapOrCandidateMap`2.CopyTo(`1@,System.Int32)">
             <summary>

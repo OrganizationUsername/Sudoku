@@ -334,17 +334,23 @@ public partial class LogicReasoner
 			// we can know that the link having been removed is redundant.
 			var result = logic;
 			var tempLogic = logic;
+			var map = conclusions.Candidates;
+			ref readonly var grid = ref tempLogic.Grid;
 			bool isChanged;
 			do
 			{
 				isChanged = false;
 				foreach (var link in tempLogic.Links)
 				{
-					var sublogic = new Logic(tempLogic.Truths, tempLogic.Links - link, tempLogic.Grid);
-					if ((GetConclusions(sublogic, GetPermutations(sublogic), true, false) & conclusions) == conclusions)
+					if (link.GetAvailableRange(grid) is var linkMap
+						&& (tempLogic.Map & linkMap).Count == 1 && !(linkMap & map)
+						|| new Logic(tempLogic.Truths, tempLogic.Links - link, tempLogic.Grid) is var sublogic
+						&& (GetConclusions(sublogic, GetPermutations(sublogic), true, false) & conclusions) == conclusions)
 					{
-						// The link can be removed because we find a subpattern with removed link state
-						// can eliminate all conclusions specified.
+						// There're two possible cases to cut the link:
+						//   1) It only hold one candidate in the pattern (which is not enclosing pattern),
+						//      and the link cannot intersect with any conclusions.
+						//   2) The subpattern with this link having been removed can also make all conclusions.
 						result.RemoveLink(link);
 						tempLogic = result;
 						isChanged = true;

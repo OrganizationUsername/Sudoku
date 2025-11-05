@@ -106,6 +106,25 @@ public sealed class ConclusionSet :
 	public int Count => _bitArray.Cardinality;
 
 	/// <summary>
+	/// Indicates a list of candidates included in this collection, regardless of type of them.
+	/// </summary>
+	public CandidateMap Candidates
+	{
+		get
+		{
+			var result = CandidateMap.Empty;
+			for (var i = 0; i < HalfBitsCount; i++)
+			{
+				if (_bitArray[i] || _bitArray[i + HalfBitsCount])
+				{
+					result.Add(i);
+				}
+			}
+			return result;
+		}
+	}
+
+	/// <summary>
 	/// Indicates assignments of the conclusion set.
 	/// </summary>
 	public ConclusionSet Assignments => this & AllAssignments;
@@ -254,6 +273,13 @@ public sealed class ConclusionSet :
 		}
 		return false;
 	}
+
+	/// <summary>
+	/// Indicates whether the collection contains the specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool ContainsCandidate(Candidate candidate) => _bitArray[candidate] || _bitArray[candidate + HalfBitsCount];
 
 	/// <inheritdoc cref="IAnyAllMethod{TSelf, TSource}.Any(Func{TSource, bool})"/>
 	public bool Exists(Func<Conclusion, bool> predicate)

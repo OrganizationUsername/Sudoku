@@ -48,7 +48,7 @@ public static class ContradictionDetector
 			// Iterate on each wrong digit.
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution.GetDigit(cell))))
 			{
-				if (CanCauseEmptyConflict(grid, cell, digit, includesGroupedNodes, out var lastNode, out var cause))
+				if (LeadsToEmpty(grid, cell, digit, includesGroupedNodes, out var lastNode, out var cause))
 				{
 					result.Add(new(cell * 9 + digit, lastNode, cause));
 				}
@@ -95,7 +95,7 @@ public static class ContradictionDetector
 	/// or store the whole branch. Only for the whole branch can be pruned.
 	/// </para>
 	/// </remarks>
-	private static bool CanCauseEmptyConflict(
+	private static bool LeadsToEmpty(
 		in Grid playground,
 		Cell cell,
 		Digit digit,

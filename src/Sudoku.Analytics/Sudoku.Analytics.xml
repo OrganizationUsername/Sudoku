@@ -10426,7 +10426,7 @@
             <param name="includesGroupedNodes">Indicates whether grouped nodes should also be checked.</param>
             <returns>A list of found conflict.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.CanCauseEmptyConflict(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Boolean,Sudoku.Analytics.Dependency.DependencyNode@,Sudoku.Concepts.Supersymmetry.Space@)">
+        <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.LeadsToEmpty(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Boolean,Sudoku.Analytics.Dependency.DependencyNode@,Sudoku.Concepts.Supersymmetry.Space@)">
             <summary>
             Checks for the grid, to determine whether the grid can cause a house that cannot fill a digit,
             or a cell has no valid candidates, if the specified cell is filled with the specified digit.
@@ -10581,6 +10581,31 @@
             Indicates parent node.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.Equals(Sudoku.Analytics.Dependency.DependencyNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.Equals(Sudoku.Analytics.Dependency.DependencyNode,Sudoku.Analytics.Dependency.DependencyNodeComparison)">
+            <summary>
+            Indicates whether the current instance is equal to another object of the same type,
+            under the specified option to control equality comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="option">The option.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.GetHashCode(Sudoku.Analytics.Dependency.DependencyNodeComparison)">
+            <summary>
+            Serves as the default hash code function, using the specified option to control equality comparison rule.
+            </summary>
+            <param name="option">The option.</param>
+            <returns>A hash code for the current object.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Dependency.DependencyNode.ToString">
             <inheritdoc/>
         </member>
@@ -10589,6 +10614,28 @@
             Iterate on nodes of this branch, starting with the last node.
             </summary>
             <returns>The branch of nodes.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.op_Equality(Sudoku.Analytics.Dependency.DependencyNode,Sudoku.Analytics.Dependency.DependencyNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.op_Inequality(Sudoku.Analytics.Dependency.DependencyNode,Sudoku.Analytics.Dependency.DependencyNode)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Dependency.DependencyNodeComparison">
+            <summary>
+            Provides a way to compare equality on two <see cref="T:Sudoku.Analytics.Dependency.DependencyNode"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Dependency.DependencyNode"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Dependency.DependencyNodeComparison.Default">
+            <summary>
+            Indicates only for the current instance will be checked.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Dependency.DependencyNodeComparison.AllAncestors">
+            <summary>
+            Indicates the current instance and its all ancestors will be checked.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Dependency.DependencyNodeExtensions">
             <summary>

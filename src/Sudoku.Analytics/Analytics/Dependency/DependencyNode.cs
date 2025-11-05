@@ -7,7 +7,9 @@ namespace Sudoku.Analytics.Dependency;
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="assignment"><inheritdoc cref="Assignment" path="/summary"/></param>
 /// <param name="parent"><inheritdoc cref="Parent" path="/summary"/></param>
-public sealed class DependencyNode(DependencyNodeType type, in Grid grid, AssignmentInfo? assignment, DependencyNode? parent)
+public sealed class DependencyNode(DependencyNodeType type, in Grid grid, AssignmentInfo? assignment, DependencyNode? parent) :
+	IEquatable<DependencyNode>,
+	IEqualityOperators<DependencyNode, DependencyNode, bool>
 {
 	/// <summary>
 	/// The backing field of <see cref="Grid"/>.
@@ -54,8 +56,107 @@ public sealed class DependencyNode(DependencyNodeType type, in Grid grid, Assign
 
 
 	/// <inheritdoc/>
+	public override bool Equals(object? obj) => Equals(obj as DependencyNode);
+
+	/// <inheritdoc/>
+	public bool Equals([NotNullWhen(true)] DependencyNode? other) => Equals(other, DependencyNodeComparison.Default);
+
+	/// <summary>
+	/// Indicates whether the current instance is equal to another object of the same type,
+	/// under the specified option to control equality comparison rule.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="option">The option.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Equals([NotNullWhen(true)] DependencyNode? other, DependencyNodeComparison option)
+	{
+		switch (option)
+		{
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(option));
+			}
+			case DependencyNodeComparison.Default:
+			{
+				return e(this, other);
+			}
+			case DependencyNodeComparison.AllAncestors:
+			{
+				var leftNode = this;
+				var rightNode = other;
+				while ((leftNode, rightNode) is (not null, not null))
+				{
+					if (!e(leftNode, rightNode))
+					{
+						return false;
+					}
+
+					leftNode = leftNode.Parent;
+					rightNode = rightNode.Parent;
+				}
+				return (leftNode, rightNode) is (null, null);
+			}
+		}
+
+
+		static bool e(DependencyNode left, [NotNullWhen(true)] DependencyNode? right)
+			=> right is not null
+			&& left.Type == right.Type && left._grid == right._grid
+			&& (left.Assignment, right.Assignment) switch
+			{
+				(null, null) => true,
+				({ } l, { } r) => l == r,
+				_ => false
+			}
+			&& left.Parent is not null && right.Parent is not null;
+	}
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => GetHashCode(DependencyNodeComparison.Default);
+
+	/// <summary>
+	/// Serves as the default hash code function, using the specified option to control equality comparison rule.
+	/// </summary>
+	/// <param name="option">The option.</param>
+	/// <returns>A hash code for the current object.</returns>
+	public int GetHashCode(DependencyNodeComparison option)
+	{
+		switch (option)
+		{
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(option));
+			}
+			case DependencyNodeComparison.Default:
+			{
+				return h(this);
+			}
+			case DependencyNodeComparison.AllAncestors:
+			{
+				var hashCode = new HashCode();
+				for (var node = this; node is { Type: DependencyNodeType.Supposing }; node = node.Parent)
+				{
+					hashCode.Add(h(node));
+				}
+				return hashCode.ToHashCode();
+			}
+		}
+
+
+		static int h(DependencyNode instance)
+			=> HashCode.Combine(
+				instance.Type,
+				instance.Grid.GetHashCode(),
+				instance.Assignment?.GetHashCode() ?? 23,
+				instance.Parent is null ? 19 : 131731
+			);
+	}
+
+	/// <inheritdoc/>
 	public override string ToString()
-		=> string.Join(" -> ", from assignment in Assignments.Span select assignment.ToCandidateFormatString(false));
+		=> Type == DependencyNodeType.Root
+			? "<root>"
+			: string.Join(" -> ", from assignment in Assignments.Span select assignment.ToCandidateFormatString(false));
 
 	/// <summary>
 	/// Iterate on nodes of this branch, starting with the last node.
@@ -68,4 +169,12 @@ public sealed class DependencyNode(DependencyNodeType type, in Grid grid, Assign
 			yield return node;
 		}
 	}
+
+
+	/// <inheritdoc/>
+	public static bool operator ==(DependencyNode? left, DependencyNode? right)
+		=> (left, right) switch { (null, null) => true, (not null, not null) => left.Equals(right), _ => false };
+
+	/// <inheritdoc/>
+	public static bool operator !=(DependencyNode? left, DependencyNode? right) => !(left == right);
 }

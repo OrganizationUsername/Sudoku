@@ -44,7 +44,7 @@ public sealed class QiuDeadlyPatternExternalType1Step(
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [PatternStr, DigitsStr, CellStr]), new(SR.ChineseLanguage, [PatternStr, CellStr, DigitsStr])];
 
-	private string CellStr => Options.Converter.CellConverter(in TargetCell.AsCellMap());
+	private string CellStr => Cell.ToCellString(TargetCell, Options.Converter);
 
 	private string DigitsStr => Options.Converter.DigitConverter(TargetDigits);
 }

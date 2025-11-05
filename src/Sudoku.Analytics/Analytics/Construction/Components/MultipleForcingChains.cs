@@ -306,7 +306,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 			from kvp in this
 			let candidate = kvp.Key
 			let pattern = kvp.Value
-			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {pattern.ToString(converter)}"
+			select $"{Candidate.ToCandidateString(candidate, converter)}: {pattern.ToString(converter)}"
 		);
 	}
 

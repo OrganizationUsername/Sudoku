@@ -60,7 +60,7 @@ public sealed class NormalDeathBlossomStep(
 	/// <inheritdoc/>
 	int IBranchTrait.BranchesCount => Branches.Count;
 
-	private string PivotStr => Options.Converter.CellConverter(in Pivot.AsCellMap());
+	private string PivotStr => Cell.ToCellString(Pivot, Options.Converter);
 
 
 	private string BranchesStr(string cultureName)

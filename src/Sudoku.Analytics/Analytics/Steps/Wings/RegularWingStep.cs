@@ -120,7 +120,7 @@ public sealed class RegularWingStep(
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private string PivotCellStr => Options.Converter.CellConverter(in Pivot.AsCellMap());
+	private string PivotCellStr => Cell.ToCellString(Pivot, Options.Converter);
 
 	private string CellsStr => Options.Converter.CellConverter(Petals);
 }

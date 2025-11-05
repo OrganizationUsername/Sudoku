@@ -68,6 +68,19 @@ public static class CellMarshal
 
 
 		/// <summary>
+		/// Converts a cell instance into a string instance that represents for a cell.
+		/// </summary>
+		/// <param name="cell">The cell.</param>
+		/// <param name="formatProvider">The formatter.</param>
+		/// <returns>The string representation.</returns>
+		public static string ToCellString(Cell cell, IFormatProvider? formatProvider)
+		{
+			var converter = CoordinateConverter.GetInstance(formatProvider);
+			return converter.CellConverter(cell.AsCellMap());
+		}
+
+
+		/// <summary>
 		/// Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
 		/// </summary>
 		/// <param name="cell">The cell.</param>

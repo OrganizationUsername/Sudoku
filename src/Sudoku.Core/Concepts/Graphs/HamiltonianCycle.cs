@@ -201,7 +201,7 @@ public readonly struct HamiltonianCycle(Cell[] cells) :
 		var sb = new StringBuilder();
 		foreach (var cell in _cells)
 		{
-			sb.Append(converter.CellConverter(cell.AsCellMap()));
+			sb.Append(Cell.ToCellString(cell, converter));
 			sb.Append(separator);
 		}
 		return sb.RemoveFromEnd(separator.Length).ToString();

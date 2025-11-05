@@ -53,5 +53,5 @@ public sealed class BivalueUniversalGraveXzStep(
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 
-	private string ExtraCellStr => Options.Converter.CellConverter(in XzCell.AsCellMap());
+	private string ExtraCellStr => Cell.ToCellString(XzCell, Options.Converter);
 }

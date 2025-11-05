@@ -82,7 +82,7 @@ public abstract class BrokenLoopStep(
 			var result = new List<string>();
 			foreach (var candidate in Loop)
 			{
-				result.Add(Options.Converter.CandidateConverter(candidate.AsCandidateMap()));
+				result.Add(Candidate.ToCandidateString(candidate, Options.Converter));
 			}
 			return string.Join(" -> ", result);
 		}

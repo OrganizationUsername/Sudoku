@@ -62,5 +62,5 @@ public sealed class UniqueRectangle2DOr3XStep(
 
 	private string YDigitStr => Options.Converter.DigitConverter((Mask)(1 << YDigit));
 
-	private string XYCellsStr => Options.Converter.CellConverter(in XyCell.AsCellMap());
+	private string XYCellsStr => Cell.ToCellString(XyCell, Options.Converter);
 }

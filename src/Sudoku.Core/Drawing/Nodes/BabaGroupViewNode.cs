@@ -55,7 +55,7 @@ public sealed class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, cha
 	/// <inheritdoc/>
 	public override string ToString()
 	{
-		var cellsString = CoordinateConverter.InvariantCultureInstance.CellConverter(Cell.AsCellMap());
+		var cellsString = Cell.ToCellString(Cell, CoordinateConverter.InvariantCultureInstance);
 		var digitsString = Convert.ToString(DigitsMask, 2).ToString();
 		return $"{nameof(BabaGroupViewNode)} {{ {nameof(UnknownValueChar)} = {UnknownValueChar}, Cell = {cellsString}, Digits = {digitsString}, Identifier = {Identifier} }}";
 	}

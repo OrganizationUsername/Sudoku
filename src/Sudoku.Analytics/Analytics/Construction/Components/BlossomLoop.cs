@@ -216,7 +216,7 @@ public sealed class BlossomLoop(params ConclusionSet conclusions) :
 			from kvp in this
 			let candidate = kvp.Key
 			let chain = kvp.Value
-			select $"{converter.CandidateConverter(candidate.AsCandidateMap())}: {chain.ToString(converter)}"
+			select $"{Candidate.ToCandidateString(candidate, converter)}: {chain.ToString(converter)}"
 		);
 	}
 

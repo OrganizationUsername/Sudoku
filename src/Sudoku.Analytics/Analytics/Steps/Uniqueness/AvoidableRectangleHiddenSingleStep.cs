@@ -61,9 +61,9 @@ public sealed class AvoidableRectangleHiddenSingleStep(
 			new(SR.ChineseLanguage, [D1Str, D2Str, CellsStr, BaseCellStr, HouseStr, TargetCellStr])
 		];
 
-	private string BaseCellStr => Options.Converter.CellConverter(in BaseCell.AsCellMap());
+	private string BaseCellStr => Cell.ToCellString(BaseCell, Options.Converter);
 
-	private string TargetCellStr => Options.Converter.CellConverter(in TargetCell.AsCellMap());
+	private string TargetCellStr => Cell.ToCellString(TargetCell, Options.Converter);
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 }

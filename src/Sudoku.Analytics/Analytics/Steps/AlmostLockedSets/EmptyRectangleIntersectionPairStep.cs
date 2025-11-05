@@ -67,9 +67,9 @@ public sealed class EmptyRectangleIntersectionPairStep(
 
 	private string Digit2Str => Options.Converter.DigitConverter((Mask)(1 << Digit2));
 
-	private string StartCellStr => Options.Converter.CellConverter(in StartCell.AsCellMap());
+	private string StartCellStr => Cell.ToCellString(StartCell, Options.Converter);
 
-	private string EndCellStr => Options.Converter.CellConverter(in EndCell.AsCellMap());
+	private string EndCellStr => Cell.ToCellString(EndCell, Options.Converter);
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 }

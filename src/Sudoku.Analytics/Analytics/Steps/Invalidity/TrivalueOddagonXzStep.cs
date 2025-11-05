@@ -55,5 +55,5 @@ public sealed class TrivalueOddagonXzStep(
 			new(SR.ChineseLanguage, [BlocksStr, CellsStr, DigitsStr, ExtraCellStr])
 		];
 
-	private string ExtraCellStr => Options.Converter.CellConverter(in ExtraCell.AsCellMap());
+	private string ExtraCellStr => Cell.ToCellString(ExtraCell, Options.Converter);
 }

@@ -19,6 +19,19 @@ public static class CandidateMarshal
 #else
 		public CandidateMap AsCandidateMap() => [@this];
 #endif
+
+
+		/// <summary>
+		/// Converts a candidate instance into a string instance that represents for a candidate.
+		/// </summary>
+		/// <param name="candidate">The candidate.</param>
+		/// <param name="formatProvider">The formatter.</param>
+		/// <returns>The string representation.</returns>
+		public static string ToCandidateString(Candidate candidate, IFormatProvider? formatProvider)
+		{
+			var converter = CoordinateConverter.GetInstance(formatProvider);
+			return converter.CandidateConverter(candidate.AsCandidateMap());
+		}
 	}
 
 	/// <summary>

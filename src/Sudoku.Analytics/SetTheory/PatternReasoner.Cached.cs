@@ -278,7 +278,7 @@ public partial class LogicReasoner
 			if (!allEliminations.Contains(elimination))
 			{
 				// Invalid case - the original pattern cannot remove such candidate.
-				var candidateString = new RxCyConverter().CandidateConverter(elimination.AsCandidateMap());
+				var candidateString = Candidate.ToCandidateString(elimination, new RxCyConverter());
 				throw new ArgumentException(
 					$"The original pattern cannot remove the specified candidate '{candidateString}'.",
 					nameof(elimination)

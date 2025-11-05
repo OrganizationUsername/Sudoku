@@ -27,8 +27,8 @@ public sealed class CellViewNode(ColorIdentifier identifier, Cell cell) : BasicV
 	/// <inheritdoc/>
 	public override string ToString()
 	{
-		var cellString = CoordinateConverter.InvariantCultureInstance.CellConverter(Cell.AsCellMap());
-		return $"{nameof(CellViewNode)} {{ Cell = {cellString}, {nameof(Identifier)} = {Identifier} }}";
+		var cellString = Cell.ToCellString(Cell, CoordinateConverter.InvariantCultureInstance);
+		return $"{nameof(CellViewNode)} {{ {nameof(Cell)} = {cellString}, {nameof(Identifier)} = {Identifier} }}";
 	}
 
 	/// <inheritdoc/>

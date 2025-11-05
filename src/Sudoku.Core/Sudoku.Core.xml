@@ -557,6 +557,9 @@
         <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap"/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.ToCandidateString(System.Int32,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.IFormatProvider)"/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap"/>
         </member>
@@ -573,6 +576,14 @@
             Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of the current candidate.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.IFormatProvider)">
+            <summary>
+            Converts a candidate instance into a string instance that represents for a candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <param name="formatProvider">The formatter.</param>
+            <returns>The string representation.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
             <summary>
@@ -1237,6 +1248,9 @@
         <member name="M:Sudoku.Concepts.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.ToCellString(System.Int32,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)"/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
         </member>
@@ -1289,6 +1303,14 @@
         </member>
         <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)">
+            <summary>
+            Converts a cell instance into a string instance that represents for a cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="formatProvider">The formatter.</param>
+            <returns>The string representation.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
             <summary>

@@ -83,7 +83,7 @@ public sealed class HouseDeathBlossomStep(
 		var culture = new CultureInfo(cultureName);
 		return string.Join(
 			SR.Get("Comma", culture),
-			from b in Branches select $"{Options.Converter.CellConverter(in b.Key.AsCellMap())} - {b.Value}"
+			from b in Branches select $"{Cell.ToCellString(b.Key, Options.Converter)} - {b.Value}"
 		);
 	}
 }

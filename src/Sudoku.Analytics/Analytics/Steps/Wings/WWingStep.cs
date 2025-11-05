@@ -59,9 +59,9 @@ public sealed class WWingStep(
 	public override InterpolationArray Interpolations
 		=> [new(SR.EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(SR.ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
-	private string StartCellStr => Options.Converter.CellConverter(in StartCell.AsCellMap());
+	private string StartCellStr => Cell.ToCellString(StartCell, Options.Converter);
 
-	private string EndCellStr => Options.Converter.CellConverter(in EndCell.AsCellMap());
+	private string EndCellStr => Cell.ToCellString(EndCell, Options.Converter);
 
 	private string BridgeStr => Options.Converter.CellConverter(Bridge);
 }

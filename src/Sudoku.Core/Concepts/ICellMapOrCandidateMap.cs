@@ -457,14 +457,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	/// <param name="offsets">The offsets to be checked.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <remarks>
-	/// The type of the current collection supports using <see cref="bool"/>-like expression to determine whether the collection is not empty,
-	/// for example:
-	/// <code><![CDATA[
-	/// if (collection)
-	///     // ...
-	/// ]]></code>
-	/// The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
-	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
+	/// Usages of this operator will be expanded to <c><![CDATA[<collection>.Count == 0]]></c>.
 	/// </remarks>
 	static abstract bool operator !(in TSelf offsets);
 

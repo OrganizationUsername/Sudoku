@@ -333,16 +333,24 @@ public partial class LogicReasoner
 			// If we can find all possible conclusions of the pattern if removed,
 			// we can know that the link having been removed is redundant.
 			var result = logic;
-			foreach (var link in logic.Links)
+			var tempLogic = logic;
+			bool isChanged;
+			do
 			{
-				var sublogic = new Logic(logic.Truths, logic.Links - link, logic.Grid);
-				if ((GetConclusions(sublogic, GetPermutations(sublogic), true, false) & conclusions) == conclusions)
+				isChanged = false;
+				foreach (var link in tempLogic.Links)
 				{
-					// The link can be removed because we find a subpattern with removed link state
-					// can eliminate all conclusions specified.
-					result.RemoveLink(link);
+					var sublogic = new Logic(tempLogic.Truths, tempLogic.Links - link, tempLogic.Grid);
+					if ((GetConclusions(sublogic, GetPermutations(sublogic), true, false) & conclusions) == conclusions)
+					{
+						// The link can be removed because we find a subpattern with removed link state
+						// can eliminate all conclusions specified.
+						result.RemoveLink(link);
+						tempLogic = result;
+						isChanged = true;
+					}
 				}
-			}
+			} while (isChanged);
 			return result;
 		}
 	}

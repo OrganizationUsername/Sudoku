@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Represents some methods operating with <see cref="Factor"/> instances.
 /// </summary>
 /// <seealso cref="Factor"/>
-public static class FactorMarshal
+public static class FactorScaler
 {
 	/// <summary>
 	/// Try to get the scale unit length from the scale value.

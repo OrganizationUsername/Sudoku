@@ -29,7 +29,7 @@ internal static class AnalyzeConversion
 	{
 		var pref = Application.CurrentApp.Preference.TechniqueInfoPreferences;
 		var resultDifficulty = pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
-		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
+		return resultDifficulty.ToString(FactorScaler.GetScaleFormatString(1 / pref.RatingScale));
 	}
 
 	public static string GetDifficultyRatingText_Hodoku(Step step)
@@ -153,7 +153,7 @@ internal static class AnalyzeConversion
 			appendEmptyLinesIfNeed();
 
 			var difficultyValue = pref.GetRating(technique) switch { { } v => v, _ => difficulty } / pref.RatingScale;
-			var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
+			var difficultyValueString = difficultyValue.ToString(FactorScaler.GetScaleFormatString(1 / pref.RatingScale));
 			result.Add(new Run { Text = SR.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = difficultyValueString });
@@ -171,7 +171,7 @@ internal static class AnalyzeConversion
 				case { Length: not 0 }:
 				{
 					var baseDifficulty = pref.GetRating(technique) switch { { } v => v, _ => @base } / pref.RatingScale;
-					var baseDifficultyString = baseDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
+					var baseDifficultyString = baseDifficulty.ToString(FactorScaler.GetScaleFormatString(1 / pref.RatingScale));
 					result.Add(new Run { Text = $"{SR.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(factors));
@@ -244,7 +244,7 @@ file static class Extensions
 			var colonCharacter = SR.Get("_Token_Colon", culture);
 			return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
 			{
-				{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value
+				{ } result when (result / scale).ToString(FactorScaler.GetScaleFormatString(1 / scale)) is var value
 					=> $"{@this.GetName(culture)}{colonCharacter}{value}",
 				_ => string.Empty
 			};

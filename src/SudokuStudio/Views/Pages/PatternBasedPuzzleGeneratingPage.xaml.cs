@@ -288,7 +288,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	{
 		var (pattern, missingDigit, fixedCandidates) = (SelectedCells, MissingDigit, FixedCandidates);
 		var ratingScale = Application.CurrentApp.Preference.TechniqueInfoPreferences.RatingScale;
-		var ratingScaleFormat = FactorMarshal.GetScaleFormatString(1 / ratingScale);
+		var ratingScaleFormat = FactorScaler.GetScaleFormatString(1 / ratingScale);
 		var analyzer = Application.CurrentApp.GetAnalyzerConfigured(SudokuPane)
 			.WithOptions(new() { IsDirectMode = true });
 		using var cts = new CancellationTokenSource();

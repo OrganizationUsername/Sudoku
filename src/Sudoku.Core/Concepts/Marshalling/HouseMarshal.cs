@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Marshalling;
 
 /// <summary>
 /// Represents concept for a "House". A house is a region that includes 9 cells, with different digits filled in.

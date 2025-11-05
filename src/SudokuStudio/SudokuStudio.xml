@@ -18073,19 +18073,19 @@
             <param name="grid">The <see cref="T:Microsoft.UI.Xaml.Controls.Grid"/> instance represented by creating point calculator instance.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.FactorMarshal">
+        <member name="T:Sudoku.Analytics.FactorScaler">
             <summary>
             Represents some methods operating with <see cref="T:Sudoku.Analytics.Factor"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Factor"/>
         </member>
-        <member name="M:Sudoku.Analytics.FactorMarshal.GetScaleUnitLength(System.Decimal)">
+        <member name="M:Sudoku.Analytics.FactorScaler.GetScaleUnitLength(System.Decimal)">
             <summary>
             Try to get the scale unit length from the scale value.
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.FactorMarshal.GetScaleFormatString(System.Decimal)">
+        <member name="M:Sudoku.Analytics.FactorScaler.GetScaleFormatString(System.Decimal)">
             <summary>
             Try to get the scale unit from the scale value.
             </summary>

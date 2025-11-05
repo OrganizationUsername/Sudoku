@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Marshalling;
 
 /// <summary>
 /// Represents extra data set defined in <see cref="CellMap"/>.

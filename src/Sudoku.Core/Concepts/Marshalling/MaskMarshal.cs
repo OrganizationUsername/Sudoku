@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Marshalling;
 
 /// <summary>
 /// Represents a concept "Mask". A mask is a list of candidates represented as a 9-bit integer value.

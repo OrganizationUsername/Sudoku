@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Marshalling;
 
 /// <summary>
 /// Represents a concept "House Mask". A house mask is a list of house indices represented as a 27-bit integer value.

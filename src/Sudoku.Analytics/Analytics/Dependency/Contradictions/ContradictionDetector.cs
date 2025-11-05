@@ -1,5 +1,13 @@
+#define REPORT_ERROR_IF_ALL_PRUNING_SYMBOLS_ARE_DISABLED
 #undef NAKED_SINGLE_FIRST
-#undef NODE_PRUNING
+#define NODE_PRUNING
+#if !NODE_PRUNING
+#if REPORT_ERROR_IF_ALL_PRUNING_SYMBOLS_ARE_DISABLED
+#error It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
+#else
+#warning It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
+#endif
+#endif
 
 namespace Sudoku.Analytics.Dependency.Contradictions;
 
@@ -9,17 +17,27 @@ namespace Sudoku.Analytics.Dependency.Contradictions;
 public static class ContradictionDetector
 {
 	/// <summary>
+	/// Represents equality comparer for typed assignment pair.
+	/// </summary>
+	private static readonly EqualityComparer<(AssignmentInfo Assignment, DependencyNodeType Type)> EqualityComparer =
+		EqualityComparer<(AssignmentInfo, DependencyNodeType)>.Create(
+			static (l, r) => l.Item1 == r.Item1,
+			static obj => obj.Item1.GetHashCode()
+		);
+
+
+	/// <summary>
 	/// The global method to check for complex contradiction.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="includesGroupedNodes">Indicates whether grouped nodes should also be checked.</param>
 	/// <returns>A list of found conflict.</returns>
-	public static List<Cause> Check(in Grid grid, bool includesGroupedNodes)
+	public static ReadOnlySpan<Cause> Check(in Grid grid, bool includesGroupedNodes)
 	{
 		var result = new List<Cause>();
 		if (!grid.IsValid)
 		{
-			return result;
+			return result.AsSpan();
 		}
 
 		var solution = grid.SolutionGrid;
@@ -38,7 +56,7 @@ public static class ContradictionDetector
 		}
 
 		// All candidates are checked.
-		return result;
+		return result.AsSpan();
 	}
 
 	/// <summary>
@@ -50,7 +68,7 @@ public static class ContradictionDetector
 	/// <param name="digit">The digit to check.</param>
 	/// <param name="includesGroupedNodes">Indicates whether the searching method will includes grouped nodes.</param>
 	/// <param name="lastNode">Indicates the node branch that causes invalid states.</param>
-	/// <param name="cause">The space that is going to be empty.</param>
+	/// <param name="emptySpace">The space that is going to be empty.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid can lead a conflict or not.</returns>
 	/// <remarks>
 	/// <para>
@@ -83,7 +101,7 @@ public static class ContradictionDetector
 		Digit digit,
 		bool includesGroupedNodes,
 		[NotNullWhen(true)] out DependencyNode? lastNode,
-		out Space cause
+		out Space emptySpace
 	)
 	{
 		// Create a queue and enqueue root node.
@@ -112,7 +130,7 @@ public static class ContradictionDetector
 			ref readonly var tempGrid = ref node.Grid;
 
 			// Check any contradiction.
-			if (TryFindContradiction(tempGrid, out cause))
+			if (TryFindContradiction(tempGrid, out emptySpace))
 			{
 				// Any contradiction found.
 				lastNode = node;
@@ -120,7 +138,7 @@ public static class ContradictionDetector
 			}
 
 			// Find for the next conclusion.
-			var collector = new HashSet<(AssignmentInfo, DependencyNodeType)>(EqualityComparerOf<DependencyNodeType>());
+			var collector = new HashSet<(AssignmentInfo, DependencyNodeType)>(EqualityComparer);
 
 			// Collect for valid next steps.
 #if NAKED_SINGLE_FIRST
@@ -149,7 +167,7 @@ public static class ContradictionDetector
 		}
 
 		lastNode = null;
-		cause = default;
+		emptySpace = default;
 		return false;
 	}
 
@@ -363,10 +381,4 @@ public static class ContradictionDetector
 
 	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "GetHeaderBits")]
 	private static extern Mask GetHeaderBits(ref readonly Grid grid, Cell cell);
-
-	/// <summary>
-	/// Represents equality comparer for typed assignment pair.
-	/// </summary>
-	private static EqualityComparer<(AssignmentInfo, T)> EqualityComparerOf<T>()
-		=> EqualityComparer<(AssignmentInfo, T)>.Create(static (l, r) => l.Item1 == r.Item1, static obj => obj.Item1.GetHashCode());
 }

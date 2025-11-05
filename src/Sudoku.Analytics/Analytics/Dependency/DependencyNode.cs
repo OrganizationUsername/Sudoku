@@ -55,7 +55,7 @@ public sealed class DependencyNode(DependencyNodeType type, in Grid grid, Assign
 
 	/// <inheritdoc/>
 	public override string ToString()
-		=> string.Join(" -> ", from assignment in Assignments.Span select assignment.ToDebuggerDisplayString());
+		=> string.Join(" -> ", from assignment in Assignments.Span select assignment.ToCandidateFormatString(false));
 
 	/// <summary>
 	/// Iterate on nodes of this branch, starting with the last node.

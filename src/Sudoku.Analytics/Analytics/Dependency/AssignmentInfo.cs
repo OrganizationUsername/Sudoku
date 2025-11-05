@@ -22,11 +22,26 @@ public readonly record struct AssignmentInfo(Digit Digit, in CellMap Cells) : IE
 	public bool IsGrouped => Cells.Count != 1;
 
 
+	/// <inheritdoc cref="ToCandidateFormatString(bool, IFormatProvider?)"/>
+	public string ToCandidateFormatString(bool enableConsoleColors) => ToCandidateFormatString(enableConsoleColors, null);
+
 	/// <summary>
-	/// Returns a string value that is only used for debugger displaying.
+	/// Returns a string instance that displays like a candidate format.
 	/// </summary>
+	/// <param name="enableConsoleColors">
+	/// Indicates whether the output text will include control characters like <c>\e</c>,
+	/// in order to display colors in console output stream.
+	/// </param>
+	/// <param name="formatProvider">The coordinate format converter.</param>
 	/// <returns>The string representation.</returns>
-	public string ToDebuggerDisplayString() => IsGrouped ? $"\e[38;2;255;255;0m{Cells}({Digit + 1})\e[0m" : $"{Cells}({Digit + 1})";
+	public string ToCandidateFormatString(bool enableConsoleColors, IFormatProvider? formatProvider)
+	{
+		var converter = CoordinateConverter.GetInstance(formatProvider);
+		var candidates = Cells * Digit;
+		return IsGrouped && enableConsoleColors
+			? $"\e[38;2;255;255;0m{converter.CandidateConverter(candidates)}\e[0m"
+			: converter.CandidateConverter(candidates);
+	}
 
 	/// <include
 	///     file="../../global-doc-comments.xml"

@@ -10330,10 +10330,18 @@
             Indicates whether the assignment instance is for grouped set rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.AssignmentInfo.ToDebuggerDisplayString">
+        <member name="M:Sudoku.Analytics.Dependency.AssignmentInfo.ToCandidateFormatString(System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Analytics.Dependency.AssignmentInfo.ToCandidateFormatString(System.Boolean,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.AssignmentInfo.ToCandidateFormatString(System.Boolean,System.IFormatProvider)">
             <summary>
-            Returns a string value that is only used for debugger displaying.
+            Returns a string instance that displays like a candidate format.
             </summary>
+            <param name="enableConsoleColors">
+            Indicates whether the output text will include control characters like <c>\e</c>,
+            in order to display colors in console output stream.
+            </param>
+            <param name="formatProvider">The coordinate format converter.</param>
             <returns>The string representation.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Dependency.AssignmentInfo.PrintMembers(System.Text.StringBuilder)">
@@ -10405,6 +10413,11 @@
             Represents a type that can find for conflict that will be used in complex patterns.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.EqualityComparer">
+            <summary>
+            Represents equality comparer for typed assignment pair.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.Check(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             The global method to check for complex contradiction.
@@ -10423,7 +10436,7 @@
             <param name="digit">The digit to check.</param>
             <param name="includesGroupedNodes">Indicates whether the searching method will includes grouped nodes.</param>
             <param name="lastNode">Indicates the node branch that causes invalid states.</param>
-            <param name="cause">The space that is going to be empty.</param>
+            <param name="emptySpace">The space that is going to be empty.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the grid can lead a conflict or not.</returns>
             <remarks>
             <para>
@@ -10492,11 +10505,6 @@
             <param name="grid">The grid.</param>
             <param name="node">The node.</param>
             <param name="result">The result.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.EqualityComparerOf``1">
-            <summary>
-            Represents equality comparer for typed assignment pair.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Dependency.DependencyChecker">
             <summary>

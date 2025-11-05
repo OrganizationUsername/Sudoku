@@ -323,6 +323,12 @@ public partial class LogicReasoner
 		/// <inheritdoc cref="LogicReasoner.TrimExcessLinks(in Logic)"/>
 		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
+			//if (!conclusions)
+			//{
+			//	// This logic doesn't produce any possible conclusions available.
+			//	return logic;
+			//}
+
 			// Optimization: If n(truths) == n(links), we cannot remove any possible links because it is already a minimal case.
 			if (logic.Truths.Count == logic.Links.Count)
 			{

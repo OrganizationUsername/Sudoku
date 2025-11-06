@@ -116,7 +116,7 @@ public static class ContradictionDetector
 		queue.Enqueue(
 			new(
 				DependencyNodeType.Supposing,
-				GetUpdatedGrid(/*copies*/ playground, in firstAssignment, out _),
+				GetUpdatedGrid(playground, in firstAssignment, out _),
 				firstAssignment,
 				new(DependencyNodeType.Root, playground, null, null)
 			)
@@ -161,7 +161,7 @@ public static class ContradictionDetector
 				if (assignmentMap.TryAdd(assignment, [parentAssignment]) || assignmentMap[assignment].Add(parentAssignment))
 #endif
 				{
-					queue.Enqueue(new(type, GetUpdatedGrid(/*copies*/ tempGrid, in assignment, out _), assignment, node));
+					queue.Enqueue(new(type, GetUpdatedGrid(tempGrid, in assignment, out _), assignment, node));
 				}
 			}
 		}
@@ -234,7 +234,7 @@ public static class ContradictionDetector
 	/// <param name="assignment">The assignment.</param>
 	/// <param name="removedCandidates">Removed candidates.</param>
 	/// <returns>The grid updated.</returns>
-	private static Grid GetUpdatedGrid(/*copies*/ Grid original, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
+	private static Grid GetUpdatedGrid(Grid original, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
 	{
 		var r = new HashSet<Candidate>();
 		_ = assignment is (var digit, { PeerIntersection: var peerCells } cells);

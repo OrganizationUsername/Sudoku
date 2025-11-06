@@ -17,12 +17,12 @@ public static partial class LogicReasoner
 	/// <param name="logic">The logic.</param>
 	/// <param name="sublogics">Represents sublogic views for each eliminations.</param>
 	/// <returns>A <see cref="Rank"/> instance representing the result.</returns>
-	public static Rank GetRank(in Logic logic, out FrozenDictionary<Conclusion, Logic> sublogics)
+	public static Rank GetRank(ref readonly Logic logic, out FrozenDictionary<Conclusion, Logic> sublogics)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.GetRank(
-			logic,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			in logic,
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations,
 			out sublogics
 		);
@@ -43,15 +43,15 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutation count value.</returns>
-	public static AssignedCount GetAssignedCount(in Logic logic)
-		=> PermutationRequiredEntry.GetAssignedCount(logic, GetPermutations(logic));
+	public static AssignedCount GetAssignedCount(ref readonly Logic logic)
+		=> PermutationRequiredEntry.GetAssignedCount(logic, GetPermutations(in logic));
 
 	/// <summary>
 	/// Try to find all possible permutations.
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutations.</returns>
-	public static ReadOnlySpan<Permutation> GetPermutations(in Logic logic)
+	public static ReadOnlySpan<Permutation> GetPermutations(ref readonly Logic logic)
 	{
 		var permutationsRaw = SetTheorySolver.Solve(logic);
 		var linksLookup = logic.LinksLightupLookup;
@@ -79,16 +79,16 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ConclusionSet GetConclusions(in Logic logic)
-		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), true, false);
+	public static ConclusionSet GetConclusions(ref readonly Logic logic)
+		=> PermutationRequiredEntry.GetConclusions(in logic, GetPermutations(in logic), true, false);
 
 	/// <summary>
 	/// Try to find all conclusions, without checking <see cref="Logic.Links"/>.
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions.</returns>
-	public static ConclusionSet GetConclusionsWithoutCheckingLinks(in Logic logic)
-		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), false, false);
+	public static ConclusionSet GetConclusionsWithoutCheckingLinks(ref readonly Logic logic)
+		=> PermutationRequiredEntry.GetConclusions(in logic, GetPermutations(in logic), false, false);
 
 	/// <summary>
 	/// Try to find all possible conclusions of the patter in theory,
@@ -96,27 +96,28 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All conclusions, ignoring existence of conclusions.</returns>
-	public static ConclusionSet GetConclusionZone(in Logic logic)
-		=> PermutationRequiredEntry.GetConclusions(logic, GetPermutations(logic), true, true);
+	public static ConclusionSet GetConclusionZone(ref readonly Logic logic)
+		=> PermutationRequiredEntry.GetConclusions(in logic, GetPermutations(in logic), true, true);
 
 	/// <summary>
 	/// Gets all rank-0 links.
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All rank-0 links.</returns>
-	public static SpaceSet GetRank0Links(in Logic logic) => PermutationRequiredEntry.GetRank0Links(logic, GetPermutations(logic));
+	public static SpaceSet GetRank0Links(ref readonly Logic logic)
+		=> PermutationRequiredEntry.GetRank0Links(in logic, GetPermutations(in logic));
 
 	/// <summary>
 	/// Gets all rank-0 eliminations.
 	/// </summary>
 	/// <param name="logic">The pattern.</param>
 	/// <returns>All rank-0 eliminations.</returns>
-	public static CandidateMap GetRank0Eliminations(in Logic logic)
+	public static CandidateMap GetRank0Eliminations(ref readonly Logic logic)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.GetRank0Eliminations(
-			logic,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			in logic,
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations
 		);
 	}
@@ -127,13 +128,13 @@ public static partial class LogicReasoner
 	/// <param name="logic">The pattern.</param>
 	/// <param name="elimination">The elimination.</param>
 	/// <returns>The minimal truths.</returns>
-	public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination)
+	public static SpaceSet GetMinimalTruths(ref readonly Logic logic, Candidate elimination)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.GetMinimalTruths(
-			logic,
+			in logic,
 			elimination,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations
 		);
 	}
@@ -144,13 +145,13 @@ public static partial class LogicReasoner
 	/// <param name="logic">The pattern.</param>
 	/// <param name="elimination">The elimination.</param>
 	/// <returns>A minimal <see cref="Logic"/> instance that can remove the specified elimination.</returns>
-	public static Logic GetMinimalPattern(in Logic logic, Candidate elimination)
+	public static Logic GetMinimalPattern(ref readonly Logic logic, Candidate elimination)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.GetMinimalPattern(
-			logic,
+			in logic,
 			elimination,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations
 		);
 	}
@@ -160,12 +161,12 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The original pattern.</param>
 	/// <returns>A new <see cref="Logic"/> instance.</returns>
-	public static Logic TrimExcessLinks(in Logic logic)
+	public static Logic TrimExcessLinks(ref readonly Logic logic)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.TrimExcessLinks(
-			logic,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			in logic,
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations
 		);
 	}
@@ -175,12 +176,12 @@ public static partial class LogicReasoner
 	/// </summary>
 	/// <param name="logic">The original pattern.</param>
 	/// <returns>A new <see cref="Logic"/> instance.</returns>
-	public static Logic ConvertTruthsToLinks(in Logic logic)
+	public static Logic ConvertTruthsToLinks(ref readonly Logic logic)
 	{
-		var permutations = GetPermutations(logic);
+		var permutations = GetPermutations(in logic);
 		return PermutationRequiredEntry.ConvertTruthsToLinks(
-			logic,
-			PermutationRequiredEntry.GetConclusions(logic, permutations, true, false),
+			in logic,
+			PermutationRequiredEntry.GetConclusions(in logic, permutations, true, false),
 			permutations
 		);
 	}

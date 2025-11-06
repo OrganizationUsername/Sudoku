@@ -6,9 +6,9 @@ namespace Sudoku.SetTheory;
 /// <param name="Assignments">Indicates the assignments.</param>
 /// <param name="LightupLinks">
 /// Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-/// Check <see cref="LogicReasoner.GetPermutations(in Logic)"/> to learn more details about light-up links.
+/// Check <see cref="LogicReasoner.GetPermutations(ref readonly Logic)"/> to learn more details about light-up links.
 /// </param>
-/// <seealso cref="LogicReasoner.GetPermutations(in Logic)"/>
+/// <seealso cref="LogicReasoner.GetPermutations(ref readonly Logic)"/>
 public readonly record struct Permutation(ReadOnlyMemory<Candidate> Assignments, ReadOnlyMemory<Space> LightupLinks) :
 	IComparable<Permutation>,
 	IComparisonOperators<Permutation, Permutation, bool>,

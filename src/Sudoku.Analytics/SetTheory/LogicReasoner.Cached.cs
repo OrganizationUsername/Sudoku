@@ -10,8 +10,8 @@ public partial class LogicReasoner
 	/// <seealso cref="LogicReasoner"/>
 	public static class PermutationRequiredEntry
 	{
-		/// <inheritdoc cref="LogicReasoner.GetRank(in Logic, out FrozenDictionary{Conclusion, Logic})"/>
-		public static Rank GetRank(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
+		/// <inheritdoc cref="LogicReasoner.GetRank(ref readonly Logic, out FrozenDictionary{Conclusion, Logic})"/>
+		public static Rank GetRank(ref readonly Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)
 		{
 			var resultViews = new Dictionary<Conclusion, Logic>();
 			if (permutations.Length == 0)
@@ -59,7 +59,7 @@ public partial class LogicReasoner
 				}
 
 				// Otherwise, a conclusion with different origin should be checked.
-				var minimal = GetMinimalPattern(logic, elimination.Candidate, conclusions, permutations);
+				var minimal = GetMinimalPattern(in logic, elimination.Candidate, conclusions, permutations);
 
 				// Optimization: If the current minimal pattern is equal to the whole pattern,
 				// we cannot find out any other eliminations corresponding to a smaller pattern.
@@ -85,7 +85,7 @@ public partial class LogicReasoner
 			return rankList.Count == 1 ? rankList.First() : (int[])[.. rankList];
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetAssignedCount(in Logic)"/>
+		/// <inheritdoc cref="LogicReasoner.GetAssignedCount(ref readonly Logic)"/>
 		public static AssignedCount GetAssignedCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			// Optimize: If there're only cell truths, just return the size of truths.
@@ -110,8 +110,8 @@ public partial class LogicReasoner
 			return (min, max) is ( >= 0, >= 0) ? new(min, max) : new();
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetConclusions(in Logic)"/>
-		public static ConclusionSet GetConclusions(in Logic logic, ReadOnlySpan<Permutation> permutations, bool checkingLinks, bool checkingZone)
+		/// <inheritdoc cref="LogicReasoner.GetConclusions(ref readonly Logic)"/>
+		public static ConclusionSet GetConclusions(ref readonly Logic logic, ReadOnlySpan<Permutation> permutations, bool checkingLinks, bool checkingZone)
 		{
 			ref readonly var grid = ref logic.Grid;
 			ref readonly var links = ref logic.Links;
@@ -206,8 +206,8 @@ public partial class LogicReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetRank0Links(in Logic)"/>
-		public static SpaceSet GetRank0Links(in Logic logic, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.GetRank0Links(ref readonly Logic)"/>
+		public static SpaceSet GetRank0Links(ref readonly Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			if (permutations.Length == 0)
 			{
@@ -225,8 +225,8 @@ public partial class LogicReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetRank0Eliminations(in Logic)"/>
-		public static CandidateMap GetRank0Eliminations(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.GetRank0Eliminations(ref readonly Logic)"/>
+		public static CandidateMap GetRank0Eliminations(ref readonly Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			var result = CandidateMap.Empty;
 			if (permutations.Length == 0)
@@ -241,7 +241,7 @@ public partial class LogicReasoner
 					continue;
 				}
 
-				foreach (var link in GetRank0Links(logic, permutations))
+				foreach (var link in GetRank0Links(in logic, permutations))
 				{
 					if (link.Contains(candidate))
 					{
@@ -252,8 +252,8 @@ public partial class LogicReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetMinimalTruths(in Logic, Candidate)"/>
-		public static SpaceSet GetMinimalTruths(in Logic logic, Candidate elimination, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.GetMinimalTruths(ref readonly Logic, Candidate)"/>
+		public static SpaceSet GetMinimalTruths(ref readonly Logic logic, Candidate elimination, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			ref readonly var truths = ref logic.Truths;
 			if (truths.Count <= 2)
@@ -270,7 +270,7 @@ public partial class LogicReasoner
 					allEliminations += candidate;
 				}
 			}
-			if (GetRank0Eliminations(logic, conclusions, permutations) == allEliminations)
+			if (GetRank0Eliminations(in logic, conclusions, permutations) == allEliminations)
 			{
 				// All candidates are rank-0 eliminations.
 				return truths;
@@ -297,7 +297,7 @@ public partial class LogicReasoner
 				foreach (var truthCombination in targetTruths & targetTruths.Length - 1)
 				{
 					var sublogic = new Logic([.. truthCombination], logic.Links, logic.Grid);
-					var sublogicConclusions = GetConclusions(sublogic, GetPermutations(sublogic), true, false);
+					var sublogicConclusions = GetConclusions(in sublogic, GetPermutations(in sublogic), true, false);
 					if (sublogicConclusions.Contains(new(Elimination, elimination)))
 					{
 						// If the pattern (with lower-sized truths) can delete such candidate,
@@ -313,15 +313,19 @@ public partial class LogicReasoner
 			return tempFoundTruthCombinations?.AsSpaceSet() ?? truths;
 		}
 
-		/// <inheritdoc cref="LogicReasoner.GetMinimalPattern(in Logic, Candidate)"/>
-		public static Logic GetMinimalPattern(in Logic logic, Candidate elimination, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.GetMinimalPattern(ref readonly Logic, Candidate)"/>
+		public static Logic GetMinimalPattern(ref readonly Logic logic, Candidate elimination, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
-			var sublogic = new Logic(GetMinimalTruths(logic, elimination, conclusions, permutations), logic.Links, logic.Grid);
-			return TrimExcessLinks(sublogic, [new(Elimination, elimination)], sublogic == logic ? permutations : GetPermutations(sublogic));
+			var sublogic = new Logic(GetMinimalTruths(in logic, elimination, conclusions, permutations), logic.Links, logic.Grid);
+			return TrimExcessLinks(
+				in sublogic,
+				[new(Elimination, elimination)],
+				sublogic == logic ? permutations : GetPermutations(in sublogic)
+			);
 		}
 
-		/// <inheritdoc cref="LogicReasoner.TrimExcessLinks(in Logic)"/>
-		public static Logic TrimExcessLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.TrimExcessLinks(ref readonly Logic)"/>
+		public static Logic TrimExcessLinks(ref readonly Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			//if (!conclusions)
 			//{
@@ -351,7 +355,7 @@ public partial class LogicReasoner
 					if (link.GetAvailableRange(grid) is var linkMap
 						&& (tempLogic.Map & linkMap).Count == 1 && !(linkMap & map)
 						|| new Logic(tempLogic.Truths, tempLogic.Links - link, tempLogic.Grid) is var sublogic
-						&& GetConclusions(sublogic, GetPermutations(sublogic), true, false) == conclusions)
+						&& GetConclusions(in sublogic, GetPermutations(in sublogic), true, false) == conclusions)
 					{
 						// We can cut this link out of the pattern if either of conditions mentioned below are satisfied:
 						//   1) It only hold one candidate in the pattern (which is not enclosing pattern),
@@ -366,8 +370,8 @@ public partial class LogicReasoner
 			return result;
 		}
 
-		/// <inheritdoc cref="LogicReasoner.ConvertTruthsToLinks(in Logic)"/>
-		public static Logic ConvertTruthsToLinks(in Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
+		/// <inheritdoc cref="LogicReasoner.ConvertTruthsToLinks(ref readonly Logic)"/>
+		public static Logic ConvertTruthsToLinks(ref readonly Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations)
 		{
 			//if (!conclusions)
 			//{
@@ -385,7 +389,7 @@ public partial class LogicReasoner
 				foreach (var truth in tempLogic.Truths)
 				{
 					if (new Logic(tempLogic.Truths - truth, tempLogic.Links + truth, tempLogic.Grid) is var sublogic
-						&& GetConclusions(sublogic, GetPermutations(sublogic), true, false) == conclusions)
+						&& GetConclusions(in sublogic, GetPermutations(in sublogic), true, false) == conclusions)
 					{
 						result.RemoveTruth(truth);
 						result.AddLink(truth);

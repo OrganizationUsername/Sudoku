@@ -5,13 +5,14 @@ namespace Sudoku.Analytics.Dependency;
 /// </summary>
 /// <param name="Digit">Indicates the digit.</param>
 /// <param name="Cells">Indicates cells used.</param>
-public readonly record struct AssignmentInfo(Digit Digit, in CellMap Cells) : IEqualityOperators<AssignmentInfo, AssignmentInfo, bool>
+public readonly record struct DependencyAssignment(Digit Digit, in CellMap Cells) :
+	IEqualityOperators<DependencyAssignment, DependencyAssignment, bool>
 {
 	/// <summary>
-	/// Initializes an <see cref="AssignmentInfo"/> instance via the specified candidate.
+	/// Initializes an <see cref="DependencyAssignment"/> instance via the specified candidate.
 	/// </summary>
 	/// <param name="candidate">The candidate.</param>
-	public AssignmentInfo(Candidate candidate) : this(candidate % 9, (candidate / 9).AsCellMap())
+	public DependencyAssignment(Candidate candidate) : this(candidate % 9, (candidate / 9).AsCellMap())
 	{
 	}
 

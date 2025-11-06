@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Dependency;
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="assignment"><inheritdoc cref="Assignment" path="/summary"/></param>
 /// <param name="parent"><inheritdoc cref="Parent" path="/summary"/></param>
-public sealed class DependencyNode(DependencyNodeType type, in Grid grid, AssignmentInfo? assignment, DependencyNode? parent) :
+public sealed class DependencyNode(DependencyNodeType type, in Grid grid, DependencyAssignment? assignment, DependencyNode? parent) :
 	IEquatable<DependencyNode>,
 	IEqualityOperators<DependencyNode, DependencyNode, bool>
 {
@@ -30,16 +30,16 @@ public sealed class DependencyNode(DependencyNodeType type, in Grid grid, Assign
 	/// <summary>
 	/// Indicates the current assignment. The value is <see langword="null"/> if the node is root.
 	/// </summary>
-	public AssignmentInfo? Assignment { get; } = assignment;
+	public DependencyAssignment? Assignment { get; } = assignment;
 
 	/// <summary>
 	/// Indicates all assignments in this whole branch.
 	/// </summary>
-	public ReadOnlyMemory<AssignmentInfo> Assignments
+	public ReadOnlyMemory<DependencyAssignment> Assignments
 	{
 		get
 		{
-			var result = new List<AssignmentInfo>();
+			var result = new List<DependencyAssignment>();
 			for (var node = this; node is { Assignment: { } assignment }; node = node.Parent)
 			{
 				result.Add(assignment);

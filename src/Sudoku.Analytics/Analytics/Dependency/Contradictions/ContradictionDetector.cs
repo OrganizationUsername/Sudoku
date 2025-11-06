@@ -19,8 +19,8 @@ public static class ContradictionDetector
 	/// <summary>
 	/// Represents equality comparer for typed assignment pair.
 	/// </summary>
-	private static readonly EqualityComparer<(AssignmentInfo Assignment, DependencyNodeType Type)> EqualityComparer =
-		EqualityComparer<(AssignmentInfo, DependencyNodeType)>.Create(
+	private static readonly EqualityComparer<(DependencyAssignment Assignment, DependencyNodeType Type)> EqualityComparer =
+		EqualityComparer<(DependencyAssignment, DependencyNodeType)>.Create(
 			static (l, r) => l.Item1 == r.Item1,
 			static obj => obj.Item1.GetHashCode()
 		);
@@ -109,10 +109,10 @@ public static class ContradictionDetector
 
 #if NODE_PRUNING
 		// Defines a map of assignment relations that will deduplicate assignments by connections.
-		var assignmentMap = new Dictionary<AssignmentInfo, HashSet<AssignmentInfo>>();
+		var assignmentMap = new Dictionary<DependencyAssignment, HashSet<DependencyAssignment>>();
 #endif
 
-		var firstAssignment = new AssignmentInfo(cell * 9 + digit);
+		var firstAssignment = new DependencyAssignment(cell * 9 + digit);
 		queue.Enqueue(
 			new(
 				DependencyNodeType.Supposing,
@@ -138,7 +138,7 @@ public static class ContradictionDetector
 			}
 
 			// Find for the next conclusion.
-			var collector = new HashSet<(AssignmentInfo, DependencyNodeType)>(EqualityComparer);
+			var collector = new HashSet<(DependencyAssignment, DependencyNodeType)>(EqualityComparer);
 
 			// Collect for valid next steps.
 #if NAKED_SINGLE_FIRST
@@ -234,7 +234,7 @@ public static class ContradictionDetector
 	/// <param name="assignment">The assignment.</param>
 	/// <param name="removedCandidates">Removed candidates.</param>
 	/// <returns>The grid updated.</returns>
-	private static Grid GetUpdatedGrid(/*copies*/ Grid original, ref readonly AssignmentInfo assignment, out ReadOnlySpan<Candidate> removedCandidates)
+	private static Grid GetUpdatedGrid(/*copies*/ Grid original, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
 	{
 		var r = new HashSet<Candidate>();
 		_ = assignment is (var digit, { PeerIntersection: var peerCells } cells);
@@ -270,7 +270,7 @@ public static class ContradictionDetector
 	/// <param name="grid">The grid.</param>
 	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindLockedCandidates(in Grid grid, DependencyNode node, HashSet<(AssignmentInfo, DependencyNodeType)> result)
+	private static void FindLockedCandidates(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
@@ -311,7 +311,7 @@ public static class ContradictionDetector
 	/// <param name="grid">The grid.</param>
 	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindNakedSingle(in Grid grid, DependencyNode node, HashSet<(AssignmentInfo, DependencyNodeType)> result)
+	private static void FindNakedSingle(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		foreach (var cell in grid.EmptyCells)
 		{
@@ -329,7 +329,7 @@ public static class ContradictionDetector
 	/// <param name="grid">The grid.</param>
 	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindHiddenSingle(in Grid grid, DependencyNode node, HashSet<(AssignmentInfo, DependencyNodeType)> result)
+	private static void FindHiddenSingle(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		// Iterate on each digit.
 		for (var digit = 0; digit < 9; digit++)

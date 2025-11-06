@@ -15,11 +15,11 @@ public static class DependencyNodeExtensions
 		/// <summary>
 		/// Indicates all assignments and their own types in this whole branch.
 		/// </summary>
-		public ReadOnlyMemory<(AssignmentInfo Assignment, DependencyNodeType Type)> AssignmentsWithType
+		public ReadOnlyMemory<(DependencyAssignment Assignment, DependencyNodeType Type)> AssignmentsWithType
 		{
 			get
 			{
-				var result = new List<(AssignmentInfo, DependencyNodeType)>();
+				var result = new List<(DependencyAssignment, DependencyNodeType)>();
 				for (var node = @this; node is { Assignment: { } assignment, Type: var type }; node = node.Parent)
 				{
 					result.Add((assignment, type));

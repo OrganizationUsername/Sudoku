@@ -17,8 +17,8 @@ public static class DependencyChecker
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	public static bool TryGetDependencySpaces(
 		in Grid grid,
-		in AssignmentInfo previous,
-		in AssignmentInfo current,
+		in DependencyAssignment previous,
+		in DependencyAssignment current,
 		out Space truth,
 		out Space link
 	)
@@ -211,7 +211,7 @@ public static class DependencyChecker
 		bool buildTruths(
 			ref readonly Grid grid,
 			ref SpaceSet truths,
-			ReadOnlySpan<AssignmentInfo> assignments,
+			ReadOnlySpan<DependencyAssignment> assignments,
 			out CandidateMap removed
 		)
 		{
@@ -288,7 +288,7 @@ public static class DependencyChecker
 		void buildLinks(
 			ref readonly Grid grid,
 			ref SpaceSet links,
-			ReadOnlySpan<AssignmentInfo> assignments,
+			ReadOnlySpan<DependencyAssignment> assignments,
 			ref readonly CandidateMap removed
 		)
 		{

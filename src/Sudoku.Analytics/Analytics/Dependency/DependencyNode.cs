@@ -54,6 +54,19 @@ public sealed class DependencyNode(DependencyNodeType type, in Grid grid, Depend
 	/// </summary>
 	public DependencyNode? Parent { get; } = parent;
 
+	/// <summary>
+	/// Indicates root node.
+	/// </summary>
+	public DependencyNode Root
+	{
+		get
+		{
+			var result = this;
+			for (; result!.Type != DependencyNodeType.Root; result = result.Parent) ;
+			return result;
+		}
+	}
+
 
 	/// <inheritdoc/>
 	public override bool Equals(object? obj) => Equals(obj as DependencyNode);

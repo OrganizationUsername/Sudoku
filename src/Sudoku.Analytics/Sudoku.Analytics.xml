@@ -10329,7 +10329,7 @@
             Represents a type that can find for conflict that will be used in complex patterns.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.EqualityComparer">
+        <member name="F:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.AssignmentComparer">
             <summary>
             Represents equality comparer for typed assignment pair.
             </summary>
@@ -10587,6 +10587,11 @@
         <member name="P:Sudoku.Analytics.Dependency.DependencyNode.Parent">
             <summary>
             Indicates parent node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Dependency.DependencyNode.Root">
+            <summary>
+            Indicates root node.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Dependency.DependencyNode.Equals(System.Object)">

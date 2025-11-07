@@ -1,13 +1,20 @@
+#pragma warning disable IDE0055
 #define REPORT_ERROR_IF_ALL_PRUNING_SYMBOLS_ARE_DISABLED
 #undef NAKED_SINGLE_FIRST
 #define NODE_PRUNING
-#if !NODE_PRUNING
-#if REPORT_ERROR_IF_ALL_PRUNING_SYMBOLS_ARE_DISABLED
-#error It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
-#else
-#warning It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
+#undef BRANCH_PRUNING
+#if BRANCH_PRUNING && NODE_PRUNING
+	#warning Don't enable both branch and node pruning. Only one will be enabled. 'NODE_PRUNING' is disabled now.
+	#undef NODE_PRUNING
 #endif
+#if !NODE_PRUNING && !BRANCH_PRUNING
+	#if REPORT_ERROR_IF_ALL_PRUNING_SYMBOLS_ARE_DISABLED
+		#error It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
+	#else
+		#warning It is strongly recommended to enable compilation symbols related with pruning; otherwise it will cause large memory analysis and has no optimizaiton.
+	#endif
 #endif
+#pragma warning restore IDE0055
 
 namespace Sudoku.Analytics.Dependency.Contradictions;
 
@@ -19,7 +26,7 @@ public static class ContradictionDetector
 	/// <summary>
 	/// Represents equality comparer for typed assignment pair.
 	/// </summary>
-	private static readonly EqualityComparer<(DependencyAssignment Assignment, DependencyNodeType Type)> EqualityComparer =
+	private static readonly EqualityComparer<(DependencyAssignment Assignment, DependencyNodeType Type)> AssignmentComparer =
 		EqualityComparer<(DependencyAssignment, DependencyNodeType)>.Create(
 			static (l, r) => l.Item1 == r.Item1,
 			static obj => obj.Item1.GetHashCode()
@@ -138,7 +145,7 @@ public static class ContradictionDetector
 			}
 
 			// Find for the next conclusion.
-			var collector = new HashSet<(DependencyAssignment, DependencyNodeType)>(EqualityComparer);
+			var collector = new HashSet<(DependencyAssignment, DependencyNodeType)>(AssignmentComparer);
 
 			// Collect for valid next steps.
 #if NAKED_SINGLE_FIRST
@@ -156,12 +163,13 @@ public static class ContradictionDetector
 			foreach (var (assignment, type) in collector)
 			{
 				// Determine whether the next node is worth to be added.
-				var parentAssignment = node.Assignment!.Value;
 #if NODE_PRUNING
+				var parentAssignment = node.Assignment!.Value;
 				if (assignmentMap.TryAdd(assignment, [parentAssignment]) || assignmentMap[assignment].Add(parentAssignment))
 #endif
 				{
-					queue.Enqueue(new(type, GetUpdatedGrid(tempGrid, in assignment, out _), assignment, node));
+					var nextNode = new DependencyNode(type, GetUpdatedGrid(tempGrid, in assignment, out _), assignment, node);
+					queue.Enqueue(nextNode);
 				}
 			}
 		}

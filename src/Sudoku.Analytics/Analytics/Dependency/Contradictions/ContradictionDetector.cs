@@ -16,6 +16,11 @@ public static class ContradictionDetector
 			static obj => obj.Item1.GetHashCode()
 		);
 
+	/// <summary>
+	/// Indicates empty instance of <see cref="DependencyAssignment"/> sequence.
+	/// </summary>
+	private static readonly ReadOnlyMemory<DependencyAssignment> EmptyAssignment = ReadOnlyMemory<DependencyAssignment>.Empty;
+
 
 	/// <summary>
 	/// The global method to check for complex contradiction.
@@ -39,7 +44,8 @@ public static class ContradictionDetector
 			// Iterate on each wrong digit.
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & ~(1 << solution.GetDigit(cell))))
 			{
-				if (LeadsToEmpty(grid, cell, digit, includesGroupedNodes, out var lastNode, out var cause))
+				if (FastCheck(grid, cell, digit, includesGroupedNodes)
+					&& LeadsToEmpty(grid, cell, digit, includesGroupedNodes, out var lastNode, out var cause))
 				{
 					result.Add(new(cell * 9 + digit, lastNode, cause));
 				}
@@ -51,10 +57,65 @@ public static class ContradictionDetector
 	}
 
 	/// <summary>
+	/// Do a fast check, to determine whether the digit can be a valid elimination.
+	/// </summary>
+	/// <param name="grid">The grid to be checked.</param>
+	/// <param name="cell">The start cell to check.</param>
+	/// <param name="digit">The digit to check.</param>
+	/// <param name="includesGroupedNodes">Indicates whether the searching method will includes grouped nodes.</param>
+	/// <returns>A <see cref="bool"/> result indicating whether the grid can lead a conflict or not.</returns>
+	private static bool FastCheck(in Grid grid, Cell cell, Digit digit, bool includesGroupedNodes)
+	{
+		// Fast check. Just assign it and find for conclusions.
+		var firstAssignment = new DependencyAssignment(cell * 9 + digit);
+		var tempGrid = grid;
+		Update(ref tempGrid, in firstAssignment, out _);
+
+		bool isChanged;
+		do
+		{
+			isChanged = false;
+
+			if (TryFindContradiction(tempGrid, out _))
+			{
+				return true;
+			}
+
+			// Find for the next conclusion.
+			var collector = new HashSet<(DependencyAssignment Assignment, DependencyNodeType)>(AssignmentComparer);
+
+			// Collect for valid next steps.
+#if NAKED_SINGLE_FIRST
+			FindNakedSingle(tempGrid, collector);
+			FindHiddenSingle(tempGrid, collector);
+#else
+			FindHiddenSingle(tempGrid, collector);
+			FindNakedSingle(tempGrid, collector);
+#endif
+			if (includesGroupedNodes)
+			{
+				FindLockedCandidates(tempGrid, collector);
+			}
+
+			if (collector.Count != 0)
+			{
+				isChanged = true;
+				foreach (var pair in collector)
+				{
+					Update(ref tempGrid, in pair.Assignment, out _);
+				}
+			}
+		} while (isChanged);
+
+		// No contradictions found.
+		return false;
+	}
+
+	/// <summary>
 	/// Checks for the grid, to determine whether the grid can cause a house that cannot fill a digit,
 	/// or a cell has no valid candidates, if the specified cell is filled with the specified digit.
 	/// </summary>
-	/// <param name="playground">The grid to be checked.</param>
+	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="cell">The start cell to check.</param>
 	/// <param name="digit">The digit to check.</param>
 	/// <param name="includesGroupedNodes">Indicates whether the searching method will includes grouped nodes.</param>
@@ -62,7 +123,7 @@ public static class ContradictionDetector
 	/// <param name="emptySpace">The space that is going to be empty.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid can lead a conflict or not.</returns>
 	private static bool LeadsToEmpty(
-		in Grid playground,
+		in Grid grid,
 		Cell cell,
 		Digit digit,
 		bool includesGroupedNodes,
@@ -73,37 +134,17 @@ public static class ContradictionDetector
 		// Create a queue and enqueue root node.
 		var queue = new Queue<DependencyNode>();
 
-		// Defines a map of assignments that describes all reachable cases.
-		// For example, <c>r1c1(1)</c> will cause a new assignment <c>r1c2(2)</c>, and <c>r1c2(2)</c> will cause <c>r3c9(2)</c>,
-		// just like this graph:
-		// <code>
-		//         r1c1(2)
-		//        /       \
-		// r1c2(2)         r3c9(2)
-		// </code>
-		// then the reachable map will be:
-		// <code>
-		// [
-		//     "r1c1(1)": [
-		//         "r1c2(2)",
-		//         "r3c9(2)"
-		//     ],
-		//     "r1c2(2)": [
-		//         "r3c9(2)"
-		//     ]
-		// ]
-		// </code>
-		// where <c>r1c1(1)</c> has two children <c>r1c2(2)</c> and <c>r3c9(2)</c>.
-		var reachableMap = new Dictionary<DependencyAssignment, HashSet<DependencyAssignment>>();
-
 		// Define the root supposing node and enqueue it.
 		var firstAssignment = new DependencyAssignment(cell * 9 + digit);
+		var firstAssignmentGrid = grid;
+		Update(ref firstAssignmentGrid, in firstAssignment, out _);
 		queue.Enqueue(
 			new(
 				DependencyNodeType.Supposing,
-				GetUpdatedGrid(playground, in firstAssignment, out _),
+				firstAssignmentGrid,
 				firstAssignment,
-				new(DependencyNodeType.Root, playground, null, null)
+				EmptyAssignment,
+				new(DependencyNodeType.Root, grid, null, EmptyAssignment, null)
 			)
 		);
 
@@ -123,49 +164,69 @@ public static class ContradictionDetector
 			}
 
 			// Find for the next conclusion.
-			var collector = new HashSet<(DependencyAssignment, DependencyNodeType)>(AssignmentComparer);
+			var collector = new HashSet<(DependencyAssignment Assignment, DependencyNodeType)>(AssignmentComparer);
 
 			// Collect for valid next steps.
 #if NAKED_SINGLE_FIRST
-			FindNakedSingle(tempGrid, node, collector);
-			FindHiddenSingle(tempGrid, node, collector);
+			FindNakedSingle(tempGrid, collector);
+			FindHiddenSingle(tempGrid, collector);
 #else
-			FindHiddenSingle(tempGrid, node, collector);
-			FindNakedSingle(tempGrid, node, collector);
+			FindHiddenSingle(tempGrid, collector);
+			FindNakedSingle(tempGrid, collector);
 #endif
 			if (includesGroupedNodes)
 			{
-				FindLockedCandidates(tempGrid, node, collector);
+				FindLockedCandidates(tempGrid, collector);
 			}
+
+			if (collector.Count == 0)
+			{
+				// No conclusions found - no contradiction and no conclusions. Discard this branch.
+				continue;
+			}
+
+			// Define a sibling of assignments (they are of a same depth).
+			var collectedSiblings = from a in collector.ToArray() select a.Assignment;
 
 			// Iterate on collected assignments, and store them into a temporary collection,
 			// in order to perform MRV strategy of the number of candidates.
-			var mrvNodes = new List<(DependencyNode Node, int RemovedCandidatesCount)>(collector.Count);
+			var mrvNodes = new SortedList<int, List<DependencyNode>>(collector.Count);
 			foreach (var (assignment, type) in collector)
 			{
 				// Branch pruning: we should add the node into all parent nodes, in order to avoid searching them twice.
 				// Check whether the current ancestor node can directly connect to the current assignment.
 				// If so, we can prune the branch due to <c>A -> B</c> rather than <c>A -> C -> B</c>.
-				var ancestorAssignment = node.Assignment!.Value;
-				if (reachableMap.TryAdd(ancestorAssignment, [assignment]) || reachableMap[ancestorAssignment].Add(assignment))
+				var isAnyAncestorNodeContainsThisAssignment = false;
+				foreach (var ancestor in node.EnumerateAncestors())
 				{
-					var nextNode = new DependencyNode(
-						type,
-						GetUpdatedGrid(tempGrid, in assignment, out var removedCandidates),
-						assignment,
-						node
-					);
-					mrvNodes.Add((nextNode, removedCandidates.Length));
+					if (ancestor.SiblingAssignments.Span.Contains(assignment))
+					{
+						// This assignment must be handled in ancestor nodes.
+						isAnyAncestorNodeContainsThisAssignment = true;
+						break;
+					}
+				}
+				if (isAnyAncestorNodeContainsThisAssignment)
+				{
+					continue;
+				}
+
+				// Add this node into list.
+				var tempGridUpdated = tempGrid;
+				Update(ref tempGridUpdated, in assignment, out var removedCandidates);
+				var nextNode = new DependencyNode(type, tempGridUpdated, assignment, collectedSiblings, node);
+
+				// Add it into sorted list.
+				if (!mrvNodes.TryAdd(removedCandidates.Length, [nextNode]))
+				{
+					mrvNodes[removedCandidates.Length].Add(nextNode);
 				}
 			}
 
-			// Sort the collection by the number of candidates.
-			mrvNodes.Sort(static (left, right) => right.RemovedCandidatesCount - left.RemovedCandidatesCount);
-
-			// Enqueue all nodes, ordered.
-			foreach (var mrvNode in mrvNodes)
+			// Enqueue all nodes.
+			foreach (var nodes in mrvNodes.Values)
 			{
-				queue.Enqueue(mrvNode.Node);
+				nodes.ForEach(queue.Enqueue);
 			}
 		}
 
@@ -233,17 +294,16 @@ public static class ContradictionDetector
 	/// <summary>
 	/// Create a new grid that applies the specified assignment.
 	/// </summary>
-	/// <param name="original">The original grid.</param>
+	/// <param name="grid">The grid to be updated.</param>
 	/// <param name="assignment">The assignment.</param>
 	/// <param name="removedCandidates">Removed candidates.</param>
-	/// <returns>The grid updated.</returns>
-	private static Grid GetUpdatedGrid(Grid original, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
+	private static void Update(scoped ref Grid grid, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
 	{
 		var r = new HashSet<Candidate>();
 		_ = assignment is (var digit, { PeerIntersection: var peerCells } cells);
 		foreach (var peerCell in peerCells)
 		{
-			ref var mask = ref original[peerCell];
+			ref var mask = ref grid[peerCell];
 			if (MaskToCellState(mask) == CellState.Empty && (mask >> digit & 1) != 0)
 			{
 				mask &= (Mask)~(1 << digit);
@@ -254,26 +314,24 @@ public static class ContradictionDetector
 		// Set digit for the current cell.
 		if (cells is [var cell])
 		{
-			foreach (var d in (Mask)(original.GetCandidates(cell) & ~(1 << digit)))
+			foreach (var d in (Mask)(grid.GetCandidates(cell) & ~(1 << digit)))
 			{
 				r.Add(cell * 9 + d);
 			}
 
 			// Updates mask of the target cell.
-			original[cell] = (Mask)(GetHeaderBits(in original, cell) | Grid.ModifiableMask | 1 << digit);
+			grid[cell] = (Mask)(GetHeaderBits(in grid, cell) | Grid.ModifiableMask | 1 << digit);
 		}
 
 		removedCandidates = r.ToArray();
-		return original;
 	}
 
 	/// <summary>
 	/// Find for locked candidates, and collect them into <paramref name="result"/>.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindLockedCandidates(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
+	private static void FindLockedCandidates(in Grid grid, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
@@ -312,9 +370,8 @@ public static class ContradictionDetector
 	/// Find for naked singles, and collect them into <paramref name="result"/>.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindNakedSingle(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
+	private static void FindNakedSingle(in Grid grid, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		foreach (var cell in grid.EmptyCells)
 		{
@@ -330,9 +387,8 @@ public static class ContradictionDetector
 	/// Find for hidden singles, and collect them into <paramref name="result"/>.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="node">The node.</param>
 	/// <param name="result">The result.</param>
-	private static void FindHiddenSingle(in Grid grid, DependencyNode node, HashSet<(DependencyAssignment, DependencyNodeType)> result)
+	private static void FindHiddenSingle(in Grid grid, HashSet<(DependencyAssignment, DependencyNodeType)> result)
 	{
 		// Iterate on each digit.
 		for (var digit = 0; digit < 9; digit++)

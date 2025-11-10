@@ -6,8 +6,15 @@ namespace Sudoku.Analytics.Dependency;
 /// <param name="type"><inheritdoc cref="Type" path="/summary"/></param>
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="assignment"><inheritdoc cref="Assignment" path="/summary"/></param>
+/// <param name="siblingAssignments"><inheritdoc cref="SiblingAssignments" path="/summary"/></param>
 /// <param name="parent"><inheritdoc cref="Parent" path="/summary"/></param>
-public sealed partial class DependencyNode(DependencyNodeType type, in Grid grid, DependencyAssignment? assignment, DependencyNode? parent) :
+public sealed partial class DependencyNode(
+	DependencyNodeType type,
+	in Grid grid,
+	DependencyAssignment? assignment,
+	ReadOnlyMemory<DependencyAssignment> siblingAssignments,
+	DependencyNode? parent
+) :
 	IEquatable<DependencyNode>,
 	IEqualityOperators<DependencyNode, DependencyNode, bool>
 {
@@ -25,7 +32,7 @@ public sealed partial class DependencyNode(DependencyNodeType type, in Grid grid
 		get
 		{
 			var result = 0;
-			foreach (var _ in EnumerateAncestors())
+			foreach (var _ in EnumerateAncestors(true))
 			{
 				result++;
 			}
@@ -49,6 +56,11 @@ public sealed partial class DependencyNode(DependencyNodeType type, in Grid grid
 	public DependencyAssignment? Assignment { get; } = assignment;
 
 	/// <summary>
+	/// Indicates sibling assignments.
+	/// </summary>
+	public ReadOnlyMemory<DependencyAssignment> SiblingAssignments { get; } = siblingAssignments;
+
+	/// <summary>
 	/// Indicates all assignments in this whole branch.
 	/// </summary>
 	public ReadOnlyMemory<DependencyAssignment> Assignments
@@ -56,7 +68,7 @@ public sealed partial class DependencyNode(DependencyNodeType type, in Grid grid
 		get
 		{
 			var result = new List<DependencyAssignment>();
-			foreach (var node in EnumerateAncestors())
+			foreach (var node in EnumerateAncestors(true))
 			{
 				result.Add(node.Assignment!.Value);
 			}
@@ -187,10 +199,18 @@ public sealed partial class DependencyNode(DependencyNodeType type, in Grid grid
 			: string.Join(" -> ", from assignment in Assignments.Span select assignment.ToCandidateFormatString(false));
 
 	/// <summary>
-	/// Iterate on nodes of this branch, starting with the last node.
+	/// Iterate on nodes of this branch, specifying a <see cref="bool"/> variable indicating
+	/// whether iteration operation includes the current instance as result or not.
 	/// </summary>
-	/// <returns>The branch of nodes.</returns>
-	public AncestorNodesEnumerator EnumerateAncestors() => new(this);
+	/// <param name="includingSelf">
+	/// <para>
+	/// Indicates whether <see langword="this"/> will be included to be iterated;
+	/// if <see langword="false"/>, the iteration will start with the parent node of the current instance.
+	/// </para>
+	/// <para>By default it's <see langword="false"/>.</para>
+	/// </param>
+	/// <returns>The branch of nodes using an enumerator.</returns>
+	public AncestorNodesEnumerator EnumerateAncestors(bool includingSelf = false) => new(includingSelf ? this : Parent);
 
 
 	/// <inheritdoc/>

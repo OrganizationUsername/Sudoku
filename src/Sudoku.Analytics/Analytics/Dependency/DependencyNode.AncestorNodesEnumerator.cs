@@ -3,10 +3,17 @@ namespace Sudoku.Analytics.Dependency;
 public partial class DependencyNode
 {
 	/// <summary>
-	/// Represents an enumerator type that can iterate on each node which is an ancestor node of the current node.
+	/// <para>
+	/// Represents an enumerator type that can iterate on each node which is an ancestor node of the current node;
+	/// the node itself will be iterated also.
+	/// </para>
+	/// <para>
+	/// For example, if a sequence is <c>A -&gt; B -&gt; C -&gt; D -&gt; E</c>, the iteration will firstly produces
+	/// <c>E</c>, and then <c>D</c>, <c>C</c>, <c>B</c> and finally <c>A</c>.
+	/// </para>
 	/// </summary>
 	/// <param name="_node">The node to be checked.</param>
-	public ref struct AncestorNodesEnumerator(DependencyNode _node) : IEnumerable<DependencyNode>, IEnumerator<DependencyNode>
+	public ref struct AncestorNodesEnumerator(DependencyNode? _node) : IEnumerable<DependencyNode>, IEnumerator<DependencyNode>
 	{
 		/// <inheritdoc/>
 		public DependencyNode Current { get; private set; } = null!;
@@ -18,6 +25,11 @@ public partial class DependencyNode
 		/// <inheritdoc/>
 		public bool MoveNext()
 		{
+			if (_node is null)
+			{
+				return false;
+			}
+
 			if (Current is null)
 			{
 				Current = _node;
@@ -49,14 +61,17 @@ public partial class DependencyNode
 		/// </summary>
 		/// <param name="node">The current node.</param>
 		/// <returns>An enumerator instance.</returns>
-		private static List<DependencyNode>.Enumerator GetEnumeratorDefaultImpl(DependencyNode node)
+		private static IEnumerator<DependencyNode> GetEnumeratorDefaultImpl(DependencyNode? node)
 		{
-			var result = new List<DependencyNode>();
+			if (node is null)
+			{
+				yield break;
+			}
+
 			for (var currentNode = node; currentNode?.Assignment is not null; currentNode = currentNode.Parent)
 			{
-				result.Add(currentNode);
+				yield return currentNode;
 			}
-			return result.GetEnumerator();
 		}
 	}
 }

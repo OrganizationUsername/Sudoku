@@ -220,7 +220,7 @@ public static class DependencyChecker
 			// Now we have spaces of eliminations as potential links.
 			// Here, we can iterate on each assignment in this branch, to get reasons that how an assignment is concluded.
 			// Then we can rely on its reason of it, to find for original candidates we have already removed before.
-			foreach (var ancestor in lastNode.EnumerateAncestors())
+			foreach (var ancestor in lastNode.EnumerateAncestors(true))
 			{
 				// Gets the reason why the node can be concluded.
 				var type = ancestor.Type;

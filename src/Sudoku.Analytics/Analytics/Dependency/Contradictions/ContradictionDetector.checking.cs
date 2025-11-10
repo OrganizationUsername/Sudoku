@@ -1,5 +1,5 @@
 #undef NAKED_SINGLE_FIRST
-#define MINIMUM_REMAINING_VALUES
+#undef MINIMUM_REMAINING_VALUES
 #undef MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
 #if !MINIMUM_REMAINING_VALUES && MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
 #undef MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
@@ -167,11 +167,8 @@ public partial class ContradictionDetector
 #endif
 			);
 #endif
-			foreach (var pair in collector)
+			foreach (var (assignment, type) in collector)
 			{
-				ref readonly var assignment = ref pair.Assignment;
-				var type = pair.Type;
-
 				// Branch pruning: we should add the node into all parent nodes, in order to avoid searching them twice.
 				// Check whether the current ancestor node can directly connect to the current assignment.
 				// If so, we can prune the branch due to <c>A -> B</c> rather than <c>A -> C -> B</c>.

@@ -162,17 +162,17 @@ public partial class ContradictionDetector
 				// Branch pruning: we should add the node into all parent nodes, in order to avoid searching them twice.
 				// Check whether the current ancestor node can directly connect to the current assignment.
 				// If so, we can prune the branch due to <c>A -> B</c> rather than <c>A -> C -> B</c>.
-				var anyAncestorNodeincludesThisAssignment = false;
+				var anyAncestorNodeIncludesThisAssignment = false;
 				foreach (var ancestor in node.EnumerateAncestors())
 				{
 					if (ancestor.SiblingAssignments.Span.Contains(assignment))
 					{
 						// This assignment must be handled in ancestor nodes.
-						anyAncestorNodeincludesThisAssignment = true;
+						anyAncestorNodeIncludesThisAssignment = true;
 						break;
 					}
 				}
-				if (anyAncestorNodeincludesThisAssignment)
+				if (anyAncestorNodeIncludesThisAssignment)
 				{
 					continue;
 				}

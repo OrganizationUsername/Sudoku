@@ -1,5 +1,9 @@
 #undef NAKED_SINGLE_FIRST
-#undef MINIMUM_REMAINING_VALUES
+#define MINIMUM_REMAINING_VALUES
+#undef MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
+#if !MINIMUM_REMAINING_VALUES && MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
+#undef MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
+#endif
 
 namespace Sudoku.Analytics.Dependency.Contradictions;
 
@@ -33,7 +37,7 @@ public partial class ContradictionDetector
 		// Fast check. Just assign it and find for conclusions.
 		var firstAssignment = new DependencyAssignment(cell * 9 + digit);
 		var tempGrid = grid;
-		Update(ref tempGrid, in firstAssignment, out _);
+		Update(ref tempGrid, firstAssignment, out _);
 
 		bool isChanged;
 		do
@@ -66,7 +70,7 @@ public partial class ContradictionDetector
 				isChanged = true;
 				foreach (var pair in collector)
 				{
-					Update(ref tempGrid, in pair.Assignment, out _);
+					Update(ref tempGrid, pair.Assignment, out _);
 				}
 			}
 		} while (isChanged);
@@ -101,7 +105,7 @@ public partial class ContradictionDetector
 		// Define the root supposing node and enqueue it.
 		var firstAssignment = new DependencyAssignment(cell * 9 + digit);
 		var firstAssignmentGrid = grid;
-		Update(ref firstAssignmentGrid, in firstAssignment, out _);
+		Update(ref firstAssignmentGrid, firstAssignment, out _);
 		queue.Enqueue(
 			new(
 				DependencyNodeType.Supposing,
@@ -155,7 +159,13 @@ public partial class ContradictionDetector
 #if MINIMUM_REMAINING_VALUES
 			// Iterate on collected assignments, and store them into a temporary collection,
 			// in order to perform MRV strategy of the number of candidates.
-			var mrvNodes = new SortedList<int, List<DependencyNode>>(collector.Count);
+			var mrvNodes = new SortedList<int, List<DependencyNode>>(
+				collector.Count
+#if MINIMUM_REMAINING_VALUES_USING_DESCENDING_ORDER
+				,
+				Comparer<int>.Create(static (left, right) => right - left)
+#endif
+			);
 #endif
 			foreach (var pair in collector)
 			{
@@ -182,7 +192,7 @@ public partial class ContradictionDetector
 
 				// Add this node into list.
 				var tempGridUpdated = tempGrid;
-				Update(ref tempGridUpdated, in assignment, out var removedCandidates);
+				Update(ref tempGridUpdated, assignment, out var removedCandidates);
 				var nextNode = new DependencyNode(type, tempGridUpdated, assignment, collectedSiblings, node);
 
 				// Add it into sorted list.
@@ -272,7 +282,7 @@ public partial class ContradictionDetector
 	/// <param name="grid">The grid to be updated.</param>
 	/// <param name="assignment">The assignment.</param>
 	/// <param name="removedCandidates">Removed candidates.</param>
-	private static void Update(scoped ref Grid grid, ref readonly DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
+	private static void Update(scoped ref Grid grid, DependencyAssignment assignment, out ReadOnlySpan<Candidate> removedCandidates)
 	{
 		var r = new HashSet<Candidate>();
 		_ = assignment is (var digit, { PeerIntersection: var peerCells } cells);

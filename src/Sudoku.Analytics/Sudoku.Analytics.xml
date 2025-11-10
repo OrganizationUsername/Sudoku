@@ -10371,7 +10371,7 @@
             <param name="result">The result space causing an empty.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether there's any contradiction.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.Update(Sudoku.Concepts.Grid@,Sudoku.Analytics.Dependency.DependencyAssignment@,System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.Update(Sudoku.Concepts.Grid@,Sudoku.Analytics.Dependency.DependencyAssignment,System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Create a new grid that applies the specified assignment.
             </summary>
@@ -10420,21 +10420,16 @@
             <summary>
             Represents an assignment for a group of cells and the specified digit.
             </summary>
-            <param name="Digit">Indicates the digit.</param>
-            <param name="Cells">Indicates cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="F:Sudoku.Analytics.Dependency.DependencyAssignment.PlaceholderCell">
             <summary>
-            Represents an assignment for a group of cells and the specified digit.
+            Indicates placeholder cell.
             </summary>
-            <param name="Digit">Indicates the digit.</param>
-            <param name="Cells">Indicates cells used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Dependency.DependencyAssignment.Digit">
-            <summary>Indicates the digit.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Dependency.DependencyAssignment.Cells">
-            <summary>Indicates cells used.</summary>
+        <member name="F:Sudoku.Analytics.Dependency.DependencyAssignment._mask">
+            <summary>
+            Indicates the backing mask.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.#ctor(System.Int32)">
             <summary>
@@ -10442,10 +10437,44 @@
             </summary>
             <param name="candidate">The candidate.</param>
         </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.#ctor(System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Analytics.Dependency.DependencyAssignment"/> instance via the specified candidate.
+            </summary>
+            <param name="digit">The digit.</param>
+            <param name="cells">The cells.</param>
+        </member>
         <member name="P:Sudoku.Analytics.Dependency.DependencyAssignment.IsGrouped">
             <summary>
             Indicates whether the assignment instance is for grouped set rule.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Dependency.DependencyAssignment.Digit">
+            <summary>
+            Indicates the digit used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Dependency.DependencyAssignment.Cells">
+            <summary>
+            Indicates the cells used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.Deconstruct(System.Int32@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.Equals(Sudoku.Analytics.Dependency.DependencyAssignment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.ToCandidateFormatString(System.Boolean)">
             <inheritdoc cref="M:Sudoku.Analytics.Dependency.DependencyAssignment.ToCandidateFormatString(System.Boolean,System.IFormatProvider)"/>
@@ -10461,44 +10490,14 @@
             <param name="formatProvider">The coordinate format converter.</param>
             <returns>The string representation.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.Analytics.Dependency.DependencyAssignment.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <c>ToString</c>.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.op_Equality(Sudoku.Analytics.Dependency.DependencyAssignment,Sudoku.Analytics.Dependency.DependencyAssignment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Dependency.DependencyAssignment.op_Inequality(Sudoku.Analytics.Dependency.DependencyAssignment,Sudoku.Analytics.Dependency.DependencyAssignment)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Dependency.DependencyChecker">
             <summary>
@@ -10591,7 +10590,7 @@
             <param name="node">The current node.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.#ctor(Sudoku.Analytics.Dependency.DependencyNodeType,Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Analytics.Dependency.DependencyAssignment}@,System.ReadOnlyMemory{Sudoku.Analytics.Dependency.DependencyAssignment},Sudoku.Analytics.Dependency.DependencyNode)">
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.#ctor(Sudoku.Analytics.Dependency.DependencyNodeType,Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Analytics.Dependency.DependencyAssignment},System.ReadOnlyMemory{Sudoku.Analytics.Dependency.DependencyAssignment},Sudoku.Analytics.Dependency.DependencyNode)">
             <summary>
             Represents a dependency node.
             </summary>

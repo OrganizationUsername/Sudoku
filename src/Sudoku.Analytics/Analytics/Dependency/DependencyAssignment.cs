@@ -44,7 +44,7 @@ public readonly struct DependencyAssignment :
 	/// <summary>
 	/// Indicates whether the assignment instance is for grouped set rule.
 	/// </summary>
-	public bool IsGrouped => (_mask >> 11 & (127 << 11 | 127)) == (PlaceholderCell << 11 | PlaceholderCell);
+	public bool IsGrouped => (_mask >> 11 & (127 << 7 | 127)) != (PlaceholderCell << 7 | PlaceholderCell);
 
 	/// <summary>
 	/// Indicates the digit used.

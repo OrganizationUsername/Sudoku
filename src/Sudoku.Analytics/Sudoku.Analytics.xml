@@ -10334,11 +10334,6 @@
             Represents equality comparer for typed assignment pair.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.EmptyAssignment">
-            <summary>
-            Indicates empty instance of <see cref="T:Sudoku.Analytics.Dependency.DependencyAssignment"/> sequence.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Dependency.Contradictions.ContradictionDetector.DoFastTryAndError(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Do a fast check, to determine whether the candidate can be a valid elimination or not.
@@ -10590,7 +10585,7 @@
             <param name="node">The current node.</param>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.#ctor(Sudoku.Analytics.Dependency.DependencyNodeType,Sudoku.Concepts.Grid@,Sudoku.Analytics.Dependency.DependencyAssignment,System.ReadOnlyMemory{Sudoku.Analytics.Dependency.DependencyAssignment},Sudoku.Analytics.Dependency.DependencyNode)">
+        <member name="M:Sudoku.Analytics.Dependency.DependencyNode.#ctor(Sudoku.Analytics.Dependency.DependencyNodeType,Sudoku.Concepts.Grid@,Sudoku.Analytics.Dependency.DependencyAssignment,Sudoku.Analytics.Dependency.DependencyAssignment[],Sudoku.Analytics.Dependency.DependencyNode)">
             <summary>
             Represents a dependency node.
             </summary>

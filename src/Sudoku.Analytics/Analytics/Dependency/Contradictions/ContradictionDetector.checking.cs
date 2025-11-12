@@ -18,11 +18,6 @@ public partial class ContradictionDetector
 			static obj => obj.Item1.GetHashCode()
 		);
 
-	/// <summary>
-	/// Indicates empty instance of <see cref="DependencyAssignment"/> sequence.
-	/// </summary>
-	private static readonly ReadOnlyMemory<DependencyAssignment> EmptyAssignment = ReadOnlyMemory<DependencyAssignment>.Empty;
-
 
 	/// <summary>
 	/// Do a fast check, to determine whether the candidate can be a valid elimination or not.
@@ -111,8 +106,8 @@ public partial class ContradictionDetector
 				DependencyNodeType.Supposing,
 				firstAssignmentGrid,
 				firstAssignment,
-				EmptyAssignment,
-				new(DependencyNodeType.Root, grid, default, EmptyAssignment, null)
+				[],
+				new(DependencyNodeType.Root, grid, default, [], null)
 			)
 		);
 
@@ -175,7 +170,7 @@ public partial class ContradictionDetector
 				var anyAncestorNodeIncludesThisAssignment = false;
 				foreach (var ancestor in node.EnumerateAncestors())
 				{
-					if (ancestor.SiblingAssignments.Span.Contains(assignment))
+					if (ancestor.SiblingAssignments.Contains(assignment))
 					{
 						// This assignment must be handled in ancestor nodes.
 						anyAncestorNodeIncludesThisAssignment = true;
@@ -188,7 +183,15 @@ public partial class ContradictionDetector
 				}
 
 				var tempGridUpdated = tempGrid;
-				Update(ref tempGridUpdated, assignment, out var removedCandidates);
+				Update(
+					ref tempGridUpdated,
+					assignment,
+#if MINIMUM_REMAINING_VALUES
+					out var removedCandidates
+#else
+					out _
+#endif
+				);
 				var nextNode = new DependencyNode(type, tempGridUpdated, assignment, collectedSiblings, node);
 
 				// Add it into sorted list.

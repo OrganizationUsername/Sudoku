@@ -12,7 +12,7 @@ public sealed partial class DependencyNode(
 	DependencyNodeType type,
 	in Grid grid,
 	DependencyAssignment assignment,
-	ReadOnlyMemory<DependencyAssignment> siblingAssignments,
+	DependencyAssignment[] siblingAssignments,
 	DependencyNode? parent
 ) :
 	IEquatable<DependencyNode>,
@@ -101,12 +101,12 @@ public sealed partial class DependencyNode(
 	/// <summary>
 	/// Indicates sibling assignments.
 	/// </summary>
-	public ReadOnlyMemory<DependencyAssignment> SiblingAssignments { get; } = siblingAssignments;
+	public DependencyAssignment[] SiblingAssignments { get; } = siblingAssignments;
 
 	/// <summary>
 	/// Indicates all assignments in this whole branch.
 	/// </summary>
-	public ReadOnlyMemory<DependencyAssignment> Assignments
+	public DependencyAssignment[] Assignments
 	{
 		get
 		{
@@ -115,7 +115,7 @@ public sealed partial class DependencyNode(
 			{
 				result.Push(node.Assignment);
 			}
-			return result.ToArray();
+			return [.. result];
 		}
 	}
 
@@ -234,7 +234,7 @@ public sealed partial class DependencyNode(
 	public override string ToString()
 		=> Type == DependencyNodeType.Root
 			? "<root>"
-			: string.Join(" -> ", from assignment in Assignments.Span select assignment.ToCandidateFormatString(false));
+			: string.Join(" -> ", from assignment in Assignments select assignment.ToCandidateFormatString(false));
 
 	/// <summary>
 	/// Iterate on nodes of this branch, specifying a <see cref="bool"/> variable indicating

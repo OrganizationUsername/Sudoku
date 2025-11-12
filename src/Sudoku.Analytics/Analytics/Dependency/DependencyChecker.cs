@@ -177,7 +177,7 @@ public static class DependencyChecker
 	public static void InferSpaces(in Grid grid, DependencyNode lastNode, Space cause, out SpaceSet truths, out SpaceSet links)
 	{
 		(truths, links) = (SpaceSet.Empty, SpaceSet.Empty);
-		var assignments = lastNode.Assignments.Span;
+		var assignments = lastNode.Assignments;
 
 		// Trace removed candidates, and build truths.
 		if (!buildTruths(in grid, ref truths, assignments, out var removed))
@@ -211,7 +211,7 @@ public static class DependencyChecker
 		bool buildTruths(
 			ref readonly Grid grid,
 			ref SpaceSet truths,
-			ReadOnlySpan<DependencyAssignment> assignments,
+			DependencyAssignment[] assignments,
 			out CandidateMap removed
 		)
 		{
@@ -235,7 +235,7 @@ public static class DependencyChecker
 			}
 
 			// Remove candidates that is from assignments.
-			foreach (ref readonly var assignment in assignments)
+			foreach (var assignment in assignments)
 			{
 				foreach (var cell in assignment.Cells)
 				{
@@ -257,7 +257,7 @@ public static class DependencyChecker
 
 			// Iterate on each assignment, and update grid by removing some candidates,
 			// and then check which candidates are removed. Then traverse them to find all links that can cover them.
-			foreach (ref readonly var assignment in assignments)
+			foreach (var assignment in assignments)
 			{
 				// Fetch candidates assigned in the current round.
 				var cells = assignment.Cells;

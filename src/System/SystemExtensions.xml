@@ -1358,6 +1358,9 @@
         <member name="M:System.Collections.Generic.StackExtensions.GetCount``1(System.Collections.Generic.Stack{``0})">
             <inheritdoc cref="M:System.Collections.Generic.StackExtensions.&lt;G&gt;$A47296F3FDF8EE0A5D7B65850C19E135`1.GetCount"/>
         </member>
+        <member name="M:System.Collections.Generic.StackExtensions.AsSpan``1(System.Collections.Generic.Stack{``0})">
+            <inheritdoc cref="M:System.Collections.Generic.StackExtensions.&lt;G&gt;$A47296F3FDF8EE0A5D7B65850C19E135`1.AsSpan"/>
+        </member>
         <member name="M:System.Collections.Generic.StackExtensions.op_OnesComplement``1(System.Collections.Generic.Stack{``0})">
             <inheritdoc cref="M:System.Collections.Generic.StackExtensions.&lt;G&gt;$A47296F3FDF8EE0A5D7B65850C19E135`1.op_OnesComplement(System.Collections.Generic.Stack{`0})"/>
         </member>
@@ -1408,6 +1411,12 @@
 				</para>
 			</feature>
             </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.StackExtensions.&lt;G&gt;$A47296F3FDF8EE0A5D7B65850C19E135`1.AsSpan">
+            <summary>
+            Creates a <see cref="T:System.ReadOnlySpan`1"/> instance over <see cref="T:System.Collections.Generic.Stack`1"/>.
+            </summary>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
         </member>
         <member name="M:System.Collections.Generic.StackExtensions.&lt;G&gt;$A47296F3FDF8EE0A5D7B65850C19E135`1.op_OnesComplement(System.Collections.Generic.Stack{`0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Reverse``1(System.Collections.Generic.IEnumerable{``0})" />

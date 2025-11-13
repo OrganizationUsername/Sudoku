@@ -43,6 +43,12 @@ public static class StackExtensions
 		/// </remarks>
 		public ref int GetCount() => ref StackEntry<T>.GetCount(@this);
 
+		/// <summary>
+		/// Creates a <see cref="ReadOnlySpan{T}"/> instance over <see cref="Stack{T}"/>.
+		/// </summary>
+		/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
+		public ReadOnlySpan<T> AsSpan() => StackEntry<T>.GetArray(@this).AsReadOnlySpan()[..@this.Count];
+
 
 		/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})" />
 		public static Stack<T> operator ~(Stack<T> value) 

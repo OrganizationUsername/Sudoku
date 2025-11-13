@@ -207,7 +207,8 @@ public interface IGrid<TSelf> :
 	/// <remarks>
 	/// This value is found out via backtracking algorithm.
 	/// </remarks>
-	static TSelf IMinMaxValue<TSelf>.MinValue => TSelf.Parse("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
+	static TSelf IMinMaxValue<TSelf>.MinValue
+		=> TSelf.Parse("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
@@ -215,7 +216,8 @@ public interface IGrid<TSelf> :
 	/// <remarks>
 	/// This value is found out via backtracking algorithm.
 	/// </remarks>
-	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
+	static TSelf IMinMaxValue<TSelf>.MaxValue
+		=> TSelf.Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 
 
 	/// <summary>

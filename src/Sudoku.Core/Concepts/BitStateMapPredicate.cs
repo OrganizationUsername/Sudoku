@@ -12,6 +12,6 @@ namespace Sudoku.Concepts;
 /// <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
 /// <param name="grid">The grid as candidate reference.</param>
 /// <returns>A <see cref="bool"/> result indicating that.</returns>
-public delegate bool CellMapOrCandidateMapPredicate<TSelf, TElement>(TElement offset, in Grid grid)
-	where TSelf : unmanaged, ICellMapOrCandidateMap<TSelf, TElement>
+public delegate bool BitStateMapPredicate<TSelf, TElement>(TElement offset, in Grid grid)
+	where TSelf : unmanaged, IBitStateMap<TSelf, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>;

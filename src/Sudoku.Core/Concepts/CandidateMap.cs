@@ -1,6 +1,6 @@
 namespace Sudoku.Concepts;
 
-using CandidateMapBase = ICellMapOrCandidateMap<CandidateMap, Candidate>;
+using CandidateMapBase = IBitStateMap<CandidateMap, Candidate>;
 
 /// <summary>
 /// Encapsulates a binary series of candidate state table.
@@ -515,7 +515,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate or -1 if none found.</returns>
-	public readonly Candidate First(in Grid grid, CellMapOrCandidateMapPredicate<CandidateMap, Candidate> match)
+	public readonly Candidate First(in Grid grid, BitStateMapPredicate<CandidateMap, Candidate> match)
 	{
 		foreach (var candidate in Offsets)
 		{

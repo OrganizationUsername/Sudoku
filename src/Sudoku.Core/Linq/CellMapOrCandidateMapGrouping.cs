@@ -17,7 +17,7 @@ public readonly struct CellMapOrCandidateMapGrouping<TMap, TElement, TKey>(TKey 
 	IGrouping<TKey, TElement>,
 	ISelectMethod<TMap, TElement>,
 	IWhereMethod<TMap, TElement>
-	where TMap : unmanaged, ICellMapOrCandidateMap<TMap, TElement>
+	where TMap : unmanaged, IBitStateMap<TMap, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TKey : notnull
 {
@@ -38,7 +38,7 @@ public readonly struct CellMapOrCandidateMapGrouping<TMap, TElement, TKey>(TKey 
 	public TMap Values { get; } = values;
 
 
-	/// <inheritdoc cref="ICellMapOrCandidateMap{TSelf, TElement}.this[TElement]"/>
+	/// <inheritdoc cref="IBitStateMap{TSelf, TElement}.this[TElement]"/>
 	public TElement this[TElement index] => Values[index];
 
 

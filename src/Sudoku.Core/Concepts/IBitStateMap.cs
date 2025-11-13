@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
-public interface ICellMapOrCandidateMap<TSelf, TElement> :
+public interface IBitStateMap<TSelf, TElement> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IComparable<TSelf>,
@@ -30,7 +30,7 @@ public interface ICellMapOrCandidateMap<TSelf, TElement> :
 	ISubtractionOperators<TSelf, TElement, TSelf>,
 	IUtf8SpanFormattable,
 	IWhereMethod<TSelf, TElement>
-	where TSelf : unmanaged, ICellMapOrCandidateMap<TSelf, TElement>
+	where TSelf : unmanaged, IBitStateMap<TSelf, TElement>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 {
 	/// <summary>

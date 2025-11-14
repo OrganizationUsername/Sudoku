@@ -18,7 +18,7 @@ internal static class SetTheorySolver
 	/// List of solutions; each solution is a <see cref="Permutation"/> of assigned candidates (0..728).
 	/// </returns>
 	/// <seealso cref="Permutation"/>
-	public static ReadOnlySpan<ReadOnlyMemory<Candidate>> Solve(in Logic logic, int maxSolutions = int.MaxValue)
+	public static ReadOnlySpan<ReadOnlyMemory<Candidate>> Solve(ref readonly Logic logic, int maxSolutions = int.MaxValue)
 	{
 		ref readonly var truths = ref logic.Truths;
 		ref readonly var links = ref logic.Links;

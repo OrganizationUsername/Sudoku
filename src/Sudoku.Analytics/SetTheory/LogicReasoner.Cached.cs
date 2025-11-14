@@ -86,7 +86,7 @@ public partial class LogicReasoner
 		}
 
 		/// <inheritdoc cref="LogicReasoner.GetAssignedCount(ref readonly Logic)"/>
-		public static AssignedCount GetAssignedCount(in Logic logic, ReadOnlySpan<Permutation> permutations)
+		public static AssignedCount GetAssignedCount(ref readonly Logic logic, ReadOnlySpan<Permutation> permutations)
 		{
 			// Optimize: If there're only cell truths, just return the size of truths.
 			if (logic.Truths == SpaceSet.AllCells)

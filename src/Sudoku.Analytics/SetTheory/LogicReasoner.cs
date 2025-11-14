@@ -44,7 +44,7 @@ public static partial class LogicReasoner
 	/// <param name="logic">The pattern.</param>
 	/// <returns>The permutation count value.</returns>
 	public static AssignedCount GetAssignedCount(ref readonly Logic logic)
-		=> PermutationRequiredEntry.GetAssignedCount(logic, GetPermutations(in logic));
+		=> PermutationRequiredEntry.GetAssignedCount(in logic, GetPermutations(in logic));
 
 	/// <summary>
 	/// Try to find all possible permutations.
@@ -53,7 +53,7 @@ public static partial class LogicReasoner
 	/// <returns>The permutations.</returns>
 	public static ReadOnlySpan<Permutation> GetPermutations(ref readonly Logic logic)
 	{
-		var permutationsRaw = SetTheorySolver.Solve(logic);
+		var permutationsRaw = SetTheorySolver.Solve(in logic);
 		var linksLookup = logic.LinksLightupLookup;
 		var result = new List<Permutation>(permutationsRaw.Length);
 		foreach (var permutation in permutationsRaw)

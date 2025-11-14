@@ -3,7 +3,7 @@ namespace System.Runtime.CompilerServices;
 /// <summary>
 /// Represents a list of methods that can check for the concept "References" defined in C#.
 /// </summary>
-public static unsafe class UnsafeExtensions
+public static class UnsafeExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Unsafe"/>.

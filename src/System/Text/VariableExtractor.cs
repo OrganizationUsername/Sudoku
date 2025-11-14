@@ -7,7 +7,7 @@ namespace System.Text;
 /// <param name="formattedCount"><inheritdoc cref="_formattedCount" path="/summary"/></param>
 /// <param name="original"><inheritdoc cref="_original" path="/summary"/></param>
 [InterpolatedStringHandler]
-public unsafe ref struct VariableExtractor(int literalLength, int formattedCount, string original)
+public ref struct VariableExtractor(int literalLength, int formattedCount, string original)
 {
 	/// <summary>
 	/// Indicates the placeholder character.
@@ -35,7 +35,7 @@ public unsafe ref struct VariableExtractor(int literalLength, int formattedCount
 	/// <summary>
 	/// Indicates the string variable pointers.
 	/// </summary>
-	private readonly string?*[] _pointers = new string*[formattedCount]!;
+	private readonly unsafe string?*[] _pointers = new string*[formattedCount]!;
 
 	/// <summary>
 	/// Indicates the backing builder object.
@@ -58,7 +58,7 @@ public unsafe ref struct VariableExtractor(int literalLength, int formattedCount
 	/// Appends a variable into the collection, recording its variable pointer (address).
 	/// </summary>
 	/// <param name="variable">The reference to the variable.</param>
-	public void AppendFormatted(in string? variable)
+	public unsafe void AppendFormatted(in string? variable)
 	{
 		_builder.Append(PlaceholderReservedCharacter);
 		_pointers[_index++] = (string?*)Unsafe.AsPointer(ref Unsafe.AsRef(in variable));
@@ -74,7 +74,7 @@ public unsafe ref struct VariableExtractor(int literalLength, int formattedCount
 	/// <param name="original">Indicates the original text.</param>
 	/// <param name="extractor">Indicates the interpolated string that inserts custom variables to be parsed.</param>
 	/// <exception cref="InvalidOperationException">Throws when the text is invalid to be checked.</exception>
-	public static void Assign(string original, [InterpolatedStringHandlerArgument(nameof(original))] in VariableExtractor extractor)
+	public static unsafe void Assign(string original, [InterpolatedStringHandlerArgument(nameof(original))] in VariableExtractor extractor)
 	{
 		var newString = extractor._builder.ToString();
 		var parts = newString.Split(PlaceholderReservedCharacter);

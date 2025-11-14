@@ -4,7 +4,7 @@ namespace Sudoku.MinlexOrder;
 /// Provides with extension methods on <see cref="Mapper"/> instances.
 /// </summary>
 /// <seealso cref="Mapper"/>
-internal static unsafe class MapperExtensions
+internal static class MapperExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="Mapper"/>.
@@ -15,7 +15,7 @@ internal static unsafe class MapperExtensions
 		/// Converts <see cref="Mapper"/> and <see cref="MinlexCandidate"/> into a readable <see cref="Transform"/> instance.
 		/// </summary>
 		/// <seealso cref="MinlexCandidate"/>
-		public Transform FromMapper(in MinlexCandidate cand)
+		public unsafe Transform FromMapper(in MinlexCandidate cand)
 		{
 			// Use MapRowsBackward (canonicalRow -> sourceRow).
 			var rows = new RowIndex[9];
@@ -85,7 +85,7 @@ internal static unsafe class MapperExtensions
 		/// Converts <see cref="Mapper"/> into <see cref="Transform"/>, without using <see cref="MinlexCandidate"/>.
 		/// This method will do a heuristics search, trying to infer target grid with ordering of "fitness" of transformations.
 		/// </summary>
-		public Transform FromMapperInfer()
+		public unsafe Transform FromMapperInfer()
 		{
 			// Quick heuristics: count how many cell mappings are consistent with "no-transpose".
 			var score_NotTransposed = 0;

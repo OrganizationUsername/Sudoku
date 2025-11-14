@@ -3,15 +3,15 @@ namespace Sudoku.MinlexOrder;
 /// <summary>
 /// Indicates a data structure that describes the cell and label handled.
 /// </summary>
-internal unsafe struct Mapper
+internal struct Mapper
 {
 	/// <summary>
 	/// Indicates the cell <see cref="byte"/> values.
 	/// </summary>
-	public fixed byte Cell[81];
+	public unsafe fixed byte Cell[81];
 
 	/// <summary>
 	/// Indicates the label <see cref="byte"/> values.
 	/// </summary>
-	public fixed byte Label[10];
+	public unsafe fixed byte Label[10];
 }

@@ -3,7 +3,7 @@ namespace Sudoku.MinlexOrder;
 /// <summary>
 /// Represents a pattern for a sudoku grid.
 /// </summary>
-internal unsafe struct GridPattern
+internal struct GridPattern
 {
 	/// <summary>
 	/// A precomputed min-lexicographical-ordered recompositing of the bit triplets for a 9-bits input.
@@ -36,16 +36,16 @@ internal unsafe struct GridPattern
 	/// <summary>
 	/// Indicates the rows.
 	/// </summary>
-	public fixed int Rows[9];
+	public unsafe fixed int Rows[9];
 
 	/// <summary>
 	/// Indicates the digit.
 	/// </summary>
-	public fixed int Digits[81];
+	public unsafe fixed int Digits[81];
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString()
+	public readonly override unsafe string ToString()
 	{
 		var sb = new StringBuilder();
 		sb.Append('[');
@@ -63,7 +63,7 @@ internal unsafe struct GridPattern
 	/// </summary>
 	/// <param name="p">The grid pattern instance.</param>
 	/// <returns>The score value calculated.</returns>
-	public static int BestTopRowScore(in GridPattern p)
+	public static unsafe int BestTopRowScore(in GridPattern p)
 	{
 		// Returns the smallest row after canonicalization of each row independently.
 		Mask x;
@@ -85,7 +85,7 @@ internal unsafe struct GridPattern
 	/// <param name="grid">Indicates the grid code to be used.</param>
 	/// <param name="resultPair">Indicates the 2 <see cref="GridPattern"/> instances for normal and transposed cases.</param>
 	/// <returns>An <see cref="int"/> value indicating the number of given cells.</returns>
-	public static int FromString(string grid, out ReadOnlySpan<GridPattern> resultPair)
+	public static unsafe int FromString(string grid, out ReadOnlySpan<GridPattern> resultPair)
 	{
 		var pair = new GridPattern[2];
 		ref var normal = ref pair[0];

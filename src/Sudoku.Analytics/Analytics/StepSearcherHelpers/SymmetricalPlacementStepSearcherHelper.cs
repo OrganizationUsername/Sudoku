@@ -3,12 +3,12 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Represents a way to infer grid symmetry of placements.
 /// </summary>
-internal sealed unsafe class SymmetricalPlacementStepSearcherHelper : StepSearcherHelper
+internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelper
 {
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly delegate*<in Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>[] Checkers =
+	private static readonly unsafe delegate*<in Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>[] Checkers =
 		[&Diagonal, &AntiDiagonal, &Central];
 
 
@@ -23,7 +23,7 @@ internal sealed unsafe class SymmetricalPlacementStepSearcherHelper : StepSearch
 	/// <param name="mappingDigits">The mapping digits.</param>
 	/// <param name="selfPairedDigitsMask">The self-paired digits.</param>
 	/// <returns>Symmetric types.</returns>
-	public static SymmetricType GetSymmetry(in Grid grid, out ReadOnlySpan<Digit?> mappingDigits, out Mask selfPairedDigitsMask)
+	public static unsafe SymmetricType GetSymmetry(in Grid grid, out ReadOnlySpan<Digit?> mappingDigits, out Mask selfPairedDigitsMask)
 	{
 		if (grid.PuzzleType != SudokuType.Standard || grid.Uniqueness != Uniqueness.Unique)
 		{
@@ -56,7 +56,7 @@ internal sealed unsafe class SymmetricalPlacementStepSearcherHelper : StepSearch
 	/// Throws when the argument <paramref name="symmetricType"/> is not <see cref="SymmetricType.Central"/>,
 	/// <see cref="SymmetricType.Diagonal"/> or	<see cref="SymmetricType.AntiDiagonal"/>.
 	/// </exception>
-	public static bool IsSymmetricalPlacement(
+	public static unsafe bool IsSymmetricalPlacement(
 		in Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,

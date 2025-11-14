@@ -3,7 +3,7 @@ namespace Sudoku.MinlexOrder;
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
-internal unsafe struct MinlexCandidate
+internal struct MinlexCandidate
 {
 	/// <summary>
 	/// A flag field indicating whether the candidate is handled as transposed.
@@ -13,12 +13,12 @@ internal unsafe struct MinlexCandidate
 	/// <summary>
 	/// Indicates the map bits on forward rows.
 	/// </summary>
-	public fixed sbyte MapRowsForward[9];
+	public unsafe fixed sbyte MapRowsForward[9];
 
 	/// <summary>
 	/// Indicates the map bits on backward rows.
 	/// </summary>
-	public fixed sbyte MapRowsBackward[9];
+	public unsafe fixed sbyte MapRowsBackward[9];
 
 	/// <summary>
 	/// Indicates the stack permutation.
@@ -28,7 +28,7 @@ internal unsafe struct MinlexCandidate
 	/// <summary>
 	/// Indicates mask bit values for column permutation.
 	/// </summary>
-	public fixed byte ColumnsPermutationMask[3];
+	public unsafe fixed byte ColumnsPermutationMask[3];
 
 
 	/// <summary>
@@ -41,7 +41,7 @@ internal unsafe struct MinlexCandidate
 	/// </summary>
 	/// <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
 	/// <param name="topRow">The top row used.</param>
-	public MinlexCandidate(sbyte transpose, int topRow) : this()
+	public unsafe MinlexCandidate(sbyte transpose, int topRow) : this()
 	{
 		IsTransposed = transpose;
 		MapRowsForward[topRow] = 0;
@@ -52,7 +52,7 @@ internal unsafe struct MinlexCandidate
 	/// <summary>
 	/// Represents an empty <see cref="MinlexCandidate"/> instance.
 	/// </summary>
-	public static MinlexCandidate Empty
+	public static unsafe MinlexCandidate Empty
 	{
 		get
 		{
@@ -78,7 +78,7 @@ internal unsafe struct MinlexCandidate
 	/// <param name="topKey">Indicates the top key.</param>
 	/// <param name="results">Indicates the results.</param>
 	/// <param name="resultCount">The result count.</param>
-	public readonly void ExpandStacks(ReadOnlySpan<GridPattern> pair, int topKey, Span<MinlexCandidate> results, ref int resultCount)
+	public readonly unsafe void ExpandStacks(ReadOnlySpan<GridPattern> pair, int topKey, Span<MinlexCandidate> results, ref int resultCount)
 	{
 		// For a top row, obtain stack and columns permutations.
 		ref readonly var gr = ref pair[IsTransposed];
@@ -119,7 +119,7 @@ internal unsafe struct MinlexCandidate
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString()
+	public readonly override unsafe string ToString()
 	{
 		var sb = new StringBuilder();
 		sb.Append(IsTransposed);

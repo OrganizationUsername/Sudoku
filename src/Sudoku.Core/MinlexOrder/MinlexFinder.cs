@@ -3,7 +3,7 @@ namespace Sudoku.MinlexOrder;
 /// <summary>
 /// Represents a finder type.
 /// </summary>
-public sealed unsafe class MinlexFinder
+public sealed class MinlexFinder
 {
 	/// <summary>
 	/// Represents empty cell placeholder.
@@ -23,7 +23,7 @@ public sealed unsafe class MinlexFinder
 
 
 	/// <inheritdoc cref="Find(string, out Transform)"/>
-	public string Find(string grid)
+	public unsafe string Find(string grid)
 	{
 		_mappers.Clear();
 
@@ -40,7 +40,7 @@ public sealed unsafe class MinlexFinder
 		result[5] = (char)((minTopRowScore >> 3) & 1);
 		result[6] = (char)((minTopRowScore >> 2) & 1);
 		result[7] = (char)((minTopRowScore >> 1) & 1);
-		result[8] = (char)((minTopRowScore) & 1);
+		result[8] = (char)(minTopRowScore & 1);
 
 		// Step 1: Determine for top rows.
 		var candidatesRow02468 = (stackalloc MinlexCandidate[CandidateListTotal]);
@@ -154,13 +154,13 @@ public sealed unsafe class MinlexFinder
 			ref var r = ref result[9 * toRow];
 			r = (char)((bestTriplets0 >> 2) & 1);
 			Unsafe.Add(ref r, 1) = (char)((bestTriplets0 >> 1) & 1);
-			Unsafe.Add(ref r, 2) = (char)((bestTriplets0) & 1);
+			Unsafe.Add(ref r, 2) = (char)(bestTriplets0 & 1);
 			Unsafe.Add(ref r, 3) = (char)((bestTriplets1 >> 2) & 1);
 			Unsafe.Add(ref r, 4) = (char)((bestTriplets1 >> 1) & 1);
-			Unsafe.Add(ref r, 5) = (char)((bestTriplets1) & 1);
+			Unsafe.Add(ref r, 5) = (char)(bestTriplets1 & 1);
 			Unsafe.Add(ref r, 6) = (char)((bestTriplets2 >> 2) & 1);
 			Unsafe.Add(ref r, 7) = (char)((bestTriplets2 >> 1) & 1);
-			Unsafe.Add(ref r, 8) = (char)((bestTriplets2) & 1);
+			Unsafe.Add(ref r, 8) = (char)(bestTriplets2 & 1);
 		}
 
 		if (casesCount == 0)
@@ -332,7 +332,7 @@ public sealed unsafe class MinlexFinder
 	/// <param name="minlex">The min-lex grid string.</param>
 	/// <returns>The target string.</returns>
 	/// <exception cref="InvalidOperationException">Throws when label is invalid.</exception>
-	internal string ReconstructOriginal(in Mapper mapper, string minlex)
+	internal unsafe string ReconstructOriginal(in Mapper mapper, string minlex)
 	{
 		var inversed = (stackalloc int[81]);
 		inversed.Fill(-1);

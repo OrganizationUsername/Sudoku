@@ -16,12 +16,12 @@ public readonly ref struct DeadlyPatternResult(ref readonly Grid grid)
 	/// <summary>
 	/// Indicates the pattern is a real deadly pattern.
 	/// </summary>
-	public bool IsDeadlyPattern { get; init; }
+	public required bool IsDeadlyPattern { get; init; }
 
 	/// <summary>
 	/// Indicates the number of permutations.
 	/// </summary>
-	public int PermutationsCount { get; init; }
+	public required int PermutationsCount { get; init; }
 
 	/// <summary>
 	/// Indicates the failed reason.

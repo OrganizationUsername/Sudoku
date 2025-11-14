@@ -1,4 +1,4 @@
-namespace Sudoku.UniquenessTests;
+namespace Sudoku.DeadlyPatternTheory;
 
 public partial class DeadlyPatternAssigningMap
 {

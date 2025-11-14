@@ -1,4 +1,4 @@
-namespace Sudoku.UniquenessTests;
+namespace Sudoku.DeadlyPatternTheory;
 
 /// <summary>
 /// Represents a map of cell and mask pairs, indicating the specified cells should only use specified digits.

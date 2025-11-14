@@ -1,4 +1,4 @@
-namespace Sudoku.UniquenessTests;
+namespace Sudoku.DeadlyPatternTheory;
 
 /// <summary>
 /// Indicates the result value after <see cref="DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(in Grid, in SpaceSet)"/> called.

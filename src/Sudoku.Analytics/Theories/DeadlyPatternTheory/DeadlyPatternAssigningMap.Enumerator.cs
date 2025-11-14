@@ -1,4 +1,4 @@
-namespace Sudoku.DeadlyPatternTheory;
+namespace Sudoku.Theories.DeadlyPatternTheory;
 
 public partial class DeadlyPatternAssigningMap
 {

@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents rank result for a pattern.

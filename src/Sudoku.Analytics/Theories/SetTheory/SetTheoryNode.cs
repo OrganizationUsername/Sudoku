@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents a node. All fields in this type is nullable unaware.

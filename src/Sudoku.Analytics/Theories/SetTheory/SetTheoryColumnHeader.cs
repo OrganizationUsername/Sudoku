@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents a column header.

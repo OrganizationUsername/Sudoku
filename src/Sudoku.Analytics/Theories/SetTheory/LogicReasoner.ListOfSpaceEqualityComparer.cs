@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 public partial class LogicReasoner
 {

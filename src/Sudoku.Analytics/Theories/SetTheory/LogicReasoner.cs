@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Provides a list of members to get pattern detailed information that should be inferred.

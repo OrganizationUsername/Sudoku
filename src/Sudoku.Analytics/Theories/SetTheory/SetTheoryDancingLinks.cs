@@ -3,7 +3,7 @@
 #define SET_LIMIT_MAX_SOLUTIONS
 #endif
 
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.

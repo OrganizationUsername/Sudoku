@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,

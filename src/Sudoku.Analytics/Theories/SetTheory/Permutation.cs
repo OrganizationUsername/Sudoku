@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.

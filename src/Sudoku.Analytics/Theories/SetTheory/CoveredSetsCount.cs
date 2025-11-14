@@ -1,4 +1,4 @@
-namespace Sudoku.SetTheory;
+namespace Sudoku.Theories.SetTheory;
 
 /// <summary>
 /// Represents a result value of covered sets, returned by <see cref="Logic.GetCoveredSetsCount(int)"/>.

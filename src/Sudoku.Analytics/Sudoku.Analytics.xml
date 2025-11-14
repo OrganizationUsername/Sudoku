@@ -28037,399 +28037,6 @@
             <param name="isTruth">Indicates whether the current space is as a truth.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap">
-            <summary>
-            Represents a map of cell and mask pairs, indicating the specified cells should only use specified digits.
-            </summary>
-            <remarks>
-            <para>
-            You can treat this type as a read-only dictionary of (cell, digits) pairs. You can construct a map using a collection expression:
-            <code><![CDATA[
-            PatternAssigningMap map = [
-                KeyValuePair.Create(11, (Mask)(1 << 0 | 1 << 8)), // r2c3(19)
-                KeyValuePair.Create(12, (Mask)(1 << 0 | 1 << 1)), // r2c4(12)
-                KeyValuePair.Create(16, (Mask)(1 << 1 | 1 << 8)), // r2c8(29)
-                KeyValuePair.Create(20, (Mask)(1 << 0 | 1 << 8)), // r3c3(19)
-                KeyValuePair.Create(21, (Mask)(1 << 0 | 1 << 1)), // r3c4(12)
-                KeyValuePair.Create(25, (Mask)(1 << 1 | 1 << 8)) // r3c8(29)
-            ];
-            ]]></code>
-            </para>
-            <para>
-            Instances of this type can be used as arguments from method <see cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)"/>,
-            representing the digits can be checked and used for the specified cells.
-            For example, if we want to restrict cell <c>r2c3</c> only checks for digits 1 and 9,
-            we can construct a <see cref="T:System.Collections.Generic.KeyValuePair`2"/> of cell <c>r2c3</c> (index 11) and digit 1 and 9
-            using method <see cref="M:System.Collections.Generic.KeyValuePair.Create``2(``0,``1)"/>:
-            <code><![CDATA[
-            var kvp = KeyValuePair.Create(11, (Mask)(1 << 0 | 1 << 8)); // r2c3(19)
-            var kvp2 = new KeyValuePair<Cell, Mask>(11, (Mask)(1 << 0 | 1 << 8)); // also okay
-            ]]></code>
-            In this way, method <see cref="T:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker"/>.TryAssign will limit digits to be checked to only digits 1 and 9,
-            to optimize checking experience by reducing complexity.
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)"/>
-            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
-            <seealso cref="M:System.Collections.Generic.KeyValuePair.Create``2(``0,``1)"/>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap._maskTable">
-            <summary>
-            Indicates the backing mask table.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap"/> instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Count">
-            <summary>
-            Indicates the number of values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Item(System.Int32)">
-            <summary>
-            Lookups the current collection to get digits limited of the specified cell.
-            </summary>
-            <param name="cell">The cell specified.</param>
-            <returns>The mask of digits.</returns>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Item(System.Int32,System.Int32)">
-            <summary>
-            Determines whether the specified cell and digit exist in the current collection.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
-            <summary>
-            Converts the current instance into string representation, using the specified coordinate converter instance.
-            </summary>
-            <param name="converter">The converter.</param>
-            <returns>The string representation.</returns>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.AsCandidateMap">
-            <summary>
-            Converts the current instance into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <returns>The instance of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToFrozenDictionary">
-            <summary>
-            Converts the current instance into a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> of cell and mask pairs.
-            </summary>
-            <returns>The instance of type <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>.</returns>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Int32,System#Int16}}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Create(System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{System.Int32,System.Int16}})">
-            <summary>
-            Creates a <see cref="T:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap"/> instance.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>The instance.</returns>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator">
-            <summary>
-            Represents the backing enumerator instance.
-            </summary>
-            <param name="_dictionary">The backing dictionary.</param>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.#ctor(System.Collections.Generic.Dictionary{System.Int32,System.Int16})">
-            <summary>
-            Represents the backing enumerator instance.
-            </summary>
-            <param name="_dictionary">The backing dictionary.</param>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator._enumerator">
-            <summary>
-            Indicates the backing enumerator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.Current">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#Collections#IEnumerator#Current">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.MoveNext">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#IDisposable#Dispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#Collections#IEnumerator#Reset">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker">
-            <summary>
-            Represents a type that checks and infers for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
-            determining whether the pattern is a deadly pattern.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.DeadlyPatternTheory.DeadlyPatternOptions)">
-            <summary>
-            Determine whether a grid will form a deadly pattern if the specified truths are constrained.
-            </summary>
-            <param name="grid">Indicates the grid. It's required that only specified cells are assigned with candidates.</param>
-            <param name="truths">Indicates the truths to be checked.</param>
-            <param name="options">Indicates the extra options.</param>
-            <returns>The result after the analysis operation is finished.</returns>
-            <exception cref="T:Sudoku.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException">
-            Throws when the pattern contains more than 10000 solutions.
-            </exception>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Try to assign a candidate, and find a complete pattern where all cells are assigned,
-            and then check whether the assigned pattern can form a deadly pattern.
-            </summary>
-            <param name="assigned">The assigned candidate.</param>
-            <param name="assigningMap">
-            The assigning map to be checked. This argument can accelerate checking if specified.
-            This argument limits the checking to the specified digits for the specified cells,
-            in order to prevent the backing searching module doing unnecessary digits' checking.
-            Assign <see langword="null"/> if you don't want to specify, meaning all candidates in the grid will be checked.
-            </param>
-            <param name="grid">The grid.</param>
-            <param name="cells">The cells in the grid to be checked.</param>
-            <param name="assignedCandidates">All assigned candidates that will cause the pattern invalid.</param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the candidate <paramref name="assigned"/>
-            will make the pattern to be a deadly pattern.
-            </returns>
-            <remarks>
-            <para>
-            This method will help you find a contradiction of deadly pattern if you assign a value into a cell.
-            For example, the following grid shows two extended rectangles:
-            <code><![CDATA[
-            ,---------------,--------------------,--------------,
-            | 7    2    8   | 3       59    59   | 4    1   6   |
-            | 4    5   *19  |*127     127   6    | 3   *29  8   |
-            | 16   3   *169 |*12      4     8    | 7   *29  5   |
-            :---------------+--------------------+--------------:
-            | 8    46   126 | 12469   3     1249 | 19   5   7   |
-            | 126  9    5   | 1267    127   127  | 8    3   4   |
-            | 3    47   17  | 1459    8     1459 | 2    6   19  |
-            :---------------+--------------------+--------------:
-            | 9   #678  3   |#12458   125   1245 | 156 #47  12  |
-            | 25  #78   27  |#124589  6     3    | 159 #47  129 |
-            | 256  1    4   | 2579    2579  2579 | 569  8   3   |
-            '---------------'--------------------'--------------'
-            ]]></code>
-            This method returns <see langword="true"/> if assigning <c>r2c4</c> with value 2, or <c>r7c2</c> with 7.
-            For the former one, we will make cells <c>r23c348</c> forms a invalid state of digits 1, 2 and 9;
-            and for the latter one, we will lead to a contradiction of cells <c>r78c248</c> with digits 4, 7 and 8.
-            </para>
-            <para>
-            This method will perform breadth-first searching to find any contradictions if we assign with <c>r2c4 = 2</c>
-            and <c>r7c2 = 7</c>, and return a <see langword="bool"/> value indicating whether the first assigned value
-            can form such contradiction or not.
-            If can, argument <paramref name="assignedCandidates"/> will include the full path of trial of cells;
-            otherwise, <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>.
-            </para>
-            </remarks>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.Node">
-            <summary>
-            Represents a node that describes assigned cases.
-            </summary>
-            <param name="Assigned">Indicates the assigned candidate.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.Node.#ctor(System.Int32,Sudoku.DeadlyPatternTheory.Node)">
-            <summary>
-            Represents a node that describes assigned cases.
-            </summary>
-            <param name="Assigned">Indicates the assigned candidate.</param>
-            <param name="Parent">Indicates the parent node.</param>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.Node.Assigned">
-            <summary>Indicates the assigned candidate.</summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.Node.Parent">
-            <summary>Indicates the parent node.</summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.Node.AssignedCandidates">
-            <summary>
-            Indicates all assigned candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.Node.Equals(Sudoku.DeadlyPatternTheory.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.Node.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.Node.ApplyTo(Sudoku.Concepts.Grid@)">
-            <summary>
-            Apply all assignments to the target grid.
-            </summary>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.Node.PrintMembers(System.Text.StringBuilder)">
-            <target name="method" cref="M:Sudoku.DeadlyPatternTheory.Node.PrintMembers(System.Text.StringBuilder)">
-				<summary>
-					Provides an easy way to concatenate output members inside a <see langword="record" />
-					or a <see langword="record struct" /> type.
-				</summary>
-				<param name="builder">
-					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
-				</param>
-				<returns>
-					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
-					by implementing to-string method <c>ToString</c>.
-				</returns>
-				<remarks>
-					<para>
-						By design of <see langword="record" /> and <see langword="record struct" /> types,
-						emit text should be formatted as follows:
-						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
-					</para>
-					<para>
-						This method won't emit type name and curly brackets. If you want to customize emit text,
-						you can only change values inside a pair of brackets.
-					</para>
-					<para>
-						The suggested implementation is like this:
-						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
-{
-    builder.Append($"{nameof(Property1)} = {Property1}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property2)} = {Property2}");
-    builder.Append(", ");
-    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
-    return true;
-}]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException">
-            <summary>
-            Represents an exception that will be thrown if more than 10000 solutions found in a possible deadly pattern to be verified.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException.Message">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternOptions">
-            <summary>
-            Represents a type that adjust checking rules for deadly pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternOptions.Default">
-            <summary>
-            Represents default option.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternOptions.ThrowExceptionIfMaximumSolutionsCountReached">
-            <summary>
-            <para>
-            Indicates whether an exception will be thrown if maximum solutions count is reached,
-            if property <see cref="P:Sudoku.DeadlyPatternTheory.DeadlyPatternOptions.LimitSolutionsCount"/> is specified with non-zero value.
-            </para>
-            <para>By default the value is <see langword="false"/>.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternOptions.LimitSolutionsCount">
-            <summary>
-            <para>
-            Indicates the number of solutions that the checking API can search for.
-            If a pattern has more number of solutions than desired value specified,
-            The method will return instead of continuing checking.
-            </para>
-            <para>By default the value is 0.</para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternResult">
-            <summary>
-            Indicates the result value after <see cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.DeadlyPatternTheory.DeadlyPatternOptions)"/> called.
-            </summary>
-            <param name="grid"><inheritdoc cref="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.Grid" path="/summary"/></param>
-            <seealso cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.DeadlyPatternTheory.DeadlyPatternOptions)"/>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates the result value after <see cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.DeadlyPatternTheory.DeadlyPatternOptions)"/> called.
-            </summary>
-            <param name="grid"><inheritdoc cref="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.Grid" path="/summary"/></param>
-            <seealso cref="M:Sudoku.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.DeadlyPatternTheory.DeadlyPatternOptions)"/>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.Grid">
-            <summary>
-            Indicates the grid used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.IsDeadlyPattern">
-            <summary>
-            Indicates the pattern is a real deadly pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.PermutationsCount">
-            <summary>
-            Indicates the number of permutations.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.FailedReason">
-            <summary>
-            Indicates the failed reason.
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.FailedCases">
-            <summary>
-            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
-            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
-            </summary>
-        </member>
-        <member name="P:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.PatternCandidates">
-            <summary>
-            Indicates the candidates the pattern used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.DeadlyPatternTheory.DeadlyPatternResult.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.DeadlyPatternTheory.DeadlyPatternResultFailedReason">
-            <summary>
-            Represents a reason describing why the analysis operation is failed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResultFailedReason.None">
-            <summary>
-            Indicates nothing goes wrong.
-            </summary>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResultFailedReason.NotDeadlyPattern">
-            <summary>
-            Indicates the grid is not a deadly pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.DeadlyPatternTheory.DeadlyPatternResultFailedReason.MaxSolutionsReached">
-            <summary>
-            Indicates the number of solutions is reached.
-            </summary>
-        </member>
         <member name="T:Sudoku.Diff.DiffTechniqueAnalysis">
             <summary>
             Provides a way to analyze technique usages on difference between two grids.
@@ -36198,74 +35805,467 @@
             Represents brute force.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.AssignedCount">
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap">
+            <summary>
+            Represents a map of cell and mask pairs, indicating the specified cells should only use specified digits.
+            </summary>
+            <remarks>
+            <para>
+            You can treat this type as a read-only dictionary of (cell, digits) pairs. You can construct a map using a collection expression:
+            <code><![CDATA[
+            PatternAssigningMap map = [
+                KeyValuePair.Create(11, (Mask)(1 << 0 | 1 << 8)), // r2c3(19)
+                KeyValuePair.Create(12, (Mask)(1 << 0 | 1 << 1)), // r2c4(12)
+                KeyValuePair.Create(16, (Mask)(1 << 1 | 1 << 8)), // r2c8(29)
+                KeyValuePair.Create(20, (Mask)(1 << 0 | 1 << 8)), // r3c3(19)
+                KeyValuePair.Create(21, (Mask)(1 << 0 | 1 << 1)), // r3c4(12)
+                KeyValuePair.Create(25, (Mask)(1 << 1 | 1 << 8)) // r3c8(29)
+            ];
+            ]]></code>
+            </para>
+            <para>
+            Instances of this type can be used as arguments from method <see cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)"/>,
+            representing the digits can be checked and used for the specified cells.
+            For example, if we want to restrict cell <c>r2c3</c> only checks for digits 1 and 9,
+            we can construct a <see cref="T:System.Collections.Generic.KeyValuePair`2"/> of cell <c>r2c3</c> (index 11) and digit 1 and 9
+            using method <see cref="M:System.Collections.Generic.KeyValuePair.Create``2(``0,``1)"/>:
+            <code><![CDATA[
+            var kvp = KeyValuePair.Create(11, (Mask)(1 << 0 | 1 << 8)); // r2c3(19)
+            var kvp2 = new KeyValuePair<Cell, Mask>(11, (Mask)(1 << 0 | 1 << 8)); // also okay
+            ]]></code>
+            In this way, method <see cref="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker"/>.TryAssign will limit digits to be checked to only digits 1 and 9,
+            to optimize checking experience by reducing complexity.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)"/>
+            <seealso cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            <seealso cref="M:System.Collections.Generic.KeyValuePair.Create``2(``0,``1)"/>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap._maskTable">
+            <summary>
+            Indicates the backing mask table.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Count">
+            <summary>
+            Indicates the number of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Item(System.Int32)">
+            <summary>
+            Lookups the current collection to get digits limited of the specified cell.
+            </summary>
+            <param name="cell">The cell specified.</param>
+            <returns>The mask of digits.</returns>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Item(System.Int32,System.Int32)">
+            <summary>
+            Determines whether the specified cell and digit exist in the current collection.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into string representation, using the specified coordinate converter instance.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.AsCandidateMap">
+            <summary>
+            Converts the current instance into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <returns>The instance of type <see cref="T:Sudoku.Concepts.CandidateMap"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToFrozenDictionary">
+            <summary>
+            Converts the current instance into a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> of cell and mask pairs.
+            </summary>
+            <returns>The instance of type <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Int32,System#Int16}}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Create(System.ReadOnlySpan{System.Collections.Generic.KeyValuePair{System.Int32,System.Int16}})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap"/> instance.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>The instance.</returns>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator">
+            <summary>
+            Represents the backing enumerator instance.
+            </summary>
+            <param name="_dictionary">The backing dictionary.</param>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.#ctor(System.Collections.Generic.Dictionary{System.Int32,System.Int16})">
+            <summary>
+            Represents the backing enumerator instance.
+            </summary>
+            <param name="_dictionary">The backing dictionary.</param>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator._enumerator">
+            <summary>
+            Indicates the backing enumerator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.Enumerator.System#Collections#IEnumerator#Reset">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker">
+            <summary>
+            Represents a type that checks and infers for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
+            determining whether the pattern is a deadly pattern.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions)">
+            <summary>
+            Determine whether a grid will form a deadly pattern if the specified truths are constrained.
+            </summary>
+            <param name="grid">Indicates the grid. It's required that only specified cells are assigned with candidates.</param>
+            <param name="truths">Indicates the truths to be checked.</param>
+            <param name="options">Indicates the extra options.</param>
+            <returns>The result after the analysis operation is finished.</returns>
+            <exception cref="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException">
+            Throws when the pattern contains more than 10000 solutions.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CanLeadToDeadlyPatternContradiction(System.Int32,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Try to assign a candidate, and find a complete pattern where all cells are assigned,
+            and then check whether the assigned pattern can form a deadly pattern.
+            </summary>
+            <param name="assigned">The assigned candidate.</param>
+            <param name="assigningMap">
+            The assigning map to be checked. This argument can accelerate checking if specified.
+            This argument limits the checking to the specified digits for the specified cells,
+            in order to prevent the backing searching module doing unnecessary digits' checking.
+            Assign <see langword="null"/> if you don't want to specify, meaning all candidates in the grid will be checked.
+            </param>
+            <param name="grid">The grid.</param>
+            <param name="cells">The cells in the grid to be checked.</param>
+            <param name="assignedCandidates">All assigned candidates that will cause the pattern invalid.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the candidate <paramref name="assigned"/>
+            will make the pattern to be a deadly pattern.
+            </returns>
+            <remarks>
+            <para>
+            This method will help you find a contradiction of deadly pattern if you assign a value into a cell.
+            For example, the following grid shows two extended rectangles:
+            <code><![CDATA[
+            ,---------------,--------------------,--------------,
+            | 7    2    8   | 3       59    59   | 4    1   6   |
+            | 4    5   *19  |*127     127   6    | 3   *29  8   |
+            | 16   3   *169 |*12      4     8    | 7   *29  5   |
+            :---------------+--------------------+--------------:
+            | 8    46   126 | 12469   3     1249 | 19   5   7   |
+            | 126  9    5   | 1267    127   127  | 8    3   4   |
+            | 3    47   17  | 1459    8     1459 | 2    6   19  |
+            :---------------+--------------------+--------------:
+            | 9   #678  3   |#12458   125   1245 | 156 #47  12  |
+            | 25  #78   27  |#124589  6     3    | 159 #47  129 |
+            | 256  1    4   | 2579    2579  2579 | 569  8   3   |
+            '---------------'--------------------'--------------'
+            ]]></code>
+            This method returns <see langword="true"/> if assigning <c>r2c4</c> with value 2, or <c>r7c2</c> with 7.
+            For the former one, we will make cells <c>r23c348</c> forms a invalid state of digits 1, 2 and 9;
+            and for the latter one, we will lead to a contradiction of cells <c>r78c248</c> with digits 4, 7 and 8.
+            </para>
+            <para>
+            This method will perform breadth-first searching to find any contradictions if we assign with <c>r2c4 = 2</c>
+            and <c>r7c2 = 7</c>, and return a <see langword="bool"/> value indicating whether the first assigned value
+            can form such contradiction or not.
+            If can, argument <paramref name="assignedCandidates"/> will include the full path of trial of cells;
+            otherwise, <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.Node">
+            <summary>
+            Represents a node that describes assigned cases.
+            </summary>
+            <param name="Assigned">Indicates the assigned candidate.</param>
+            <param name="Parent">Indicates the parent node.</param>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.Node.#ctor(System.Int32,Sudoku.Theories.DeadlyPatternTheory.Node)">
+            <summary>
+            Represents a node that describes assigned cases.
+            </summary>
+            <param name="Assigned">Indicates the assigned candidate.</param>
+            <param name="Parent">Indicates the parent node.</param>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.Node.Assigned">
+            <summary>Indicates the assigned candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.Node.Parent">
+            <summary>Indicates the parent node.</summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.Node.AssignedCandidates">
+            <summary>
+            Indicates all assigned candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.Node.Equals(Sudoku.Theories.DeadlyPatternTheory.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.Node.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.Node.ApplyTo(Sudoku.Concepts.Grid@)">
+            <summary>
+            Apply all assignments to the target grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.Node.PrintMembers(System.Text.StringBuilder)">
+            <target name="method" cref="M:Sudoku.Theories.DeadlyPatternTheory.Node.PrintMembers(System.Text.StringBuilder)">
+				<summary>
+					Provides an easy way to concatenate output members inside a <see langword="record" />
+					or a <see langword="record struct" /> type.
+				</summary>
+				<param name="builder">
+					A <see cref="T:System.Text.StringBuilder" /> instance to concatenate values.
+				</param>
+				<returns>
+					A <see cref="T:System.Boolean" /> value indicating whether the method should be consumed by compiler,
+					by implementing to-string method <c>ToString</c>.
+				</returns>
+				<remarks>
+					<para>
+						By design of <see langword="record" /> and <see langword="record struct" /> types,
+						emit text should be formatted as follows:
+						<code><![CDATA[RecordType { Property1 = Value1, Property2 = Value2, Property3 = { NestedProperty = Value3 } }]]></code>
+					</para>
+					<para>
+						This method won't emit type name and curly brackets. If you want to customize emit text,
+						you can only change values inside a pair of brackets.
+					</para>
+					<para>
+						The suggested implementation is like this:
+						<code><![CDATA[private bool PrintMembers(StringBuilder builder)
+{
+    builder.Append($"{nameof(Property1)} = {Property1}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property2)} = {Property2}");
+    builder.Append(", ");
+    builder.Append($"{nameof(Property3)} = {{ {Property3} }}");
+    return true;
+}]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException">
+            <summary>
+            Represents an exception that will be thrown if more than 10000 solutions found in a possible deadly pattern to be verified.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternInferrerLimitReachedException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions">
+            <summary>
+            Represents a type that adjust checking rules for deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions.Default">
+            <summary>
+            Represents default option.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions.ThrowExceptionIfMaximumSolutionsCountReached">
+            <summary>
+            <para>
+            Indicates whether an exception will be thrown if maximum solutions count is reached,
+            if property <see cref="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions.LimitSolutionsCount"/> is specified with non-zero value.
+            </para>
+            <para>By default the value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions.LimitSolutionsCount">
+            <summary>
+            <para>
+            Indicates the number of solutions that the checking API can search for.
+            If a pattern has more number of solutions than desired value specified,
+            The method will return instead of continuing checking.
+            </para>
+            <para>By default the value is 0.</para>
+            </summary>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult">
+            <summary>
+            Indicates the result value after <see cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions)"/> called.
+            </summary>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.Grid" path="/summary"/></param>
+            <seealso cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions)"/>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates the result value after <see cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions)"/> called.
+            </summary>
+            <param name="grid"><inheritdoc cref="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.Grid" path="/summary"/></param>
+            <seealso cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(Sudoku.Concepts.Grid@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternOptions)"/>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.IsDeadlyPattern">
+            <summary>
+            Indicates the pattern is a real deadly pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.PermutationsCount">
+            <summary>
+            Indicates the number of permutations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.FailedReason">
+            <summary>
+            Indicates the failed reason.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.FailedCases">
+            <summary>
+            Indicates all possible failed cases. The value can be an empty sequence if the pattern is a real deadly pattern,
+            or not a deadly pattern but containing obvious invalid candidates (like containing given or modifiable cells).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.PatternCandidates">
+            <summary>
+            Indicates the candidates the pattern used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResult.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResultFailedReason">
+            <summary>
+            Represents a reason describing why the analysis operation is failed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResultFailedReason.None">
+            <summary>
+            Indicates nothing goes wrong.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResultFailedReason.NotDeadlyPattern">
+            <summary>
+            Indicates the grid is not a deadly pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternResultFailedReason.MaxSolutionsReached">
+            <summary>
+            Indicates the number of solutions is reached.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Theories.SetTheory.AssignedCount">
             <summary>
             Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,
-            created by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>.
+            created by method <see cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.AssignedCount.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.AssignedCount.#ctor(System.Int32,System.Int32)">
             <summary>
             Represents an encapsulated type that describes how many assigned values are filled into a certain pattern,
-            created by method <see cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>.
+            created by method <see cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>.
             </summary>
             <param name="Min">Indicates the minimum number of a permutation.</param>
             <param name="Max">Indicates the maximum number of a permutation.</param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignedCount.Min">
+        <member name="P:Sudoku.Theories.SetTheory.AssignedCount.Min">
             <summary>Indicates the minimum number of a permutation.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignedCount.Max">
+        <member name="P:Sudoku.Theories.SetTheory.AssignedCount.Max">
             <summary>Indicates the maximum number of a permutation.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignedCount.IsStable">
+        <member name="P:Sudoku.Theories.SetTheory.AssignedCount.IsStable">
             <summary>
             Indicates whether the pattern is stable.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.AssignedCount.Delta">
+        <member name="P:Sudoku.Theories.SetTheory.AssignedCount.Delta">
             <summary>
             Indicates the delta value.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.CoveredSetsCount">
+        <member name="T:Sudoku.Theories.SetTheory.CoveredSetsCount">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
+            Represents a result value of covered sets, returned by <see cref="M:Sudoku.Theories.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="M:Sudoku.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
+            <seealso cref="M:Sudoku.Theories.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
         </member>
-        <member name="M:Sudoku.SetTheory.CoveredSetsCount.#ctor(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.CoveredSetsCount.#ctor(System.Int32,System.Int32)">
             <summary>
-            Represents a result value of covered sets, returned by <see cref="M:Sudoku.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
+            Represents a result value of covered sets, returned by <see cref="M:Sudoku.Theories.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
             </summary>
             <param name="TruthsCount">Indicates the number of truths covered.</param>
             <param name="LinksCount">Indicates the number of links covered.</param>
-            <seealso cref="M:Sudoku.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
+            <seealso cref="M:Sudoku.Theories.SetTheory.Logic.GetCoveredSetsCount(System.Int32)"/>.
         </member>
-        <member name="P:Sudoku.SetTheory.CoveredSetsCount.TruthsCount">
+        <member name="P:Sudoku.Theories.SetTheory.CoveredSetsCount.TruthsCount">
             <summary>Indicates the number of truths covered.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.CoveredSetsCount.LinksCount">
+        <member name="P:Sudoku.Theories.SetTheory.CoveredSetsCount.LinksCount">
             <summary>Indicates the number of links covered.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.CoveredSetsCount.IsExactCovered">
+        <member name="P:Sudoku.Theories.SetTheory.CoveredSetsCount.IsExactCovered">
             <summary>
             Indicates whether a candidate is exact-covered.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.DancingLinksTooComplexException">
+        <member name="T:Sudoku.Theories.SetTheory.DancingLinksTooComplexException">
             <summary>
             Indicates an exception type that will be thrown if the pattern is too complex to be calculated
             during dancing links algorithm.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.Logic">
+        <member name="T:Sudoku.Theories.SetTheory.Logic">
             <summary>
             Represents a logic pattern, defining sets of truths and links.
             </summary>
@@ -36273,123 +36273,123 @@
             This type uses 400 bytes.
             </remarks>
         </member>
-        <member name="F:Sudoku.SetTheory.Logic._originalGrid">
+        <member name="F:Sudoku.Theories.SetTheory.Logic._originalGrid">
             <summary>
             Indicates original grid.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Logic._truths">
+        <member name="F:Sudoku.Theories.SetTheory.Logic._truths">
             <summary>
             Indicates truths and links.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Logic._links">
+        <member name="F:Sudoku.Theories.SetTheory.Logic._links">
             <summary>
             Indicates truths and links.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Logic._map">
+        <member name="F:Sudoku.Theories.SetTheory.Logic._map">
             <summary>
             Indicates all candidates used in truths and links.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.#ctor(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.#ctor(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
             <summary>
-            Initializes a <see cref="T:Sudoku.SetTheory.Logic"/> instance via the specified truths, links and original grid.
+            Initializes a <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance via the specified truths, links and original grid.
             </summary>
-            <param name="truths"><inheritdoc cref="P:Sudoku.SetTheory.Logic.Truths" path="/summary"/></param>
-            <param name="links"><inheritdoc cref="P:Sudoku.SetTheory.Logic.Links" path="/summary"/></param>
-            <param name="grid"><inheritdoc cref="P:Sudoku.SetTheory.Logic.Grid" path="/summary"/></param>
+            <param name="truths"><inheritdoc cref="P:Sudoku.Theories.SetTheory.Logic.Truths" path="/summary"/></param>
+            <param name="links"><inheritdoc cref="P:Sudoku.Theories.SetTheory.Logic.Links" path="/summary"/></param>
+            <param name="grid"><inheritdoc cref="P:Sudoku.Theories.SetTheory.Logic.Grid" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.IsExactCovered">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.IsExactCovered">
             <summary>
             Indicates whether all candidates used in truths are exact-covered or not.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.CandidatesCount">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.CandidatesCount">
             <summary>
             Indicates the number of candidates used in the pattern.
             Candidates from links (but not from truths) will be ignored.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.Truths">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.Truths">
             <summary>
             Indicates truths.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.Links">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.Links">
             <summary>
             Indicates links.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.Map">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.Map">
             <summary>
             Indicates all candidates used in truths.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.ExactCoveredCandidates">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.ExactCoveredCandidates">
             <summary>
             Find for exact-covered candidates in the pattern.
             </summary>
             <returns>All exact-covered candidates.</returns>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.Grid">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.Grid">
             <summary>
             Indicates original grid.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Logic.LinksLightupLookup">
+        <member name="P:Sudoku.Theories.SetTheory.Logic.LinksLightupLookup">
             <summary>
             Represents links light-up lookup table.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.Equals(System.Object)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.Equals(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.Equals(Sudoku.Theories.SetTheory.Logic@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.GetHashCode">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.ToString">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.GetCoveredSetsCount(System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.GetCoveredSetsCount(System.Int32)">
             <summary>
             Totals up how many truths and links covered for a specified candidate.
             </summary>
             <param name="candidate">The candidate to check.</param>
             <returns>A pair of numbers indicating that.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.AddTruth(Sudoku.Concepts.Supersymmetry.Space)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.AddTruth(Sudoku.Concepts.Supersymmetry.Space)">
             <summary>
             Add a new truth to the pattern.
             </summary>
             <param name="truth">The truth to add.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.AddLink(Sudoku.Concepts.Supersymmetry.Space)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.AddLink(Sudoku.Concepts.Supersymmetry.Space)">
             <summary>
             Add a new link to the pattern.
             </summary>
             <param name="link">The link to add.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.RemoveTruth(Sudoku.Concepts.Supersymmetry.Space)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.RemoveTruth(Sudoku.Concepts.Supersymmetry.Space)">
             <summary>
             Remove a link from the pattern.
             </summary>
             <param name="truth">The truth to remove.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.RemoveLink(Sudoku.Concepts.Supersymmetry.Space)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.RemoveLink(Sudoku.Concepts.Supersymmetry.Space)">
             <summary>
             Remove a link from the pattern.
             </summary>
             <param name="link">The link to remove.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.System#IEquatable{Sudoku#SetTheory#Logic}#Equals(Sudoku.SetTheory.Logic)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.System#IEquatable{Sudoku#Theories#SetTheory#Logic}#Equals(Sudoku.Theories.SetTheory.Logic)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.RebuildMap(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.RebuildMap(Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Supersymmetry.SpaceSet@,Sudoku.Concepts.Grid@)">
             <summary>
             <para>Creates a <see cref="T:Sudoku.Concepts.CandidateMap"/> via the specified truths and links.</para>
             <para>
@@ -36402,59 +36402,59 @@
             <param name="grid">The grid.</param>
             <returns>The candidates used only in truths.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.op_Equality(Sudoku.SetTheory.Logic@,Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.op_Equality(Sudoku.Theories.SetTheory.Logic@,Sudoku.Theories.SetTheory.Logic@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.op_Inequality(Sudoku.SetTheory.Logic@,Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.op_Inequality(Sudoku.Theories.SetTheory.Logic@,Sudoku.Theories.SetTheory.Logic@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.System#Numerics#IEqualityOperators{Sudoku#SetTheory#Logic,Sudoku#SetTheory#Logic,System#Boolean}#op_Equality(Sudoku.SetTheory.Logic,Sudoku.SetTheory.Logic)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.System#Numerics#IEqualityOperators{Sudoku#Theories#SetTheory#Logic,Sudoku#Theories#SetTheory#Logic,System#Boolean}#op_Equality(Sudoku.Theories.SetTheory.Logic,Sudoku.Theories.SetTheory.Logic)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Logic.System#Numerics#IEqualityOperators{Sudoku#SetTheory#Logic,Sudoku#SetTheory#Logic,System#Boolean}#op_Inequality(Sudoku.SetTheory.Logic,Sudoku.SetTheory.Logic)">
+        <member name="M:Sudoku.Theories.SetTheory.Logic.System#Numerics#IEqualityOperators{Sudoku#Theories#SetTheory#Logic,Sudoku#Theories#SetTheory#Logic,System#Boolean}#op_Inequality(Sudoku.Theories.SetTheory.Logic,Sudoku.Theories.SetTheory.Logic)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SetTheory.LogicReasoner">
+        <member name="T:Sudoku.Theories.SetTheory.LogicReasoner">
             <summary>
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry">
+        <member name="T:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry">
             <summary>
-            Represents equivalent implementation of the parent type <see cref="T:Sudoku.SetTheory.LogicReasoner"/>,
+            Represents equivalent implementation of the parent type <see cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>,
             but an extra parameter <c>permutations</c> is required;
             sometimes <c>conclusions</c> is also required.
             </summary>
-            <seealso cref="T:Sudoku.SetTheory.LogicReasoner"/>
+            <seealso cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank(Sudoku.Theories.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetAssignedCount(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetConclusions(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation},System.Boolean,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetConclusions(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetConclusions(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Boolean,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusions(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Links(Sudoku.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Links(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Links(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Eliminations(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.TrimExcessLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.PermutationRequiredEntry.ConvertTruthsToLinks(Sudoku.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.SetTheory.Logic@)"/>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank(Sudoku.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.SetTheory.Logic}@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank(Sudoku.Theories.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)">
             <summary>
             <para>
             Gets the rank of the pattern. If the pattern is not minimal, it may contains multiple ranks,
@@ -36466,9 +36466,9 @@
             </summary>
             <param name="logic">The logic.</param>
             <param name="sublogics">Represents sublogic views for each eliminations.</param>
-            <returns>A <see cref="T:Sudoku.SetTheory.Rank"/> instance representing the result.</returns>
+            <returns>A <see cref="T:Sudoku.Theories.SetTheory.Rank"/> instance representing the result.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             <para>
             Gets the number of assigned candidates that can make a pattern satisfied with all truths and links.
@@ -36485,28 +36485,28 @@
             <param name="logic">The pattern.</param>
             <returns>The permutation count value.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Try to find all possible permutations.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>The permutations.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetConclusions(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusions(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Try to find all conclusions.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All conclusions.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetConclusionsWithoutCheckingLinks(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusionsWithoutCheckingLinks(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
-            Try to find all conclusions, without checking <see cref="P:Sudoku.SetTheory.Logic.Links"/>.
+            Try to find all conclusions, without checking <see cref="P:Sudoku.Theories.SetTheory.Logic.Links"/>.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All conclusions.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetConclusionZone(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusionZone(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Try to find all possible conclusions of the patter in theory,
             no matter whether the candidate exists in the grid or not.
@@ -36514,21 +36514,21 @@
             <param name="logic">The pattern.</param>
             <returns>All conclusions, ignoring existence of conclusions.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank0Links(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Links(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Gets all rank-0 links.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All rank-0 links.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Gets all rank-0 eliminations.
             </summary>
             <param name="logic">The pattern.</param>
             <returns>All rank-0 eliminations.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32)">
             <summary>
             Finds for minimal truths that covers the candidate as elimination.
             </summary>
@@ -36536,358 +36536,358 @@
             <param name="elimination">The elimination.</param>
             <returns>The minimal truths.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32)">
             <summary>
-            Finds for minimal <see cref="T:Sudoku.SetTheory.Logic"/> instance that can eliminate the specified elimination.
+            Finds for minimal <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance that can eliminate the specified elimination.
             </summary>
             <param name="logic">The pattern.</param>
             <param name="elimination">The elimination.</param>
-            <returns>A minimal <see cref="T:Sudoku.SetTheory.Logic"/> instance that can remove the specified elimination.</returns>
+            <returns>A minimal <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance that can remove the specified elimination.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
-            Trims for all excess links, and return a new <see cref="T:Sudoku.SetTheory.Logic"/> instance.
+            Trims for all excess links, and return a new <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance.
             </summary>
             <param name="logic">The original pattern.</param>
-            <returns>A new <see cref="T:Sudoku.SetTheory.Logic"/> instance.</returns>
+            <returns>A new <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.SetTheory.Logic@)">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@)">
             <summary>
             Transforms truths into links if such truths can be links.
             </summary>
             <param name="logic">The original pattern.</param>
-            <returns>A new <see cref="T:Sudoku.SetTheory.Logic"/> instance.</returns>
+            <returns>A new <see cref="T:Sudoku.Theories.SetTheory.Logic"/> instance.</returns>
         </member>
-        <member name="T:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer">
+        <member name="T:Sudoku.Theories.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer">
             <summary>
             Represents a temporary equality comparer for comparison of <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Concepts.Supersymmetry.Space"/>.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Instance">
+        <member name="F:Sudoku.Theories.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Instance">
             <summary>
             Indicates the singleton instance.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Equals(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space},System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.Equals(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space},System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.GetHashCode(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.GetHashCode(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SetTheory.Permutation">
+        <member name="T:Sudoku.Theories.SetTheory.Permutation">
             <summary>
             Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
             </summary>
             <param name="Assignments">Indicates the assignments.</param>
             <param name="LightupLinks">
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)"/> to learn more details about light-up links.
             </param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.#ctor(System.ReadOnlyMemory{System.Int32},System.ReadOnlyMemory{Sudoku.Concepts.Supersymmetry.Space})">
             <summary>
             Represents a permutation of assigned candidates, indicating such candidates can satisfy specified truths and links.
             </summary>
             <param name="Assignments">Indicates the assignments.</param>
             <param name="LightupLinks">
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)"/> to learn more details about light-up links.
             </param>
-            <seealso cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/>
+            <seealso cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
-        <member name="P:Sudoku.SetTheory.Permutation.Assignments">
+        <member name="P:Sudoku.Theories.SetTheory.Permutation.Assignments">
             <summary>Indicates the assignments.</summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Permutation.LightupLinks">
+        <member name="P:Sudoku.Theories.SetTheory.Permutation.LightupLinks">
             <summary>
             Indicates all light-up links. The value doesn't participate in any comparison operations defined in this type.
-            Check <see cref="M:Sudoku.SetTheory.LogicReasoner.GetPermutations(Sudoku.SetTheory.Logic@)"/> to learn more details about light-up links.
+            Check <see cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetPermutations(Sudoku.Theories.SetTheory.Logic@)"/> to learn more details about light-up links.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Permutation.Map">
+        <member name="P:Sudoku.Theories.SetTheory.Permutation.Map">
             <summary>
             Indicates candidates used.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.Equals(Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.Equals(Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.GetHashCode">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.CompareTo(Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.CompareTo(Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.ToString">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.GetEnumerator">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.op_GreaterThan(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.op_GreaterThan(Sudoku.Theories.SetTheory.Permutation,Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.op_LessThan(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.op_LessThan(Sudoku.Theories.SetTheory.Permutation,Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.op_GreaterThanOrEqual(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.op_GreaterThanOrEqual(Sudoku.Theories.SetTheory.Permutation,Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Permutation.op_LessThanOrEqual(Sudoku.SetTheory.Permutation,Sudoku.SetTheory.Permutation)">
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.op_LessThanOrEqual(Sudoku.Theories.SetTheory.Permutation,Sudoku.Theories.SetTheory.Permutation)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.SetTheory.Rank">
+        <member name="T:Sudoku.Theories.SetTheory.Rank">
             <summary>
             Represents rank result for a pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Rank.Illegal">
+        <member name="F:Sudoku.Theories.SetTheory.Rank.Illegal">
             <summary>
             Represents illegal logic rank.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Rank._consistentRank">
+        <member name="F:Sudoku.Theories.SetTheory.Rank._consistentRank">
             <summary>
             Represents rank value for consistent cases.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.Rank._inconsistentRank">
+        <member name="F:Sudoku.Theories.SetTheory.Rank._inconsistentRank">
             <summary>
             Represents rank values for inconsistent cases.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.#ctor(System.Int32[])">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.#ctor(System.Int32[])">
             <summary>
-            Initializes a <see cref="T:Sudoku.SetTheory.Rank"/> for a sequence of rank values.
+            Initializes a <see cref="T:Sudoku.Theories.SetTheory.Rank"/> for a sequence of rank values.
             </summary>
             <param name="values">A sequence of rank values.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.#ctor(System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.#ctor(System.Int32)">
             <summary>
-            Initializes a <see cref="T:Sudoku.SetTheory.Rank"/> for a rank value.
+            Initializes a <see cref="T:Sudoku.Theories.SetTheory.Rank"/> for a rank value.
             </summary>
             <param name="value">A rank value.</param>
         </member>
-        <member name="P:Sudoku.SetTheory.Rank.IsConsistent">
+        <member name="P:Sudoku.Theories.SetTheory.Rank.IsConsistent">
             <summary>
             Represents a flag, meaning whether the rank is consistent or not.
             </summary>
         </member>
-        <member name="P:Sudoku.SetTheory.Rank.InconsistentRanksOrdered">
+        <member name="P:Sudoku.Theories.SetTheory.Rank.InconsistentRanksOrdered">
             <summary>
             Represents ordered collection of inconsistent rank values.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.Equals(System.Object)">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.Equals(System.Object)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.Equals(Sudoku.SetTheory.Rank)">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.Equals(Sudoku.Theories.SetTheory.Rank)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.GetHashCode">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.ToArray">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.ToArray">
             <summary>
             Converts the current instance into an array.
             </summary>
             <returns>An array of values.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.ToString">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.op_Equality(Sudoku.SetTheory.Rank,Sudoku.SetTheory.Rank)">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.op_Equality(Sudoku.Theories.SetTheory.Rank,Sudoku.Theories.SetTheory.Rank)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.op_Inequality(Sudoku.SetTheory.Rank,Sudoku.SetTheory.Rank)">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.op_Inequality(Sudoku.Theories.SetTheory.Rank,Sudoku.Theories.SetTheory.Rank)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.op_Implicit(System.Int32)~Sudoku.SetTheory.Rank">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.op_Implicit(System.Int32)~Sudoku.Theories.SetTheory.Rank">
             <summary>
-            Implicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.SetTheory.Rank"/>.
+            Implicit cast from <see cref="T:System.Int32"/> to <see cref="T:Sudoku.Theories.SetTheory.Rank"/>.
             </summary>
             <param name="value">The value.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.Rank.op_Implicit(System.Int32[])~Sudoku.SetTheory.Rank">
+        <member name="M:Sudoku.Theories.SetTheory.Rank.op_Implicit(System.Int32[])~Sudoku.Theories.SetTheory.Rank">
             <summary>
-            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.SetTheory.Rank"/>.
+            Implicit cast from <see cref="T:System.Int32"/>[] to <see cref="T:Sudoku.Theories.SetTheory.Rank"/>.
             </summary>
             <param name="values">The values.</param>
         </member>
-        <member name="T:Sudoku.SetTheory.SetTheoryColumnHeader">
+        <member name="T:Sudoku.Theories.SetTheory.SetTheoryColumnHeader">
             <summary>
             Represents a column header.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryColumnHeader.Size">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryColumnHeader.Size">
             <summary>
             Indicates the number of nodes in column.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryColumnHeader.Id">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryColumnHeader.Id">
             <summary>
             Indicates the ID.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryColumnHeader.IsPrimary">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryColumnHeader.IsPrimary">
             <summary>
             Indicates whether the column is primary (or secondary).
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryColumnHeader.#ctor(System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryColumnHeader.#ctor(System.Int32,System.Boolean)">
             <summary>
-            Initializes a <see cref="T:Sudoku.SetTheory.SetTheoryColumnHeader"/> instance via ID and is-primary property.
+            Initializes a <see cref="T:Sudoku.Theories.SetTheory.SetTheoryColumnHeader"/> instance via ID and is-primary property.
             </summary>
             <param name="id">The ID.</param>
             <param name="isPrimary">Is-primary property.</param>
         </member>
-        <member name="T:Sudoku.SetTheory.SetTheoryDancingLinks">
+        <member name="T:Sudoku.Theories.SetTheory.SetTheoryDancingLinks">
             <summary>
             Dancing Links implementation that supports primary (must-cover exactly once) and secondary (at-most-one) columns.
             </summary>
             <!--Primary columns are covered/selected by algorithm; secondary columns are "optional".-->
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._head">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._head">
             <summary>
             Indicates head.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._columns">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._columns">
             <summary>
             Indicates columns.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._rowNodes">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._rowNodes">
             <summary>
             Indicates row nodes, keeping references to row's first node.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._solutionStack">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._solutionStack">
             <summary>
             Indicates list of row IDs chosen. This will be a solution stored.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._results">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._results">
             <summary>
             Indicates results.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryDancingLinks._limitMaxSolutions">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryDancingLinks._limitMaxSolutions">
             <summary>
             Indicates limit maximum solutions to be checked.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.#ctor(System.Int32,System.ReadOnlySpan{System.Boolean})">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.#ctor(System.Int32,System.ReadOnlySpan{System.Boolean})">
             <summary>
-            Initializes a <see cref="T:Sudoku.SetTheory.SetTheoryDancingLinks"/> instance via columns count and is-primary property to every column header.
+            Initializes a <see cref="T:Sudoku.Theories.SetTheory.SetTheoryDancingLinks"/> instance via columns count and is-primary property to every column header.
             </summary>
             <param name="columnCount">The number of columns.</param>
             <param name="isPrimary">Is-primary property to every column header.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.Solve(System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.Solve(System.Int32)">
             <summary>
             Enumerate solutions up to <paramref name="maxSolutions"/>.
             The row IDs in each solution correspond to those
-            given in <see cref="M:Sudoku.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})"/>.
+            given in <see cref="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})"/>.
             </summary>
             <param name="maxSolutions">
             Specify the desired number of solutions this algorithm can detect.
-            If limit is reached, an exception of type <see cref="T:Sudoku.SetTheory.DancingLinksTooComplexException"/> will be thrown
+            If limit is reached, an exception of type <see cref="T:Sudoku.Theories.SetTheory.DancingLinksTooComplexException"/> will be thrown
             if symbol <c>SET_THROW_IF_LIMIT_IS_REACHED</c> is configured, or return all found solutions if not.
             </param>
-            <exception cref="T:Sudoku.SetTheory.DancingLinksTooComplexException">
+            <exception cref="T:Sudoku.Theories.SetTheory.DancingLinksTooComplexException">
             Throws when pattern is too complex to be calculated,
             and symbol <c>SET_THROW_IF_LIMIT_IS_REACHED</c> is enabled.
             </exception>
-            <seealso cref="M:Sudoku.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})"/>
+            <seealso cref="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})"/>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.AddRow(System.Int32,System.ReadOnlySpan{System.Int32})">
             <summary>
             Add a row with given <paramref name="rowId"/> and column indices <paramref name="columnIndices"/> (may be empty list).
             </summary>
             <param name="rowId">The row ID.</param>
             <param name="columnIndices">Column indices.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.Cover(Sudoku.SetTheory.SetTheoryColumnHeader)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.Cover(Sudoku.Theories.SetTheory.SetTheoryColumnHeader)">
             <summary>
             Do cover operation.
             </summary>
             <param name="c">The column.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.Uncover(Sudoku.SetTheory.SetTheoryColumnHeader)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.Uncover(Sudoku.Theories.SetTheory.SetTheoryColumnHeader)">
             <summary>
             Do uncover operation.
             </summary>
             <param name="c">The column.</param>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.ChooseColumn">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.ChooseColumn">
             <summary>
             Choose a column.
             </summary>
             <returns>The chosen column. If failed to choose, <see langword="null"/> will be returned.</returns>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheoryDancingLinks.Search(System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheoryDancingLinks.Search(System.Int32)">
             <summary>
             Perform depth-first searching to find solutions.
             </summary>
             <param name="k">The current index.</param>
-            <exception cref="T:Sudoku.SetTheory.DancingLinksTooComplexException">Throws when pattern is too complex.</exception>
+            <exception cref="T:Sudoku.Theories.SetTheory.DancingLinksTooComplexException">Throws when pattern is too complex.</exception>
         </member>
-        <member name="T:Sudoku.SetTheory.SetTheoryNode">
+        <member name="T:Sudoku.Theories.SetTheory.SetTheoryNode">
             <summary>
             Represents a node. All fields in this type is nullable unaware.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.L">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.L">
             <summary>
             Provides up, down, left, right nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.R">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.R">
             <summary>
             Provides up, down, left, right nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.U">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.U">
             <summary>
             Provides up, down, left, right nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.D">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.D">
             <summary>
             Provides up, down, left, right nodes.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.C">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.C">
             <summary>
             Indicates the column header.
             </summary>
         </member>
-        <member name="F:Sudoku.SetTheory.SetTheoryNode.RowId">
+        <member name="F:Sudoku.Theories.SetTheory.SetTheoryNode.RowId">
             <summary>
             Indicates row ID.
             This field is optional: identify which input row this node belongs to.
             </summary>
         </member>
-        <member name="T:Sudoku.SetTheory.SetTheorySolver">
+        <member name="T:Sudoku.Theories.SetTheory.SetTheorySolver">
             <summary>
             Represents an internal entry for dancing links solver.
             </summary>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheorySolver.Solve(Sudoku.SetTheory.Logic@,System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheorySolver.Solve(Sudoku.Theories.SetTheory.Logic@,System.Int32)">
             <summary>
             Solve for all selections of candidates that satisfy:
             <list type="bullet">
@@ -36898,11 +36898,11 @@
             <param name="logic">The pattern to be used.</param>
             <param name="maxSolutions">The limit maximum solutions can be found.</param>
             <returns>
-            List of solutions; each solution is a <see cref="T:Sudoku.SetTheory.Permutation"/> of assigned candidates (0..728).
+            List of solutions; each solution is a <see cref="T:Sudoku.Theories.SetTheory.Permutation"/> of assigned candidates (0..728).
             </returns>
-            <seealso cref="T:Sudoku.SetTheory.Permutation"/>
+            <seealso cref="T:Sudoku.Theories.SetTheory.Permutation"/>
         </member>
-        <member name="M:Sudoku.SetTheory.SetTheorySolver.Solve(Sudoku.Concepts.CandidateMap@,System.ReadOnlySpan{Sudoku.Concepts.CandidateMap},System.ReadOnlySpan{Sudoku.Concepts.CandidateMap},System.Int32)">
+        <member name="M:Sudoku.Theories.SetTheory.SetTheorySolver.Solve(Sudoku.Concepts.CandidateMap@,System.ReadOnlySpan{Sudoku.Concepts.CandidateMap},System.ReadOnlySpan{Sudoku.Concepts.CandidateMap},System.Int32)">
             <summary>
             The backing method.
             </summary>

@@ -1,4 +1,4 @@
-namespace Sudoku.DeadlyPatternTheory;
+namespace Sudoku.Theories.DeadlyPatternTheory;
 
 /// <summary>
 /// Indicates the result value after <see cref="DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern"/> called.

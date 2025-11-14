@@ -1,4 +1,4 @@
-namespace Sudoku.DeadlyPatternTheory;
+namespace Sudoku.Theories.DeadlyPatternTheory;
 
 /// <summary>
 /// Represents a reason describing why the analysis operation is failed.

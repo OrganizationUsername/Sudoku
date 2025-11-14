@@ -1,4 +1,4 @@
-namespace Sudoku.DeadlyPatternTheory;
+namespace Sudoku.Theories.DeadlyPatternTheory;
 
 /// <summary>
 /// Represents a type that checks and infers for a pattern (specified as a <see cref="Grid"/>, but invalid - multiple solutions),

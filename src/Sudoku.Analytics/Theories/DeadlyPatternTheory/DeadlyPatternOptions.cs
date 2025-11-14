@@ -1,4 +1,4 @@
-namespace Sudoku.DeadlyPatternTheory;
+namespace Sudoku.Theories.DeadlyPatternTheory;
 
 /// <summary>
 /// Represents a type that adjust checking rules for deadly pattern.

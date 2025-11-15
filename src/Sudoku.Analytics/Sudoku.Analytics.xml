@@ -35689,15 +35689,17 @@
         </member>
         <member name="T:Sudoku.Theories.BabaGroupingTheory.AssumedValue">
             <summary>
-            Represents an assumed value.
+            Represents an assumed value. Instances of this type can be produced by <see cref="T:Sudoku.Theories.BabaGroupingTheory.Assumption"/> instances.
             </summary>
             <param name="mask">The mask.</param>
+            <seealso cref="T:Sudoku.Theories.BabaGroupingTheory.Assumption"/>
         </member>
         <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.#ctor(System.Byte)">
             <summary>
-            Represents an assumed value.
+            Represents an assumed value. Instances of this type can be produced by <see cref="T:Sudoku.Theories.BabaGroupingTheory.Assumption"/> instances.
             </summary>
             <param name="mask">The mask.</param>
+            <seealso cref="T:Sudoku.Theories.BabaGroupingTheory.Assumption"/>
         </member>
         <member name="F:Sudoku.Theories.BabaGroupingTheory.AssumedValue._mask">
             <summary>

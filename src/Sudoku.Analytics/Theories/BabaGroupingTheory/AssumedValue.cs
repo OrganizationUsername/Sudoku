@@ -1,9 +1,10 @@
 namespace Sudoku.Theories.BabaGroupingTheory;
 
 /// <summary>
-/// Represents an assumed value.
+/// Represents an assumed value. Instances of this type can be produced by <see cref="Assumption"/> instances.
 /// </summary>
 /// <param name="mask">The mask.</param>
+/// <seealso cref="Assumption"/>
 public readonly struct AssumedValue(byte mask) : IEquatable<AssumedValue>, IEqualityOperators<AssumedValue, AssumedValue, bool>
 {
 	/// <summary>

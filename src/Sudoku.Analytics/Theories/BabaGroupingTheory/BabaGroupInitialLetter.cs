@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Configuration;
+namespace Sudoku.Theories.BabaGroupingTheory;
 
 /// <summary>
 /// Provides a style that displays for a letter in a baba group.

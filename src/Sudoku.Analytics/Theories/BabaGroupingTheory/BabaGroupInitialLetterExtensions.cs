@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Configuration;
+namespace Sudoku.Theories.BabaGroupingTheory;
 
 /// <summary>
 /// Provides with extension methods on <see cref="BabaGroupInitialLetter"/> instances.

@@ -5045,124 +5045,6 @@
             Throws when property <see cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/> is not defined.
             </exception>
         </member>
-        <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter">
-            <summary>
-            Provides a style that displays for a letter in a baba group.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Digit_Zero">
-            <summary>
-            Indicates the initial letter is digit '<c>0</c>'. The sequence would be <c>0, 1, 2 ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Digit_One">
-            <summary>
-            Indicates the initial letter is digit '<c>1</c>'. The sequence would be <c>1, 2, 3 ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.RomanticNumber_One">
-            <summary>
-            Indicates the initial letter is romatic number '<c>&#8544;</c>'.
-            The sequence would be <c>&#8544;, &#8545;, &#8546; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_A">
-            <summary>
-            Indicates the initial letter is English letter '<c>A</c>'. The sequence would be <c>A, B, C, ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X">
-            <summary>
-            Indicates the initial letter is English letter '<c>X</c>'. The sequence would be <c>X, Y, Z, W, ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.GreeceLetter_Alpha">
-            <summary>
-            Indicates the initial letter is Greece letter '<c>&#913;</c>'. The sequence would be <c>&#913;, &#914;, &#915; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseCharacter_One">
-            <summary>
-            Indicates the initial letter is Chinese character '<c>&#19968;</c>' (pinyin: yī, meaning "one").
-            The sequence would be <c>&#19968;, &#20108;, &#19977; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseHavenlyStem_Jia">
-            <summary>
-            Indicates the initial letter is Chinese Havenly Stems '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
-            The sequence would be <c>&#30002;, &#20057;, &#19993; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.ChineseEarthlyBranch_Zi">
-            <summary>
-            Indicates the initial letter is Chinese Earthly Branches '<c>&#23376;</c>' (pinyin: zǐ, meaning "the first").
-            The sequence would be <c>&#23376;, &#19985;, &#23493; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.CapitalChineseCharacter_One">
-            <summary>
-            Indicates the initial letter is Chinese character '<c>&#22777;</c>' (pinyin: yī, meaning "one").
-            The sequence would be <c>&#22777;, &#36144;, &#21441; ...</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.Kanji_One">
-            <summary>
-            Indicates the initial letter is Japanese character (i.e. Kanji) '<c>&#22769;</c>' (Roman: Ichi, meaning "one").
-            The sequence would be <c>&#22769;, &#24336;, &#21442; ...</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.CharSequences">
-            <summary>
-            Indicates the sequences.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.GetSequence(Sudoku.Analytics.Configuration.BabaGroupInitialLetter,Sudoku.Analytics.Configuration.BabaGroupLetterCasing)">
-            <inheritdoc cref="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.&lt;G&gt;$D7090CFC8E1E233FE4F7CA8BC0ED8D58.GetSequence(Sudoku.Analytics.Configuration.BabaGroupLetterCasing)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.EscapeDigit(Sudoku.Analytics.Configuration.BabaGroupInitialLetter,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.&lt;G&gt;$D7090CFC8E1E233FE4F7CA8BC0ED8D58.EscapeDigit(System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.&lt;G&gt;$D7090CFC8E1E233FE4F7CA8BC0ED8D58.&lt;M&gt;$2A9AF46FB45C8A4006E30AB50261B013">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Analytics.Configuration.BabaGroupInitialLetter"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.&lt;G&gt;$D7090CFC8E1E233FE4F7CA8BC0ED8D58.GetSequence(Sudoku.Analytics.Configuration.BabaGroupLetterCasing)">
-            <summary>
-            Try to get character sequence from the specified initial letter.
-            </summary>
-            <param name="casing">The letter casing.</param>
-            <returns>The character sequence.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified arguments are not defined.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Configuration.BabaGroupInitialLetterExtensions.&lt;G&gt;$D7090CFC8E1E233FE4F7CA8BC0ED8D58.EscapeDigit(System.Int32)">
-            <summary>
-            Try to escape the digit.
-            </summary>
-            <param name="digit">The digit to be escaped.</param>
-            <returns>The escaped character. If a digit doesn't need to escape, return character representation of itself.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Configuration.BabaGroupLetterCasing">
-            <summary>
-            Provides with a letter casing of baba group letter.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Upper">
-            <summary>
-            Indicates the upper casing.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower">
-            <summary>
-            Indicates the lower casing.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Configuration.CollectorDifficultyLevelMode">
             <summary>
             Indicates the mode that describe the difficulty level controlling for a <see cref="T:Sudoku.Analytics.Collector"/> instance.
@@ -5427,8 +5309,8 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupInitialLetter.EnglishLetter_X"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Analytics.Configuration.BabaGroupLetterCasing.Lower"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.EnglishLetter_X"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCasing"/>: <see cref="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing.Lower"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Construction.Components.LinkOption.House"/></item>
             <item>
             <see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.OverriddenLinkOptions"/>:
@@ -35803,6 +35685,261 @@
         <member name="F:Sudoku.Runtime.InteropServices.SudokuExplainer.SudokuExplainerTechnique.BruteForce">
             <summary>
             Represents brute force.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.AssumedValue">
+            <summary>
+            Represents an assumed value.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Theories.BabaGroupingTheory.AssumedValue._mask" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.#ctor(System.Byte)">
+            <summary>
+            Represents an assumed value.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Theories.BabaGroupingTheory.AssumedValue._mask" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.AssumedValue._mask">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.#ctor(Sudoku.Theories.BabaGroupingTheory.AssumedValueType,System.Int32)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Theories.BabaGroupingTheory.AssumedValue"/> instance via the specified type and value.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="P:Sudoku.Theories.BabaGroupingTheory.AssumedValue.Type">
+            <summary>
+            Indicates the assumed type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.BabaGroupingTheory.AssumedValue.Index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.Equals(Sudoku.Theories.BabaGroupingTheory.AssumedValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.ToString(Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)">
+            <summary>
+            Returns a string that represents the current instance.
+            </summary>
+            <param name="initialLetter">The initial letter.</param>
+            <param name="casing">The letter casing.</param>
+            <returns>A string that represents the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.op_Equality(Sudoku.Theories.BabaGroupingTheory.AssumedValue,Sudoku.Theories.BabaGroupingTheory.AssumedValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.AssumedValue.op_Inequality(Sudoku.Theories.BabaGroupingTheory.AssumedValue,Sudoku.Theories.BabaGroupingTheory.AssumedValue)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.AssumedValueType">
+            <summary>
+            Represents a type of assumed value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.AssumedValueType.Accurate">
+            <summary>
+            Indicates the type is accurate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.AssumedValueType.Fuzzy">
+            <summary>
+            Indicates the type is fuzzy.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.Assumption">
+            <summary>
+            Represents an assumption.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Theories.BabaGroupingTheory.Assumption._mask" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.#ctor(System.Int32)">
+            <summary>
+            Represents an assumption.
+            </summary>
+            <param name="mask"><inheritdoc cref="F:Sudoku.Theories.BabaGroupingTheory.Assumption._mask" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.Assumption._mask">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.BabaGroupingTheory.Assumption.AssumedValueType">
+            <summary>
+            Indicates the type of assumed value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.BabaGroupingTheory.Assumption.Cell">
+            <summary>
+            Indicates the cell used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Theories.BabaGroupingTheory.Assumption.AssumedValues">
+            <summary>
+            Indicates assumed values.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.Equals(Sudoku.Theories.BabaGroupingTheory.Assumption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.ToString">
+            <inheritdoc cref="M:Sudoku.Theories.BabaGroupingTheory.Assumption.ToString(System.IFormatProvider,Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.ToString(Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)">
+            <inheritdoc cref="M:Sudoku.Theories.BabaGroupingTheory.Assumption.ToString(System.IFormatProvider,Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.ToString(System.IFormatProvider,Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)">
+            <summary>
+            Returns a string that represents the current instance.
+            </summary>
+            <param name="formatProvider">The format provider.</param>
+            <param name="initialLetter">The initial letter.</param>
+            <param name="casing">The letter casing.</param>
+            <returns>A string that represents the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.op_Equality(Sudoku.Theories.BabaGroupingTheory.Assumption,Sudoku.Theories.BabaGroupingTheory.Assumption)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.Assumption.op_Inequality(Sudoku.Theories.BabaGroupingTheory.Assumption,Sudoku.Theories.BabaGroupingTheory.Assumption)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter">
+            <summary>
+            Provides a style that displays for a letter in a baba group.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.Digit_Zero">
+            <summary>
+            Indicates the initial letter is digit '<c>0</c>'. The sequence would be <c>0, 1, 2 ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.Digit_One">
+            <summary>
+            Indicates the initial letter is digit '<c>1</c>'. The sequence would be <c>1, 2, 3 ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.RomanticNumber_One">
+            <summary>
+            Indicates the initial letter is romatic number '<c>&#8544;</c>'.
+            The sequence would be <c>&#8544;, &#8545;, &#8546; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.EnglishLetter_A">
+            <summary>
+            Indicates the initial letter is English letter '<c>A</c>'. The sequence would be <c>A, B, C, ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.EnglishLetter_X">
+            <summary>
+            Indicates the initial letter is English letter '<c>X</c>'. The sequence would be <c>X, Y, Z, W, ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.GreeceLetter_Alpha">
+            <summary>
+            Indicates the initial letter is Greece letter '<c>&#913;</c>'. The sequence would be <c>&#913;, &#914;, &#915; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.ChineseCharacter_One">
+            <summary>
+            Indicates the initial letter is Chinese character '<c>&#19968;</c>' (pinyin: yī, meaning "one").
+            The sequence would be <c>&#19968;, &#20108;, &#19977; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.ChineseHavenlyStem_Jia">
+            <summary>
+            Indicates the initial letter is Chinese Havenly Stems '<c>&#30002;</c>' (pinyin: jiǎ, meaning "one").
+            The sequence would be <c>&#30002;, &#20057;, &#19993; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.ChineseEarthlyBranch_Zi">
+            <summary>
+            Indicates the initial letter is Chinese Earthly Branches '<c>&#23376;</c>' (pinyin: zǐ, meaning "the first").
+            The sequence would be <c>&#23376;, &#19985;, &#23493; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.CapitalChineseCharacter_One">
+            <summary>
+            Indicates the initial letter is Chinese character '<c>&#22777;</c>' (pinyin: yī, meaning "one").
+            The sequence would be <c>&#22777;, &#36144;, &#21441; ...</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter.Kanji_One">
+            <summary>
+            Indicates the initial letter is Japanese character (i.e. Kanji) '<c>&#22769;</c>' (Roman: Ichi, meaning "one").
+            The sequence would be <c>&#22769;, &#24336;, &#21442; ...</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter"/>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.CharSequences">
+            <summary>
+            Indicates the sequences.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.GetSequence(Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)">
+            <inheritdoc cref="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.&lt;G&gt;$5A6CC3C75C797296CE252D405EF790D5.GetSequence(Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)"/>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.EscapeDigit(Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.&lt;G&gt;$5A6CC3C75C797296CE252D405EF790D5.EscapeDigit(System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.&lt;G&gt;$5A6CC3C75C797296CE252D405EF790D5.&lt;M&gt;$57285FE411E5F4DDAB11CE98993488B1">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetter"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.&lt;G&gt;$5A6CC3C75C797296CE252D405EF790D5.GetSequence(Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing)">
+            <summary>
+            Try to get character sequence from the specified initial letter.
+            </summary>
+            <param name="casing">The letter casing.</param>
+            <returns>The character sequence.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the specified arguments are not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Theories.BabaGroupingTheory.BabaGroupInitialLetterExtensions.&lt;G&gt;$5A6CC3C75C797296CE252D405EF790D5.EscapeDigit(System.Int32)">
+            <summary>
+            Try to escape the digit.
+            </summary>
+            <param name="digit">The digit to be escaped.</param>
+            <returns>The escaped character. If a digit doesn't need to escape, return character representation of itself.</returns>
+        </member>
+        <member name="T:Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing">
+            <summary>
+            Provides with a letter casing of baba group letter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing.Upper">
+            <summary>
+            Indicates the upper casing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Theories.BabaGroupingTheory.BabaGroupLetterCasing.Lower">
+            <summary>
+            Indicates the lower casing.
             </summary>
         </member>
         <member name="T:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap">

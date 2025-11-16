@@ -183,6 +183,8 @@
 * [飞鱼常见的潜在删数](exocet/05-potential-eliminations-of-exocet/README.md)
   * [目标格跨区数对](exocet/05-potential-eliminations-of-exocet/01-target-pair-rule.md)
   * [镜面格的删数特性](exocet/05-potential-eliminations-of-exocet/02-features-of-eliminations-on-mirror-cells.md)
+  * [镜面格同步](exocet/05-potential-eliminations-of-exocet/03-mirror-sync.md)
+  * [锁定成员](exocet/05-potential-eliminations-of-exocet/04-locked-member.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

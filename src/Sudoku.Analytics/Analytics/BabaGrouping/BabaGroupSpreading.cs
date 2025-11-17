@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics.BabaGrouping;
 
 /// <summary>
-/// Provides a way to suppose values.
+/// Provides a way to spread a cell symbol.
 /// </summary>
-public static class BabaGrouping
+public static class BabaGroupSpreading
 {
 	/// <summary>
 	/// Spreads the specified assumption into multiple different cells.

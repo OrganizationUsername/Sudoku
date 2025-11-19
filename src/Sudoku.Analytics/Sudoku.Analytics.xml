@@ -12868,6 +12868,69 @@
             <inheritdoc/>
             <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>
         </member>
+        <member name="T:Sudoku.Analytics.SimdGrid">
+            <summary>
+            Represents a type that stores cached grid data set that will be used in analysis operation.
+            </summary>
+            <remarks>
+            This type uses 496 bytes.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.HasMultipleSolutions">
+            <summary>
+            Indicates whether the grid has multiple solutions or not.
+            </summary>
+            <remarks>
+            If the value is <see langword="false"/>, field <see cref="F:Sudoku.Analytics.SimdGrid.Solution"/> becomes non-<see langword="null"/>;
+            otherwise, <see langword="null"/>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.EmptyCellsMap">
+            <summary>
+            Indicates a list of cells that are empty cells in the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.BivalueCellsMap">
+            <summary>
+            Indicates a list of cells that are bi-value cells in the grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.CandidatesMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating cell distribution on empty cell list for each digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.DigitsMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating cell distribution on cell list for each digit,
+            counting if a cell includes the candidate, or the cell is filled with the digit no matter whether it is a given.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.ValuesMap">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating cell distribution on cell list for each digit,
+            counting if a cell is a given or modifiable filling with the digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.Solution">
+            <summary>
+            Indicates the solution digits to original grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SimdGrid.Candidates">
+            <summary>
+            Indicates the candidate list.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SimdGrid.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.SimdGrid"/> instance.
+            </summary>
+            <param name="grid">The read-only reference to the original grid.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.SimdGrid.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
             Provides with a solving step that describes for a technique usage,

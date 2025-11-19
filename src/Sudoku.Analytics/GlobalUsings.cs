@@ -58,6 +58,7 @@ global using Sudoku.Runtime.InteropServices;
 global using Sudoku.Runtime.InteropServices.Hodoku;
 global using Sudoku.Runtime.InteropServices.SudokuExplainer;
 global using Sudoku.Solving;
+global using Sudoku.Solving.Bitwise;
 global using Sudoku.Theories.DeadlyPatternTheory;
 global using Sudoku.Theories.SetTheory;
 global using Sudoku.Transformations;

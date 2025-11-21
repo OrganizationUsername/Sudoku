@@ -7,8 +7,11 @@ namespace Sudoku.Analytics.BabaGrouping;
 /// <param name="mask">The mask.</param>
 /// <seealso cref="CellSymbol"/>
 public readonly struct CellSymbolValue(byte mask) :
+	IComparable<CellSymbolValue>,
+	IComparisonOperators<CellSymbolValue, CellSymbolValue, bool>,
 	IEquatable<CellSymbolValue>,
-	IEqualityOperators<CellSymbolValue, CellSymbolValue, bool>
+	IEqualityOperators<CellSymbolValue, CellSymbolValue, bool>,
+	IMinMaxValue<CellSymbolValue>
 {
 	/// <summary>
 	/// Represents an invalid instance.
@@ -33,7 +36,7 @@ public readonly struct CellSymbolValue(byte mask) :
 	/// Initializes an <see cref="CellSymbolValue"/> instance via the specified type and value.
 	/// </summary>
 	/// <param name="type">The type.</param>
-	/// <param name="value">The value.</param>
+	/// <param name="value">The value. The value should be in range 0..9.</param>
 	public CellSymbolValue(CellSymbolType type, Digit value) : this((byte)((int)type << 4 | value))
 	{
 	}
@@ -51,6 +54,13 @@ public readonly struct CellSymbolValue(byte mask) :
 
 
 	/// <inheritdoc/>
+	static CellSymbolValue IMinMaxValue<CellSymbolValue>.MinValue => default;
+
+	/// <inheritdoc/>
+	static CellSymbolValue IMinMaxValue<CellSymbolValue>.MaxValue => new(CellSymbolType.Accurate, 8);
+
+
+	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is CellSymbolValue comparer && Equals(comparer);
 
 	/// <inheritdoc/>
@@ -58,6 +68,9 @@ public readonly struct CellSymbolValue(byte mask) :
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => _mask;
+
+	/// <inheritdoc/>
+	public int CompareTo(CellSymbolValue other) => Index.CompareTo(other.Index);
 
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString()
@@ -83,4 +96,16 @@ public readonly struct CellSymbolValue(byte mask) :
 
 	/// <inheritdoc/>
 	public static bool operator !=(CellSymbolValue left, CellSymbolValue right) => !(left == right);
+
+	/// <inheritdoc/>
+	public static bool operator >(CellSymbolValue left, CellSymbolValue right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	public static bool operator <(CellSymbolValue left, CellSymbolValue right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	public static bool operator >=(CellSymbolValue left, CellSymbolValue right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	public static bool operator <=(CellSymbolValue left, CellSymbolValue right) => left.CompareTo(right) <= 0;
 }

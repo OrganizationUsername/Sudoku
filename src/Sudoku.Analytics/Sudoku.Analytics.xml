@@ -932,6 +932,9 @@
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.CompareTo(Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.ToString">
             <inheritdoc cref="M:Sudoku.Analytics.BabaGrouping.CellSymbol.ToString(System.IFormatProvider,Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter,Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase)"/>
         </member>
@@ -951,6 +954,86 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.op_Inequality(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.op_GreaterThan(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.op_LessThan(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.op_GreaterThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbol.op_LessThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Analytics.BabaGrouping.CellSymbol)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.BabaGrouping.CellSymbolGroup">
+            <summary>
+            Provides a group of <see cref="T:Sudoku.Analytics.BabaGrouping.CellSymbol"/> instances.
+            </summary>
+            <param name="symbols">The symbols.</param>
+            <seealso cref="T:Sudoku.Analytics.BabaGrouping.CellSymbol"/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.BabaGrouping.CellSymbol})">
+            <summary>
+            Provides a group of <see cref="T:Sudoku.Analytics.BabaGrouping.CellSymbol"/> instances.
+            </summary>
+            <param name="symbols">The symbols.</param>
+            <seealso cref="T:Sudoku.Analytics.BabaGrouping.CellSymbol"/>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.Cells">
+            <summary>
+            Indicates cells used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.Values">
+            <summary>
+            Indicates all values used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.EqualityComparer">
+            <summary>
+            Indicates the set comparer instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.Equals(Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.CompareTo(Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_Equality(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_Inequality(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_GreaterThan(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_LessThan(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_GreaterThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.op_LessThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolGroup,Sudoku.Analytics.BabaGrouping.CellSymbolGroup)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.CellSymbolType">
@@ -1007,7 +1090,7 @@
             Initializes an <see cref="T:Sudoku.Analytics.BabaGrouping.CellSymbolValue"/> instance via the specified type and value.
             </summary>
             <param name="type">The type.</param>
-            <param name="value">The value.</param>
+            <param name="value">The value. The value should be in range 0..9.</param>
         </member>
         <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValue.Type">
             <summary>
@@ -1019,6 +1102,12 @@
             Indicates the index.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValue.System#Numerics#IMinMaxValue{Sudoku#Analytics#BabaGrouping#CellSymbolValue}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValue.System#Numerics#IMinMaxValue{Sudoku#Analytics#BabaGrouping#CellSymbolValue}#MaxValue">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -1027,6 +1116,9 @@
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.CompareTo(Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -1043,6 +1135,92 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.op_Inequality(Sudoku.Analytics.BabaGrouping.CellSymbolValue,Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.op_GreaterThan(Sudoku.Analytics.BabaGrouping.CellSymbolValue,Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.op_LessThan(Sudoku.Analytics.BabaGrouping.CellSymbolValue,Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.op_GreaterThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolValue,Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValue.op_LessThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolValue,Sudoku.Analytics.BabaGrouping.CellSymbolValue)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup">
+            <summary>
+            Provides a group of <see cref="T:Sudoku.Analytics.BabaGrouping.CellSymbolValue"/> instances.
+            </summary>
+            <param name="values">The values.</param>
+            <seealso cref="T:Sudoku.Analytics.BabaGrouping.CellSymbolValue"/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.BabaGrouping.CellSymbolValue})">
+            <summary>
+            Provides a group of <see cref="T:Sudoku.Analytics.BabaGrouping.CellSymbolValue"/> instances.
+            </summary>
+            <param name="values">The values.</param>
+            <seealso cref="T:Sudoku.Analytics.BabaGrouping.CellSymbolValue"/>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.First">
+            <summary>
+            Indicates the first element in this collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the current collection is empty.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.EqualityComparer">
+            <summary>
+            Indicates the set comparer instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.Equals(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.AddRange(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <summary>
+            Add a list of values into the current collection.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>The number of elements added.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.CompareTo(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.ToString(Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter,Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase)">
+            <summary>
+            Returns a string that represents the current instance.
+            </summary>
+            <param name="initialLetter">The initial letter.</param>
+            <param name="case">The letter case.</param>
+            <returns>A string that represents the current instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the collection contains invalid data.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_Equality(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_Inequality(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_GreaterThan(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_LessThan(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_GreaterThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.op_LessThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup,Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.SpreadingRule">

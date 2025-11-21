@@ -4,7 +4,11 @@ namespace Sudoku.Analytics.BabaGrouping;
 /// Defines a symbol that represents a cell supposed, representing a meaning of a fuzzy assignment like <c>r3c2 = <i>x</i></c>.
 /// </summary>
 /// <param name="mask">The mask.</param>
-public readonly struct CellSymbol(int mask) : IEquatable<CellSymbol>, IEqualityOperators<CellSymbol, CellSymbol, bool>
+public readonly struct CellSymbol(int mask) :
+	IComparable<CellSymbol>,
+	IComparisonOperators<CellSymbol, CellSymbol, bool>,
+	IEquatable<CellSymbol>,
+	IEqualityOperators<CellSymbol, CellSymbol, bool>
 {
 	/// <summary>
 	/// <para>
@@ -55,18 +59,18 @@ public readonly struct CellSymbol(int mask) : IEquatable<CellSymbol>, IEqualityO
 	/// <summary>
 	/// Indicates values.
 	/// </summary>
-	public ReadOnlySpan<CellSymbolValue> Values
+	public CellSymbolValueGroup Values
 	{
 		get
 		{
-			var result = new List<CellSymbolValue>();
+			var result = new SortedSet<CellSymbolValue>();
 			foreach (var index in _mask & (1 << 18) - 1)
 			{
 				var type = index / 9;
 				var value = index % 9;
 				result.Add(new((CellSymbolType)type, value));
 			}
-			return result.AsSpan();
+			return [.. result];
 		}
 	}
 
@@ -79,6 +83,12 @@ public readonly struct CellSymbol(int mask) : IEquatable<CellSymbol>, IEqualityO
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => _mask;
+
+	/// <inheritdoc/>
+	public int CompareTo(CellSymbol other)
+		=> Cell.CompareTo(other.Cell) is var r1 and not 0
+			? r1
+			: Values.CompareTo(other.Values) is var r2 and not 0 ? r2 : 0;
 
 	/// <inheritdoc cref="ToString(IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public override string ToString()
@@ -114,4 +124,16 @@ public readonly struct CellSymbol(int mask) : IEquatable<CellSymbol>, IEqualityO
 
 	/// <inheritdoc/>
 	public static bool operator !=(CellSymbol left, CellSymbol right) => !(left == right);
+
+	/// <inheritdoc/>
+	public static bool operator >(CellSymbol left, CellSymbol right) => left.CompareTo(right) > 0;
+
+	/// <inheritdoc/>
+	public static bool operator <(CellSymbol left, CellSymbol right) => left.CompareTo(right) < 0;
+
+	/// <inheritdoc/>
+	public static bool operator >=(CellSymbol left, CellSymbol right) => left.CompareTo(right) >= 0;
+
+	/// <inheritdoc/>
+	public static bool operator <=(CellSymbol left, CellSymbol right) => left.CompareTo(right) <= 0;
 }

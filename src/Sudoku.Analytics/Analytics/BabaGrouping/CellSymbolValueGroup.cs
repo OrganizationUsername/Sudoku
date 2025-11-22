@@ -94,13 +94,7 @@ public sealed class CellSymbolValueGroup(params IEnumerable<CellSymbolValue> val
 	}
 
 	/// <inheritdoc/>
-	public override string ToString()
-		=> ToString(
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+	public override string ToString() => ToString(BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 	/// <summary>
 	/// Returns a string that represents the current instance.

@@ -94,13 +94,7 @@ public readonly struct CellSymbol(int mask) :
 
 	/// <inheritdoc cref="ToString(IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public override string ToString()
-		=> ToString(
-			null,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+		=> ToString(null, BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 	/// <inheritdoc cref="ToString(IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public string ToString(BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
@@ -122,13 +116,7 @@ public readonly struct CellSymbol(int mask) :
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
-		=> ToString(
-			formatProvider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+		=> ToString(formatProvider, BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 
 	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
@@ -137,15 +125,7 @@ public readonly struct CellSymbol(int mask) :
 
 	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellSymbol result)
-		=> TryParse(
-			s,
-			provider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower,
-			out result
-		);
+		=> TryParse(s, provider, BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower, out result);
 
 	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case, out CellSymbol result)
@@ -183,14 +163,7 @@ public readonly struct CellSymbol(int mask) :
 
 	/// <inheritdoc cref="CellSymbolValue.Parse(string, IFormatProvider?)"/>
 	public static CellSymbol Parse(string s, IFormatProvider? provider)
-		=> Parse(
-			s,
-			provider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+		=> Parse(s, provider, BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 	/// <inheritdoc cref="CellSymbolValue.Parse(string, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public static CellSymbol Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)

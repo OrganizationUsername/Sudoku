@@ -813,6 +813,9 @@
             Indicates the sequences.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.get_CurrentCultureInstance">
+            <inheritdoc cref="P:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.CurrentCultureInstance"/>
+        </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.GetSequence(Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter,Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase)">
             <inheritdoc cref="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetSequence(Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase)"/>
         </member>
@@ -822,6 +825,11 @@
         <member name="T:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.&lt;M&gt;$EC6EBE4736A64A74CF78657D0E9872C7">
             <summary>
             Provides extension members on <see cref="T:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.CurrentCultureInstance">
+            <summary>
+            Represents the instance that is used in the current culture.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetSequence(Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase)">

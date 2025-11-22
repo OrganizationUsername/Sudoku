@@ -115,13 +115,7 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(
-			formatProvider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+		=> ToString(formatProvider, BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
@@ -161,15 +155,7 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 
 	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, BabaGroupLetterCase @case, [NotNullWhen(true)] out CellSymbolGroup? result)
-		=> TryParse(
-			s,
-			provider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			@case,
-			out result
-		);
+		=> TryParse(s, provider, BabaGroupInitialLetter.CurrentCultureInstance, @case, out result);
 
 	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
 	public static bool TryParse(
@@ -214,14 +200,7 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 
 	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public static CellSymbolGroup Parse(string s, IFormatProvider? provider, BabaGroupLetterCase @case)
-		=> Parse(
-			s,
-			provider,
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			@case
-		);
+		=> Parse(s, provider, BabaGroupInitialLetter.CurrentCultureInstance, @case);
 
 	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public static CellSymbolGroup Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)

@@ -75,13 +75,7 @@ public readonly struct CellSymbolValue(byte mask) :
 	public int CompareTo(CellSymbolValue other) => Index.CompareTo(other.Index);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString()
-		=> ToString(
-			SR.IsEnglish(CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			BabaGroupLetterCase.Lower
-		);
+	public override string ToString() => ToString(BabaGroupInitialLetter.CurrentCultureInstance, BabaGroupLetterCase.Lower);
 
 	/// <summary>
 	/// Returns a string that represents the current instance.

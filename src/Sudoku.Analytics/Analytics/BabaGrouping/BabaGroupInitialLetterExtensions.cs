@@ -42,6 +42,13 @@ public static class BabaGroupInitialLetterExtensions
 	extension(BabaGroupInitialLetter @this)
 	{
 		/// <summary>
+		/// Represents the instance that is used in the current culture.
+		/// </summary>
+		public static BabaGroupInitialLetter CurrentCultureInstance
+			=> SR.IsEnglish(CultureInfo.CurrentUICulture) ? BabaGroupInitialLetter.EnglishLetter_X : BabaGroupInitialLetter.EnglishLetter_A;
+
+
+		/// <summary>
 		/// Try to get character sequence from the specified initial letter.
 		/// </summary>
 		/// <param name="case">The letter case.</param>

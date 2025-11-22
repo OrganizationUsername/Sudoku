@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.BabaGrouping;
 /// <summary>
 /// Provides a way to spread a cell symbol.
 /// </summary>
-public static class BabaGroupSpreading
+public static class GroupSpreading
 {
 	/// <summary>
 	/// Spreads the specified assumption into multiple different cells.

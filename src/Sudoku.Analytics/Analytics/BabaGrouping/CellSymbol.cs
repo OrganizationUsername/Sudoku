@@ -110,7 +110,7 @@ public readonly struct CellSymbol(int mask) :
 	public string ToString(IFormatProvider? formatProvider, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
 	{
 		var converter = CoordinateConverter.GetInstance(formatProvider);
-		var assumedValuesString = string.Join('|', from value in Values select value.ToString(initialLetter, @case));
+		var assumedValuesString = string.Concat(from value in Values select value.ToString(initialLetter, @case));
 		return $"{converter.CellConverter(Cell.AsCellMap())} = {assumedValuesString}";
 	}
 

@@ -872,21 +872,6 @@
             Indicates the lower case.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.BabaGrouping.BabaGroupSpreading">
-            <summary>
-            Provides a way to spread a cell symbol.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupSpreading.Spread(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.SpreadingRule})">
-            <summary>
-            Spreads the specified assumption into multiple different cells.
-            </summary>
-            <param name="symbol">The original symbol.</param>
-            <param name="grid">The grid.</param>
-            <param name="spreadingRules">The spreading rules.</param>
-            <returns>All found symbols found.</returns>
-            <exception cref="T:System.ArgumentException">Throws when an assumption is not fuzzy type.</exception>
-        </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.CellSymbol">
             <summary>
             Defines a symbol that represents a cell supposed, representing a meaning of a fuzzy assignment like <c>r3c2 = <i>x</i></c>.
@@ -1427,6 +1412,21 @@
         </member>
         <member name="M:Sudoku.Analytics.BabaGrouping.CellSymbolValues.op_LessThanOrEqual(Sudoku.Analytics.BabaGrouping.CellSymbolValues,Sudoku.Analytics.BabaGrouping.CellSymbolValues)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.BabaGrouping.GroupSpreading">
+            <summary>
+            Provides a way to spread a cell symbol.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.BabaGrouping.GroupSpreading.Spread(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.SpreadingRule})">
+            <summary>
+            Spreads the specified assumption into multiple different cells.
+            </summary>
+            <param name="symbol">The original symbol.</param>
+            <param name="grid">The grid.</param>
+            <param name="spreadingRules">The spreading rules.</param>
+            <returns>All found symbols found.</returns>
+            <exception cref="T:System.ArgumentException">Throws when an assumption is not fuzzy type.</exception>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.SpreadingRule">
             <summary>

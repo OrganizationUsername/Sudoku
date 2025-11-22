@@ -8,7 +8,9 @@ public readonly struct CellSymbol(int mask) :
 	IComparable<CellSymbol>,
 	IComparisonOperators<CellSymbol, CellSymbol, bool>,
 	IEquatable<CellSymbol>,
-	IEqualityOperators<CellSymbol, CellSymbol, bool>
+	IEqualityOperators<CellSymbol, CellSymbol, bool>,
+	IFormattable,
+	IParsable<CellSymbol>
 {
 	/// <summary>
 	/// <para>
@@ -36,7 +38,7 @@ public readonly struct CellSymbol(int mask) :
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="values">The values.</param>
-	public CellSymbol(Cell cell, ReadOnlySpan<CellSymbolValue> values) :
+	public CellSymbol(Cell cell, params CellSymbolValueGroup values) :
 		this(cell << 18 | values.Aggregate(0, static (interim, next) => interim | 1 << (int)next.Type * 9 + next.Index))
 	{
 	}
@@ -107,7 +109,7 @@ public readonly struct CellSymbol(int mask) :
 	/// <summary>
 	/// Returns a string that represents the current instance.
 	/// </summary>
-	/// <param name="formatProvider">The format provider.</param>
+	/// <param name="formatProvider">The format provider for cell notation.</param>
 	/// <param name="initialLetter">The initial letter.</param>
 	/// <param name="case">The letter case.</param>
 	/// <returns>A string that represents the current instance.</returns>
@@ -116,6 +118,98 @@ public readonly struct CellSymbol(int mask) :
 		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var assumedValuesString = string.Join('|', from value in Values select value.ToString(initialLetter, @case));
 		return $"{converter.CellConverter(Cell.AsCellMap())} = {assumedValuesString}";
+	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider)
+		=> ToString(
+			formatProvider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			BabaGroupLetterCase.Lower
+		);
+
+
+	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, [MaybeNullWhen(false)] out CellSymbol result)
+		=> TryParse(s, null, out result);
+
+	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellSymbol result)
+		=> TryParse(
+			s,
+			provider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			BabaGroupLetterCase.Lower,
+			out result
+		);
+
+	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case, out CellSymbol result)
+		=> TryParse(s, null, initialLetter, @case, out result);
+
+	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, out CellSymbolValue)"/>
+	public static bool TryParse(
+		[NotNullWhen(true)] string? s,
+		IFormatProvider? provider,
+		BabaGroupInitialLetter initialLetter,
+		BabaGroupLetterCase @case,
+		out CellSymbol result
+	)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = default;
+				return false;
+			}
+
+			result = Parse(s, provider);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="CellSymbolValue.Parse(string, IFormatProvider?)"/>
+	public static CellSymbol Parse(string s) => Parse(s, null);
+
+	/// <inheritdoc cref="CellSymbolValue.Parse(string, IFormatProvider?)"/>
+	public static CellSymbol Parse(string s, IFormatProvider? provider)
+		=> Parse(
+			s,
+			provider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			BabaGroupLetterCase.Lower
+		);
+
+	/// <inheritdoc cref="CellSymbolValue.Parse(string, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbol Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
+		=> Parse(s, null, initialLetter, @case);
+
+	/// <inheritdoc cref="CellSymbolValue.Parse(string, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbol Parse(string s, IFormatProvider? provider, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
+	{
+		var converter = CoordinateParser.GetInstance(provider);
+		var split = s.Split('=', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+		if (split is not [var left, var right])
+		{
+			throw new FormatException();
+		}
+		if (converter.CellParser(left) is not [var cell])
+		{
+			throw new FormatException();
+		}
+		return new(cell, CellSymbolValue.Parse(right));
 	}
 
 

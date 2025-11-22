@@ -11,7 +11,8 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 	IComparisonOperators<CellSymbolGroup, CellSymbolGroup, bool>,
 	IEquatable<CellSymbolGroup>,
 	IEqualityOperators<CellSymbolGroup, CellSymbolGroup, bool>,
-	IFormattable
+	IFormattable,
+	IParsable<CellSymbolGroup>
 {
 	/// <summary>
 	/// Indicates cells used.
@@ -91,6 +92,16 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(
+			formatProvider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			BabaGroupLetterCase.Lower
+		);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
 	{
 		// Create a coordinate converter.
 		var converter = CoordinateConverter.GetInstance(formatProvider);
@@ -109,12 +120,141 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 		return string.Join(
 			", ",
 			from value in digitDictionary.Values
-			select $"{value.Cells.ToString(converter)} = {value.Values.First}"
+			select $"{value.Cells.ToString(converter)} = {value.Values.First.ToString(initialLetter, @case)}"
 		);
 	}
 
 	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(null);
+
+
+	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, [NotNullWhen(true)] out CellSymbolGroup? result)
+		=> TryParse(s, null, out result);
+
+	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [NotNullWhen(true)] out CellSymbolGroup? result)
+		=> TryParse(s, provider, BabaGroupLetterCase.Lower, out result);
+
+	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, BabaGroupLetterCase @case, [NotNullWhen(true)] out CellSymbolGroup? result)
+		=> TryParse(
+			s,
+			provider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			@case,
+			out result
+		);
+
+	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
+	public static bool TryParse(
+		[NotNullWhen(true)] string? s,
+		BabaGroupInitialLetter initialLetter,
+		BabaGroupLetterCase @case,
+		[NotNullWhen(true)] out CellSymbolGroup? result
+	) => TryParse(s, null, initialLetter, @case, out result);
+
+	/// <inheritdoc cref="CellSymbol.TryParse(string?, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase, out CellSymbol)"/>
+	public static bool TryParse(
+		[NotNullWhen(true)] string? s,
+		IFormatProvider? provider,
+		BabaGroupInitialLetter initialLetter,
+		BabaGroupLetterCase @case,
+		[NotNullWhen(true)] out CellSymbolGroup? result
+	)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = null;
+				return false;
+			}
+
+			result = Parse(s, provider, initialLetter, @case);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = null;
+			return false;
+		}
+	}
+
+	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbolGroup Parse(string s) => Parse(s, null);
+
+	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbolGroup Parse(string s, IFormatProvider? provider) => Parse(s, provider, BabaGroupLetterCase.Lower);
+
+	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbolGroup Parse(string s, IFormatProvider? provider, BabaGroupLetterCase @case)
+		=> Parse(
+			s,
+			provider,
+			SR.IsEnglish(CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			@case
+		);
+
+	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbolGroup Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
+		=> Parse(s, null, initialLetter, @case);
+
+	/// <inheritdoc cref="CellSymbol.Parse(string, IFormatProvider?, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
+	public static CellSymbolGroup Parse(string s, IFormatProvider? provider, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
+	{
+		// The equation sequences should be split with ',' token, but coordinates may use commas.
+		// We should locate each equation by '=' token, and find for the next ',' after an equality operator token '='.
+		var values = parseExpressions(s);
+
+		var result = new CellSymbolGroup();
+		var parser = CoordinateParser.GetInstance(provider);
+
+		// Iterate variables.
+		foreach (var (cellsString, cellSymbolValuesString) in values)
+		{
+			var cells = parser.CellParser(cellsString);
+			var letters = CellSymbolValueGroup.Parse(cellSymbolValuesString, initialLetter, @case);
+			foreach (var cell in cells)
+			{
+				result.Add(new(cell, letters));
+			}
+		}
+		return result;
+
+
+		static ReadOnlySpan<(string Left, string Right)> parseExpressions(ReadOnlySpan<char> input)
+		{
+			if (input.Length == 0)
+			{
+				return [];
+			}
+
+			var result = new List<(string, string)>();
+			for (int pos = 0, end; pos < input.Length; pos = end + 1)
+			{
+				// Find for the first equation token.
+				if (input[pos..].IndexOf('=') is not (var equationTokenIndex and not -1))
+				{
+					throw new FormatException();
+				}
+
+				// Find for the first appearance of comma after equation token '='.
+				var commaAfterEquationTokenIndex = input[(equationTokenIndex + 1)..].IndexOf(',');
+				end = commaAfterEquationTokenIndex == -1 ? input.Length : commaAfterEquationTokenIndex;
+
+				// Add the split result.
+				var left = input[pos..equationTokenIndex].Trim();
+				var right = input[(equationTokenIndex + 1)..end].Trim();
+				result.Add((left.ToString(), right.ToString()));
+			}
+			return result.AsSpan();
+		}
+	}
 
 
 	/// <inheritdoc/>

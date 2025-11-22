@@ -11,7 +11,9 @@ public readonly struct CellSymbolValue(byte mask) :
 	IComparisonOperators<CellSymbolValue, CellSymbolValue, bool>,
 	IEquatable<CellSymbolValue>,
 	IEqualityOperators<CellSymbolValue, CellSymbolValue, bool>,
-	IMinMaxValue<CellSymbolValue>
+	IFormattable,
+	IMinMaxValue<CellSymbolValue>,
+	IParsable<CellSymbolValue>
 {
 	/// <summary>
 	/// Represents an invalid instance.
@@ -89,6 +91,132 @@ public readonly struct CellSymbolValue(byte mask) :
 	/// <returns>A string that represents the current instance.</returns>
 	public string ToString(BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
 		=> Equals(Invalid) ? "<invalid>" : initialLetter.GetSequence(@case)[Index].ToString();
+
+	/// <inheritdoc cref="ToString(IFormatProvider?, BabaGroupLetterCase)"/>
+	public string ToString(IFormatProvider? formatProvider) => ToString(formatProvider, BabaGroupLetterCase.Lower);
+
+	/// <summary>
+	/// Formats the value of the current instance using the specified format.
+	/// </summary>
+	/// <param name="formatProvider">
+	/// The provider to use to format the value, or a <see langword="null"/> reference
+	/// to obtain the format information from the current locale setting of the operating system.
+	/// </param>
+	/// <param name="case">The case.</param>
+	/// <returns>The value of the current instance in the specified format.</returns>
+	public string ToString(IFormatProvider? formatProvider, BabaGroupLetterCase @case)
+		=> ToString(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture, @case);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
+
+
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
+	public static bool TryParse([NotNullWhen(true)] string? s, out CellSymbolValue result) => TryParse(s, null, out result);
+
+	/// <summary>
+	/// Tries to parse a string into a value.
+	/// </summary>
+	/// <param name="s">The string to parse.</param>
+	/// <param name="initialLetter">The initial letter of sequence.</param>
+	/// <param name="case">The case.</param>
+	/// <param name="result">
+	/// When this method returns, contains the result of successfully parsing <paramref name="s"/>
+	/// or an undefined value on failure.
+	/// </param>
+	/// <returns>
+	/// <see langword="true"/> if <paramref name="s"/> was successfully parsed; otherwise, <see langword="false"/>.
+	/// </returns>
+	public static bool TryParse([NotNullWhen(true)] string? s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case, out CellSymbolValue result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = default;
+				return false;
+			}
+
+			result = Parse(s, initialLetter, @case);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellSymbolValue result)
+		=> TryParse(s, provider, BabaGroupLetterCase.Lower, out result);
+
+	/// <summary>
+	/// Tries to parse a string into a value.
+	/// </summary>
+	/// <param name="s">The string to parse.</param>
+	/// <param name="provider">An object that provides culture-specific formatting information about <paramref name="s"/>.</param>
+	/// <param name="case">The case.</param>
+	/// <param name="result">
+	/// When this method returns, contains the result of successfully parsing <paramref name="s"/>
+	/// or an undefined value on failure.
+	/// </param>
+	/// <returns>
+	/// <see langword="true"/> if <paramref name="s"/> was successfully parsed; otherwise, <see langword="false"/>.
+	/// </returns>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, BabaGroupLetterCase @case, out CellSymbolValue result)
+		=> TryParse(s, provider as CultureInfo ?? CultureInfo.CurrentUICulture, @case, out result);
+
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	public static CellSymbolValue Parse(string s) => Parse(s, null, BabaGroupLetterCase.Lower);
+
+	/// <inheritdoc/>
+	public static CellSymbolValue Parse(string s, IFormatProvider? provider) => Parse(s, provider, BabaGroupLetterCase.Lower);
+
+	/// <summary>
+	/// Parses a string into a value.
+	/// </summary>
+	/// <param name="s">The string to parse.</param>
+	/// <param name="initialLetter">The initial letter of sequence.</param>
+	/// <param name="case">The case.</param>
+	/// <returns>The result of parsing <paramref name="s"/>.</returns>
+	public static CellSymbolValue Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
+	{
+		if (s.Trim() is not [var onlyCharacter])
+		{
+			throw new FormatException();
+		}
+		if (onlyCharacter is >= '1' and <= '9')
+		{
+			return new(CellSymbolType.Accurate, onlyCharacter - '1');
+		}
+
+		var sequence = initialLetter.GetSequence(@case);
+		foreach (var (i, value) in sequence.Index())
+		{
+			if (value == onlyCharacter)
+			{
+				return new(CellSymbolType.Fuzzy, i);
+			}
+		}
+		throw new FormatException();
+	}
+
+	/// <summary>
+	/// Parses a string into a value.
+	/// </summary>
+	/// <param name="s">The string to parse.</param>
+	/// <param name="provider">An object that provides culture-specific formatting information about <paramref name="s"/>.</param>
+	/// <param name="case">The case.</param>
+	/// <returns>The result of parsing <paramref name="s"/>.</returns>
+	public static CellSymbolValue Parse(string s, IFormatProvider? provider, BabaGroupLetterCase @case)
+		=> Parse(
+			s,
+			SR.IsEnglish(provider as CultureInfo ?? CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A,
+			@case
+		);
 
 
 	/// <inheritdoc/>

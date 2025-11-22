@@ -44,8 +44,7 @@ public static class BabaGroupInitialLetterExtensions
 		/// <summary>
 		/// Represents the instance that is used in the current culture.
 		/// </summary>
-		public static BabaGroupInitialLetter CurrentCultureInstance
-			=> SR.IsEnglish(CultureInfo.CurrentUICulture) ? BabaGroupInitialLetter.EnglishLetter_X : BabaGroupInitialLetter.EnglishLetter_A;
+		public static BabaGroupInitialLetter CurrentCultureInstance => BabaGroupInitialLetter.GetInstance(CultureInfo.CurrentUICulture);
 
 
 		/// <summary>
@@ -70,5 +69,16 @@ public static class BabaGroupInitialLetterExtensions
 				BabaGroupInitialLetter.Digit_One or BabaGroupInitialLetter.Digit_Zero => (char)(digit + '\u2474'),
 				_ => (char)(digit + '1')
 			};
+
+
+		/// <summary>
+		/// Gets <see cref="BabaGroupInitialLetter"/> instance via the specified culture.
+		/// </summary>
+		/// <param name="provider">The provider.</param>
+		/// <returns>The instance.</returns>
+		public static BabaGroupInitialLetter GetInstance(IFormatProvider? provider)
+			=> SR.IsEnglish(provider as CultureInfo ?? CultureInfo.CurrentUICulture)
+				? BabaGroupInitialLetter.EnglishLetter_X
+				: BabaGroupInitialLetter.EnglishLetter_A;
 	}
 }

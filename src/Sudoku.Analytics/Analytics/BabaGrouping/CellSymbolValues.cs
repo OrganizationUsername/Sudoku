@@ -164,14 +164,7 @@ public sealed class CellSymbolValues(params IEnumerable<CellSymbolValue> values)
 
 	/// <inheritdoc cref="CellSymbolValue.TryParse(string?, IFormatProvider?, BabaGroupLetterCase, out CellSymbolValue)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, BabaGroupLetterCase @case, [NotNullWhen(true)] out CellSymbolValues? result)
-		=> TryParse(
-			s,
-			SR.IsEnglish(provider as CultureInfo ?? CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			@case,
-			out result
-		);
+		=> TryParse(s, BabaGroupInitialLetter.GetInstance(provider), @case, out result);
 
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CellSymbolValues Parse(string s) => Parse(s, null, BabaGroupLetterCase.Lower);
@@ -188,18 +181,11 @@ public sealed class CellSymbolValues(params IEnumerable<CellSymbolValue> values)
 	}
 
 	/// <inheritdoc/>
-	public static CellSymbolValues Parse(string s, IFormatProvider? provider)
-		=> Parse(s, provider, BabaGroupLetterCase.Lower);
+	public static CellSymbolValues Parse(string s, IFormatProvider? provider) => Parse(s, provider, BabaGroupLetterCase.Lower);
 
 	/// <inheritdoc cref="CellSymbolValue.Parse(string, IFormatProvider?, BabaGroupLetterCase)"/>
 	public static CellSymbolValues Parse(string s, IFormatProvider? provider, BabaGroupLetterCase @case)
-		=> Parse(
-			s,
-			SR.IsEnglish(provider as CultureInfo ?? CultureInfo.CurrentUICulture)
-				? BabaGroupInitialLetter.EnglishLetter_X
-				: BabaGroupInitialLetter.EnglishLetter_A,
-			@case
-		);
+		=> Parse(s, BabaGroupInitialLetter.GetInstance(provider), @case);
 
 
 	/// <inheritdoc/>

@@ -37,7 +37,7 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 	{
 		get
 		{
-			var result = new CellSymbolValueGroup();
+			var result = CellSymbolValueGroup.Empty;
 			foreach (var element in this)
 			{
 				result.AddRange(element.Values);
@@ -46,6 +46,11 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 		}
 	}
 
+
+	/// <summary>
+	/// Represents an empty instance.
+	/// </summary>
+	public static CellSymbolGroup Empty => [];
 
 	/// <summary>
 	/// Indicates the set comparer instance.
@@ -211,7 +216,7 @@ public sealed class CellSymbolGroup(params IEnumerable<CellSymbol> symbols) :
 		// We should locate each equation by '=' token, and find for the next ',' after an equality operator token '='.
 		var values = parseExpressions(s);
 
-		var result = new CellSymbolGroup();
+		var result = Empty;
 		var parser = CoordinateParser.GetInstance(provider);
 
 		// Iterate variables.

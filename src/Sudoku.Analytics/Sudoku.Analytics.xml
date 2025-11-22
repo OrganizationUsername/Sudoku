@@ -1019,6 +1019,11 @@
             Indicates all values used.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.Empty">
+            <summary>
+            Represents an empty instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolGroup.EqualityComparer">
             <summary>
             Indicates the set comparer instance.
@@ -1305,6 +1310,11 @@
             Indicates the first element in this collection.
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the current collection is empty.</exception>
+        </member>
+        <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.Empty">
+            <summary>
+            Indicates an empty instance.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.BabaGrouping.CellSymbolValueGroup.EqualityComparer">
             <summary>

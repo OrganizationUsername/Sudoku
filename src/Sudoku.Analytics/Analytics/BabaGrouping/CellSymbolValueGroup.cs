@@ -31,6 +31,11 @@ public sealed class CellSymbolValueGroup(params IEnumerable<CellSymbolValue> val
 
 
 	/// <summary>
+	/// Indicates an empty instance.
+	/// </summary>
+	public static CellSymbolValueGroup Empty => [];
+
+	/// <summary>
 	/// Indicates the set comparer instance.
 	/// </summary>
 	private static IEqualityComparer<SortedSet<CellSymbolValue>> EqualityComparer => field ??= CreateSetComparer();
@@ -180,7 +185,7 @@ public sealed class CellSymbolValueGroup(params IEnumerable<CellSymbolValue> val
 	/// <inheritdoc cref="CellSymbolValue.Parse(string, BabaGroupInitialLetter, BabaGroupLetterCase)"/>
 	public static CellSymbolValueGroup Parse(string s, BabaGroupInitialLetter initialLetter, BabaGroupLetterCase @case)
 	{
-		var result = new CellSymbolValueGroup();
+		var result = Empty;
 		foreach (var str in from element in s.Trim() select element.ToString())
 		{
 			result.Add(CellSymbolValue.Parse(str, initialLetter, @case));

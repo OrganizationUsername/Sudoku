@@ -38,7 +38,7 @@ public readonly struct CellSymbol(int mask) :
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <param name="values">The values.</param>
-	public CellSymbol(Cell cell, params CellSymbolValueGroup values) :
+	public CellSymbol(Cell cell, params CellSymbolValues values) :
 		this(cell << 18 | values.Aggregate(0, static (interim, next) => interim | 1 << (int)next.Type * 9 + next.Index))
 	{
 	}
@@ -61,7 +61,7 @@ public readonly struct CellSymbol(int mask) :
 	/// <summary>
 	/// Indicates values.
 	/// </summary>
-	public CellSymbolValueGroup Values
+	public CellSymbolValues Values
 	{
 		get
 		{

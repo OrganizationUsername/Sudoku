@@ -186,7 +186,7 @@
   * [镜面格同步](exocet/05-potential-eliminations-of-exocet/03-mirror-sync.md)
   * [锁定成员](exocet/05-potential-eliminations-of-exocet/04-locked-member.md)
   * [交叉格三阶解鱼](exocet/05-potential-eliminations-of-exocet/05-jye-fish-in-crossline-cells.md)
-* [X 致命规则](exocet/06-region-x-rule.md)
+* [X 区域致命定理](exocet/06-region-x-theorem.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

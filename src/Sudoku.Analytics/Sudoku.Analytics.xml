@@ -1638,7 +1638,7 @@
             Provides a way to spread a cell symbol.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.GroupSpreading.Spread(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.ISimpleSpreadingRule})">
+        <member name="M:Sudoku.Analytics.BabaGrouping.GroupSpreading.Spread(Sudoku.Analytics.BabaGrouping.CellSymbol,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.ISpreadingRule})">
             <summary>
             Spreads the specified assumption into multiple different cells.
             </summary>
@@ -1648,7 +1648,7 @@
             <returns>All found symbols found.</returns>
             <exception cref="T:System.ArgumentException">Throws when an assumption is not fuzzy type.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.GroupSpreading.Suppose(System.Int32,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.ISymbolSpreadingRule},System.Boolean,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.BabaGrouping.GroupSpreading.Suppose(System.Int32,Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.BabaGrouping.ISpreadingRule},System.Boolean,System.Threading.CancellationToken)">
             <summary>
             Try to suppose a house with different digits set, and find any conclusions on spread.
             </summary>
@@ -1683,30 +1683,17 @@
             Indicates the parent node.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.BabaGrouping.ISimpleSpreadingRule">
+        <member name="T:Sudoku.Analytics.BabaGrouping.ISpreadingRule">
             <summary>
             Represents simple spreading rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.ISimpleSpreadingRule.Spread(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.BabaGrouping.ISpreadingRule.Spread(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@)">
             <summary>
             Spreads the candidate.
             </summary>
             <param name="candidate">The candidate.</param>
             <param name="cells">The cells.</param>
-            <param name="grid">The grid.</param>
-        </member>
-        <member name="T:Sudoku.Analytics.BabaGrouping.ISymbolSpreadingRule">
-            <summary>
-            Represents symbol spreading rule.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.ISymbolSpreadingRule.SpreadSymbol(Sudoku.Analytics.BabaGrouping.ComplexCellSymbol,System.Collections.Generic.HashSet{Sudoku.Analytics.BabaGrouping.ComplexCellSymbol},Sudoku.Concepts.Grid@)">
-            <summary>
-            Spreads the symbol.
-            </summary>
-            <param name="symbol">The symbol.</param>
-            <param name="inferredSymbols">The symbols that can be inferred from <paramref name="symbol"/>.</param>
             <param name="grid">The grid.</param>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.SpreadingRules.FishSpreadingRule">

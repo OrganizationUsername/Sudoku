@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.BabaGrouping;
 /// <summary>
 /// Represents simple spreading rule.
 /// </summary>
-public interface ISimpleSpreadingRule
+public interface ISpreadingRule
 {
 	/// <summary>
 	/// Spreads the candidate.

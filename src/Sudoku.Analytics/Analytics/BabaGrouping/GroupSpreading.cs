@@ -13,11 +13,7 @@ public static class GroupSpreading
 	/// <param name="spreadingRules">The spreading rules.</param>
 	/// <returns>All found symbols found.</returns>
 	/// <exception cref="ArgumentException">Throws when an assumption is not fuzzy type.</exception>
-	public static ReadOnlySpan<CellSymbol> Spread(
-		CellSymbol symbol,
-		in Grid grid,
-		ReadOnlySpan<ISimpleSpreadingRule> spreadingRules
-	)
+	public static ReadOnlySpan<CellSymbol> Spread(CellSymbol symbol, in Grid grid, ReadOnlySpan<ISpreadingRule> spreadingRules)
 	{
 		var value = symbol.FirstValue;
 		ArgumentException.Assert(value != CellSymbolValue.Invalid && value.Type == CellSymbolType.Fuzzy);
@@ -42,7 +38,7 @@ public static class GroupSpreading
 			Grid playground,
 			ref readonly Grid originalGrid,
 			ref CellMap resultCells,
-			ReadOnlySpan<ISimpleSpreadingRule> spreadingRules
+			ReadOnlySpan<ISpreadingRule> spreadingRules
 		)
 		{
 			// Enumerate all possible candidates, to know whether they can reach the target cell.
@@ -108,7 +104,7 @@ public static class GroupSpreading
 	public static ReadOnlySpan<BabaGroupingConclusion> Suppose(
 		House house,
 		in Grid grid,
-		ReadOnlySpan<ISymbolSpreadingRule> spreadingRules,
+		ReadOnlySpan<ISpreadingRule> spreadingRules,
 		bool onlyFindOne,
 		CancellationToken cancellationToken = default
 	)
@@ -134,7 +130,7 @@ public static class GroupSpreading
 		static ReadOnlySpan<BabaGroupingConclusion> entry(
 			scoped ref readonly CellMap emptyCells,
 			ref readonly Grid grid,
-			ReadOnlySpan<ISymbolSpreadingRule> spreadingRules,
+			ReadOnlySpan<ISpreadingRule> spreadingRules,
 			bool onlyFindOne,
 			CancellationToken cancellationToken
 		)

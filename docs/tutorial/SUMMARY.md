@@ -185,6 +185,8 @@
   * [镜面格的删数特性](exocet/05-potential-eliminations-of-exocet/02-features-of-eliminations-on-mirror-cells.md)
   * [镜面格同步](exocet/05-potential-eliminations-of-exocet/03-mirror-sync.md)
   * [锁定成员](exocet/05-potential-eliminations-of-exocet/04-locked-member.md)
+  * [交叉格三阶解鱼](exocet/05-potential-eliminations-of-exocet/05-jye-fish-in-crossline-cells.md)
+* [X 区域致命定理](exocet/06-region-x-theorem.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

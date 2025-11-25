@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Symmetry;
 
 /// <summary>
 /// Provides with extension methods on <see cref="SymmetricType"/>.

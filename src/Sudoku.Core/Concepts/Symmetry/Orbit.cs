@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Concepts.Symmetry;
 
 /// <summary>
 /// Defines a type that is transparent encapsulation of a <see cref="CellMap"/> instance,

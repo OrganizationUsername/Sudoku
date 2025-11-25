@@ -20,6 +20,7 @@ global using Sudoku.CommandLine.Commands;
 global using Sudoku.CommandLine.Options;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates.Formatting;
+global using Sudoku.Concepts.Symmetry;
 global using Sudoku.Generating;
 global using Sudoku.MinlexOrder;
 global using Sudoku.Solving;

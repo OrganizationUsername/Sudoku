@@ -14354,7 +14354,7 @@
             Returns <see langword="false"/> if a clause becomes unsatisfiable (all literals <see langword="false"/>).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver.GetUnassignedVar">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver.GetUnassignedVariable">
             <summary>
             Find a variable index that has not been assigned yet (0).
             Returns -1 if all variables are assigned.

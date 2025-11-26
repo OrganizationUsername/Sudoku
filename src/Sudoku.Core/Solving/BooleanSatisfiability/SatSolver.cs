@@ -245,8 +245,7 @@ file sealed class BacktrackingSolver(CnfExpression _expression)
 			return false; // Conflict detected.
 		}
 
-		var variable = GetUnassignedVar();
-		if (variable == -1)
+		if (GetUnassignedVariable() is not (var variable and not -1))
 		{
 			return true; // All variables assigned without conflict => SAT.
 		}
@@ -335,7 +334,7 @@ file sealed class BacktrackingSolver(CnfExpression _expression)
 	/// Find a variable index that has not been assigned yet (0).
 	/// Returns -1 if all variables are assigned.
 	/// </summary>
-	private int GetUnassignedVar()
+	private int GetUnassignedVariable()
 	{
 		for (var i = 1; i <= _expression.VariablesCount; i++)
 		{

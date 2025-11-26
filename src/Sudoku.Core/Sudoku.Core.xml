@@ -14236,7 +14236,7 @@
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.AddClause(System.Int32[])">
             <summary>
-            Add a new clause (disjunction of literals) to the formula.
+            Add a new clause (disjunction of literals) to the expression.
             </summary>
             <param name="literals">The literals.</param>
         </member>
@@ -14275,7 +14275,7 @@
         <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.EncodeSudoku(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.EncodeSudoku(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
             <summary>
             Adds CNF clauses representing Sudoku rules:
             <list type="number">
@@ -14285,12 +14285,9 @@
             </list>
             </summary>
             <param name="grid">The grid.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.MapVariable(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Maps 3D coordinates (row, col, digit) to a unique SAT variable index.
-            Indices start from 1 up to 729.
-            </summary>
+            <param name="mappedVariables">
+            Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
+            </param>
         </member>
         <member name="T:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver">
             <summary>

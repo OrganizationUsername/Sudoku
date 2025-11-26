@@ -15,7 +15,7 @@ public sealed record CnfExpression(int VariablesCount) : IEnumerable<ReadOnlyMem
 
 
 	/// <summary>
-	/// Add a new clause (disjunction of literals) to the formula.
+	/// Add a new clause (disjunction of literals) to the expression.
 	/// </summary>
 	/// <param name="literals">The literals.</param>
 	public void AddClause(params int[] literals) => _clauses.Add(literals);

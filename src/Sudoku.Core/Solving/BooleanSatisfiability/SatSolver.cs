@@ -10,16 +10,15 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// because it uses tree iteration with simple backtracking to find multiple solutions,
 /// which will expand the tree to be more and more complex.
 /// Therefore, this solver doesn't know whether a puzzle has a unique solution or not.
-/// In practice, method <see cref="Solve(in Grid, out Grid)"/> can only
-/// return <see langword="false"/> or <see langword="null"/>.
+/// In practice, method <see cref="Solve(in Grid, out Grid)"/> can only return <see langword="false"/> or <see langword="null"/>.
 /// </remarks>
 /// <seealso cref="Solve(in Grid, out Grid)"/>
 public sealed class SatSolver : ISolver
 {
 	/// <summary>
-	/// Defines a formula.
+	/// Defines an expression.
 	/// </summary>
-	private readonly ConjunctiveNormalFormFormula _formula = new(9 * 9 * 9);
+	private readonly CnfExpression _expression = new(9 * 9 * 9);
 
 
 	/// <inheritdoc/>
@@ -31,7 +30,7 @@ public sealed class SatSolver : ISolver
 	{
 		EncodeSudoku(grid);
 
-		var solver = new BacktrackingSolver(_formula);
+		var solver = new BacktrackingSolver(_expression);
 		var isSolved = solver.Solve();
 		if (!isSolved)
 		{
@@ -83,14 +82,14 @@ public sealed class SatSolver : ISolver
 				{
 					atleast[d] = MapVariable(r, c, d);
 				}
-				_formula.AddClause(atleast);
+				_expression.AddClause(atleast);
 
 				// At most one digit: for every pair (d1, d2), they cannot both be true.
 				for (var d1 = 0; d1 < 9; d1++)
 				{
 					for (var d2 = d1 + 1; d2 < 9; d2++)
 					{
-						_formula.AddClause(-MapVariable(r, c, d1), -MapVariable(r, c, d2));
+						_expression.AddClause(-MapVariable(r, c, d1), -MapVariable(r, c, d2));
 					}
 				}
 			}
@@ -106,13 +105,13 @@ public sealed class SatSolver : ISolver
 				{
 					atleast[c] = MapVariable(r, c, d);
 				}
-				_formula.AddClause(atleast);
+				_expression.AddClause(atleast);
 
 				for (var c1 = 0; c1 < 9; c1++)
 				{
 					for (var c2 = c1 + 1; c2 < 9; c2++)
 					{
-						_formula.AddClause(-MapVariable(r, c1, d), -MapVariable(r, c2, d));
+						_expression.AddClause(-MapVariable(r, c1, d), -MapVariable(r, c2, d));
 					}
 				}
 			}
@@ -128,13 +127,13 @@ public sealed class SatSolver : ISolver
 				{
 					atleast[r] = MapVariable(r, c, d);
 				}
-				_formula.AddClause(atleast);
+				_expression.AddClause(atleast);
 
 				for (var r1 = 0; r1 < 9; r1++)
 				{
 					for (var r2 = r1 + 1; d < 9 && r2 < 9; r2++)
 					{
-						_formula.AddClause(-MapVariable(r1, c, d), -MapVariable(r2, c, d));
+						_expression.AddClause(-MapVariable(r1, c, d), -MapVariable(r2, c, d));
 					}
 				}
 			}
@@ -158,14 +157,14 @@ public sealed class SatSolver : ISolver
 						}
 					}
 
-					_formula.AddClause([.. atleastList]);
+					_expression.AddClause([.. atleastList]);
 
 					// At most one in the block.
 					for (var i = 0; i < 9; i++)
 					{
 						for (var j = i + 1; j < 9; j++)
 						{
-							_formula.AddClause(-atleastList[i], -atleastList[j]);
+							_expression.AddClause(-atleastList[i], -atleastList[j]);
 						}
 					}
 				}
@@ -180,7 +179,7 @@ public sealed class SatSolver : ISolver
 				if (grid.GetDigit(r * 9 + c) is var d and not -1)
 				{
 					// Force (r, c) = d by adding single literal clause.
-					_formula.AddClause(MapVariable(r, c, d));
+					_expression.AddClause(MapVariable(r, c, d));
 				}
 			}
 		}
@@ -195,17 +194,11 @@ public sealed class SatSolver : ISolver
 
 /// <summary>
 /// Implements a simple SAT solver using the DPLL algorithm with unit propagation.
-/// For more information about DPLL algorithm, please visit
-/// <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+/// For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
 /// </summary>
-/// <param name="formula"><inheritdoc cref="_formula" path="/summary"/></param>
-file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
+/// <param name="_expression">Indicates the backing expression.</param>
+file sealed class BacktrackingSolver(CnfExpression _expression)
 {
-	/// <summary>
-	/// Indicates the formula.
-	/// </summary>
-	private readonly ConjunctiveNormalFormFormula _formula = formula;
-
 	/// <summary>
 	/// Represents the assignment values. The result value only represents for 3 values:
 	/// <list type="table">
@@ -228,7 +221,7 @@ file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
 	/// </list>
 	/// This array starts at index 1. Please use 1-based indexing to operate variables.
 	/// </summary>
-	private bool?[] _assignment = new bool?[formula.NumVars + 1];
+	private bool?[] _assignment = new bool?[_expression.VariablesCount + 1];
 
 
 	/// <summary>
@@ -293,9 +286,9 @@ file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
 		do
 		{
 			isChanged = false;
-			foreach (var clause in _formula)
+			foreach (var clause in _expression)
 			{
-				var (unassignedCount, unassignedLit, clauseSatisfied) = (0, 0, false);
+				var (unassignedCount, unassignedLiteral, clauseSatisfied) = (0, 0, false);
 
 				// Check each literal in the clause.
 				foreach (var literal in clause)
@@ -310,11 +303,14 @@ file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
 					if (_assignment[variable] is null)
 					{
 						unassignedCount++;
-						unassignedLit = literal;
+						unassignedLiteral = literal;
 					}
 				}
 
-				if (clauseSatisfied) continue;
+				if (clauseSatisfied)
+				{
+					continue;
+				}
 
 				// If no unassigned lits left and none true => conflict.
 				if (unassignedCount == 0)
@@ -325,8 +321,8 @@ file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
 				// Exactly one unassigned literal => must be set to satisfy the clause.
 				if (unassignedCount == 1)
 				{
-					var variable = Math.Abs(unassignedLit);
-					var sign = unassignedLit > 0;
+					var variable = Math.Abs(unassignedLiteral);
+					var sign = unassignedLiteral > 0;
 					_assignment[variable] = sign;
 					isChanged = true;
 				}
@@ -341,7 +337,7 @@ file sealed class BacktrackingSolver(ConjunctiveNormalFormFormula formula)
 	/// </summary>
 	private int GetUnassignedVar()
 	{
-		for (var i = 1; i <= _formula.NumVars; i++)
+		for (var i = 1; i <= _expression.VariablesCount; i++)
 		{
 			if (_assignment[i] is null)
 			{

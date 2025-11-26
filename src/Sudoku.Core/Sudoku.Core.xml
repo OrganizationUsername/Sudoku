@@ -14210,45 +14210,43 @@
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula">
+        <member name="T:Sudoku.Solving.BooleanSatisfiability.CnfExpression">
             <summary>
             Represents a Boolean formula in Conjunctive Normal Form (CNF).
             Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
             Using positive integers to represents a variable assigned <see langword="true"/>; for negative integers, <see langword="false"/>.
             </summary>
-            <param name="numVars"><inheritdoc cref="P:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.NumVars" path="/summary"/></param>
+            <param name="VariablesCount">Indicates total number of variables.</param>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.#ctor(System.Int32)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.#ctor(System.Int32)">
             <summary>
             Represents a Boolean formula in Conjunctive Normal Form (CNF).
             Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
             Using positive integers to represents a variable assigned <see langword="true"/>; for negative integers, <see langword="false"/>.
             </summary>
-            <param name="numVars"><inheritdoc cref="P:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.NumVars" path="/summary"/></param>
+            <param name="VariablesCount">Indicates total number of variables.</param>
         </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula._clauses">
+        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.VariablesCount">
+            <summary>Indicates total number of variables.</summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfExpression._clauses">
             <summary>
             Indicates the list of clauses.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.NumVars">
-            <summary>
-            Indicates total number of variables.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.AddClause(System.Int32[])">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.AddClause(System.Int32[])">
             <summary>
             Add a new clause (disjunction of literals) to the formula.
             </summary>
             <param name="literals">The literals.</param>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BooleanSatisfiability.SatSolver">
@@ -14262,14 +14260,13 @@
             because it uses tree iteration with simple backtracking to find multiple solutions,
             which will expand the tree to be more and more complex.
             Therefore, this solver doesn't know whether a puzzle has a unique solution or not.
-            In practice, method <see cref="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> can only
-            return <see langword="false"/> or <see langword="null"/>.
+            In practice, method <see cref="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> can only return <see langword="false"/> or <see langword="null"/>.
             </remarks>
             <seealso cref="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._formula">
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._expression">
             <summary>
-            Defines a formula.
+            Defines an expression.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolver#UriLink">
@@ -14298,23 +14295,16 @@
         <member name="T:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver">
             <summary>
             Implements a simple SAT solver using the DPLL algorithm with unit propagation.
-            For more information about DPLL algorithm, please visit
-            <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+            For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
             </summary>
-            <param name="formula"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver._formula" path="/summary"/></param>
+            <param name="_expression">Indicates the backing expression.</param>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver.#ctor(Sudoku.Solving.BooleanSatisfiability.ConjunctiveNormalFormFormula)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfExpression)">
             <summary>
             Implements a simple SAT solver using the DPLL algorithm with unit propagation.
-            For more information about DPLL algorithm, please visit
-            <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+            For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
             </summary>
-            <param name="formula"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver._formula" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver._formula">
-            <summary>
-            Indicates the formula.
-            </summary>
+            <param name="_expression">Indicates the backing expression.</param>
         </member>
         <member name="F:Sudoku.Solving.BooleanSatisfiability.BacktrackingSolver._assignment">
             <summary>

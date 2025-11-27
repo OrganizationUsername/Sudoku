@@ -615,7 +615,7 @@ file sealed class DpllSolver(
 					if (mappedVariables.TryGetValue((row * 9 + column) * 9 + digit, out var variable)
 						&& assignmentStates[variable] is true)
 #else
-							if (assignmentStates[MapVariable(row, column, digit)] is true)
+					if (assignmentStates[MapVariable(row, column, digit)] is true)
 #endif
 					{
 						result.SetDigit(row * 9 + column, digit);

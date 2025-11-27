@@ -222,11 +222,11 @@ file sealed class DpllSolver(
 	/// </listheader>
 	/// <item>
 	/// <term><see langword="true"/></term>
-	/// <description>Represents <c>true</c> literal</description>
+	/// <description>Represents <c><see langword="true"/></c> literal</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="false"/></term>
-	/// <description>Represents <c>false</c> literal</description>
+	/// <description>Represents <c><see langword="false"/></c> literal</description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="null"/></term>
@@ -320,19 +320,18 @@ file sealed class DpllSolver(
 				return false;
 			}
 
-			// Naive nogood: learn a clause that is the negation of the decision literal(s)
-			// at the current (deepest) decision level. In this simple solver each decision level
-			// corresponds to exactly one decision variable, so we negate that one.
-			var (decVar, decVal) = _decisionStack[^1];
+			// Naive nogood: learn a clause that is the negation of the decision literal(s) at the current (deepest) decision level.
+			// In this simple solver each decision level corresponds to exactly one decision variable, so we negate that one.
+			var (decisionVariable, decisionValue) = _decisionStack[^1];
 
-			// If decVal == true, then decision literal was +decVar, so learned is -decVar.
-			// If decVal == false, decision literal was -decVar, so learned is +decVar.
-			var learnedLiteral = decVal ? -decVar : decVar;
+			// If <c>decisionValue == true</c>, then decision literal was +decVar, so learned is -decVar;
+			// If <c>decisionValue == false</c>, decision literal was -decVar, so learned is +decVar.
+			var learnedLiteral = decisionValue ? -decisionVariable : decisionVariable;
 
 			// Add the learned unit clause to the expression to prevent repeating this decision.
 			_expression.AddClause(Array.Single(learnedLiteral));
 
-			// Backjump one decision level: restore assignment to snapshot BEFORE that decision.
+			// Backjump one decision level: restore assignment to snapshot <i>before</i> that decision.
 			var restoreSnapshot = _decisionSnapshots[^1];
 			_assignmentStates = restoreSnapshot[..];
 

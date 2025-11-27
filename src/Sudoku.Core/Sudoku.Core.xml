@@ -14319,11 +14319,11 @@
             </listheader>
             <item>
             <term><see langword="true"/></term>
-            <description>Represents <c>true</c> literal</description>
+            <description>Represents <c><see langword="true"/></c> literal</description>
             </item>
             <item>
             <term><see langword="false"/></term>
-            <description>Represents <c>false</c> literal</description>
+            <description>Represents <c><see langword="false"/></c> literal</description>
             </item>
             <item>
             <term><see langword="null"/></term>

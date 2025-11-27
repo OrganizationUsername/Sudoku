@@ -18,7 +18,7 @@ public sealed record CnfExpression(int VariablesCount) : IEnumerable<ReadOnlyMem
 	/// Add a new clause (disjunction of literals) to the expression.
 	/// </summary>
 	/// <param name="literals">The literals.</param>
-	public void AddClause(params int[] literals) => _clauses.Add(literals);
+	public void AddClause(ReadOnlyMemory<int> literals) => _clauses.Add(literals);
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	public AnonymousSpanEnumerator<ReadOnlyMemory<int>> GetEnumerator() => new(_clauses.AsSpan());

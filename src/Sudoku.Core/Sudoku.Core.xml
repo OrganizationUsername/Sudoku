@@ -14234,7 +14234,7 @@
             Indicates the list of clauses.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.AddClause(System.Int32[])">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.AddClause(System.ReadOnlyMemory{System.Int32})">
             <summary>
             Add a new clause (disjunction of literals) to the expression.
             </summary>

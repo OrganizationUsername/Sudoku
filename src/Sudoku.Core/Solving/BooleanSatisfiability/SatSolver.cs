@@ -97,12 +97,17 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				{
 					atLeast.Add(mappedVariables[(r * 9 + c) * 9 + d]);
 				}
-				_expression.AddClause([.. atLeast]);
+				_expression.AddClause(atLeast.AsMemory());
 
 				// At most one digit: for every pair (d1, d2), they cannot both be true.
 				foreach (var pair in candidates.AllSets & 2)
 				{
-					_expression.AddClause(-mappedVariables[(r * 9 + c) * 9 + pair[0]], -mappedVariables[(r * 9 + c) * 9 + pair[1]]);
+					_expression.AddClause(
+						(int[])[
+							-mappedVariables[(r * 9 + c) * 9 + pair[0]],
+							-mappedVariables[(r * 9 + c) * 9 + pair[1]]
+						]
+					);
 				}
 			}
 		}
@@ -120,11 +125,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 						atLeast.Add(mappedVariables[cell * 9 + d]);
 					}
 				}
-				_expression.AddClause([.. atLeast]);
+				_expression.AddClause(atLeast.AsMemory());
 
 				foreach (var pair in atLeast.AsSpan() & 2)
 				{
-					_expression.AddClause(-pair[0], -pair[1]);
+					_expression.AddClause((int[])[-pair[0], -pair[1]]);
 				}
 			}
 		}
@@ -142,11 +147,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 						atLeast.Add(mappedVariables[cell * 9 + d]);
 					}
 				}
-				_expression.AddClause([.. atLeast]);
+				_expression.AddClause(atLeast.AsMemory());
 
 				foreach (var pair in atLeast.AsSpan() & 2)
 				{
-					_expression.AddClause(-pair[0], -pair[1]);
+					_expression.AddClause((int[])[-pair[0], -pair[1]]);
 				}
 			}
 		}
@@ -166,11 +171,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 							atLeast.Add(mappedVariables[cell * 9 + d]);
 						}
 					}
-					_expression.AddClause([.. atLeast]);
+					_expression.AddClause(atLeast.AsMemory());
 
 					foreach (var pair in atLeast.AsSpan() & 2)
 					{
-						_expression.AddClause(-pair[0], -pair[1]);
+						_expression.AddClause((int[])[-pair[0], -pair[1]]);
 					}
 				}
 			}
@@ -184,7 +189,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				if (grid.GetDigit(r * 9 + c) is var d and not -1)
 				{
 					// Force (r, c) = d by adding single literal clause.
-					_expression.AddClause(mappedVariables[(r * 9 + c) * 9 + d]);
+					_expression.AddClause(Array.Single(mappedVariables[(r * 9 + c) * 9 + d]));
 				}
 			}
 		}
@@ -325,7 +330,7 @@ file sealed class DpllSolver(
 			var learnedLiteral = decVal ? -decVar : decVar;
 
 			// Add the learned unit clause to the expression to prevent repeating this decision.
-			_expression.AddClause(learnedLiteral);
+			_expression.AddClause(Array.Single(learnedLiteral));
 
 			// Backjump one decision level: restore assignment to snapshot BEFORE that decision.
 			var restoreSnapshot = _decisionSnapshots[^1];

@@ -1,4 +1,3 @@
-#define ENABLE_VARIABLE_COMPRESSION
 #define ENABLE_NOGOOD_LEARNING
 
 namespace Sudoku.Solving.BooleanSatisfiability;
@@ -27,13 +26,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 	/// <inheritdoc/>
 	public bool? Solve(in Grid grid, out Grid result)
 	{
-		EncodeSudoku(
-			grid
-#if ENABLE_VARIABLE_COMPRESSION
-			,
-			out var mappedVariables
-#endif
-		);
+		EncodeSudoku(grid, out var mappedVariables);
 
 		switch (new DpllSolver(_expression, null, mappedVariables).Solve())
 		{
@@ -59,17 +52,10 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 	/// <inheritdoc/>
 	void ISolutionEnumerableSolver.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
 	{
-		EncodeSudoku(
-			grid
-#if ENABLE_VARIABLE_COMPRESSION
-			,
-			out var mappedVariables
-#endif
-		);
+		EncodeSudoku(grid, out var mappedVariables);
 		new DpllSolver(_expression, SolutionFound, mappedVariables).Solve(cancellationToken);
 	}
 
-#if ENABLE_VARIABLE_COMPRESSION
 	/// <summary>
 	/// Adds CNF clauses representing Sudoku rules:
 	/// <list type="number">
@@ -82,27 +68,9 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 	/// <param name="mappedVariables">
 	/// Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
 	/// </param>
-#else
-	/// <summary>
-	/// Adds CNF clauses representing Sudoku rules:
-	/// <list type="number">
-	/// <item>Each cell contains exactly one digit.</item>
-	/// <item>Each digit appears exactly once per row, column, and block.</item>
-	/// <item>Given clues are fixed by unit clauses.</item>
-	/// </list>
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-#endif
 	[MemberNotNull(nameof(_expression))]
-	private void EncodeSudoku(
-		in Grid grid
-#if ENABLE_VARIABLE_COMPRESSION
-		,
-		out Dictionary<Candidate, int> mappedVariables
-#endif
-	)
+	private void EncodeSudoku(in Grid grid, out Dictionary<Candidate, int> mappedVariables)
 	{
-#if ENABLE_VARIABLE_COMPRESSION
 		// 0. Collect mapping indices in order to compress variables.
 		mappedVariables = [];
 		var virtualId = 1;
@@ -115,16 +83,12 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 		}
 
 		_expression = new(virtualId - 1);
-#else
-		_expression = new(9 * 9 * 9);
-#endif
 
 		// 1. Cell constraints (exactly one digit per cell).
 		for (var r = 0; r < 9; r++)
 		{
 			for (var c = 0; c < 9; c++)
 			{
-#if ENABLE_VARIABLE_COMPRESSION
 				var candidates = grid.GetCandidates(r * 9 + c);
 
 				// At least one digit in cell: (r, c) must be one of 1..9.
@@ -140,24 +104,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				{
 					_expression.AddClause(-mappedVariables[(r * 9 + c) * 9 + pair[0]], -mappedVariables[(r * 9 + c) * 9 + pair[1]]);
 				}
-#else
-				// At least one digit in cell: (r, c) must be one of 1..9.
-				var atleast = new int[9];
-				for (var d = 0; d < 9; d++)
-				{
-					atleast[d] = MapVariable(r, c, d);
-				}
-				_expression.AddClause(atleast);
-
-				// At most one digit: for every pair (d1, d2), they cannot both be true.
-				for (var d1 = 0; d1 < 9; d1++)
-				{
-					for (var d2 = d1 + 1; d2 < 9; d2++)
-					{
-						_expression.AddClause(-MapVariable(r, c, d1), -MapVariable(r, c, d2));
-					}
-				}
-#endif
 			}
 		}
 
@@ -166,7 +112,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 		{
 			for (var d = 0; d < 9; d++)
 			{
-#if ENABLE_VARIABLE_COMPRESSION
 				var atLeast = new List<int>();
 				foreach (var cell in HousesMap[r + 9])
 				{
@@ -181,22 +126,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				{
 					_expression.AddClause(-pair[0], -pair[1]);
 				}
-#else
-				var atleast = new int[9];
-				for (var c = 0; c < 9; c++)
-				{
-					atleast[c] = MapVariable(r, c, d);
-				}
-				_expression.AddClause(atleast);
-
-				for (var c1 = 0; c1 < 9; c1++)
-				{
-					for (var c2 = c1 + 1; c2 < 9; c2++)
-					{
-						_expression.AddClause(-MapVariable(r, c1, d), -MapVariable(r, c2, d));
-					}
-				}
-#endif
 			}
 		}
 
@@ -205,7 +134,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 		{
 			for (var d = 0; d < 9; d++)
 			{
-#if ENABLE_VARIABLE_COMPRESSION
 				var atLeast = new List<int>();
 				foreach (var cell in HousesMap[c + 18])
 				{
@@ -220,22 +148,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				{
 					_expression.AddClause(-pair[0], -pair[1]);
 				}
-#else
-				var atleast = new int[9];
-				for (var r = 0; r < 9; r++)
-				{
-					atleast[r] = MapVariable(r, c, d);
-				}
-				_expression.AddClause(atleast);
-
-				for (var r1 = 0; r1 < 9; r1++)
-				{
-					for (var r2 = r1 + 1; d < 9 && r2 < 9; r2++)
-					{
-						_expression.AddClause(-MapVariable(r1, c, d), -MapVariable(r2, c, d));
-					}
-				}
-#endif
 			}
 		}
 
@@ -246,7 +158,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 			{
 				for (var d = 0; d < 9; d++)
 				{
-#if ENABLE_VARIABLE_COMPRESSION
 					var atLeast = new List<int>();
 					foreach (var cell in HousesMap[br * 3 + bc])
 					{
@@ -261,29 +172,6 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 					{
 						_expression.AddClause(-pair[0], -pair[1]);
 					}
-#else
-					var atleastList = new List<int>();
-
-					// Collect all vars in this block with digit 'd'.
-					for (var r = 0; r < 3; r++)
-					{
-						for (var c = 0; c < 3; c++)
-						{
-							atleastList.Add(MapVariable(br * 3 + r, bc * 3 + c, d));
-						}
-					}
-
-					_expression.AddClause([.. atleastList]);
-
-					// At most one in the block.
-					for (var i = 0; i < 9; i++)
-					{
-						for (var j = i + 1; j < 9; j++)
-						{
-							_expression.AddClause(-atleastList[i], -atleastList[j]);
-						}
-					}
-#endif
 				}
 			}
 		}
@@ -296,25 +184,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver
 				if (grid.GetDigit(r * 9 + c) is var d and not -1)
 				{
 					// Force (r, c) = d by adding single literal clause.
-					_expression.AddClause(
-#if ENABLE_VARIABLE_COMPRESSION
-						mappedVariables[(r * 9 + c) * 9 + d]
-#else
-						MapVariable(r, c, d)
-#endif
-					);
+					_expression.AddClause(mappedVariables[(r * 9 + c) * 9 + d]);
 				}
 			}
 		}
 	}
-
-#if !ENABLE_VARIABLE_COMPRESSION
-	/// <summary>
-	/// Maps 3D coordinates (row, column, digit) to a unique SAT variable index.
-	/// Indices start from 1 up to 729.
-	/// </summary>
-	private int MapVariable(int r, int c, int d) => r * 81 + c * 9 + d + 1;
-#endif
 }
 
 /// <summary>
@@ -617,12 +491,8 @@ file sealed class DpllSolver(
 			{
 				for (var digit = 0; digit < 9; digit++)
 				{
-#if ENABLE_VARIABLE_COMPRESSION
 					if (mappedVariables.TryGetValue((row * 9 + column) * 9 + digit, out var variable)
 						&& assignmentStates[variable] is true)
-#else
-					if (assignmentStates[MapVariable(row, column, digit)] is true)
-#endif
 					{
 						result.SetDigit(row * 9 + column, digit);
 					}

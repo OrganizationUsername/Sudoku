@@ -30,7 +30,9 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Global Items/Source Generators/" />
-  <Project Path="src/ConsoleTest/MyPrivateWorks.csproj" />
+  <Project Path="src/ConsoleTest/MyPrivateWorks.csproj">
+    <Platform Solution="Release|x64" Project="x64" />
+  </Project>
   <Project Path="src/Sudoku.Analytics.SourceGeneration/Sudoku.Analytics.SourceGeneration.csproj" />
   <Project Path="src/Sudoku.Analytics/Sudoku.Analytics.csproj" />
   <Project Path="src/Sudoku.CommandLine/Sudoku.CommandLine.csproj">

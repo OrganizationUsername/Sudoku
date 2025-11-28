@@ -3,11 +3,29 @@
 	<PropertyGroup>
 		<TargetFramework>net10.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
+		<!--<Platforms>AnyCPU;x64;x86</Platforms>-->
 		<Description>Provides all core implementations of sudoku API.</Description>
 		<DocumentationFile>Sudoku.Core.xml</DocumentationFile>
-		<!--CACHE_CANDIDATE_MAPS;TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU-->
-		<DefineConstants>$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
+
+	<Choose>
+		<When Condition="$(Platforms.Contains('x64')) or $(Platforms.Contains('amd64'))">
+			<!--Enables Z3 to support SMT solver-->
+			<PropertyGroup>
+				<DefineConstants>$(DefineConstants);ENABLE_SMT_SOLVER</DefineConstants>
+			</PropertyGroup>
+		</When>
+		<Otherwise>
+			<!--CACHE_CANDIDATE_MAPS;TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU-->
+			<PropertyGroup>
+				<DefineConstants>$(DefineConstants)</DefineConstants>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
+
+	<ItemGroup Condition="$(Platforms.Contains('x64')) or $(Platforms.Contains('amd64'))">
+		<PackageReference Include="Microsoft.Z3" Version="4.12.2" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />

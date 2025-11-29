@@ -6,6 +6,10 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// Using positive integers to represents a variable assigned <see langword="true"/>; for negative integers, <see langword="false"/>.
 /// </summary>
 /// <param name="VariablesCount">Indicates total number of variables.</param>
+/// <remarks>
+/// For more information about CNF, please visit <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">this link</see>.
+/// </remarks>
+/// <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
 public sealed record CnfExpression(int VariablesCount) : IEnumerable<ReadOnlyMemory<int>>
 {
 	/// <summary>

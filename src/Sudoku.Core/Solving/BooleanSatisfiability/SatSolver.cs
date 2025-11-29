@@ -8,6 +8,7 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problem</see> is a way
 /// to reduce complex puzzles to boolean expressions to be solved.
 /// </summary>
+/// <seealso href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Wikipedia - SAT problem</seealso>
 public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 {
 	/// <summary>
@@ -186,10 +187,12 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 }
 
 /// <summary>
-/// Implements a simple SAT solver using the DPLL algorithm (<i>Davis–Putnam–Logemann–Loveland algorithm</i>)
-/// with unit propagation.
-/// For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+/// Implements DPLL algorithm (<i>Davis–Putnam–Logemann–Loveland algorithm</i>).
 /// </summary>
+/// <remarks>
+/// For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+/// </remarks>
+/// <seealso href="https://en.wikipedia.org/wiki/DPLL_algorithm">Wikipedia - DPLL Algorithm</seealso>
 file sealed class Dpll
 {
 	/// <summary>

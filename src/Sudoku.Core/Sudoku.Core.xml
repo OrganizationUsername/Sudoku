@@ -14233,6 +14233,10 @@
             Using positive integers to represents a variable assigned <see langword="true"/>; for negative integers, <see langword="false"/>.
             </summary>
             <param name="VariablesCount">Indicates total number of variables.</param>
+            <remarks>
+            For more information about CNF, please visit <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">this link</see>.
+            </remarks>
+            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.#ctor(System.Int32)">
             <summary>
@@ -14241,6 +14245,10 @@
             Using positive integers to represents a variable assigned <see langword="true"/>; for negative integers, <see langword="false"/>.
             </summary>
             <param name="VariablesCount">Indicates total number of variables.</param>
+            <remarks>
+            For more information about CNF, please visit <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">this link</see>.
+            </remarks>
+            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
         </member>
         <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.VariablesCount">
             <summary>Indicates total number of variables.</summary>
@@ -14283,6 +14291,7 @@
             <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">SAT problem</see> is a way
             to reduce complex puzzles to boolean expressions to be solved.
             </summary>
+            <seealso href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Wikipedia - SAT problem</seealso>
         </member>
         <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._expression">
             <summary>
@@ -14317,10 +14326,12 @@
         </member>
         <member name="T:Sudoku.Solving.BooleanSatisfiability.Dpll">
             <summary>
-            Implements a simple SAT solver using the DPLL algorithm (<i>Davis–Putnam–Logemann–Loveland algorithm</i>)
-            with unit propagation.
-            For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+            Implements DPLL algorithm (<i>Davis–Putnam–Logemann–Loveland algorithm</i>).
             </summary>
+            <remarks>
+            For more information about DPLL algorithm, please visit <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">this link</see>.
+            </remarks>
+            <seealso href="https://en.wikipedia.org/wiki/DPLL_algorithm">Wikipedia - DPLL Algorithm</seealso>
         </member>
         <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._assignmentStates">
             <summary>

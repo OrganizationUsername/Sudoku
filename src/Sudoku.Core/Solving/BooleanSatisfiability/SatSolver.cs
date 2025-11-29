@@ -320,8 +320,14 @@ file sealed class DpllSolver(
 			// In this simple solver each decision level corresponds to exactly one decision variable, so we negate that one.
 			var (decisionVariable, decisionValue) = _decisionStack[^1];
 
-			// If <c>decisionValue == true</c>, then decision literal was <c>+decVar</c>, so learned is <c>-decVar</c>;
-			// If <c>decisionValue == false</c>, decision literal was <c>-decVar</c>, so learned is <c>+decVar</c>.
+			// <list type="bullet">
+			// <item>
+			// If <c>decisionValue == true</c>, decision literal was <c>+decisionVariable</c>, so learned is <c>-decisionVariable</c>
+			// </item>
+			// <item>
+			// If <c>decisionValue == false</c>, decision literal was <c>-decisionVariable</c>, so learned is <c>+decisionVariable</c>
+			// </item>
+			// </list>
 			var learnedLiteral = decisionValue ? -decisionVariable : decisionVariable;
 
 			// Add the learned unit clause to the expression to prevent repeating this decision.

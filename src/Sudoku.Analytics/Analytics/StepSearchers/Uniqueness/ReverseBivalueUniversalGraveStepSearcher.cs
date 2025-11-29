@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_ReverseBivalueUniversalGraveStepSearcher",
 	Technique.ReverseBivalueUniversalGraveType1, Technique.ReverseBivalueUniversalGraveType2,
 	Technique.ReverseBivalueUniversalGraveType3, Technique.ReverseBivalueUniversalGraveType4,
-	SupportedSudokuTypes = SudokuType.Standard,
+	SupportedSudokuTypes = GridType.Standard,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearcher
 {

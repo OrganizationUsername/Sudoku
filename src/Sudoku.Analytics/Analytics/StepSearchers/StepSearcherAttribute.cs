@@ -74,7 +74,7 @@ public sealed class StepSearcherAttribute(string nameKey, params Technique[] tec
 	/// <summary>
 	/// Indicates the supported sudoku types.
 	/// </summary>
-	public SudokuType SupportedSudokuTypes { get; init; } = SudokuType.Standard | SudokuType.Sukaku | SudokuType.JustOneCell;
+	public GridType SupportedSudokuTypes { get; init; } = GridType.Standard | GridType.Sukaku | GridType.JustOneCell;
 
 	/// <summary>
 	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='techniques']"/>

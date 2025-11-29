@@ -36,7 +36,7 @@ using TargetCandidatesGroup = CellMapOrCandidateMapGrouping<CandidateMap, Candid
 	Technique.BivalueUniversalGraveXzRule, Technique.BivalueUniversalGravePlusN,
 	Technique.BivalueUniversalGraveFalseCandidateType,
 
-	SupportedSudokuTypes = SudokuType.Standard,
+	SupportedSudokuTypes = GridType.Standard,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 {

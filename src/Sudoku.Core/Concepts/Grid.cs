@@ -65,14 +65,14 @@ public struct Grid : InlineArrayGridBase
 	/// </listheader>
 	/// <item>
 	/// <term>0b0000</term>
-	/// <description>Represents standard sudoku type (flag: <see cref="SudokuType.Standard"/>)</description>
+	/// <description>Represents standard sudoku type (flag: <see cref="GridType.Standard"/>)</description>
 	/// </item>
 	/// <item>
 	/// <term>0b0010</term>
-	/// <description>Represents Sukaku (flag: <see cref="SudokuType.Sukaku"/>)</description>
+	/// <description>Represents Sukaku (flag: <see cref="GridType.Sukaku"/>)</description>
 	/// </item>
 	/// </list>
-	/// Other values won't be supported for now, even if the flags are defined in type <see cref="SudokuType"/>.
+	/// Other values won't be supported for now, even if the flags are defined in type <see cref="GridType"/>.
 	/// </para>
 	/// </remarks>
 	private Mask _values;
@@ -185,13 +185,13 @@ public struct Grid : InlineArrayGridBase
 	/// Indicates the type of the puzzle.
 	/// </summary>
 	/// <remarks>
-	/// By design, this property can only be either <see cref="SudokuType.Standard"/> or <see cref="SudokuType.Sukaku"/>;
-	/// other values like <see cref="SudokuType.JustOneCell"/> won't be created here.
+	/// By design, this property can only be either <see cref="GridType.Standard"/> or <see cref="GridType.Sukaku"/>;
+	/// other values like <see cref="GridType.JustOneCell"/> won't be created here.
 	/// </remarks>
-	/// <seealso cref="SudokuType.Standard"/>
-	/// <seealso cref="SudokuType.Sukaku"/>
-	public readonly SudokuType PuzzleType
-		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
+	/// <seealso cref="GridType.Standard"/>
+	/// <seealso cref="GridType.Sukaku"/>
+	public readonly GridType PuzzleType
+		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => GridType.Sukaku, _ => GridType.Standard };
 
 	/// <inheritdoc/>
 	public readonly Cell GivenCellsCount => GivenCells.Count;
@@ -584,12 +584,12 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
 	public readonly int CompareTo(in Grid other)
-		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
+		=> PuzzleType != GridType.Sukaku && other.PuzzleType != GridType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
 			: throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"));
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(null, null);
+	public readonly override string ToString() => PuzzleType == GridType.Sukaku ? ToString("~") : ToString(null, null);
 
 	/// <remarks>
 	/// <para>You can use format identifiers to create the format text. All valid format identifiers:
@@ -778,7 +778,7 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Reset()
 	{
-		if (PuzzleType != SudokuType.Standard)
+		if (PuzzleType != GridType.Standard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -799,7 +799,7 @@ public struct Grid : InlineArrayGridBase
 	/// </summary>
 	public void ResetCandidates()
 	{
-		if (PuzzleType != SudokuType.Standard)
+		if (PuzzleType != GridType.Standard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -814,7 +814,7 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Fix()
 	{
-		if (PuzzleType != SudokuType.Standard)
+		if (PuzzleType != GridType.Standard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -832,7 +832,7 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Unfix()
 	{
-		if (PuzzleType != SudokuType.Standard)
+		if (PuzzleType != GridType.Standard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -937,7 +937,7 @@ public struct Grid : InlineArrayGridBase
 	public Grid Preserve(in CellMap template) => this %= template;
 
 	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// Gets the header 4 bits. The value can be <see cref="GridType.Sukaku"/> if and only if the puzzle is Sukaku,
 	/// and the argument <paramref name="cell"/> is 0.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
@@ -945,7 +945,7 @@ public struct Grid : InlineArrayGridBase
 	internal readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << GridBase.HeaderShift) - 1));
 
 	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// Gets the header 4 bits. The value can be <see cref="GridType.Sukaku"/> if and only if the puzzle is Sukaku,
 	/// and the argument <paramref name="cell"/> is 0.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
@@ -1325,7 +1325,7 @@ public struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void operator %=(in CellMap template)
 	{
-		if (PuzzleType != SudokuType.Standard)
+		if (PuzzleType != GridType.Standard)
 		{
 			return;
 		}

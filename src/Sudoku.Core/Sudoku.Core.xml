@@ -4557,14 +4557,14 @@
             </listheader>
             <item>
             <term>0b0000</term>
-            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.SudokuType.Standard"/>)</description>
+            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.Concepts.GridType.Standard"/>)</description>
             </item>
             <item>
             <term>0b0010</term>
-            <description>Represents Sukaku (flag: <see cref="F:Sudoku.SudokuType.Sukaku"/>)</description>
+            <description>Represents Sukaku (flag: <see cref="F:Sudoku.Concepts.GridType.Sukaku"/>)</description>
             </item>
             </list>
-            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.SudokuType"/>.
+            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.Concepts.GridType"/>.
             </para>
             </remarks>
         </member>
@@ -4603,11 +4603,11 @@
             Indicates the type of the puzzle.
             </summary>
             <remarks>
-            By design, this property can only be either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>;
-            other values like <see cref="F:Sudoku.SudokuType.JustOneCell"/> won't be created here.
+            By design, this property can only be either <see cref="F:Sudoku.Concepts.GridType.Standard"/> or <see cref="F:Sudoku.Concepts.GridType.Sukaku"/>;
+            other values like <see cref="F:Sudoku.Concepts.GridType.JustOneCell"/> won't be created here.
             </remarks>
-            <seealso cref="F:Sudoku.SudokuType.Standard"/>
-            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
+            <seealso cref="F:Sudoku.Concepts.GridType.Standard"/>
+            <seealso cref="F:Sudoku.Concepts.GridType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCellsCount">
             <inheritdoc/>
@@ -4951,7 +4951,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.GridType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -4959,7 +4959,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.GridType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -5308,6 +5308,39 @@
             Checks whether the cell is a value cell, being filled by the digit.
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.&lt;G&gt;$E85000132676E52A99CE6082267414DB`1.ExistsInCandidatesMap(`0@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.GridType">
+            <summary>
+            Represents a type of a grid.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.GridType.None">
+            <summary>
+            The placeholder of the enumeration field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridType.Standard">
+            <summary>
+            Indicates the sudoku puzzle is a standard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridType.Sukaku">
+            <summary>
+            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridType.JustOneCell">
+            <summary>
+            Indicates the sudoku puzzle is a just-one-cell sudoku.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.HouseDigitIdentifier">
             <summary>
@@ -6723,7 +6756,7 @@
             <para>Part (3) is for reserved cases. Such bits may not be used.</para>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellState"/>
-            <seealso cref="T:Sudoku.SudokuType"/>
+            <seealso cref="T:Sudoku.Concepts.GridType"/>
         </member>
         <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.DefaultMask">
             <summary>
@@ -9086,6 +9119,39 @@
         </member>
         <member name="M:Sudoku.Concepts.Symmetry.SymmetricTypeExtensions.&lt;G&gt;$A6177CC9D4F398436AB1019EF8B03A08.GetOrbit(System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.Symmetry.SymmetricTypeExtensions.&lt;G&gt;$A6177CC9D4F398436AB1019EF8B03A08.GetCells(System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Uniqueness">
+            <summary>
+            Represents a flag describing the number of solutions to a puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Uniqueness.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Uniqueness.Bad">
+            <summary>
+            Indicates the puzzle has no valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Uniqueness.Unique">
+            <summary>
+            Indicates the puzzle has a unique solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Uniqueness.Multiple">
+            <summary>
+            Indicates the puzzle has multiple solutions.
+            </summary>
         </member>
         <member name="T:Sudoku.Diff.DiffAnalysis">
             <summary>
@@ -14944,89 +15010,6 @@
             <returns>The instance.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="T:Sudoku.SudokuType">
-            <summary>
-            Represents a type of sudoku puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.SudokuType.None">
-            <summary>
-            The placeholder of the enumeration field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.Standard">
-            <summary>
-            Indicates the sudoku puzzle is a standard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.Sukaku">
-            <summary>
-            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.JustOneCell">
-            <summary>
-            Indicates the sudoku puzzle is a just-one-cell sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.TechniqueType">
-            <summary>
-            Represents a type of technique.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-            <completionlist cref="T:Sudoku.TechniqueTypes" />
-        </member>
-        <member name="F:Sudoku.TechniqueType.None">
-            <summary>
-            Indicates placeholder.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TechniqueType.Direct">
-            <summary>
-            Indicates the technique can be applied to direct mode.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TechniqueType.Snyder">
-            <summary>
-            Indicates the technique can be applied to Snyder's technique mode.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TechniqueType.Advanced">
-            <summary>
-            Indicates the technique can be applied to advanced mode.
-            </summary>
-        </member>
-        <member name="T:Sudoku.TechniqueTypes">
-            <summary>
-            Represents a list of constants of <see cref="T:Sudoku.TechniqueType"/>.
-            </summary>
-            <seealso cref="T:Sudoku.TechniqueType"/>
-        </member>
-        <member name="F:Sudoku.TechniqueTypes.All">
-            <summary>
-            Indicates all types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TechniqueTypes.Marks">
-            <summary>
-            Indicates only for marks.
-            </summary>
-        </member>
         <member name="T:Sudoku.Transformations.CantorExpansion">
             <summary>
             Provides a way to rank and unrank permutation. The ranking algorithm is called "Cantor Expansion".
@@ -16115,39 +16098,6 @@
         <member name="F:Sudoku.Transformations.TransformType.RotateCounterclockwise">
             <summary>
             Indicates the transform type is to ratate counter-clockwise.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Uniqueness">
-            <summary>
-            Represents a flag describing the number of solutions to a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Uniqueness.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Bad">
-            <summary>
-            Indicates the puzzle has no valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Unique">
-            <summary>
-            Indicates the puzzle has a unique solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Multiple">
-            <summary>
-            Indicates the puzzle has multiple solutions.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.GridSusserPattern_0">

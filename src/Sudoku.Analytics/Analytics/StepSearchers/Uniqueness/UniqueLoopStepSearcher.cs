@@ -15,7 +15,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_UniqueLoopStepSearcher",
 	Technique.UniqueLoopType1, Technique.UniqueLoopType2, Technique.UniqueLoopType3, Technique.UniqueLoopType4,
 	Technique.UniqueLoopStrongLinkType,
-	SupportedSudokuTypes = SudokuType.Standard,
+	SupportedSudokuTypes = GridType.Standard,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {

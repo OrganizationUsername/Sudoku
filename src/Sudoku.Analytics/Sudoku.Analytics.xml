@@ -935,7 +935,7 @@
             <param name="BottleneckType">Indicates the bottleneck type.</param>
             <seealso cref="M:Sudoku.Analytics.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Analytics.Bottlenecks.BottleneckFilter})"/>
         </member>
-        <member name="M:Sudoku.Analytics.Bottlenecks.BottleneckFilter.#ctor(Sudoku.TechniqueType,Sudoku.Analytics.Bottlenecks.BottleneckType)">
+        <member name="M:Sudoku.Analytics.Bottlenecks.BottleneckFilter.#ctor(Sudoku.Analytics.Categorization.TechniqueType,Sudoku.Analytics.Bottlenecks.BottleneckType)">
             <summary>
             Represents a bottleneck filter consumed by method <see cref="M:Sudoku.Analytics.Bottlenecks.AnalysisResultExtensions.GetBottlenecks(Sudoku.Analytics.AnalysisResult,System.ReadOnlySpan{Sudoku.Analytics.Bottlenecks.BottleneckFilter})"/>.
             </summary>
@@ -4574,10 +4574,10 @@
         <member name="P:Sudoku.Analytics.Categorization.TechniqueMetadataAttribute.PencilmarkVisibility">
             <summary>
             Indicates the mode that the current technique can be used by solving a puzzle.
-            By default the value is both <see cref="F:Sudoku.TechniqueType.Direct"/> and <see cref="F:Sudoku.TechniqueType.Advanced"/>.
+            By default the value is both <see cref="F:Sudoku.Analytics.Categorization.TechniqueType.Direct"/> and <see cref="F:Sudoku.Analytics.Categorization.TechniqueType.Advanced"/>.
             </summary>
-            <seealso cref="F:Sudoku.TechniqueType.Direct"/>
-            <seealso cref="F:Sudoku.TechniqueType.Advanced"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.TechniqueType.Direct"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.TechniqueType.Advanced"/>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueMetadataAttribute.RelatedTechnique">
             <summary>
@@ -5101,6 +5101,56 @@
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.&lt;G&gt;$F2E2D4FDD1D611F71CA5E043EC8527E5.Assignments">
             <summary>
             Indicates all assignment techniques.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueType">
+            <summary>
+            Represents a type of technique.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <completionlist cref="T:Sudoku.Analytics.Categorization.TechniqueTypes" />
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueType.None">
+            <summary>
+            Indicates placeholder.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueType.Direct">
+            <summary>
+            Indicates the technique can be applied to direct mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueType.Snyder">
+            <summary>
+            Indicates the technique can be applied to Snyder's technique mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueType.Advanced">
+            <summary>
+            Indicates the technique can be applied to advanced mode.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueTypes">
+            <summary>
+            Represents a list of constants of <see cref="T:Sudoku.Analytics.Categorization.TechniqueType"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueType"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueTypes.All">
+            <summary>
+            Indicates all types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueTypes.Marks">
+            <summary>
+            Indicates only for marks.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.CellMapOrCandidateMapExtensions">

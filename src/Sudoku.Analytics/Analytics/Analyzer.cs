@@ -331,7 +331,7 @@ public sealed class Analyzer : StepGatherer
 			{
 				switch (playground, solution, searcher, this)
 				{
-					case ({ PuzzleType: SudokuType.Sukaku }, _, { Metadata.SupportsSukaku: false }, _):
+					case ({ PuzzleType: GridType.Sukaku }, _, { Metadata.SupportsSukaku: false }, _):
 					case (_, _, { RunningArea: StepSearcherRunningArea.None }, _):
 					case (_, _, { Metadata.IsOnlyRunForDirectViews: true }, { Options.IsDirectMode: false }):
 					case (_, _, { Metadata.IsOnlyRunForIndirectViews: true }, { Options.IsDirectMode: true }):

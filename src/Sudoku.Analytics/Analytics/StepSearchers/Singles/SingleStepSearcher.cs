@@ -273,7 +273,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				}
 
 				if (TechniqueNaming.Single.GetNakedSingleSubtype(grid, cell) is var subtype && subtype.IsUnnecessary
-					&& grid.PuzzleType != SudokuType.Sukaku)
+					&& grid.PuzzleType != GridType.Sukaku)
 				{
 					continue;
 				}
@@ -585,7 +585,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var cellOffsets2 = Excluder.GetHiddenSingleExcluders(grid, digit, house, resultCell, out var chosenCells, out var excluderInfo);
 				return TechniqueNaming.Single.GetHiddenSingleSubtype(grid, resultCell, house, chosenCells) switch
 				{
-					var subtype when subtype.IsUnnecessary && grid.PuzzleType != SudokuType.Sukaku => null,
+					var subtype when subtype.IsUnnecessary && grid.PuzzleType != GridType.Sukaku => null,
 					var subtype => new HiddenSingleStep(
 						Array.Single(new Conclusion(Assignment, resultCell, digit)),
 						[

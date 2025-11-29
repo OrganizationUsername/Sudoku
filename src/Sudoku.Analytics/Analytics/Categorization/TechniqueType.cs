@@ -1,4 +1,4 @@
-namespace Sudoku;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents a type of technique.

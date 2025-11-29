@@ -88,7 +88,7 @@ public sealed class Collector : StepGatherer
 				switch (searcher)
 				{
 					case { RunningArea: var runningArea } when !runningArea.HasFlag(StepSearcherRunningArea.Collecting):
-					case { Metadata.SupportsSukaku: false } when puzzle.PuzzleType == SudokuType.Sukaku:
+					case { Metadata.SupportsSukaku: false } when puzzle.PuzzleType == GridType.Sukaku:
 					{
 						goto ReportProgress;
 					}

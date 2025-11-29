@@ -163,7 +163,7 @@ public static class GridAnalysisExtensions
 		/// </remarks>
 		public ReadOnlySpan<Conclusion> GetBackdoors()
 		{
-			if (@this.PuzzleType != SudokuType.Standard || @this.IsSolved || !@this.IsValid)
+			if (@this.PuzzleType != GridType.Standard || @this.IsSolved || !@this.IsValid)
 			{
 				return default;
 			}

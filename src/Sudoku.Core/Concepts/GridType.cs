@@ -1,11 +1,11 @@
-namespace Sudoku;
+namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a type of sudoku puzzle.
+/// Represents a type of a grid.
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-public enum SudokuType
+public enum GridType
 {
 	/// <summary>
 	/// The placeholder of the enumeration field.

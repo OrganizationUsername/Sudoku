@@ -31,7 +31,7 @@ public interface IGrid<TSelf> :
 	/// <summary>
 	/// Indicates ths header bits describing the sudoku type is a Sukaku.
 	/// </summary>
-	protected internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
+	protected internal const Mask SukakuHeader = (int)GridType.Sukaku << HeaderShift;
 
 
 	/// <summary>

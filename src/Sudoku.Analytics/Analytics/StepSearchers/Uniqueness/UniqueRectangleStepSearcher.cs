@@ -93,7 +93,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
 	Technique.AvoidableRectangleExternalAlmostLockedSetsXz,
 
-	SupportedSudokuTypes = SudokuType.Standard | SudokuType.Sukaku,
+	SupportedSudokuTypes = GridType.Standard | GridType.Sukaku,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
@@ -151,7 +151,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		// which cannot guarantee whether the deadly pattern at current state will be formed or not.
 		// By using the same rule, we can also check for other possible deadly patterns such as unique loops
 		// and Borescoper's deadly patterns.
-		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
+		var isSukaku = grid.PuzzleType == GridType.Sukaku;
 		var tempList = isSukaku ? new List<UniqueRectangleStep>(list.Count) : [.. list];
 		if (isSukaku)
 		{

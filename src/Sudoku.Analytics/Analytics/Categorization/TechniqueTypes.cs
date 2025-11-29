@@ -1,4 +1,4 @@
-namespace Sudoku;
+namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
 /// Represents a list of constants of <see cref="TechniqueType"/>.

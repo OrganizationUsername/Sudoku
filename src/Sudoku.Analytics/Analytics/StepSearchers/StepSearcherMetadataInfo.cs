@@ -31,7 +31,7 @@ public sealed class StepSearcherMetadataInfo(StepSearcher stepSearcher, StepSear
 	/// <summary>
 	/// Determines whether the current step searcher supports sukaku solving.
 	/// </summary>
-	public bool SupportsSukaku => _backAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
+	public bool SupportsSukaku => _backAttribute.SupportedSudokuTypes.HasFlag(GridType.Sukaku);
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportAnalyzingMultipleSolutionsPuzzle"/>
 	public bool SupportAnalyzingMultipleSolutionsPuzzle => _backAttribute.SupportAnalyzingMultipleSolutionsPuzzle;

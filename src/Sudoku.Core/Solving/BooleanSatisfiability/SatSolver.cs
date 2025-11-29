@@ -1,4 +1,4 @@
-#define ENABLE_NOGOOD_LEARNING
+#undef ENABLE_NOGOOD_LEARNING
 #define ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 
 namespace Sudoku.Solving.BooleanSatisfiability;

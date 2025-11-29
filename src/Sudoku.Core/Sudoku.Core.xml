@@ -14396,18 +14396,6 @@
             Indicates the current decision level.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._decisionStack">
-            <summary>
-            Decision stack + snapshots for naive learning/backjump.
-            Each decision level records which variable was chosen as decision and its intended value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._decisionSnapshots">
-            <summary>
-            For each decision level we keep a snapshot of _assignment taken <b>before</b> the decision,
-            so we can restore (backjump) quickly to that point.
-            </summary>
-        </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfExpression,System.EventHandler{Sudoku.Solving.BooleanSatisfiability.SatSolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.BooleanSatisfiability.SatSolver)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.BooleanSatisfiability.Dpll"/> instance via the specified instances.

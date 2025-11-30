@@ -188,6 +188,8 @@
   * [交叉格三阶解鱼](exocet/05-potential-eliminations-of-exocet/05-jye-fish-in-crossline-cells.md)
 * [X 区域致命定理](exocet/06-region-x-theorem.md)
 * [双飞鱼](exocet/07-double-exocet.md)
+* [高级飞鱼](exocet/08-senior-exocet.md)
+* [退化飞鱼](exocet/tui-hua-fei-yu.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

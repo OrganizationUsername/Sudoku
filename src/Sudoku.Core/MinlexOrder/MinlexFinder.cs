@@ -294,7 +294,7 @@ public sealed class MinlexFinder
 	}
 
 	/// <inheritdoc cref="Find(string)"/>
-	public Grid Find(in Grid grid) => Grid.Parse(Find(grid.ToString("0")));
+	public Grid Find(in Grid grid) => grid.ToString("0") | Find | &Grid.Parse;
 
 	/// <summary>
 	/// Finds the minimum lexicographical form of the source grid code.

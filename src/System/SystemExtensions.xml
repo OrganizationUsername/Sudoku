@@ -6720,6 +6720,40 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:System.NumberTypeComparisons">
+            <summary>
+            Provides comparison operations for number types.
+            </summary>
+        </member>
+        <member name="M:System.NumberTypeComparisons.CompareTo``1(``0,``0)">
+            <inheritdoc cref="M:System.NumberTypeComparisons.&lt;G&gt;$AD33535FE293CD09CB9F90A1C63F4914`1.CompareTo(`0,`0)"/>
+        </member>
+        <member name="M:System.NumberTypeComparisons.Equals``1(``0,``0)">
+            <inheritdoc cref="M:System.NumberTypeComparisons.&lt;G&gt;$AD33535FE293CD09CB9F90A1C63F4914`1.Equals(`0,`0)"/>
+        </member>
+        <member name="T:System.NumberTypeComparisons.&lt;G&gt;$AD33535FE293CD09CB9F90A1C63F4914`1.&lt;M&gt;$C0052DD352D55117E00E6B0E28BE5F7D">
+            <summary>
+            Provides extension members on <typeparamref name="T"/>,
+            where <typeparamref name="T"/> satisfies <see cref="T:System.Numerics.INumber`1"/> constraint.
+            </summary>
+            <typeparam name="T">The type of instance.</typeparam>
+        </member>
+        <member name="M:System.NumberTypeComparisons.&lt;G&gt;$AD33535FE293CD09CB9F90A1C63F4914`1.CompareTo(`0,`0)">
+            <summary>
+            Provides a transparent encapsulation on <c><typeparamref name="T"/>.CompareTo</c> method.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result indicating which is greater.</returns>
+        </member>
+        <member name="M:System.NumberTypeComparisons.&lt;G&gt;$AD33535FE293CD09CB9F90A1C63F4914`1.Equals(`0,`0)">
+            <summary>
+            Provides a transparent encapsulation on <c><typeparamref name="T"/>.Equals</c> method.
+            </summary>
+            <param name="left">The first instance to be compared.</param>
+            <param name="right">The second instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are same.</returns>
+        </member>
         <member name="T:System.Numerics.BitCombinationEnumerator`1">
             <summary>
             Indicates the enumerator of the current instance.
@@ -7559,6 +7593,86 @@
         </member>
         <member name="M:System.Numerics.NIntEnumerator.System#IDisposable#Dispose">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline">
+            <summary>
+            Provides a way to use pipeline syntax.
+            </summary>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``2(``0,System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,System.Func{`0,`1})"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``2(``0,)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``3(System.ValueTuple{``0,``1},System.Func{``0,``1,``2})">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.op_BitwiseOr(System.ValueTuple{`0,`1},System.Func{`0,`1,`2})"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``3(System.ValueTuple{``0,``1},)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.op_BitwiseOr(System.ValueTuple{`0,`1},)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``4(System.ValueTuple{``0,``1,``2},System.Func{``0,``1,``2,``3})">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},System.Func{`0,`1,`2,`3})"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``4(System.ValueTuple{``0,``1,``2},)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},)"/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.&lt;M&gt;$E57A6FEB39B3B4140D27E470F9F2E7F7">
+            <summary>
+            Provides extension members on <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of instance.</typeparam>
+            <typeparam name="TResult">The type of result.</typeparam>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,System.Func{`0,`1})">
+            <summary>
+            Performs pipeline operation. Syntax <c>arg | operation</c> means <c>operation(arg)</c>.
+            </summary>
+            <param name="left">The instance.</param>
+            <param name="right">The function that receives <paramref name="left"/> as the only parameter.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,System.Func{`0,`1})"/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.&lt;M&gt;$12A747C03C5386BDDF246C984259D80B">
+            <summary>
+            Provides extension members on <typeparamref name="T1"/> and <typeparamref name="T2"/>.
+            </summary>
+            <typeparam name="T1">The type of parameter 1.</typeparam>
+            <typeparam name="T2">The type of parameter 2.</typeparam>
+            <typeparam name="TResult">The type of result.</typeparam>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.op_BitwiseOr(System.ValueTuple{`0,`1},System.Func{`0,`1,`2})">
+            <summary>
+            Performs pipeline operation. Syntax <c>(arg1, arg2) | operation</c> means <c>operation(arg1, arg2)</c>.
+            </summary>
+            <param name="left">The pair of arguments.</param>
+            <param name="right">The function that receives <paramref name="left"/> as pair of parameters.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.op_BitwiseOr(System.ValueTuple{`0,`1},)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F008738109FEC1E4CDB78FFC5E710CEA`3.op_BitwiseOr(System.ValueTuple{`0,`1},System.Func{`0,`1,`2})"/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.&lt;M&gt;$4DD7030B570FD0FE3841A414098E8F19">
+            <summary>
+            Provides extension members on <typeparamref name="T1"/>, <typeparamref name="T2"/> and <typeparamref name="T3"/>.
+            </summary>
+            <typeparam name="T1">The type of parameter 1.</typeparam>
+            <typeparam name="T2">The type of parameter 2.</typeparam>
+            <typeparam name="T3">The type of parameter 3.</typeparam>
+            <typeparam name="TResult">The type of result.</typeparam>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},System.Func{`0,`1,`2,`3})">
+            <summary>
+            Performs pipeline operation. Syntax <c>(arg1, arg2, arg3) | operation</c> means <c>operation(arg1, arg2, arg3)</c>.
+            </summary>
+            <param name="left">The triplet of arguments.</param>
+            <param name="right">The function that receives <paramref name="left"/> as pair of parameters.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},System.Func{`0,`1,`2,`3})"/>
         </member>
         <member name="T:System.RandomExtensions">
             <summary>

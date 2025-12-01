@@ -84,7 +84,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <inheritdoc/>
 	public bool? Solve(in Grid grid, out Grid result)
 	{
-		var rawResult = Search(ParseGrid(grid.ToString("0")));
+		var rawResult = grid.ToString("0") | ParseGrid | Search;
 		if (rawResult is null)
 		{
 			result = Grid.Undefined;
@@ -200,7 +200,7 @@ public sealed class DictionaryQuerySolver : ISolver
 		var s2 = (from s in Coordinates where values[s].Length > 1 orderby values[s].Length select s)[0];
 		return (
 			from d in values[s2]
-			let solution = Search(Assign(new(values), s2, d.ToString()))
+			let solution = (new Dictionary<string, string>(values), s2, d.ToString()) | Assign | Search
 			where solution is not null
 			select solution
 		)[0];
@@ -235,8 +235,7 @@ public sealed class DictionaryQuerySolver : ISolver
 			case 1:
 			{
 				// If there is only one value (d2) left in block, remove it from peers.
-				var d2 = values[s];
-				if (!AllNotNull(from s2 in Peers[s] select Eliminate(values, s2, d2)))
+				if (!AllNotNull(from s2 in Peers[s] select Eliminate(values, s2, values[s])))
 				{
 					return null;
 				}

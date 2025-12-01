@@ -14407,6 +14407,26 @@
             Indicates the current decision level.
             </summary>
         </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._propagationIndex">
+            <summary>
+            Process <c>_trail</c> from this index forward.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watches">
+            <summary>
+            Indexed by mapped literal index -> list of clause indices.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watchLiteralA">
+            <summary>
+            Watched literal A per clause (signed literal).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watchLiteralB">
+            <summary>
+            Watched literal B per clause (signed literal); 0 if absent (unary)
+            </summary>
+        </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfExpression,System.EventHandler{Sudoku.Solving.BooleanSatisfiability.SatSolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.BooleanSatisfiability.SatSolver)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.BooleanSatisfiability.Dpll"/> instance via the specified instances.
@@ -14457,7 +14477,7 @@
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.UnitPropagation">
             <summary>
-            Unit propagation (CDCL-aware).
+            Unit propagation (CDCL-aware), with two-watched literals checking.
             </summary>
             <returns>
             Returns <see langword="null"/> if no conflict;
@@ -14486,6 +14506,31 @@
             That is, after <c>BacktrackToLevel(L)</c> all variables with level &gt; <c>L</c> become unassigned.
             </summary>
             <param name="level">The level.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.LiteralToIndex(System.Int32)">
+            <summary>
+            <para>Map signed literal to watches array index.</para>
+            <para>
+            <list type="bullet">
+            <item>Positive <c>v</c> -> <c>index = v</c> (1..N)</item>
+            <item>Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N)</item>
+            </list>
+            </para>
+            <para>We keep index 0 unused.</para>
+            </summary>
+            <param name="literal">The literal.</param> 
+            <returns>Result value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.EnsureWatchesInit">
+            <summary>
+            Ensure watches array has correct size for current variable count.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.RegisterClauseWatches(System.Int32)">
+            <summary>
+            Register watches for a clause <paramref name="clauseIndex"/>. Called during initial build and when learning clauses.
+            </summary>
+            <param name="clauseIndex">The index of clause.</param>
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.BuildSolution(System.Nullable{System.Boolean}[],System.Collections.Generic.Dictionary{System.Int32,System.Int32})">
             <summary>

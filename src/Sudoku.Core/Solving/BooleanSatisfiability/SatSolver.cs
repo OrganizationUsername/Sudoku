@@ -1,6 +1,3 @@
-#undef ENABLE_NOGOOD_LEARNING
-#define ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
-
 namespace Sudoku.Solving.BooleanSatisfiability;
 
 /// <summary>
@@ -221,11 +218,7 @@ file sealed class Dpll
 	/// </list>
 	/// This array starts at index 1. Please use 1-based indexing to operate variables.
 	/// </remarks>
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 	private readonly bool?[] _assignmentStates;
-#else
-	private bool?[] _assignmentStates;
-#endif
 
 	/// <summary>
 	/// Indicates event handler for solution found.
@@ -247,7 +240,6 @@ file sealed class Dpll
 	/// </summary>
 	private readonly SatSolver? _parentSolver;
 
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 	/// <summary>
 	/// Decision level per variable (0..).
 	/// </summary>
@@ -273,21 +265,26 @@ file sealed class Dpll
 	/// Indicates the current decision level.
 	/// </summary>
 	private int _decisionLevel;
-#endif
-
-#if ENABLE_NOGOOD_LEARNING
-	/// <summary>
-	/// Decision stack + snapshots for naive learning/backjump.
-	/// Each decision level records which variable was chosen as decision and its intended value.
-	/// </summary>
-	private List<(int Variable, bool Value)>? _decisionStack;
 
 	/// <summary>
-	/// For each decision level we keep a snapshot of _assignment taken <b>before</b> the decision,
-	/// so we can restore (backjump) quickly to that point.
+	/// Process <c>_trail</c> from this index forward.
 	/// </summary>
-	private List<bool?[]>? _decisionSnapshots;
-#endif
+	private int _propagationIndex;
+
+	/// <summary>
+	/// Indexed by mapped literal index -> list of clause indices.
+	/// </summary>
+	private List<int>[]? _watches;
+
+	/// <summary>
+	/// Watched literal A per clause (signed literal).
+	/// </summary>
+	private List<int> _watchLiteralA = [];
+
+	/// <summary>
+	/// Watched literal B per clause (signed literal); 0 if absent (unary)
+	/// </summary>
+	private List<int> _watchLiteralB = [];
 
 
 	/// <summary>
@@ -320,12 +317,30 @@ file sealed class Dpll
 		_mappedVariables = mappedVariables;
 		_parentSolver = parentSolver;
 
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		_trail = [];
 		_decisionLevels = [];
 		_variableLevel = new int[_expression.VariablesCount + 1];
 		_antecedent = new ReadOnlyMemory<int>?[_expression.VariablesCount + 1];
-#endif
+
+		// Build initial watches and enqueue units.
+		EnsureWatchesInit();
+		for (var i = 0; i < _expression.ClauseCount; i++)
+		{
+			RegisterClauseWatches(i);
+		}
+		for (var i = 0; i < _expression.ClauseCount; i++)
+		{
+			if (_expression.Clauses[i].Span is [var a] && Math.Abs(a) is var v && _assignmentStates[v] is null)
+			{
+				_assignmentStates[v] = a > 0;
+				_variableLevel[v] = 0;
+				_antecedent[v] = _expression.Clauses[i];
+				_trail.Add(a);
+			}
+		}
+
+		// <c>_propagationIndex</c> will start processing from 0 when <c>UnitPropagation</c> runs.
+		_propagationIndex = 0;
 	}
 
 
@@ -335,7 +350,6 @@ file sealed class Dpll
 	/// <param name="cancellationToken">The cancellation token.</param>
 	public List<bool?[]> Solve(CancellationToken cancellationToken = default)
 	{
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		// Init CDCL data.
 		_assignmentStates.AsSpan().Clear();
 		_variableLevel.AsSpan().Clear();
@@ -343,19 +357,13 @@ file sealed class Dpll
 		_trail.Clear();
 		_decisionLevels.Clear();
 		_decisionLevel = 0;
-#endif
 
-#if ENABLE_NOGOOD_LEARNING
-		_decisionStack = [];
-		_decisionSnapshots = [];
-#endif
 		var solutions = new List<bool?[]>();
 		Backtracking(solutions, cancellationToken);
 		return solutions;
 	}
 
 
-#if ENABLE_NOGOOD_LEARNING || ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 	/// <summary>
 	/// Performs DPLL recursive method. DPLL recursive routine:
 	/// <list type="number">
@@ -377,32 +385,11 @@ file sealed class Dpll
 	/// </summary>
 	/// <param name="solutions">The solutions.</param>
 	/// <param name="cancellationToken">The cancellation token.</param>
-#else
-	/// <summary>
-	/// Performs DPLL recursive method. DPLL recursive routine:
-	/// <list type="number">
-	/// <item>Perform unit propagation to simplify.</item>
-	/// <item>If conflict, backtrack (return <see langword="false"/>).</item>
-	/// <item>If all variables assigned, expression is satisfied.</item>
-	/// <item>Otherwise, pick an unassigned variable and branch on true/false.</item>
-	/// </list>
-	/// </summary>
-	/// <param name="solutions">The solutions.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-#endif
 	private bool Backtracking(List<bool?[]> solutions, CancellationToken cancellationToken)
 	{
-#if ENABLE_NOGOOD_LEARNING
-		Debug.Assert(_decisionStack is not null);
-		Debug.Assert(_decisionSnapshots is not null);
-#endif
-
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		// It seems that two variables are not null anyway.
 		//Debug.Assert(_varLevel is not null && _antecedent is not null);
-#endif
 
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		// 1) propagate and handle conflicts (CDCL loop).
 		// If propagation finds a conflict, do conflict analysis + learning + backjump and continue.
 		while (true)
@@ -429,20 +416,15 @@ file sealed class Dpll
 
 			// Add learned clause to the expression.
 			_expression.AddClause(learned.AsMemory());
+			RegisterClauseWatches(_expression.ClauseCount - 1);
 
 			// Compute backjump level.
 			var backjumpLevel = 0;
-			var litAtCurrLevel = 0;
 			foreach (var literal in learned)
 			{
 				var v = Math.Abs(literal);
 				var level = _variableLevel[v];
-				if (level == _decisionLevel)
-				{
-					// The UIP literal (there will be exactly one).
-					litAtCurrLevel = literal;
-				}
-				else
+				if (level != _decisionLevel)
 				{
 					backjumpLevel = Math.Max(backjumpLevel, level);
 				}
@@ -485,50 +467,6 @@ file sealed class Dpll
 
 			// Continue propagation loop (<c>UnitPropagation</c> will be called again).
 		}
-#else
-		if (!UnitPropagation())
-		{
-#if ENABLE_NOGOOD_LEARNING
-			// Conflict detected during propagation.
-			// If there's no decision to backjump to => UNSAT.
-			if (_decisionStack.Count == 0)
-			{
-				return false;
-			}
-
-			// Naive nogood: learn a clause that is the negation of the decision literal(s) at the current (deepest) decision level.
-			// In this simple solver each decision level corresponds to exactly one decision variable, so we negate that one.
-			var (decisionVariable, decisionValue) = _decisionStack[^1];
-
-			// <list type="bullet">
-			// <item>
-			// If <c>decisionValue == true</c>, decision literal was <c>+decisionVariable</c>, so learned is <c>-decisionVariable</c>
-			// </item>
-			// <item>
-			// If <c>decisionValue == false</c>, decision literal was <c>-decisionVariable</c>, so learned is <c>+decisionVariable</c>
-			// </item>
-			// </list>
-			var learnedLiteral = decisionValue ? -decisionVariable : decisionVariable;
-
-			// Add the learned unit clause to the expression to prevent repeating this decision.
-			_expression.AddClause(Array.Single(learnedLiteral));
-
-			// Backjump one decision level: restore assignment to snapshot <i>before</i> that decision.
-			var restoreSnapshot = _decisionSnapshots[^1];
-			_assignmentStates = restoreSnapshot[..];
-
-			// Pop that decision level records.
-			_decisionStack.RemoveAt(^1);
-			_decisionSnapshots.RemoveAt(^1);
-
-			// Return false so upper recursion can continue (it will either try alternate branch or learn more).
-			return false;
-#else
-			// Conflict detected.
-			return false;
-#endif
-		}
-#endif
 
 		// 2) Check if all vars assigned -> solution.
 		// Find a variable index that has not been assigned yet (0), or -1 if all variables are assigned.
@@ -559,19 +497,11 @@ file sealed class Dpll
 		}
 
 		// 3) Decision: pick unassigned variable -> increase decision level and try true / false.
-		// Save state for backtracking.
-		var snapshotBeforeDecision = _assignmentStates[..];
-
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		_decisionLevel++;
 		_decisionLevels.Add(variable);
 		_variableLevel[variable] = _decisionLevel;
 		_antecedent[variable] = null; // Decision var has no antecedent.
 		_trail.Add(variable); // +variable means true.
-#elif ENABLE_NOGOOD_LEARNING
-		_decisionSnapshots.Add(snapshotBeforeDecision);
-		_decisionStack.Add((variable, true)); // Assume true on first try.
-#endif
 
 		// 4) Recurse.
 		// Try assigning 'variable' = true.
@@ -588,7 +518,6 @@ file sealed class Dpll
 		}
 
 		// Try opposite branch.
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		// Undo assignments that happened after decision (pop assignments until variable is unassigned),
 		// but keep current decision as switching.
 		// We'll restore by popping trail to the point just before the decision variable's assignment.
@@ -599,16 +528,7 @@ file sealed class Dpll
 		_assignmentStates[variable] = false;
 		_variableLevel[variable] = _decisionLevel;
 		_antecedent[variable] = null;
-		_trail.Add(-variable); // assign false on trail
-#elif ENABLE_NOGOOD_LEARNING
-		// Backtrack and try 'variable' = false.
-		_assignmentStates = snapshotBeforeDecision;
-		_decisionStack[^1] = (variable, false); // Switch the recorded decision value to false.
-		_assignmentStates[variable] = false;
-#else
-		// Backtrack and try 'variable' = false.
-		_assignmentStates[variable] = false;
-#endif
+		_trail.Add(-variable); // Assign false on trail.
 		if (Backtracking(solutions, cancellationToken))
 		{
 			return true;
@@ -620,25 +540,15 @@ file sealed class Dpll
 			return false;
 		}
 
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 		// Both branches failed -> backtrack decision.
 		BacktrackToLevel(_decisionLevel - 1);
 		_decisionLevels.RemoveAt(^1);
 		_decisionLevel--;
-#elif ENABLE_NOGOOD_LEARNING
-		// Both assignments led to conflict => unsatisfiable under current partial assignment.
-		_assignmentStates = _decisionSnapshots[^1][..];
-		_decisionStack.RemoveAt(^1);
-		_decisionSnapshots.RemoveAt(^1);
-#else
-		_assignmentStates = snapshotBeforeDecision;
-#endif
 		return false;
 	}
 
-#if ENABLE_CONFLICT_DRIVEN_CLAUSE_LEARNING
 	/// <summary>
-	/// Unit propagation (CDCL-aware).
+	/// Unit propagation (CDCL-aware), with two-watched literals checking.
 	/// </summary>
 	/// <returns>
 	/// Returns <see langword="null"/> if no conflict;
@@ -646,56 +556,104 @@ file sealed class Dpll
 	/// </returns>
 	private ReadOnlyMemory<int>? UnitPropagation()
 	{
-		bool changed;
-		do
+		// Process trail incrementally using watched lists.
+		EnsureWatchesInit();
+
+		Debug.Assert(_watches is not null);
+
+		while (_propagationIndex < _trail.Count)
 		{
-			changed = false;
-			foreach (var clause in _expression.Clauses)
+			var literalJustAssigned = _trail[_propagationIndex++];
+
+			// The literal that becomes false is the negation of assigned literal:
+			var falseLiteral = -literalJustAssigned;
+			var watchIndex = LiteralToIndex(falseLiteral);
+			var watchList = _watches[watchIndex];
+
+			// Iterate with index so we can modify the list in-place (swap-remove).
+			for (var i = 0; i < watchList.Count;)
 			{
-				var span = clause.Span;
-				var unassignedCount = 0;
-				var lastUnassignedLiteral = 0;
-				var clauseSatisfied = false;
-				for (var i = 0; i < span.Length; i++)
+				var clauseIndex = watchList[i];
+				var clause = _expression.Clauses[clauseIndex].Span;
+
+				// Determine which watched slot in this clause corresponds to <c>falseLiteral</c>.
+				var wa = _watchLiteralA[clauseIndex];
+				var wb = _watchLiteralB[clauseIndex];
+				var otherWatched = wa == falseLiteral ? wb : wa;
+
+				// If the other watched literal already evaluates to true, clause is satisfied — skip.
+				var ov = Math.Abs(otherWatched);
+				if (otherWatched != 0 && _assignmentStates[ov] == otherWatched > 0)
 				{
-					var literal = span[i];
-					var v = Math.Abs(literal);
-					var sign = literal > 0;
-					if (_assignmentStates[v] == sign)
-					{
-						clauseSatisfied = true;
-						break;
-					}
-					if (_assignmentStates[v] is null)
-					{
-						unassignedCount++;
-						lastUnassignedLiteral = literal;
-					}
-				}
-				if (clauseSatisfied)
-				{
+					// Nothing to do for this clause.
+					i++;
 					continue;
 				}
 
-				if (unassignedCount == 0)
+				// Try to find alternative literal (not assigned false) in clause to replace <c>falseLiteral</c> watch.
+				var foundAlternative = 0;
+				for (var k = 0; k < clause.Length; k++)
 				{
-					// Conflict: all literals false under current assignment.
-					return clause;
+					var literal = clause[k];
+					if (literal == wa || literal == wb)
+					{
+						// Skip current watches.
+						continue;
+					}
+
+					var vv = Math.Abs(literal);
+					// Accept if literal is unassigned or true: then we can watch it.
+					if (_assignmentStates[vv] is null || _assignmentStates[vv] == literal > 0)
+					{
+						foundAlternative = literal;
+						break;
+					}
 				}
 
-				if (unassignedCount == 1)
+				if (foundAlternative != 0)
 				{
-					// Unit clause: assign the <c>lastUnassignedLiteral</c>.
-					var v = Math.Abs(lastUnassignedLiteral);
-					var value = lastUnassignedLiteral > 0;
-					_assignmentStates[v] = value;
-					_variableLevel[v] = _decisionLevel;
-					_antecedent[v] = clause;
-					_trail.Add(lastUnassignedLiteral);
-					changed = true;
+					// Replace watch:
+					// Remove <c>clauseIndex</c> from current watch list and add to alt watch list.
+					// Swap-remove from watchList at <c>i</c>.
+					var last = watchList[^1];
+					watchList[i] = last;
+					watchList.RemoveAt(^1);
+
+					// Set watch slot to <c>foundAlternative</c>.
+					(wa == falseLiteral ? _watchLiteralA : _watchLiteralB)[clauseIndex] = foundAlternative;
+
+					// Add to watches for <c>foundAlternative</c>.
+					_watches[LiteralToIndex(foundAlternative)].Add(clauseIndex);
+
+					// Don't increment i because we replaced current entry with last; need to re-examine it.
+					continue;
 				}
+
+				// No alternative watch found:
+				// Clause currently has only <c>otherWatched</c> (which may be unassigned or assigned false).
+				var otherVar = Math.Abs(otherWatched);
+				if (otherWatched != 0 && _assignmentStates[otherVar] is null)
+				{
+					// Unit clause -> assign otherWatched to satisfy clause.
+					var value = otherWatched > 0;
+					_assignmentStates[otherVar] = value;
+					_variableLevel[otherVar] = _decisionLevel;
+					_antecedent[otherVar] = _expression.Clauses[clauseIndex];
+					_trail.Add(otherWatched);
+
+					// Move to next watch in same list
+					// (current entry still refers to same clauseIndex because we didn't remove it).
+					i++;
+					continue;
+				}
+
+				// If <c>otherWatched</c> is assigned false (or <c>otherWatched == 0</c> meaning clause length 0) -> conflict.
+				// Return the conflicting clause.
+				return _expression.Clauses[clauseIndex];
 			}
-		} while (changed);
+		}
+
+		// No conflict.
 		return null;
 	}
 
@@ -845,65 +803,85 @@ file sealed class Dpll
 			_decisionLevels.RemoveAt(^1);
 			_decisionLevel--;
 		}
+
+		_propagationIndex = Math.Min(_propagationIndex, _trail.Count);
 	}
-#else
+
 	/// <summary>
-	/// Unit propagation:
-	/// Repeatedly scan for clauses where only one literal is unassigned and all others <see langword="false"/>,
-	/// then assign that literal to <see langword="true"/> (to satisfy the clause).
-	/// Returns <see langword="false"/> if a clause becomes unsatisfiable (all literals <see langword="false"/>).
+	/// <para>Map signed literal to watches array index.</para>
+	/// <para>
+	/// <list type="bullet">
+	/// <item>Positive <c>v</c> -> <c>index = v</c> (1..N)</item>
+	/// <item>Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N)</item>
+	/// </list>
+	/// </para>
+	/// <para>We keep index 0 unused.</para>
 	/// </summary>
-	private bool UnitPropagation()
+	/// <param name="literal">The literal.</param> 
+	/// <returns>Result value.</returns>
+	private int LiteralToIndex(int literal)
 	{
-		bool isChanged;
-		do
-		{
-			isChanged = false;
-			foreach (var clause in _expression)
-			{
-				var (unassignedCount, unassignedLiteral, clauseSatisfied) = (0, 0, false);
-
-				// Check each literal in the clause.
-				foreach (var literal in clause)
-				{
-					var variable = Math.Abs(literal);
-					var sign = literal > 0;
-					if (_assignmentStates[variable] == sign)
-					{
-						clauseSatisfied = true; // Clause is already satisfied.
-						break;
-					}
-					if (_assignmentStates[variable] is null)
-					{
-						unassignedCount++;
-						unassignedLiteral = literal;
-					}
-				}
-
-				if (clauseSatisfied)
-				{
-					continue;
-				}
-
-				// If no unassigned lits left and none true => conflict.
-				if (unassignedCount == 0)
-				{
-					return false;
-				}
-
-				// Exactly one unassigned literal => must be set to satisfy the clause.
-				if (unassignedCount == 1)
-				{
-					var variable = Math.Abs(unassignedLiteral);
-					var sign = unassignedLiteral > 0;
-					_assignmentStates[variable] = sign;
-					isChanged = true;
-				}
-			}
-		} while (isChanged);
-		return true;
+		var n = _expression.VariablesCount;
+		return literal > 0 ? literal : n + -literal;
 	}
-#endif
+
+	/// <summary>
+	/// Ensure watches array has correct size for current variable count.
+	/// </summary>
+	private void EnsureWatchesInit()
+	{
+		var n = _expression.VariablesCount;
+		var size = 2 * n + 1;
+		if (_watches is null || _watches.Length != size)
+		{
+			_watches = new List<int>[size];
+			for (var i = 0; i < size; i++)
+			{
+				_watches[i] = [];
+			}
+
+			_watchLiteralA = [];
+			_watchLiteralB = [];
+		}
+	}
+
+	/// <summary>
+	/// Register watches for a clause <paramref name="clauseIndex"/>. Called during initial build and when learning clauses.
+	/// </summary>
+	/// <param name="clauseIndex">The index of clause.</param>
+	private void RegisterClauseWatches(int clauseIndex)
+	{
+		EnsureWatchesInit();
+
+		Debug.Assert(_watches is not null);
+
+		switch (_expression.Clauses[clauseIndex].Span)
+		{
+			case []:
+			{
+				// Empty clause (should be treated as immediate conflict) - still register but watches left as 0.
+				_watchLiteralA.Add(0);
+				_watchLiteralB.Add(0);
+				break;
+			}
+			case [var a]:
+			{
+				_watchLiteralA.Add(a);
+				_watchLiteralB.Add(0);
+				_watches[LiteralToIndex(a)].Add(clauseIndex);
+				break;
+			}
+			case [var literalA, var literalB, ..]:
+			{
+				// Length >= 2: watch first two literals.
+				_watchLiteralA.Add(literalA);
+				_watchLiteralB.Add(literalB);
+				_watches[LiteralToIndex(literalA)].Add(clauseIndex);
+				_watches[LiteralToIndex(literalB)].Add(clauseIndex);
+				break;
+			}
+		}
+	}
 
 
 	/// <summary>

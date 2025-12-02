@@ -879,7 +879,7 @@ public struct Grid : InlineArrayGridBase
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="digit"/> is invalid (e.g. -1).</exception>
 	public void ReplaceDigit(Cell cell, Digit digit)
 	{
-		ArgumentOutOfRangeException.ThrowIfOutOfRange(digit, 0, 9);
+		ArgumentOutOfRangeException.Assert(digit is >= 0 and < 9);
 
 		SetDigit(cell, -1);
 		SetDigit(cell, digit);

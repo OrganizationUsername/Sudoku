@@ -394,8 +394,8 @@ public static class GridTransformationExtensions
 				return ref @this;
 			}
 
-			ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex1, 9, 27);
-			ArgumentOutOfRangeException.ThrowIfOutOfRange(houseIndex2, 9, 27);
+			ArgumentOutOfRangeException.Assert(houseIndex1 is >= 9 and < 27);
+			ArgumentOutOfRangeException.Assert(houseIndex2 is >= 9 and < 27);
 			ArgumentException.Assert(houseIndex1.HouseType == houseIndex2.HouseType);
 
 			for (var i = 0; i < 9; i++)
@@ -414,8 +414,8 @@ public static class GridTransformationExtensions
 		/// <exception cref="ArgumentException">Throws when two specified chute index is not in valid range (0..6).</exception>
 		public ref TGrid SwapChute(int chuteIndex1, int chuteIndex2)
 		{
-			ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex1, Chute.MinChuteIndex, Chute.MaxChuteIndex);
-			ArgumentOutOfRangeException.ThrowIfOutOfRange(chuteIndex2, Chute.MinChuteIndex, Chute.MaxChuteIndex);
+			ArgumentOutOfRangeException.Assert(chuteIndex1 is >= Chute.MinChuteIndex and < Chute.MaxChuteIndex);
+			ArgumentOutOfRangeException.Assert(chuteIndex2 is >= Chute.MinChuteIndex and < Chute.MaxChuteIndex);
 			ArgumentException.Assert(
 				chuteIndex1 is >= Chute.MinChuteIndex and < (Chute.MaxChuteIndex >> 1)
 					== chuteIndex2 is >= Chute.MinChuteIndex and < (Chute.MaxChuteIndex >> 1)

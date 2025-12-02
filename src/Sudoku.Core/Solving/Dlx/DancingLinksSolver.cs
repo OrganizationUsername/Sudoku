@@ -69,7 +69,7 @@ public sealed class DancingLinksSolver : ISolutionEnumerableSolver<DancingLinksS
 	public bool? Solve(Digit[] grid, out Grid result) => Solve(Grid.Create(grid), out result);
 
 	/// <inheritdoc/>
-	unsafe void ISolutionEnumerableSolver<DancingLinksSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
+	unsafe void ISolutionEnumerableSolver<DancingLinksSolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
 	{
 		_root = DancingLink.Entry.Create(grid);
 		Search(Action.DoNothingMethodPtr, &r);

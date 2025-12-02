@@ -71,7 +71,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	}
 
 	/// <inheritdoc/>
-	void ISolutionEnumerableSolver<SatSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
+	void ISolutionEnumerableSolver<SatSolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
 	{
 		Encode(grid, out var mappedVariables);
 		new Dpll(_expression, SolutionFound, mappedVariables, this).Solve(cancellationToken);

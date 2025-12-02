@@ -189,7 +189,7 @@ public sealed unsafe partial class BitwiseSolver : ISolutionEnumerableSolver<Bit
 	public Grid Solve(in Grid puzzle) => Solve(puzzle, out var result) is true ? result : Grid.Undefined;
 
 	/// <inheritdoc/>
-	void ISolutionEnumerableSolver<BitwiseSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
+	void ISolutionEnumerableSolver<BitwiseSolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
 		=> SolveString(grid.ToString("0"), null, int.MaxValue);
 
 	/// <summary>

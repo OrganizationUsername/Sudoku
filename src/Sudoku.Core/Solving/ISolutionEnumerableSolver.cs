@@ -18,5 +18,5 @@ public interface ISolutionEnumerableSolver<TSelf> : ISolver where TSelf : ISolut
 	/// </summary>
 	/// <param name="grid">The grid to be solved.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
-	void EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken);
+	void EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken);
 }

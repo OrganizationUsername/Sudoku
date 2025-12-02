@@ -14068,7 +14068,7 @@
             <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Bitwise#BitwiseSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Bitwise#BitwiseSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Bitwise.BitwiseSolver.ClearStack">
@@ -14341,7 +14341,7 @@
         <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#BooleanSatisfiability#SatSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#BooleanSatisfiability#SatSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Encode(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
@@ -14879,7 +14879,7 @@
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(System.Int32[],Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:Sudoku.Solving.Dlx.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
         </member>
-        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Dlx#DancingLinksSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Dlx#DancingLinksSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.Dlx.DancingLinksSolver.Search(,)">
@@ -15018,7 +15018,7 @@
             no matter whether the puzzle has a unique solution or not (multiple solutions).
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.ISolutionEnumerableSolver`1.EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Solving.ISolutionEnumerableSolver`1.EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Try to perform enumeration on solutions.
             </summary>

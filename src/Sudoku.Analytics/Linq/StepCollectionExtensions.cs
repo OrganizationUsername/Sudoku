@@ -9,10 +9,10 @@ public static class StepCollectionExtensions
 	/// Provides with extension members on <see cref="ReadOnlySpan{T}"/> of <see cref="Step"/>.
 	/// </summary>
 	/// <param name="this">The instance.</param>
-	extension(ReadOnlySpan<Step> @this)
+	extension<TStep>(ReadOnlySpan<Step> @this) where TStep : Step
 	{
 		/// <inheritdoc cref="ICastMethod{TSelf, TSource}.Cast{TResult}"/>
-		public ReadOnlySpan<TStep> Cast<TStep>() where TStep : Step
+		public ReadOnlySpan<TStep> Cast()
 		{
 			var result = new TStep[@this.Length];
 			for (var i = 0; i < @this.Length; i++)

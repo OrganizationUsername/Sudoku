@@ -14542,7 +14542,7 @@
             <param name="conflictClause">Conflicting clause (array of literals).</param>
             <returns>Learned clause (<see cref="T:System.Int32"/>[]), or <see langword="null"/> / <c>[]</c> for degenerate.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.ResolveOnVariable(System.Collections.Generic.List{System.Int32},System.Int32[],System.Int32)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.ResolveOnVariable(System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Int32)">
             <summary>
             Resolve two clauses on variable <paramref name="variableToResolve"/>.
             </summary>

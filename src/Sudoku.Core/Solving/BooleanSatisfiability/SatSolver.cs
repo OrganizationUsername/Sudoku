@@ -764,7 +764,7 @@ file sealed class Dpll
 			}
 
 			// Resolve clause with antecedent on <c>pivotVariable</c>.
-			clause = [.. ResolveOnVariable(clause, ante.ToArray(), pivotVariable)];
+			clause = [.. ResolveOnVariable(clause.AsSpan(), ante.Span, pivotVariable)];
 
 			// If resolution produced tautology or empty -> abort (rare).
 			if (clause.Count == 0)
@@ -809,7 +809,7 @@ file sealed class Dpll
 	/// <param name="c2">Antecedent.</param>
 	/// <param name="variableToResolve">The variable to be resolved.</param>
 	/// <returns>The result.</returns>
-	private static int[] ResolveOnVariable(List<int> c1, int[] c2, int variableToResolve)
+	private static int[] ResolveOnVariable(ReadOnlySpan<int> c1, ReadOnlySpan<int> c2, int variableToResolve)
 	{
 		var result = new HashSet<int>();
 		foreach (var literal in c1)

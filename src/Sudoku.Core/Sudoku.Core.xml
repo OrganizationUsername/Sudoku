@@ -14513,7 +14513,7 @@
             <list type="number">
             <item>
             If there's at least one decision level learn a clause
-            forbidding the current decision literal at that level (negation),
+            forbidding the current decision literal at that level (negation),<br/>
             add it to the expression and backjump by restoring the snapshot of the previous level.
             </item>
             <item>Otherwise, failed. Backtrack (return <see langword="false"/>).</item>

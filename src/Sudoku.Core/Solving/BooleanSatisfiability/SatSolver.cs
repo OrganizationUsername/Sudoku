@@ -445,7 +445,7 @@ file sealed class Dpll
 	/// <list type="number">
 	/// <item>
 	/// If there's at least one decision level learn a clause
-	/// forbidding the current decision literal at that level (negation),
+	/// forbidding the current decision literal at that level (negation),<br/>
 	/// add it to the expression and backjump by restoring the snapshot of the previous level.
 	/// </item>
 	/// <item>Otherwise, failed. Backtrack (return <see langword="false"/>).</item>
@@ -459,9 +459,6 @@ file sealed class Dpll
 	/// <param name="cancellationToken">The cancellation token.</param>
 	private bool Backtracking(List<bool?[]> solutions, CancellationToken cancellationToken)
 	{
-		// It seems that two variables are not null anyway.
-		//Debug.Assert(_varLevel is not null && _antecedent is not null);
-
 		// 1) propagate and handle conflicts (CDCL loop).
 		// If propagation finds a conflict, do conflict analysis + learning + backjump and continue.
 		while (true)
@@ -519,7 +516,7 @@ file sealed class Dpll
 			// After backjump, the learned clause is unit (the UIP literal) and must be propagated:
 			// Find the literal in learned that is unassigned now (the UIP).
 			// Assign it implied by learned clause.
-			// Note: antecedent set to learned clause; level = backjumpLevel.
+			// Note: antecedent set to learned clause; <c>level = backjumpLevel</c>.
 			var unitLiteral = 0;
 			var unassignedCount = 0;
 			foreach (var literal in learned)
@@ -590,7 +587,7 @@ file sealed class Dpll
 		_antecedent[variable] = null; // Decision var has no antecedent.
 		_trail.Add(variable); // +variable means true.
 
-		// 4) Recurse.
+		// 4a) Recurse.
 		// Try assigning 'variable' = true.
 		_assignmentStates[variable] = true;
 		if (Backtracking(solutions, cancellationToken))
@@ -604,7 +601,7 @@ file sealed class Dpll
 			return false;
 		}
 
-		// Try opposite branch.
+		// 4b) Try opposite branch.
 		// Undo assignments that happened after decision (pop assignments until variable is unassigned),
 		// but keep current decision as switching.
 		// We'll restore by popping trail to the point just before the decision variable's assignment.
@@ -627,7 +624,7 @@ file sealed class Dpll
 			return false;
 		}
 
-		// Both branches failed -> backtrack decision.
+		// 5) Both branches failed -> backtrack decision.
 		BacktrackToLevel(_decisionLevel - 1);
 		_decisionLevels.RemoveAt(^1);
 		_decisionLevel--;

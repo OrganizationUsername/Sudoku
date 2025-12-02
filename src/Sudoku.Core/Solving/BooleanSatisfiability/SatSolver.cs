@@ -52,7 +52,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	/// <inheritdoc/>
 	public bool? Solve(in Grid grid, out Grid result)
 	{
-		EncodeSudoku(grid, out var mappedVariables);
+		Encode(grid, out var mappedVariables);
 
 		(result, var @return) = new Dpll(_expression, null, mappedVariables, this).Solve() switch
 		{
@@ -66,7 +66,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	/// <inheritdoc/>
 	void ISolutionEnumerableSolver<SatSolver>.EnumerateSolutionsCore(Grid grid, CancellationToken cancellationToken)
 	{
-		EncodeSudoku(grid, out var mappedVariables);
+		Encode(grid, out var mappedVariables);
 		new Dpll(_expression, SolutionFound, mappedVariables, this).Solve(cancellationToken);
 	}
 
@@ -83,7 +83,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	/// Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
 	/// </param>
 	[MemberNotNull(nameof(_expression))]
-	private void EncodeSudoku(in Grid grid, out Dictionary<Candidate, int> mappedVariables)
+	private void Encode(in Grid grid, out Dictionary<Candidate, int> mappedVariables)
 	{
 		// 0. Collect mapping indices in order to compress variables.
 		mappedVariables = [];

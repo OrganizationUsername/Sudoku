@@ -14337,7 +14337,7 @@
         <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#BooleanSatisfiability#SatSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.EncodeSudoku(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Encode(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
             <summary>
             Adds CNF clauses representing Sudoku rules:
             <list type="number">

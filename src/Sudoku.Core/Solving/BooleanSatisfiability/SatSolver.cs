@@ -2,18 +2,19 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 
 /// <summary>
 /// <para>
-/// Represents a solver that solves a puzzle using SAT algorithm.
-/// SAT problem is a type of problems that can be solved via CNFs (corresponding to type <see cref="CnfFormula"/>),
-/// i.e. boolean formulae.
+/// Represents a solver that solves a puzzle using a SAT solver pipeline.
+/// The solver reduces the problem to a CNF formula (<see cref="CnfFormula"/>) and then
+/// searches for a satisfying assignment using a DPLL-based engine enhanced with
+/// CDCL, First-UIP clause learning, two-watched-literals propagation and VSIDS heuristics.
 /// </para>
 /// <para>
 /// If we can reduce a problem into SAT ones, we can use SAT solving system to solve the problem.
-/// For example, to solve a sudoku puzzle, we should construct some boolean formulae (CNFs),
-/// and then find variables in order to make such formulae satisfied.
+/// For example, to solve a sudoku puzzle, we construct boolean CNF clauses encoding the rules
+/// and provided clues, then search for a variable assignment that satisfies every clause.
 /// </para>
 /// </summary>
 /// <remarks>
-/// There're some pages that are really helpful:
+/// Helpful references for the implemented techniques:
 /// <list type="number">
 /// <item>
 /// <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Wikipedia - SAT Problem</see>
@@ -25,17 +26,13 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">Wikipedia - DPLL Algorithm</see>
 /// </item>
 /// <item>
-/// <see href="https://www.princeton.edu/~chaff/publication/iccad2001_final.pdf">First-UIP Cut (Paper)</see>
+/// <see href="https://www.princeton.edu/~chaff/publication/iccad2001_final.pdf">First-UIP Cut (paper)</see>
 /// </item>
 /// <item>
-/// <see href="https://en.wikipedia.org/wiki/Conflict-driven_clause_learning">
-/// Wikipedia - CDCL (Conflict-Driven Clause Learning)
-/// </see>
+/// <see href="https://en.wikipedia.org/wiki/Conflict-driven_clause_learning">Wikipedia - CDCL</see>
 /// </item>
 /// <item>
-/// <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_algorithm_heuristics#Variable_State_Independent_Decaying_Sum">
-/// Wikipedia - VSIDS (Variable State Independent Decaying Sum)
-/// </see>
+/// <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_algorithm_heuristics#Variable_State_Independent_Decaying_Sum">Wikipedia - VSIDS</see>
 /// </item>
 /// </list>
 /// </remarks>
@@ -43,7 +40,7 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 {
 	/// <summary>
-	/// Defines the root formula.
+	/// The root CNF formula to be solved.
 	/// </summary>
 	private CnfFormula? _formula;
 
@@ -218,13 +215,15 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 }
 
 /// <summary>
-/// Implements DPLL algorithm (<i>Davis–Putnam–Logemann–Loveland algorithm</i>).
+/// Implements DPLL algorithm (Davis–Putnam–Logemann–Loveland) extended with CDCL (clause learning),
+/// two-watched-literals propagation and VSIDS heuristic for variable selection.
 /// </summary>
 file sealed class Dpll
 {
 	/// <summary>
 	/// Decay factor (typical .95).
 	/// On each conflict we multiply <see cref="_variableIncrement"/> by <c>1 / <see cref="VariableDecay"/></c>.
+	/// This implements MiniSAT-style increment/decay behavior for VSIDS.
 	/// </summary>
 	private const double VariableDecay = .95;
 
@@ -239,7 +238,7 @@ file sealed class Dpll
 	/// (index: <c>variable</c> is either <see langword="true"/> or <see langword="false"/>).
 	/// </summary>
 	/// <remarks>
-	/// This property represents the assignment values. The result value only represents for 3 values:
+	/// Values:
 	/// <list type="table">
 	/// <listheader>
 	/// <term>Value</term>
@@ -247,54 +246,67 @@ file sealed class Dpll
 	/// </listheader>
 	/// <item>
 	/// <term><see langword="true"/></term>
-	/// <description>Represents <c><see langword="true"/></c> literal</description>
+	/// <description>Literal assigned <see langword="true"/></description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="false"/></term>
-	/// <description>Represents <c><see langword="false"/></c> literal</description>
+	/// <description>Literal assigned <see langword="false"/></description>
 	/// </item>
 	/// <item>
 	/// <term><see langword="null"/></term>
-	/// <description>Leaves unassigned</description>
+	/// <description>Unassigned</description>
 	/// </item>
 	/// </list>
-	/// This array starts at index 1. Please use 1-based indexing to operate variables.
+	/// The array is 1-based: index 0 is unused.
 	/// </remarks>
 	private readonly bool?[] _assignmentStates;
 
 	/// <summary>
-	/// Indicates event handler for solution found.
+	/// Event handler used to report found solutions when enumerating all solutions.
 	/// </summary>
 	private readonly EventHandler<SatSolver, SolverSolutionFoundEventArgs>? _solutionFoundEventHandler;
 
 	/// <summary>
-	/// Indicates the root formula.
+	/// The CNF formula being solved.
 	/// </summary>
 	private readonly CnfFormula _formula;
 
 	/// <summary>
-	/// Indicates the mapped variables.
+	/// Mapping from puzzle candidates to SAT variable indices (used to construct final grid solutions).
 	/// </summary>
 	private readonly Dictionary<Candidate, int>? _mappedVariables;
 
 	/// <summary>
-	/// The parent solver.
+	/// The parent solver that created this instance (used for callbacks).
 	/// </summary>
 	private readonly SatSolver? _parentSolver;
 
 	/// <summary>
-	/// Decision level per variable (0..).
+	/// Decision level per variable (0..). Used by conflict analysis and backjumping.
 	/// </summary>
 	private readonly int[] _variableLevel;
 
 	/// <summary>
-	/// Signed literals in assignment order
-	/// (<c>+v</c> means v = <see langword="true"/>, <c>-v</c> means v = <see langword="false"/>).
+	/// Signed literals in assignment order (the trail).
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Sign</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c>+v</c></term>
+	/// <description><c>v = <see langword="true"/></c></description>
+	/// </item>
+	/// <item>
+	/// <term><c>-v</c></term>
+	/// <description><c>v = <see langword="false"/></c></description>
+	/// </item>
+	/// </list>
 	/// </summary>
 	private readonly List<int> _trail;
 
 	/// <summary>
-	/// Clause that implied this variable (<see langword="null"/> for decision variables).
+	/// Clause that implied this variable (null for decision variables). Stored as the clause read-only memory reference.
 	/// </summary>
 	private readonly ReadOnlyMemory<int>?[] _antecedent;
 
@@ -304,17 +316,18 @@ file sealed class Dpll
 	private readonly List<int> _decisionLevels;
 
 	/// <summary>
-	/// Indicates the current decision level.
+	/// Current decision level.
 	/// </summary>
 	private int _decisionLevel;
 
 	/// <summary>
-	/// Process <c>_trail</c> from this index forward.
+	/// Process <c>_trail</c> from this index forward during unit propagation.
 	/// </summary>
 	private int _propagationIndex;
 
 	/// <summary>
-	/// Indexed by mapped literal index -> list of clause indices.
+	/// Indexed by mapped literal index -> list of clause indices that watch this literal.
+	/// The array size is (2 * N + 1), mapping positive and negative signed literals to separate buckets.
 	/// </summary>
 	private List<int>[]? _watches;
 
@@ -324,7 +337,7 @@ file sealed class Dpll
 	private List<int> _watchLiteralA = [];
 
 	/// <summary>
-	/// Watched literal B per clause (signed literal); 0 if absent (unary)
+	/// Watched literal B per clause (signed literal); 0 if absent (unary clause).
 	/// </summary>
 	private List<int> _watchLiteralB = [];
 
@@ -334,28 +347,18 @@ file sealed class Dpll
 	private readonly double[] _activity;
 
 	/// <summary>
-	/// Current variable increment used when bumping variables.
+	/// Current variable increment used when bumping variables (MiniSAT-style).
 	/// </summary>
 	private double _variableIncrement = 1.0;
 
 
 	/// <summary>
-	/// Initializes a <see cref="Dpll"/> instance via the specified instances.
+	/// Initializes a <see cref="Dpll"/> instance with required structures.
 	/// </summary>
 	/// <param name="formula"><inheritdoc cref="_formula" path="/summary"/></param>
 	/// <param name="solutionFoundEventHandler"><inheritdoc cref="_solutionFoundEventHandler" path="/summary"/></param>
-	/// <param name="mappedVariables">
-	/// <para><inheritdoc cref="_mappedVariables" path="/summary"/></para>
-	/// <para>
-	/// The value can be <see langword="null"/> if <paramref name="solutionFoundEventHandler"/> is <see langword="null"/>.
-	/// </para>
-	/// </param>
-	/// <param name="parentSolver">
-	/// <para><inheritdoc cref="_parentSolver" path="/summary"/></para>
-	/// <para>
-	/// The value can be <see langword="null"/> if <paramref name="solutionFoundEventHandler"/> is <see langword="null"/>.
-	/// </para>
-	/// </param>
+	/// <param name="mappedVariables"><inheritdoc cref="_mappedVariables" path="/summary"/></param>
+	/// <param name="parentSolver"><inheritdoc cref="_parentSolver" path="/summary"/></param>
 	public Dpll(
 		CnfFormula formula,
 		EventHandler<SatSolver, SolverSolutionFoundEventArgs>? solutionFoundEventHandler,
@@ -370,18 +373,22 @@ file sealed class Dpll
 		_mappedVariables = mappedVariables;
 		_parentSolver = parentSolver;
 
-		// First-UIP initialization.
+		// First-UIP:
+		// initialize structures used by conflict analysis
+		// (trail, decision level bookkeeping, variable-to-level map and antecedents).
+		// These are required for First-UIP resolution.
 		_trail = [];
 		_decisionLevels = [];
 		_variableLevel = new int[_formula.VariablesCount + 1];
 		_antecedent = new ReadOnlyMemory<int>?[_formula.VariablesCount + 1];
 
-		// Two-watched literals: Build initial watches and enqueue units.
+		// Two-watched-literals: Build initial watches and enqueue unit clauses.
 		EnsureWatchesInit();
 		for (var i = 0; i < _formula.ClauseCount; i++)
 		{
 			RegisterClauseWatches(i);
 		}
+		// Enqueue initial unit clauses (level 0 assignments inferred from unit clauses).
 		for (var i = 0; i < _formula.ClauseCount; i++)
 		{
 			if (_formula.Clauses[i].Span is [var a] && Math.Abs(a) is var v && _assignmentStates[v] is null)
@@ -396,10 +403,10 @@ file sealed class Dpll
 		// First-UIP: <c>_propagationIndex</c> will start processing from 0 when <c>UnitPropagation</c> runs.
 		_propagationIndex = 0;
 
-		// VSIDS initialization.
+		// VSIDS: initialize activity scores.
 		_activity = new double[_formula.VariablesCount + 1];
 
-		// Simple static heuristic: count literal occurrences as initial activity.
+		// Simple static heuristic: count literal occurrences as initial activity (seed for VSIDS).
 		for (var clauseIndex = 0; clauseIndex < _formula.ClauseCount; clauseIndex++)
 		{
 			foreach (var literal in _formula.Clauses[clauseIndex].Span)
@@ -411,7 +418,7 @@ file sealed class Dpll
 
 
 	/// <summary>
-	/// Try to find a satisfying assignment.
+	/// Try to find a satisfying assignment. Entry point for the CDCL search.
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token.</param>
 	public List<bool?[]> Solve(CancellationToken cancellationToken = default)
@@ -430,26 +437,14 @@ file sealed class Dpll
 	}
 
 	/// <summary>
-	/// Performs DPLL recursive method. DPLL recursive routine:
+	/// Performs DPLL recursive method with CDCL loop. Algorithm flow (high level):
 	/// <list type="number">
-	/// <item>Perform unit propagation to simplify.</item>
-	/// <item>
-	/// If conflict, check decision level:
-	/// <list type="number">
-	/// <item>
-	/// If there's at least one decision level learn a clause
-	/// forbidding the current decision literal at that level (negation),<br/>
-	/// add it to the formula and backjump by restoring the snapshot of the previous level.
-	/// </item>
-	/// <item>Otherwise, failed. Backtrack (return <see langword="false"/>).</item>
-	/// </list>
-	/// </item>
-	/// <item>If all variables assigned, formula is satisfied.</item>
-	/// <item>Otherwise, pick an unassigned variable and branch on true/false.</item>
+	/// <item>Perform unit propagation to simplify (two-watched-literals based).</item>
+	/// <item>If conflict -> analyze (First-UIP), learn clause, bump VSIDS, backjump and continue.</item>
+	/// <item>If all variables assigned -> report solution.</item>
+	/// <item>Otherwise pick a variable (VSIDS) and branch on true/false (decision), recursing.</item>
 	/// </list>
 	/// </summary>
-	/// <param name="solutions">The solutions.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
 	private bool Backtracking(List<bool?[]> solutions, CancellationToken cancellationToken)
 	{
 		// 1) propagate and handle conflicts (CDCL loop).
@@ -465,29 +460,29 @@ file sealed class Dpll
 			// Conflict detected.
 			if (_decisionLevel == 0)
 			{
-				// Unsatisfiable at root.
+				// Unsatisfiable at root level: the formula is UNSAT.
 				return false;
 			}
 
-			// VSIDS: bump variables appeared in conflicting clause (heuristic signal).
+			// VSIDS: bump variables appeared in conflicting clause (signal to heuristic they matter).
 			BumpActivityForClause(conflictClause);
 
-			// Perform First-UIP conflict analysis -> <c>learnedClause</c>.
+			// First-UIP: perform conflict analysis to produce a learned clause using First-UIP resolution.
 			if (ConflictAnalyze(conflictClause.ToArray()) is not { Length: not 0 } learned)
 			{
-				// Something degenerate (tautology or empty) -> treat as UNSAT.
+				// Degenerate case (tautology/empty) -> treat as UNSAT.
 				return false;
 			}
 
-			// VSIDS: bump variables in the learned clause, then decay var increment.
+			// VSIDS: bump variables in the learned clause, then decay var increment (MiniSAT-style).
 			BumpActivityForClause(learned);
 			DecayActivities();
 
-			// Add learned clause to the formula.
+			// CDCL: add learned clause to the formula and register watches for its propagation.
 			_formula.AddClause(learned.AsMemory());
 			RegisterClauseWatches(_formula.ClauseCount - 1);
 
-			// Compute backjump level.
+			// Compute backjump level: maximum level among literals in learned clause except current level.
 			var backjumpLevel = 0;
 			foreach (var literal in learned)
 			{
@@ -502,10 +497,8 @@ file sealed class Dpll
 			// Backjump: undo assignments whose level > <c>backjumpLevel</c>.
 			BacktrackToLevel(backjumpLevel);
 
-			// After backjump, the learned clause is unit (the UIP literal) and must be propagated:
-			// Find the literal in learned that is unassigned now (the UIP).
-			// Assign it implied by learned clause.
-			// Note: antecedent set to learned clause; <c>level = backjumpLevel</c>.
+			// After backjump, the learned clause should be unit (the UIP literal) and must be propagated.
+			// Find the literal in learned that is unassigned now (expected to be the UIP).
 			var unitLiteral = 0;
 			var unassignedCount = 0;
 			foreach (var literal in learned)
@@ -518,7 +511,7 @@ file sealed class Dpll
 				}
 			}
 
-			// Defensive: normally <c>unassignedCount == 1</c>.
+			// Defensive: normally <c>unassignedCount == 1</c> after proper First-UIP learning.
 			if (unassignedCount == 1)
 			{
 				var v = Math.Abs(unitLiteral);
@@ -528,17 +521,11 @@ file sealed class Dpll
 				_antecedent[v] = learned.AsMemory();
 				_trail.Add(unitLiteral);
 			}
-			//else
-			//{
-			//	// Fallback: just continue; next iteration will re-run propagation.
-			//	continue;
-			//}
 
 			// Continue propagation loop (<c>UnitPropagation</c> will be called again).
 		}
 
 		// 2) Check if all variables assigned -> solution.
-		// Find a variable index that has not been assigned yet (0), or -1 if all variables are assigned.
 		var variable = PickBranchingVariable();
 		if (variable == -1)
 		{
@@ -609,15 +596,14 @@ file sealed class Dpll
 	}
 
 	/// <summary>
-	/// Unit propagation (CDCL-aware), with two-watched literals checking.
+	/// Unit propagation (CDCL-aware), implemented using the two-watched-literals scheme.
 	/// </summary>
 	/// <returns>
-	/// Returns <see langword="null"/> if no conflict;
-	/// otherwise returns the conflicting clause (the clause causing conflict).
+	/// Returns <see langword="null"/> if no conflict; otherwise returns the conflicting clause (the clause causing conflict).
 	/// </returns>
 	private ReadOnlyMemory<int>? UnitPropagation()
 	{
-		// Process trail incrementally using watched lists.
+		// Two-watched-literals: process trail incrementally using watched lists.
 		EnsureWatchesInit();
 
 		Debug.Assert(_watches is not null);
@@ -631,7 +617,7 @@ file sealed class Dpll
 			var watchIndex = LiteralToIndex(falseLiteral);
 			var watchList = _watches[watchIndex];
 
-			// Iterate with index so we can modify the list in-place (swap-remove).
+			// Iterate with index so we can modify the list in-place (swap-remove) when we move watches.
 			for (var i = 0; i < watchList.Count;)
 			{
 				var clauseIndex = watchList[i];
@@ -651,7 +637,7 @@ file sealed class Dpll
 					continue;
 				}
 
-				// Try to find alternative literal (not assigned false) in clause to replace <c>falseLiteral</c> watch.
+				// Try to find alternative literal (unassigned or true) in clause to replace <c>falseLiteral</c> watch.
 				var foundAlternative = 0;
 				for (var k = 0; k < clause.Length; k++)
 				{
@@ -664,7 +650,7 @@ file sealed class Dpll
 
 					var vv = Math.Abs(literal);
 
-					// Accept if literal is unassigned or true: then we can watch it.
+					// Accept if literal is unassigned or true: then we can watch it instead of the false one.
 					if (_assignmentStates[vv] is null || _assignmentStates[vv] == literal > 0)
 					{
 						foundAlternative = literal;
@@ -674,9 +660,7 @@ file sealed class Dpll
 
 				if (foundAlternative != 0)
 				{
-					// Replace watch:
-					// Remove <c>clauseIndex</c> from current watch list and add to alt watch list.
-					// Swap-remove from watchList at <c>i</c>.
+					// Replace watch: move clause from the current watch list to the alternative watch's bucket.
 					var last = watchList[^1];
 					watchList[i] = last;
 					watchList.RemoveAt(^1);
@@ -691,8 +675,7 @@ file sealed class Dpll
 					continue;
 				}
 
-				// No alternative watch found:
-				// Clause currently has only <c>otherWatched</c> (which may be unassigned or assigned false).
+				// No alternative watch found: clause is now watched only by <c>otherWatched</c> (or unary).
 				var otherVar = Math.Abs(otherWatched);
 				if (otherWatched != 0 && _assignmentStates[otherVar] is null)
 				{
@@ -703,14 +686,13 @@ file sealed class Dpll
 					_antecedent[otherVar] = _formula.Clauses[clauseIndex];
 					_trail.Add(otherWatched);
 
-					// Move to next watch in same list
-					// (current entry still refers to same clauseIndex because we didn't remove it).
+					// Move to next watch in same list (current entry still refers to same clauseIndex because we didn't remove it).
 					i++;
 					continue;
 				}
 
 				// If <c>otherWatched</c> is assigned false (or <c>otherWatched == 0</c> meaning clause length 0) -> conflict.
-				// Return the conflicting clause.
+				// Return the conflicting clause for analysis.
 				return _formula.Clauses[clauseIndex];
 			}
 		}
@@ -720,17 +702,19 @@ file sealed class Dpll
 	}
 
 	/// <summary>
-	/// Conflict analysis -> First-UIP.
+	/// Conflict analysis implementing the First-UIP scheme.
+	/// The routine performs conflict-driven resolution until the learned clause contains at most one literal
+	/// from the current decision level (the First Unique Implication Point), then returns the learned clause.
 	/// </summary>
 	/// <param name="conflictClause">Conflicting clause (array of literals).</param>
-	/// <returns>Learned clause (<see cref="int"/>[]), or <see langword="null"/> / <c>[]</c> for degenerate.</returns>
+	/// <returns>Learned clause (<see cref="int"/>[]), or <see langword="null"/> / <c>[]</c> for degenerate cases.</returns>
 	private int[]? ConflictAnalyze(int[] conflictClause)
 	{
-		// Start from conflict clause.
+		// First-UIP: start from the conflict clause and resolve until the First-UIP condition holds.
 		var clause = conflictClause.ToList(); // Mutable worklist.
 		while (true)
 		{
-			// Count literals at current decision level.
+			// Count literals at current decision level; First-UIP is reached when <= 1 such literals remain.
 			if (countAtCurrentLevel() <= 1)
 			{
 				// Reached First-UIP condition.
@@ -751,14 +735,15 @@ file sealed class Dpll
 			}
 			if (pivotLiteral == 0)
 			{
-				// Cannot find pivot (should not happen) -> abort.
+				// Cannot find pivot (should not happen in normal runs) -> abort.
 				break;
 			}
 
 			var pivotVariable = Math.Abs(pivotLiteral);
 			if (_antecedent[pivotVariable] is not { } ante)
 			{
-				// Pivot is a decision variable; resolving with null antecedent is equivalent to removing the pivot literal.
+				// First-UIP: pivot is a decision variable; resolving with null antecedent
+				// simply removes the pivot literal from the clause (it cannot be resolved further).
 				clause.RemoveAll(x => Math.Abs(x) == pivotVariable);
 				continue;
 			}
@@ -766,14 +751,14 @@ file sealed class Dpll
 			// Resolve clause with antecedent on <c>pivotVariable</c>.
 			clause = [.. ResolveOnVariable(clause.AsSpan(), ante.Span, pivotVariable)];
 
-			// If resolution produced tautology or empty -> abort (rare).
+			// If resolution produced tautology or empty -> abort (rare/degenerate case).
 			if (clause.Count == 0)
 			{
 				return null;
 			}
 		}
 
-		// Clause now is the learned clause (First-UIP) simplify: remove duplicates and normalize.
+		// Clause is now the learned clause (First-UIP). Simplify: remove duplicates and normalize.
 		var result = new HashSet<int>(clause);
 
 		// Remove pairs producing tautology.
@@ -804,6 +789,7 @@ file sealed class Dpll
 
 	/// <summary>
 	/// Resolve two clauses on variable <paramref name="variableToResolve"/>.
+	/// Standard resolution: union of both clauses without literals of the resolved variable.
 	/// </summary>
 	/// <param name="c1">Clause.</param>
 	/// <param name="c2">Antecedent.</param>
@@ -840,7 +826,7 @@ file sealed class Dpll
 
 	/// <summary>
 	/// Backtrack (undo assignments) down to level <paramref name="level"/> (inclusive).
-	/// That is, after <c>BacktrackToLevel(L)</c> all variables with level &gt; <c>L</c> become unassigned.
+	/// After <c>BacktrackToLevel(L)</c> all variables with level &gt; L become unassigned.
 	/// </summary>
 	/// <param name="level">The level.</param>
 	private void BacktrackToLevel(int level)
@@ -851,7 +837,7 @@ file sealed class Dpll
 			var v = Math.Abs(literal);
 			if (_variableLevel[v] > level)
 			{
-				// Undo.
+				// Undo: mark variable unassigned and clear antecedent/level information.
 				_assignmentStates[v] = null;
 				_variableLevel[v] = 0;
 				_antecedent[v] = null;
@@ -870,17 +856,12 @@ file sealed class Dpll
 	}
 
 	/// <summary>
-	/// <para>Map signed literal to watches array index.</para>
-	/// <para>
-	/// <list type="bullet">
-	/// <item>Positive <c>v</c> -> <c>index = v</c> (1..N)</item>
-	/// <item>Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N)</item>
-	/// </list>
-	/// </para>
-	/// <para>We keep index 0 unused.</para>
+	/// Map signed literal to watches array index.
+	/// Positive <c>v</c> -> <c>index = v</c> (1..N); Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N).
+	/// We keep index 0 unused.
 	/// </summary>
-	/// <param name="literal">The literal.</param> 
-	/// <returns>Result value.</returns>
+	/// <param name="literal">The literal.</param>
+	/// <returns>Watches array index.</returns>
 	private int LiteralToIndex(int literal)
 	{
 		var n = _formula.VariablesCount;
@@ -889,6 +870,7 @@ file sealed class Dpll
 
 	/// <summary>
 	/// Ensure watches array has correct size for current variable count.
+	/// Reinitializes watch buckets and watch literal lists when variable count changes.
 	/// </summary>
 	private void EnsureWatchesInit()
 	{
@@ -909,8 +891,10 @@ file sealed class Dpll
 
 	/// <summary>
 	/// Register watches for a clause <paramref name="clauseIndex"/>. Called during initial build and when learning clauses.
+	/// This sets the two watched literals (or single watch for unit clauses) and places the clause index into the
+	/// appropriate watch buckets so propagation can efficiently find affected clauses when literals change.
 	/// </summary>
-	/// <param name="clauseIndex">The index of clause.</param>
+	/// <param name="clauseIndex">The clause.</param>
 	private void RegisterClauseWatches(int clauseIndex)
 	{
 		EnsureWatchesInit();
@@ -921,13 +905,14 @@ file sealed class Dpll
 		{
 			case []:
 			{
-				// Empty clause (should be treated as immediate conflict) - still register but watches left as 0.
+				// Empty clause (immediate conflict) - register placeholders but no watched literals.
 				_watchLiteralA.Add(0);
 				_watchLiteralB.Add(0);
 				break;
 			}
 			case [var a]:
 			{
+				// Unit clause: watch the single literal in slot A, slot B = 0.
 				_watchLiteralA.Add(a);
 				_watchLiteralB.Add(0);
 				_watches[LiteralToIndex(a)].Add(clauseIndex);
@@ -935,7 +920,7 @@ file sealed class Dpll
 			}
 			case [var literalA, var literalB, ..]:
 			{
-				// Length >= 2: watch first two literals.
+				// Length >= 2: watch the first two literals initially.
 				_watchLiteralA.Add(literalA);
 				_watchLiteralB.Add(literalB);
 				_watches[LiteralToIndex(literalA)].Add(clauseIndex);
@@ -946,8 +931,11 @@ file sealed class Dpll
 	}
 
 	/// <summary>
-	/// Bump activity for variables appearing in clause (clause: array/enumerable of signed literals).
+	/// Bump activity for variables appearing in a clause (used by VSIDS heuristic).
+	/// Each variable's activity is increased by the current variable increment; if the activity grows
+	/// too large a rescale is performed to avoid numerical overflow.
 	/// </summary>
+	/// <param name="clause">The clause.</param>
 	private void BumpActivityForClause(ReadOnlyMemory<int> clause)
 	{
 		foreach (var literal in clause)
@@ -955,7 +943,7 @@ file sealed class Dpll
 			var v = Math.Abs(literal);
 			_activity[v] += _variableIncrement;
 
-			// if any activity gets too large, rescale everything.
+			// If any activity gets too large, rescale everything to keep values numerically stable.
 			if (_activity[v] > ActivityRescaleThreshold)
 			{
 				RescaleActivities();
@@ -967,11 +955,10 @@ file sealed class Dpll
 
 	/// <summary>
 	/// Update <see cref="_variableIncrement"/> on conflict (decay / increase the increment).
+	/// MiniSAT style: increase variable increment so future bumps have larger effect,
+	/// which is effectively a decay of past activity influence.
 	/// </summary>
-	private void DecayActivities()
-		// MiniSAT style: increase variable increment so future bumps have larger effect,
-		// which is effectively a decay of past activity influence.
-		=> _variableIncrement *= 1D / VariableDecay;
+	private void DecayActivities() => _variableIncrement *= 1D / VariableDecay;
 
 	/// <summary>
 	/// Rescale activities to avoid overflow: divide all activities and <see cref="_variableIncrement"/> by a large factor.
@@ -1040,9 +1027,8 @@ file sealed class Dpll
 	/// <summary>
 	/// Build solution via the specified states and mapped variables.
 	/// </summary>
-	/// <param name="assignmentStates">The assignment states.</param>
-	/// <param name="mappedVariables">Mapped variables.</param>
-	/// <returns>The grid.</returns>
+	/// <param name="assignmentStates"><inheritdoc cref="_assignmentStates" path="/summary"/></param>
+	/// <param name="mappedVariables"><inheritdoc cref="_mappedVariables" path="/summary"/></param>
 	internal static Grid BuildSolution(bool?[] assignmentStates, Dictionary<Candidate, int> mappedVariables)
 	{
 		var result = Grid.Empty;

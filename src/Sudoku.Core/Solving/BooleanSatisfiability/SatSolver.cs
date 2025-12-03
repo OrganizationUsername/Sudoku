@@ -3,8 +3,8 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// <summary>
 /// <para>
 /// Represents a solver that solves a puzzle using SAT algorithm.
-/// SAT problem is a type of problems that can be solved via CNFs (corresponding to type <see cref="CnfExpression"/>),
-/// i.e. boolean expressions (or say, formulae).
+/// SAT problem is a type of problems that can be solved via CNFs (corresponding to type <see cref="CnfFormula"/>),
+/// i.e. boolean formulae.
 /// </para>
 /// <para>
 /// If we can reduce a problem into SAT ones, we can use SAT solving system to solve the problem.
@@ -39,13 +39,13 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// </item>
 /// </list>
 /// </remarks>
-/// <seealso cref="CnfExpression"/>
+/// <seealso cref="CnfFormula"/>
 public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 {
 	/// <summary>
-	/// Defines an expression.
+	/// Defines the root formula.
 	/// </summary>
-	private CnfExpression? _expression;
+	private CnfFormula? _formula;
 
 
 	/// <inheritdoc/>
@@ -61,7 +61,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	{
 		Encode(grid, out var mappedVariables);
 
-		(result, var @return) = new Dpll(_expression, null, mappedVariables, this).Solve() switch
+		(result, var @return) = new Dpll(_formula, null, mappedVariables, this).Solve() switch
 		{
 			[var assignmentStates] => (Dpll.BuildSolution(assignmentStates, mappedVariables), true),
 			[var firstAssignmentStates, ..] => (Dpll.BuildSolution(firstAssignmentStates, mappedVariables), false),
@@ -74,7 +74,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	void ISolutionEnumerableSolver<SatSolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
 	{
 		Encode(grid, out var mappedVariables);
-		new Dpll(_expression, SolutionFound, mappedVariables, this).Solve(cancellationToken);
+		new Dpll(_formula, SolutionFound, mappedVariables, this).Solve(cancellationToken);
 	}
 
 	/// <summary>
@@ -89,7 +89,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	/// <param name="mappedVariables">
 	/// Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
 	/// </param>
-	[MemberNotNull(nameof(_expression))]
+	[MemberNotNull(nameof(_formula))]
 	private void Encode(in Grid grid, out Dictionary<Candidate, int> mappedVariables)
 	{
 		// 1) Collect mapping indices in order to compress variables.
@@ -103,7 +103,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 			}
 		}
 
-		_expression = new(virtualId - 1);
+		_formula = new(virtualId - 1);
 
 		// 2a) Cell constraints (exactly one digit per cell).
 		for (var r = 0; r < 9; r++)
@@ -118,12 +118,12 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 				{
 					atLeast.Add(mappedVariables[(r * 9 + c) * 9 + d]);
 				}
-				_expression.AddClause(atLeast.AsMemory());
+				_formula.AddClause(atLeast.AsMemory());
 
 				// At most one digit: for every pair <c>(d1, d2)</c>, they cannot both be true.
 				foreach (var pair in candidates.AllSets & 2)
 				{
-					_expression.AddClause(
+					_formula.AddClause(
 						(int[])[
 							-mappedVariables[(r * 9 + c) * 9 + pair[0]],
 							-mappedVariables[(r * 9 + c) * 9 + pair[1]]
@@ -146,11 +146,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 						atLeast.Add(mappedVariables[cell * 9 + d]);
 					}
 				}
-				_expression.AddClause(atLeast.AsMemory());
+				_formula.AddClause(atLeast.AsMemory());
 
 				foreach (var pair in atLeast.AsSpan() & 2)
 				{
-					_expression.AddClause((int[])[-pair[0], -pair[1]]);
+					_formula.AddClause((int[])[-pair[0], -pair[1]]);
 				}
 			}
 		}
@@ -168,11 +168,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 						atLeast.Add(mappedVariables[cell * 9 + d]);
 					}
 				}
-				_expression.AddClause(atLeast.AsMemory());
+				_formula.AddClause(atLeast.AsMemory());
 
 				foreach (var pair in atLeast.AsSpan() & 2)
 				{
-					_expression.AddClause((int[])[-pair[0], -pair[1]]);
+					_formula.AddClause((int[])[-pair[0], -pair[1]]);
 				}
 			}
 		}
@@ -192,11 +192,11 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 							atLeast.Add(mappedVariables[cell * 9 + d]);
 						}
 					}
-					_expression.AddClause(atLeast.AsMemory());
+					_formula.AddClause(atLeast.AsMemory());
 
 					foreach (var pair in atLeast.AsSpan() & 2)
 					{
-						_expression.AddClause((int[])[-pair[0], -pair[1]]);
+						_formula.AddClause((int[])[-pair[0], -pair[1]]);
 					}
 				}
 			}
@@ -210,7 +210,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 				if (grid.GetDigit(r * 9 + c) is var d and not -1)
 				{
 					// Force <c>(r, c) = d</c> by adding single literal clause.
-					_expression.AddClause(Array.Single(mappedVariables[(r * 9 + c) * 9 + d]));
+					_formula.AddClause(Array.Single(mappedVariables[(r * 9 + c) * 9 + d]));
 				}
 			}
 		}
@@ -268,9 +268,9 @@ file sealed class Dpll
 	private readonly EventHandler<SatSolver, SolverSolutionFoundEventArgs>? _solutionFoundEventHandler;
 
 	/// <summary>
-	/// Indicates the backing expression.
+	/// Indicates the root formula.
 	/// </summary>
-	private readonly CnfExpression _expression;
+	private readonly CnfFormula _formula;
 
 	/// <summary>
 	/// Indicates the mapped variables.
@@ -342,7 +342,7 @@ file sealed class Dpll
 	/// <summary>
 	/// Initializes a <see cref="Dpll"/> instance via the specified instances.
 	/// </summary>
-	/// <param name="expression"><inheritdoc cref="_expression" path="/summary"/></param>
+	/// <param name="formula"><inheritdoc cref="_formula" path="/summary"/></param>
 	/// <param name="solutionFoundEventHandler"><inheritdoc cref="_solutionFoundEventHandler" path="/summary"/></param>
 	/// <param name="mappedVariables">
 	/// <para><inheritdoc cref="_mappedVariables" path="/summary"/></para>
@@ -357,15 +357,15 @@ file sealed class Dpll
 	/// </para>
 	/// </param>
 	public Dpll(
-		CnfExpression expression,
+		CnfFormula formula,
 		EventHandler<SatSolver, SolverSolutionFoundEventArgs>? solutionFoundEventHandler,
 		Dictionary<Candidate, int>? mappedVariables,
 		SatSolver? parentSolver
 	)
 	{
 		// Initialize base fields.
-		_expression = expression;
-		_assignmentStates = new bool?[_expression.VariablesCount + 1];
+		_formula = formula;
+		_assignmentStates = new bool?[_formula.VariablesCount + 1];
 		_solutionFoundEventHandler = solutionFoundEventHandler;
 		_mappedVariables = mappedVariables;
 		_parentSolver = parentSolver;
@@ -373,22 +373,22 @@ file sealed class Dpll
 		// First-UIP initialization.
 		_trail = [];
 		_decisionLevels = [];
-		_variableLevel = new int[_expression.VariablesCount + 1];
-		_antecedent = new ReadOnlyMemory<int>?[_expression.VariablesCount + 1];
+		_variableLevel = new int[_formula.VariablesCount + 1];
+		_antecedent = new ReadOnlyMemory<int>?[_formula.VariablesCount + 1];
 
 		// Two-watched literals: Build initial watches and enqueue units.
 		EnsureWatchesInit();
-		for (var i = 0; i < _expression.ClauseCount; i++)
+		for (var i = 0; i < _formula.ClauseCount; i++)
 		{
 			RegisterClauseWatches(i);
 		}
-		for (var i = 0; i < _expression.ClauseCount; i++)
+		for (var i = 0; i < _formula.ClauseCount; i++)
 		{
-			if (_expression.Clauses[i].Span is [var a] && Math.Abs(a) is var v && _assignmentStates[v] is null)
+			if (_formula.Clauses[i].Span is [var a] && Math.Abs(a) is var v && _assignmentStates[v] is null)
 			{
 				_assignmentStates[v] = a > 0;
 				_variableLevel[v] = 0;
-				_antecedent[v] = _expression.Clauses[i];
+				_antecedent[v] = _formula.Clauses[i];
 				_trail.Add(a);
 			}
 		}
@@ -397,12 +397,12 @@ file sealed class Dpll
 		_propagationIndex = 0;
 
 		// VSIDS initialization.
-		_activity = new double[_expression.VariablesCount + 1];
+		_activity = new double[_formula.VariablesCount + 1];
 
 		// Simple static heuristic: count literal occurrences as initial activity.
-		for (var clauseIndex = 0; clauseIndex < _expression.ClauseCount; clauseIndex++)
+		for (var clauseIndex = 0; clauseIndex < _formula.ClauseCount; clauseIndex++)
 		{
-			foreach (var literal in _expression.Clauses[clauseIndex].Span)
+			foreach (var literal in _formula.Clauses[clauseIndex].Span)
 			{
 				_activity[Math.Abs(literal)] += 1.0;
 			}
@@ -429,7 +429,6 @@ file sealed class Dpll
 		return solutions;
 	}
 
-
 	/// <summary>
 	/// Performs DPLL recursive method. DPLL recursive routine:
 	/// <list type="number">
@@ -440,12 +439,12 @@ file sealed class Dpll
 	/// <item>
 	/// If there's at least one decision level learn a clause
 	/// forbidding the current decision literal at that level (negation),<br/>
-	/// add it to the expression and backjump by restoring the snapshot of the previous level.
+	/// add it to the formula and backjump by restoring the snapshot of the previous level.
 	/// </item>
 	/// <item>Otherwise, failed. Backtrack (return <see langword="false"/>).</item>
 	/// </list>
 	/// </item>
-	/// <item>If all variables assigned, expression is satisfied.</item>
+	/// <item>If all variables assigned, formula is satisfied.</item>
 	/// <item>Otherwise, pick an unassigned variable and branch on true/false.</item>
 	/// </list>
 	/// </summary>
@@ -484,9 +483,9 @@ file sealed class Dpll
 			BumpActivityForClause(learned);
 			DecayActivities();
 
-			// Add learned clause to the expression.
-			_expression.AddClause(learned.AsMemory());
-			RegisterClauseWatches(_expression.ClauseCount - 1);
+			// Add learned clause to the formula.
+			_formula.AddClause(learned.AsMemory());
+			RegisterClauseWatches(_formula.ClauseCount - 1);
 
 			// Compute backjump level.
 			var backjumpLevel = 0;
@@ -636,7 +635,7 @@ file sealed class Dpll
 			for (var i = 0; i < watchList.Count;)
 			{
 				var clauseIndex = watchList[i];
-				var clause = _expression.Clauses[clauseIndex].Span;
+				var clause = _formula.Clauses[clauseIndex].Span;
 
 				// Determine which watched slot in this clause corresponds to <c>falseLiteral</c>.
 				var wa = _watchLiteralA[clauseIndex];
@@ -664,6 +663,7 @@ file sealed class Dpll
 					}
 
 					var vv = Math.Abs(literal);
+
 					// Accept if literal is unassigned or true: then we can watch it.
 					if (_assignmentStates[vv] is null || _assignmentStates[vv] == literal > 0)
 					{
@@ -700,7 +700,7 @@ file sealed class Dpll
 					var value = otherWatched > 0;
 					_assignmentStates[otherVar] = value;
 					_variableLevel[otherVar] = _decisionLevel;
-					_antecedent[otherVar] = _expression.Clauses[clauseIndex];
+					_antecedent[otherVar] = _formula.Clauses[clauseIndex];
 					_trail.Add(otherWatched);
 
 					// Move to next watch in same list
@@ -711,7 +711,7 @@ file sealed class Dpll
 
 				// If <c>otherWatched</c> is assigned false (or <c>otherWatched == 0</c> meaning clause length 0) -> conflict.
 				// Return the conflicting clause.
-				return _expression.Clauses[clauseIndex];
+				return _formula.Clauses[clauseIndex];
 			}
 		}
 
@@ -883,7 +883,7 @@ file sealed class Dpll
 	/// <returns>Result value.</returns>
 	private int LiteralToIndex(int literal)
 	{
-		var n = _expression.VariablesCount;
+		var n = _formula.VariablesCount;
 		return literal > 0 ? literal : n + -literal;
 	}
 
@@ -892,7 +892,7 @@ file sealed class Dpll
 	/// </summary>
 	private void EnsureWatchesInit()
 	{
-		var n = _expression.VariablesCount;
+		var n = _formula.VariablesCount;
 		var size = (n << 1) + 1;
 		if (_watches is null || _watches.Length != size)
 		{
@@ -917,7 +917,7 @@ file sealed class Dpll
 
 		Debug.Assert(_watches is not null);
 
-		switch (_expression.Clauses[clauseIndex].Span)
+		switch (_formula.Clauses[clauseIndex].Span)
 		{
 			case []:
 			{
@@ -1007,7 +1007,7 @@ file sealed class Dpll
 	{
 		var best = -1;
 		var bestScore = double.NegativeInfinity;
-		for (var i = 1; i <= _expression.VariablesCount; i++)
+		for (var i = 1; i <= _formula.VariablesCount; i++)
 		{
 			if (_assignmentStates[i] is null)
 			{
@@ -1025,7 +1025,7 @@ file sealed class Dpll
 		// Fallback to first unassigned if something odd happened.
 		if (best == -1)
 		{
-			for (var i = 1; i <= _expression.VariablesCount; i++)
+			for (var i = 1; i <= _formula.VariablesCount; i++)
 			{
 				if (_assignmentStates[i] is null)
 				{

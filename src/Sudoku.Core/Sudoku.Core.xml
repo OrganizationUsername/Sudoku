@@ -14236,7 +14236,7 @@
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.BooleanSatisfiability.CnfExpression">
+        <member name="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula">
             <summary>
             Represents a Boolean formula in Conjunctive Normal Form (CNF).
             Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
@@ -14248,7 +14248,7 @@
             </remarks>
             <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.#ctor(System.Int32)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.#ctor(System.Int32)">
             <summary>
             Represents a Boolean formula in Conjunctive Normal Form (CNF).
             Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
@@ -14260,47 +14260,47 @@
             </remarks>
             <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
         </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.VariablesCount">
+        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.VariablesCount">
             <summary>Indicates total number of variables.</summary>
         </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.ClauseCount">
+        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.ClauseCount">
             <summary>
             Indicates the number of clauses.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.Clauses">
+        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Clauses">
             <summary>
             Indicates the list of clauses.
             </summary>
         </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfExpression.Item(System.Int32)">
+        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Item(System.Int32)">
             <summary>
             Get clause at the specified index.
             </summary>
             <param name="index">The desired index.</param>
             <returns>The clause.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.AddClause(System.ReadOnlyMemory{System.Int32})">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.AddClause(System.ReadOnlyMemory{System.Int32})">
             <summary>
             Add a new clause (disjunction of literals) to the expression.
             </summary>
             <param name="literals">The literals.</param>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfExpression.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Solving.BooleanSatisfiability.SatSolver">
             <summary>
             <para>
             Represents a solver that solves a puzzle using SAT algorithm.
-            SAT problem is a type of problems that can be solved via CNFs (corresponding to type <see cref="T:Sudoku.Solving.BooleanSatisfiability.CnfExpression"/>),
-            i.e. boolean expressions (or say, formulae).
+            SAT problem is a type of problems that can be solved via CNFs (corresponding to type <see cref="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula"/>),
+            i.e. boolean formulae.
             </para>
             <para>
             If we can reduce a problem into SAT ones, we can use SAT solving system to solve the problem.
@@ -14335,11 +14335,11 @@
             </item>
             </list>
             </remarks>
-            <seealso cref="T:Sudoku.Solving.BooleanSatisfiability.CnfExpression"/>
+            <seealso cref="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula"/>
         </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._expression">
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._formula">
             <summary>
-            Defines an expression.
+            Defines the root formula.
             </summary>
         </member>
         <member name="P:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolver#UriLink">
@@ -14417,9 +14417,9 @@
             Indicates event handler for solution found.
             </summary>
         </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._expression">
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._formula">
             <summary>
-            Indicates the backing expression.
+            Indicates the root formula.
             </summary>
         </member>
         <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._mappedVariables">
@@ -14488,11 +14488,11 @@
             Current variable increment used when bumping variables.
             </summary>
         </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfExpression,System.EventHandler{Sudoku.Solving.BooleanSatisfiability.SatSolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.BooleanSatisfiability.SatSolver)">
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfFormula,System.EventHandler{Sudoku.Solving.BooleanSatisfiability.SatSolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.BooleanSatisfiability.SatSolver)">
             <summary>
             Initializes a <see cref="T:Sudoku.Solving.BooleanSatisfiability.Dpll"/> instance via the specified instances.
             </summary>
-            <param name="expression"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._expression" path="/summary"/></param>
+            <param name="formula"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._formula" path="/summary"/></param>
             <param name="solutionFoundEventHandler"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._solutionFoundEventHandler" path="/summary"/></param>
             <param name="mappedVariables">
             <para><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._mappedVariables" path="/summary"/></para>
@@ -14524,12 +14524,12 @@
             <item>
             If there's at least one decision level learn a clause
             forbidding the current decision literal at that level (negation),<br/>
-            add it to the expression and backjump by restoring the snapshot of the previous level.
+            add it to the formula and backjump by restoring the snapshot of the previous level.
             </item>
             <item>Otherwise, failed. Backtrack (return <see langword="false"/>).</item>
             </list>
             </item>
-            <item>If all variables assigned, expression is satisfied.</item>
+            <item>If all variables assigned, formula is satisfied.</item>
             <item>Otherwise, pick an unassigned variable and branch on true/false.</item>
             </list>
             </summary>

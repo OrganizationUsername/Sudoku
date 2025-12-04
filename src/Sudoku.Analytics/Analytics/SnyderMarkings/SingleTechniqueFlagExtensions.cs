@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.SnyderMarkings;
 
 /// <summary>
 /// Provides with extension methods on <see cref="SingleTechniqueFlag"/>.

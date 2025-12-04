@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.SnyderMarkings;
 
 /// <summary>
 /// Represents a subtype of a single technique.

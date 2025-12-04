@@ -35,6 +35,7 @@ global using Sudoku.Analytics.EventHandling;
 global using Sudoku.Analytics.ExceptionHandling;
 global using Sudoku.Analytics.Ittoryu;
 global using Sudoku.Analytics.PatternSearchers;
+global using Sudoku.Analytics.SnyderMarkings;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearcherHelpers;
 global using Sudoku.Analytics.StepSearcherHelpers.Chaining;

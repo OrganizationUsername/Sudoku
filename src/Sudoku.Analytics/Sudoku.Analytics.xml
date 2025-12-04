@@ -1286,741 +1286,6 @@
         <member name="P:Sudoku.Analytics.Categorization.MissingTechniqueGroupException.Message">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleSubtype">
-            <summary>
-            Represents a subtype of a single technique.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.None">
-            <summary>
-            Represents the default value of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseBlock">
-            <summary>
-            Indicates the subtype is Full House in Block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseRow">
-            <summary>
-            Indicates the subtype is Full House in Row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.FullHouseColumn">
-            <summary>
-            Indicates the subtype is Full House in Column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.LastDigit">
-            <summary>
-            Indicates the subtype is Last Digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with no excluder values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle011">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (1 row + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle010">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle001">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle002">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle020">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle021">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 3 excluders (2 rows + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle012">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 3 excluders (1 row + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.BlockHiddenSingle022">
-            <summary>
-            Indicates the subtype is Hidden Single in Block, with 4 excluders (2 rows + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with no excluders.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle001">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle002">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluder (2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle100">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 block).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle101">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluders (1 block + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle003">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (3 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle102">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (1 block + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle004">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (4 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle103">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (1 block + 3 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle104">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 5 excluders (1 block + 4 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle005">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 5 excluders (5 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle105">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 6 excluders (1 block + 5 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle006">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle007">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 7 excluders (7 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle200">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle201">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle202">
-            <summary>
-            Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle000">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with no excluders.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle010">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle020">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle100">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 block).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle110">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (1 block + 1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle030">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (3 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle120">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (1 block + 2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle040">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (4 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle130">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (1 block + 3 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle050">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 5 excluders (5 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle150">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 6 excluders (1 block + 5 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle060">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle070">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 7 excluders (7 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle140">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle200">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle210">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle220">
-            <summary>
-            Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock0">
-            <summary>
-            Indicates the subtype is naked single with no values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock1">
-            <summary>
-            Indicates the subtype is naked single with 1 value in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock2">
-            <summary>
-            Indicates the subtype is naked single with 2 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock3">
-            <summary>
-            Indicates the subtype is naked single with 3 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock4">
-            <summary>
-            Indicates the subtype is naked single with 4 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock5">
-            <summary>
-            Indicates the subtype is naked single with 5 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock6">
-            <summary>
-            Indicates the subtype is naked single with 6 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock7">
-            <summary>
-            Indicates the subtype is naked single with 7 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock8">
-            <summary>
-            Indicates the subtype is naked single with 8 values in target block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow0">
-            <summary>
-            Indicates the subtype is naked single with 0 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow1">
-            <summary>
-            Indicates the subtype is naked single with 1 value in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow2">
-            <summary>
-            Indicates the subtype is naked single with 2 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow3">
-            <summary>
-            Indicates the subtype is naked single with 3 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow4">
-            <summary>
-            Indicates the subtype is naked single with 4 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow5">
-            <summary>
-            Indicates the subtype is naked single with 5 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow6">
-            <summary>
-            Indicates the subtype is naked single with 6 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow7">
-            <summary>
-            Indicates the subtype is naked single with 7 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow8">
-            <summary>
-            Indicates the subtype is naked single with 8 values in target row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn0">
-            <summary>
-            Indicates the subtype is naked single with 0 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn1">
-            <summary>
-            Indicates the subtype is naked single with 1 value in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn2">
-            <summary>
-            Indicates the subtype is naked single with 2 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn3">
-            <summary>
-            Indicates the subtype is naked single with 3 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn4">
-            <summary>
-            Indicates the subtype is naked single with 4 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn5">
-            <summary>
-            Indicates the subtype is naked single with 5 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn6">
-            <summary>
-            Indicates the subtype is naked single with 6 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn7">
-            <summary>
-            Indicates the subtype is naked single with 7 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn8">
-            <summary>
-            Indicates the subtype is naked single with 8 values in target column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.Unknown">
-            <summary>
-            Indicates the unknown technique.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.IsUnnecessary"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_IsAlgorithmUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.IsAlgorithmUnnecessary"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_ExcludersCount(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.ExcludersCount"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_DirectDifficultyLevel(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.DirectDifficultyLevel"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_Abbreviation(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.Abbreviation"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_RelatedTechnique(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.RelatedTechnique"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.get_Attribute(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <inheritdoc cref="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.Attribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetExcludersCount(Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.GetExcludersCount(Sudoku.Concepts.HouseType)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.SingleSubtype,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.GetSingleTechnique(System.Boolean)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.&lt;M&gt;$486834F3016DEFBD0474663D8BEAC509">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.IsUnnecessary">
-            <summary>
-            Indicates whether the specified subtype is unnecessary in practice.
-            For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.IsAlgorithmUnnecessary">
-            <summary>
-            Indicates whether the specified subtype is unnecessary in solving algorithm,
-            but it can be appeared in a solving step produced by a user.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.ExcludersCount">
-            <summary>
-            Indicates the number of excluders that the current single subtype will use.
-            This method will return a non-zero value if and only if it is a hidden single.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.DirectDifficultyLevel">
-            <summary>
-            Indicates the direct difficulty level of the curreent subtype.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.Abbreviation">
-            <summary>
-            Indicates the abbreviation of the subtype.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.RelatedTechnique">
-            <summary>
-            Try to get the related technique of the current subtype.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.Attribute">
-            <summary>
-            Gets the attribute.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.GetExcludersCount(Sudoku.Concepts.HouseType)">
-            <summary>
-            Try to get the number of excluders that the current single subtype will use in the specified house type.
-            </summary>
-            <param name="houseType">The house type.</param>
-            <returns>The number of excluders.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.&lt;G&gt;$69EB42011837C18F11D7D5F0BCF903B2.GetSingleTechnique(System.Boolean)">
-            <summary>
-            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> field that corresponds the current subtype.
-            All values are:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.FullHouse"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.LastDigit"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleBlock"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleRow"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleColumn"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/> (if <paramref name="subtleValue"/> is <see langword="false"/>)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle"/></item>
-            </list>
-            </summary>
-            <param name="subtleValue">
-            <para>
-            A <see cref="T:System.Boolean"/> indicating whether the return value should subtle the handling on return field.
-            If the value is <see langword="true"/>, hidden singles will be split into block, row and column subtypes,
-            instead of returning a unified value <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>.
-            </para>
-            <para>The return value is <see langword="false"/>.</para>
-            </param>
-            <returns>The single technique returned.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup">
-            <summary>
-            Represents a group of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
-            </summary>
-            <param name="_values">Indicates the array to be initialized.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.#ctor(System.ReadOnlyMemory{Sudoku.Analytics.Categorization.SingleSubtype})">
-            <summary>
-            Represents a group of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
-            </summary>
-            <param name="_values">Indicates the array to be initialized.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Empty">
-            <summary>
-            Indicates the empty instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.#ctor(Sudoku.Analytics.Categorization.SingleSubtype[])">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance via an array of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
-            </summary>
-            <param name="array">An array of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Length">
-            <summary>
-            Indicates the number of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Span">
-            <summary>
-            Gets a span from the current collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Techniques">
-            <summary>
-            Indicates the techniques that all flags covered.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Categorization#SingleSubtype}#Count">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Item(System.Int32)">
-            <summary>
-            Gets the element at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instance as result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToArray">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Categorization#SingleSubtype}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Linq#Providers#ISliceMethod{Sudoku#Analytics#Categorization#SingleSubtypeGroup,Sudoku#Analytics#Categorization#SingleSubtype}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Create(System.ReadOnlySpan{Sudoku.Analytics.Categorization.SingleSubtype})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag">
-            <summary>
-            Represents a flag that describes for a single technique usage or type kind.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None">
-            <summary>
-            Represents none of technique used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.FullHouse">
-            <summary>
-            Represents full house.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.LastDigit">
-            <summary>
-            Represents last digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle">
-            <summary>
-            Represents hidden single.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleBlock">
-            <summary>
-            Represents hidden single in block.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleRow">
-            <summary>
-            Represents hidden single in row.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleColumn">
-            <summary>
-            Represents hidden single in column.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle">
-            <summary>
-            Represents naked single.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechniqueFlag,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.&lt;G&gt;$70FC07D97608FABB3908FE72E44727BA.GetName(System.IFormatProvider)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.&lt;G&gt;$70FC07D97608FABB3908FE72E44727BA.&lt;M&gt;$5E5581AA1B5302642383AAE41E30D701">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.&lt;G&gt;$70FC07D97608FABB3908FE72E44727BA.GetName(System.IFormatProvider)">
-            <summary>
-            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
-            </summary>
-            <param name="formatProvider">The culture information.</param>
-            <returns>The name of the current technique.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the target technique is out of range.</exception>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SnyderTechnique">
-            <summary>
-            <para>Represents a Snyder's technique.</para>
-            <para>
-            Snyder's Technique refers to a category of techniques
-            that do not require the puzzle to have every cell fully marked with all possible candidates.
-            Instead, when a direct assignment isn't available, the player temporarily marks candidates in only some cells.
-            These candidates can then be used immediately in subsequent steps, avoiding the need to exhaustively mark the entire grid.
-            </para>
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.None">
-            <summary>
-            The placeholder of the current enumeration type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.Pointing">
-            <summary>
-            Represents Pointing rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.Claiming">
-            <summary>
-            Represents Claiming rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedPair">
-            <summary>
-            Represents Naked Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedTriple">
-            <summary>
-            Represents Naked Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedQuadruple">
-            <summary>
-            Represents Naked Quadruple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedPairPlus">
-            <summary>
-            Represents Naked Pair (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedTriplePlus">
-            <summary>
-            Represents Naked Triple (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.NakedQuadruplePlus">
-            <summary>
-            Represents Naked Quadruple (+) rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.HiddenPair">
-            <summary>
-            Represents Hidden Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.HiddenTriple">
-            <summary>
-            Represents Hidden Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.HiddenQuadruple">
-            <summary>
-            Represents Hidden Quadruple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.LockedPair">
-            <summary>
-            Represents Locked Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.LockedTriple">
-            <summary>
-            Represents Locked Triple rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.LockedHiddenPair">
-            <summary>
-            Represents Locked Hidden Pair rule.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SnyderTechnique.LockedHiddenTriple">
-            <summary>
-            Represents Locked Hidden Triple rule.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique as unique identifier on describing different techniques and their own patterns used.
@@ -4082,7 +3347,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.SingleTechnique">
             <summary>
-            Indicates the corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> for the specified single <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            Indicates the corresponding <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/> for the specified single <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
             <exception cref="T:System.InvalidOperationException">Throws when the technique is not single.</exception>
         </member>
@@ -5441,23 +4706,23 @@
             </summary>
             <remarks>
             <para>
-            If the value isn't <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/>,
+            If the value isn't <see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.None"/>,
             the analyzer will ignore the other single technique not related to this field;
             in other words, the analyzer module will only perform usages of the specified technique,
             determining whether the puzzle can be finished by only use this technique.
             </para>
             <para>
-            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle"/>,
+            For example, if the value is <see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.NakedSingle"/>,
             the analyzer will only use naked singles to finish the puzzle.
             If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalysisResult"/> with
             <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> a <see langword="false"/> value.
             </para>
             <para>
-            Please note that if hidden single flag is chosen <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
+            Please note that if hidden single flag is chosen <see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingle"/>,
             full houses will also be used; this is an only exception.
             </para>
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter">
@@ -5500,7 +4765,7 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.Converter"/>: <see langword="new"/> <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>()</item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.IsDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.UseIttoryuMode"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.PrimarySingle"/>: <see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.None"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupInitialLetter"/>: <see cref="F:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter.EnglishLetter_X"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.BabaGroupLetterCase"/>: <see cref="F:Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase.Lower"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepGathererOptions.DefaultLinkOption"/>: <see cref="F:Sudoku.Analytics.Construction.Components.LinkOption.House"/></item>
@@ -11103,36 +10368,6 @@
             </para>
             </remarks>
         </member>
-        <member name="T:Sudoku.Analytics.GridSnyderExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, calculating with Snyder's rules checking.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Analytics.GridSnyderExtensions.Collector">
-            <summary>
-            Indicates the backing collector.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.GridSnyderExtensions.IsMissingCandidates(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.SnyderTechnique)">
-            <inheritdoc cref="M:Sudoku.Analytics.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.IsMissingCandidates(Sudoku.Analytics.Categorization.SnyderTechnique)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.&lt;M&gt;$4FBDD4478CFAA5DAE39645DF9E3BC758">
-            <summary>
-            Provides extension members on <see langword="in"/> <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.IsMissingCandidates(Sudoku.Analytics.Categorization.SnyderTechnique)">
-            <summary>
-            Determine whether the grid lacks some candidates that are included in a grid,
-            through basic elimination rule (Naked Single checking) and specified Snyder's techniques.
-            </summary>
-            <param name="techniques">A list of techniques to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="techniques"/> is greater than the maximum value of enumeration field defined.
-            </exception>
-        </member>
         <member name="T:Sudoku.Analytics.Hub">
             <summary>
             The top-level type that stores <see langword="static class"/>es as nested ones,
@@ -12721,6 +11956,771 @@
         <member name="M:Sudoku.Analytics.PatternSearchers.XyzWingPatternSearcher.Search(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
             <remarks><i>This method cannot be used as caching because most of callers have already been cached.</i></remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, calculating with Snyder's rules checking.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions.Collector">
+            <summary>
+            Indicates the backing collector.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions.IsMissingCandidates(Sudoku.Concepts.Grid@,Sudoku.Analytics.SnyderMarkings.SnyderTechnique)">
+            <inheritdoc cref="M:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.IsMissingCandidates(Sudoku.Analytics.SnyderMarkings.SnyderTechnique)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.&lt;M&gt;$4FBDD4478CFAA5DAE39645DF9E3BC758">
+            <summary>
+            Provides extension members on <see langword="in"/> <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.GridSnyderExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.IsMissingCandidates(Sudoku.Analytics.SnyderMarkings.SnyderTechnique)">
+            <summary>
+            Determine whether the grid lacks some candidates that are included in a grid,
+            through basic elimination rule (Naked Single checking) and specified Snyder's techniques.
+            </summary>
+            <param name="techniques">A list of techniques to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="techniques"/> is greater than the maximum value of enumeration field defined.
+            </exception>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype">
+            <summary>
+            Represents a subtype of a single technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.None">
+            <summary>
+            Represents the default value of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.FullHouseBlock">
+            <summary>
+            Indicates the subtype is Full House in Block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.FullHouseRow">
+            <summary>
+            Indicates the subtype is Full House in Row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.FullHouseColumn">
+            <summary>
+            Indicates the subtype is Full House in Column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.LastDigit">
+            <summary>
+            Indicates the subtype is Last Digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with no excluder values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle011">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (1 row + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle010">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle001">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 1 excluder (1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle002">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle020">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 2 excluders (2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle021">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 3 excluders (2 rows + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle012">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 3 excluders (1 row + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.BlockHiddenSingle022">
+            <summary>
+            Indicates the subtype is Hidden Single in Block, with 4 excluders (2 rows + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with no excluders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle001">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle002">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluder (2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle100">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 1 excluder (1 block).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle101">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluders (1 block + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle003">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (3 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle102">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (1 block + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle004">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (4 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle103">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (1 block + 3 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle104">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 5 excluders (1 block + 4 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle005">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 5 excluders (5 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle105">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 6 excluders (1 block + 5 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle006">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle007">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 7 excluders (7 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle200">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle201">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.RowHiddenSingle202">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle000">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with no excluders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle010">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle020">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle100">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 1 excluder (1 block).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle110">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (1 block + 1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle030">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (3 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle120">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (1 block + 2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle040">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (4 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle130">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (1 block + 3 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle050">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 5 excluders (5 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle150">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 6 excluders (1 block + 5 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle060">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle070">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 7 excluders (7 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle140">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle200">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle210">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.ColumnHiddenSingle220">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock0">
+            <summary>
+            Indicates the subtype is naked single with no values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock1">
+            <summary>
+            Indicates the subtype is naked single with 1 value in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock2">
+            <summary>
+            Indicates the subtype is naked single with 2 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock3">
+            <summary>
+            Indicates the subtype is naked single with 3 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock4">
+            <summary>
+            Indicates the subtype is naked single with 4 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock5">
+            <summary>
+            Indicates the subtype is naked single with 5 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock6">
+            <summary>
+            Indicates the subtype is naked single with 6 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock7">
+            <summary>
+            Indicates the subtype is naked single with 7 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleBlock8">
+            <summary>
+            Indicates the subtype is naked single with 8 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow0">
+            <summary>
+            Indicates the subtype is naked single with 0 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow1">
+            <summary>
+            Indicates the subtype is naked single with 1 value in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow2">
+            <summary>
+            Indicates the subtype is naked single with 2 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow3">
+            <summary>
+            Indicates the subtype is naked single with 3 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow4">
+            <summary>
+            Indicates the subtype is naked single with 4 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow5">
+            <summary>
+            Indicates the subtype is naked single with 5 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow6">
+            <summary>
+            Indicates the subtype is naked single with 6 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow7">
+            <summary>
+            Indicates the subtype is naked single with 7 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleRow8">
+            <summary>
+            Indicates the subtype is naked single with 8 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn0">
+            <summary>
+            Indicates the subtype is naked single with 0 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn1">
+            <summary>
+            Indicates the subtype is naked single with 1 value in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn2">
+            <summary>
+            Indicates the subtype is naked single with 2 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn3">
+            <summary>
+            Indicates the subtype is naked single with 3 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn4">
+            <summary>
+            Indicates the subtype is naked single with 4 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn5">
+            <summary>
+            Indicates the subtype is naked single with 5 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn6">
+            <summary>
+            Indicates the subtype is naked single with 6 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn7">
+            <summary>
+            Indicates the subtype is naked single with 7 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.NakedSingleColumn8">
+            <summary>
+            Indicates the subtype is naked single with 8 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtype.Unknown">
+            <summary>
+            Indicates the unknown technique.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_IsUnnecessary(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.IsUnnecessary"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_IsAlgorithmUnnecessary(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.IsAlgorithmUnnecessary"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_ExcludersCount(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.ExcludersCount"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_DirectDifficultyLevel(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.DirectDifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_Abbreviation(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.Abbreviation"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_RelatedTechnique(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.RelatedTechnique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.get_Attribute(Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
+            <inheritdoc cref="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.Attribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.GetExcludersCount(Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.GetExcludersCount(Sudoku.Concepts.HouseType)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.GetSingleTechnique(Sudoku.Analytics.SnyderMarkings.SingleSubtype,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.GetSingleTechnique(System.Boolean)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.&lt;M&gt;$D0C7C9491D6771B67E6C405BEA8C6DE7">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.IsUnnecessary">
+            <summary>
+            Indicates whether the specified subtype is unnecessary in practice.
+            For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.IsAlgorithmUnnecessary">
+            <summary>
+            Indicates whether the specified subtype is unnecessary in solving algorithm,
+            but it can be appeared in a solving step produced by a user.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.ExcludersCount">
+            <summary>
+            Indicates the number of excluders that the current single subtype will use.
+            This method will return a non-zero value if and only if it is a hidden single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.DirectDifficultyLevel">
+            <summary>
+            Indicates the direct difficulty level of the curreent subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.Abbreviation">
+            <summary>
+            Indicates the abbreviation of the subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.RelatedTechnique">
+            <summary>
+            Try to get the related technique of the current subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.Attribute">
+            <summary>
+            Gets the attribute.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.GetExcludersCount(Sudoku.Concepts.HouseType)">
+            <summary>
+            Try to get the number of excluders that the current single subtype will use in the specified house type.
+            </summary>
+            <param name="houseType">The house type.</param>
+            <returns>The number of excluders.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeExtensions.&lt;G&gt;$5134B3CA7792EDC555BE0C2BECE54C67.GetSingleTechnique(System.Boolean)">
+            <summary>
+            Try to get related <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/> field that corresponds the current subtype.
+            All values are:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.FullHouse"/></item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.LastDigit"/></item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleBlock"/></item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleRow"/></item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleColumn"/></item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingle"/> (if <paramref name="subtleValue"/> is <see langword="false"/>)</item>
+            <item><see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.NakedSingle"/></item>
+            </list>
+            </summary>
+            <param name="subtleValue">
+            <para>
+            A <see cref="T:System.Boolean"/> indicating whether the return value should subtle the handling on return field.
+            If the value is <see langword="true"/>, hidden singles will be split into block, row and column subtypes,
+            instead of returning a unified value <see cref="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingle"/>.
+            </para>
+            <para>The return value is <see langword="false"/>.</para>
+            </param>
+            <returns>The single technique returned.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup">
+            <summary>
+            Represents a group of <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instances.
+            </summary>
+            <param name="_values">Indicates the array to be initialized.</param>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.#ctor(System.ReadOnlyMemory{Sudoku.Analytics.SnyderMarkings.SingleSubtype})">
+            <summary>
+            Represents a group of <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instances.
+            </summary>
+            <param name="_values">Indicates the array to be initialized.</param>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.#ctor(Sudoku.Analytics.SnyderMarkings.SingleSubtype[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup"/> instance via an array of <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instances.
+            </summary>
+            <param name="array">An array of <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instances.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Length">
+            <summary>
+            Indicates the number of <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instances in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Span">
+            <summary>
+            Gets a span from the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Techniques">
+            <summary>
+            Indicates the techniques that all flags covered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#SnyderMarkings#SingleSubtype}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instance as result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.System#Collections#Generic#IEnumerable{Sudoku#Analytics#SnyderMarkings#SingleSubtype}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.System#Linq#Providers#ISliceMethod{Sudoku#Analytics#SnyderMarkings#SingleSubtypeGroup,Sudoku#Analytics#SnyderMarkings#SingleSubtype}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup.Create(System.ReadOnlySpan{Sudoku.Analytics.SnyderMarkings.SingleSubtype})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup"/> instance.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtypeGroup"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag">
+            <summary>
+            Represents a flag that describes for a single technique usage or type kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.None">
+            <summary>
+            Represents none of technique used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.FullHouse">
+            <summary>
+            Represents full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.LastDigit">
+            <summary>
+            Represents last digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingle">
+            <summary>
+            Represents hidden single.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleBlock">
+            <summary>
+            Represents hidden single in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleRow">
+            <summary>
+            Represents hidden single in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.HiddenSingleColumn">
+            <summary>
+            Represents hidden single in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag.NakedSingle">
+            <summary>
+            Represents naked single.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlagExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlagExtensions.GetName(Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlagExtensions.&lt;G&gt;$F061D5BAA39B1A703F9BC6FF7064E203.GetName(System.IFormatProvider)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlagExtensions.&lt;G&gt;$F061D5BAA39B1A703F9BC6FF7064E203.&lt;M&gt;$CBCB0E70406A06FB9621A41E9DD9E41B">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlagExtensions.&lt;G&gt;$F061D5BAA39B1A703F9BC6FF7064E203.GetName(System.IFormatProvider)">
+            <summary>
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleTechniqueFlag"/>.
+            </summary>
+            <param name="formatProvider">The culture information.</param>
+            <returns>The name of the current technique.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the target technique is out of range.</exception>
+        </member>
+        <member name="T:Sudoku.Analytics.SnyderMarkings.SnyderTechnique">
+            <summary>
+            <para>Represents a Snyder's technique.</para>
+            <para>
+            Snyder's Technique refers to a category of techniques
+            that do not require the puzzle to have every cell fully marked with all possible candidates.
+            Instead, when a direct assignment isn't available, the player temporarily marks candidates in only some cells.
+            These candidates can then be used immediately in subsequent steps, avoiding the need to exhaustively mark the entire grid.
+            </para>
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.None">
+            <summary>
+            The placeholder of the current enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.Pointing">
+            <summary>
+            Represents Pointing rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.Claiming">
+            <summary>
+            Represents Claiming rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedPair">
+            <summary>
+            Represents Naked Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedTriple">
+            <summary>
+            Represents Naked Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedQuadruple">
+            <summary>
+            Represents Naked Quadruple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedPairPlus">
+            <summary>
+            Represents Naked Pair (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedTriplePlus">
+            <summary>
+            Represents Naked Triple (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.NakedQuadruplePlus">
+            <summary>
+            Represents Naked Quadruple (+) rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.HiddenPair">
+            <summary>
+            Represents Hidden Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.HiddenTriple">
+            <summary>
+            Represents Hidden Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.HiddenQuadruple">
+            <summary>
+            Represents Hidden Quadruple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.LockedPair">
+            <summary>
+            Represents Locked Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.LockedTriple">
+            <summary>
+            Represents Locked Triple rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.LockedHiddenPair">
+            <summary>
+            Represents Locked Hidden Pair rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.SnyderMarkings.SnyderTechnique.LockedHiddenTriple">
+            <summary>
+            Represents Locked Hidden Triple rule.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
@@ -22440,7 +22440,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
             Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
@@ -22501,7 +22501,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="isPointing"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
             <summary>
             Represents a data structure that describes for a technique of <b>Direct Intersection</b>.
             </summary>
@@ -22567,7 +22567,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="subsetTechnique"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetTechnique" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Represents a data structure that describes for a technique of <b>Direct Subset</b>.
             </summary>
@@ -22698,7 +22698,7 @@
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="excluderInfo"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.ExcluderInfo" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Construction.Components.ExcluderInfo)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Analytics.Construction.Components.ExcluderInfo)">
             <summary>
             Represents a data structure that describes for a technique of <b>Hidden Single</b>.
             </summary>
@@ -22785,7 +22785,7 @@
             <param name="lastingHouseType"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSingleStep.LastingHouseType" path="/summary"/></param>
             <param name="excluderHouses"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSingleStep.ExcluderHouses" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32,Sudoku.Concepts.HouseType,System.ReadOnlySpan{System.Int32})">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype,System.Int32,Sudoku.Concepts.HouseType,System.ReadOnlySpan{System.Int32})">
             <summary>
             Represents a data structure that describes for a technique of <b>Naked Single</b>.
             </summary>
@@ -22842,7 +22842,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn" path="/summary"/></param>
             <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalComplexSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+        <member name="M:Sudoku.Analytics.Steps.NormalComplexSingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
             Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
@@ -22878,7 +22878,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
             <summary>
             Represents a data structure that describes for a technique of <b>Single</b>.
             </summary>
@@ -22918,7 +22918,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SnyderStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.SnyderStep.#ctor(System.ReadOnlyMemory{Sudoku.Concepts.Conclusion},Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepGathererOptions,System.Int32,System.Int32,Sudoku.Analytics.SnyderMarkings.SingleSubtype)">
             <summary>
             Represents a solving step that belongs to Snyder's technique.
             </summary>
@@ -29584,9 +29584,9 @@
             <typeparam name="T">The type of each element.</typeparam>
             <param name="values">The values to be shuffled.</param>
         </member>
-        <member name="M:Sudoku.Generating.Qualified.PrimaryGenerator.RandomlySelectSubtype(System.Int32,System.Func{Sudoku.Analytics.Categorization.SingleSubtype,System.Boolean})">
+        <member name="M:Sudoku.Generating.Qualified.PrimaryGenerator.RandomlySelectSubtype(System.Int32,System.Func{Sudoku.Analytics.SnyderMarkings.SingleSubtype,System.Boolean})">
             <summary>
-            Randomly select a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instance.
+            Randomly select a <see cref="T:Sudoku.Analytics.SnyderMarkings.SingleSubtype"/> instance.
             </summary>
             <param name="house">The house selected.</param>
             <param name="match">The extra match method.</param>

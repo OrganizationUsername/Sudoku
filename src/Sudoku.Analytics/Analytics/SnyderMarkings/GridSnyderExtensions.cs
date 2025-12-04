@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Analytics.SnyderMarkings;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, calculating with Snyder's rules checking.

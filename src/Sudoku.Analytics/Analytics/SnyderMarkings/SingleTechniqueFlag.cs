@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.SnyderMarkings;
 
 /// <summary>
 /// Represents a flag that describes for a single technique usage or type kind.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.SnyderMarkings;
 
 /// <summary>
 /// <para>Represents a Snyder's technique.</para>

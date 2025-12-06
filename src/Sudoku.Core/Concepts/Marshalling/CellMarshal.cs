@@ -63,7 +63,7 @@ public static class CellMarshal
 		}
 
 		/// <inheritdoc cref="op_RightShift(Cell, HouseType)"/>
-		[Obsolete(DeprecatedMessages.ExtensionOperator_StateChange, false)]
+		[Obsolete("Use extension operator 'operator >>' instead. 'cell >> house_type'", false)]
 		public House ToHouse(HouseType houseType) => @this >> houseType;
 
 

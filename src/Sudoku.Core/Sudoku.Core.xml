@@ -14266,6 +14266,31 @@
         <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.VariablesCount">
             <summary>Indicates total number of variables.</summary>
         </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Not">
+            <summary>
+            Represents character <c>"&#172;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Or">
+            <summary>
+            Represents character <c>"&#8744;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.And">
+            <summary>
+            Represents character <c>"&#8743;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Top">
+            <summary>
+            Represents character <c>"&#8868;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Bottom">
+            <summary>
+            Represents character <c>"&#8869;"</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.ClauseCount">
             <summary>
             Number of clauses currently stored in the formula.
@@ -14290,6 +14315,9 @@
             Add a new clause (disjunction of literals) to the expression.
             </summary>
             <param name="literals">The literals that form the clause.</param>
+        </member>
+        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.ToString">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>

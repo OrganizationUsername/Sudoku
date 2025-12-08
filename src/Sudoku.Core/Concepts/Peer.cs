@@ -77,7 +77,7 @@ public static class Peer
 			{
 				if (peerDigit != digit)
 				{
-					map.Add(cell * 9 + peerDigit);
+					map += cell * 9 + peerDigit;
 				}
 			}
 

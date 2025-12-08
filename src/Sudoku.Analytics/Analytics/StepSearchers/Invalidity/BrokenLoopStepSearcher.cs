@@ -190,7 +190,7 @@ public sealed partial class BrokenLoopStepSearcher
 					}
 
 					// Get for the next house.
-					var nextHouse = currentCell >> (HouseType)(mode - 1);
+					var nextHouse = currentCell.GetHouse((HouseType)(mode - 1));
 					var nextPossibleCells = (CandidatesMap[currentDigit] & HousesMap[nextHouse]) - currentCell;
 					switch (nextPossibleCells.Count)
 					{
@@ -267,9 +267,9 @@ public sealed partial class BrokenLoopStepSearcher
 				var nextSpace = nextMode switch
 				{
 					NextSpaceType.Cell => Space.RowColumn(nextCell / 9, nextCell % 9),
-					NextSpaceType.Block => Space.BlockDigit(nextCell >> HouseType.Block, nextCandidate % 9),
-					NextSpaceType.Row => Space.RowDigit((nextCell >> HouseType.Row) - 9, nextCandidate % 9),
-					_ => Space.RowDigit((nextCell >> HouseType.Column) - 18, nextCandidate % 9)
+					NextSpaceType.Block => Space.BlockDigit(nextCell.GetHouse(HouseType.Block), nextCandidate % 9),
+					NextSpaceType.Row => Space.RowDigit(nextCell.GetHouse(HouseType.Row) - 9, nextCandidate % 9),
+					_ => Space.RowDigit(nextCell.GetHouse(HouseType.Column) - 18, nextCandidate % 9)
 				};
 
 				// Check whether the candidate is traversed.

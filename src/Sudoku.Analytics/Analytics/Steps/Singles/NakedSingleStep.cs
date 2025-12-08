@@ -44,7 +44,7 @@ public sealed class NakedSingleStep(
 	/// <summary>
 	/// The house to be displayed.
 	/// </summary>
-	public House House => Cell >> LastingHouseType;
+	public House House => Cell.GetHouse(LastingHouseType);
 
 	/// <summary>
 	/// Indicates excluder houses.

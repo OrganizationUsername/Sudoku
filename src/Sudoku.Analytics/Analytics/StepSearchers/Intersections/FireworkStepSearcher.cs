@@ -97,9 +97,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			}
 
 			// Firework Triple is found.
-			var pivotCellBlock = pivot >> HouseType.Block;
-			var pivotRowCells = HousesMap[pivot >> HouseType.Row];
-			var pivotColumnCells = HousesMap[pivot >> HouseType.Column];
+			var pivotCellBlock = pivot.GetHouse(HouseType.Block);
+			var pivotRowCells = HousesMap[pivot.GetHouse(HouseType.Row)];
+			var pivotColumnCells = HousesMap[pivot.GetHouse(HouseType.Column)];
 
 			// Now check eliminations.
 			var conclusions = new List<Conclusion>(18);
@@ -210,8 +210,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 			foreach (var (pivot1, pivot2) in ((c1, c4), (c2, c3)))
 			{
-				var nonPivot1Cells = (map - pivot1) & (HousesMap[pivot1 >> HouseType.Row] | HousesMap[pivot1 >> HouseType.Column]);
-				var nonPivot2Cells = (map - pivot2) & (HousesMap[pivot2 >> HouseType.Row] | HousesMap[pivot2 >> HouseType.Column]);
+				var nonPivot1Cells = (map - pivot1) & (HousesMap[pivot1.GetHouse(HouseType.Row)] | HousesMap[pivot1.GetHouse(HouseType.Column)]);
+				var nonPivot2Cells = (map - pivot2) & (HousesMap[pivot2.GetHouse(HouseType.Row)] | HousesMap[pivot2.GetHouse(HouseType.Column)]);
 				var cell1Pivot1 = nonPivot1Cells[0];
 				var cell2Pivot1 = nonPivot1Cells[1];
 				var cell1Pivot2 = nonPivot2Cells[0];
@@ -253,9 +253,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						}
 					}
 					foreach (var cell in
-						HousesMap[pivot1 >> HouseType.Block]
-							& ~HousesMap[pivot1 >> HouseType.Row]
-							& ~HousesMap[pivot1 >> HouseType.Column]
+						HousesMap[pivot1.GetHouse(HouseType.Block)]
+							& ~HousesMap[pivot1.GetHouse(HouseType.Row)]
+							& ~HousesMap[pivot1.GetHouse(HouseType.Column)]
 							& EmptyCells)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
@@ -264,9 +264,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						}
 					}
 					foreach (var cell in
-						HousesMap[pivot2 >> HouseType.Block]
-							& ~HousesMap[pivot2 >> HouseType.Row]
-							& ~HousesMap[pivot2 >> HouseType.Column]
+						HousesMap[pivot2.GetHouse(HouseType.Block)]
+							& ~HousesMap[pivot2.GetHouse(HouseType.Row)]
+							& ~HousesMap[pivot2.GetHouse(HouseType.Column)]
 							& EmptyCells)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
@@ -377,7 +377,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		out CellMap house2CellsExcluded
 	)
 	{
-		var pivotCellBlock = pivot >> HouseType.Block;
+		var pivotCellBlock = pivot.GetHouse(HouseType.Block);
 		var excluded1 = HousesMap[(c1.AsCellMap() + pivot).SharedLine] & ~HousesMap[pivotCellBlock] - c1;
 		var excluded2 = HousesMap[(c2.AsCellMap() + pivot).SharedLine] & ~HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;

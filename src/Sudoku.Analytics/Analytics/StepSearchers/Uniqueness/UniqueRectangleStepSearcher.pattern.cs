@@ -1167,7 +1167,7 @@ public partial class UniqueRectangleStepSearcher
 			// Iterate on each house type.
 			foreach (var houseType in HouseTypes)
 			{
-				var houseIndex = baseCell >> houseType;
+				var houseIndex = baseCell.GetHouse(houseType);
 
 				// If the house doesn't overlap with the specified house, just skip it.
 				if (!(cellsThatTwoOtherCellsBothCanSee & HousesMap[houseIndex]))

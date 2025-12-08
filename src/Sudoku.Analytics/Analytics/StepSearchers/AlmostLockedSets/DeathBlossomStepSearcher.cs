@@ -124,7 +124,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							// Check for house type.
 							foreach (var houseType in HouseTypes)
 							{
-								var house = pivot >> houseType;
+								var house = pivot.GetHouse(houseType);
 								var disappearedDigitsMask = Grid.MaxCandidatesMask;
 								foreach (var cell in HousesCells[house])
 								{

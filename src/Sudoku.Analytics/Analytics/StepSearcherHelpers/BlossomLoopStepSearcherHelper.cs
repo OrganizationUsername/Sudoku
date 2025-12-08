@@ -207,9 +207,9 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 			// Iterate on houses' distribution.
 			foreach (var ((startCurrentHouse, _), houseDistribution) in housesDistribution)
 			{
-				if (startCell >> HouseType.Block == startCurrentHouse
-					|| startCell >> HouseType.Row == startCurrentHouse
-					|| startCell >> HouseType.Column == startCurrentHouse)
+				if (startCell.GetHouse(HouseType.Block) == startCurrentHouse
+					|| startCell.GetHouse(HouseType.Row) == startCurrentHouse
+					|| startCell.GetHouse(HouseType.Column) == startCurrentHouse)
 				{
 					continue;
 				}
@@ -255,9 +255,9 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 			// Iterate on cells' distribution.
 			foreach (var (currentStartCell, cellDistribution) in cellsDistribution)
 			{
-				if (currentStartCell >> HouseType.Block == startHouse
-					|| currentStartCell >> HouseType.Row == startHouse
-					|| currentStartCell >> HouseType.Column == startHouse)
+				if (currentStartCell.GetHouse(HouseType.Block) == startHouse
+					|| currentStartCell.GetHouse(HouseType.Row) == startHouse
+					|| currentStartCell.GetHouse(HouseType.Column) == startHouse)
 				{
 					continue;
 				}
@@ -363,7 +363,7 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell >> houseType;
+							var house = endCell.GetHouse(houseType);
 							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{
@@ -394,7 +394,7 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 
 						foreach (var houseType in HouseTypes)
 						{
-							var house = endCell >> houseType;
+							var house = endCell.GetHouse(houseType);
 							var entry = new HouseDigitIdentifier(house, endDigit);
 							if (!housesDistribution.TryAdd(entry, [endNode]))
 							{

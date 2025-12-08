@@ -554,10 +554,10 @@ public partial class UniqueRectangleStepSearcher
 
 		var o1 = otherCellsMap[0];
 		var o2 = otherCellsMap[1];
-		var r1 = corner1 >> HouseType.Row;
-		var c1 = corner1 >> HouseType.Column;
-		var r2 = corner2 >> HouseType.Row;
-		var c2 = corner2 >> HouseType.Column;
+		var r1 = corner1.GetHouse(HouseType.Row);
+		var c1 = corner1.GetHouse(HouseType.Column);
+		var r2 = corner2.GetHouse(HouseType.Row);
+		var c2 = corner2.GetHouse(HouseType.Column);
 		foreach (var digit in (d1, d2))
 		{
 			foreach (var (h1, h2) in ((r1, r2), (c1, c2)))

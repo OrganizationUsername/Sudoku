@@ -7398,14 +7398,11 @@
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.CopyHouseInfo(System.Int32,System.Int32@)">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.CopyHouseInfo(System.Int32@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToHouse(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)"/>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.GetHouse(System.Int32,Sudoku.Concepts.HouseType)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.GetHouse(Sudoku.Concepts.HouseType)"/>
         </member>
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,System.IFormatProvider)">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
         </member>
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.AsCellMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
@@ -7454,8 +7451,35 @@
             Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToHouse(Sudoku.Concepts.HouseType)">
-            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)"/>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.GetHouse(Sudoku.Concepts.HouseType)">
+            <summary>
+            Returns an integer that represents the house at the specified house type.
+            </summary>
+            <param name="houseType">The house type.</param>
+            <returns>
+            The house. The return value must be in range 0..27:
+            <list type="table">
+            <listheader>
+            <term>Value range</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>0..9</term>
+            <description>Block 1-9</description>
+            </item>
+            <item>
+            <term>9..18</term>
+            <description>Row 1-9</description>
+            </item>
+            <item>
+            <term>18..27</term>
+            <description>Column 1-9</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="houseType"/> is not defined.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)">
             <summary>
@@ -7464,17 +7488,6 @@
             <param name="cell">The cell.</param>
             <param name="formatProvider">The formatter.</param>
             <returns>The string representation.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.op_RightShift(System.Int32,Sudoku.Concepts.HouseType)">
-            <summary>
-            Get the house index (0..27 for block 1-9, row 1-9 and column 1-9) for the specified cell and the house type.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="houseType">The house type.</param>
-            <returns>The house index. The return value must be between 0 and 26.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="houseType"/> is not defined.
-            </exception>
         </member>
         <member name="T:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
             <summary>

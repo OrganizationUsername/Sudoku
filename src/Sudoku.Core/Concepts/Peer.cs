@@ -42,7 +42,7 @@ public static class Peer
 				{
 					foreach (var houseType in HouseTypes)
 					{
-						if (HousesMap[cell >> houseType].Contains(peerCell))
+						if (HousesMap[cell.GetHouse(houseType)].Contains(peerCell))
 						{
 							map += peerCell;
 							break;

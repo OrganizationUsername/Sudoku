@@ -35,8 +35,8 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					continue;
 				}
 
-				var block1 = c1 >> HouseType.Block;
-				var block2 = c2 >> HouseType.Block;
+				var block1 = c1.GetHouse(HouseType.Block);
+				var block2 = c2.GetHouse(HouseType.Block);
 				if (block1 % 3 == block2 % 3 || block1 / 3 == block2 / 3)
 				{
 					continue;
@@ -47,7 +47,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				var unionMap = (Peer.PeersMap[c1] | Peer.PeersMap[c2]) + c1 + c2;
 				foreach (var interCell in interMap)
 				{
-					var block = interCell >> HouseType.Block;
+					var block = interCell.GetHouse(HouseType.Block);
 					ref readonly var houseMap = ref HousesMap[block];
 					var checkingMap = houseMap & ~unionMap & houseMap;
 					if (checkingMap & CandidatesMap[d1] || checkingMap & CandidatesMap[d2])
@@ -56,8 +56,8 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					}
 
 					// Check whether two digits are both in the same empty rectangle.
-					var b1 = c1 >> HouseType.Block;
-					var b2 = c2 >> HouseType.Block;
+					var b1 = c1.GetHouse(HouseType.Block);
+					var b2 = c2.GetHouse(HouseType.Block);
 					var erMap = unionMap & houseMap & ~interMap & (CandidatesMap[d1] | CandidatesMap[d2]);
 					var m = grid[erMap];
 					if ((m & mask) != mask)

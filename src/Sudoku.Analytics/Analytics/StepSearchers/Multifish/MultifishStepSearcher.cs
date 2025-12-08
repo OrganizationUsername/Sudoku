@@ -55,9 +55,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 		foreach (var cell in EmptyCells)
 		{
 			var mask = grid.GetCandidates(cell);
-			notSolved[cell >> HouseType.Block] |= mask;
-			notSolved[cell >> HouseType.Row] |= mask;
-			notSolved[cell >> HouseType.Column] |= mask;
+			notSolved[cell.GetHouse(HouseType.Block)] |= mask;
+			notSolved[cell.GetHouse(HouseType.Row)] |= mask;
+			notSolved[cell.GetHouse(HouseType.Column)] |= mask;
 		}
 
 		// Create some buffered arrays.
@@ -143,8 +143,8 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							tbl.Clear();
 							foreach (var cell in patternCells)
 							{
-								var block = cell >> HouseType.Block;
-								var line = cell >> (isRow ? HouseType.Column : HouseType.Row);
+								var block = cell.GetHouse(HouseType.Block);
+								var line = cell.GetHouse(isRow ? HouseType.Column : HouseType.Row);
 								var candidates = (Mask)(grid.GetCandidates(cell) & digitsMask);
 								tbl[line] = tcl[line] |= candidates;
 								tbl[block] = tcl[block] |= candidates;
@@ -380,7 +380,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								// Adjust links phase 1.
 								foreach (var cell in cellLinks)
 								{
-									var linkHouse = cell >> (isRow ? HouseType.Column : HouseType.Row);
+									var linkHouse = cell.GetHouse(isRow ? HouseType.Column : HouseType.Row);
 									var candidates = (Mask)((Mask)(grid.GetCandidates(cell) & digitsMask) | rct[linkHouse]);
 									if (BitOperations.PopCount((uint)candidates) != 1)
 									{
@@ -407,7 +407,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										if (tempCells.PeerIntersection.Contains(cell))
 										{
 											// This cell can be cleared, to form a block link.
-											rcl[cell >> HouseType.Block] |= candidates;
+											rcl[cell.GetHouse(HouseType.Block)] |= candidates;
 											rcl[house] &= (Mask)~candidates;
 											cellLinks -= cell;
 											linksCount--;
@@ -488,9 +488,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 									{
 										var targetChuteIndex = (house - 9) / 3;
 										if (!isWorthTable[house % 9 / 3]
-											|| rct[HousesCells[house][0] >> HouseType.Block] != 0
-											|| rct[HousesCells[house][3] >> HouseType.Block] != 0
-											|| rct[HousesCells[house][6] >> HouseType.Block] != 0)
+											|| rct[HousesCells[house][0].GetHouse(HouseType.Block)] != 0
+											|| rct[HousesCells[house][3].GetHouse(HouseType.Block)] != 0
+											|| rct[HousesCells[house][6].GetHouse(HouseType.Block)] != 0)
 										{
 											continue;
 										}
@@ -559,8 +559,8 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							// Elimination phase - cell links.
 							foreach (var cell in cellLinks)
 							{
-								var line = cell >> (isRow ? HouseType.Column : HouseType.Row);
-								var block = cell >> HouseType.Block;
+								var line = cell.GetHouse(isRow ? HouseType.Column : HouseType.Row);
+								var block = cell.GetHouse(HouseType.Block);
 								foreach (var digit in
 #pragma warning disable CS0675
 									(Mask)(grid.GetCandidates(cell) & ~(rct[block] | digitsMask | rct[line])))
@@ -573,7 +573,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							// Elimination phase - cannibalism on cell links.
 							foreach (var cell in cellLinks)
 							{
-								foreach (var digit in (Mask)(grid.GetCandidates(cell) & rcl[cell >> HouseType.Block]))
+								foreach (var digit in (Mask)(grid.GetCandidates(cell) & rcl[cell.GetHouse(HouseType.Block)]))
 								{
 									conclusions.Add(new(Elimination, cell, digit));
 								}
@@ -632,8 +632,8 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 							{
 								foreach (var digit in (Mask)(
 									grid.GetCandidates(cell)
-										& rcl[cell >> (isRow ? HouseType.Column : HouseType.Row)]
-										& rcl[cell >> HouseType.Block]
+										& rcl[cell.GetHouse(isRow ? HouseType.Column : HouseType.Row)]
+										& rcl[cell.GetHouse(HouseType.Block)]
 								))
 								{
 									conclusions.Add(new(Elimination, cell, digit));
@@ -879,7 +879,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 			foreach (var cell in HousesMap[house] & EmptyCells)
 			{
 				possibleTruthTripletDigitsMask |= (Mask)(
-					grid.GetCandidates(cell) & (rct[cell >> HouseType.Row] | rct[cell >> HouseType.Column])
+					grid.GetCandidates(cell) & (rct[cell.GetHouse(HouseType.Row)] | rct[cell.GetHouse(HouseType.Column)])
 				);
 			}
 		}

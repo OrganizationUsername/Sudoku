@@ -96,9 +96,9 @@ public partial class Hub
 		public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(in Grid grid, Cell cell, Digit digit, out ReadOnlySpan<House> excluderHouses)
 		{
 			var (block, row, column) = (
-				HousesMap[cell >> HouseType.Block] & ~grid.EmptyCells,
-				HousesMap[cell >> HouseType.Row] & ~grid.EmptyCells,
-				HousesMap[cell >> HouseType.Column] & ~grid.EmptyCells
+				HousesMap[cell.GetHouse(HouseType.Block)] & ~grid.EmptyCells,
+				HousesMap[cell.GetHouse(HouseType.Row)] & ~grid.EmptyCells,
+				HousesMap[cell.GetHouse(HouseType.Column)] & ~grid.EmptyCells
 			);
 			var (result, i) = (new IconViewNode[8], 0);
 			excluderHouses = new House[8];

@@ -78,7 +78,7 @@ public abstract class PrimaryGenerator : TechniqueGenerator, IJustOneCellGenerat
 	/// <returns>The block position.</returns>
 	protected static Digit BlockPositionOf(Cell cell)
 	{
-		var (block, i) = (cell >> HouseType.Block, 0);
+		var (block, i) = (cell.GetHouse(HouseType.Block), 0);
 		foreach (var c in HousesCells[block])
 		{
 			if (c == cell)

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle">Indicates the original puzzle to be solved.</param>
-public sealed record AnalysisResult(in Grid Puzzle) :
+public sealed partial record AnalysisResult(in Grid Puzzle) :
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
 	IEnumerable<Step>,
@@ -32,12 +32,12 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	public const AnalysisResultFormattingOptions DefaultOptions = AnalysisResultFormattingOptions.ShowDifficulty
-		| AnalysisResultFormattingOptions.ShowSeparators
-		| AnalysisResultFormattingOptions.ShowStepsAfterBottleneck
-		| AnalysisResultFormattingOptions.ShowSteps
-		| AnalysisResultFormattingOptions.ShowGridAndSolutionCode
-		| AnalysisResultFormattingOptions.ShowElapsedTime;
+	public const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
+		| FormattingOptions.ShowSeparators
+		| FormattingOptions.ShowStepsAfterBottleneck
+		| FormattingOptions.ShowSteps
+		| FormattingOptions.ShowGridAndSolutionCode
+		| FormattingOptions.ShowElapsedTime;
 
 
 	/// <summary>
@@ -601,21 +601,21 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	/// <inheritdoc/>
 	public override string ToString() => ToString(DefaultOptions);
 
-	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
-	public string ToString(AnalysisResultFormattingOptions options) => ToString(options, default(IFormatProvider));
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
+	public string ToString(FormattingOptions options) => ToString(options, default(IFormatProvider));
 
-	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
 	public string ToString(Func<string, Step, string>? stepStringReplacer) => ToString(DefaultOptions, null, stepStringReplacer);
 
-	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?)"/>
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?)"/>
 	public string ToString(IFormatProvider? formatProvider) => ToString(DefaultOptions, formatProvider);
 
-	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
 	public string ToString(IFormatProvider? formatProvider, Func<string, Step, string> stepStringReplacer)
 		=> ToString(DefaultOptions, formatProvider, stepStringReplacer);
 
-	/// <inheritdoc cref="ToString(AnalysisResultFormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
-	public string ToString(AnalysisResultFormattingOptions options, Func<string, Step, string> stepStringReplacer)
+	/// <inheritdoc cref="ToString(FormattingOptions, IFormatProvider?, Func{string, Step, string}?)"/>
+	public string ToString(FormattingOptions options, Func<string, Step, string> stepStringReplacer)
 		=> ToString(options, null, stepStringReplacer);
 
 	/// <summary>
@@ -624,7 +624,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	/// <param name="options">The formatting options.</param>
 	/// <param name="formatProvider">The format provider instance.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider)
+	public string ToString(FormattingOptions options, IFormatProvider? formatProvider)
 		=> ToString(options, formatProvider, null);
 
 	/// <summary>
@@ -675,7 +675,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 	/// <seealso href="https://learn.microsoft.com/en-us/windows/uwp/devices-sensors/epson-esc-pos-with-formatting">
 	/// Epson formatting
 	/// </seealso>
-	public string ToString(AnalysisResultFormattingOptions options, IFormatProvider? formatProvider, Func<string, Step, string>? stepStringReplacer)
+	public string ToString(FormattingOptions options, IFormatProvider? formatProvider, Func<string, Step, string>? stepStringReplacer)
 	{
 		// Initialize and deconstruct variables.
 		if (this is not
@@ -699,13 +699,13 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 
 		// Print header.
 		var sb = new StringBuilder();
-		if (f(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
+		if (f(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzle", culture)}{puzzle:#}");
 		}
 
 		// Print solving steps (if worth).
-		if (f(AnalysisResultFormattingOptions.ShowSteps) && steps.Length != 0)
+		if (f(FormattingOptions.ShowSteps) && steps.Length != 0)
 		{
 			sb.AppendLine(SR.Get("AnalysisResultSolvingSteps", culture));
 
@@ -713,18 +713,18 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && !f(AnalysisResultFormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !f(FormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.AppendLine(SR.Get("Ellipsis", culture));
 						break;
 					}
 
 					var step = steps[i];
-					var stepStr = f(AnalysisResultFormattingOptions.ShowSimple) ? step.ToSimpleString(culture) : step.ToString(culture);
-					var showDiff = f(AnalysisResultFormattingOptions.ShowDifficulty);
+					var stepStr = f(FormattingOptions.ShowSimple) ? step.ToSimpleString(culture) : step.ToString(culture);
+					var showDiff = f(FormattingOptions.ShowDifficulty);
 					var d = $"({step.Difficulty,5}";
 					var s = $"{i + 1,4}";
-					var labelInfo = (f(AnalysisResultFormattingOptions.ShowStepLabel), showDiff) switch
+					var labelInfo = (f(FormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -734,13 +734,13 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 					sb.AppendLine(r($"{labelInfo}{stepStr}", step));
 				}
 
-				if (f(AnalysisResultFormattingOptions.ShowBottleneck))
+				if (f(FormattingOptions.ShowBottleneck))
 				{
-					a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
+					a(sb, f(FormattingOptions.ShowSeparators));
 
 					sb.Append(SR.Get("AnalysisResultBottleneckStep", culture));
 
-					if (f(AnalysisResultFormattingOptions.ShowStepLabel))
+					if (f(FormattingOptions.ShowStepLabel))
 					{
 						sb.Append(SR.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
@@ -751,7 +751,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 					sb.AppendLine(r(bottleneckStep.ToString(), bottleneckStep));
 				}
 
-				a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
+				a(sb, f(FormattingOptions.ShowSeparators));
 			}
 		}
 
@@ -762,7 +762,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 
 			sb.AppendLine(SR.Get("AnalysisResultTechniqueUsed", culture));
 
-			if (f(AnalysisResultFormattingOptions.ShowStepDetail))
+			if (f(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"{SR.Get("AnalysisResultMin", culture),6}, ");
 				sb.Append($"{SR.Get("AnalysisResultTotal", culture),6}");
@@ -784,7 +784,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 				select step into step
 				group step by step.GetName(formatProvider))
 			{
-				if (f(AnalysisResultFormattingOptions.ShowStepDetail))
+				if (f(FormattingOptions.ShowStepDetail))
 				{
 					var (currentTotal, currentMinimum) = (0, int.MaxValue);
 					foreach (var solvingStep in solvingStepsGroup)
@@ -798,7 +798,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
-			if (f(AnalysisResultFormattingOptions.ShowStepDetail))
+			if (f(FormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"  (---{total,8}) ");
 			}
@@ -806,7 +806,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 			sb.Append($"{stepsCount,3} ");
 			sb.AppendLine(SR.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 
-			a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
+			a(sb, f(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
@@ -814,7 +814,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
-		if (!solution.IsUndefined && f(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
+		if (!solution.IsUndefined && f(FormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{SR.Get("AnalysisResultPuzzleSolution", culture)}{solution:!}");
 		}
@@ -826,13 +826,13 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 			sb.Append(SR.Get("AnalysisResultNot", culture));
 		}
 		sb.AppendLine(SR.Get("AnalysisResultBeenSolved", culture));
-		if (f(AnalysisResultFormattingOptions.ShowElapsedTime))
+		if (f(FormattingOptions.ShowElapsedTime))
 		{
 			sb.Append(SR.Get("AnalysisResultTimeElapsed", culture));
 			sb.AppendLine(elapsed.ToString(@"hh\:mm\:ss\.fff"));
 		}
 
-		a(sb, f(AnalysisResultFormattingOptions.ShowSeparators));
+		a(sb, f(FormattingOptions.ShowSeparators));
 		return sb.ToString();
 
 
@@ -844,7 +844,7 @@ public sealed record AnalysisResult(in Grid Puzzle) :
 			}
 		}
 
-		bool f(AnalysisResultFormattingOptions x) => options.HasFlag(x);
+		bool f(FormattingOptions x) => options.HasFlag(x);
 
 		(int, Step)? getBottleneck()
 		{

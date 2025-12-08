@@ -10,6 +10,20 @@
             </summary>
             <param name="Puzzle">Indicates the original puzzle to be solved.</param>
         </member>
+        <member name="T:Sudoku.Analytics.AnalysisResult.ConsoleOutput">
+            <summary>
+            Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ConsoleOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
+            <summary>
+            Gets the output text.
+            </summary>
+            <param name="instance">The instance.</param>
+            <param name="options">The options.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
@@ -422,22 +436,22 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions)">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+            <inheritdoc cref="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
@@ -445,7 +459,7 @@
             <param name="formatProvider">The format provider instance.</param>
             <returns>A string that represents the current object.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResult.FormattingOptions,System.IFormatProvider,System.Func{System.String,Sudoku.Analytics.Step,System.String})">
             <summary>
             Returns a string that represents the current object, with the specified formatting options,
             with a string replacer method that can enhance the output string.
@@ -550,7 +564,7 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.AnalysisResult.StepsSpan"/>
         </member>
-        <member name="T:Sudoku.Analytics.AnalysisResultFormattingOptions">
+        <member name="T:Sudoku.Analytics.AnalysisResult.FormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalysisResult" /> instance.
             </summary>
@@ -564,74 +578,60 @@
 	</flags-attribute></remarks>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult" />
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.None">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.None">
             <summary>
             Indicates the none of the formatting option.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSeparators">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSeparators">
             <summary>
             Indicates the analysis result will append separators.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepLabel">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepLabel">
             <summary>
             Indicates the analysis result will append the step label.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSimple">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSimple">
             <summary>
             Indicates the analysis result will use simple mode to show steps.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowBottleneck">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowBottleneck">
             <summary>
             Indicates the analysis result will show the bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowDifficulty">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowDifficulty">
             <summary>
             Indicates the analysis result will show the difficulty.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepsAfterBottleneck">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepsAfterBottleneck">
             <summary>
             Indicates the analysis result will show all steps after the bottleneck.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepDetail">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowStepDetail">
             <summary>
             Indicates the analysis result will show the step detail.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSteps">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowSteps">
             <summary>
             Indicates the analysis result will show the steps.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowGridAndSolutionCode">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowGridAndSolutionCode">
             <summary>
             Indicates the analysis result will show grid code for the puzzle itself and its solution.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowElapsedTime">
+        <member name="F:Sudoku.Analytics.AnalysisResult.FormattingOptions.ShowElapsedTime">
             <summary>
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalysisResultOutput">
-            <summary>
-            Provides an easy way to output <see cref="T:Sudoku.Analytics.AnalysisResult"/> with console colorization.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalysisResultOutput.GetColorizedText(Sudoku.Analytics.AnalysisResult,Sudoku.Analytics.AnalysisResultFormattingOptions,System.IFormatProvider)">
-            <summary>
-            Gets the output text.
-            </summary>
-            <param name="instance">The instance.</param>
-            <param name="options">The options.</param>
-            <param name="formatProvider">The format provider.</param>
-            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>

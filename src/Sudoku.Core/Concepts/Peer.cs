@@ -69,7 +69,7 @@ public static class Peer
 			// Check cell.
 			foreach (var peerCell in PeersMapBackingField[cell])
 			{
-				map.Add(peerCell * 9 + digit);
+				map += peerCell * 9 + digit;
 			}
 
 			// Check digit.

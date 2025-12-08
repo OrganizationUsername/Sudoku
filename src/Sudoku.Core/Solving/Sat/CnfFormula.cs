@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.BooleanSatisfiability;
+namespace Sudoku.Solving.Sat;
 
 /// <summary>
 /// Represents a Boolean formula in Conjunctive Normal Form (CNF).

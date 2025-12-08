@@ -14233,422 +14233,6 @@
             Bit vector of cells with exactly two pencil marks.
             </summary>
         </member>
-        <member name="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula">
-            <summary>
-            Represents a Boolean formula in Conjunctive Normal Form (CNF).
-            Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
-            Positive integers represent a variable assigned <see langword="true"/>; negative integers represent the
-            negation of that variable (i.e. the literal is <see langword="false"/>).
-            </summary>
-            <param name="VariablesCount">Indicates total number of variables.</param>
-            <remarks>
-            Each clause is a disjunction of literals; the whole formula is the conjunction of clauses.
-            This type is a compact, immutable-ish container for CNF clauses used by the SAT solver.
-            For background on CNF, see <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia</see>.
-            </remarks>
-            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.#ctor(System.Int32)">
-            <summary>
-            Represents a Boolean formula in Conjunctive Normal Form (CNF).
-            Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
-            Positive integers represent a variable assigned <see langword="true"/>; negative integers represent the
-            negation of that variable (i.e. the literal is <see langword="false"/>).
-            </summary>
-            <param name="VariablesCount">Indicates total number of variables.</param>
-            <remarks>
-            Each clause is a disjunction of literals; the whole formula is the conjunction of clauses.
-            This type is a compact, immutable-ish container for CNF clauses used by the SAT solver.
-            For background on CNF, see <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia</see>.
-            </remarks>
-            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
-        </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.VariablesCount">
-            <summary>Indicates total number of variables.</summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Not">
-            <summary>
-            Represents character <c>"&#172;"</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Or">
-            <summary>
-            Represents character <c>"&#8744;"</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.And">
-            <summary>
-            Represents character <c>"&#8743;"</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Top">
-            <summary>
-            Represents character <c>"&#8868;"</c>, indicating "always true".
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Bottom">
-            <summary>
-            Represents character <c>"&#8869;"</c>, indicating "contradiction".
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.ClauseCount">
-            <summary>
-            Number of clauses currently stored in the formula.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Clauses">
-            <summary>
-            Internal storage for clauses. Each clause is stored as a <see cref="T:System.ReadOnlyMemory`1"/>
-            to avoid unnecessary allocations when passing clauses around.
-            </summary>
-            <seealso cref="T:System.ReadOnlyMemory`1"/>
-        </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.CnfFormula.Item(System.Int32)">
-            <summary>
-            Get clause at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The clause.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.AddClause(System.ReadOnlyMemory{System.Int32})">
-            <summary>
-            Add a new clause (disjunction of literals) to the expression.
-            </summary>
-            <param name="literals">The literals that form the clause.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.CnfFormula.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.BooleanSatisfiability.SatSolver">
-            <summary>
-            <para>
-            Represents a solver that solves a puzzle using a SAT solver pipeline.
-            The solver reduces the problem to a CNF formula (<see cref="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula"/>) and then
-            searches for a satisfying assignment using a DPLL-based engine enhanced with
-            CDCL, First-UIP clause learning, two-watched-literals propagation and VSIDS heuristics.
-            </para>
-            <para>
-            If we can reduce a problem into SAT ones, we can use SAT solving system to solve the problem.
-            For example, to solve a sudoku puzzle, we construct boolean CNF clauses encoding the rules
-            and provided clues, then search for a variable assignment that satisfies every clause.
-            </para>
-            </summary>
-            <remarks>
-            Helpful references for the implemented techniques:
-            <list type="number">
-            <item>
-            <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Wikipedia - SAT Problem</see>
-            </item>
-            <item>
-            <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - CNF (Conjunctive Normal Form)</see>
-            </item>
-            <item>
-            <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">Wikipedia - DPLL Algorithm</see>
-            </item>
-            <item>
-            <see href="https://www.princeton.edu/~chaff/publication/iccad2001_final.pdf">First-UIP Cut (paper)</see>
-            </item>
-            <item>
-            <see href="https://en.wikipedia.org/wiki/Conflict-driven_clause_learning">Wikipedia - CDCL</see>
-            </item>
-            <item>
-            <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_algorithm_heuristics#Variable_State_Independent_Decaying_Sum">Wikipedia - VSIDS</see>
-            </item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.BooleanSatisfiability.CnfFormula"/>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.SatSolver._formula">
-            <summary>
-            The root CNF formula to be solved.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolver#UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="E:Sudoku.Solving.BooleanSatisfiability.SatSolver.SolutionFound">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#BooleanSatisfiability#SatSolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.SatSolver.Encode(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
-            <summary>
-            Adds CNF clauses representing Sudoku rules:
-            <list type="number">
-            <item>Each cell contains exactly one digit.</item>
-            <item>Each digit appears exactly once per row, column, and block.</item>
-            <item>Given clues are fixed by unit clauses.</item>
-            </list>
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="mappedVariables">
-            Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
-            </param>
-        </member>
-        <member name="T:Sudoku.Solving.BooleanSatisfiability.Dpll">
-            <summary>
-            Implements DPLL algorithm (Davis–Putnam–Logemann–Loveland) extended with CDCL (clause learning),
-            two-watched-literals propagation and VSIDS heuristic for variable selection.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll.VariableDecay">
-            <summary>
-            Decay factor (typical .95).
-            On each conflict we multiply <see cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._variableIncrement"/> by <c>1 / <see cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll.VariableDecay"/></c>.
-            This implements MiniSAT-style increment/decay behavior for VSIDS.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll.ActivityRescaleThreshold">
-            <summary>
-            Threshold to trigger activity rescale to avoid overflow.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._assignmentStates">
-            <summary>
-            After solving, retrieve the assignment array
-            (index: <c>variable</c> is either <see langword="true"/> or <see langword="false"/>).
-            </summary>
-            <remarks>
-            Values:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>Literal assigned <see langword="true"/></description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>Literal assigned <see langword="false"/></description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>Unassigned</description>
-            </item>
-            </list>
-            The array is 1-based: index 0 is unused.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._solutionFoundEventHandler">
-            <summary>
-            Event handler used to report found solutions when enumerating all solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._formula">
-            <summary>
-            The CNF formula being solved.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._mappedVariables">
-            <summary>
-            Mapping from puzzle candidates to SAT variable indices (used to construct final grid solutions).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._parentSolver">
-            <summary>
-            The parent solver that created this instance (used for callbacks).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._variableLevel">
-            <summary>
-            Decision level per variable (0..). Used by conflict analysis and backjumping.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._trail">
-            <summary>
-            Signed literals in assignment order (the trail).
-            <list type="table">
-            <listheader>
-            <term>Sign</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c>+v</c></term>
-            <description><c>v = <see langword="true"/></c></description>
-            </item>
-            <item>
-            <term><c>-v</c></term>
-            <description><c>v = <see langword="false"/></c></description>
-            </item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._antecedent">
-            <summary>
-            Clause that implied this variable (null for decision variables). Stored as the clause read-only memory reference.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._decisionLevels">
-            <summary>
-            Stack: variable chosen at each decision level (for bookkeeping).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._decisionLevel">
-            <summary>
-            Current decision level.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._propagationIndex">
-            <summary>
-            Process <c>_trail</c> from this index forward during unit propagation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watches">
-            <summary>
-            Indexed by mapped literal index -> list of clause indices that watch this literal.
-            The array size is (2 * N + 1), mapping positive and negative signed literals to separate buckets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watchLiteralA">
-            <summary>
-            Watched literal A per clause (signed literal).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._watchLiteralB">
-            <summary>
-            Watched literal B per clause (signed literal); 0 if absent (unary clause).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._activity">
-            <summary>
-            VSIDS activity score per variable (1-based).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BooleanSatisfiability.Dpll._variableIncrement">
-            <summary>
-            Current variable increment used when bumping variables (MiniSAT-style).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.#ctor(Sudoku.Solving.BooleanSatisfiability.CnfFormula,System.EventHandler{Sudoku.Solving.BooleanSatisfiability.SatSolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.BooleanSatisfiability.SatSolver)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Solving.BooleanSatisfiability.Dpll"/> instance with required structures.
-            </summary>
-            <param name="formula"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._formula" path="/summary"/></param>
-            <param name="solutionFoundEventHandler"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._solutionFoundEventHandler" path="/summary"/></param>
-            <param name="mappedVariables"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._mappedVariables" path="/summary"/></param>
-            <param name="parentSolver"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._parentSolver" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.Solve(System.Threading.CancellationToken)">
-            <summary>
-            Try to find a satisfying assignment. Entry point for the CDCL search.
-            </summary>
-            <param name="cancellationToken">The cancellation token.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.Backtracking(System.Collections.Generic.List{System.Nullable{System.Boolean}[]},System.Threading.CancellationToken)">
-            <summary>
-            Performs DPLL recursive method with CDCL loop. Algorithm flow (high level):
-            <list type="number">
-            <item>Perform unit propagation to simplify (two-watched-literals based).</item>
-            <item>If conflict -> analyze (First-UIP), learn clause, bump VSIDS, backjump and continue.</item>
-            <item>If all variables assigned -> report solution.</item>
-            <item>Otherwise pick a variable (VSIDS) and branch on true/false (decision), recursing.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.UnitPropagation">
-            <summary>
-            Unit propagation (CDCL-aware), implemented using the two-watched-literals scheme.
-            </summary>
-            <returns>
-            Returns <see langword="null"/> if no conflict; otherwise returns the conflicting clause (the clause causing conflict).
-            </returns>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.ConflictAnalyze(System.Int32[])">
-            <summary>
-            Conflict analysis implementing the First-UIP scheme.
-            The routine performs conflict-driven resolution until the learned clause contains at most one literal
-            from the current decision level (the First Unique Implication Point), then returns the learned clause.
-            </summary>
-            <param name="conflictClause">Conflicting clause (array of literals).</param>
-            <returns>Learned clause (<see cref="T:System.Int32"/>[]), or <see langword="null"/> / <c>[]</c> for degenerate cases.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.ResolveOnVariable(System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Int32)">
-            <summary>
-            Resolve two clauses on variable <paramref name="variableToResolve"/>.
-            Standard resolution: union of both clauses without literals of the resolved variable.
-            </summary>
-            <param name="c1">Clause.</param>
-            <param name="c2">Antecedent.</param>
-            <param name="variableToResolve">The variable to be resolved.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.BacktrackToLevel(System.Int32)">
-            <summary>
-            Backtrack (undo assignments) down to level <paramref name="level"/> (inclusive).
-            After <c>BacktrackToLevel(L)</c> all variables with level &gt; L become unassigned.
-            </summary>
-            <param name="level">The level.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.LiteralToIndex(System.Int32)">
-            <summary>
-            Map signed literal to watches array index.
-            Positive <c>v</c> -> <c>index = v</c> (1..N); Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N).
-            We keep index 0 unused.
-            </summary>
-            <param name="literal">The literal.</param>
-            <returns>Watches array index.</returns>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.EnsureWatchesInit">
-            <summary>
-            Ensure watches array has correct size for current variable count.
-            Reinitializes watch buckets and watch literal lists when variable count changes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.RegisterClauseWatches(System.Int32)">
-            <summary>
-            Register watches for a clause <paramref name="clauseIndex"/>. Called during initial build and when learning clauses.
-            This sets the two watched literals (or single watch for unit clauses) and places the clause index into the
-            appropriate watch buckets so propagation can efficiently find affected clauses when literals change.
-            </summary>
-            <param name="clauseIndex">The clause.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.BumpActivityForClause(System.ReadOnlyMemory{System.Int32})">
-            <summary>
-            Bump activity for variables appearing in a clause (used by VSIDS heuristic).
-            Each variable's activity is increased by the current variable increment; if the activity grows
-            too large a rescale is performed to avoid numerical overflow.
-            </summary>
-            <param name="clause">The clause.</param>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.DecayActivities">
-            <summary>
-            Update <see cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._variableIncrement"/> on conflict (decay / increase the increment).
-            MiniSAT style: increase variable increment so future bumps have larger effect,
-            which is effectively a decay of past activity influence.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.RescaleActivities">
-            <summary>
-            Rescale activities to avoid overflow: divide all activities and <see cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._variableIncrement"/> by a large factor.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.PickBranchingVariable">
-            <summary>
-            Pick branching variable using VSIDS: highest activity among unassigned variables.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.BooleanSatisfiability.Dpll.BuildSolution(System.Nullable{System.Boolean}[],System.Collections.Generic.Dictionary{System.Int32,System.Int32})">
-            <summary>
-            Build solution via the specified states and mapped variables.
-            </summary>
-            <param name="assignmentStates"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._assignmentStates" path="/summary"/></param>
-            <param name="mappedVariables"><inheritdoc cref="F:Sudoku.Solving.BooleanSatisfiability.Dpll._mappedVariables" path="/summary"/></param>
-        </member>
         <member name="T:Sudoku.Solving.DictionaryQuery.DictionaryQuerySolver">
             <summary>
             Defines a <see cref="T:System.Collections.Generic.Dictionary`2"/>-based LINQ solver that solves a sudoku grid,
@@ -15118,6 +14702,422 @@
         </member>
         <member name="P:Sudoku.Solving.MultipleSolutionException.Message">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Sat.CnfFormula">
+            <summary>
+            Represents a Boolean formula in Conjunctive Normal Form (CNF).
+            Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
+            Positive integers represent a variable assigned <see langword="true"/>; negative integers represent the
+            negation of that variable (i.e. the literal is <see langword="false"/>).
+            </summary>
+            <param name="VariablesCount">Indicates total number of variables.</param>
+            <remarks>
+            Each clause is a disjunction of literals; the whole formula is the conjunction of clauses.
+            This type is a compact, immutable-ish container for CNF clauses used by the SAT solver.
+            For background on CNF, see <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia</see>.
+            </remarks>
+            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.#ctor(System.Int32)">
+            <summary>
+            Represents a Boolean formula in Conjunctive Normal Form (CNF).
+            Stores a list of clauses, where each clause is an array of <see cref="T:System.Int32"/> literals.
+            Positive integers represent a variable assigned <see langword="true"/>; negative integers represent the
+            negation of that variable (i.e. the literal is <see langword="false"/>).
+            </summary>
+            <param name="VariablesCount">Indicates total number of variables.</param>
+            <remarks>
+            Each clause is a disjunction of literals; the whole formula is the conjunction of clauses.
+            This type is a compact, immutable-ish container for CNF clauses used by the SAT solver.
+            For background on CNF, see <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia</see>.
+            </remarks>
+            <seealso href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - Conjunctive Normal Form</seealso>
+        </member>
+        <member name="P:Sudoku.Solving.Sat.CnfFormula.VariablesCount">
+            <summary>Indicates total number of variables.</summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.CnfFormula.Not">
+            <summary>
+            Represents character <c>"&#172;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.CnfFormula.Or">
+            <summary>
+            Represents character <c>"&#8744;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.CnfFormula.And">
+            <summary>
+            Represents character <c>"&#8743;"</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.CnfFormula.Top">
+            <summary>
+            Represents character <c>"&#8868;"</c>, indicating "always true".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.CnfFormula.Bottom">
+            <summary>
+            Represents character <c>"&#8869;"</c>, indicating "contradiction".
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Sat.CnfFormula.ClauseCount">
+            <summary>
+            Number of clauses currently stored in the formula.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Sat.CnfFormula.Clauses">
+            <summary>
+            Internal storage for clauses. Each clause is stored as a <see cref="T:System.ReadOnlyMemory`1"/>
+            to avoid unnecessary allocations when passing clauses around.
+            </summary>
+            <seealso cref="T:System.ReadOnlyMemory`1"/>
+        </member>
+        <member name="P:Sudoku.Solving.Sat.CnfFormula.Item(System.Int32)">
+            <summary>
+            Get clause at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The clause.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.AddClause(System.ReadOnlyMemory{System.Int32})">
+            <summary>
+            Add a new clause (disjunction of literals) to the expression.
+            </summary>
+            <param name="literals">The literals that form the clause.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.CnfFormula.System#Collections#Generic#IEnumerable{System#ReadOnlyMemory{System#Int32}}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.Sat.SatisfiabilitySolver">
+            <summary>
+            <para>
+            Represents a solver that solves a puzzle using a SAT solver pipeline.
+            The solver reduces the problem to a CNF formula (<see cref="T:Sudoku.Solving.Sat.CnfFormula"/>) and then
+            searches for a satisfying assignment using a DPLL-based engine enhanced with
+            CDCL, First-UIP clause learning, two-watched-literals propagation and VSIDS heuristics.
+            </para>
+            <para>
+            If we can reduce a problem into SAT ones, we can use SAT solving system to solve the problem.
+            For example, to solve a sudoku puzzle, we construct boolean CNF clauses encoding the rules
+            and provided clues, then search for a variable assignment that satisfies every clause.
+            </para>
+            </summary>
+            <remarks>
+            Helpful references for the implemented techniques:
+            <list type="number">
+            <item>
+            <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem">Wikipedia - SAT Problem</see>
+            </item>
+            <item>
+            <see href="https://en.wikipedia.org/wiki/Conjunctive_normal_form">Wikipedia - CNF (Conjunctive Normal Form)</see>
+            </item>
+            <item>
+            <see href="https://en.wikipedia.org/wiki/DPLL_algorithm">Wikipedia - DPLL Algorithm</see>
+            </item>
+            <item>
+            <see href="https://www.princeton.edu/~chaff/publication/iccad2001_final.pdf">First-UIP Cut (paper)</see>
+            </item>
+            <item>
+            <see href="https://en.wikipedia.org/wiki/Conflict-driven_clause_learning">Wikipedia - CDCL</see>
+            </item>
+            <item>
+            <see href="https://en.wikipedia.org/wiki/Boolean_satisfiability_algorithm_heuristics#Variable_State_Independent_Decaying_Sum">Wikipedia - VSIDS</see>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.Sat.CnfFormula"/>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.SatisfiabilitySolver._formula">
+            <summary>
+            The root CNF formula to be solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.Sat.SatisfiabilitySolver.Sudoku#Solving#ISolver#UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="E:Sudoku.Solving.Sat.SatisfiabilitySolver.SolutionFound">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.SatisfiabilitySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.SatisfiabilitySolver.Sudoku#Solving#ISolutionEnumerableSolver{Sudoku#Solving#Sat#SatisfiabilitySolver}#EnumerateSolutionsCore(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.SatisfiabilitySolver.Encode(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{System.Int32,System.Int32}@)">
+            <summary>
+            Adds CNF clauses representing Sudoku rules:
+            <list type="number">
+            <item>Each cell contains exactly one digit.</item>
+            <item>Each digit appears exactly once per row, column, and block.</item>
+            <item>Given clues are fixed by unit clauses.</item>
+            </list>
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="mappedVariables">
+            Indicates mapped variables that maps indices to each variable, in order to construct solution to the grid.
+            </param>
+        </member>
+        <member name="T:Sudoku.Solving.Sat.Dpll">
+            <summary>
+            Implements DPLL algorithm (Davis–Putnam–Logemann–Loveland) extended with CDCL (clause learning),
+            two-watched-literals propagation and VSIDS heuristic for variable selection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll.VariableDecay">
+            <summary>
+            Decay factor (typical .95).
+            On each conflict we multiply <see cref="F:Sudoku.Solving.Sat.Dpll._variableIncrement"/> by <c>1 / <see cref="F:Sudoku.Solving.Sat.Dpll.VariableDecay"/></c>.
+            This implements MiniSAT-style increment/decay behavior for VSIDS.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll.ActivityRescaleThreshold">
+            <summary>
+            Threshold to trigger activity rescale to avoid overflow.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._assignmentStates">
+            <summary>
+            After solving, retrieve the assignment array
+            (index: <c>variable</c> is either <see langword="true"/> or <see langword="false"/>).
+            </summary>
+            <remarks>
+            Values:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>Literal assigned <see langword="true"/></description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>Literal assigned <see langword="false"/></description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>Unassigned</description>
+            </item>
+            </list>
+            The array is 1-based: index 0 is unused.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._solutionFoundEventHandler">
+            <summary>
+            Event handler used to report found solutions when enumerating all solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._formula">
+            <summary>
+            The CNF formula being solved.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._mappedVariables">
+            <summary>
+            Mapping from puzzle candidates to SAT variable indices (used to construct final grid solutions).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._parentSolver">
+            <summary>
+            The parent solver that created this instance (used for callbacks).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._variableLevel">
+            <summary>
+            Decision level per variable (0..). Used by conflict analysis and backjumping.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._trail">
+            <summary>
+            Signed literals in assignment order (the trail).
+            <list type="table">
+            <listheader>
+            <term>Sign</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c>+v</c></term>
+            <description><c>v = <see langword="true"/></c></description>
+            </item>
+            <item>
+            <term><c>-v</c></term>
+            <description><c>v = <see langword="false"/></c></description>
+            </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._antecedent">
+            <summary>
+            Clause that implied this variable (null for decision variables). Stored as the clause read-only memory reference.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._decisionLevels">
+            <summary>
+            Stack: variable chosen at each decision level (for bookkeeping).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._decisionLevel">
+            <summary>
+            Current decision level.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._propagationIndex">
+            <summary>
+            Process <c>_trail</c> from this index forward during unit propagation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._watches">
+            <summary>
+            Indexed by mapped literal index -> list of clause indices that watch this literal.
+            The array size is (2 * N + 1), mapping positive and negative signed literals to separate buckets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._watchLiteralA">
+            <summary>
+            Watched literal A per clause (signed literal).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._watchLiteralB">
+            <summary>
+            Watched literal B per clause (signed literal); 0 if absent (unary clause).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._activity">
+            <summary>
+            VSIDS activity score per variable (1-based).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.Sat.Dpll._variableIncrement">
+            <summary>
+            Current variable increment used when bumping variables (MiniSAT-style).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.#ctor(Sudoku.Solving.Sat.CnfFormula,System.EventHandler{Sudoku.Solving.Sat.SatisfiabilitySolver,Sudoku.Solving.SolverSolutionFoundEventArgs},System.Collections.Generic.Dictionary{System.Int32,System.Int32},Sudoku.Solving.Sat.SatisfiabilitySolver)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.Sat.Dpll"/> instance with required structures.
+            </summary>
+            <param name="formula"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._formula" path="/summary"/></param>
+            <param name="solutionFoundEventHandler"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._solutionFoundEventHandler" path="/summary"/></param>
+            <param name="mappedVariables"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._mappedVariables" path="/summary"/></param>
+            <param name="parentSolver"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._parentSolver" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.Solve(System.Threading.CancellationToken)">
+            <summary>
+            Try to find a satisfying assignment. Entry point for the CDCL search.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.Backtracking(System.Collections.Generic.List{System.Nullable{System.Boolean}[]},System.Threading.CancellationToken)">
+            <summary>
+            Performs DPLL recursive method with CDCL loop. Algorithm flow (high level):
+            <list type="number">
+            <item>Perform unit propagation to simplify (two-watched-literals based).</item>
+            <item>If conflict -> analyze (First-UIP), learn clause, bump VSIDS, backjump and continue.</item>
+            <item>If all variables assigned -> report solution.</item>
+            <item>Otherwise pick a variable (VSIDS) and branch on true/false (decision), recursing.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.UnitPropagation">
+            <summary>
+            Unit propagation (CDCL-aware), implemented using the two-watched-literals scheme.
+            </summary>
+            <returns>
+            Returns <see langword="null"/> if no conflict; otherwise returns the conflicting clause (the clause causing conflict).
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.ConflictAnalyze(System.Int32[])">
+            <summary>
+            Conflict analysis implementing the First-UIP scheme.
+            The routine performs conflict-driven resolution until the learned clause contains at most one literal
+            from the current decision level (the First Unique Implication Point), then returns the learned clause.
+            </summary>
+            <param name="conflictClause">Conflicting clause (array of literals).</param>
+            <returns>Learned clause (<see cref="T:System.Int32"/>[]), or <see langword="null"/> / <c>[]</c> for degenerate cases.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.ResolveOnVariable(System.ReadOnlySpan{System.Int32},System.ReadOnlySpan{System.Int32},System.Int32)">
+            <summary>
+            Resolve two clauses on variable <paramref name="variableToResolve"/>.
+            Standard resolution: union of both clauses without literals of the resolved variable.
+            </summary>
+            <param name="c1">Clause.</param>
+            <param name="c2">Antecedent.</param>
+            <param name="variableToResolve">The variable to be resolved.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.BacktrackToLevel(System.Int32)">
+            <summary>
+            Backtrack (undo assignments) down to level <paramref name="level"/> (inclusive).
+            After <c>BacktrackToLevel(L)</c> all variables with level &gt; L become unassigned.
+            </summary>
+            <param name="level">The level.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.LiteralToIndex(System.Int32)">
+            <summary>
+            Map signed literal to watches array index.
+            Positive <c>v</c> -> <c>index = v</c> (1..N); Negative <c>-v</c> -> <c>index = N + v</c> (N+1 .. 2N).
+            We keep index 0 unused.
+            </summary>
+            <param name="literal">The literal.</param>
+            <returns>Watches array index.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.EnsureWatchesInit">
+            <summary>
+            Ensure watches array has correct size for current variable count.
+            Reinitializes watch buckets and watch literal lists when variable count changes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.RegisterClauseWatches(System.Int32)">
+            <summary>
+            Register watches for a clause <paramref name="clauseIndex"/>. Called during initial build and when learning clauses.
+            This sets the two watched literals (or single watch for unit clauses) and places the clause index into the
+            appropriate watch buckets so propagation can efficiently find affected clauses when literals change.
+            </summary>
+            <param name="clauseIndex">The clause.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.BumpActivityForClause(System.ReadOnlyMemory{System.Int32})">
+            <summary>
+            Bump activity for variables appearing in a clause (used by VSIDS heuristic).
+            Each variable's activity is increased by the current variable increment; if the activity grows
+            too large a rescale is performed to avoid numerical overflow.
+            </summary>
+            <param name="clause">The clause.</param>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.DecayActivities">
+            <summary>
+            Update <see cref="F:Sudoku.Solving.Sat.Dpll._variableIncrement"/> on conflict (decay / increase the increment).
+            MiniSAT style: increase variable increment so future bumps have larger effect,
+            which is effectively a decay of past activity influence.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.RescaleActivities">
+            <summary>
+            Rescale activities to avoid overflow: divide all activities and <see cref="F:Sudoku.Solving.Sat.Dpll._variableIncrement"/> by a large factor.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.PickBranchingVariable">
+            <summary>
+            Pick branching variable using VSIDS: highest activity among unassigned variables.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.Sat.Dpll.BuildSolution(System.Nullable{System.Boolean}[],System.Collections.Generic.Dictionary{System.Int32,System.Int32})">
+            <summary>
+            Build solution via the specified states and mapped variables.
+            </summary>
+            <param name="assignmentStates"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._assignmentStates" path="/summary"/></param>
+            <param name="mappedVariables"><inheritdoc cref="F:Sudoku.Solving.Sat.Dpll._mappedVariables" path="/summary"/></param>
         </member>
         <member name="T:Sudoku.Solving.SolutionEnumerableSolverExtensions">
             <summary>

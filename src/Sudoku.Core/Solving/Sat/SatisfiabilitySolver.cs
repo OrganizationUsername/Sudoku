@@ -1,4 +1,4 @@
-namespace Sudoku.Solving.BooleanSatisfiability;
+namespace Sudoku.Solving.Sat;
 
 /// <summary>
 /// <para>
@@ -37,7 +37,7 @@ namespace Sudoku.Solving.BooleanSatisfiability;
 /// </list>
 /// </remarks>
 /// <seealso cref="CnfFormula"/>
-public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
+public sealed class SatisfiabilitySolver : ISolver, ISolutionEnumerableSolver<SatisfiabilitySolver>
 {
 	/// <summary>
 	/// The root CNF formula to be solved.
@@ -50,7 +50,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 
 
 	/// <inheritdoc/>
-	public event EventHandler<SatSolver, SolverSolutionFoundEventArgs>? SolutionFound;
+	public event EventHandler<SatisfiabilitySolver, SolverSolutionFoundEventArgs>? SolutionFound;
 
 
 	/// <inheritdoc/>
@@ -68,7 +68,7 @@ public sealed class SatSolver : ISolver, ISolutionEnumerableSolver<SatSolver>
 	}
 
 	/// <inheritdoc/>
-	void ISolutionEnumerableSolver<SatSolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
+	void ISolutionEnumerableSolver<SatisfiabilitySolver>.EnumerateSolutionsCore(in Grid grid, CancellationToken cancellationToken)
 	{
 		Encode(grid, out var mappedVariables);
 		new Dpll(_formula, SolutionFound, mappedVariables, this).Solve(cancellationToken);
@@ -264,7 +264,7 @@ file sealed class Dpll
 	/// <summary>
 	/// Event handler used to report found solutions when enumerating all solutions.
 	/// </summary>
-	private readonly EventHandler<SatSolver, SolverSolutionFoundEventArgs>? _solutionFoundEventHandler;
+	private readonly EventHandler<SatisfiabilitySolver, SolverSolutionFoundEventArgs>? _solutionFoundEventHandler;
 
 	/// <summary>
 	/// The CNF formula being solved.
@@ -279,7 +279,7 @@ file sealed class Dpll
 	/// <summary>
 	/// The parent solver that created this instance (used for callbacks).
 	/// </summary>
-	private readonly SatSolver? _parentSolver;
+	private readonly SatisfiabilitySolver? _parentSolver;
 
 	/// <summary>
 	/// Decision level per variable (0..). Used by conflict analysis and backjumping.
@@ -361,9 +361,9 @@ file sealed class Dpll
 	/// <param name="parentSolver"><inheritdoc cref="_parentSolver" path="/summary"/></param>
 	public Dpll(
 		CnfFormula formula,
-		EventHandler<SatSolver, SolverSolutionFoundEventArgs>? solutionFoundEventHandler,
+		EventHandler<SatisfiabilitySolver, SolverSolutionFoundEventArgs>? solutionFoundEventHandler,
 		Dictionary<Candidate, int>? mappedVariables,
-		SatSolver? parentSolver
+		SatisfiabilitySolver? parentSolver
 	)
 	{
 		// Initialize base fields.

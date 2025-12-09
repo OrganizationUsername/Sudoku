@@ -7571,6 +7571,18 @@
             Provides a way to use pipeline syntax.
             </summary>
         </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(``0@,System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(``0@,System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.IO.FileInfo)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(``0@,System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(``0@,System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.IO.FileInfo)"/>
+        </member>
         <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``2(``0,System.Func{``0,``1})">
             <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.op_BitwiseOr(`0,System.Func{`0,`1})"/>
         </member>
@@ -7588,6 +7600,59 @@
         </member>
         <member name="M:System.Pipelines.Pipeline.op_BitwiseOr``4(System.ValueTuple{``0,``1,``2},)">
             <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(System.Action{``0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_LessThan(System.Action{`0},System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(System.Action{``0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_LessThan(System.Action{`0},System.IO.FileInfo)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(System.Action{``0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_GreaterThan(System.Action{`0},System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(System.Action{``0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_GreaterThan(System.Action{`0},System.IO.FileInfo)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(System.Func{``0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_LessThan(System.Func{`0},System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_LessThan``1(System.Func{``0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_LessThan(System.Func{`0},System.IO.FileInfo)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(System.Func{``0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_GreaterThan(System.Func{`0},System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.op_GreaterThan``1(System.Func{``0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_GreaterThan(System.Func{`0},System.IO.FileInfo)"/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.&lt;M&gt;$C212137196B4CD5D4F4B6509E3CC6F1C">
+            <summary>
+            Provides extension members on <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of instance.</typeparam>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)">
+            <summary>
+            Redirects the standard output (STDOUT) of a command to a specified file.
+            If the file already exists, its contents are overwritten.
+            </summary>
+            <param name="input">The desired input data.</param>
+            <param name="filePath">The file path.</param>
+            <returns>The file stream.</returns>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)">
+            <summary>
+            Redirects the standard input (STDIN) of a command to come from a specified file instead of the keyboard.
+            </summary>
+            <param name="input">The desired input data.</param>
+            <param name="filePath">The file path.</param>
+            <returns>The file stream.</returns>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
         </member>
         <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$A71816571835CF3F039CA55AD01F5336`2.&lt;M&gt;$E57A6FEB39B3B4140D27E470F9F2E7F7">
             <summary>
@@ -7645,6 +7710,36 @@
         </member>
         <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},)">
             <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$B5167FACA1A0EC653B80EE217AE63569`4.op_BitwiseOr(System.ValueTuple{`0,`1,`2},System.Func{`0,`1,`2,`3})"/>
+        </member>
+        <member name="T:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.&lt;M&gt;$CE12476F51AD52113CF94EF5D450A68E">
+            <summary>
+            Provides extension members on <see cref="T:System.Action`1"/>.
+            </summary>
+            <typeparam name="T">The type of argument.</typeparam>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_LessThan(System.Action{`0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_LessThan(System.Action{`0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_GreaterThan(System.Action{`0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$F068BB865AB87FE408C521B9BFB44D65`1.op_GreaterThan(System.Action{`0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_LessThan(System.Func{`0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_LessThan(System.Func{`0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_LessThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_GreaterThan(System.Func{`0},System.String)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
+        </member>
+        <member name="M:System.Pipelines.Pipeline.&lt;G&gt;$442D1F344658BA1A06DA180AAEC04957`1.op_GreaterThan(System.Func{`0},System.IO.FileInfo)">
+            <inheritdoc cref="M:System.Pipelines.Pipeline.&lt;G&gt;$479BA271704D2986F6C700780589C150`1.op_GreaterThan(`0@,System.String)"/>
         </member>
         <member name="T:System.RandomExtensions">
             <summary>

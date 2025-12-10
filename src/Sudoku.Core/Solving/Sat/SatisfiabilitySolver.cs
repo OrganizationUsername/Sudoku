@@ -36,6 +36,12 @@ namespace Sudoku.Solving.Sat;
 /// </item>
 /// </list>
 /// </remarks>
+/// <!--
+/// Some complex examples that I have used:
+/// <code>
+/// ....62........98........37........527.......984........69........27........48....
+/// </code>
+/// -->
 /// <seealso cref="CnfFormula"/>
 public sealed class SatisfiabilitySolver : ISolver, ISolutionEnumerableSolver<SatisfiabilitySolver>
 {

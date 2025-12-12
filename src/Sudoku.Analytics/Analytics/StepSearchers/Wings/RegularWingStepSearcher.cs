@@ -129,12 +129,12 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					{
 						foreach (var digit in grid.GetCandidates(cell))
 						{
-							candidateOffsets.Add(new(digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(digit == zDigit ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal, cell * 9 + digit));
 						}
 					}
 					foreach (var digit in grid.GetCandidates(pivot))
 					{
-						candidateOffsets.Add(new(digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal, pivot * 9 + digit));
+						candidateOffsets.Add(new(digit == zDigit ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal, pivot * 9 + digit));
 					}
 
 					var step = new RegularWingStep(

@@ -369,7 +369,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 	{
 		views = [
 			[
-				.. from candidate in fins select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, candidate),
+				.. from candidate in fins select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, candidate),
 				.. finnedChain.MonoparentChainGetViews(grid, supportedRules)[0]
 			]
 		];
@@ -380,7 +380,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 			if (node is CandidateViewNode { Candidate: var candidate } && fins.Contains(candidate))
 			{
 				views[0].Remove(node);
-				views[0].Add(new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, candidate));
+				views[0].Add(new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, candidate));
 			}
 		}
 	}
@@ -393,8 +393,8 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 	protected virtual ReadOnlySpan<ViewNode> GetInitialViewNodes(in Grid grid)
 		=> (ViewNode[])[
 			IsCellMultiple
-				? new CellViewNode(ColorIdentifierAlias.Normal, this.First().Key / 9)
-				: new HouseViewNode(ColorIdentifierAlias.Normal, BitOperations.TrailingZeroCount(Candidates.Cells.SharedHouses))
+				? new CellViewNode(ColorDescriptorAlias.Normal, this.First().Key / 9)
+				: new HouseViewNode(ColorDescriptorAlias.Normal, BitOperations.TrailingZeroCount(Candidates.Cells.SharedHouses))
 		];
 
 	/// <inheritdoc/>
@@ -447,8 +447,8 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 				// the coloring will be wrong due to lack of an reversion-back operation.
 				// I'll adjust the backing logic in the future.
 				var id = isDynamicChaining
-					? node.IsOn ? ColorIdentifierAlias.Normal : ColorIdentifierAlias.Auxiliary1
-					: (++j & 1) == 0 ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal;
+					? node.IsOn ? ColorDescriptorAlias.Normal : ColorDescriptorAlias.Auxiliary1
+					: (++j & 1) == 0 ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal;
 				foreach (var candidate in node.Map)
 				{
 					var currentViewNode = new CandidateViewNode(id, candidate);
@@ -466,7 +466,7 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 					continue;
 				}
 
-				var currentViewNode = new ChainLinkViewNode(ColorIdentifierAlias.Normal, firstNode.Map, secondNode.Map, isStrong);
+				var currentViewNode = new ChainLinkViewNode(ColorDescriptorAlias.Normal, firstNode.Map, secondNode.Map, isStrong);
 				globalView.Add(currentViewNode);
 				subview.Add(currentViewNode);
 			}

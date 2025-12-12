@@ -85,9 +85,9 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 				conclusions.AsMemory(),
 				[
 					[
-						.. from cell in a select new CircleViewNode(ColorIdentifierAlias.Normal, cell),
-						.. from cell in b select new TriangleViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-						.. from cell in c select new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, cell)
+						.. from cell in a select new CircleViewNode(ColorDescriptorAlias.Normal, cell),
+						.. from cell in b select new TriangleViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+						.. from cell in c select new DiamondViewNode(ColorDescriptorAlias.Auxiliary3, cell)
 					]
 				],
 				context.Options,

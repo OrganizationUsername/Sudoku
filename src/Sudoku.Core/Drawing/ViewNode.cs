@@ -22,7 +22,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(HeartViewNode), 16)]
 [JsonDerivedType(typeof(TruthSpaceViewNode), 20)]
 [JsonDerivedType(typeof(LinkSpaceViewNode), 21)]
-public abstract class ViewNode(ColorIdentifier identifier) :
+public abstract class ViewNode(ColorDescriptor identifier) :
 	ICloneable,
 	IDrawableItem,
 	IEquatable<ViewNode>,
@@ -31,7 +31,7 @@ public abstract class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
 	/// </summary>
-	public ColorIdentifier Identifier { get; } = identifier;
+	public ColorDescriptor Identifier { get; } = identifier;
 
 	/// <summary>
 	/// Indicates the inner identifier to distinct the different types that is derived from <see cref="ViewNode"/>.

@@ -347,14 +347,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var cell in CandidatesMap[digit] & crossline)
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 			}
 		}
 
 		var theOtherCornerCellNoElimination = (corner - targetCell)[0];
 		foreach (var digit in grid.GetCandidates(theOtherCornerCellNoElimination))
 		{
-			candidateOffsets.Add(new(ColorIdentifierAlias.Normal, theOtherCornerCellNoElimination * 9 + digit));
+			candidateOffsets.Add(new(ColorDescriptorAlias.Normal, theOtherCornerCellNoElimination * 9 + digit));
 		}
 
 		var step = new QiuDeadlyPatternType1Step(
@@ -362,10 +362,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[
 				[
 					.. candidateOffsets,
-					new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-					new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+					new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+					new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 				]
 			],
 			context.Options,
@@ -429,7 +429,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			{
 				candidateOffsets.Add(
 					new(
-						digit == extraDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
+						digit == extraDigit ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal,
 						cell * 9 + digit
 					)
 				);
@@ -439,7 +439,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var cell in CandidatesMap[digit] & crossline)
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 			}
 		}
 
@@ -448,10 +448,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[
 				[
 					.. candidateOffsets,
-					new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-					new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+					new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+					new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 				]
 			],
 			context.Options,
@@ -550,7 +550,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					{
 						candidateOffsets.Add(
 							new(
-								(extraDigitsMask >> digit & 1) != 0 ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
+								(extraDigitsMask >> digit & 1) != 0 ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -560,14 +560,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var cell in CandidatesMap[d] & crossline)
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + d));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + d));
 					}
 				}
 				foreach (var cell in extraCells)
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary3, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary3, cell * 9 + digit));
 					}
 				}
 
@@ -576,11 +576,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					[
 						[
 							.. candidateOffsets,
-							new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-							new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-							new HouseViewNode(ColorIdentifierAlias.Auxiliary1, cornerCellCoveredHouse),
-							new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-							new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+							new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+							new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+							new HouseViewNode(ColorDescriptorAlias.Auxiliary1, cornerCellCoveredHouse),
+							new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+							new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 						]
 					],
 					context.Options,
@@ -649,12 +649,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					{
 						foreach (var cell in CandidatesMap[d] & crossline)
 						{
-							candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + d));
+							candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + d));
 						}
 					}
 					foreach (var cell in corner)
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cell * 9 + digit));
 					}
 
 					var step = new QiuDeadlyPatternType4Step(
@@ -662,11 +662,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 						[
 							[
 								.. candidateOffsets,
-								new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-								new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-								new ConjugateLinkViewNode(ColorIdentifierAlias.Auxiliary1, corner[0], corner[1], digit),
-								new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-								new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+								new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+								new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+								new ConjugateLinkViewNode(ColorDescriptorAlias.Auxiliary1, corner[0], corner[1], digit),
+								new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+								new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 							]
 						],
 						context.Options,
@@ -736,7 +736,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var cell in CandidatesMap[digit] & crossline)
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in corner)
@@ -745,7 +745,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			{
 				candidateOffsets.Add(
 					new(
-						(digitsShouldBeLocked >> digit & 1) != 0 ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
+						(digitsShouldBeLocked >> digit & 1) != 0 ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal,
 						cell * 9 + digit
 					)
 				);
@@ -767,11 +767,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[
 				[
 					.. candidateOffsets,
-					new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-					new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-					new HouseViewNode(ColorIdentifierAlias.Auxiliary1, house),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+					new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+					new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+					new HouseViewNode(ColorDescriptorAlias.Auxiliary1, house),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 				]
 			],
 			context.Options,
@@ -839,14 +839,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & externalDigitsMaskToBeChecked))
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in corner)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 			}
 		}
 
@@ -855,10 +855,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[
 				[
 					.. candidateOffsets,
-					new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-					new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+					new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+					new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 				]
 			],
 			context.Options,
@@ -947,19 +947,19 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & externalDigitsMaskToBeChecked))
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in corner)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 			}
 		}
 		foreach (var cell in truth)
 		{
-			candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + elimDigit));
+			candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cell * 9 + elimDigit));
 		}
 
 		var step = new QiuDeadlyPatternExternalType2Step(
@@ -967,10 +967,10 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			[
 				[
 					.. candidateOffsets,
-					new HouseViewNode(ColorIdentifierAlias.Normal, l1),
-					new HouseViewNode(ColorIdentifierAlias.Normal, l2),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[0]),
-					new CellViewNode(ColorIdentifierAlias.Normal, corner[1])
+					new HouseViewNode(ColorDescriptorAlias.Normal, l1),
+					new HouseViewNode(ColorDescriptorAlias.Normal, l2),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[0]),
+					new CellViewNode(ColorDescriptorAlias.Normal, corner[1])
 				]
 			],
 			context.Options,

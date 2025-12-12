@@ -135,21 +135,21 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					[
 						..
 						from digit in (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)
-						select new CandidateViewNode(ColorIdentifierAlias.Normal, pivot * 9 + digit),
+						select new CandidateViewNode(ColorDescriptorAlias.Normal, pivot * 9 + digit),
 						..
 						from digit in (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)
-						select new CandidateViewNode(ColorIdentifierAlias.Normal, cell1 * 9 + digit),
+						select new CandidateViewNode(ColorDescriptorAlias.Normal, cell1 * 9 + digit),
 						..
 						from digit in (Mask)(grid.GetCandidates(cell2) & currentDigitsMask)
-						select new CandidateViewNode(ColorIdentifierAlias.Normal, cell2 * 9 + digit)
+						select new CandidateViewNode(ColorDescriptorAlias.Normal, cell2 * 9 + digit)
 					],
 					[
 						..
 						from house1CellExcluded in house1CellsExcluded
-						select new CellViewNode(ColorIdentifierAlias.Elimination, house1CellExcluded),
+						select new CellViewNode(ColorDescriptorAlias.Elimination, house1CellExcluded),
 						..
 						from house2CellExcluded in house2CellsExcluded
-						select new CellViewNode(ColorIdentifierAlias.Elimination, house2CellExcluded),
+						select new CellViewNode(ColorDescriptorAlias.Elimination, house2CellExcluded),
 						..
 						from cell in (HousesMap[(cell1.AsCellMap() + pivot).SharedLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
 						select new BabaGroupViewNode(cell, characters[1], currentDigitsMask),
@@ -283,17 +283,17 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var digit in (Mask)(grid.GetCandidates(pivot1) & fourDigitsMask))
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, pivot1 * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Normal, pivot1 * 9 + digit));
 					}
 					foreach (var digit in (Mask)(grid.GetCandidates(pivot2) & fourDigitsMask))
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, pivot2 * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Normal, pivot2 * 9 + digit));
 					}
 					foreach (var cell in map - pivot1 - pivot2)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & fourDigitsMask))
 						{
-							candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+							candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 						}
 					}
 
@@ -302,7 +302,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
-							candidateOffsetsView2.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+							candidateOffsetsView2.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 						}
 					}
 					var candidateOffsetsView3 = new List<CandidateViewNode>();
@@ -310,19 +310,19 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
-							candidateOffsetsView3.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+							candidateOffsetsView3.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 						}
 					}
 
 					var cellOffsets1 = new List<CellViewNode>();
 					foreach (var cell in house1CellsExcludedPivot1 | house2CellsExcludedPivot1)
 					{
-						cellOffsets1.Add(new(ColorIdentifierAlias.Elimination, cell));
+						cellOffsets1.Add(new(ColorDescriptorAlias.Elimination, cell));
 					}
 					var cellOffsets2 = new List<CellViewNode>();
 					foreach (var cell in house1CellsExcludedPivot2 | house2CellsExcludedPivot2)
 					{
-						cellOffsets2.Add(new(ColorIdentifierAlias.Elimination, cell));
+						cellOffsets2.Add(new(ColorDescriptorAlias.Elimination, cell));
 					}
 
 					var step = new FireworkQuadrupleStep(

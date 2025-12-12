@@ -1,9 +1,9 @@
 namespace Sudoku.Descriptors;
 
 /// <summary>
-/// Indicates an alias of color identifier.
+/// Indicates an alias of color descriptor.
 /// </summary>
-public enum ColorIdentifierAlias
+public enum ColorDescriptorAlias
 {
 	/// <summary>
 	/// Indicates the normal color.

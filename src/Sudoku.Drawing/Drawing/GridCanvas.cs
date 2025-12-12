@@ -151,32 +151,32 @@ public sealed partial class GridCanvas : IDisposable
 	/// <param name="id">The identifier instance.</param>
 	/// <returns></returns>
 	/// <exception cref="ArgumentException">Throws when the specified value is invalid.</exception>
-	private Color GetColor(ColorIdentifier id)
+	private Color GetColor(ColorDescriptor id)
 		=> id switch
 		{
 			(_, (byte a, byte r, byte g, byte b)) => Color.FromArgb(a, r, g, b),
 			(_, int value) when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
-			(_, ColorIdentifierAlias alias) => alias switch
+			(_, ColorDescriptorAlias alias) => alias switch
 			{
-				ColorIdentifierAlias.Normal => Settings.NormalColor,
-				ColorIdentifierAlias.Assignment => Settings.AssignmentColor,
-				ColorIdentifierAlias.OverlappedAssignment => Settings.OverlappedAssignmentColor,
-				ColorIdentifierAlias.Elimination => Settings.EliminationColor,
-				ColorIdentifierAlias.Cannibalism => Settings.CannibalismColor,
-				ColorIdentifierAlias.Exofin => Settings.ExofinColor,
-				ColorIdentifierAlias.Endofin => Settings.EndofinColor,
-				ColorIdentifierAlias.Link => Settings.ChainColor,
-				ColorIdentifierAlias.Auxiliary1 => Settings.AuxiliaryColorSet[0],
-				ColorIdentifierAlias.Auxiliary2 => Settings.AuxiliaryColorSet[1],
-				ColorIdentifierAlias.Auxiliary3 => Settings.AuxiliaryColorSet[2],
-				ColorIdentifierAlias.AlmostLockedSet1 => Settings.AlmostLockedSetColorSet[0],
-				ColorIdentifierAlias.AlmostLockedSet2 => Settings.AlmostLockedSetColorSet[1],
-				ColorIdentifierAlias.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
-				ColorIdentifierAlias.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
-				ColorIdentifierAlias.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
-				ColorIdentifierAlias.Rectangle1 => Settings.RectangleColorSet[0],
-				ColorIdentifierAlias.Rectangle2 => Settings.RectangleColorSet[1],
-				ColorIdentifierAlias.Rectangle3 => Settings.RectangleColorSet[2],
+				ColorDescriptorAlias.Normal => Settings.NormalColor,
+				ColorDescriptorAlias.Assignment => Settings.AssignmentColor,
+				ColorDescriptorAlias.OverlappedAssignment => Settings.OverlappedAssignmentColor,
+				ColorDescriptorAlias.Elimination => Settings.EliminationColor,
+				ColorDescriptorAlias.Cannibalism => Settings.CannibalismColor,
+				ColorDescriptorAlias.Exofin => Settings.ExofinColor,
+				ColorDescriptorAlias.Endofin => Settings.EndofinColor,
+				ColorDescriptorAlias.Link => Settings.ChainColor,
+				ColorDescriptorAlias.Auxiliary1 => Settings.AuxiliaryColorSet[0],
+				ColorDescriptorAlias.Auxiliary2 => Settings.AuxiliaryColorSet[1],
+				ColorDescriptorAlias.Auxiliary3 => Settings.AuxiliaryColorSet[2],
+				ColorDescriptorAlias.AlmostLockedSet1 => Settings.AlmostLockedSetColorSet[0],
+				ColorDescriptorAlias.AlmostLockedSet2 => Settings.AlmostLockedSetColorSet[1],
+				ColorDescriptorAlias.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
+				ColorDescriptorAlias.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
+				ColorDescriptorAlias.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
+				ColorDescriptorAlias.Rectangle1 => Settings.RectangleColorSet[0],
+				ColorDescriptorAlias.Rectangle2 => Settings.RectangleColorSet[1],
+				ColorDescriptorAlias.Rectangle3 => Settings.RectangleColorSet[2],
 				_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))
 			},
 			_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))

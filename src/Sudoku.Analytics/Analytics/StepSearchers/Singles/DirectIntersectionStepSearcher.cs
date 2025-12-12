@@ -156,12 +156,12 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				Array.Single(new Conclusion(Assignment, lastCell, lastDigit)),
 				[
 					[
-						.. from cell in intersection select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
+						.. from cell in intersection select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + digit),
 						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
-						new CandidateViewNode(ColorIdentifierAlias.Elimination, lastCell * 9 + digit),
-						new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary1, coverSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
+						new CandidateViewNode(ColorDescriptorAlias.Elimination, lastCell * 9 + digit),
+						new HouseViewNode(ColorDescriptorAlias.Normal, baseSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary1, coverSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary3, house)
 					]
 				],
 				context.Options,
@@ -229,16 +229,16 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				[
 					[
 						.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
-						.. from cell in intersection select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
+						.. from cell in intersection select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + digit),
 						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
 						..
 						from cell in HousesMap[house] & elimMap
-						select new CandidateViewNode(ColorIdentifierAlias.Elimination, cell * 9 + digit),
-						new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, lastCell),
-						new CandidateViewNode(ColorIdentifierAlias.Elimination, lastCell * 9 + digit),
-						new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary1, coverSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
+						select new CandidateViewNode(ColorDescriptorAlias.Elimination, cell * 9 + digit),
+						new DiamondViewNode(ColorDescriptorAlias.Auxiliary3, lastCell),
+						new CandidateViewNode(ColorDescriptorAlias.Elimination, lastCell * 9 + digit),
+						new HouseViewNode(ColorDescriptorAlias.Normal, baseSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary1, coverSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary3, house)
 					]
 				],
 				context.Options,
@@ -303,13 +303,13 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				Array.Single(new Conclusion(Assignment, lastCell, lastDigit)),
 				[
 					[
-						.. from cell in intersection select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
+						.. from cell in intersection select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + digit),
 						.. Excluder.GetNakedSingleExcluders(grid, lastCell, lastDigit, out _),
 						.. Excluder.GetLockedCandidatesExcluders(grid, digit, baseSet, intersection),
-						new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, lastCell),
-						new CandidateViewNode(ColorIdentifierAlias.Elimination, lastCell * 9 + digit),
-						new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary1, coverSet)
+						new DiamondViewNode(ColorDescriptorAlias.Auxiliary3, lastCell),
+						new CandidateViewNode(ColorDescriptorAlias.Elimination, lastCell * 9 + digit),
+						new HouseViewNode(ColorDescriptorAlias.Normal, baseSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary1, coverSet)
 					]
 				],
 				context.Options,

@@ -170,7 +170,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										{
 											candidateOffsets.Add(
 												new(
-													!cannibalMode && digit == digitIsolated ? ColorIdentifierAlias.Auxiliary2 : ColorIdentifierAlias.Normal,
+													!cannibalMode && digit == digitIsolated ? ColorDescriptorAlias.Auxiliary2 : ColorDescriptorAlias.Normal,
 													cell * 9 + digit
 												)
 											);
@@ -182,7 +182,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										{
 											candidateOffsets.Add(
 												new(
-													!cannibalMode && digit == digitIsolated ? ColorIdentifierAlias.Auxiliary2 : ColorIdentifierAlias.Auxiliary1,
+													!cannibalMode && digit == digitIsolated ? ColorDescriptorAlias.Auxiliary2 : ColorDescriptorAlias.Auxiliary1,
 													cell * 9 + digit
 												)
 											);
@@ -195,8 +195,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 											candidateOffsets.Add(
 												new(
 													digitIsolated == digit
-														? ColorIdentifierAlias.Auxiliary2
-														: (blockMask >> digit & 1) != 0 ? ColorIdentifierAlias.Normal : ColorIdentifierAlias.Auxiliary1,
+														? ColorDescriptorAlias.Auxiliary2
+														: (blockMask >> digit & 1) != 0 ? ColorDescriptorAlias.Normal : ColorDescriptorAlias.Auxiliary1,
 													cell * 9 + digit
 												)
 											);
@@ -208,8 +208,8 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										[
 											[
 												.. candidateOffsets,
-												new HouseViewNode(ColorIdentifierAlias.Normal, coverSet),
-												new HouseViewNode(ColorIdentifierAlias.Auxiliary2, baseSet)
+												new HouseViewNode(ColorDescriptorAlias.Normal, coverSet),
+												new HouseViewNode(ColorDescriptorAlias.Auxiliary2, baseSet)
 											]
 										],
 										context.Options,

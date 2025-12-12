@@ -1,9 +1,9 @@
 namespace Sudoku.Descriptors;
 
 /// <summary>
-/// Indicates type of color identifier.
+/// Indicates type of color descriptor.
 /// </summary>
-public enum ColorIdentifierType
+public enum ColorDescriptorType
 {
 	/// <summary>
 	/// Indicates the type is ARGB.

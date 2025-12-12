@@ -1654,23 +1654,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. endoTargetCell != -1 ? [new CellViewNode(ColorIdentifierAlias.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
-					.. from cell in crosslineFinal - endoTargetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. endoTargetCell != -1 ? [new CellViewNode(ColorDescriptorAlias.Auxiliary1, endoTargetCell)] : (ViewNode[])[],
+					.. from cell in crosslineFinal - endoTargetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
 					..
 					from cell in baseCells
 					from digit in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + digit),
 					..
 					from cell in crosslineFinal - endoTargetCell
 					where grid.GetState(cell) == CellState.Empty
 					from digit in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -1873,23 +1873,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
 					where grid.GetState(cell) == CellState.Empty && (grid.GetCandidates(cell) >> conjugatePair.Digit & 1) != 0
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -1996,19 +1996,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					.. from cell in singleMirrors select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					.. from cell in singleMirrors select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -2199,19 +2199,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					.. from cell in lastSixteenCells & ~EmptyCells select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					.. from cell in lastSixteenCells & ~EmptyCells select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -2318,18 +2318,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -2403,24 +2403,24 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCells
 					from d in grid.GetCandidates(cell)
 					where (inferredTargetPairMask >> d & 1) != 0
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					let isSwordfishDigit = (inferredTargetPairMask >> d & 1) != 0
-					let colorIdentifier = isSwordfishDigit ? ColorIdentifierAlias.Auxiliary3 : ColorIdentifierAlias.Auxiliary2
+					let colorIdentifier = isSwordfishDigit ? ColorDescriptorAlias.Auxiliary3 : ColorDescriptorAlias.Auxiliary2
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
@@ -2532,28 +2532,28 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								conclusions.AsMemory(),
 								[
 									[
-										.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-										.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-										.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-										.. from cell in extraCells select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
-										.. from cell in mirrorEmptyCells select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+										.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+										.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+										.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+										.. from cell in extraCells select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell),
+										.. from cell in mirrorEmptyCells select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell),
 										..
 										from cell in baseCells
 										from d in grid.GetCandidates(cell)
-										select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+										select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 										..
 										from cell in mirrorEmptyCells
 										from d in (Mask)(grid.GetCandidates(cell) & extraDigitsMask)
-										select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+										select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 										..
 										from cell in extraCells
 										from d in (Mask)(grid.GetCandidates(cell) & extraDigitsMask)
-										select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+										select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 										..
 										from cell in crossline
 										where grid.GetState(cell) == CellState.Empty
 										from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-										select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+										select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 										//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 									]
 								],
@@ -2673,12 +2673,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 				}
 
-				cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell));
+				cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell));
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + lockedDigit)
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + lockedDigit)
 				);
-				houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, lockedBlock));
+				houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, lockedBlock));
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
 				inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
@@ -2709,21 +2709,21 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					.. cellOffsets,
 					.. candidateOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = (ld >> d & 1) != 0 ? ColorIdentifierAlias.Auxiliary2 : ColorIdentifierAlias.Normal
+					let colorIdentifier = (ld >> d & 1) != 0 ? ColorDescriptorAlias.Auxiliary2 : ColorDescriptorAlias.Normal
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
@@ -2792,18 +2792,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -2931,23 +2931,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary1, targetCell),
-					.. from cell in crosslineIncludingTarget - endoTargetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary1, targetCell),
+					.. from cell in crosslineIncludingTarget - endoTargetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = trueBaseDigit != d ? ColorIdentifierAlias.Normal : ColorIdentifierAlias.Auxiliary1
+					let colorIdentifier = trueBaseDigit != d ? ColorDescriptorAlias.Normal : ColorDescriptorAlias.Auxiliary1
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crosslineIncludingTarget & ~EmptyCells
 					where grid.GetDigit(cell) == trueBaseDigit
-					select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
+					select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
 					..
 					from cell in crosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3031,9 +3031,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + lockedDigit)
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + lockedDigit)
 				);
-				houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, lockedBlock));
+				houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, lockedBlock));
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
 				inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
@@ -3050,21 +3050,21 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					.. cellOffsets,
 					.. candidateOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					let colorIdentifier = (ld >> d & 1) != 0 ? ColorIdentifierAlias.Auxiliary2 : ColorIdentifierAlias.Normal
+					let colorIdentifier = (ld >> d & 1) != 0 ? ColorDescriptorAlias.Auxiliary2 : ColorDescriptorAlias.Normal
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
 					from cell in crosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
@@ -3128,20 +3128,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline - missingValueCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					.. valueDigitCell != -1 ? [new CellViewNode(ColorIdentifierAlias.Auxiliary3, valueDigitCell)] : (ViewNode[])[],
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, missingValueCell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					.. valueDigitCell != -1 ? [new CellViewNode(ColorDescriptorAlias.Auxiliary3, valueDigitCell)] : (ViewNode[])[],
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, missingValueCell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3202,7 +3202,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
 			}
 
-			cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell));
+			cellOffsets.AddRange(from cell in mirrorCellsThisTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell));
 		}
 		if (conclusions.Count == 0)
 		{
@@ -3213,21 +3213,21 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
 					.. cellOffsets,
-					.. from cell in crossline - missingValueCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, valueDigitCell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, missingValueCell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, valueDigitCell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, missingValueCell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3317,20 +3317,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline - missingValueCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, valueDigitCell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, missingValueCell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, valueDigitCell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, missingValueCell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3401,20 +3401,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline - missingValueCell select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, valueDigitCell),
-					new CellViewNode(ColorIdentifierAlias.Auxiliary3, missingValueCell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline - missingValueCell select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, valueDigitCell),
+					new CellViewNode(ColorDescriptorAlias.Auxiliary3, missingValueCell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3474,18 +3474,18 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells | theOtherBaseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -3557,23 +3557,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in crossline select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells | theOtherBaseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells | theOtherTargetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in crossline select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells | theOtherBaseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCells | theOtherTargetCells
 					from d in grid.GetCandidates(cell)
 					where (lockedDigitsMask >> d & 1) != 0
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in crossline
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					let colorIdentifier = (lockedDigitsMask >> d & 1) != 0 ? ColorIdentifierAlias.Auxiliary3 : ColorIdentifierAlias.Auxiliary2
+					let colorIdentifier = (lockedDigitsMask >> d & 1) != 0 ? ColorDescriptorAlias.Auxiliary3 : ColorDescriptorAlias.Auxiliary2
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
@@ -3686,9 +3686,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			candidateOffsets.AddRange(
 				from cell in lockedMemberMap
-				select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + lockedDigit)
+				select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + lockedDigit)
 			);
-			houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, lockedBlock));
+			houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, lockedBlock));
 
 			lockedDigitsMask |= (Mask)(1 << lockedDigit);
 			inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
@@ -3716,23 +3716,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					.. cellOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCells
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					.. candidateOffsets,
 					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
@@ -3881,9 +3881,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			candidateOffsets.AddRange(
 				from cell in lockedMemberMap
-				select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + lockedDigit)
+				select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + lockedDigit)
 			);
-			houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, lockedBlock));
+			houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, lockedBlock));
 
 			lockedDigitsMask |= (Mask)(1 << lockedDigit);
 			inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
@@ -3897,23 +3897,23 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					.. cellOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCell.AsCellMap() + endoTargetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					.. candidateOffsets,
 					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
@@ -4011,9 +4011,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				candidateOffsets.AddRange(
 					from cell in lockedMemberMap
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + lockedDigit)
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + lockedDigit)
 				);
-				houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, lockedBlock));
+				houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, lockedBlock));
 
 				lockedDigitsMask |= (Mask)(1 << lockedDigit);
 				inferredBaseDigitsMask |= (Mask)((grid[endoTargetCells] | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
@@ -4028,27 +4028,27 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in endoTargetCells + targetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in endoTargetCells + targetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					.. cellOffsets,
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in endoTargetCells + targetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in endoTargetCells
 					from d in (Mask)(grid.GetCandidates(cell) & almostHiddenSetDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					.. candidateOffsets,
 					.. houseOffsets,
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
@@ -4124,22 +4124,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCells
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -4210,22 +4210,22 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
-					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCell.AsCellMap() + endoTargetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
+					.. from cell in expandedCrosslineIncludingTarget select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in targetCell.AsCellMap() + endoTargetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -4286,28 +4286,28 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in endoTargetCellsGroup + targetCell select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in endoTargetCellsGroup + targetCell select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
 					..
 					from cell in expandedCrosslineIncludingTarget
-					select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in endoTargetCellsGroup
 					from digit in (Mask)(grid.GetCandidates(cell) & almostHiddenSetMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary1, cell * 9 + digit),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in endoTargetCellsGroup + targetCell
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -4418,21 +4418,21 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
 					..
 					from cell in expandedCrosslineIncludingTarget & ~targetCells
-					select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
-					.. from cell in singleMirrors select new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+					select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
+					.. from cell in singleMirrors select new CellViewNode(ColorDescriptorAlias.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],
@@ -4538,25 +4538,25 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			conclusions.AsMemory(),
 			[
 				[
-					.. from cell in baseCells select new CellViewNode(ColorIdentifierAlias.Normal, cell),
-					.. from cell in targetCells select new CellViewNode(ColorIdentifierAlias.Auxiliary1, cell),
+					.. from cell in baseCells select new CellViewNode(ColorDescriptorAlias.Normal, cell),
+					.. from cell in targetCells select new CellViewNode(ColorDescriptorAlias.Auxiliary1, cell),
 					..
 					from cell in expandedCrosslineIncludingTarget & ~targetCells
-					select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+					select new CellViewNode(ColorDescriptorAlias.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
-					select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + d),
 					..
 					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + d),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary2, cell * 9 + d),
 					..
 					from conjugatePair in conjugatePairs
 					from cell in conjugatePair.Map
 					where grid.GetState(cell) == CellState.Empty && (grid.GetCandidates(cell) >> conjugatePair.Digit & 1) != 0
-					select new CandidateViewNode(ColorIdentifierAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
+					select new CandidateViewNode(ColorDescriptorAlias.Auxiliary3, cell * 9 + conjugatePair.Digit),
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 				]
 			],

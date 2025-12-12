@@ -20,10 +20,10 @@ internal partial class DrawableFactory
 		var isOverlapped = overlapped.Exists(conclusion => conclusion.Candidate == candidate);
 		var id = (type, isOverlapped) switch
 		{
-			(Assignment, true) => ColorIdentifierAlias.OverlappedAssignment,
-			(Assignment, _) => ColorIdentifierAlias.Assignment,
-			(Elimination, true) => ColorIdentifierAlias.Cannibalism,
-			_ => ColorIdentifierAlias.Elimination
+			(Assignment, true) => ColorDescriptorAlias.OverlappedAssignment,
+			(Assignment, _) => ColorDescriptorAlias.Assignment,
+			(Elimination, true) => ColorDescriptorAlias.Cannibalism,
+			_ => ColorDescriptorAlias.Elimination
 		};
 		ForCandidateNodeCore(
 			id,
@@ -446,7 +446,7 @@ internal partial class DrawableFactory
 	/// <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
 	/// <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
 	private static void ForCandidateNodeCore(
-		ColorIdentifier id,
+		ColorDescriptor id,
 		Color color,
 		Candidate candidate,
 		CandidateViewNode? candidateNode,

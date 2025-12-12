@@ -466,7 +466,7 @@ public sealed partial class BrokenLoopStepSearcher
 						{
 							candidateOffsets.RemoveAt(i);
 						}
-						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 					}
 				}
 
@@ -546,8 +546,8 @@ public sealed partial class BrokenLoopStepSearcher
 				}
 
 				var linkOffsets = GetLinkViewNodes(loop, guardians, out var candidateOffsets);
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, guardianCells[0] * 9 + conjugatePairDigit));
-				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, guardianCells[1] * 9 + conjugatePairDigit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, guardianCells[0] * 9 + conjugatePairDigit));
+				candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, guardianCells[1] * 9 + conjugatePairDigit));
 
 				var step = new BrokenLoopType4Step(
 					conclusions.AsMemory(),
@@ -555,7 +555,7 @@ public sealed partial class BrokenLoopStepSearcher
 						[
 							.. candidateOffsets,
 							.. linkOffsets,
-							new ConjugateLinkViewNode(ColorIdentifierAlias.Normal, guardianCells[0], guardianCells[1], conjugatePairDigit)
+							new ConjugateLinkViewNode(ColorDescriptorAlias.Normal, guardianCells[0], guardianCells[1], conjugatePairDigit)
 						]
 					],
 					context.Options,
@@ -591,17 +591,17 @@ public sealed partial class BrokenLoopStepSearcher
 		var linkOffsets = new List<ChainLinkViewNode>();
 		foreach (var candidate in loop)
 		{
-			candidateOffsets.Add(new(ColorIdentifierAlias.Normal, candidate));
+			candidateOffsets.Add(new(ColorDescriptorAlias.Normal, candidate));
 		}
 		foreach (var guardian in guardians)
 		{
-			candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, guardian));
+			candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, guardian));
 		}
 		for (var i = 0; i < loop.Count; i++)
 		{
 			var first = loop[i];
 			var second = loop[(i + 1) % loop.Count];
-			linkOffsets.Add(new(ColorIdentifierAlias.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
+			linkOffsets.Add(new(ColorDescriptorAlias.Normal, first.AsCandidateMap(), second.AsCandidateMap(), true));
 		}
 		return linkOffsets.AsSpan();
 	}

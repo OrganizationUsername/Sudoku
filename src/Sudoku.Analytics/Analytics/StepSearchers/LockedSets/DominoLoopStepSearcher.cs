@@ -163,10 +163,10 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 								new(
 									(k & 3) switch
 									{
-										0 => ColorIdentifierAlias.Auxiliary1,
-										1 => ColorIdentifierAlias.Auxiliary2,
-										2 => ColorIdentifierAlias.Auxiliary3,
-										_ => ColorIdentifierAlias.Normal
+										0 => ColorDescriptorAlias.Auxiliary1,
+										1 => ColorDescriptorAlias.Auxiliary2,
+										2 => ColorDescriptorAlias.Auxiliary3,
+										_ => ColorDescriptorAlias.Normal
 									},
 									cell * 9 + digit
 								)

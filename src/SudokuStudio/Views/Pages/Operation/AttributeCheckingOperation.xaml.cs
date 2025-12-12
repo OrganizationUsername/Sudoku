@@ -45,7 +45,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			from backdoor in backdoors
 			let type = backdoor.ConclusionType
 			let candidate = backdoor.Candidate
-			select new CandidateViewNode(type == Assignment ? ColorIdentifierAlias.Assignment : ColorIdentifierAlias.Elimination, candidate)
+			select new CandidateViewNode(type == Assignment ? ColorDescriptorAlias.Assignment : ColorDescriptorAlias.Elimination, candidate)
 		]);
 	}
 
@@ -82,7 +82,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		BasePage.VisualUnit = new TrueCandidateVisualUnit([
 			..
 			from candidate in trueCandidates
-			select new CandidateViewNode(ColorIdentifierAlias.Assignment, candidate)
+			select new CandidateViewNode(ColorDescriptorAlias.Assignment, candidate)
 		]);
 	}
 

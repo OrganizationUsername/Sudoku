@@ -107,7 +107,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
+												digit == zDigit ? ColorDescriptorAlias.Auxiliary1 : ColorDescriptorAlias.Normal,
 												cell * 9 + digit
 											)
 										);

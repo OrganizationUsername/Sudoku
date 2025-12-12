@@ -221,7 +221,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 				var step = new FullHouseStep(
 					Array.Single(new Conclusion(Assignment, resultCell, digit)),
-					[[new HouseViewNode(ColorIdentifierAlias.Normal, house)]],
+					[[new HouseViewNode(ColorDescriptorAlias.Normal, house)]],
 					context.Options,
 					house,
 					resultCell,
@@ -365,7 +365,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var digit = BitOperations.TrailingZeroCount(grid.GetCandidates(resultCell));
 			var step = new FullHouseStep(
 				Array.Single(new Conclusion(Assignment, resultCell, digit)),
-				[[new HouseViewNode(ColorIdentifierAlias.Normal, house)]],
+				[[new HouseViewNode(ColorDescriptorAlias.Normal, house)]],
 				context.Options,
 				house,
 				resultCell,
@@ -555,7 +555,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid.GetDigit(cell) == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new CircleViewNode(ColorIdentifierAlias.Normal, cell));
+					cellOffsets.Add(new CircleViewNode(ColorDescriptorAlias.Normal, cell));
 				}
 			}
 
@@ -591,7 +591,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 						[
 							[
 								.. excluderInfo.ExcludedCells.Count == 0 ? cellOffsets2 : [],
-								new HouseViewNode(ColorIdentifierAlias.Normal, house)
+								new HouseViewNode(ColorDescriptorAlias.Normal, house)
 							]
 						],
 						context.Options,

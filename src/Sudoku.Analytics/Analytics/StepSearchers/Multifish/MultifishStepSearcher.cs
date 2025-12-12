@@ -674,7 +674,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								truths += Space.RowColumn(cell / 9, cell % 9);
 								foreach (var digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary3, cell * 9 + digit));
+									candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary3, cell * 9 + digit));
 								}
 							}
 
@@ -688,9 +688,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 
 								var houseColorIdentifier = house switch
 								{
-									< 9 => ColorIdentifierAlias.Auxiliary2,
-									< 18 => ColorIdentifierAlias.Normal,
-									_ => ColorIdentifierAlias.Auxiliary1
+									< 9 => ColorDescriptorAlias.Auxiliary2,
+									< 18 => ColorDescriptorAlias.Normal,
+									_ => ColorDescriptorAlias.Auxiliary1
 								};
 								foreach (var digit in rct[house])
 								{
@@ -787,7 +787,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								{
 									case { House: var house and not -1 }:
 									{
-										houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, house));
+										houseOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, house));
 										break;
 									}
 									case { Cell: var cell }:
@@ -795,7 +795,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										cellOffsets.Add(
 											new(
 #if USE_DIFFERENT_COLOR_FOR_CELL_VIEW_NODES
-												ColorIdentifierAlias.Auxiliary3,
+												ColorDescriptorAlias.Auxiliary3,
 #else
 												ColorIdentifierAlias.Auxiliary2,
 #endif

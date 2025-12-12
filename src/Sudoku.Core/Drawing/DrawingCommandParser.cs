@@ -18,26 +18,26 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 	/// <summary>
 	/// Indicates the well-known identifiers, and their own key used in parsing.
 	/// </summary>
-	private static readonly (string[] Keys, ColorIdentifierAlias Kind)[] WellKnownIdentifiers = [
-		(["normal", "n", "0"], ColorIdentifierAlias.Normal),
-		(["auxiliary1", "aux1", "1"], ColorIdentifierAlias.Auxiliary1),
-		(["auxiliary2", "aux2", "2"], ColorIdentifierAlias.Auxiliary2),
-		(["auxiliary3", "aux3", "3"], ColorIdentifierAlias.Auxiliary3),
-		(["assignment", "a", "4"], ColorIdentifierAlias.Assignment),
-		(["overlapped_assignment", "overlapped", "o", "5"], ColorIdentifierAlias.OverlappedAssignment),
-		(["elimination", "elim", "e", "6"], ColorIdentifierAlias.Elimination),
-		(["cannibalism", "cannibal", "c", "7"], ColorIdentifierAlias.Cannibalism),
-		(["exofin", "f", "8"], ColorIdentifierAlias.Exofin),
-		(["endofin", "ef", "9"], ColorIdentifierAlias.Endofin),
-		(["link", "l", "10"], ColorIdentifierAlias.Link),
-		(["almost_locked_set1", "als1", "11"], ColorIdentifierAlias.AlmostLockedSet1),
-		(["almost_locked_set2", "als2", "12"], ColorIdentifierAlias.AlmostLockedSet2),
-		(["almost_locked_set3", "als3", "13"], ColorIdentifierAlias.AlmostLockedSet3),
-		(["almost_locked_set4", "als4", "14"], ColorIdentifierAlias.AlmostLockedSet4),
-		(["almost_locked_set5", "als5", "15"], ColorIdentifierAlias.AlmostLockedSet5),
-		(["rectangle1", "rect1", "r1", "16"], ColorIdentifierAlias.Rectangle1),
-		(["rectangle2", "rect2", "r2", "17"], ColorIdentifierAlias.Rectangle2),
-		(["rectangle3", "rect3", "r3", "18"], ColorIdentifierAlias.Rectangle3)
+	private static readonly (string[] Keys, ColorDescriptorAlias Kind)[] WellKnownIdentifiers = [
+		(["normal", "n", "0"], ColorDescriptorAlias.Normal),
+		(["auxiliary1", "aux1", "1"], ColorDescriptorAlias.Auxiliary1),
+		(["auxiliary2", "aux2", "2"], ColorDescriptorAlias.Auxiliary2),
+		(["auxiliary3", "aux3", "3"], ColorDescriptorAlias.Auxiliary3),
+		(["assignment", "a", "4"], ColorDescriptorAlias.Assignment),
+		(["overlapped_assignment", "overlapped", "o", "5"], ColorDescriptorAlias.OverlappedAssignment),
+		(["elimination", "elim", "e", "6"], ColorDescriptorAlias.Elimination),
+		(["cannibalism", "cannibal", "c", "7"], ColorDescriptorAlias.Cannibalism),
+		(["exofin", "f", "8"], ColorDescriptorAlias.Exofin),
+		(["endofin", "ef", "9"], ColorDescriptorAlias.Endofin),
+		(["link", "l", "10"], ColorDescriptorAlias.Link),
+		(["almost_locked_set1", "als1", "11"], ColorDescriptorAlias.AlmostLockedSet1),
+		(["almost_locked_set2", "als2", "12"], ColorDescriptorAlias.AlmostLockedSet2),
+		(["almost_locked_set3", "als3", "13"], ColorDescriptorAlias.AlmostLockedSet3),
+		(["almost_locked_set4", "als4", "14"], ColorDescriptorAlias.AlmostLockedSet4),
+		(["almost_locked_set5", "als5", "15"], ColorDescriptorAlias.AlmostLockedSet5),
+		(["rectangle1", "rect1", "r1", "16"], ColorDescriptorAlias.Rectangle1),
+		(["rectangle2", "rect2", "r2", "17"], ColorDescriptorAlias.Rectangle2),
+		(["rectangle3", "rect3", "r3", "18"], ColorDescriptorAlias.Rectangle3)
 	];
 
 	/// <summary>
@@ -134,8 +134,8 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 	/// Parses a string and returns the equivalent color identifier.
 	/// </summary>
 	/// <param name="str">The string to be parsed.</param>
-	/// <returns>A <see cref="ColorIdentifier"/> value returned.</returns>
-	private ColorIdentifier ParseColorIdentifier(string str)
+	/// <returns>A <see cref="ColorDescriptor"/> value returned.</returns>
+	private ColorDescriptor ParseColorIdentifier(string str)
 	{
 		var comparisonOption = IgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
 		return str switch
@@ -155,7 +155,7 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 		};
 
 
-		ColorIdentifierAlias? getFoundIndex(string aliasOrIdString)
+		ColorDescriptorAlias? getFoundIndex(string aliasOrIdString)
 		{
 			foreach (var (keys, value) in WellKnownIdentifiers)
 			{

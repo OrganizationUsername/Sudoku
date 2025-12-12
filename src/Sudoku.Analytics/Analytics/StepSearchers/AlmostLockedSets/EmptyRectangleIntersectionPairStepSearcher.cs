@@ -89,17 +89,17 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					var candidateOffsets = new List<CandidateViewNode>();
 					foreach (var digit in grid.GetCandidates(c1))
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, c1 * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Normal, c1 * 9 + digit));
 					}
 					foreach (var digit in grid.GetCandidates(c2))
 					{
-						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, c2 * 9 + digit));
+						candidateOffsets.Add(new(ColorDescriptorAlias.Normal, c2 * 9 + digit));
 					}
 					foreach (var cell in erMap)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)(1 << d1 | 1 << d2)))
 						{
-							candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
+							candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cell * 9 + digit));
 						}
 					}
 
@@ -109,13 +109,13 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cannibalCell) & (Mask)(1 << d1 | 1 << d2)))
 						{
-							candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cannibalCell * 9 + digit));
+							candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cannibalCell * 9 + digit));
 						}
 					}
 
 					var step = new EmptyRectangleIntersectionPairStep(
 						conclusions.AsMemory(),
-						[[.. candidateOffsets, new HouseViewNode(ColorIdentifierAlias.Normal, block)]],
+						[[.. candidateOffsets, new HouseViewNode(ColorDescriptorAlias.Normal, block)]],
 						context.Options,
 						c1,
 						c2,

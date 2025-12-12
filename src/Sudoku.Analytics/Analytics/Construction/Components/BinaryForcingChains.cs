@@ -97,7 +97,7 @@ public sealed class BinaryForcingChains(UnnamedChain branch1, UnnamedChain branc
 			var subview = View.Empty;
 			foreach (var node in chain)
 			{
-				var id = node.IsOn ? ColorIdentifierAlias.Normal : ColorIdentifierAlias.Auxiliary1;
+				var id = node.IsOn ? ColorDescriptorAlias.Normal : ColorDescriptorAlias.Auxiliary1;
 				foreach (var candidate in node.Map)
 				{
 					var currentViewNode = new CandidateViewNode(id, candidate);
@@ -115,7 +115,7 @@ public sealed class BinaryForcingChains(UnnamedChain branch1, UnnamedChain branc
 					continue;
 				}
 
-				var currentViewNode = new ChainLinkViewNode(ColorIdentifierAlias.Normal, firstNode.Map, secondNode.Map, isStrong);
+				var currentViewNode = new ChainLinkViewNode(ColorDescriptorAlias.Normal, firstNode.Map, secondNode.Map, isStrong);
 				globalView.Add(currentViewNode);
 				subview.Add(currentViewNode);
 			}

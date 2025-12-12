@@ -208,21 +208,21 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			{
 				foreach (var cell in alsCells & CandidatesMap[digit])
 				{
-					candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in c)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cell * 9 + digit));
 				}
 			}
 			foreach (var cell in ahsCells)
 			{
 				foreach (var digit in (Mask)(mask & grid.GetCandidates(cell)))
 				{
-					candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -241,21 +241,21 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				babaGroupingNodes.Add(new(cell, characters[size - 1], grid.GetCandidates(cell)));
 			}
 
-			var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifierAlias.Normal, cell);
+			var valueCellNodes = from cell in valueCells select new CellViewNode(ColorDescriptorAlias.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
 				conclusions.AsMemory(),
 				[
 					[
 						.. valueCellNodes,
 						.. candidateOffsets,
-						new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary2, coverSet)
+						new HouseViewNode(ColorDescriptorAlias.Normal, baseSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary2, coverSet)
 					],
 					[
 						.. valueCellNodes,
 						.. babaGroupingNodes,
-						new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
-						new HouseViewNode(ColorIdentifierAlias.Auxiliary2, coverSet)
+						new HouseViewNode(ColorDescriptorAlias.Normal, baseSet),
+						new HouseViewNode(ColorDescriptorAlias.Auxiliary2, coverSet)
 					]
 				],
 				context.Options,

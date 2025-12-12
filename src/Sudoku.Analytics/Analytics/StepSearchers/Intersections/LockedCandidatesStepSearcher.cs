@@ -82,9 +82,9 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 					(from cell in elimMap select new Conclusion(Elimination, cell, digit)).ToArray(),
 					[
 						[
-							.. from cell in intersection select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
-							new HouseViewNode(ColorIdentifierAlias.Normal, realBaseSet),
-							new HouseViewNode(ColorIdentifierAlias.Auxiliary1, realCoverSet),
+							.. from cell in intersection select new CandidateViewNode(ColorDescriptorAlias.Normal, cell * 9 + digit),
+							new HouseViewNode(ColorDescriptorAlias.Normal, realBaseSet),
+							new HouseViewNode(ColorDescriptorAlias.Auxiliary1, realCoverSet),
 							.. Excluder.GetLockedCandidatesExcluders(grid, digit, realBaseSet, intersection)
 						]
 					],

@@ -167,21 +167,21 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 												{
 													foreach (var cell in (selectedRowCells | rbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+														candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 													}
 												}
 												foreach (var digit in columnMask)
 												{
 													foreach (var cell in (selectedColumnCells | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
+														candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary1, cell * 9 + digit));
 													}
 												}
 												foreach (var digit in blockMask)
 												{
 													foreach (var cell in (selectedBlockCells | rbCurrentMap | cbCurrentMap) & CandidatesMap[digit])
 													{
-														candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
+														candidateOffsets.Add(new(ColorDescriptorAlias.Auxiliary2, cell * 9 + digit));
 													}
 												}
 
@@ -190,9 +190,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 													[
 														[
 															.. candidateOffsets,
-															new HouseViewNode(ColorIdentifierAlias.Normal, r),
-															new HouseViewNode(ColorIdentifierAlias.Auxiliary2, c),
-															new HouseViewNode(ColorIdentifierAlias.Auxiliary3, b)
+															new HouseViewNode(ColorDescriptorAlias.Normal, r),
+															new HouseViewNode(ColorDescriptorAlias.Auxiliary2, c),
+															new HouseViewNode(ColorDescriptorAlias.Auxiliary3, b)
 														]
 													],
 													context.Options,

@@ -535,7 +535,7 @@ internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelpe
 			{
 				if (selfPairedDigits.Contains(digit))
 				{
-					candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 					continue;
 				}
 
@@ -615,7 +615,7 @@ internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelpe
 			{
 				if (selfPairedDigits.Contains(digit))
 				{
-					candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorDescriptorAlias.Normal, cell * 9 + digit));
 					continue;
 				}
 

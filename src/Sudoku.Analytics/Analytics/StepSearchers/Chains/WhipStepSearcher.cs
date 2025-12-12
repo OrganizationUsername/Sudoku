@@ -396,7 +396,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			{
 				var currentCandidates = node.Assignment.Map;
 				var reason = node.Assignment.Reason;
-				currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
+				currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifierAlias.Normal, c)));
 
 				// Due to design of this algorithm, we should append extra strong and weak links between two assignments.
 				// Please note that the links are reversed, we should make a reversion
@@ -408,18 +408,18 @@ public sealed partial class WhipStepSearcher : StepSearcher
 						case Technique.FullHouse or Technique.NakedSingle:
 						{
 							var interimCandidate = currentCandidates[0] / 9 * 9 + f % 9;
-							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifier.Normal, p)));
-							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
+							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifierAlias.Normal, p)));
+							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifierAlias.Normal, c)));
+							candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, interimCandidate));
 
-							linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
-							linkOffsets.Add(new(ColorIdentifier.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
+							linkOffsets.Add(new(ColorIdentifierAlias.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
+							linkOffsets.Add(new(ColorIdentifierAlias.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
 							break;
 						}
 						case var type and >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn:
 						{
-							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifier.Normal, p)));
-							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifier.Normal, c)));
+							parentCandidates.ForEach(p => candidateOffsets.Add(new(ColorIdentifierAlias.Normal, p)));
+							currentCandidates.ForEach(c => candidateOffsets.Add(new(ColorIdentifierAlias.Normal, c)));
 
 							var currentCells = currentCandidates.Cells;
 							var currentDigit = BitOperations.Log2((uint)currentCandidates.Digits);
@@ -443,19 +443,19 @@ public sealed partial class WhipStepSearcher : StepSearcher
 
 								foreach (var cell in groupedCells)
 								{
-									candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + currentDigit));
+									candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + currentDigit));
 								}
 
 								var interimMap = (from cell in groupedCells select cell * 9 + currentDigit).AsCandidateMap();
-								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimMap, false));
-								linkOffsets.Add(new(ColorIdentifier.Normal, interimMap, currentCandidates, true));
+								linkOffsets.Add(new(ColorIdentifierAlias.Normal, parentCandidates, interimMap, false));
+								linkOffsets.Add(new(ColorIdentifierAlias.Normal, interimMap, currentCandidates, true));
 							}
 							else
 							{
 								var interimCandidate = f / 9 * 9 + currentDigit;
-								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, interimCandidate));
-								linkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
-								linkOffsets.Add(new(ColorIdentifier.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
+								candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, interimCandidate));
+								linkOffsets.Add(new(ColorIdentifierAlias.Normal, parentCandidates, interimCandidate.AsCandidateMap(), false));
+								linkOffsets.Add(new(ColorIdentifierAlias.Normal, interimCandidate.AsCandidateMap(), currentCandidates, true));
 							}
 							break;
 						}
@@ -475,13 +475,13 @@ public sealed partial class WhipStepSearcher : StepSearcher
 					// Skip for the start candidate if the start node is a single candidate that is the real start candidate.
 					foreach (var candidate in currentCandidates)
 					{
-						tryAndErrorCandidateOffsets.Add(new(ColorIdentifier.Normal, candidate));
+						tryAndErrorCandidateOffsets.Add(new(ColorIdentifierAlias.Normal, candidate));
 					}
 				}
 
 				if (node.Parent is { Assignment.Map: var parentCandidates })
 				{
-					tryAndErrorLinkOffsets.Add(new(ColorIdentifier.Normal, parentCandidates, currentCandidates, false));
+					tryAndErrorLinkOffsets.Add(new(ColorIdentifierAlias.Normal, parentCandidates, currentCandidates, false));
 				}
 			}
 
@@ -489,18 +489,18 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			ReadOnlySpan<ViewNode> contradictionViewNodes = [
 				.. failedSpace.Type == SpaceType.RowColumn
 					? [
-						new CellViewNode(ColorIdentifier.Auxiliary1, failedSpace.Cell),
+						new CellViewNode(ColorIdentifierAlias.Auxiliary1, failedSpace.Cell),
 						..
 						from digit in initialGrid.GetCandidates(failedSpace.Cell)
-						select new CandidateViewNode(ColorIdentifier.Auxiliary1, failedSpace.Cell * 9 + digit)
+						select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, failedSpace.Cell * 9 + digit)
 					]
 					: ReadOnlySpan<ViewNode>.Empty,
 				.. failedSpace.Type != SpaceType.RowColumn
 					? [
-						new HouseViewNode(ColorIdentifier.Auxiliary1, failedSpace.House),
+						new HouseViewNode(ColorIdentifierAlias.Auxiliary1, failedSpace.House),
 						..
 						from cell in HousesMap[failedSpace.House] & CandidatesMap[failedSpace.Digit]
-						select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + failedSpace.Digit)
+						select new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, cell * 9 + failedSpace.Digit)
 					]
 					: ReadOnlySpan<ViewNode>.Empty
 			];
@@ -509,7 +509,7 @@ public sealed partial class WhipStepSearcher : StepSearcher
 			var missingCandidateOffsets = new List<CandidateViewNode>();
 			foreach (var candidate in burredCandidates)
 			{
-				missingCandidateOffsets.Add(new(ColorIdentifier.Auxiliary2, candidate));
+				missingCandidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, candidate));
 			}
 
 			return [

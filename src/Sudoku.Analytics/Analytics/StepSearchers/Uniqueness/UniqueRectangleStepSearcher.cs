@@ -461,8 +461,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		return !arMode && isIncomplete || arMode;
 
 
-		static bool nodeChecker(CandidateViewNode d)
-			=> d.Identifier is WellKnownColorIdentifier { Kind: WellKnownColorIdentifierKind.Normal };
+		static bool nodeChecker(CandidateViewNode d) => d.Identifier is (_, ColorIdentifierAlias.Normal);
 	}
 
 	/// <summary>
@@ -481,7 +480,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="urCells">The all UR cells used.</param>
 	/// <returns>The list of highlight cells.</returns>
 	private static CellViewNode[] GetHighlightCells(Cell[] urCells)
-		=> from urCell in urCells select new CellViewNode(ColorIdentifier.Normal, urCell);
+		=> from urCell in urCells select new CellViewNode(ColorIdentifierAlias.Normal, urCell);
 
 
 	//

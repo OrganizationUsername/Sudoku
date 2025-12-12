@@ -504,7 +504,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
-					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+					candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
 				}
 			}
 
@@ -532,7 +532,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				{
 					candidateOffsets.Add(
 						new(
-							digit == targetDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+							digit == targetDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
 							cell * 9 + digit
 						)
 					);
@@ -621,8 +621,8 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 						candidateOffsets.Add(
 							new(
 								HousesMap[house].Contains(cell) && (subsetDigitsMask >> digit & 1) != 0
-									? ColorIdentifier.Auxiliary1
-									: ColorIdentifier.Normal,
+									? ColorIdentifierAlias.Auxiliary1
+									: ColorIdentifierAlias.Normal,
 								cell * 9 + digit
 							)
 						);
@@ -632,13 +632,13 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
 					}
 				}
 
 				var step = new AnonymousDeadlyPatternType3Step(
 					eliminations.AsMemory(),
-					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+					[[.. candidateOffsets, new HouseViewNode(ColorIdentifierAlias.Normal, house)]],
 					context.Options,
 					p,
 					pattern,
@@ -720,7 +720,7 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
 			}
 		}
 		foreach (var digit in conjugatePairDigitsMask)
@@ -728,13 +728,13 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			var map = extraCells & CandidatesMap[digit];
 			foreach (var cell in map)
 			{
-				candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+				candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell * 9 + digit));
 			}
 		}
 
 		var step = new AnonymousDeadlyPatternType4Step(
 			conclusions.AsMemory(),
-			[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+			[[.. candidateOffsets, new HouseViewNode(ColorIdentifierAlias.Normal, house)]],
 			context.Options,
 			p,
 			house,

@@ -154,30 +154,29 @@ public sealed partial class GridCanvas : IDisposable
 	private Color GetColor(ColorIdentifier id)
 		=> id switch
 		{
-			ColorColorIdentifier(var a, var r, var g, var b) => Color.FromArgb(a, r, g, b),
-			PaletteIdColorIdentifier { Value: var value } when TryGetPaletteColorByIndex(value, out var color)
-				=> Color.FromArgb(64, color),
-			WellKnownColorIdentifier { Kind: var kind } => kind switch
+			(_, (byte a, byte r, byte g, byte b)) => Color.FromArgb(a, r, g, b),
+			(_, int value) when TryGetPaletteColorByIndex(value, out var color) => Color.FromArgb(64, color),
+			(_, ColorIdentifierAlias alias) => alias switch
 			{
-				WellKnownColorIdentifierKind.Normal => Settings.NormalColor,
-				WellKnownColorIdentifierKind.Assignment => Settings.AssignmentColor,
-				WellKnownColorIdentifierKind.OverlappedAssignment => Settings.OverlappedAssignmentColor,
-				WellKnownColorIdentifierKind.Elimination => Settings.EliminationColor,
-				WellKnownColorIdentifierKind.Cannibalism => Settings.CannibalismColor,
-				WellKnownColorIdentifierKind.Exofin => Settings.ExofinColor,
-				WellKnownColorIdentifierKind.Endofin => Settings.EndofinColor,
-				WellKnownColorIdentifierKind.Link => Settings.ChainColor,
-				WellKnownColorIdentifierKind.Auxiliary1 => Settings.AuxiliaryColorSet[0],
-				WellKnownColorIdentifierKind.Auxiliary2 => Settings.AuxiliaryColorSet[1],
-				WellKnownColorIdentifierKind.Auxiliary3 => Settings.AuxiliaryColorSet[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet1 => Settings.AlmostLockedSetColorSet[0],
-				WellKnownColorIdentifierKind.AlmostLockedSet2 => Settings.AlmostLockedSetColorSet[1],
-				WellKnownColorIdentifierKind.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
-				WellKnownColorIdentifierKind.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
-				WellKnownColorIdentifierKind.Rectangle1 => Settings.RectangleColorSet[0],
-				WellKnownColorIdentifierKind.Rectangle2 => Settings.RectangleColorSet[1],
-				WellKnownColorIdentifierKind.Rectangle3 => Settings.RectangleColorSet[2],
+				ColorIdentifierAlias.Normal => Settings.NormalColor,
+				ColorIdentifierAlias.Assignment => Settings.AssignmentColor,
+				ColorIdentifierAlias.OverlappedAssignment => Settings.OverlappedAssignmentColor,
+				ColorIdentifierAlias.Elimination => Settings.EliminationColor,
+				ColorIdentifierAlias.Cannibalism => Settings.CannibalismColor,
+				ColorIdentifierAlias.Exofin => Settings.ExofinColor,
+				ColorIdentifierAlias.Endofin => Settings.EndofinColor,
+				ColorIdentifierAlias.Link => Settings.ChainColor,
+				ColorIdentifierAlias.Auxiliary1 => Settings.AuxiliaryColorSet[0],
+				ColorIdentifierAlias.Auxiliary2 => Settings.AuxiliaryColorSet[1],
+				ColorIdentifierAlias.Auxiliary3 => Settings.AuxiliaryColorSet[2],
+				ColorIdentifierAlias.AlmostLockedSet1 => Settings.AlmostLockedSetColorSet[0],
+				ColorIdentifierAlias.AlmostLockedSet2 => Settings.AlmostLockedSetColorSet[1],
+				ColorIdentifierAlias.AlmostLockedSet3 => Settings.AlmostLockedSetColorSet[2],
+				ColorIdentifierAlias.AlmostLockedSet4 => Settings.AlmostLockedSetColorSet[3],
+				ColorIdentifierAlias.AlmostLockedSet5 => Settings.AlmostLockedSetColorSet[4],
+				ColorIdentifierAlias.Rectangle1 => Settings.RectangleColorSet[0],
+				ColorIdentifierAlias.Rectangle2 => Settings.RectangleColorSet[1],
+				ColorIdentifierAlias.Rectangle3 => Settings.RectangleColorSet[2],
 				_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))
 			},
 			_ => throw new ArgumentException("The specified kind is invalid.", nameof(id))

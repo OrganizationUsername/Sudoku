@@ -79,9 +79,9 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 				conclusions.AsMemory(),
 				[
 					[
-						new ChuteViewNode(ColorIdentifier.Normal, chuteIndex),
-						new CellViewNode(ColorIdentifier.Normal, c1),
-						new CellViewNode(ColorIdentifier.Normal, c2)
+						new ChuteViewNode(ColorIdentifierAlias.Normal, chuteIndex),
+						new CellViewNode(ColorIdentifierAlias.Normal, c1),
+						new CellViewNode(ColorIdentifierAlias.Normal, c2)
 					]
 				],
 				context.Options,

@@ -18,26 +18,26 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 	/// <summary>
 	/// Indicates the well-known identifiers, and their own key used in parsing.
 	/// </summary>
-	private static readonly (string[] Keys, WellKnownColorIdentifierKind Kind)[] WellKnownIdentifiers = [
-		(["normal", "n", "0"], WellKnownColorIdentifierKind.Normal),
-		(["auxiliary1", "aux1", "1"], WellKnownColorIdentifierKind.Auxiliary1),
-		(["auxiliary2", "aux2", "2"], WellKnownColorIdentifierKind.Auxiliary2),
-		(["auxiliary3", "aux3", "3"], WellKnownColorIdentifierKind.Auxiliary3),
-		(["assignment", "a", "4"], WellKnownColorIdentifierKind.Assignment),
-		(["overlapped_assignment", "overlapped", "o", "5"], WellKnownColorIdentifierKind.OverlappedAssignment),
-		(["elimination", "elim", "e", "6"], WellKnownColorIdentifierKind.Elimination),
-		(["cannibalism", "cannibal", "c", "7"], WellKnownColorIdentifierKind.Cannibalism),
-		(["exofin", "f", "8"], WellKnownColorIdentifierKind.Exofin),
-		(["endofin", "ef", "9"], WellKnownColorIdentifierKind.Endofin),
-		(["link", "l", "10"], WellKnownColorIdentifierKind.Link),
-		(["almost_locked_set1", "als1", "11"], WellKnownColorIdentifierKind.AlmostLockedSet1),
-		(["almost_locked_set2", "als2", "12"], WellKnownColorIdentifierKind.AlmostLockedSet2),
-		(["almost_locked_set3", "als3", "13"], WellKnownColorIdentifierKind.AlmostLockedSet3),
-		(["almost_locked_set4", "als4", "14"], WellKnownColorIdentifierKind.AlmostLockedSet4),
-		(["almost_locked_set5", "als5", "15"], WellKnownColorIdentifierKind.AlmostLockedSet5),
-		(["rectangle1", "rect1", "r1", "16"], WellKnownColorIdentifierKind.Rectangle1),
-		(["rectangle2", "rect2", "r2", "17"], WellKnownColorIdentifierKind.Rectangle2),
-		(["rectangle3", "rect3", "r3", "18"], WellKnownColorIdentifierKind.Rectangle3)
+	private static readonly (string[] Keys, ColorIdentifierAlias Kind)[] WellKnownIdentifiers = [
+		(["normal", "n", "0"], ColorIdentifierAlias.Normal),
+		(["auxiliary1", "aux1", "1"], ColorIdentifierAlias.Auxiliary1),
+		(["auxiliary2", "aux2", "2"], ColorIdentifierAlias.Auxiliary2),
+		(["auxiliary3", "aux3", "3"], ColorIdentifierAlias.Auxiliary3),
+		(["assignment", "a", "4"], ColorIdentifierAlias.Assignment),
+		(["overlapped_assignment", "overlapped", "o", "5"], ColorIdentifierAlias.OverlappedAssignment),
+		(["elimination", "elim", "e", "6"], ColorIdentifierAlias.Elimination),
+		(["cannibalism", "cannibal", "c", "7"], ColorIdentifierAlias.Cannibalism),
+		(["exofin", "f", "8"], ColorIdentifierAlias.Exofin),
+		(["endofin", "ef", "9"], ColorIdentifierAlias.Endofin),
+		(["link", "l", "10"], ColorIdentifierAlias.Link),
+		(["almost_locked_set1", "als1", "11"], ColorIdentifierAlias.AlmostLockedSet1),
+		(["almost_locked_set2", "als2", "12"], ColorIdentifierAlias.AlmostLockedSet2),
+		(["almost_locked_set3", "als3", "13"], ColorIdentifierAlias.AlmostLockedSet3),
+		(["almost_locked_set4", "als4", "14"], ColorIdentifierAlias.AlmostLockedSet4),
+		(["almost_locked_set5", "als5", "15"], ColorIdentifierAlias.AlmostLockedSet5),
+		(["rectangle1", "rect1", "r1", "16"], ColorIdentifierAlias.Rectangle1),
+		(["rectangle2", "rect2", "r2", "17"], ColorIdentifierAlias.Rectangle2),
+		(["rectangle3", "rect3", "r3", "18"], ColorIdentifierAlias.Rectangle3)
 	];
 
 	/// <summary>
@@ -142,22 +142,20 @@ public readonly ref struct DrawingCommandParser([AllowNull] ref readonly Grid gr
 		{
 			['#', .. { Length: 6 or 8 } hex] => (from s in hex / 2 select (byte)Convert.ToInt32(s, 16)) switch
 			{
-				[var r, var g, var b] => new ColorColorIdentifier(255, r, g, b),
-				[var a, var r, var g, var b] => new ColorColorIdentifier(a, r, g, b),
+				[var r, var g, var b] => new(255, r, g, b),
+				[var a, var r, var g, var b] => new(a, r, g, b),
 				_ => throw new FormatException($"Invalid identifier string: '{str}'.")
 			},
-			['!', .. var aliased] when getFoundIndex(aliased) is { } foundKind
-				=> new WellKnownColorIdentifier(foundKind),
-			['&', var ch and (>= 'a' and <= 'f' or >= 'A' and <= 'F')] when char.ToLower(ch) - 'a' is var offset
-				=> new PaletteIdColorIdentifier(10 + offset),
+			['!', .. var aliased] when getFoundIndex(aliased) is { } foundKind => new(foundKind),
+			['&', var ch and (>= 'a' and <= 'f' or >= 'A' and <= 'F')] => new(10 + char.ToLower(ch) - 'a'),
 			['&', .. var paletteIdString] when int.TryParse(paletteIdString, out var paletteId) && paletteId is >= 1 and <= 15
-				=> new PaletteIdColorIdentifier(paletteId),
+				=> new(paletteId),
 			_
 				=> throw new FormatException($"Invalid identifier string: '{str}'.")
 		};
 
 
-		WellKnownColorIdentifierKind? getFoundIndex(string aliasOrIdString)
+		ColorIdentifierAlias? getFoundIndex(string aliasOrIdString)
 		{
 			foreach (var (keys, value) in WellKnownIdentifiers)
 			{

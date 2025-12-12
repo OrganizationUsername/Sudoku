@@ -63,13 +63,13 @@ internal sealed class BlossomLoopStepSearcherHelper : ForcingChainsStepSearcherH
 
 			var entryHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Entries is var entryCandidates && blossomLoop.EntryIsCellType
-					? new CellViewNode(ColorIdentifier.Normal, entryCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Normal, BitOperations.TrailingZeroCount(entryCandidates.Cells.SharedHouses))
+					? new CellViewNode(ColorIdentifierAlias.Normal, entryCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifierAlias.Normal, BitOperations.TrailingZeroCount(entryCandidates.Cells.SharedHouses))
 			);
 			var exitHouseOrCellViewNode = (ViewNode)(
 				blossomLoop.Exits is var exitCandidates && blossomLoop.ExitIsCellType
-					? new CellViewNode(ColorIdentifier.Auxiliary1, exitCandidates[0] / 9)
-					: new HouseViewNode(ColorIdentifier.Auxiliary1, BitOperations.TrailingZeroCount(exitCandidates.Cells.SharedHouses))
+					? new CellViewNode(ColorIdentifierAlias.Auxiliary1, exitCandidates[0] / 9)
+					: new HouseViewNode(ColorIdentifierAlias.Auxiliary1, BitOperations.TrailingZeroCount(exitCandidates.Cells.SharedHouses))
 			);
 
 			globalView.Add(entryHouseOrCellViewNode);

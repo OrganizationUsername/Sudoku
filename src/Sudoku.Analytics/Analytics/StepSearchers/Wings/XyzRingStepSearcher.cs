@@ -195,19 +195,19 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 							[
 								..
 								from digit in digitsMaskPivot
-								let colorIdentifier = digit == zDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal
+								let colorIdentifier = digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal
 								select new CandidateViewNode(colorIdentifier, pivot * 9 + digit),
 								..
 								from digit in digitsMask1
-								let colorIdentifier = digit == zDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal
+								let colorIdentifier = digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal
 								select new CandidateViewNode(colorIdentifier, leafCell1 * 9 + digit),
 								..
 								from digit in digitsMask2
-								let colorIdentifier = digit == zDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal
+								let colorIdentifier = digit == zDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal
 								select new CandidateViewNode(colorIdentifier, leafCell2 * 9 + digit),
 								..
 								from cell in cellsShouldBeCovered
-								select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + zDigit),
+								select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, cell * 9 + zDigit),
 							]
 						],
 						context.Options,

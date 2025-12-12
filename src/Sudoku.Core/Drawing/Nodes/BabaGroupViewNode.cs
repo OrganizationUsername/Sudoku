@@ -16,7 +16,7 @@ public sealed class BabaGroupViewNode(ColorIdentifier identifier, Cell cell, cha
 	/// </summary>
 	/// <inheritdoc cref="BabaGroupViewNode(ColorIdentifier, Cell, char, Mask)"/>
 	public BabaGroupViewNode(Cell cell, char unknownValueChar, Mask digitsMask) :
-		this(ColorIdentifier.Normal, cell, unknownValueChar, digitsMask)
+		this(ColorIdentifierAlias.Normal, cell, unknownValueChar, digitsMask)
 	{
 	}
 

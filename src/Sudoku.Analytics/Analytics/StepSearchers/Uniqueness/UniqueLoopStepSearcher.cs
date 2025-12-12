@@ -150,7 +150,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		var result = new List<CellLinkViewNode>();
 		for (var i = 0; i < path.Length; i++)
 		{
-			result.Add(new(ColorIdentifier.Normal, path[i], path[i + 1 == path.Length ? 0 : i + 1]));
+			result.Add(new(ColorIdentifierAlias.Normal, path[i], path[i + 1 == path.Length ? 0 : i + 1]));
 		}
 		return result.AsSpan();
 	}

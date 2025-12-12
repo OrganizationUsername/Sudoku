@@ -148,8 +148,8 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(
 								new(
 									(cell == targetCell || cell == lastCell) && digit == conjugatePairDigit
-										? ColorIdentifier.Auxiliary1
-										: ColorIdentifier.Normal,
+										? ColorIdentifierAlias.Auxiliary1
+										: ColorIdentifierAlias.Normal,
 									cell * 9 + digit
 								)
 							);
@@ -160,7 +160,7 @@ public partial class UniqueRectangleStepSearcher
 				{
 					foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMaskInOutsideCell))
 					{
-						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
+						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
 					}
 				}
 				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
@@ -176,13 +176,13 @@ public partial class UniqueRectangleStepSearcher
 								.. candidateOffsets,
 								..
 								from outsideCell in outsideCells
-								select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+								select new CellViewNode(ColorIdentifierAlias.Auxiliary2, outsideCell),
 								..
 								from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
 								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
-								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
-								new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
+								select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, extraCandidate),
+								new ConjugateLinkViewNode(ColorIdentifierAlias.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
+								new HouseViewNode(ColorIdentifierAlias.Auxiliary2, subsetHouse)
 							]
 						],
 						context.Options,
@@ -343,8 +343,8 @@ public partial class UniqueRectangleStepSearcher
 							candidateOffsets.Add(
 								new(
 									(cell == targetCell || cell == cornerCell) && digit == conjugatePairDigit
-										? ColorIdentifier.Auxiliary1
-										: ColorIdentifier.Normal,
+										? ColorIdentifierAlias.Auxiliary1
+										: ColorIdentifierAlias.Normal,
 									cell * 9 + digit
 								)
 							);
@@ -355,7 +355,7 @@ public partial class UniqueRectangleStepSearcher
 				{
 					foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMask))
 					{
-						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
+						candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
 					}
 				}
 				if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
@@ -369,13 +369,13 @@ public partial class UniqueRectangleStepSearcher
 						[
 							[
 								.. candidateOffsets,
-								.. from outsideCell in outsideCells select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+								.. from outsideCell in outsideCells select new CellViewNode(ColorIdentifierAlias.Auxiliary2, outsideCell),
 								..
 								from extraDigitInOutsideCell in (Mask)(grid.GetCandidates(sameBlockCell) & extraDigitsMask)
 								let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
-								select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-								new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
-								new HouseViewNode(ColorIdentifier.Auxiliary2, outsideCells.SharedLine)
+								select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, extraCandidate),
+								new ConjugateLinkViewNode(ColorIdentifierAlias.Auxiliary1, pairMap[0], pairMap[1], conjugatePairDigit),
+								new HouseViewNode(ColorIdentifierAlias.Auxiliary2, outsideCells.SharedLine)
 							]
 						],
 						context.Options,
@@ -539,8 +539,8 @@ public partial class UniqueRectangleStepSearcher
 								candidateOffsets.Add(
 									new(
 										(cell == targetCell || cell == lastCell || cell == cornerCell) && digit == conjugatePairDigit
-											? ColorIdentifier.Auxiliary1
-											: ColorIdentifier.Normal,
+											? ColorIdentifierAlias.Auxiliary1
+											: ColorIdentifierAlias.Normal,
 										cell * 9 + digit
 									)
 								);
@@ -551,7 +551,7 @@ public partial class UniqueRectangleStepSearcher
 					{
 						foreach (var extraDigitInOutsideCell in (Mask)(grid.GetCandidates(outsideCell) & extraDigitsMaskInOutsideCell))
 						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
+							candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, outsideCell * 9 + extraDigitInOutsideCell));
 						}
 					}
 					if (!IsIncompleteValid(arMode, AllowIncompleteUniqueRectangles, candidateOffsets, out _))
@@ -567,14 +567,14 @@ public partial class UniqueRectangleStepSearcher
 									.. candidateOffsets,
 									..
 									from outsideCell in outsideCells
-									select new CellViewNode(ColorIdentifier.Auxiliary2, outsideCell),
+									select new CellViewNode(ColorIdentifierAlias.Auxiliary2, outsideCell),
 									..
 									from extraDigitInOutsideCell in extraDigitsMaskInOutsideCell
 									let extraCandidate = sameBlockCell * 9 + extraDigitInOutsideCell
-									select new CandidateViewNode(ColorIdentifier.Auxiliary2, extraCandidate),
-									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap1[0], pairMap1[1], conjugatePairDigit),
-									new ConjugateLinkViewNode(ColorIdentifier.Auxiliary1, pairMap2[0], pairMap2[1], conjugatePairDigit),
-									new HouseViewNode(ColorIdentifier.Auxiliary2, subsetHouse)
+									select new CandidateViewNode(ColorIdentifierAlias.Auxiliary2, extraCandidate),
+									new ConjugateLinkViewNode(ColorIdentifierAlias.Auxiliary1, pairMap1[0], pairMap1[1], conjugatePairDigit),
+									new ConjugateLinkViewNode(ColorIdentifierAlias.Auxiliary1, pairMap2[0], pairMap2[1], conjugatePairDigit),
+									new HouseViewNode(ColorIdentifierAlias.Auxiliary2, subsetHouse)
 								]
 							],
 							context.Options,

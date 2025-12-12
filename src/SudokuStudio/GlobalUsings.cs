@@ -133,7 +133,6 @@ global using static Sudoku.Concepts.Marshalling.HouseMarshal;
 global using static SudokuStudio.Drawing.DrawableFactory;
 global using static SudokuStudio.ProjectWideConstants;
 global using Application = Microsoft.UI.Xaml.Application;
-global using ColorIdentifierKind = Sudoku.Drawing.WellKnownColorIdentifierKind;
 global using @dispatching = Microsoft.UI.Dispatching;
 global using FileExtensions = SudokuStudio.Storage.FileExtensions;
 global using Geometry = Microsoft.UI.Xaml.Media.Geometry;

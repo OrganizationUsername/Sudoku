@@ -165,7 +165,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				{
 					foreach (var cell in cells & candidatesMap[digit])
 					{
-						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
 					}
 
 					cellOffsets.AddRange(Excluder.GetSubsetExcluders(grid, digit, house, cells));
@@ -285,7 +285,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{
-						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+						candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
 					}
 				}
 
@@ -395,9 +395,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						[
 							.. candidateOffsets,
 							.. cellOffsets,
-							new CellViewNode(ColorIdentifier.Auxiliary3, cell),
-							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+							new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+							new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
 						]
 					],
 					context.Options,
@@ -480,11 +480,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
-							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
-							new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
-							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
-							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+							select new CandidateViewNode(ColorIdentifierAlias.Elimination, c * 9 + digit),
+							new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, lastCell),
+							new CandidateViewNode(ColorIdentifierAlias.Elimination, lastCell * 9 + digit),
+							new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
 						]
 					],
 					context.Options,
@@ -562,8 +562,8 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						.. candidateOffsets,
 						.. cellOffsets,
 						.. Excluder.GetNakedSingleExcluders(grid, cell, lastDigit, out _),
-						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
+						new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+						new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell)
 					]
 				],
 				context.Options,
@@ -666,10 +666,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							.. candidateOffsets,
 							..
 							from elimDigit in eliminatedDigitsMask
-							select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + elimDigit),
-							new CellViewNode(ColorIdentifier.Auxiliary3, cell),
-							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+							select new CandidateViewNode(ColorIdentifierAlias.Elimination, cell * 9 + elimDigit),
+							new CellViewNode(ColorIdentifierAlias.Auxiliary3, cell),
+							new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
 						]
 					],
 					context.Options,
@@ -753,11 +753,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							.. Excluder.GetHiddenSingleExcluders(grid, digit, house, lastCell, out var chosenCells, out _),
 							..
 							from c in HousesMap[house] & eliminatedCells
-							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
-							new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
-							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
-							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
+							select new CandidateViewNode(ColorIdentifierAlias.Elimination, c * 9 + digit),
+							new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, lastCell),
+							new CandidateViewNode(ColorIdentifierAlias.Elimination, lastCell * 9 + digit),
+							new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+							new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house)
 						]
 					],
 					context.Options,
@@ -836,11 +836,11 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					[
 						.. candidateOffsets,
 						.. Excluder.GetNakedSingleExcluders(grid, cell, lastDigit, out _),
-						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-						new DiamondViewNode(ColorIdentifier.Auxiliary3, cell),
+						new HouseViewNode(ColorIdentifierAlias.Normal, subsetHouse),
+						new DiamondViewNode(ColorIdentifierAlias.Auxiliary3, cell),
 						..
 						from elimDigit in eliminatedDigitsMask
-						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + elimDigit)
+						select new CandidateViewNode(ColorIdentifierAlias.Elimination, cell * 9 + elimDigit)
 					]
 				],
 				context.Options,

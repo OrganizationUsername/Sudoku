@@ -101,11 +101,11 @@ public partial class Hub
 					View view = [
 						.. collectViewNodes(fish1ViewNodes, fish2ViewNodes),
 						.. collectViewNodes(fish2ViewNodes, fish1ViewNodes),
-						.. from house in fish1.BaseSetsMask select new HouseViewNode(ColorIdentifier.Normal, house),
-						.. from house in siameseCoverSetsMask select new HouseViewNode(ColorIdentifier.Auxiliary3, house),
+						.. from house in fish1.BaseSetsMask select new HouseViewNode(ColorIdentifierAlias.Normal, house),
+						.. from house in siameseCoverSetsMask select new HouseViewNode(ColorIdentifierAlias.Auxiliary3, house),
 						..
 						from house in coveredSetsMask & ~siameseCoverSetsMask
-						select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
+						select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, house)
 					];
 
 					siameseStep = fish1 switch
@@ -154,13 +154,13 @@ public partial class Hub
 						var result = new List<CandidateViewNode>();
 						foreach (var node1 in fish1ViewNodes)
 						{
-							if (node1 is not CandidateViewNode { Identifier: WellKnownColorIdentifier id1, Candidate: var candidate1 })
+							if (node1 is not CandidateViewNode { Identifier: (_, ColorIdentifierAlias id1), Candidate: var candidate1 })
 							{
 								continue;
 							}
 
 							var n = fish2ViewNodes.FirstOrDefault(node => node is CandidateViewNode { Candidate: var candidate2 } && candidate1 == candidate2);
-							if (n?.Identifier is not WellKnownColorIdentifier id2)
+							if (n?.Identifier is not (_, ColorIdentifierAlias id2))
 							{
 								throw new InvalidOperationException(SR.ExceptionMessage("NormalFishViewInvalid"));
 							}
@@ -169,11 +169,11 @@ public partial class Hub
 								new CandidateViewNode(
 									(id1, id2) switch
 									{
-										({ Kind: WellKnownColorIdentifierKind.Endofin }, _) => ColorIdentifier.Endofin,
-										(_, { Kind: WellKnownColorIdentifierKind.Endofin }) => ColorIdentifier.Endofin,
-										({ Kind: WellKnownColorIdentifierKind.Exofin }, _) => ColorIdentifier.Exofin,
-										(_, { Kind: WellKnownColorIdentifierKind.Exofin }) => ColorIdentifier.Exofin,
-										_ => WellKnownColorIdentifierKind.Normal
+										(ColorIdentifierAlias.Endofin, _) => ColorIdentifierAlias.Endofin,
+										(_, ColorIdentifierAlias.Endofin) => ColorIdentifierAlias.Endofin,
+										(ColorIdentifierAlias.Exofin, _) => ColorIdentifierAlias.Exofin,
+										(_, ColorIdentifierAlias.Exofin) => ColorIdentifierAlias.Exofin,
+										_ => ColorIdentifierAlias.Normal
 									},
 									candidate1
 								)

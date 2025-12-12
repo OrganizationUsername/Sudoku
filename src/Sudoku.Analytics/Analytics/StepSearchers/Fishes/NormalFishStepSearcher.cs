@@ -267,12 +267,12 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 								[
 									..
 									from cell in withFin ? baseLine & ~fins : baseLine
-									select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
+									select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
 									.. withFin
-										? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit)
+										? from cell in fins select new CandidateViewNode(ColorIdentifierAlias.Exofin, cell * 9 + digit)
 										: [],
-									.. from baseSet in bs select new HouseViewNode(ColorIdentifier.Normal, baseSet),
-									.. from coverSet in cs select new HouseViewNode(ColorIdentifier.Auxiliary2, coverSet),
+									.. from baseSet in bs select new HouseViewNode(ColorIdentifierAlias.Normal, baseSet),
+									.. from coverSet in cs select new HouseViewNode(ColorIdentifierAlias.Auxiliary2, coverSet),
 								],
 								GetDirectView(digit, bs, cs, fins, searchRow)
 							],
@@ -309,7 +309,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 				{
 					case true when fins.Contains(cell):
 					{
-						cellOffsets.Add(new(ColorIdentifier.Auxiliary1, cell));
+						cellOffsets.Add(new(ColorIdentifierAlias.Auxiliary1, cell));
 						break;
 					}
 					default:
@@ -343,7 +343,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						cellOffsets.Add(new(ColorIdentifier.Normal, cell));
+						cellOffsets.Add(new(ColorIdentifierAlias.Normal, cell));
 						break;
 					}
 				}
@@ -352,8 +352,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 		return [
 			.. cellOffsets,
-			.. from cell in ValuesMap[digit] select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
-			.. fins ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : []
+			.. from cell in ValuesMap[digit] select new CellViewNode(ColorIdentifierAlias.Auxiliary2, cell),
+			.. fins ? from cell in fins select new CandidateViewNode(ColorIdentifierAlias.Exofin, cell * 9 + digit) : []
 		];
 	}
 }

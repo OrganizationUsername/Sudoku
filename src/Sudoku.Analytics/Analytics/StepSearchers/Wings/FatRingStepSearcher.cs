@@ -146,7 +146,7 @@ public sealed partial class FatRingStepSearcher : StepSearcher
 								{
 									foreach (var digit in grid.GetCandidates(cell))
 									{
-										candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+										candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + digit));
 									}
 								}
 
@@ -243,8 +243,8 @@ public sealed partial class FatRingStepSearcher : StepSearcher
 										candidateOffsets.Add(
 											new(
 												(digitsCanAppearTwiceOrMoreMask >> digit & 1) != 0
-													? ColorIdentifier.Auxiliary1
-													: ColorIdentifier.Normal,
+													? ColorIdentifierAlias.Auxiliary1
+													: ColorIdentifierAlias.Normal,
 												cell * 9 + digit
 											)
 										);
@@ -254,7 +254,7 @@ public sealed partial class FatRingStepSearcher : StepSearcher
 								{
 									foreach (var cell in HousesMap[canceledBlock] & CandidatesMap[digit])
 									{
-										candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, cell * 9 + digit));
+										candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, cell * 9 + digit));
 									}
 								}
 

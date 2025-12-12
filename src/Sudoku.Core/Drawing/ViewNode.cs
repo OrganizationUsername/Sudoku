@@ -31,11 +31,6 @@ public abstract class ViewNode(ColorIdentifier identifier) :
 	/// <summary>
 	/// Indicates an instance providing with data for describing coloring.
 	/// </summary>
-	/// <remarks><b>
-	/// We cannot change this property into a primary constructor parameter because here attribute <c>[StringMember]</c>
-	/// is not supported by derived types, meaning derived types cannot detect this attribute
-	/// because it's in primary constructor declaration by a base type.
-	/// </b></remarks>
 	public ColorIdentifier Identifier { get; } = identifier;
 
 	/// <summary>

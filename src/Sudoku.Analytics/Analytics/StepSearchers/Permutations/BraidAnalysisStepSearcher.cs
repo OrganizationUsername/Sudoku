@@ -197,9 +197,9 @@ public sealed partial class BraidAnalysisStepSearcher : StepSearcher
 								conclusions.AsMemory(),
 								[
 									[
-										.. from cell in a select new CellViewNode(ColorIdentifier.Normal, cell),
-										.. from cell in b select new CellViewNode(ColorIdentifier.Normal, cell),
-										.. from cell in c select new CellViewNode(ColorIdentifier.Normal, cell)
+										.. from cell in a select new CellViewNode(ColorIdentifierAlias.Normal, cell),
+										.. from cell in b select new CellViewNode(ColorIdentifierAlias.Normal, cell),
+										.. from cell in c select new CellViewNode(ColorIdentifierAlias.Normal, cell)
 									]
 								],
 								context.Options,

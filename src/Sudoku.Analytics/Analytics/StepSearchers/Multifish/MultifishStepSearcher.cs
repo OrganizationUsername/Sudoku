@@ -674,7 +674,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								truths += Space.RowColumn(cell / 9, cell % 9);
 								foreach (var digit in grid.GetCandidates(cell))
 								{
-									candidateOffsets.Add(new(ColorIdentifier.Auxiliary3, cell * 9 + digit));
+									candidateOffsets.Add(new(ColorIdentifierAlias.Auxiliary3, cell * 9 + digit));
 								}
 							}
 
@@ -688,9 +688,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 
 								var houseColorIdentifier = house switch
 								{
-									< 9 => ColorIdentifier.Auxiliary2,
-									< 18 => ColorIdentifier.Normal,
-									_ => ColorIdentifier.Auxiliary1
+									< 9 => ColorIdentifierAlias.Auxiliary2,
+									< 18 => ColorIdentifierAlias.Normal,
+									_ => ColorIdentifierAlias.Auxiliary1
 								};
 								foreach (var digit in rct[house])
 								{
@@ -760,7 +760,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								{
 									case { House: var house and not -1 }:
 									{
-										houseOffsets.Add(new(ColorIdentifier.Normal, house));
+										houseOffsets.Add(new(ColorIdentifierAlias.Normal, house));
 										break;
 									}
 									case { Cell: var cell }:
@@ -768,9 +768,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										cellOffsets.Add(
 											new(
 #if USE_DIFFERENT_COLOR_FOR_CELL_VIEW_NODES
-												ColorIdentifier.Auxiliary3,
+												ColorIdentifierAlias.Auxiliary3,
 #else
-												ColorIdentifier.Auxiliary2,
+												ColorIdentifierAlias.Auxiliary2,
 #endif
 												cell
 											)
@@ -787,7 +787,7 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 								{
 									case { House: var house and not -1 }:
 									{
-										houseOffsets.Add(new(ColorIdentifier.Auxiliary2, house));
+										houseOffsets.Add(new(ColorIdentifierAlias.Auxiliary2, house));
 										break;
 									}
 									case { Cell: var cell }:
@@ -795,9 +795,9 @@ public sealed partial class MultifishStepSearcher : StepSearcher
 										cellOffsets.Add(
 											new(
 #if USE_DIFFERENT_COLOR_FOR_CELL_VIEW_NODES
-												ColorIdentifier.Auxiliary3,
+												ColorIdentifierAlias.Auxiliary3,
 #else
-												ColorIdentifier.Auxiliary2,
+												ColorIdentifierAlias.Auxiliary2,
 #endif
 												cell
 											)

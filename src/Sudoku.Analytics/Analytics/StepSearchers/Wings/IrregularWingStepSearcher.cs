@@ -159,12 +159,12 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 							(from cell in elimMap select new Conclusion(Elimination, cell, anotherDigit)).ToArray(),
 							[
 								[
-									new CandidateViewNode(ColorIdentifier.Auxiliary1, c1 * 9 + anotherDigit),
-									new CandidateViewNode(ColorIdentifier.Auxiliary1, c2 * 9 + anotherDigit),
-									new CandidateViewNode(ColorIdentifier.Normal, c1 * 9 + digit),
-									new CandidateViewNode(ColorIdentifier.Normal, c2 * 9 + digit),
-									.. from cell in bridge select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
-									new HouseViewNode(ColorIdentifier.Normal, house)
+									new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, c1 * 9 + anotherDigit),
+									new CandidateViewNode(ColorIdentifierAlias.Auxiliary1, c2 * 9 + anotherDigit),
+									new CandidateViewNode(ColorIdentifierAlias.Normal, c1 * 9 + digit),
+									new CandidateViewNode(ColorIdentifierAlias.Normal, c2 * 9 + digit),
+									.. from cell in bridge select new CandidateViewNode(ColorIdentifierAlias.Normal, cell * 9 + digit),
+									new HouseViewNode(ColorIdentifierAlias.Normal, house)
 								]
 							],
 							context.Options,
@@ -272,7 +272,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									{
 										candidateOffsets.Add(
 											new(
-												digit == wDigit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+												digit == wDigit ? ColorIdentifierAlias.Auxiliary1 : ColorIdentifierAlias.Normal,
 												cell * 9 + digit
 											)
 										);
@@ -280,12 +280,12 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								}
 								foreach (var cell in emptyCellsInThisHouse)
 								{
-									candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + xDigit));
+									candidateOffsets.Add(new(ColorIdentifierAlias.Normal, cell * 9 + xDigit));
 								}
 
 								var step = new MultiBranchWWingStep(
 									conclusions.AsMemory(),
-									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+									[[.. candidateOffsets, new HouseViewNode(ColorIdentifierAlias.Normal, house)]],
 									context.Options,
 									cells,
 									emptyCellsInThisHouse,

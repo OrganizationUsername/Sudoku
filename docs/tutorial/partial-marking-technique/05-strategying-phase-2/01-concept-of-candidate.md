@@ -4,7 +4,7 @@ description: Concept of Candidate
 
 # 候选数的概念
 
-在解释新的技巧之前，我们先来学习一下**候选数**（Candidate）的概念。
+我们先来学习一下**候选数**（Candidate）的概念。
 
 ## 什么是候选数？ <a href="#what-is-candidate" id="what-is-candidate"></a>
 

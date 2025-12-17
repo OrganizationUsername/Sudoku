@@ -9192,6 +9192,18 @@
             </summary>
             <seealso cref="P:Sudoku.Descriptors.Chunk.Descriptor"/>
         </member>
+        <member name="F:Sudoku.Descriptors.Chunk.ReaderLookup">
+            <summary>
+            Represents an array of actions to be checked in <see cref="M:System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)"/>.
+            </summary>
+            <seealso cref="M:System.Text.Json.Serialization.JsonConverter`1.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)"/>
+        </member>
+        <member name="F:Sudoku.Descriptors.Chunk.WriterLookup">
+            <summary>
+            Represents an array of actions to be checked on <see cref="M:System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)"/>.
+            </summary>
+            <seealso cref="M:System.Text.Json.Serialization.JsonConverter`1.Write(System.Text.Json.Utf8JsonWriter,`0,System.Text.Json.JsonSerializerOptions)"/>
+        </member>
         <member name="F:Sudoku.Descriptors.Chunk._field">
             <summary>
             Indicates the backing field.

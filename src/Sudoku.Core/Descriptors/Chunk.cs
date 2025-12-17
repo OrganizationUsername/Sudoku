@@ -1,5 +1,8 @@
 namespace Sudoku.Descriptors;
 
+using ReaderLookupKey = (string TypeDiscriminator, Func<string, JsonSerializerOptions, Chunk?> Handler);
+using WriterLookupKey = (Predicate<Chunk> TypeMatcher, Action<Utf8JsonWriter, Chunk, JsonSerializerOptions> Handler);
+
 /// <summary>
 /// Represents rendering data for displaying a element from a concept of sudoku, like a house, a cell or a candidate.
 /// </summary>
@@ -24,6 +27,29 @@ public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkEleme
 	/// </summary>
 	/// <seealso cref="Descriptor"/>
 	protected internal const string DescriptorPropertyName = nameof(Descriptor);
+
+
+	/// <summary>
+	/// Represents an array of actions to be checked in <see cref="JsonConverter{T}.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>.
+	/// </summary>
+	/// <seealso cref="JsonConverter{T}.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>
+	internal static readonly ReaderLookupKey[] ReaderLookup = [
+		(
+			nameof(CellChunk),
+			static (originalJson, options) => JsonSerializer.Deserialize<CellChunk>(originalJson, options)
+		)
+	];
+
+	/// <summary>
+	/// Represents an array of actions to be checked on <see cref="JsonConverter{T}.Write(Utf8JsonWriter, T, JsonSerializerOptions)"/>.
+	/// </summary>
+	/// <seealso cref="JsonConverter{T}.Write(Utf8JsonWriter, T, JsonSerializerOptions)"/>
+	internal static readonly WriterLookupKey[] WriterLookup = [
+		(
+			static chunk => chunk is CellChunk,
+			static (writer, value, options) => JsonSerializer.Serialize(writer, (CellChunk)value, options)
+		)
+	];
 
 
 	/// <summary>
@@ -96,23 +122,24 @@ file sealed class Converter : JsonConverter<Chunk>
 
 		// Locate type to be initialized and deserialized.
 		var originalJson = root.GetRawText();
-		return jsonElement.GetString() switch
+		foreach (var (typeDiscriminator, action) in Chunk.ReaderLookup)
 		{
-			nameof(CellChunk) => JsonSerializer.Deserialize<CellChunk>(originalJson, options),
-		};
+			if (typeDiscriminator == jsonElement.GetString())
+			{
+				return action(originalJson, options);
+			}
+		}
+		throw new JsonException("Why here?");
 	}
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Chunk value, JsonSerializerOptions options)
 	{
-		foreach (var (matcher, action) in new (Predicate<Chunk>, Action<Chunk>)[]
+		foreach (var (chunkTypeMatcher, action) in Chunk.WriterLookup)
 		{
-			(static chunk => chunk is CellChunk, chunk => JsonSerializer.Serialize(writer, (CellChunk)chunk, options))
-		})
-		{
-			if (matcher(value))
+			if (chunkTypeMatcher(value))
 			{
-				action(value);
+				action(writer, value, options);
 				return;
 			}
 		}

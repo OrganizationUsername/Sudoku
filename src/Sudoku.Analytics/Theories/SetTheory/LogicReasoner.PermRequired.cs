@@ -8,7 +8,7 @@ public partial class LogicReasoner
 	/// sometimes <c>conclusions</c> is also required.
 	/// </summary>
 	/// <seealso cref="LogicReasoner"/>
-	public static class PermutationRequiredEntry
+	public static class PermRequired
 	{
 		/// <inheritdoc cref="LogicReasoner.GetRank(ref readonly Logic, out FrozenDictionary{Conclusion, Logic})"/>
 		public static Rank GetRank(ref readonly Logic logic, ConclusionSet conclusions, ReadOnlySpan<Permutation> permutations, out FrozenDictionary<Conclusion, Logic> sublogics)

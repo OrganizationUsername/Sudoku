@@ -36426,41 +36426,6 @@
             Provides a list of members to get pattern detailed information that should be inferred.
             </summary>
         </member>
-        <member name="T:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry">
-            <summary>
-            Represents equivalent implementation of the parent type <see cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>,
-            but an extra parameter <c>permutations</c> is required;
-            sometimes <c>conclusions</c> is also required.
-            </summary>
-            <seealso cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank(Sudoku.Theories.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetConclusions(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Boolean,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusions(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Links(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Links(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
-        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermutationRequiredEntry.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
-            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@)"/>
-        </member>
         <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank(Sudoku.Theories.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)">
             <summary>
             <para>
@@ -36580,6 +36545,41 @@
         </member>
         <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.ListOfSpaceEqualityComparer.GetHashCode(System.Collections.Generic.List{Sudoku.Concepts.Supersymmetry.Space})">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired">
+            <summary>
+            Represents equivalent implementation of the parent type <see cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>,
+            but an extra parameter <c>permutations</c> is required;
+            sometimes <c>conclusions</c> is also required.
+            </summary>
+            <seealso cref="T:Sudoku.Theories.SetTheory.LogicReasoner"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetRank(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank(Sudoku.Theories.SetTheory.Logic@,System.Collections.Frozen.FrozenDictionary{Sudoku.Concepts.Conclusion,Sudoku.Theories.SetTheory.Logic}@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetAssignedCount(Sudoku.Theories.SetTheory.Logic@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetConclusions(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation},System.Boolean,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetConclusions(Sudoku.Theories.SetTheory.Logic@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetRank0Links(Sudoku.Theories.SetTheory.Logic@,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Links(Sudoku.Theories.SetTheory.Logic@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetRank0Eliminations(Sudoku.Theories.SetTheory.Logic@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalTruths(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.GetMinimalPattern(Sudoku.Theories.SetTheory.Logic@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.TrimExcessLinks(Sudoku.Theories.SetTheory.Logic@)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.LogicReasoner.PermRequired.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@,Sudoku.Concepts.ConclusionSet,System.ReadOnlySpan{Sudoku.Theories.SetTheory.Permutation})">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.LogicReasoner.ConvertTruthsToLinks(Sudoku.Theories.SetTheory.Logic@)"/>
         </member>
         <member name="T:Sudoku.Theories.SetTheory.Permutation">
             <summary>

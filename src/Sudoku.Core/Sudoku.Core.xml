@@ -440,7 +440,7 @@
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -9215,10 +9215,9 @@
             </summary>
         </member>
         <member name="P:Sudoku.Descriptors.Chunk.ElementType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Descriptors.Chunk.SupportedElementTypes">
-            <inheritdoc/>
+            <summary>
+            Indicates the chunk element.
+            </summary>
         </member>
         <member name="P:Sudoku.Descriptors.Chunk.Descriptor">
             <summary>
@@ -9247,6 +9246,14 @@
             <param name="options">The options to provide naming policy.</param>
             <param name="original">The original name to convert.</param>
             <returns>The converted name.</returns>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunk.GetFlag``1(System.Object)">
+            <summary>
+            Judge type and return its bound <see cref="T:Sudoku.Descriptors.ChunkElementFlag"/> field.
+            </summary>
+            <typeparam name="TSelf">The current type.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The flag.</returns>
         </member>
         <member name="T:Sudoku.Descriptors.Converter">
             <summary>
@@ -9308,25 +9315,87 @@
             Indicates the element is a pair of values <c>(cells, digit)</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Descriptors.Chunks.CandidateChunk">
+            <summary>
+            Represents a chunk that stores a candidate or a list of candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Descriptors.Chunks.CandidateChunk._digit">
+            <summary>
+            Indicates digit field.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.CandidateChunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Descriptors.Chunks.CandidateChunk"/> instance.
+            </summary>
+            <param name="descriptor">
+            <inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='descriptor']"/>
+            </param>
+            <param name="field"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='field']"/></param>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.CandidateChunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Descriptors.Chunks.CandidateChunk"/> instance via <c>(cell, digit)</c> pair.
+            </summary>
+            <param name="descriptor">
+            <inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='descriptor']"/>
+            </param>
+            <param name="field"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='field']"/></param>
+            <param name="digit">The digit value.</param>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.CandidateChunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Descriptors.Chunks.CandidateChunk"/> instance.
+            </summary>
+            <param name="descriptor">
+            <inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='descriptor']"/>
+            </param>
+            <param name="field"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='field']"/></param>
+            <param name="isCellsDigitPattern">Indicates whether field <see cref="F:Sudoku.Descriptors.Chunks.CandidateChunk._digit"/> is used or not.</param>
+        </member>
+        <member name="P:Sudoku.Descriptors.Chunks.CandidateChunk.Candidates">
+            <summary>
+            Indicates the candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Descriptors.Chunks.CandidateChunk.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Descriptors.Chunks.CandidateChunk.Sudoku#Descriptors#IChunk{Sudoku#Descriptors#Chunks#CandidateChunk}#SingleElementType">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.CandidateChunk.GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.CandidateChunk.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Descriptors.Chunks.Converter">
+            <summary>
+            Defines converter of type <see cref="T:Sudoku.Descriptors.Chunks.CandidateChunk"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Descriptors.Chunks.CandidateChunk"/>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Descriptors.Chunks.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Descriptors.Chunks.CandidateChunk,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Descriptors.Chunks.CellChunk">
             <summary>
             Represents a chunk that stores a cell or a list of cells.
             </summary>
-            <param name="descriptor">
-            <inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='descriptor']"/>
-            </param>
-            <param name="field"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='field']"/></param>
-            <param name="flag"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='flag']"/></param>
         </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)">
+        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object)">
             <summary>
-            Represents a chunk that stores a cell or a list of cells.
+            Initializes a <see cref="T:Sudoku.Descriptors.Chunks.CellChunk"/> instance.
             </summary>
             <param name="descriptor">
             <inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='descriptor']"/>
             </param>
             <param name="field"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='field']"/></param>
-            <param name="flag"><inheritdoc cref="M:Sudoku.Descriptors.Chunk.#ctor(Sudoku.Descriptors.ColorDescriptor,System.Object,Sudoku.Descriptors.ChunkElementFlag)" path="/param[@name='flag']"/></param>
         </member>
         <member name="P:Sudoku.Descriptors.Chunks.CellChunk.Cells">
             <summary>
@@ -9336,28 +9405,13 @@
         <member name="P:Sudoku.Descriptors.Chunks.CellChunk.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Descriptors.Chunks.CellChunk.SupportedElementTypes">
+        <member name="P:Sudoku.Descriptors.Chunks.CellChunk.Sudoku#Descriptors#IChunk{Sudoku#Descriptors#Chunks#CellChunk}#SingleElementType">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Descriptors.Chunks.CellChunk.GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Descriptors.Chunks.CellChunk.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.Create(Sudoku.Descriptors.ColorDescriptor,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.Create(Sudoku.Descriptors.ColorDescriptor,System.Int32[])">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.Create(Sudoku.Descriptors.ColorDescriptor,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.Create(Sudoku.Descriptors.ColorDescriptor,System.Collections.Generic.List{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Descriptors.Chunks.CellChunk.Create(Sudoku.Descriptors.ColorDescriptor,System.Collections.Generic.HashSet{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Descriptors.Chunks.Converter">
@@ -9385,6 +9439,11 @@
         <member name="F:Sudoku.Descriptors.ChunkType.Cell">
             <summary>
             Indicates the chunk type is for cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Descriptors.ChunkType.Candidate">
+            <summary>
+            Indicates the chunk type is for candidate.
             </summary>
         </member>
         <member name="T:Sudoku.Descriptors.ColorDescriptor">
@@ -9729,22 +9788,7 @@
             Indicates the type is ID.
             </summary>
         </member>
-        <member name="T:Sudoku.Descriptors.IChunk">
-            <summary>
-            Defines a chunk object.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Descriptors.IChunk.ElementType">
-            <summary>
-            Indicates the chunk element.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Descriptors.IChunk.SupportedElementTypes">
-            <summary>
-            Indicates all supported element types.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Descriptors.IChunk`2">
+        <member name="T:Sudoku.Descriptors.IChunk`1">
             <summary>
             Defines a chunk object.
             </summary>
@@ -9758,64 +9802,11 @@
 			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
 		</para>
 	</self-type-constraint></typeparam>
-            <typeparam name="T">The type of element.</typeparam>
         </member>
-        <member name="M:Sudoku.Descriptors.IChunk`2.Create(Sudoku.Descriptors.ColorDescriptor,`1)">
+        <member name="P:Sudoku.Descriptors.IChunk`1.SingleElementType">
             <summary>
-            Creates a <typeparamref name="T"/> instance via a single value.
+            Indicates single element type.
             </summary>
-            <param name="descriptor">The descriptor.</param>
-            <param name="value">The value.</param>
-            <returns>The <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Descriptors.IChunk`2.Create(Sudoku.Descriptors.ColorDescriptor,`1[])">
-            <summary>
-            Creates a <typeparamref name="T"/> instance via an array.
-            </summary>
-            <param name="descriptor">The descriptor.</param>
-            <param name="array">The array.</param>
-            <returns>The <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Descriptors.IChunk`2.Create(Sudoku.Descriptors.ColorDescriptor,System.Collections.Generic.List{`1})">
-            <summary>
-            Creates a <typeparamref name="T"/> instance via a list.
-            </summary>
-            <param name="descriptor">The descriptor.</param>
-            <param name="list">The list.</param>
-            <returns>The <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Descriptors.IChunk`2.Create(Sudoku.Descriptors.ColorDescriptor,System.Collections.Generic.HashSet{`1})">
-            <summary>
-            Creates a <typeparamref name="T"/> instance via a hash set.
-            </summary>
-            <param name="descriptor">The descriptor.</param>
-            <param name="hashSet">The hash set.</param>
-            <returns>The <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Descriptors.IChunk`3">
-            <summary>
-            Defines a chunk object.
-            </summary>
-            <typeparam name="TSelf"><self-type-constraint>
-		<para>Indicates the type implementing this interface.</para>
-		<para>
-			This type doesn't use any extra syntax to constraint such usage, but C# will check for it.
-			The type will include a <see langword="where" /> constraint that implements the interface itself
-			to declare such "self constraint" usage:
-			<code><![CDATA[interface ISelfType<TSelf> where TSelf : ISelfType<TSelf>]]></code>
-			In addition, the type should be named <c>TSelf</c> in order to tell type parameters with the others.
-		</para>
-	</self-type-constraint></typeparam>
-            <typeparam name="TBitStateMap">The type of bit state map.</typeparam>
-            <typeparam name="T">The type of element.</typeparam>
-        </member>
-        <member name="M:Sudoku.Descriptors.IChunk`3.Create(Sudoku.Descriptors.ColorDescriptor,`1@)">
-            <summary>
-            Creates a <typeparamref name="T"/> instance via a bit state map.
-            </summary>
-            <param name="descriptor">The descriptor.</param>
-            <param name="map">The map.</param>
-            <returns>The <typeparamref name="T"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Diff.DiffAnalysis">
             <summary>

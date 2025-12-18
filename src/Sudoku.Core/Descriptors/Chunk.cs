@@ -10,7 +10,7 @@ using WriterLookupKey = (Predicate<Chunk> TypeMatcher, Action<Utf8JsonWriter, Ch
 /// <param name="field"><inheritdoc cref="_field" path="/summary"/></param>
 /// <param name="flag"><inheritdoc cref="ElementType" path="/summary"/></param>
 [JsonConverter(typeof(Converter))]
-public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkElementFlag flag) : IChunk
+public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkElementFlag flag) : IEnumerable, IFormattable
 {
 	/// <summary>
 	/// Indicates the name of value property on serialization.
@@ -34,10 +34,8 @@ public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkEleme
 	/// </summary>
 	/// <seealso cref="JsonConverter{T}.Read(ref Utf8JsonReader, Type, JsonSerializerOptions)"/>
 	internal static readonly ReaderLookupKey[] ReaderLookup = [
-		(
-			nameof(CellChunk),
-			static (originalJson, options) => JsonSerializer.Deserialize<CellChunk>(originalJson, options)
-		)
+		(nameof(CellChunk), JsonSerializer.Deserialize<CellChunk>),
+		(nameof(CandidateChunk), JsonSerializer.Deserialize<CandidateChunk>)
 	];
 
 	/// <summary>
@@ -48,6 +46,10 @@ public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkEleme
 		(
 			static chunk => chunk is CellChunk,
 			static (writer, value, options) => JsonSerializer.Serialize(writer, (CellChunk)value, options)
+		),
+		(
+			static chunk => chunk is CandidateChunk,
+			static (writer, value, options) => JsonSerializer.Serialize(writer, (CandidateChunk)value, options)
 		)
 	];
 
@@ -63,11 +65,10 @@ public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkEleme
 	/// </summary>
 	public abstract ChunkType Type { get; }
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Indicates the chunk element.
+	/// </summary>
 	public ChunkElementFlag ElementType { get; } = flag;
-
-	/// <inheritdoc/>
-	public abstract ChunkElementFlag SupportedElementTypes { get; }
 
 	/// <summary>
 	/// Indicates the descriptor of chunk.
@@ -99,6 +100,38 @@ public abstract class Chunk(ColorDescriptor descriptor, object field, ChunkEleme
 	/// <returns>The converted name.</returns>
 	protected internal static string ConvertName(JsonSerializerOptions options, string original)
 		=> options.PropertyNamingPolicy?.ConvertName(original) ?? original;
+
+	/// <summary>
+	/// Judge type and return its bound <see cref="ChunkElementFlag"/> field.
+	/// </summary>
+	/// <typeparam name="TSelf">The current type.</typeparam>
+	/// <param name="value">The value.</param>
+	/// <returns>The flag.</returns>
+	protected static ChunkElementFlag GetFlag<TSelf>(object value) where TSelf : Chunk, IChunk<TSelf>
+	{
+		var valueType = value.GetType();
+		if (valueType.IsGenericAssignableTo(typeof(HashSet<>)))
+		{
+			return ChunkElementFlag.HashSet;
+		}
+		if (valueType.IsGenericAssignableTo(typeof(List<>)))
+		{
+			return ChunkElementFlag.List;
+		}
+		if (value is CellMap or CandidateMap)
+		{
+			return ChunkElementFlag.BitStateMap;
+		}
+		if (value is Array)
+		{
+			return ChunkElementFlag.Array;
+		}
+		if (valueType == TSelf.SingleElementType)
+		{
+			return ChunkElementFlag.Single;
+		}
+		throw new InvalidOperationException();
+	}
 }
 
 /// <summary>

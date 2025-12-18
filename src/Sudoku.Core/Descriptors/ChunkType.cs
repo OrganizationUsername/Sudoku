@@ -14,4 +14,9 @@ public enum ChunkType
 	/// Indicates the chunk type is for cell.
 	/// </summary>
 	Cell,
+
+	/// <summary>
+	/// Indicates the chunk type is for candidate.
+	/// </summary>
+	Candidate,
 }

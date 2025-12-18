@@ -808,7 +808,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	public static CandidateMap Parse(string str)
 	{
 		foreach (var parser in

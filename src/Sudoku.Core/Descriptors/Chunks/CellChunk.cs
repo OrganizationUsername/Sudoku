@@ -3,17 +3,22 @@ namespace Sudoku.Descriptors.Chunks;
 /// <summary>
 /// Represents a chunk that stores a cell or a list of cells.
 /// </summary>
-/// <param name="descriptor">
-/// <inheritdoc cref="Chunk(ColorDescriptor, object, ChunkElementFlag)" path="/param[@name='descriptor']"/>
-/// </param>
-/// <param name="field"><inheritdoc cref="Chunk(ColorDescriptor, object, ChunkElementFlag)" path="/param[@name='field']"/></param>
-/// <param name="flag"><inheritdoc cref="Chunk(ColorDescriptor, object, ChunkElementFlag)" path="/param[@name='flag']"/></param>
 [JsonConverter(typeof(Converter))]
-public sealed class CellChunk(ColorDescriptor descriptor, object field, ChunkElementFlag flag) :
-	Chunk(descriptor, field, flag),
-	IEnumerable<Cell>,
-	IChunk<CellChunk, CellMap, Cell>
+public sealed class CellChunk : Chunk, IChunk<CellChunk>, IEnumerable<Cell>
 {
+	/// <summary>
+	/// Initializes a <see cref="CellChunk"/> instance.
+	/// </summary>
+	/// <param name="descriptor">
+	/// <inheritdoc cref="Chunk(ColorDescriptor, object, ChunkElementFlag)" path="/param[@name='descriptor']"/>
+	/// </param>
+	/// <param name="field"><inheritdoc cref="Chunk(ColorDescriptor, object, ChunkElementFlag)" path="/param[@name='field']"/></param>
+	[SuppressMessage("Style", "IDE0290:Use primary constructor", Justification = "<Pending>")]
+	public CellChunk(ColorDescriptor descriptor, object field) : base(descriptor, field, GetFlag<CellChunk>(field))
+	{
+	}
+
+
 	/// <summary>
 	/// Indicates the cells.
 	/// </summary>
@@ -21,6 +26,11 @@ public sealed class CellChunk(ColorDescriptor descriptor, object field, ChunkEle
 	{
 		get
 		{
+			if (_field is CellMap value)
+			{
+				return value;
+			}
+
 			var result = CellMap.Empty;
 			foreach (var cell in this)
 			{
@@ -33,9 +43,9 @@ public sealed class CellChunk(ColorDescriptor descriptor, object field, ChunkEle
 	/// <inheritdoc/>
 	public override ChunkType Type => ChunkType.Cell;
 
+
 	/// <inheritdoc/>
-	public override ChunkElementFlag SupportedElementTypes
-		=> ChunkElementFlag.Single | ChunkElementFlag.Array | ChunkElementFlag.List | ChunkElementFlag.HashSet | ChunkElementFlag.BitStateMap;
+	static Type IChunk<CellChunk>.SingleElementType => typeof(Cell);
 
 
 	/// <inheritdoc/>
@@ -56,23 +66,6 @@ public sealed class CellChunk(ColorDescriptor descriptor, object field, ChunkEle
 	/// <inheritdoc/>
 	public override string ToString(IFormatProvider? formatProvider)
 		=> CoordinateConverter.GetInstance(formatProvider).CellConverter(Cells);
-
-
-	/// <inheritdoc/>
-	public static CellChunk Create(ColorDescriptor descriptor, Cell value) => new(descriptor, value, ChunkElementFlag.Single);
-
-	/// <inheritdoc/>
-	public static CellChunk Create(ColorDescriptor descriptor, Cell[] array) => new(descriptor, array, ChunkElementFlag.Array);
-
-	/// <inheritdoc/>
-	public static CellChunk Create(ColorDescriptor descriptor, in CellMap map) => new(descriptor, map, ChunkElementFlag.BitStateMap);
-
-	/// <inheritdoc/>
-	public static CellChunk Create(ColorDescriptor descriptor, List<Cell> list) => new(descriptor, list, ChunkElementFlag.List);
-
-	/// <inheritdoc/>
-	public static CellChunk Create(ColorDescriptor descriptor, HashSet<Cell> hashSet)
-		=> new(descriptor, hashSet, ChunkElementFlag.HashSet);
 }
 
 /// <summary>
@@ -104,7 +97,7 @@ file sealed class Converter : JsonConverter<CellChunk>
 					if (Chunk.ConvertName(options, propertyName) == Chunk.ConvertName(options, Chunk.ValuePropertyName))
 					{
 						reader.Read();
-						result = CellChunk.Create(descriptor, CellMap.Parse(reader.GetString()!));
+						result = new(descriptor, CellMap.Parse(reader.GetString()!));
 					}
 					if (Chunk.ConvertName(options, propertyName) == Chunk.ConvertName(options, Chunk.TypeDiscriminatorPropertyName))
 					{

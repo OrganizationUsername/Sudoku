@@ -184,14 +184,7 @@ public partial struct Grid : InlineArrayGridBase
 	/// <summary>
 	/// Indicates the type of the puzzle.
 	/// </summary>
-	/// <remarks>
-	/// By design, this property can only be either <see cref="GridType.Standard"/> or <see cref="GridType.Sukaku"/>;
-	/// other values like <see cref="GridType.JustOneCell"/> won't be created here.
-	/// </remarks>
-	/// <seealso cref="GridType.Standard"/>
-	/// <seealso cref="GridType.Sukaku"/>
-	public readonly GridType PuzzleType
-		=> GetHeaderBits(0) switch { GridBase.SukakuHeader => GridType.Sukaku, _ => GridType.Standard };
+	public readonly GridType PuzzleType => GetHeaderBits(0) switch { GridBase.SukakuHeader => GridType.Sukaku, _ => GridType.Standard };
 
 	/// <inheritdoc/>
 	public readonly Cell GivenCellsCount => GivenCells.Count;

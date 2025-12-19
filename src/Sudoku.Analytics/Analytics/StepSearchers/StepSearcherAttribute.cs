@@ -68,13 +68,12 @@ public sealed class StepSearcherAttribute(string nameKey, params Technique[] tec
 	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
-	public DifficultyLevel DifficultyLevels
-		=> DifficultyLevel.MergeFlags(from t in SupportedTechniques select t.DifficultyLevel);
+	public DifficultyLevel DifficultyLevels => DifficultyLevel.MergeFlags(from t in SupportedTechniques select t.DifficultyLevel);
 
 	/// <summary>
 	/// Indicates the supported sudoku types.
 	/// </summary>
-	public GridType SupportedSudokuTypes { get; init; } = GridType.Standard | GridType.Sukaku | GridType.JustOneCell;
+	public GridType SupportedSudokuTypes { get; init; } = GridType.All;
 
 	/// <summary>
 	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='techniques']"/>

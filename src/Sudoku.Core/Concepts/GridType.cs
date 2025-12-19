@@ -20,10 +20,5 @@ public enum GridType
 	/// <summary>
 	/// Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
 	/// </summary>
-	Sukaku = 1 << 1,
-
-	/// <summary>
-	/// Indicates the sudoku puzzle is a just-one-cell sudoku.
-	/// </summary>
-	JustOneCell = 1 << 2
+	Sukaku = 1 << 1
 }

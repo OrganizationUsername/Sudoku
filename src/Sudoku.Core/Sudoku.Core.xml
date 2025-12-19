@@ -4641,12 +4641,6 @@
             <summary>
             Indicates the type of the puzzle.
             </summary>
-            <remarks>
-            By design, this property can only be either <see cref="F:Sudoku.Concepts.GridType.Standard"/> or <see cref="F:Sudoku.Concepts.GridType.Sukaku"/>;
-            other values like <see cref="F:Sudoku.Concepts.GridType.JustOneCell"/> won't be created here.
-            </remarks>
-            <seealso cref="F:Sudoku.Concepts.GridType.Standard"/>
-            <seealso cref="F:Sudoku.Concepts.GridType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCellsCount">
             <inheritdoc/>
@@ -5307,11 +5301,6 @@
         <member name="F:Sudoku.Concepts.GridType.Sukaku">
             <summary>
             Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridType.JustOneCell">
-            <summary>
-            Indicates the sudoku puzzle is a just-one-cell sudoku.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.HouseDigitIdentifier">

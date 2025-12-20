@@ -2306,38 +2306,6 @@
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetInstance(System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.CoordinateSimplifier">
-            <summary>
-            Represents a simplifier type that can simplify the coordinates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateSimplifier.Simplify(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to simplify parts of cells, by combining same rows and columns.
-            </summary>
-            <param name="cells">The cells to be simplified.</param>
-            <returns>A list of parts grouped by rows and its matched columns.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.CoordinateSplit">
-            <summary>
-            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
-            </summary>
-            <param name="Rows">Indicates row indices.</param>
-            <param name="Columns">Indicates column indices.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateSplit.#ctor(System.Int32[],System.Int32[])">
-            <summary>
-            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
-            </summary>
-            <param name="Rows">Indicates row indices.</param>
-            <param name="Columns">Indicates column indices.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.CoordinateSplit.Rows">
-            <summary>Indicates row indices.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.CoordinateSplit.Columns">
-            <summary>Indicates column indices.</summary>
-        </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">
             <summary>
             Represents a type of notation to describe a coordinate in sudoku.
@@ -3853,6 +3821,136 @@
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Simplifying.Biclique">
+            <summary>
+            Represents a biclique (a Cartesian rectangle of cells) used as a compression unit.
+            </summary>
+            <param name="RowMask">A 9-bit mask representing which rows are included.</param>
+            <param name="ColumnMask">A 9-bit mask representing which columns are included.</param>
+            <param name="Covered">A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</param>
+            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</param>
+            <param name="Rows">Arrays of row indices used to build readable output.</param>
+            <param name="Columns">Arrays of column indices used to build readable output.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Simplifying.Biclique.#ctor(System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Int32,System.Int32[],System.Int32[])">
+            <summary>
+            Represents a biclique (a Cartesian rectangle of cells) used as a compression unit.
+            </summary>
+            <param name="RowMask">A 9-bit mask representing which rows are included.</param>
+            <param name="ColumnMask">A 9-bit mask representing which columns are included.</param>
+            <param name="Covered">A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</param>
+            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</param>
+            <param name="Rows">Arrays of row indices used to build readable output.</param>
+            <param name="Columns">Arrays of column indices used to build readable output.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.RowMask">
+            <summary>A 9-bit mask representing which rows are included.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.ColumnMask">
+            <summary>A 9-bit mask representing which columns are included.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Covered">
+            <summary>A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Cost">
+            <summary>The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Rows">
+            <summary>Arrays of row indices used to build readable output.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Columns">
+            <summary>Arrays of column indices used to build readable output.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSimplifier">
+            <summary>
+            Represents a simplifier type that can simplify the coordinates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSimplifier.Simplify(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to simplify parts of cells, by combining same rows and columns.
+            </summary>
+            <param name="cells">The cells to be simplified.</param>
+            <returns>A list of parts grouped by rows and its matched columns.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSimplifier.EnumerateBicliques(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Enumerate all bicliques (row-set × column-set rectangles) that are fully contained in the given set of cells.
+            </summary>
+            <param name="cells">Input cell set represented as <see cref="T:Sudoku.Concepts.CellMap"/>.</param>
+            <returns>
+            A span of <see cref="T:Sudoku.Concepts.Coordinates.Simplifying.Biclique"/> objects. Each biclique corresponds to a non-empty set of rows and a
+            non-empty set of columns such that every combination of these rows and columns is present in <paramref name="cells"/>.
+            </returns>
+            <remarks>
+            The algorithm:
+            <list type="number">
+            <item>Build per-row column masks (which columns exist in each row).</item>
+            <item>
+            For each non-empty subset of rows, compute the intersection of their column masks
+            to get "commonColumns" that appear in every selected row.
+            </item>
+            <item>Enumerate non-empty subsets of those common columns to produce bicliques.</item>
+            </list>
+            This solves a kind of problem called "Minimum Edge Biclique Partition Problem", which is NP-Hard.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSimplifier.SolveMinPartition(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Solve the minimum-cost partition of the provided cells into disjoint bicliques.
+            </summary>
+            <param name="cells">Input set of cells to cover (must be subset of the grid).</param>
+            <returns>
+            A tuple containing:
+            <list type="table">
+            <item>
+            <term>Cost</term>
+            <description>The minimal total cost (according to our heuristic cost metric).</description>
+            </item>
+            <item>
+            <term>Parts</term>
+            <description>A list of <see cref="T:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSplit"/> objects representing the chosen bicliques.</description>
+            </item>
+            </list>
+            </returns>
+            <remarks>
+            The implementation strategy:
+            <list type="number">
+            <item>Enumerate all valid bicliques (precomputation).</item>
+            <item>Build a reverse index mapping from each cell to the bicliques that cover it.</item>
+            <item>
+            Run a recursive search with memoization (DFS + cache) where at each step we:
+            <list type="bullet">
+            <item>Pick an uncovered cell, iterate all bicliques that include it.</item>
+            <item>Recurse with the remaining uncovered cells after removing biclique coverage.</item>
+            <item>Use a greedy upper bound as pruning to reduce the search space.</item>
+            </list>
+            </item>
+            </list>
+            This yields an exact result for small instances in 9-by-9-sized grid;
+            worst-case complexity is exponential (NP-hard problem).
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSplit">
+            <summary>
+            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
+            </summary>
+            <param name="Rows">Indicates row indices.</param>
+            <param name="Columns">Indicates column indices.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSplit.#ctor(System.Int32[],System.Int32[])">
+            <summary>
+            Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.
+            </summary>
+            <param name="Rows">Indicates row indices.</param>
+            <param name="Columns">Indicates column indices.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSplit.Rows">
+            <summary>Indicates row indices.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Simplifying.CoordinateSplit.Columns">
+            <summary>Indicates column indices.</summary>
         </member>
         <member name="T:Sudoku.Concepts.Graphs.AdjacentCellDirection">
             <summary>

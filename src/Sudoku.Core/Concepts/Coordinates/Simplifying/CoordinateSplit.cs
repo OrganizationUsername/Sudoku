@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates;
+namespace Sudoku.Concepts.Coordinates.Simplifying;
 
 /// <summary>
 /// Represents a part of coordinate, described as two arrays of row and column indices ranging 0..9.

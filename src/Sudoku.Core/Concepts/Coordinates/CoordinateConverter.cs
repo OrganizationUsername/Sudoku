@@ -97,11 +97,8 @@ public abstract record CoordinateConverter(
 	public static CoordinateConverter GetInstance(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CultureInfo c => c switch
-			{
-				{ Name: var name } when name.CultureNameEqual(SR.ChineseLanguage) => new K9Converter(true, CurrentCulture: c),
-				_ => new RxCyConverter(true, true, CurrentCulture: c)
-			},
+			{ IsChineseCulture: true } => new K9Converter(true, CurrentCulture: (CultureInfo)formatProvider),
+			CultureInfo c => new RxCyConverter(true, true, CurrentCulture: c),
 			CoordinateConverter c => c,
 			_ => InvariantCultureInstance
 		};

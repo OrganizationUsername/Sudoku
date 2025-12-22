@@ -14085,28 +14085,6 @@
               Looks up a localized string similar to Y axis.
             </summary>
         </member>
-        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions">
-            <summary>
-            Represents a type that compares culture language names.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.CultureNameEqual(System.String,System.String)">
-            <inheritdoc cref="M:Sudoku.Resources.LanguageNameComparisonExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.CultureNameEqual(System.String)"/>
-        </member>
-        <member name="T:Sudoku.Resources.LanguageNameComparisonExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.&lt;M&gt;$A56E4B15CBFDA0052F9BF9FD000FA868">
-            <summary>
-            Provides extension members on <see cref="T:System.String"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Resources.LanguageNameComparisonExtensions.&lt;G&gt;$34505F560D9EACF86A87F3ED1F85E448.CultureNameEqual(System.String)">
-            <summary>
-            Compares two <see cref="T:System.String"/> values, treated as culture name,
-            to get a <see cref="T:System.Boolean"/> result indicating whether they are same culture name,
-            or <see langword="this"/> includes <paramref name="otherName"/>.
-            </summary>
-            <param name="otherName">The other name to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Solving.Backtracking.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.

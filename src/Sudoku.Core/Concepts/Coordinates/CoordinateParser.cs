@@ -53,7 +53,7 @@ public abstract record CoordinateParser :
 	public static CoordinateParser GetInstance(IFormatProvider? formatProvider)
 		=> formatProvider switch
 		{
-			CultureInfo { Name: var name } when name.CultureNameEqual(SR.ChineseLanguage) => new K9Parser(),
+			{ IsChineseCulture: true } => new K9Parser(),
 			CoordinateParser c => c,
 			_ => InvariantCultureInstance
 		};

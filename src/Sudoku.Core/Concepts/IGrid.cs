@@ -58,11 +58,6 @@ public interface IGrid<TSelf> :
 	bool IsSolved { get; }
 
 	/// <summary>
-	/// Try to get the symmetry of the puzzle.
-	/// </summary>
-	SymmetricType Symmetry => GivenCells.Symmetry;
-
-	/// <summary>
 	/// Indicates the total number of given cells.
 	/// </summary>
 	Cell GivenCellsCount => GivenCells.Count;

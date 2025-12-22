@@ -178,9 +178,6 @@ public partial struct Grid : InlineArrayGridBase
 		}
 	}
 
-	/// <inheritdoc/>
-	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
-
 	/// <summary>
 	/// Indicates the type of the puzzle.
 	/// </summary>

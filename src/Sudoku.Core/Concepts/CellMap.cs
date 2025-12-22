@@ -294,35 +294,6 @@ public partial struct CellMap : CellMapBase
 	public readonly HouseMask Houses => (HouseMask)BlockMask | RowMask << 9 | ColumnMask << 18;
 
 	/// <summary>
-	/// Try to get the symmetric type of the pattern.
-	/// </summary>
-	public readonly SymmetricType Symmetry
-	{
-		get
-		{
-			foreach (var symmetry in ~SymmetricType.Values[1..])
-			{
-				var isThisSymmetry = true;
-				foreach (var cell in this)
-				{
-					var symmetricCells = symmetry.GetOrbit(cell);
-					if ((this & symmetricCells) != symmetricCells)
-					{
-						isThisSymmetry = false;
-						break;
-					}
-				}
-				if (!isThisSymmetry)
-				{
-					continue;
-				}
-				return symmetry;
-			}
-			return SymmetricType.None;
-		}
-	}
-
-	/// <summary>
 	/// Gets the expanded peers of the current map.
 	/// </summary>
 	/// <remarks>

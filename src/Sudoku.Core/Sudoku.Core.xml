@@ -707,11 +707,6 @@
             and 19 (column 2).
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Symmetry">
-            <summary>
-            Try to get the symmetric type of the pattern.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.CellMap.ExpandedPeers">
             <summary>
             Gets the expanded peers of the current map.
@@ -4870,9 +4865,6 @@
             Indicates whether the grid is at invalid state that a certain cell has no candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Symmetry">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.PuzzleType">
             <summary>
             Indicates the type of the puzzle.
@@ -6344,11 +6336,6 @@
             <summary>
             Indicates the grid has already solved. If the value is <see langword="true"/>, the grid is solved;
             otherwise, <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IGrid`1.Symmetry">
-            <summary>
-            Try to get the symmetry of the puzzle.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IGrid`1.GivenCellsCount">
@@ -9308,6 +9295,39 @@
         </member>
         <member name="M:Sudoku.Concepts.Symmetry.SymmetricTypeExtensions.&lt;G&gt;$A6177CC9D4F398436AB1019EF8B03A08.GetOrbit(System.Int32,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.Symmetry.SymmetricTypeExtensions.&lt;G&gt;$A6177CC9D4F398436AB1019EF8B03A08.GetCells(System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Symmetry.SymmetryExtensions">
+            <summary>
+            Provides extension methods that calculates symmetric type of variant sudoku concept types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Symmetry.SymmetryExtensions.get_Symmetry(Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="P:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Symmetry"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Symmetry.SymmetryExtensions.get_Symmetry(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="P:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Symmetry"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.&lt;M&gt;$746FF986A3BF72A7EADAD9DBD5C99EC4">
+            <summary>
+            Provides extension members on <see langword="in"/> <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <param name="this">The current instance.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.Symmetry">
+            <summary>
+            Indicates symmetric type of the cells formed.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.&lt;M&gt;$4FBDD4478CFAA5DAE39645DF9E3BC758">
+            <summary>
+            Provides extension members on <see langword="in"/> <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <param name="this">The current instance.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Symmetry.SymmetryExtensions.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.Symmetry">
+            <summary>
+            Indicates the symmetric type of given cells formed in the grid.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Uniqueness">
             <summary>

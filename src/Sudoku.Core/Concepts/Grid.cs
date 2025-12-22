@@ -1229,12 +1229,8 @@ public partial struct Grid : InlineArrayGridBase
 		=> provider switch
 		{
 			GridFormatInfo<Grid> g => g.ParseCore(s),
-			CultureInfo { Name: var n } => n switch
-			{
-				SR.EnglishLanguage => new PencilmarkGridFormatInfo().ParseCore(s),
-				SR.ChineseLanguage => new SusserGridFormatInfo().ParseCore(s),
-				_ => Parse(s)
-			},
+			{ IsEnglishCulture: true } => new PencilmarkGridFormatInfo().ParseCore(s),
+			{ IsChineseCulture: true } => new SusserGridFormatInfo().ParseCore(s),
 			_ => Parse(s)
 		};
 

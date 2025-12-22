@@ -3829,7 +3829,7 @@
             <param name="RowMask">A 9-bit mask representing which rows are included.</param>
             <param name="ColumnMask">A 9-bit mask representing which columns are included.</param>
             <param name="Covered">A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</param>
-            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</param>
+            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + columns).</param>
             <param name="Rows">Arrays of row indices used to build readable output.</param>
             <param name="Columns">Arrays of column indices used to build readable output.</param>
         </member>
@@ -3840,7 +3840,7 @@
             <param name="RowMask">A 9-bit mask representing which rows are included.</param>
             <param name="ColumnMask">A 9-bit mask representing which columns are included.</param>
             <param name="Covered">A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</param>
-            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</param>
+            <param name="Cost">The heuristic string cost for printing (e.g. "r" + rows + "c" + columns).</param>
             <param name="Rows">Arrays of row indices used to build readable output.</param>
             <param name="Columns">Arrays of column indices used to build readable output.</param>
         </member>
@@ -3854,7 +3854,7 @@
             <summary>A <see cref="T:Sudoku.Concepts.CellMap"/> listing the exact cells covered by this biclique (the Cartesian product).</summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Cost">
-            <summary>The heuristic string cost for printing (e.g. "r" + rows + "c" + cols).</summary>
+            <summary>The heuristic string cost for printing (e.g. "r" + rows + "c" + columns).</summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.Simplifying.Biclique.Rows">
             <summary>Arrays of row indices used to build readable output.</summary>

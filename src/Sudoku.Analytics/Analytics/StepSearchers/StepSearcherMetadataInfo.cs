@@ -31,10 +31,10 @@ public sealed class StepSearcherMetadataInfo(StepSearcher stepSearcher, StepSear
 	/// <summary>
 	/// Determines whether the current step searcher supports sukaku solving.
 	/// </summary>
-	public bool SupportsSukaku => _backAttribute.SupportSukaku;
+	public bool SupportsSukaku => _backAttribute.SupportsSukaku;
 
-	/// <inheritdoc cref="StepSearcherAttribute.SupportAnalyzingMultipleSolutionsPuzzle"/>
-	public bool SupportAnalyzingMultipleSolutionsPuzzle => _backAttribute.SupportAnalyzingMultipleSolutionsPuzzle;
+	/// <inheritdoc cref="StepSearcherAttribute.SupportsAnalyzingPuzzleHavingMultipleSolutions"/>
+	public bool SupportAnalyzingMultipleSolutionsPuzzle => _backAttribute.SupportsAnalyzingPuzzleHavingMultipleSolutions;
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for direct view.

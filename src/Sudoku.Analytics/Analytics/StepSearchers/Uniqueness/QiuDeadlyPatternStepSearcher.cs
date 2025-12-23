@@ -28,8 +28,8 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2,
 	Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4, Technique.LockedQiuDeadlyPattern,
 	Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2,
-	SupportSukaku = false,
-	SupportAnalyzingMultipleSolutionsPuzzle = false)]
+	SupportsSukaku = false,
+	SupportsAnalyzingPuzzleHavingMultipleSolutions = false)]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

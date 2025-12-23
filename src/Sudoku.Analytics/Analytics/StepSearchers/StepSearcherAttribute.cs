@@ -53,12 +53,12 @@ public sealed class StepSearcherAttribute(string nameKey, params Technique[] tec
 	/// Indicates whether the step searcher can be invoked by puzzles containing multiple solutions.
 	/// By default the value is <see langword="true"/>.
 	/// </summary>
-	public bool SupportAnalyzingMultipleSolutionsPuzzle { get; init; } = true;
+	public bool SupportsAnalyzingPuzzleHavingMultipleSolutions { get; init; } = true;
 
 	/// <summary>
 	/// Indicates whether this step searcher also supports to check for Sukaku puzzles.
 	/// </summary>
-	public bool SupportSukaku { get; init; } = true;
+	public bool SupportsSukaku { get; init; } = true;
 
 	/// <summary>
 	/// Indicates the key in resource dictionary.

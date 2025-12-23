@@ -28007,6 +28007,26 @@
             <returns>A <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.</returns>
             <exception cref="T:System.FormatException">Throws when invalid data encountered.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix">
+            <summary>
+            Represents a kind of fix that describes on/off state of a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None">
+            <summary>
+            Indicates no fix here to describe on/off state.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Prefix">
+            <summary>
+            Indicates the fix type is prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Suffix">
+            <summary>
+            Indicates the fix type is suffix.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.

@@ -30,8 +30,8 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AnonymousDeadlyPatternType3, Technique.AnonymousDeadlyPatternType4,
 	Technique.RotatingDeadlyPatternType1, Technique.RotatingDeadlyPatternType2,
 	Technique.RotatingDeadlyPatternType3, Technique.RotatingDeadlyPatternType4,
-	SupportSukaku = false,
-	SupportAnalyzingMultipleSolutionsPuzzle = false)]
+	SupportsSukaku = false,
+	SupportsAnalyzingPuzzleHavingMultipleSolutions = false)]
 public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -93,7 +93,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
 	Technique.AvoidableRectangleExternalAlmostLockedSetsXz,
 
-	SupportAnalyzingMultipleSolutionsPuzzle = false)]
+	SupportsAnalyzingPuzzleHavingMultipleSolutions = false)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

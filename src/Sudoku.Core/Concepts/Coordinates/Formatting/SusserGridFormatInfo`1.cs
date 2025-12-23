@@ -67,11 +67,17 @@ public partial class SusserGridFormatInfo<TGrid> : GridFormatInfo<TGrid> where T
 	/// <inheritdoc/>
 	protected internal sealed override string FormatCore(in TGrid grid)
 	{
-		return b(grid) is var r && IsCompatibleMode
-			? $":0000:x:{r}{new(':', 3)}"
-			: OnlyEliminations
-				? EliminationPattern.Match(r) is { Success: true, Value: var value } ? value : string.Empty
-				: r;
+		var r = b(grid);
+		return this switch
+		{
+			{ IsCompatibleMode: true } => $":0000:x:{r}{new(':', 3)}",
+			{ OnlyEliminations: true } => EliminationPattern.Match(r) switch
+			{
+				{ Success: true, Value: var value } => value,
+				_ => string.Empty
+			},
+			_ => r
+		};
 
 
 		string b(in TGrid grid)

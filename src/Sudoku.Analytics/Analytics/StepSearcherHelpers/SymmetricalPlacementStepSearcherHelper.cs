@@ -25,7 +25,7 @@ internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelpe
 	/// <returns>Symmetric types.</returns>
 	public static unsafe SymmetricType GetSymmetry(in Grid grid, out ReadOnlySpan<Digit?> mappingDigits, out Mask selfPairedDigitsMask)
 	{
-		if (grid.PuzzleType != GridType.Standard || grid.Uniqueness != Uniqueness.Unique)
+		if (!grid.IsStandard || grid.Uniqueness != Uniqueness.Unique)
 		{
 			goto FastFail;
 		}

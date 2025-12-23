@@ -4827,14 +4827,13 @@
             </listheader>
             <item>
             <term>0b0000</term>
-            <description>Represents standard sudoku type (flag: <see cref="F:Sudoku.Concepts.GridType.Standard"/>)</description>
+            <description>Represents standard sudoku type</description>
             </item>
             <item>
             <term>0b0010</term>
-            <description>Represents Sukaku (flag: <see cref="F:Sudoku.Concepts.GridType.Sukaku"/>)</description>
+            <description>Represents Sukaku</description>
             </item>
             </list>
-            Other values won't be supported for now, even if the flags are defined in type <see cref="T:Sudoku.Concepts.GridType"/>.
             </para>
             </remarks>
         </member>
@@ -4860,14 +4859,19 @@
         <member name="P:Sudoku.Concepts.Grid.IsMissingCandidates">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.IsSukaku">
+            <summary>
+            Indicates whether the grid is Sukaku (a sudoku variant that is a full-pencilmarked grid, without any candidates).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.IsStandard">
+            <summary>
+            Indicates whether the grid is standard sudoku.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.HasCellHavingNoCandidates">
             <summary>
             Indicates whether the grid is at invalid state that a certain cell has no candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.PuzzleType">
-            <summary>
-            Indicates the type of the puzzle.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCellsCount">
@@ -5215,19 +5219,49 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.GridType.Sukaku"/> if and only if the puzzle is Sukaku,
-            and the argument <paramref name="cell"/> is 0.
+            Gets the header 4 bits. The value can be 2 if and only if the puzzle is Sukaku,
+            with argument <paramref name="cell"/> equal to 0.
             </summary>
             <param name="cell">The cell.</param>
             <returns>The header 4 bits, represented as a <see cref="T:System.Int16"/>, left-shifted.</returns>
+            <remarks>
+            For more information about this type, please visit <c>remarks</c> part in <see cref="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.GridType.Sukaku"/> if and only if the puzzle is Sukaku,
-            and the argument <paramref name="cell"/> is 0.
+            Gets the header 4 bits of the specified cell.
             </summary>
-            <param name="cell">The cell.</param>
-            <returns>The header 4 bits, represented as a <see cref="T:System.Int16"/>.</returns>
+            <param name="cell">
+            The cell. Generally the value should be 0 because today only higher bits at cell <c>r1c1</c> is in use.
+            </param>
+            <returns>The header, in 4 bits, but using original mask type <see cref="T:System.Int16" /> to represent that.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            <para>
+            Due to design complexity of this type, I hard-coded the value 2 into the first cell of the inline array,
+            the backing field of this type, with higher 4 bits (12..16) equal to <c>0b0010</c>.
+            If the value is <c>0b0010</c> at cell 0 in higher bits, we can know this grid is a Sukaku.
+            </para>
+            <para>
+            I don't like this design, but it is Sukaku-unaware if we loss such data.
+            We cannot directly check whether a grid has no given cells or not to know the grid is a standard sudoku puzzle or not;
+            it effects string-parsing modules, causing wrong returns.
+            </para>
+            <para>
+            In the early of this repository built,
+            I tried compilation symbol <c>TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU</c>
+            to enable (include) or disable (exclude) some code snippets, but it didn't work in some edge cases.
+            Although such code are disabled by default, I still want to adjust such procedure to make such API graceful.
+            Please visit raw code in <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)" /> if you are full of curiosity.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)" />
         </member>
         <member name="M:Sudoku.Concepts.Grid.AddSukakuHeader">
             <summary>
@@ -5502,34 +5536,6 @@
             Checks whether the cell is a value cell, being filled by the digit.
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridPredicates.&lt;G&gt;$E85000132676E52A99CE6082267414DB`1.ExistsInCandidatesMap(`0@,System.Int32,System.Int32)"/>
-        </member>
-        <member name="T:Sudoku.Concepts.GridType">
-            <summary>
-            Represents a type of a grid.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.GridType.None">
-            <summary>
-            The placeholder of the enumeration field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridType.Standard">
-            <summary>
-            Indicates the sudoku puzzle is a standard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridType.Sukaku">
-            <summary>
-            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.HouseDigitIdentifier">
             <summary>
@@ -6925,7 +6931,6 @@
             <para>Part (3) is for reserved cases. Such bits may not be used.</para>
             </remarks>
             <seealso cref="T:Sudoku.Concepts.CellState"/>
-            <seealso cref="T:Sudoku.Concepts.GridType"/>
         </member>
         <member name="P:Sudoku.Concepts.IInlineArrayGrid`1.DefaultMask">
             <summary>
@@ -7893,7 +7898,7 @@
             Represents a concept "Mask". A mask is a list of candidates represented as a 9-bit integer value.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.MaskMarshal.MaskToSudokuType(System.Int16)">
+        <member name="M:Sudoku.Concepts.Marshalling.MaskMarshal.GetSudokuTypeMask(System.Int16)">
             <summary>
             Gets the sudoku type for the specified cell mask inside a <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>

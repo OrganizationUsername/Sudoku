@@ -256,7 +256,7 @@ public partial struct ParallelAsyncCollectorAwaitable
 					switch (searcher)
 					{
 						case { RunningArea: var runningArea } when !runningArea.HasFlag(StepSearcherRunningArea.Collecting):
-						case { Metadata.SupportsSukaku: false } when _grid.PuzzleType == GridType.Sukaku:
+						case { Metadata.SupportsSukaku: false } when _grid.IsSukaku:
 						{
 							break;
 						}

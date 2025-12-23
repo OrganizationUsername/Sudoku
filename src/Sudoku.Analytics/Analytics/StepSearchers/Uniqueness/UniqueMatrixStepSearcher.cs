@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_UniqueMatrixStepSearcher",
 	Technique.UniqueMatrixType1, Technique.UniqueMatrixType2, Technique.UniqueMatrixType3, Technique.UniqueMatrixType4,
-	SupportedSudokuTypes = GridType.Standard,
+	SupportSukaku = false,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 {

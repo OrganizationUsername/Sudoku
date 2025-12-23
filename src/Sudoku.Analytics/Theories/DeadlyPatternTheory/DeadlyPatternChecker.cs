@@ -26,7 +26,7 @@ public static class DeadlyPatternChecker
 		var defaultResult = new DeadlyPatternResult(in grid) { PermutationsCount = 0, IsDeadlyPattern = false, FailedCases = [] };
 
 		var patternMap = CandidateMap.Empty;
-		if (grid is not { IsValid: false, EmptyCellsCount: 81, PuzzleType: GridType.Standard })
+		if (grid is not { IsValid: false, EmptyCellsCount: 81, IsStandard: true })
 		{
 			// Invalid values to be checked.
 			goto FastFail;

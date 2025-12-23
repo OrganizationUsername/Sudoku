@@ -25,7 +25,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		if (puzzle.PuzzleType == GridType.Sukaku)
+		if (puzzle.IsSukaku)
 		{
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = BackdoorButton;
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;
@@ -59,7 +59,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		if (puzzle.PuzzleType == GridType.Sukaku)
+		if (puzzle.IsSukaku)
 		{
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = TrueCandidateButton;
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;
@@ -96,7 +96,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
-		if (puzzle.PuzzleType == GridType.Sukaku)
+		if (puzzle.IsSukaku)
 		{
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = DisorderedIttoryuButton;
 			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;

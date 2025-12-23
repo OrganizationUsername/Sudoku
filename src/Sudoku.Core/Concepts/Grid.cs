@@ -65,14 +65,13 @@ public partial struct Grid : InlineArrayGridBase
 	/// </listheader>
 	/// <item>
 	/// <term>0b0000</term>
-	/// <description>Represents standard sudoku type (flag: <see cref="GridType.Standard"/>)</description>
+	/// <description>Represents standard sudoku type</description>
 	/// </item>
 	/// <item>
 	/// <term>0b0010</term>
-	/// <description>Represents Sukaku (flag: <see cref="GridType.Sukaku"/>)</description>
+	/// <description>Represents Sukaku</description>
 	/// </item>
 	/// </list>
-	/// Other values won't be supported for now, even if the flags are defined in type <see cref="GridType"/>.
 	/// </para>
 	/// </remarks>
 	private Mask _values;
@@ -161,6 +160,16 @@ public partial struct Grid : InlineArrayGridBase
 	public readonly bool IsMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
 
 	/// <summary>
+	/// Indicates whether the grid is Sukaku (a sudoku variant that is a full-pencilmarked grid, without any candidates).
+	/// </summary>
+	public readonly bool IsSukaku => GetHeaderBits(0) == GridBase.SukakuHeader;
+
+	/// <summary>
+	/// Indicates whether the grid is standard sudoku.
+	/// </summary>
+	public readonly bool IsStandard => GetHeaderBits(0) != GridBase.SukakuHeader;
+
+	/// <summary>
 	/// Indicates whether the grid is at invalid state that a certain cell has no candidates.
 	/// </summary>
 	public readonly bool HasCellHavingNoCandidates
@@ -177,11 +186,6 @@ public partial struct Grid : InlineArrayGridBase
 			return false;
 		}
 	}
-
-	/// <summary>
-	/// Indicates the type of the puzzle.
-	/// </summary>
-	public readonly GridType PuzzleType => GetHeaderBits(0) switch { GridBase.SukakuHeader => GridType.Sukaku, _ => GridType.Standard };
 
 	/// <inheritdoc/>
 	public readonly Cell GivenCellsCount => GivenCells.Count;
@@ -574,12 +578,12 @@ public partial struct Grid : InlineArrayGridBase
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
 	public readonly int CompareTo(in Grid other)
-		=> PuzzleType != GridType.Sukaku && other.PuzzleType != GridType.Sukaku
+		=> !IsSukaku && !other.IsSukaku
 			? ToString("#").CompareTo(other.ToString("#"))
 			: throw new InvalidOperationException(SR.ExceptionMessage("ComparableGridMustBeStandard"));
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString() => PuzzleType == GridType.Sukaku ? ToString("~") : ToString(null, null);
+	public readonly override string ToString() => IsSukaku ? ToString("~") : ToString(null, null);
 
 	/// <remarks>
 	/// <para>You can use format identifiers to create the format text. All valid format identifiers:
@@ -768,7 +772,7 @@ public partial struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Reset()
 	{
-		if (PuzzleType != GridType.Standard)
+		if (!IsStandard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -789,7 +793,7 @@ public partial struct Grid : InlineArrayGridBase
 	/// </summary>
 	public void ResetCandidates()
 	{
-		if (PuzzleType != GridType.Standard)
+		if (!IsStandard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -804,7 +808,7 @@ public partial struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Fix()
 	{
-		if (PuzzleType != GridType.Standard)
+		if (!IsStandard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -822,7 +826,7 @@ public partial struct Grid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public void Unfix()
 	{
-		if (PuzzleType != GridType.Standard)
+		if (!IsStandard)
 		{
 			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
 			return;
@@ -939,7 +943,7 @@ public partial struct Grid : InlineArrayGridBase
 	public readonly Grid Preserve(in CellMap template)
 	{
 		var temp = this;
-		if (PuzzleType != GridType.Standard)
+		if (!IsStandard)
 		{
 			goto Return;
 		}
@@ -954,19 +958,45 @@ public partial struct Grid : InlineArrayGridBase
 	}
 
 	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="GridType.Sukaku"/> if and only if the puzzle is Sukaku,
-	/// and the argument <paramref name="cell"/> is 0.
+	/// Gets the header 4 bits. The value can be 2 if and only if the puzzle is Sukaku,
+	/// with argument <paramref name="cell"/> equal to 0.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
+	/// <remarks>
+	/// For more information about this type, please visit <c>remarks</c> part in <see cref="GetHeaderBitsUnshifted(Cell)"/>.
+	/// </remarks>
+	/// <seealso cref="GetHeaderBitsUnshifted(Cell)"/>
 	internal readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] & ~((1 << GridBase.HeaderShift) - 1));
 
 	/// <summary>
-	/// Gets the header 4 bits. The value can be <see cref="GridType.Sukaku"/> if and only if the puzzle is Sukaku,
-	/// and the argument <paramref name="cell"/> is 0.
+	/// Gets the header 4 bits of the specified cell.
 	/// </summary>
-	/// <param name="cell">The cell.</param>
-	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
+	/// <param name="cell">
+	/// The cell. Generally the value should be 0 because today only higher bits at cell <c>r1c1</c> is in use.
+	/// </param>
+	/// <returns>The header, in 4 bits, but using original mask type <see cref="Mask"/> to represent that.</returns>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes"/>
+	/// <para>
+	/// Due to design complexity of this type, I hard-coded the value 2 into the first cell of the inline array,
+	/// the backing field of this type, with higher 4 bits (12..16) equal to <c>0b0010</c>.
+	/// If the value is <c>0b0010</c> at cell 0 in higher bits, we can know this grid is a Sukaku.
+	/// </para>
+	/// <para>
+	/// I don't like this design, but it is Sukaku-unaware if we loss such data.
+	/// We cannot directly check whether a grid has no given cells or not to know the grid is a standard sudoku puzzle or not;
+	/// it effects string-parsing modules, causing wrong returns.
+	/// </para>
+	/// <para>
+	/// In the early of this repository built,
+	/// I tried compilation symbol <c>TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU</c>
+	/// to enable (include) or disable (exclude) some code snippets, but it didn't work in some edge cases.
+	/// Although such code are disabled by default, I still want to adjust such procedure to make such API graceful.
+	/// Please visit raw code in <see cref="Parse(string?)"/> if you are full of curiosity.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Parse(string?)"/>
 	internal readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> GridBase.HeaderShift);
 
 	/// <summary>
@@ -1137,7 +1167,7 @@ public partial struct Grid : InlineArrayGridBase
 		}
 
 #if TRANSFORM_LESS_GIVEN_STANDARD_SUDOKU_PUZZLES_TO_SUKAKU
-		// Here need an extra check. Sukaku puzzles can be output as a normal pencil-mark grid format.
+		// Here need an extra check. Sukaku puzzles can be output as a normal pencilmark grid format.
 		// We should check whether the puzzle is a Sukaku in fact or not.
 		// This is a bug fix for pencilmark grid parser, which cannot determine whether a puzzle is a Sukaku.
 		// I define that a Sukaku must contain 0 given cells, meaning all values should be candidates or modifiable values.

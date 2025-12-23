@@ -18400,6 +18400,11 @@
             By default the value is <see langword="true"/>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportSukaku">
+            <summary>
+            Indicates whether this step searcher also supports to check for Sukaku puzzles.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.NameKey">
             <summary>
             Indicates the key in resource dictionary.
@@ -18413,11 +18418,6 @@
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.DifficultyLevels">
             <summary>
             Indicates what difficulty levels the current step searcher can produce.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportedSudokuTypes">
-            <summary>
-            Indicates the supported sudoku types.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportedTechniques">

@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_ExtendedRectangleStepSearcher",
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2,
 	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType3Cannibalism, Technique.ExtendedRectangleType4,
-	SupportedSudokuTypes = GridType.Standard,
+	SupportSukaku = false,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {

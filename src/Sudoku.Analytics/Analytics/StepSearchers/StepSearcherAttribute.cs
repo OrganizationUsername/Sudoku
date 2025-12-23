@@ -56,6 +56,11 @@ public sealed class StepSearcherAttribute(string nameKey, params Technique[] tec
 	public bool SupportAnalyzingMultipleSolutionsPuzzle { get; init; } = true;
 
 	/// <summary>
+	/// Indicates whether this step searcher also supports to check for Sukaku puzzles.
+	/// </summary>
+	public bool SupportSukaku { get; init; } = true;
+
+	/// <summary>
 	/// Indicates the key in resource dictionary.
 	/// </summary>
 	public string NameKey { get; } = nameKey;
@@ -69,11 +74,6 @@ public sealed class StepSearcherAttribute(string nameKey, params Technique[] tec
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
 	public DifficultyLevel DifficultyLevels => DifficultyLevel.MergeFlags(from t in SupportedTechniques select t.DifficultyLevel);
-
-	/// <summary>
-	/// Indicates the supported sudoku types.
-	/// </summary>
-	public GridType SupportedSudokuTypes { get; init; } = GridType.All;
 
 	/// <summary>
 	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='techniques']"/>

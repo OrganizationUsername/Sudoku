@@ -14,7 +14,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_BorescoperDeadlyPatternStepSearcher",
 	Technique.BorescoperDeadlyPatternType1, Technique.BorescoperDeadlyPatternType2,
 	Technique.BorescoperDeadlyPatternType3, Technique.BorescoperDeadlyPatternType4,
-	SupportedSudokuTypes = GridType.Standard,
+	SupportSukaku = false,
 	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 {

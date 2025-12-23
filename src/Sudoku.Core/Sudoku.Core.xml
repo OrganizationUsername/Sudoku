@@ -9367,6 +9367,561 @@
             Indicates the puzzle has multiple solutions.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.IGridConverter">
+            <summary>
+            Provides an object that converts data between <see cref="T:System.String"/> and instantiated <see cref="T:Sudoku.Concepts.Grid"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.IGridConverter.ParsingPriority">
+            <summary>
+            Indicates the priority on parsing.
+            </summary>
+            <remarks>
+            <para>
+            If multiple different parsers can construct <see cref="T:Sudoku.Concepts.Grid"/> instances,
+            this value will adopt the first one with higher priority value;
+            if different <see cref="T:Sudoku.Concepts.ValueConversions.IGridConverter"/> instances hold same parsing priority, a runtime exception will be thrown
+            when all parser modules from them execute successfully.
+            </para>
+            <para>
+            This value is only reserved for usages on distinction of specialized characters in some parsing rules.
+            Like a pencilmark grid, the target string representation must contain a sequence of characters <c>"-+-"</c>,
+            which isn't appeared in strings produced by the other grid conversion rules. If we can detect with that,
+            the priority value can be greater than the others in order to prevent malformed string parsing error produced
+            in some other parsing modules.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <summary>
+            Performs parsing operation.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="provider">The provider.</param>
+            <param name="result">The result parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <summary>
+            Performs formatting operation.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="provider">The provider.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.MultilineGridBlockLineRemovedConverter">
+            <summary>
+            Represents a multiline grid converter, with block lines removed parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridBlockLineRemovedConverter.RemoveBlockLines">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.MultilineGridConverter">
+            <summary>
+            Represents multiline grid converter. Different with <see cref="T:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter"/>,
+            this type doesn't print any candidates.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.TreatValueAsGiven">
+            <summary>
+            Indicates whether the formatter will treat all values as givens, regardless of its value state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.RemoveBlockLines">
+            <summary>
+            Indicates whether the parsing operation will use simple way, removing all block lines for multi-line formatting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.SubtleGridLines">
+            <summary>
+            Indicates whether the formatter will subtle grid lines to make a good look. By default it's <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.GridSusserDigitPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(\\+?\\d|\\.)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ 1st capture group.<br/>
+                ○ Match with 2 alternative expressions, atomically.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '+' atomically, optionally.<br/>
+                        ○ Match a Unicode digit.<br/>
+                    ○ Match '.'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.GridSimpleMultilinePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+                    ○ 2nd capture group.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a character in the set [\n\r].<br/>
+                            ○ Match the string "\r\n".<br/>
+            ○ Match a character in the set [+.\d] exactly 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.MultilineGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.MultilineGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.MultilineGridDefaultConverter">
+            <summary>
+            Represents a multiline grid converter, with block lines reserved parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridDefaultConverter.RemoveBlockLines">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter">
+            <summary>
+            Represents Open Sudoku grid converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter.GridOpenSudokuPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d(?:\\|\\d){242}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit.<br/>
+            ○ Loop exactly 242 times.<br/>
+                ○ Match '|'.<br/>
+                ○ Match a Unicode digit.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter">
+            <summary>
+            Represents pencilmark grid converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.SubtleGridLines">
+            <summary>
+            Indicates whether the formatter will subtle grid lines to make a good look. By default it's <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.TreatValueAsGiven">
+            <summary>
+            Indicates whether the formatter will treat all values as givens, regardless of its value state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.IsCompatibleMode">
+            <summary>
+            Indicates whether the formatter will use compatible mode to output grid values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.GridPencilmarkPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 3 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '&lt;'.<br/>
+                    ○ Match a Unicode digit.<br/>
+                    ○ Match '&gt;'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '*'.<br/>
+                    ○ Match a Unicode digit.<br/>
+                    ○ Match '*'.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a Unicode digit greedily any number of times.<br/>
+                    ○ Match a character in the set [+\-] atomically, optionally.<br/>
+                    ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.ValueCellPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[1-9\\+\\-]{1,9}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [+\-1-9] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SukakuGridConverter">
+            <summary>
+            Represents a format converter for Sukaku puzzles.
+            A Sukaku puzzle is a kind of sudoku variant, with all cells empty cells with candidates instead.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridConverter.Multiline">
+            <summary>
+            Indicates whether the formatter will handle the value with multiple-line mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridConverter.GridSukakuSegmentPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a Unicode digit greedily any number of times.<br/>
+            ○ Match a character in the set [+\-] atomically, optionally.<br/>
+            ○ Match a Unicode digit atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SukakuGridMultilineConverter">
+            <summary>
+            Represents Sukaku grid converter, with multiple-line parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridMultilineConverter.Multiline">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridMultilineConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridMultilineConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridMultilineConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SukakuGridSingleLineConverter">
+            <summary>
+            Represents Sukaku grid converter, with single-line parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridSingleLineConverter.Multiline">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridSingleLineConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridSingleLineConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SukakuGridSingleLineConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SusserGridConverter">
+            <summary>
+            Represents Susser grid converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.ModifiablePrefix">
+            <summary>
+            Indicates the modifiable prefix character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.LineLimit">
+            <summary>
+            Indicates the line separator character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.Star">
+            <summary>
+            Indicates the star character used by shortening Susser format.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.Dot">
+            <summary>
+            Indicates the dot character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.Zero">
+            <summary>
+            Indicates the zero character.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.SusserGridConverter.PreeliminationPrefix">
+            <summary>
+            Indicates the pre-elimination prefix character.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.#ctor">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.ValueConversions.SusserGridConverter"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.#ctor(Sudoku.Concepts.ValueConversions.SusserGridConverter)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.ValueConversions.SusserGridConverter"/> instance via original one.
+            </summary>
+            <param name="original">The original one.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.IsCompatibleMode">
+            <summary>
+            Indicates whether the formatter will use compatible mode to output grid values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.WithCandidates">
+            <summary>
+            <para>Indicates whether the formatter will reserve candidates as pre-elimination.</para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.WithModifiables">
+            <summary>
+            <para>
+            Indicates whether the formatter will output and distinct modifiable and given digits.
+            If so, the modifiable digits will be displayed as <c>+digit</c>, where <c>digit</c> will be replaced
+            with the real digit number (from 1 to 9).
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.ShortenSusser">
+            <summary>
+            <para>
+            Indicates whether the parser will use shorten mode to parse a susser format grid.
+            If the value is <see langword="true"/>, the parser will omit the continuous empty notation
+            <c>.</c>s or <c>0</c>s to a <c>*</c>.
+            </para>
+            <para>
+            This option will omit the continuous empty cells to a <c>*</c> in a single line. For example, the code
+            <code><![CDATA[
+            080630040200085009090000081000300800000020000006001000970000030400850007010094050
+            ]]></code>
+            will be displayed as
+            <code><![CDATA[
+            08063*40,2*85009,09*81,*300800,*2*,006001*,97*30,40085*7,01*94050
+            ]]></code>
+            via this option.
+            We use the colon <c>,</c> to separate each line of 9 numbers, and then omit the most continuous empty cells to a <c>*</c>.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.NegateEliminationsTripletRule">
+            <summary>
+            <para>
+            Indicates whether the parser will negate the rule, treating all digits as candidates existing in the grid
+            instead of removed ones.
+            </para>
+            <para>The default value is <see langword="false"/>.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.TreatValueAsGiven">
+            <summary>
+            Indicates whether the formatter will treat all values as givens, regardless of its value state.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.OnlyEliminations">
+            <summary>
+            Indicates whether the formatting operation will output for eliminations.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.Placeholder">
+            <summary>
+            Indicates the placeholder of the grid text formatter.
+            </summary>
+            <value>The new placeholder text character to be set. The value must be <c>'.'</c> or <c>'0'</c>.</value>
+            <returns>The placeholder text.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.GridSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [+.\d] greedily at least 80 times.<br/>
+            ○ Optional (greedy).<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ':'.<br/>
+                    ○ Loop greedily any number of times.<br/>
+                        ○ 2nd capture group.<br/>
+                            ○ Match a Unicode digit exactly 3 times.<br/>
+                            ○ Match a whitespace character atomically at least once.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.GridShortenedSusserPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            ○ Loop exactly 8 times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match ','.<br/>
+                    ○ Match a character in the set [*.\d] atomically at least 1 and at most 9 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.EliminationPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Zero-width positive lookbehind.<br/>
+                ○ Match ':' right-to-left.<br/>
+            ○ Loop greedily any number of times.<br/>
+                ○ 1st capture group.<br/>
+                    ○ Match a Unicode digit exactly 3 times.<br/>
+                    ○ Match a whitespace character atomically at least once.<br/>
+            ○ Match a Unicode digit exactly 3 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.TryFormat``1(``0@,System.IFormatProvider,System.String@)">
+            <summary>
+            Performs formatting operation.
+            </summary>
+            <typeparam name="TGrid">
+            The type of grid. The supported types are <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Concepts.MarkerGrid"/>.
+            </typeparam>
+            <param name="grid">The grid.</param>
+            <param name="provider">The provider.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="T:Sudoku.Concepts.MarkerGrid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.TryParse``1(System.ReadOnlySpan{System.Char},System.IFormatProvider,``0@)">
+            <summary>
+            Performs parsing operation.
+            </summary>
+            <typeparam name="TGrid">
+            The type of grid. The supported types are <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Concepts.MarkerGrid"/>.
+            </typeparam>
+            <param name="text">The text.</param>
+            <param name="provider">The provider.</param>
+            <param name="result">The result parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.System#ICloneable#Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IGridConverter#TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IGridConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SusserGridDefaultConverter">
+            <summary>
+            Represents a Susser format converter, with default parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridDefaultConverter.ShortenSusser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridDefaultConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridDefaultConverter.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.SusserGridShortenedConverter">
+            <summary>
+            Represents a Susser format converter, with shortened parsing rule.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridShortenedConverter.ShortenSusser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.SusserGridShortenedConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridShortenedConverter.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.TabSeparatedGridConverter">
+            <summary>
+            Represents tab-separated grid converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.TabSeparatedGridConverter.ParsingPriority">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.TabSeparatedGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.TabSeparatedGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Descriptors.ColorDescriptor">
             <summary>
             Represents a descriptor that describes for a color that will be used in drawing.
@@ -17298,34 +17853,98 @@
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the HouseWithDigitPattern method.</summary>
+        <member name="T:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GridOpenSudokuPattern method.</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.Instance">
+        <member name="F:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.Instance">
             <summary>Cached, thread-safe singleton instance.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.#ctor">
+        <member name="M:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.#ctor">
             <summary>Initializes the instance.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory">
+        <member name="T:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory">
             <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory.CreateInstance">
+        <member name="M:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory.CreateInstance">
             <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
         </member>
-        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory.Runner">
+        <member name="T:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory.Runner">
             <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
             <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
             <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_24.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.GridOpenSudokuPattern_24.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the GridPencilmarkPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.GridPencilmarkPattern_25.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the HouseWithDigitPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.HouseWithDigitPattern_26.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>

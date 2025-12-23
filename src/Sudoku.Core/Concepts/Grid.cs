@@ -1141,15 +1141,15 @@ public partial struct Grid : InlineArrayGridBase
 		}
 
 		var parsers = (GridFormatInfo<Grid>[])[
-			new MultipleLineGridFormatInfo(),
-			new MultipleLineGridFormatInfo { RemoveGridLines = true },
-			new PencilmarkGridFormatInfo(),
-			new SusserGridFormatInfo(),
-			new SusserGridFormatInfo { ShortenSusser = true },
-			new CsvGridFormatInfo(),
-			new OpenSudokuGridFormatInfo(),
-			new SukakuGridFormatInfo(),
-			new SukakuGridFormatInfo { Multiline = true }
+			new MultipleLineGridFormatInfo(),//
+			new MultipleLineGridFormatInfo { RemoveGridLines = true },//
+			new PencilmarkGridFormatInfo(),//
+			new SusserGridFormatInfo(),//
+			new SusserGridFormatInfo { ShortenSusser = true },//
+			new CsvGridFormatInfo(),//
+			new OpenSudokuGridFormatInfo(),//
+			new SukakuGridFormatInfo(),//
+			new SukakuGridFormatInfo { Multiline = true }//
 		];
 
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.

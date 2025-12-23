@@ -2852,26 +2852,6 @@
             </summary>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix">
-            <summary>
-            Represents a kind of fix that describes on/off state of a chain node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None">
-            <summary>
-            Indicates no fix here to describe on/off state.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Prefix">
-            <summary>
-            Indicates the fix type is prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Suffix">
-            <summary>
-            Indicates the fix type is suffix.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.OpenSudokuGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.GridFormatInfo`1"/> type that supports OpenSudoku formatting.

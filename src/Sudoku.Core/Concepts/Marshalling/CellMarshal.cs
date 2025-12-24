@@ -100,17 +100,25 @@ public static class CellMarshal
 			};
 
 
+		/// <inheritdoc cref="ToCellString(int, ICellMapConverter, IFormatProvider?)"/>
+		public static string ToCellString(Cell cell, CultureInfo culture)
+			=> Cell.ToCellString(cell, CoordinateConverter.GetInstance(culture));
+
+		/// <inheritdoc cref="ToCellString(int, ICellMapConverter, IFormatProvider?)"/>
+		public static string ToCellString(Cell cell, CoordinateConverter converter) => converter.CellConverter(cell.AsCellMap());
+
+		/// <inheritdoc cref="ToCellString(int, ICellMapConverter, IFormatProvider?)"/>
+		public static string ToCellString(Cell cell, ICellMapConverter converter) => Cell.ToCellString(cell, converter, null);
+
 		/// <summary>
 		/// Converts a cell instance into a string instance that represents for a cell.
 		/// </summary>
 		/// <param name="cell">The cell.</param>
-		/// <param name="formatProvider">The formatter.</param>
+		/// <param name="converter">The converter.</param>
+		/// <param name="formatProvider">The format provider.</param>
 		/// <returns>The string representation.</returns>
-		public static string ToCellString(Cell cell, IFormatProvider? formatProvider)
-		{
-			var converter = CoordinateConverter.GetInstance(formatProvider);
-			return converter.CellConverter(cell.AsCellMap());
-		}
+		public static string ToCellString(Cell cell, ICellMapConverter converter, IFormatProvider? formatProvider)
+			=> converter.TryFormat(in cell.AsCellMap(), formatProvider, out var result) ? result : throw new FormatException();
 	}
 
 	/// <summary>

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates.Formatting;
+namespace Sudoku.Concepts.ValueConversions;
 
 /// <summary>
 /// Provides with extension methods on <see cref="NotationBracket"/>.

@@ -44,7 +44,6 @@ global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.Traits;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
-global using Sudoku.Concepts.Coordinates.Formatting;
 global using Sudoku.Concepts.Graphs;
 global using Sudoku.Concepts.Marshalling;
 global using Sudoku.Concepts.Supersymmetry;

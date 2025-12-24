@@ -80,11 +80,25 @@ public sealed class BinaryForcingChains(UnnamedChain branch1, UnnamedChain branc
 
 
 	/// <inheritdoc/>
-	public string ToString(IFormatProvider? formatProvider)
-	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return string.Join(", ", from branch in Branches select $"{branch.ToString(converter)}");
-	}
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+
+	/// <inheritdoc/>
+	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
+
+	/// <inheritdoc/>
+	public string ToString(CoordinateConverter converter)
+		=> string.Join(", ", from branch in Branches select $"{branch.ToString(converter)}");
+
+	/// <inheritdoc/>
+	public string ToString(IChainConverter converter) => ToString(converter, null);
+
+	/// <inheritdoc/>
+	public string ToString(IChainConverter converter, IFormatProvider? formatProvider)
+		=> string.Join(
+			", ",
+			from branch in Branches
+			select converter.TryFormat(branch, formatProvider, out var result) ? result : throw new FormatException()
+		);
 
 	/// <inheritdoc/>
 	ReadOnlySpan<ViewNode[]> IForcingChains.GetViewsCore(in Grid grid, ChainingRuleCollection rules, Conclusion[] newConclusions)

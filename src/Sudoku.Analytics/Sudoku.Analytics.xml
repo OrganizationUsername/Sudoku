@@ -4930,9 +4930,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain,Sudoku.Analytics.Construction.Components.NodeComparison)">
             <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.CompareTo(Sudoku.Analytics.Construction.Components.AlternatingInferenceChain)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.AlternatingInferenceChain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
@@ -5006,7 +5003,19 @@
             Indicates the backing branches.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BinaryForcingChains.Sudoku#Analytics#Construction#Components#IForcingChains#GetViewsCore(Sudoku.Concepts.Grid@,Sudoku.Analytics.StepSearcherHelpers.Chaining.ChainingRuleCollection,Sudoku.Concepts.Conclusion[])">
@@ -5154,11 +5163,35 @@
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <param name="branchKeyConverter">The branch key (candidate) converter.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.BlossomLoop.op_Equality(Sudoku.Analytics.Construction.Components.BlossomLoop,Sudoku.Analytics.Construction.Components.BlossomLoop)">
             <inheritdoc/>
@@ -5399,8 +5432,17 @@
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(Sudoku.Concepts.ValueConversions.IChainConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.Chain.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.Slice(System.Int32,System.Int32)">
             <summary>
@@ -5413,25 +5455,10 @@
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Construction#Components#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.TryParse(System.String,Sudoku.Analytics.Construction.Components.Chain@)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.TryParse(System.String,System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.TryParse(System.String,System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Parse(System.String)">
-            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.Chain.Parse(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.Chain.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.Chain.op_Equality(Sudoku.Analytics.Construction.Components.Chain,Sudoku.Analytics.Construction.Components.Chain)">
@@ -5663,9 +5690,6 @@
             <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.ContinuousNiceLoop)"/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.CompareTo(Sudoku.Analytics.Construction.Components.Chain)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.ContinuousNiceLoop.GetConclusions(Sudoku.Concepts.Grid@)">
@@ -6101,8 +6125,29 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.IsGrouped"/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.IChainOrForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IComplexSeniorExocet">
             <summary>
@@ -6231,9 +6276,6 @@
             <param name="rules">The rules used.</param>
             <param name="newConclusions">The conclusions used.</param>
             <returns>A list of nodes.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.IForcingChains.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.IMultipleForcingChains`2">
             <summary>
@@ -6886,8 +6928,32 @@
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.ToString(Sudoku.Concepts.ValueConversions.IChainConverter,System.IFormatProvider,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <param name="branchKeyConverter">The branch key (candidate) converter.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.MultipleForcingChains.GetThoroughConclusions(Sudoku.Concepts.Grid@)">
             <summary>
@@ -7498,9 +7564,6 @@
         <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.StrongForcingChain.ToString">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.Construction.Components.UnnamedChain">
             <summary>
             Represents a forcing chain branch.
@@ -7602,9 +7665,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.GetHashCode(Sudoku.Analytics.Construction.Components.NodeComparison,Sudoku.Analytics.Construction.Components.ChainComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Construction.Components.WeakForcingChain.ToString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Construction.Components.WhipAssignment">
@@ -27724,347 +27784,6 @@
             <para>A <see cref="T:System.Boolean"/> value indicating that.</para>
             </returns>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo">
-            <summary>
-            Represents a type that can format a <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Construction.Components.Chain"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.#ctor(Sudoku.Concepts.Coordinates.CoordinateConverter)">
-            <summary>
-            Copies converter options into the current instance.
-            </summary>
-            <param name="baseConverter">The base converter.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.MakeDigitBeforeCell">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.MakeLettersUpperCase">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeLettersUpperCase"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FoldLinksInCell">
-            <summary>
-            Indicates whether strong and weak links inside a cell will be folded. By default it's <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.InlineDigitsInLink">
-            <summary>
-            Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.AlwaysOutputBracket">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.AlwaysOutputBracket"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FinalRowLetter">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.DefaultSeparator">
-            <summary>
-            Indicates the default separator. By default it's a comma <c>", "</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.InlinedDigitsSeparator">
-            <summary>
-            Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.StrongLinkConnector">
-            <summary>
-            Indicates the connector text for strong links. By default it's a double equal sign <c>" == "</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.WeakLinkConnector">
-            <summary>
-            Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffStateFixes">
-            <summary>
-            Represents a pair of fixes that describes on or off state of a chain node respectively.
-            By default it's <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.NotationBracket">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.DigitBracketInCandidateGroups">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.DigitGroupSameCellBracket">
-            <summary>
-            Indicates the bracket of same-cell digit groups, e.g. the kind of bracket of <c>(2=3)r1c1</c>.
-            By default it's <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.Round"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffNotationFix">
-            <summary>
-            Indicates the prefix or suffix style to describe on/off state of each chain node.
-            By default it's <see cref="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.NodeFormatType">
-            <summary>
-            Indicates a type that formats each node (a group of candidates) in the chain pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Standard">
-            <summary>
-            Indicates the standard format. This format supports for both parsing and formatting.
-            </summary>
-            <remarks>
-            Example output:<br/><c><![CDATA[r4c4(6) == r4c1(6) -- r4c1(8) == r4c9(8) -- r9c9(8) == r9c4(8)]]></c>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Eureka">
-            <summary>
-            <para>Indicates Eureka chain format. This format supports for both parsing and formatting.</para>
-            <para>
-            Visit <see href="http://sudopedia.enjoysudoku.com/Eureka.html">this link</see> to learn more information
-            about Eureka Notation.
-            </para>
-            </summary>
-            <remarks>
-            Example output:<br/><c><![CDATA[6r4c4=(6-8)r4c1=8r4c9-8r9c9=8r9c4]]></c>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.BivalueBilocationPlot">
-            <summary>
-            <para>Indicates B/B plot (Bilocation/Bivalue Plot) notation format. This format only supports for formatting.</para>
-            <para>
-            Visit <see href="http://forum.enjoysudoku.com/the-notation-used-in-nice-loops-and-sins-t3628.html">this link</see>
-            to learn more information about this notation.
-            </para>
-            </summary>
-            <remarks>
-            Example output:<br/><c><![CDATA[[r4c4]=6=[r4c1]-6|8-[r4c1]=8=[r4c9]-8-[r9c9]=8=[r9c4]]]></c>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.OnOffPlot">
-            <summary>
-            <para>Indicates On/Off plot notation format. This format only supports for formatting.</para>
-            <para>
-            I may miss the main page of introduction about this notation,
-            but you can visit <see href="https://www.sudokuwiki.org/Alternating_Inference_Chains">this link</see> to see such usages.
-            </para>
-            </summary>
-            <remarks>
-            Example output:<br/><c><![CDATA[+6[D4]-6[D1]+8[D1]-8[D9]+8[I9]-8[I4]]]></c>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.StandardFormatPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)(\\s*--?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\))+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match ')'.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-            ○ Match a whitespace character atomically any number of times.<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match '('.<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match ')'.<br/>
-            ○ Loop atomically at least once.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match '-' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.EurekaFormatPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+(\\s*[-=]\\s*(\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+)+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ 1st capture group.<br/>
-                ○ Match with 2 alternative expressions.<br/>
-                    ○ Match a sequence of expressions.<br/>
-                        ○ Match '('.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                ○ Match ')'.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                ○ Match a whitespace character atomically any number of times.<br/>
-                                ○ Match a character in the set [\-=].<br/>
-                                ○ Match a whitespace character atomically any number of times.<br/>
-                                ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                ○ Match ')'.<br/>
-                    ○ Match a character in the set [1-9].<br/>
-            ○ Match a character in the set [Rr].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Match a character in the set [Cc].<br/>
-            ○ Match a character in the set [1-9] atomically at least once.<br/>
-            ○ Loop atomically at least once.<br/>
-                ○ 2nd capture group.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [\-=].<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ 3rd capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match '('.<br/>
-                                ○ Match with 2 alternative expressions.<br/>
-                                    ○ Match a sequence of expressions.<br/>
-                                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                        ○ Match ')'.<br/>
-                                    ○ Match a sequence of expressions.<br/>
-                                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                        ○ Match a whitespace character atomically any number of times.<br/>
-                                        ○ Match a character in the set [\-=].<br/>
-                                        ○ Match a whitespace character atomically any number of times.<br/>
-                                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                        ○ Match ')'.<br/>
-                            ○ Match a character in the set [1-9].<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] greedily at least once.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.StrongOrWeakLinkPattern">
-            <remarks>
-            Pattern:<br/>
-            <code>==?|--?</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match with 2 alternative expressions, atomically.<br/>
-                ○ Match '=' atomically at least 1 and at most 2 times.<br/>
-                ○ Match '-' atomically at least 1 and at most 2 times.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.CandidatePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>(\\([1-9]+([=-][1-9]+)?\\)|[1-9]+)r[1-9]+c[1-9]+|r[1-9]+c[1-9]+\\([1-9]+\\)</code><br/>
-            Options:<br/>
-            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match with 2 alternative expressions, atomically.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ 1st capture group.<br/>
-                        ○ Match with 2 alternative expressions.<br/>
-                            ○ Match a sequence of expressions.<br/>
-                                ○ Match '('.<br/>
-                                ○ Match a character in the set [1-9] greedily at least once.<br/>
-                                ○ Optional (greedy).<br/>
-                                    ○ 2nd capture group.<br/>
-                                        ○ Match a character in the set [\-=].<br/>
-                                        ○ Match a character in the set [1-9] atomically at least once.<br/>
-                                ○ Match ')'.<br/>
-                            ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match '('.<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match ')'.<br/>
-            </code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.Chain@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseCore(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseCore(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
-            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.ParseCore(System.String)"/>
-            <remarks>
-            Now only supports for standard format and Eureka format. Plot views are not supported.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo,Sudoku.Analytics.Construction.Components.Chain@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.FormatCore(Sudoku.Analytics.Construction.Components.Chain@)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseCoreUnsafeAccessor(Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo,System.String)">
-            <inheritdoc cref="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseCore(System.String)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.ChainFormatInfo.ParseAsStandardOrEureka(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
-            <summary>
-            Parse the string as standard or Eureka format.
-            </summary>
-            <param name="str">The string to parse.</param>
-            <param name="coordinateParser">The coordinate parser.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Construction.Components.Chain"/> instance.</returns>
-            <exception cref="T:System.FormatException">Throws when invalid data encountered.</exception>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix">
-            <summary>
-            Represents a kind of fix that describes on/off state of a chain node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.None">
-            <summary>
-            Indicates no fix here to describe on/off state.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Prefix">
-            <summary>
-            Indicates the fix type is prefix.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.OnOffNotationFix.Suffix">
-            <summary>
-            Indicates the fix type is suffix.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
@@ -28101,6 +27820,352 @@
             <param name="assignments">The assignments.</param>
             <param name="isTruth">Indicates whether the current space is as a truth.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.BivalueBilocationPlotChainConverter">
+            <summary>
+            Represents a B/B Plot-formatted chain converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.BivalueBilocationPlotChainConverter._impl">
+            <summary>
+            The backing implementation instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BivalueBilocationPlotChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BivalueBilocationPlotChainConverter.Sudoku#Concepts#ValueConversions#IChainConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Not supported. Always thrown.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.CustomizedChainConverter">
+            <summary>
+            Provides a customized chain converter; you can specify customized properties (even candidate converter) into this type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.MakeDigitBeforeCell">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeDigitBeforeCell"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.MakeLettersUpperCase">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.MakeLettersUpperCase"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.FoldLinksInCell">
+            <summary>
+            Indicates whether strong and weak links inside a cell will be folded. By default it's <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.InlineDigitsInLink">
+            <summary>
+            Indicates whether digits are inlined in links. By default it's <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.AlwaysOutputBracket">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.AlwaysOutputBracket"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.FinalRowLetter">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.K9Converter.FinalRowLetter"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.DefaultSeparator">
+            <summary>
+            Indicates the default separator. By default it's a comma <c>", "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.InlinedDigitsSeparator">
+            <summary>
+            Indicates inlined digits separator. By default it's pipe operator <c>"|"</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.StrongLinkConnector">
+            <summary>
+            Indicates the connector text for strong links. By default it's a double equal sign <c>" == "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.WeakLinkConnector">
+            <summary>
+            Indicates the connector text for weak links. By default it's a double minus sign <c>" -- "</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.OnOffStateFixes">
+            <summary>
+            Represents a pair of fixes that describes on or off state of a chain node respectively.
+            By default it's <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.NotationBracket">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.DigitBracketInCandidateGroups">
+            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.DigitGroupSameCellBracket">
+            <summary>
+            Indicates the bracket of same-cell digit groups, e.g. the kind of bracket of <c>(2=3)r1c1</c>.
+            By default it's <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.Round"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.OnOffNotationFix">
+            <summary>
+            Indicates the prefix or suffix style to describe on/off state of each chain node.
+            By default it's <see cref="F:Sudoku.Concepts.ValueConversions.OnOffNotationFix.None"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.NodeFormatType">
+            <summary>
+            Indicates a type that formats each node (a group of candidates) in the chain pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.CustomizedCandidateConverter">
+            <summary>
+            Represents customized candidate converter. The value can be <see langword="null"/> if unspecified;
+            if specified, <see cref="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.NodeFormatType"/> will be ignored.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.NodeFormatType"/>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.StandardFormatPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)(?:\\s*--?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\))+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match ')'.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+            ○ Match a whitespace character atomically any number of times.<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match ')'.<br/>
+            ○ Loop atomically at least once.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match '-' atomically at least 1 and at most 2 times.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match a character in the set [Rr].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match a character in the set [Cc].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match '('.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match ')'.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match a character in the set [Rr].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match a character in the set [Cc].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match '('.<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.EurekaFormatPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?:\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+(?:\\s*[-=]\\s*(?:\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+)+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match '('.<br/>
+                    ○ Match with 2 alternative expressions.<br/>
+                        ○ Match a sequence of expressions.<br/>
+                            ○ Match a character in the set [1-9] atomically at least once.<br/>
+                            ○ Match ')'.<br/>
+                        ○ Match a sequence of expressions.<br/>
+                            ○ Match a character in the set [1-9] atomically at least once.<br/>
+                            ○ Match a whitespace character atomically any number of times.<br/>
+                            ○ Match a character in the set [\-=].<br/>
+                            ○ Match a whitespace character atomically any number of times.<br/>
+                            ○ Match a character in the set [1-9] atomically at least once.<br/>
+                            ○ Match ')'.<br/>
+                ○ Match a character in the set [1-9].<br/>
+            ○ Match a character in the set [Rr].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Match a character in the set [Cc].<br/>
+            ○ Match a character in the set [1-9] atomically at least once.<br/>
+            ○ Loop atomically at least once.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match a character in the set [\-=].<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match with 2 alternative expressions.<br/>
+                    ○ Match a sequence of expressions.<br/>
+                        ○ Match '('.<br/>
+                        ○ Match with 2 alternative expressions.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                                ○ Match ')'.<br/>
+                            ○ Match a sequence of expressions.<br/>
+                                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                                ○ Match a whitespace character atomically any number of times.<br/>
+                                ○ Match a character in the set [\-=].<br/>
+                                ○ Match a whitespace character atomically any number of times.<br/>
+                                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                                ○ Match ')'.<br/>
+                    ○ Match a character in the set [1-9].<br/>
+                ○ Match a character in the set [Rr].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match a character in the set [Cc].<br/>
+                ○ Match a character in the set [1-9] greedily at least once.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.StrongOrWeakLinkPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>==?|--?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match '=' atomically at least 1 and at most 2 times.<br/>
+                ○ Match '-' atomically at least 1 and at most 2 times.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.CandidatePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>(?:\\([1-9]+([=-][1-9]+)?\\)|[1-9]+)r[1-9]+c[1-9]+|r[1-9]+c[1-9]+\\([1-9]+\\)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match with 2 alternative expressions, atomically.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match with 2 alternative expressions.<br/>
+                        ○ Match a sequence of expressions.<br/>
+                            ○ Match '('.<br/>
+                            ○ Match a character in the set [1-9] greedily at least once.<br/>
+                            ○ Optional (greedy).<br/>
+                                ○ 1st capture group.<br/>
+                                    ○ Match a character in the set [\-=].<br/>
+                                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                            ○ Match ')'.<br/>
+                        ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match a sequence of expressions.<br/>
+                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match a character in the set [Cc].<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match '('.<br/>
+                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                    ○ Match ')'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.Sudoku#Concepts#ValueConversions#IChainConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Not supported. Always thrown.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.EurekaChainConverter">
+            <summary>
+            Represents an Eureka-formatted chain converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.EurekaChainConverter._impl">
+            <summary>
+            The backing implementation instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.EurekaChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.EurekaChainConverter.Sudoku#Concepts#ValueConversions#IChainConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Not supported. Always thrown.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.IChainConverter">
+            <summary>
+            Provides a chain converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IChainConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryFormat(`0@,System.IFormatProvider,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IChainConverter.Sudoku#Concepts#ValueConversions#IValueConverter{Sudoku#Analytics#Construction#Components#Chain}#TryFormat(Sudoku.Analytics.Construction.Components.Chain@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IChainConverter.Sudoku#Concepts#ValueConversions#IValueConverter{Sudoku#Analytics#Construction#Components#Chain}#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.OnOffNotationFix">
+            <summary>
+            Represents a kind of fix that describes on/off state of a chain node.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.OnOffNotationFix.None">
+            <summary>
+            Indicates no fix here to describe on/off state.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.OnOffNotationFix.Prefix">
+            <summary>
+            Indicates the fix type is prefix.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.OnOffNotationFix.Suffix">
+            <summary>
+            Indicates the fix type is suffix.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.OnOffPlotChainConverter">
+            <summary>
+            Represents an on/off Plot-formatted chain converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.OnOffPlotChainConverter._impl">
+            <summary>
+            The backing implementation instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.OnOffPlotChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.OnOffPlotChainConverter.Sudoku#Concepts#ValueConversions#IChainConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Not supported. Always thrown.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.StandardChainConverter">
+            <summary>
+            Represents a standard-formatted chain converter.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.StandardChainConverter._impl">
+            <summary>
+            The backing implementation instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.StandardChainConverter.TryFormat(Sudoku.Analytics.Construction.Components.Chain,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.StandardChainConverter.Sudoku#Concepts#ValueConversions#IChainConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Analytics.Construction.Components.Chain@)">
+            <inheritdoc/>
+            <exception cref="T:System.NotSupportedException">Not supported. Always thrown.</exception>
         </member>
         <member name="T:Sudoku.Diff.DiffTechniqueAnalysis">
             <summary>
@@ -37227,9 +37292,6 @@
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32)">
             <summary>Pushes 2 values onto the backtracking stack.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPush(System.Int32[]@,System.Int32@,System.Int32,System.Int32,System.Int32)">
-            <summary>Pushes 3 values onto the backtracking stack.</summary>
         </member>
         <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_1FE030000000000000000">
             <summary>Supports searching for characters in or not in "(123456789".</summary>

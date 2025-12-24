@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates.Formatting;
+namespace Sudoku.Concepts.ValueConversions;
 
 /// <summary>
 /// Represents a kind of notation bracket that will be used on formatting combined coordinates.

@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Coordinates.Formatting;
+namespace Sudoku.Concepts.ValueConversions;
 
 /// <summary>
 /// Represents a kind of fix that describes on/off state of a chain node.

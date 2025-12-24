@@ -2176,7 +2176,7 @@
             </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture">
             <para>Indicates the current culture.</para>
@@ -2192,7 +2192,7 @@
             <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
             <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.#ctor(System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.#ctor(System.String,System.String,System.String,System.String,Sudoku.Concepts.ValueConversions.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents an option provider for coordinates.
             </summary>
@@ -2214,7 +2214,7 @@
             </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture">
             <para>Indicates the current culture.</para>
@@ -2257,7 +2257,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket">
             <summary>
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CurrentCulture">
@@ -2416,7 +2416,7 @@
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.#ctor(System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.ValueConversions.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents for Excel coordinate-based converter.
             </summary>
@@ -2464,97 +2464,6 @@
         <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1">
-            <summary>
-            Represents a base type for formatting information on a type.
-            </summary>
-            <typeparam name="T">The type of object to be formatted.</typeparam>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.GetFormat(System.Type)">
-            <inheritdoc cref="M:System.IFormatProvider.GetFormat(System.Type)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.Clone">
-            <summary>
-            Creates a copy of the current instance.
-            </summary>
-            <returns>A new instance whose internal values are equal to the current instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.FormatCore(`0@)">
-            <summary>
-            Try to format the current object into a valid string result.
-            </summary>
-            <param name="obj">An object to be formatted.</param>
-            <returns>The <see cref="T:System.String"/> representation of the argument <paramref name="obj"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.ParseCore(System.String)">
-            <summary>
-            Try to parse the specified <see cref="T:System.String"/> instance into a valid instance of type <typeparamref name="T"/>.
-            </summary>
-            <param name="str">The string value to be parsed.</param>
-            <returns>An instance of type <typeparamref name="T"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracket">
-            <summary>
-            Represents a kind of notation bracket that will be used on formatting combined coordinates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None">
-            <summary>
-            Indicates there's no bracket that combines multiple parts, like <c>r2c2, r3c3</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.Round">
-            <summary>
-            Indicates there's a round bracket <c>()</c> that combines multiple parts, like <c>(r2c2, r3c3)</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.Square">
-            <summary>
-            Indicates there's a square bracket <c>[]</c> that combines multiple parts, like <c>[r2c2, r3c3]</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.Curly">
-            <summary>
-            Indicates there's a curly bracket <c>{}</c> that combines multiple parts, like <c>{r2c2, r3c3}</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.Angle">
-            <summary>
-            Indicates there's an angle bracket <c><![CDATA[<>]]></c> that combines multiple parts, like <c><![CDATA[<r2c2, r2c3>]]></c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracket"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracket"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.get_OpenBracket(Sudoku.Concepts.Coordinates.Formatting.NotationBracket)">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.&lt;G&gt;$7410EE1D8F0554530BF9E22C520A589A.OpenBracket"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.get_ClosedBracket(Sudoku.Concepts.Coordinates.Formatting.NotationBracket)">
-            <inheritdoc cref="P:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.&lt;G&gt;$7410EE1D8F0554530BF9E22C520A589A.ClosedBracket"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.&lt;G&gt;$7410EE1D8F0554530BF9E22C520A589A.&lt;M&gt;$336D47BD9CCBC728737D7C888CC52823">
-            <summary>
-            Provides extension members on <see cref="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracket"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.&lt;G&gt;$7410EE1D8F0554530BF9E22C520A589A.OpenBracket">
-            <summary>
-            Indicates to get open bracket token.
-            </summary>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.Formatting.NotationBracketExtensions.&lt;G&gt;$7410EE1D8F0554530BF9E22C520A589A.ClosedBracket">
-            <summary>
-            Indicates closed bracket token.
-            </summary>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.Coordinates.K9Converter">
             <summary>
             Represents a coordinate converter using K9 notation.
@@ -2586,11 +2495,11 @@
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Char,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Char,System.String,System.String,System.String,System.String,Sudoku.Concepts.ValueConversions.NotationBracket,Sudoku.Concepts.ValueConversions.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using K9 notation.
             </summary>
@@ -2621,7 +2530,7 @@
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
@@ -2656,7 +2565,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.DigitBracketInCandidateGroups">
             <summary>
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.CellConverter">
@@ -3083,11 +2992,11 @@
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,Sudoku.Concepts.Coordinates.Formatting.NotationBracket,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.#ctor(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,System.String,System.String,Sudoku.Concepts.ValueConversions.NotationBracket,Sudoku.Concepts.ValueConversions.NotationBracket,System.Globalization.CultureInfo)">
             <summary>
             Represents a coordinate converter using RxCy notation.
             </summary>
@@ -3114,7 +3023,7 @@
             <param name="NotationBracket"><inheritdoc/></param>
             <param name="DigitBracketInCandidateGroups">
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </param>
             <param name="CurrentCulture"><inheritdoc/></param>
         </member>
@@ -3145,7 +3054,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.DigitBracketInCandidateGroups">
             <summary>
             <para>Indicates the bracket surrounding digits in candidate output notation.</para>
-            <para>The value is <see cref="F:Sudoku.Concepts.Coordinates.Formatting.NotationBracket.None"/> by default.</para>
+            <para>The value is <see cref="F:Sudoku.Concepts.ValueConversions.NotationBracket.None"/> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.CellConverter">
@@ -7099,8 +7008,17 @@
         <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.AsCandidateMap(System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.AsCandidateMap"/>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.Globalization.CultureInfo)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.AsCandidateMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCandidateMap"/>
@@ -7119,12 +7037,22 @@
             </summary>
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of the current candidate.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CandidateMarshal.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCandidateString(System.Int32,Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)">
             <summary>
             Converts a candidate instance into a string instance that represents for a candidate.
             </summary>
             <param name="candidate">The candidate.</param>
-            <param name="formatProvider">The formatter.</param>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
             <returns>The string representation.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Marshalling.CandidateMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
@@ -7232,8 +7160,17 @@
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.GetHouse(System.Int32,Sudoku.Concepts.HouseType)">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.GetHouse(Sudoku.Concepts.HouseType)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.Globalization.CultureInfo)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.AsCellMap(System.Int32[])">
             <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.AsCellMap"/>
@@ -7312,12 +7249,22 @@
             Throws when the argument <paramref name="houseType"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Marshalling.CellMarshal.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$BA41CFE2B5EDAEB8C1B9062F59ED4D69.ToCellString(System.Int32,Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)">
             <summary>
             Converts a cell instance into a string instance that represents for a cell.
             </summary>
             <param name="cell">The cell.</param>
-            <param name="formatProvider">The formatter.</param>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
             <returns>The string representation.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Marshalling.CellMarshal.&lt;G&gt;$C598AEF9A11D80BC24BD328BD05F52D9.&lt;M&gt;$B7FB11FBCD52BBE990916A725EC89F0E">
@@ -9338,6 +9285,65 @@
         </member>
         <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridDefaultConverter.ParsingPriority">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.NotationBracket">
+            <summary>
+            Represents a kind of notation bracket that will be used on formatting combined coordinates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.NotationBracket.None">
+            <summary>
+            Indicates there's no bracket that combines multiple parts, like <c>r2c2, r3c3</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.NotationBracket.Round">
+            <summary>
+            Indicates there's a round bracket <c>()</c> that combines multiple parts, like <c>(r2c2, r3c3)</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.NotationBracket.Square">
+            <summary>
+            Indicates there's a square bracket <c>[]</c> that combines multiple parts, like <c>[r2c2, r3c3]</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.NotationBracket.Curly">
+            <summary>
+            Indicates there's a curly bracket <c>{}</c> that combines multiple parts, like <c>{r2c2, r3c3}</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ValueConversions.NotationBracket.Angle">
+            <summary>
+            Indicates there's an angle bracket <c><![CDATA[<>]]></c> that combines multiple parts, like <c><![CDATA[<r2c2, r2c3>]]></c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.NotationBracketExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.ValueConversions.NotationBracket"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ValueConversions.NotationBracket"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.get_OpenBracket(Sudoku.Concepts.ValueConversions.NotationBracket)">
+            <inheritdoc cref="P:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.&lt;G&gt;$42FD90DE4529657B789F6D50ABF33548.OpenBracket"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.get_ClosedBracket(Sudoku.Concepts.ValueConversions.NotationBracket)">
+            <inheritdoc cref="P:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.&lt;G&gt;$42FD90DE4529657B789F6D50ABF33548.ClosedBracket"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.&lt;G&gt;$42FD90DE4529657B789F6D50ABF33548.&lt;M&gt;$B2122B7CE80E17879591880846DF5353">
+            <summary>
+            Provides extension members on <see cref="T:Sudoku.Concepts.ValueConversions.NotationBracket"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.&lt;G&gt;$42FD90DE4529657B789F6D50ABF33548.OpenBracket">
+            <summary>
+            Indicates to get open bracket token.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
+        </member>
+        <member name="P:Sudoku.Concepts.ValueConversions.NotationBracketExtensions.&lt;G&gt;$42FD90DE4529657B789F6D50ABF33548.ClosedBracket">
+            <summary>
+            Indicates closed bracket token.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
         <member name="T:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter">
             <summary>

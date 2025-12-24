@@ -410,7 +410,11 @@ public interface IGrid<TSelf> :
 	/// <inheritdoc cref="object.ToString"/>
 	string ToString();
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <summary>
+	/// Converts the current instance into <see cref="string"/> representation via the specified format string.
+	/// </summary>
+	/// <param name="format">The format string.</param>
+	/// <returns>The result string.</returns>
 	string ToString(string? format);
 
 	/// <summary>

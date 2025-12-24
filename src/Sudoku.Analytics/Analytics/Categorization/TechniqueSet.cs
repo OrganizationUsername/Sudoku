@@ -284,7 +284,11 @@ public sealed partial class TechniqueSet() :
 	/// <inheritdoc cref="object.ToString"/>
 	public override string ToString() => ToString(CultureInfo.CurrentUICulture);
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <summary>
+	/// Converts the current instance into <see cref="string"/> representation via the specified culture.
+	/// </summary>
+	/// <param name="culture">The culture.</param>
+	/// <returns>The <see cref="string"/> result.</returns>
 	public string ToString(CultureInfo culture)
 		=> string.Join(
 			SR.Get("Comma", culture),

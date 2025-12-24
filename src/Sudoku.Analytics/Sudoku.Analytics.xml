@@ -4072,7 +4072,11 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The <see cref="T:System.String"/> result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
             <inheritdoc/>
@@ -11243,11 +11247,12 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:Sudoku.Analytics.Ittoryu.IttoryuPathNode.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Ittoryu.IttoryuPathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Analytics.Ittoryu.IttoryuPathNode.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Ittoryu.IttoryuPathNodeExtensions">
             <summary>
@@ -13451,8 +13456,12 @@
         <member name="M:Sudoku.Analytics.StepSearcher.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <summary>
@@ -13482,9 +13491,6 @@
             <exception cref="T:System.NotSupportedException">Throws when a big or small function is not supported on purpose.</exception>
             <seealso cref="T:Sudoku.Analytics.Step"/>
             <seealso cref="T:Sudoku.Analytics.StepAnalysisContext"/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.op_Equality(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.StepSearcher)">
             <inheritdoc/>
@@ -35995,15 +36001,15 @@
         <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)"/>
+        </member>
         <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
             <summary>
-            Converts the current instance into string representation, using the specified coordinate converter instance.
+            Converts the current instance into <see cref="T:System.String"/> representation, using the specified coordinate converter instance.
             </summary>
             <param name="converter">The converter.</param>
-            <returns>The string representation.</returns>
-        </member>
-        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.AsCandidateMap">
             <summary>
@@ -36019,9 +36025,6 @@
             Converts the current instance into a <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/> of cell and mask pairs.
             </summary>
             <returns>The instance of type <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>.</returns>
-        </member>
-        <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Theories.DeadlyPatternTheory.DeadlyPatternAssigningMap.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -36743,11 +36746,22 @@
         <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Theories.SetTheory.Permutation.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Theories.SetTheory.Permutation.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>

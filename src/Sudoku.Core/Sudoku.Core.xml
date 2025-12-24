@@ -3675,8 +3675,22 @@
             <param name="cell">The desired cell.</param>
             <returns>An <see cref="T:System.Int32"/> indicating that. If the cell isn't in the current graph, -1 will be returned.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Graphs.CellGraph.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.Graphs.CellGraph.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Graphs.CellGraph.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The string.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.GetHamiltonianCycles">
             <summary>
@@ -3710,9 +3724,6 @@
             <returns>A <see cref="T:Sudoku.Concepts.Graphs.CellGraph"/> instance.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.Contains(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Graphs.CellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.CellGraph.System#Collections#IEnumerable#GetEnumerator">
@@ -6287,7 +6298,11 @@
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.ToString(System.String)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified format string.
+            </summary>
+            <param name="format">The format string.</param>
+            <returns>The result string.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IGrid`1.GetState(System.Int32)">
             <summary>

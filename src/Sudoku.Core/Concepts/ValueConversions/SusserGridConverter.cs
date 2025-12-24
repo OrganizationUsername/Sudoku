@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.ValueConversions;
 /// <summary>
 /// Represents Susser grid converter.
 /// </summary>
-public abstract partial class SusserGridConverter : ICloneable, IGridConverter
+public abstract partial class SusserGridConverter : IGridConverter
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
@@ -142,31 +142,22 @@ public abstract partial class SusserGridConverter : ICloneable, IGridConverter
 	internal static partial Regex EliminationPattern { get; }
 
 
-	/// <inheritdoc cref="ICloneable.Clone"/>
-	public abstract SusserGridConverter Clone();
-
-	/// <summary>
-	/// Performs formatting operation.
-	/// </summary>
+	/// <inheritdoc cref="IValueConverter{T}.TryFormat(ref readonly T, IFormatProvider?, out string?)"/>
 	/// <typeparam name="TGrid">
 	/// The type of grid. The supported types are <see cref="Grid"/> and <see cref="MarkerGrid"/>.
 	/// </typeparam>
-	/// <param name="grid">The grid.</param>
-	/// <param name="provider">The provider.</param>
-	/// <param name="result">The result.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether operation has encountered some invalid cases.</returns>
 	/// <seealso cref="Grid"/>
 	/// <seealso cref="MarkerGrid"/>
-	public bool TryFormat<TGrid>(ref readonly TGrid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat<TGrid>(ref readonly TGrid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 		where TGrid : unmanaged, IInlineArrayGrid<TGrid>
 	{
-		var r = b(grid);
+		var r = b(value);
 		result = this switch
 		{
 			{ IsCompatibleMode: true } => $":0000:x:{r}{new(':', 3)}",
 			{ OnlyEliminations: true } => EliminationPattern.Match(r) switch
 			{
-				{ Success: true, Value: var value } => value,
+				{ Success: true, Value: var str } => str,
 				_ => string.Empty
 			},
 			_ => r
@@ -250,7 +241,7 @@ public abstract partial class SusserGridConverter : ICloneable, IGridConverter
 				grid is MarkerGrid markerGrid
 					? markedCandidates(markerGrid)
 					: NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(grid, eliminatedCandidates)
-			).ToString(new HodokuTripletCandidateMapFormatInfo());
+			).ToString(new TripletCandidateMapConverter());
 			var @base = sb.ToString();
 			var final = ShortenSusser
 				? shorten(@base, Placeholder)
@@ -374,16 +365,8 @@ public abstract partial class SusserGridConverter : ICloneable, IGridConverter
 		}
 	}
 
-	/// <summary>
-	/// Performs parsing operation.
-	/// </summary>
-	/// <typeparam name="TGrid">
-	/// The type of grid. The supported types are <see cref="Grid"/> and <see cref="MarkerGrid"/>.
-	/// </typeparam>
-	/// <param name="text">The text.</param>
-	/// <param name="provider">The provider.</param>
-	/// <param name="result">The result parsed.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether operation has encountered some invalid cases.</returns>
+	/// <inheritdoc cref="IValueConverter{T}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out T)"/>
+	/// <typeparam name="TGrid"><inheritdoc cref="TryFormat" path="/typeparam[@name='TGrid']"/></typeparam>
 	public bool TryParse<TGrid>(ReadOnlySpan<char> text, IFormatProvider? provider, out TGrid result)
 		where TGrid : unmanaged, IInlineArrayGrid<TGrid>
 	{
@@ -481,7 +464,7 @@ public abstract partial class SusserGridConverter : ICloneable, IGridConverter
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (EliminationPattern.Match(match) is { Success: true, Value: var elimMatch })
 		{
-			var candidates = CandidateMap.Parse(elimMatch, new HodokuTripletCandidateMapFormatInfo());
+			var candidates = CandidateMap.Parse(elimMatch, new TripletCandidateMapConverter());
 
 			if (typeof(TGrid) == typeof(MarkerGrid))
 			{
@@ -605,14 +588,14 @@ public abstract partial class SusserGridConverter : ICloneable, IGridConverter
 		}
 	}
 
-	/// <inheritdoc/>
-	object ICloneable.Clone() => Clone();
+	/// <inheritdoc cref="ICloneable.Clone"/>
+	protected abstract SusserGridConverter Clone();
 
 	/// <inheritdoc/>
-	bool IGridConverter.TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
-		=> TryFormat(in grid, provider, out result);
+	bool IValueConverter<Grid>.TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+		=> TryFormat(in value, provider, out result);
 
 	/// <inheritdoc/>
-	bool IGridConverter.TryParse(ReadOnlySpan<char> text, IFormatProvider? provider, out Grid result)
+	bool IValueConverter<Grid>.TryParse(ReadOnlySpan<char> text, IFormatProvider? provider, out Grid result)
 		=> TryParse(text, provider, out result);
 }

@@ -15,10 +15,10 @@ public sealed class MaskGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		var sb = new StringBuilder(400);
-		foreach (var mask in grid)
+		foreach (var mask in value)
 		{
 			sb.Append(mask).Append(Separator);
 		}

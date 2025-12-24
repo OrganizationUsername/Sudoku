@@ -14,7 +14,7 @@ public sealed partial class OpenSudokuGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		// Calculates the length of the result string.
 		const int length = 1 + (81 * 3 - 1 << 1);
@@ -34,7 +34,7 @@ public sealed partial class OpenSudokuGridConverter : IGridConverter
 		// Now replace some positions with the specified values.
 		for (var (i, pos) = (0, 0); i < 81; i++, pos += 6)
 		{
-			switch (grid.GetState(i))
+			switch (value.GetState(i))
 			{
 				case CellState.Empty:
 				{
@@ -46,7 +46,7 @@ public sealed partial class OpenSudokuGridConverter : IGridConverter
 				case CellState.Modifiable:
 				case CellState.Given:
 				{
-					Unsafe.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + '1');
+					Unsafe.Add(ref pResult, pos) = (char)(value.GetDigit(i) + '1');
 					Unsafe.Add(ref pResult, pos + 2) = '0';
 					Unsafe.Add(ref pResult, pos + 4) = '0';
 					break;

@@ -29,34 +29,19 @@ public sealed partial class InlineSusserGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		var sb = new StringBuilder();
 		for (var cell = 0; cell < 81; cell++)
 		{
-			switch (grid.GetState(cell))
+			_ = value.GetState(cell) switch
 			{
-				case CellState.Empty:
-				{
-					var digitsMask = NegateEliminationsTripletRule ? (Mask)0 : grid.GetCandidates(cell);
-					sb.Append(digitsMask == 0 ? "0" : $"[{new(from digit in digitsMask.AllSets select (char)(digit + '1'))}]");
-					break;
-				}
-				case CellState.Modifiable:
-				{
-					sb.Append($"+{grid.GetDigit(cell) + 1}");
-					break;
-				}
-				case CellState.Given:
-				{
-					sb.Append(grid.GetDigit(cell) + 1);
-					break;
-				}
-				default:
-				{
-					throw new FormatException();
-				}
-			}
+				CellState.Empty when (NegateEliminationsTripletRule ? (Mask)0 : value.GetCandidates(cell)) is var digitsMask
+					=> sb.Append(digitsMask == 0 ? "0" : $"[{new(from digit in digitsMask.AllSets select (char)(digit + '1'))}]"),
+				CellState.Modifiable => sb.Append($"+{value.GetDigit(cell) + 1}"),
+				CellState.Given => sb.Append(value.GetDigit(cell) + 1),
+				_ => throw new FormatException()
+			};
 		}
 		result = sb.ToString();
 		return true;

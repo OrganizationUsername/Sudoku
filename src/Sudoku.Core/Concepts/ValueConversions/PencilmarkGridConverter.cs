@@ -32,7 +32,7 @@ public sealed partial class PencilmarkGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		// Step 1: gets the candidates information grouped by columns.
 		var valuesByColumn = createTempDictionary();
@@ -40,9 +40,9 @@ public sealed partial class PencilmarkGridConverter : IGridConverter
 
 		for (var i = 0; i < 81; i++)
 		{
-			var value = grid[i];
-			valuesByRow[i / 9].Add(value);
-			valuesByColumn[i % 9].Add(value);
+			var mask = value[i];
+			valuesByRow[i / 9].Add(mask);
+			valuesByColumn[i % 9].Add(mask);
 		}
 
 		// Step 2: gets the maximal number of candidates in a cell, used for aligning by columns.
@@ -59,16 +59,16 @@ public sealed partial class PencilmarkGridConverter : IGridConverter
 			{
 				// Gets the number of candidates.
 				var candidatesCount = 0;
-				var value = valuesByColumn[i][j];
+				var mask = valuesByColumn[i][j];
 
 				// Iteration on each candidate.
 				// Counts the number of candidates.
-				candidatesCount += PopCount((uint)value);
+				candidatesCount += PopCount((uint)mask);
 
 				// Compares the values.
 				var comparer = Math.Max(
 					candidatesCount,
-					MaskToCellState(value) switch
+					MaskToCellState(mask) switch
 					{
 						// The output will be '<digit>' and consist of 3 characters.
 						CellState.Given => Math.Max(candidatesCount, IsCompatibleMode ? 1 : 3),

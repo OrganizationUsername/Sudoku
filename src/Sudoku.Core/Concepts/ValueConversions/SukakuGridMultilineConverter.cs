@@ -13,14 +13,14 @@ public sealed class SukakuGridMultilineConverter : SukakuGridConverter
 
 
 	/// <inheritdoc/>
-	public override bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public override bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		// Append all digits.
 		var builders = new StringBuilder[81];
 		for (var i = 0; i < 81; i++)
 		{
 			builders[i] = new();
-			foreach (var digit in grid.GetCandidates(i))
+			foreach (var digit in value.GetCandidates(i))
 			{
 				builders[i].Append(digit + 1);
 			}

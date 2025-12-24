@@ -10,9 +10,9 @@ public sealed class TabSeparatedGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
-		var span = grid.ToString("0").Span;
+		var span = value.ToString("0").Span;
 		var sb = new StringBuilder(81 + 72 + 9);
 		for (var i = 0; i < 9; i++)
 		{

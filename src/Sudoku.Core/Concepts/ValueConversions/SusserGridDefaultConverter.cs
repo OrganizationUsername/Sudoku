@@ -13,7 +13,7 @@ public sealed class SusserGridDefaultConverter : SusserGridConverter
 
 
 	/// <inheritdoc/>
-	public override SusserGridDefaultConverter Clone()
+	protected override SusserGridDefaultConverter Clone()
 		=> new()
 		{
 			IsCompatibleMode = IsCompatibleMode,

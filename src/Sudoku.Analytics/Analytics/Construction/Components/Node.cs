@@ -171,23 +171,14 @@ public sealed class Node(in CandidateMap map, bool isOn, NodeSet? parents = null
 			};
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(null);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
 
-	/// <inheritdoc/>
-	public string ToString(IFormatProvider? formatProvider)
-	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
-		return $"{converter.CandidateConverter(_map)}: {IsOn}";
-	}
-
-	/// <inheritdoc/>
-	/// <remarks>
+	/// <summary>
+	/// Converts the current instance into <see cref="string"/> representation.
+	/// </summary>
+	/// <param name="format">
 	/// Format description:
 	/// <list type="table">
-	/// <listheader>
-	/// <term>Format character</term>
-	/// <description>Description</description>
-	/// </listheader>
 	/// <item>
 	/// <term><c>m</c></term>
 	/// <description>The map text. For example, <c>r1c23(4)</c></description>
@@ -201,11 +192,32 @@ public sealed class Node(in CandidateMap map, bool isOn, NodeSet? parents = null
 	/// </item>
 	/// </list>
 	/// For example, format value <c>"m: S"</c> will be replaced with value <c>"r1c23(4): True"</c>.
-	/// </remarks>
-	public string ToString(string? format, IFormatProvider? formatProvider)
+	/// </param>
+	/// <returns>The string.</returns>
+	public string ToString(string? format)
 		=> (format ?? $"{MapFormatString}: {IsOnFormatString}")
-			.Replace(MapFormatString, _map.ToString(formatProvider))
+			.Replace(MapFormatString, _map.ToString())
 			.Replace(IsOnFormatString, IsOn.ToString().ToLower());
+
+	/// <inheritdoc/>
+	public string ToString(CultureInfo culture)
+	{
+		var converter = CoordinateConverter.GetInstance(culture);
+		return $"{converter.CandidateConverter(_map)}: {IsOn}";
+	}
+
+	/// <inheritdoc/>
+	public string ToString(CoordinateConverter converter) => $"{converter.CandidateConverter(_map)}: {IsOn}";
+
+	/// <inheritdoc/>
+	public string ToString(ICandidateMapConverter converter) => ToString(converter, null);
+
+	/// <inheritdoc/>
+	public string ToString(ICandidateMapConverter converter, IFormatProvider? formatProvider)
+	{
+		var candidatesString = converter.TryFormat(in _map, formatProvider, out var result) ? result : throw new FormatException();
+		return $"{candidatesString}: {IsOn}";
+	}
 
 	/// <inheritdoc cref="ICloneable.Clone"/>
 	public Node Clone() => new(_map, IsOn) { Parents = Parents };

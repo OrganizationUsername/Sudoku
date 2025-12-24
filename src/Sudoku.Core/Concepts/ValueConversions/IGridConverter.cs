@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.ValueConversions;
 /// Provides an object that converts data between <see cref="string"/> and instantiated <see cref="Grid"/> instances.
 /// </summary>
 /// <seealso cref="Grid"/>
-public interface IGridConverter
+public interface IGridConverter : IValueConverter<Grid>
 {
 	/// <summary>
 	/// Indicates the priority on parsing.
@@ -12,7 +12,7 @@ public interface IGridConverter
 	/// <remarks>
 	/// <para>
 	/// If multiple different parsers can construct <see cref="Grid"/> instances,
-	/// this value will adopt the first one with higher priority value;
+	/// parsing module will adopt the first one with higher priority value;
 	/// if different <see cref="IGridConverter"/> instances hold same parsing priority, a runtime exception will be thrown
 	/// when all parser modules from them execute successfully.
 	/// </para>
@@ -28,23 +28,4 @@ public interface IGridConverter
 	/// </para>
 	/// </remarks>
 	int ParsingPriority { get; }
-
-
-	/// <summary>
-	/// Performs parsing operation.
-	/// </summary>
-	/// <param name="text">The text.</param>
-	/// <param name="provider">The provider.</param>
-	/// <param name="result">The result parsed.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether operation has encountered some invalid cases.</returns>
-	bool TryParse(ReadOnlySpan<char> text, IFormatProvider? provider, out Grid result);
-
-	/// <summary>
-	/// Performs formatting operation.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="provider">The provider.</param>
-	/// <param name="result">The result.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether operation has encountered some invalid cases.</returns>
-	bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result);
 }

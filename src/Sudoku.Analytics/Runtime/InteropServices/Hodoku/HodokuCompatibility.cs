@@ -31,7 +31,7 @@ public static class HodokuCompatibility
 			return grid.ToString(converter);
 		}
 
-		var conclusionConverter = new HodokuTripletCandidateMapFormatInfo();
+		var conclusionConverter = new TripletCandidateMapConverter();
 		var coordinateConverter = CoordinateConverter.InvariantCultureInstance;
 
 		var codeString = GetHodokuLibraryPrefix(step.Code) ?? DefaultLibraryFormatPrefix;

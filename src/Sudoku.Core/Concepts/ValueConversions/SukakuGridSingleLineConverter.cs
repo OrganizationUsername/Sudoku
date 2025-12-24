@@ -13,7 +13,7 @@ public sealed class SukakuGridSingleLineConverter : SukakuGridConverter
 
 
 	/// <inheritdoc/>
-	public override bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public override bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
 		var sb = new StringBuilder();
 		for (var i = 0; i < 81; i++)
@@ -23,7 +23,7 @@ public sealed class SukakuGridSingleLineConverter : SukakuGridConverter
 
 		for (var i = 0; i < 729; i++)
 		{
-			if (!grid.GetExistence(i / 9, i % 9))
+			if (!value.GetExistence(i / 9, i % 9))
 			{
 				sb[i] = Placeholder;
 			}

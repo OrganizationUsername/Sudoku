@@ -27,7 +27,7 @@ public abstract partial class SukakuGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public abstract bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result);
+	public abstract bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result);
 
 	/// <inheritdoc/>
 	public abstract bool TryParse(ReadOnlySpan<char> text, IFormatProvider? provider, out Grid result);

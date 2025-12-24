@@ -61,13 +61,29 @@ public sealed class WhipNode(WhipAssignment assignment, ReadOnlyMemory<WhipAssig
 	public override int GetHashCode() => Assignment.GetHashCode();
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(null);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
 
 	/// <inheritdoc/>
-	public string ToString(IFormatProvider? formatProvider)
+	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
+
+	/// <inheritdoc/>
+	public string ToString(CoordinateConverter converter)
 	{
-		var converter = CoordinateConverter.GetInstance(formatProvider);
 		var parentString = Parent is { Assignment: var assignment } ? converter.CandidateConverter(assignment.Map) : "<null>";
+		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
+	}
+
+	/// <inheritdoc/>
+	public string ToString(ICandidateMapConverter converter) => ToString(converter, null);
+
+	/// <inheritdoc/>
+	public string ToString(ICandidateMapConverter converter, IFormatProvider? formatProvider)
+	{
+		var parentString = Parent is { Assignment.Map: var map }
+			? converter.TryFormat(in map, formatProvider, out var r)
+				? r
+				: throw new FormatException()
+			: "<null>";
 		return $$"""{{nameof(WhipNode)}} { {{nameof(Assignment)}} = {{Assignment}}, {{nameof(Parent)}} = {{parentString}} }""";
 	}
 

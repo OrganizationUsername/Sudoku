@@ -13,7 +13,7 @@ public sealed class SusserGridShortenedConverter : SusserGridConverter
 
 
 	/// <inheritdoc/>
-	public override SusserGridShortenedConverter Clone()
+	protected override SusserGridShortenedConverter Clone()
 		=> new()
 		{
 			IsCompatibleMode = IsCompatibleMode,

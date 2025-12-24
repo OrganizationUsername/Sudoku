@@ -81,14 +81,14 @@ public static class GridConverterFactory
 
 
 	/// <summary>
-	/// The entry point to invoke <see cref="IGridConverter.TryFormat(ref readonly Grid, IFormatProvider?, out string?)"/> method set
-	/// on all built-in converters.
+	/// The entry point to invoke <see cref="IValueConverter{T}.TryFormat(ref readonly T, IFormatProvider?, out string?)"/>
+	/// method on all built-in converters.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="formatProvider">The format provider.</param>
 	/// <param name="result">The result text.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <seealso cref="IGridConverter.TryFormat(ref readonly Grid, IFormatProvider?, out string?)"/>
+	/// <seealso cref="IValueConverter{T}.TryFormat(ref readonly T, IFormatProvider?, out string?)"/>
 	public static bool TryFormat(ref readonly Grid grid, IFormatProvider? formatProvider, [NotNullWhen(true)] out string? result)
 	{
 		if (grid.IsEmpty)
@@ -114,14 +114,14 @@ public static class GridConverterFactory
 	}
 
 	/// <summary>
-	/// The entry point to invoke <see cref="IGridConverter.TryParse(ReadOnlySpan{char}, IFormatProvider?, out Grid)"/> method set
+	/// The entry point to invoke <see cref="IValueConverter{T}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out T)"/> method
 	/// on all built-in converters, to get correct result parsed.
 	/// </summary>
 	/// <param name="s">The original string.</param>
 	/// <param name="provider">The provider.</param>
 	/// <param name="result">The result grid parsed.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <seealso cref="IGridConverter.TryParse(ReadOnlySpan{char}, IFormatProvider?, out Grid)"/>
+	/// <seealso cref="IValueConverter{T}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out T)"/>
 	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Grid result)
 	{
 		if (s.IsEmpty)

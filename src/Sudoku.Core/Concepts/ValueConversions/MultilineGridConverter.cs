@@ -41,9 +41,9 @@ public abstract partial class MultilineGridConverter : IGridConverter
 
 
 	/// <inheritdoc/>
-	public bool TryFormat(ref readonly Grid grid, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
+	public bool TryFormat(ref readonly Grid value, IFormatProvider? provider, [NotNullWhen(true)] out string? result)
 	{
-		var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
+		var t = value.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 		result = new StringBuilder()
 			.AppendLine(SubtleGridLines ? ".-------.-------.-------." : "+-------+-------+-------+")
 			.Append("| ").Append(t[0]).Append(' ').Append(t[1]).Append(' ').Append(t[2])

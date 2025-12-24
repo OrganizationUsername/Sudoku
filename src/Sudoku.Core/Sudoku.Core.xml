@@ -230,12 +230,6 @@
             <param name="item">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -265,8 +259,17 @@
         <member name="M:Sudoku.Concepts.CandidateMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.ToString(Sudoku.Concepts.ValueConversions.ICandidateMapConverter,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.ToArray">
             <inheritdoc/>
@@ -402,7 +405,10 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CandidateMap,System#Int32}#All(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStateMap{Sudoku#Concepts#CandidateMap,System#Int32}#ToString(Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStateMap{Sudoku#Concepts#CandidateMap,System#Int32}#ToString(Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CandidateMap,System#Int32}#First">
@@ -421,15 +427,33 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Create(System.ReadOnlySpan{System.Int32})">
@@ -442,13 +466,31 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char})">
-            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CandidateMap},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CreateByVectors(System.Runtime.Intrinsics.Vector256{System.Int64}@,System.Runtime.Intrinsics.Vector256{System.Int64}@,System.Runtime.Intrinsics.Vector256{System.Int64}@)">
@@ -764,12 +806,6 @@
             <param name="item">The offset.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc cref="M:System.ISpanFormattable.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc cref="M:System.IUtf8SpanFormattable.TryFormat(System.Span{System.Byte},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.Equals(System.Object)">
             <inheritdoc/>
         </member>
@@ -802,8 +838,17 @@
         <member name="M:Sudoku.Concepts.CellMap.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CellMap.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter,System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.ToArray">
             <inheritdoc/>
@@ -924,7 +969,10 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CellMap,System#Int32}#All(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStateMap{Sudoku#Concepts#CellMap,System#Int32}#ToString(Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStateMap{Sudoku#Concepts#CellMap,System#Int32}#ToString(Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CellMap,System#Int32}#First">
@@ -943,16 +991,34 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
-            <inheritdoc cref="M:System.ISpanParsable`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
@@ -964,14 +1030,32 @@
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
-            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{Sudoku.Concepts.CellMap},System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.CV(System.Int64,System.Int64)">
             <summary>
@@ -2380,52 +2464,6 @@
         <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.BitmapCandidateMapFormatInfo">
-            <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.CandidateMapFormatInfo"/> type that supports bitmap formatting.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCandidateMapFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCandidateMapFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCandidateMapFormatInfo.FormatCore(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCandidateMapFormatInfo.ParseCore(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.BitmapCellMapFormatInfo">
-            <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.CellMapFormatInfo"/> type that supports bitmap formatting.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCellMapFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCellMapFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCellMapFormatInfo.FormatCore(Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.BitmapCellMapFormatInfo.ParseCore(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.CandidateMapFormatInfo">
-            <summary>
-            Represents extra options that formats a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, or parses into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.CellMapFormatInfo">
-            <summary>
-            Represents extra options that formats a <see cref="T:Sudoku.Concepts.CellMap"/> instance, or parses into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1">
             <summary>
             Represents a base type for formatting information on a type.
@@ -2456,23 +2494,6 @@
             <returns>An instance of type <typeparamref name="T"/>.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.Formatting.FormatInfo`1.System#IFormatProvider#GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo">
-            <summary>
-            Represents a <see cref="T:Sudoku.Concepts.Coordinates.Formatting.CandidateMapFormatInfo"/> type that supports Hodoku elimination candidates formatting.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo.GetFormat(System.Type)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo.FormatCore(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.Formatting.HodokuTripletCandidateMapFormatInfo.ParseCore(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.Formatting.NotationBracket">
@@ -3606,11 +3627,19 @@
         <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into string representation via the specified coordinate converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.ToString(Sudoku.Concepts.ValueConversions.ICellMapConverter)">
+            <summary>
+            Converts the current instance into string representation via the specified cell map converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string result.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Graphs.AdjacentCellGraph.op_Equality(Sudoku.Concepts.Graphs.AdjacentCellGraph,Sudoku.Concepts.Graphs.AdjacentCellGraph)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -5433,8 +5462,37 @@
         <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation
+            via the specified culture as default coordinate conversion style.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The target string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation
+            via the specified coordinate converter as default coordinate conversion style.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The target string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0})">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The target string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.ToString(Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation via the specified converter
+            and format provider that effects conversion operation (like culture, numeric literals, etc.).
+            </summary>
+            <param name="converter">The converter.</param>
+            <param name="formatProvider">The format provider.</param>
+            <returns>The target string.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStateMap`2.ToArray">
             <summary>
@@ -5560,6 +5618,112 @@
         </member>
         <member name="M:Sudoku.Concepts.IBitStateMap`2.System#Linq#Providers#IGetSubsetMethod{TSelf,TElement}#GetSubsets(System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,`0@)">
+            <summary>
+            Try to parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, <see langword="false"/> will be returned.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <param name="result">The result instance parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,System.Globalization.CultureInfo,`0@)">
+            <summary>
+            Try to parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, <see langword="false"/> will be returned.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <param name="culture">The culture that is used for choosing culture-specific coordinate converter.</param>
+            <param name="result">The result instance parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)">
+            <summary>
+            Try to parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, <see langword="false"/> will be returned.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <param name="converter">The coordinate converter instance.</param>
+            <param name="formatProvider">
+            The format provider instance that effects parsing operation (like culture, numeric literal handling, etc.).
+            </param>
+            <param name="result">The result instance parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.ReadOnlySpan{System.Char},`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo,`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,System.Globalization.CultureInfo,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser,`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{`0},`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.TryParse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String)">
+            <summary>
+            Parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, an exception will be thrown.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <returns>The result instance parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, an exception will be thrown.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <param name="culture">The culture that is used for choosing culture-specific coordinate converter.</param>
+            <returns>The result instance parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)">
+            <summary>
+            Parse a string and convert the value into <typeparamref name="TSelf"/> instance;
+            if failed to parse, an exception will be thrown.
+            </summary>
+            <param name="str">The string value to parse.</param>
+            <param name="converter">The coordinate converter instance.</param>
+            <param name="formatProvider">
+            The format provider instance that effects parsing operation (like culture, numeric literal handling, etc.).
+            </param>
+            <returns>The result instance parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.ReadOnlySpan{System.Char},System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,System.Globalization.CultureInfo)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{`0})">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Concepts.IBitStateMap`2.Parse(System.String,Sudoku.Concepts.ValueConversions.IValueConverter{`0},System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStateMap`2.op_BitwiseAndAssignment(`0@)">
             <summary>
@@ -8863,6 +9027,28 @@
             Indicates the puzzle has multiple solutions.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.BitmapCandidateMapConverter">
+            <summary>
+            Represents bitmap formatted candidate map converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BitmapCandidateMapConverter.TryFormat(Sudoku.Concepts.CandidateMap@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BitmapCandidateMapConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.BitmapCellMapConverter">
+            <summary>
+            Provides bitmap formatted cell map converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BitmapCellMapConverter.TryFormat(Sudoku.Concepts.CellMap@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.BitmapCellMapConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.ValueConversions.GridConverterFactory">
             <summary>
             Provides with an entry to retrieve valid <see cref="T:Sudoku.Concepts.ValueConversions.IGridConverter"/> instances.
@@ -8891,25 +9077,25 @@
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.GridConverterFactory.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
             <summary>
-            The entry point to invoke <see cref="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)"/> method set
-            on all built-in converters.
+            The entry point to invoke <see cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryFormat(`0@,System.IFormatProvider,System.String@)"/>
+            method on all built-in converters.
             </summary>
             <param name="grid">The grid.</param>
             <param name="formatProvider">The format provider.</param>
             <param name="result">The result text.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)"/>
+            <seealso cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryFormat(`0@,System.IFormatProvider,System.String@)"/>
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.GridConverterFactory.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <summary>
-            The entry point to invoke <see cref="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)"/> method set
+            The entry point to invoke <see cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/> method
             on all built-in converters, to get correct result parsed.
             </summary>
             <param name="s">The original string.</param>
             <param name="provider">The provider.</param>
             <param name="result">The result grid parsed.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <seealso cref="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.GridConverterFactory.GetInstance(System.Globalization.CultureInfo)">
             <summary>
@@ -8927,6 +9113,12 @@
             <param name="format">The format.</param>
             <returns>A valid <see cref="T:Sudoku.Concepts.ValueConversions.IGridConverter"/> instance.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.ICandidateMapConverter">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.ICellMapConverter">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.ValueConversions.IGridConverter">
             <summary>
             Provides an object that converts data between <see cref="T:System.String"/> and instantiated <see cref="T:Sudoku.Concepts.Grid"/> instances.
@@ -8940,7 +9132,7 @@
             <remarks>
             <para>
             If multiple different parsers can construct <see cref="T:Sudoku.Concepts.Grid"/> instances,
-            this value will adopt the first one with higher priority value;
+            parsing module will adopt the first one with higher priority value;
             if different <see cref="T:Sudoku.Concepts.ValueConversions.IGridConverter"/> instances hold same parsing priority, a runtime exception will be thrown
             when all parser modules from them execute successfully.
             </para>
@@ -8955,24 +9147,6 @@
             The value can be -1 if such instances are not elements defined in built-in converters collection.
             </para>
             </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
-            <summary>
-            Performs parsing operation.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="provider">The provider.</param>
-            <param name="result">The result parsed.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.IGridConverter.TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
-            <summary>
-            Performs formatting operation.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="provider">The provider.</param>
-            <param name="result">The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
         </member>
         <member name="T:Sudoku.Concepts.ValueConversions.InlineSusserGridConverter">
             <summary>
@@ -9021,6 +9195,34 @@
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.InlineSusserGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.IValueConverter`1">
+            <summary>
+            Provides a way to convert values between <see cref="T:System.String"/> and <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The target value to be converted.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)">
+            <summary>
+            Performs parsing operation.
+            </summary>
+            <param name="text">The text to parse.</param>
+            <param name="provider">The provider that effects parsing module (like culture, numeric hanlding, etc.).</param>
+            <param name="result">The result parsed.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether operation is successfully done without any invalid cases encountered.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryFormat(`0@,System.IFormatProvider,System.String@)">
+            <summary>
+            Performs formatting operation.
+            </summary>
+            <param name="value">The value to format.</param>
+            <param name="provider">The provider that effects parsing module (like culture, numeric hanlding, etc.).</param>
+            <param name="result">The result string formatted.</param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether operation is successfully done without any invalid cases encountered.
+            </returns>
         </member>
         <member name="T:Sudoku.Concepts.ValueConversions.MaskGridConverter">
             <summary>
@@ -9478,42 +9680,25 @@
             </code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Clone">
-            <inheritdoc cref="M:System.ICloneable.Clone"/>
-        </member>
         <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.TryFormat``1(``0@,System.IFormatProvider,System.String@)">
-            <summary>
-            Performs formatting operation.
-            </summary>
+            <inheritdoc cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryFormat(`0@,System.IFormatProvider,System.String@)"/>
             <typeparam name="TGrid">
             The type of grid. The supported types are <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Concepts.MarkerGrid"/>.
             </typeparam>
-            <param name="grid">The grid.</param>
-            <param name="provider">The provider.</param>
-            <param name="result">The result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="T:Sudoku.Concepts.MarkerGrid"/>
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.TryParse``1(System.ReadOnlySpan{System.Char},System.IFormatProvider,``0@)">
-            <summary>
-            Performs parsing operation.
-            </summary>
-            <typeparam name="TGrid">
-            The type of grid. The supported types are <see cref="T:Sudoku.Concepts.Grid"/> and <see cref="T:Sudoku.Concepts.MarkerGrid"/>.
-            </typeparam>
-            <param name="text">The text.</param>
-            <param name="provider">The provider.</param>
-            <param name="result">The result parsed.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether operation has encountered some invalid cases.</returns>
+            <inheritdoc cref="M:Sudoku.Concepts.ValueConversions.IValueConverter`1.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,`0@)"/>
+            <typeparam name="TGrid"><inheritdoc cref="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.TryFormat``1(``0@,System.IFormatProvider,System.String@)" path="/typeparam[@name='TGrid']"/></typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.System#ICloneable#Clone">
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Clone">
+            <inheritdoc cref="M:System.ICloneable.Clone"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IValueConverter{Sudoku#Concepts#Grid}#TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IGridConverter#TryFormat(Sudoku.Concepts.Grid@,System.IFormatProvider,System.String@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IGridConverter#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.ValueConversions.SusserGridConverter.Sudoku#Concepts#ValueConversions#IValueConverter{Sudoku#Concepts#Grid}#TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ValueConversions.SusserGridDefaultConverter">
@@ -9556,6 +9741,17 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ValueConversions.TabSeparatedGridConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.ValueConversions.TripletCandidateMapConverter">
+            <summary>
+            Provides triplet formatted candidate map converter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.TripletCandidateMapConverter.TryFormat(Sudoku.Concepts.CandidateMap@,System.IFormatProvider,System.String@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ValueConversions.TripletCandidateMapConverter.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Descriptors.ColorDescriptor">

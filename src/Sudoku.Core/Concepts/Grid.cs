@@ -1259,7 +1259,7 @@ public partial struct Grid : InlineArrayGridBase
 			}
 			default:
 			{
-				throw new InvalidOperationException($"The argument '{nameof(values)}' must contain {81} elements.");
+				throw new InvalidOperationException($"The argument '{nameof(values)}' must contain 81 elements.");
 			}
 		}
 	}

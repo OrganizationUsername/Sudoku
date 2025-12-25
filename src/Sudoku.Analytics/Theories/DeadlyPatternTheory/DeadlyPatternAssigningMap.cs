@@ -74,7 +74,7 @@ public sealed partial class DeadlyPatternAssigningMap : IEnumerable<KeyValuePair
 
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(CoordinateConverter?)"/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

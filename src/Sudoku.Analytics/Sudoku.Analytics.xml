@@ -819,8 +819,8 @@
         <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.EscapeDigit(Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter,System.Int32)">
             <inheritdoc cref="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.EscapeDigit(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.GetInstance(System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetInstance(System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.GetInstance(System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetInstance(System.Globalization.CultureInfo)"/>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.&lt;M&gt;$EC6EBE4736A64A74CF78657D0E9872C7">
             <summary>
@@ -847,11 +847,11 @@
             <param name="digit">The digit to be escaped.</param>
             <returns>The escaped character. If a digit doesn't need to escape, return character representation of itself.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetInstance(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetterExtensions.&lt;G&gt;$10ADD58514F12629229964E9D31112A4.GetInstance(System.Globalization.CultureInfo)">
             <summary>
             Gets <see cref="T:Sudoku.Analytics.BabaGrouping.BabaGroupInitialLetter"/> instance via the specified culture.
             </summary>
-            <param name="provider">The provider.</param>
+            <param name="culture">The culture.</param>
             <returns>The instance.</returns>
         </member>
         <member name="T:Sudoku.Analytics.BabaGrouping.BabaGroupLetterCase">
@@ -3257,8 +3257,8 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.GetName(System.Globalization.CultureInfo)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.GetAliasedNames(System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.GetAliasedNames(System.Globalization.CultureInfo)"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.TryGetGroup"/>
@@ -3384,11 +3384,11 @@
             <returns>The name of the current technique.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.GetAliasedNames(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.&lt;G&gt;$8B16CD3DACB0C2F15391BAE0FD84C66A.GetAliasedNames(System.Globalization.CultureInfo)">
             <summary>
             Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
-            <param name="formatProvider">The culture information.</param>
+            <param name="culture">The culture.</param>
             <returns>
             All possible aliases of the current technique.
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
@@ -3731,8 +3731,8 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
             <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetShortenedName(System.Globalization.CultureInfo)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetName(System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetName(System.Globalization.CultureInfo)"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <inheritdoc cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetTechniques(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})"/>
@@ -3771,11 +3771,11 @@
             <param name="cultureInfo">The culture information instance.</param>
             <returns>The shortened name.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetName(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.&lt;G&gt;$0F219A3C60BA19501F2AC51861F0EE54.GetName(System.Globalization.CultureInfo)">
             <summary>
             Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
             </summary>
-            <param name="formatProvider">The culture information instance.</param>
+            <param name="culture">The culture.</param>
             <returns>The name.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
@@ -8217,7 +8217,11 @@
             <returns>All possible found <see cref="T:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.Parse(System.String)">
-            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+            <summary>
+            Parses the current string into a valid instance.
+            </summary>
+            <param name="s">The string.</param>
+            <returns>The instance.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Construction.Patterns.AlmostLockedSetPattern.Parse(System.String,System.Globalization.CultureInfo)">
             <summary>
@@ -9979,19 +9983,19 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
         </member>
-        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.IFormatProvider)">
-            <inheritdoc cref="M:Sudoku.Analytics.DifficultyLevelExtensions.&lt;G&gt;$880F3C6B5A60B12A184AC3F205D41314.GetName(System.IFormatProvider)"/>
+        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Analytics.DifficultyLevelExtensions.&lt;G&gt;$880F3C6B5A60B12A184AC3F205D41314.GetName(System.Globalization.CultureInfo)"/>
         </member>
         <member name="T:Sudoku.Analytics.DifficultyLevelExtensions.&lt;G&gt;$880F3C6B5A60B12A184AC3F205D41314.&lt;M&gt;$676251BA9E4C8CE71D12F0E4DF97E139">
             <summary>
             Provides extension members on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.&lt;G&gt;$880F3C6B5A60B12A184AC3F205D41314.GetName(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.&lt;G&gt;$880F3C6B5A60B12A184AC3F205D41314.GetName(System.Globalization.CultureInfo)">
             <summary>
             Gets the name of the current value, with specified culture.
             </summary>
-            <param name="formatProvider">The culture.</param>
+            <param name="culture">The culture.</param>
             <returns>The string value.</returns>
         </member>
         <member name="T:Sudoku.Analytics.DifficultyLevels">
@@ -10215,11 +10219,11 @@
             Provides with a formula that calculates for the result.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Factor.GetName(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.Factor.GetName(System.Globalization.CultureInfo)">
             <summary>
             Try to fetch the name stored in resource dictionary.
             </summary>
-            <param name="formatProvider">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <returns>The name of the factor.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Factor.Create(System.String,System.String[],System.Type,System.Func{System.ReadOnlySpan{System.Object},System.Int32})">
@@ -18630,11 +18634,11 @@
         <member name="P:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.SupportedTechniques">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.StepSearcherAttribute.SupportedTechniques"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.GetName(System.IFormatProvider)">
+        <member name="M:Sudoku.Analytics.StepSearchers.StepSearcherMetadataInfo.GetName(System.Globalization.CultureInfo)">
             <summary>
             Gets the name of the step searcher, using the specified culture.
             </summary>
-            <param name="formatProvider">The culture information.</param>
+            <param name="culture">The culture information.</param>
             <returns>The name.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.StepSearcherRunningArea">

@@ -331,26 +331,6 @@ public struct MarkerGrid : InlineArrayGridBase
 	}
 
 	/// <inheritdoc/>
-	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
-	{
-		var targetString = ToString(format.IsEmpty ? null : format.ToString(), provider);
-		if (destination.Length < targetString.Length)
-		{
-			goto ReturnFalse;
-		}
-
-		if (targetString.TryCopyTo(destination))
-		{
-			charsWritten = targetString.Length;
-			return true;
-		}
-
-	ReturnFalse:
-		charsWritten = 0;
-		return false;
-	}
-
-	/// <inheritdoc/>
 	public readonly bool GetExistence(Cell cell, Digit digit) => (this[cell] >> digit & 1) != 0;
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
@@ -371,7 +351,7 @@ public struct MarkerGrid : InlineArrayGridBase
 	/// <inheritdoc/>
 	public readonly string ToString(string? format) => ToString(format, null);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="Grid.ToString(string?, IFormatProvider?)"/>
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		var instance = GridConverterFactory.GetInstance(format) as SusserGridConverter ?? new SusserGridDefaultConverter();
@@ -379,9 +359,6 @@ public struct MarkerGrid : InlineArrayGridBase
 			? result
 			: throw new FormatException();
 	}
-
-	/// <inheritdoc/>
-	public readonly string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc/>
 	public readonly CellState GetState(Cell cell) => MaskToCellState(this[cell]);

@@ -368,7 +368,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public readonly override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public readonly string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
@@ -705,7 +705,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CandidateMap result)
-		=> TryParse(str, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(str, CoordinateParser.InvariantCulture, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, CultureInfo culture, out CandidateMap result)
@@ -736,7 +736,7 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 
 	/// <inheritdoc/>
 	public static bool TryParse(ReadOnlySpan<char> str, out CandidateMap result)
-		=> TryParse(str, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(str, CoordinateParser.InvariantCulture, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse(ReadOnlySpan<char> str, CultureInfo culture, out CandidateMap result)
@@ -775,7 +775,12 @@ public partial struct CandidateMap : CandidateMapBase, IDrawableItem
 		return result;
 	}
 
-	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	/// <summary>
+	/// Parses the current string into target instance.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The instance.</returns>
+	/// <exception cref="FormatException">Throws when any invalid characters encountered.</exception>
 	public static CandidateMap Parse(string str)
 	{
 		foreach (var parser in

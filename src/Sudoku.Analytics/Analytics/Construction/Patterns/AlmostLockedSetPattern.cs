@@ -110,7 +110,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 	public override int GetHashCode() => HashCode.Combine(DigitsMask, Cells);
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation via the specified culture.
@@ -145,7 +145,7 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static bool TryParse([NotNullWhen(true)] string? s, [NotNullWhen(true)] out AlmostLockedSetPattern? result)
-		=> TryParse(s, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <summary>
 	/// Try to parse the string into target instance, using the specified culture.
@@ -258,8 +258,12 @@ public sealed class AlmostLockedSetPattern(Mask digitsMask, in CellMap cells, in
 		return result.AsSpan();
 	}
 
-	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
-	public static AlmostLockedSetPattern Parse(string s) => Parse(s, CoordinateParser.InvariantCultureInstance);
+	/// <summary>
+	/// Parses the current string into a valid instance.
+	/// </summary>
+	/// <param name="s">The string.</param>
+	/// <returns>The instance.</returns>
+	public static AlmostLockedSetPattern Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <summary>
 	/// Parses the current string into a valid instance, via the specified culture.

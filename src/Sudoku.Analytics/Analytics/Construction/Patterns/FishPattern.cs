@@ -87,7 +87,7 @@ public sealed class FishPattern(Digit digit, HouseMask baseSets, HouseMask cover
 	public override int GetHashCode() => HashCode.Combine(Digit, BaseSets, CoverSets, Exofins, Endofins);
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> represenation.

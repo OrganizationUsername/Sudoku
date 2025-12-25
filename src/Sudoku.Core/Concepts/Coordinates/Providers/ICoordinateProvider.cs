@@ -4,12 +4,12 @@ namespace Sudoku.Concepts.Coordinates.Providers;
 /// Represents a type that supports formatting or parsing rules around coordinates.
 /// </summary>
 /// <typeparam name="TSelf"><include file="../../global-doc-comments.xml" path="/g/self-type-constraint"/></typeparam>
-public interface ICoordinateProvider<out TSelf> : IFormatProvider where TSelf : ICoordinateProvider<TSelf>, allows ref struct
+public interface ICoordinateProvider<out TSelf> where TSelf : ICoordinateProvider<TSelf>, allows ref struct
 {
 	/// <summary>
-	/// Indicates the <typeparamref name="TSelf"/> instance for the invariant culture, meaning it ignores culture your device uses.
+	/// Indicates the <typeparamref name="TSelf"/> instance using invariant culture, meaning it ignores culture your device uses.
 	/// </summary>
-	static abstract TSelf InvariantCultureInstance { get; }
+	static abstract TSelf InvariantCulture { get; }
 
 
 	/// <summary>

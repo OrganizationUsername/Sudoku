@@ -31,7 +31,7 @@ public readonly record struct Permutation(ReadOnlyMemory<Candidate> Assignments,
 	public int CompareTo(Permutation other) => Map.CompareTo(other.Map);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(ICandidateMapConverter, IFormatProvider?)"/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

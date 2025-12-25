@@ -377,9 +377,4 @@ public sealed record K9Converter(
 			}
 			return sb.RemoveFromEnd(DefaultSeparator.Length).ToString();
 		};
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
 }

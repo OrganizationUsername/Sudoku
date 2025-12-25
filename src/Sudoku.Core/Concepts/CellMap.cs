@@ -507,7 +507,7 @@ public partial struct CellMap : CellMapBase
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public readonly override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public readonly override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public readonly string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
@@ -796,7 +796,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CellMap result)
-		=> TryParse(str, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(str, CoordinateParser.InvariantCulture, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, CultureInfo culture, out CellMap result)
@@ -827,7 +827,7 @@ public partial struct CellMap : CellMapBase
 
 	/// <inheritdoc/>
 	public static bool TryParse(ReadOnlySpan<char> str, out CellMap result)
-		=> TryParse(str, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(str, CoordinateParser.InvariantCulture, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse(ReadOnlySpan<char> str, CultureInfo culture, out CellMap result)
@@ -867,7 +867,12 @@ public partial struct CellMap : CellMapBase
 		return result;
 	}
 
-	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	/// <summary>
+	/// Parses the current string into target instance.
+	/// </summary>
+	/// <param name="str">The string.</param>
+	/// <returns>The instance.</returns>
+	/// <exception cref="FormatException">Throws when any invalid characters encountered.</exception>
 	public static CellMap Parse(string str)
 	{
 		foreach (var parser in

@@ -75,7 +75,7 @@ public readonly struct Conjugate(int _mask) : IEquatable<Conjugate>, IEqualityOp
 	public override int GetHashCode() => HashCode.Combine(Digit, Map);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation, using the specified culture.
@@ -99,7 +99,7 @@ public readonly struct Conjugate(int _mask) : IEquatable<Conjugate>, IEqualityOp
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static bool TryParse([NotNullWhen(true)] string? s, out Conjugate result)
-		=> TryParse(s, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <summary>
 	/// Try to parse the specified string into target instance, using the specified culture.
@@ -143,7 +143,7 @@ public readonly struct Conjugate(int _mask) : IEquatable<Conjugate>, IEqualityOp
 	/// </summary>
 	/// <param name="s">The string to parse.</param>
 	/// <returns>The result.</returns>
-	public static Conjugate Parse(string s) => Parse(s, CoordinateParser.InvariantCultureInstance);
+	public static Conjugate Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <summary>
 	/// Parses the string into target instance via the specified culture.

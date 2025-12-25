@@ -204,7 +204,7 @@ public sealed class BlossomLoop(params ConclusionSet conclusions) :
 	}
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
@@ -214,11 +214,11 @@ public sealed class BlossomLoop(params ConclusionSet conclusions) :
 		=> ToString(new CustomizedChainConverter { CustomizedCandidateConverter = converter });
 
 	/// <inheritdoc/>
-	public string ToString(IChainConverter converter) => ToString(converter, null, CoordinateConverter.InvariantCultureInstance);
+	public string ToString(IChainConverter converter) => ToString(converter, null, CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(IChainConverter converter, IFormatProvider? formatProvider)
-		=> ToString(converter, formatProvider, CoordinateConverter.InvariantCultureInstance);
+		=> ToString(converter, formatProvider, CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(IChainConverter, IFormatProvider?, ICandidateMapConverter)"/>
 	public string ToString(IChainConverter converter, CoordinateConverter branchKeyConverter)

@@ -42,7 +42,7 @@ public sealed class NodeSet : IComponent, IReadOnlyList<Node>, IReadOnlyCollecti
 
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(CoordinateConverter)"/>
 	public string ToString(CultureInfo culture)

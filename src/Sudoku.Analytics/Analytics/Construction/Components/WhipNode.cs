@@ -61,7 +61,7 @@ public sealed class WhipNode(WhipAssignment assignment, ReadOnlyMemory<WhipAssig
 	public override int GetHashCode() => Assignment.GetHashCode();
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

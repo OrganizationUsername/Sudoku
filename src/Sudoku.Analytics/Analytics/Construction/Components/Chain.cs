@@ -385,7 +385,7 @@ public abstract partial class Chain :
 	public abstract int CompareTo(Chain? other);
 
 	/// <inheritdoc/>
-	public sealed override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public sealed override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

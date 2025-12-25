@@ -105,7 +105,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	public override int GetHashCode() => _mask;
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation.
@@ -122,7 +122,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 
 	/// <inheritdoc cref="TryParse(string?, CoordinateParser, out HouseDigitIdentifier)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, out HouseDigitIdentifier result)
-		=> TryParse(s, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <inheritdoc/>
 	public static bool TryParse([NotNullWhen(true)] string? s, CoordinateParser converter, out HouseDigitIdentifier result)
@@ -147,7 +147,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	}
 
 	/// <inheritdoc cref="Parse(string, CoordinateParser)"/>
-	public static HouseDigitIdentifier Parse(string s) => Parse(s, CoordinateParser.InvariantCultureInstance);
+	public static HouseDigitIdentifier Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <inheritdoc/>
 	public static HouseDigitIdentifier Parse(string s, CoordinateParser converter)

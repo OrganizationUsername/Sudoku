@@ -601,11 +601,11 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 	public override string ToString() => ToString(DefaultOptions);
 
 	/// <inheritdoc cref="ToString(FormattingOptions, CoordinateConverter)"/>
-	public string ToString(FormattingOptions options) => ToString(options, CoordinateConverter.InvariantCultureInstance);
+	public string ToString(FormattingOptions options) => ToString(options, CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(FormattingOptions, CoordinateConverter, Func{string, Step, string}?)"/>
 	public string ToString(Func<string, Step, string>? stepStringReplacer)
-		=> ToString(DefaultOptions, CoordinateConverter.InvariantCultureInstance, stepStringReplacer);
+		=> ToString(DefaultOptions, CoordinateConverter.InvariantCulture, stepStringReplacer);
 
 	/// <inheritdoc cref="ToString(FormattingOptions, CoordinateConverter)"/>
 	public string ToString(CoordinateConverter converter) => ToString(DefaultOptions, converter);
@@ -616,7 +616,7 @@ public sealed partial record AnalysisResult(in Grid Puzzle) :
 
 	/// <inheritdoc cref="ToString(FormattingOptions, CoordinateConverter, Func{string, Step, string}?)"/>
 	public string ToString(FormattingOptions options, Func<string, Step, string> stepStringReplacer)
-		=> ToString(options, CoordinateConverter.InvariantCultureInstance, stepStringReplacer);
+		=> ToString(options, CoordinateConverter.InvariantCulture, stepStringReplacer);
 
 	/// <summary>
 	/// Returns a string that represents the current object, with the specified formatting options.

@@ -214,9 +214,4 @@ public sealed record LiteralCoordinateConverter(
 			}
 			return string.Join(DefaultSeparator, snippets);
 		};
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
 }

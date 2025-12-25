@@ -100,7 +100,7 @@ public readonly struct Conclusion(Mask mask) :
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation, using the specified culture.
@@ -143,7 +143,7 @@ public readonly struct Conclusion(Mask mask) :
 	/// <param name="result">The result parsed.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static bool TryParse([NotNullWhen(true)] string? s, out Conclusion result)
-		=> TryParse(s, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <summary>
 	/// Try to parse the string into target instance, using the specified culture.
@@ -188,7 +188,7 @@ public readonly struct Conclusion(Mask mask) :
 	/// <param name="s">The string.</param>
 	/// <returns>The instance parsed.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public static Conclusion Parse(string s) => Parse(s, CoordinateParser.InvariantCultureInstance);
+	public static Conclusion Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <summary>
 	/// Parses the specified string into target instance, using the specified culture.

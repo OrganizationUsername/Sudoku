@@ -29,7 +29,7 @@ public sealed class CandidateViewNode(ColorDescriptor identifier, Candidate cand
 	/// <inheritdoc/>
 	public override string ToString()
 	{
-		var candidateString = Candidate.ToCandidateString(Candidate, CoordinateConverter.InvariantCultureInstance);
+		var candidateString = Candidate.ToCandidateString(Candidate, CoordinateConverter.InvariantCulture);
 		return $"{nameof(CandidateViewNode)} {{ Candidate = {candidateString}, {nameof(Identifier)} = {Identifier} }}";
 	}
 

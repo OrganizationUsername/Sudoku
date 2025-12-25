@@ -295,21 +295,21 @@ public class MultipleForcingChains(params Conclusion[] conclusions) :
 	}
 
 	/// <inheritdoc/>
-	public sealed override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public sealed override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));
 
 	/// <inheritdoc/>
 	public string ToString(CoordinateConverter converter)
-		=> ToString(new CustomizedChainConverter { CustomizedCandidateConverter = converter }, converter);
+		=> ToString(new CustomizedChainConverter { CustomizedCandidateConverter = converter });
 
 	/// <inheritdoc/>
 	public string ToString(IChainConverter converter) => ToString(converter, default(IFormatProvider));
 
 	/// <inheritdoc/>
 	public string ToString(IChainConverter converter, IFormatProvider? formatProvider)
-		=> ToString(converter, formatProvider, CoordinateConverter.InvariantCultureInstance);
+		=> ToString(converter, formatProvider, CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(IChainConverter, IFormatProvider?, ICandidateMapConverter)"/>
 	public string ToString(IChainConverter converter, ICandidateMapConverter branchKeyConverter)

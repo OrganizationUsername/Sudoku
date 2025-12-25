@@ -80,7 +80,7 @@ public sealed class BinaryForcingChains(UnnamedChain branch1, UnnamedChain branc
 
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

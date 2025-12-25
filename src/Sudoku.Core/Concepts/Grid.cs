@@ -692,11 +692,15 @@ public partial struct Grid : InlineArrayGridBase
 	public readonly string ToString(IGridConverter converter, IFormatProvider? formatProvider)
 		=> converter.TryFormat(in this, formatProvider, out var result) ? result : throw new FormatException();
 
-	/// <inheritdoc/>
-	/// <remarks>
-	/// For more information about <paramref name="format"/>, please see documentation comments of method
+	/// <summary>
+	/// Performs formatting operation via the specified grid converter and format provider.
+	/// </summary>
+	/// <param name="format">
+	/// The format. For more information about <paramref name="format"/>, please see documentation comments of method
 	/// <see cref="ToString(string?)"/>.
-	/// </remarks>
+	/// </param>
+	/// <param name="formatProvider">The format provider.</param>
+	/// <returns>The string representation.</returns>
 	/// <seealso cref="ToString(string?)"/>
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 	{
@@ -1091,7 +1095,7 @@ public partial struct Grid : InlineArrayGridBase
 	public static bool TryParse(string? s, IGridConverter converter, IFormatProvider? formatProvider, out Grid result)
 		=> TryParse(s.AsSpan(), converter, formatProvider, out result);
 
-	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
+	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IGridConverter, IFormatProvider?, out Grid)"/>
 	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
 		=> TryParse(s.AsSpan(), provider, out result);
 
@@ -1131,7 +1135,7 @@ public partial struct Grid : InlineArrayGridBase
 	public static bool TryParse(ReadOnlySpan<char> s, IGridConverter converter, IFormatProvider? formatProvider, out Grid result)
 		=> converter.TryParse(s, formatProvider, out result);
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.TryParse(ReadOnlySpan{char}, IFormatProvider?, out TSelf)"/>
+	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IGridConverter, IFormatProvider?, out Grid)"/>
 	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Grid result)
 		=> GridConverterFactory.TryParse(s, provider, out result);
 
@@ -1168,7 +1172,7 @@ public partial struct Grid : InlineArrayGridBase
 	public static Grid Parse(string? s, IGridConverter converter, IFormatProvider? provider)
 		=> converter.TryParse(s, provider, out var result) ? result : throw new FormatException();
 
-	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IGridConverter, IFormatProvider?)"/>
 	public static Grid Parse(ReadOnlySpan<char> s)
 		=> GridConverterFactory.TryParse(s, null, out var result) ? result : throw new FormatException();
 

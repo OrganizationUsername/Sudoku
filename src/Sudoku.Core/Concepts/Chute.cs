@@ -99,7 +99,7 @@ public readonly record struct Chute(int Index, bool IsRow, HouseMask HousesMask)
 	/// <param name="result">The instance parsed.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	public static bool TryParse([NotNullWhen(true)] string? s, out Chute result)
-		=> TryParse(s, CoordinateParser.InvariantCultureInstance, out result);
+		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <summary>
 	/// Try to parse the current string into target instance, using the specified culture.
@@ -144,7 +144,7 @@ public readonly record struct Chute(int Index, bool IsRow, HouseMask HousesMask)
 	/// <param name="s">The string.</param>
 	/// <returns>The instance.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public static Chute Parse(string s) => Parse(s, CoordinateParser.InvariantCultureInstance);
+	public static Chute Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <summary>
 	/// Parse the string into the target instance, using the specified culture.

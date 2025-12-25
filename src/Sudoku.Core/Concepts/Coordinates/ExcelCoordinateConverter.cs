@@ -173,9 +173,4 @@ public sealed record ExcelCoordinateConverter(
 			}
 			return sb.RemoveFromEnd(DefaultSeparator.Length).ToString();
 		};
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
 }

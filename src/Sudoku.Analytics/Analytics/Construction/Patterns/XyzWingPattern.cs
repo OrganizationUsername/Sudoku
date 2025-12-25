@@ -76,7 +76,7 @@ public sealed class XyzWingPattern(Cell pivot, Cell leafCell1, Cell leafCell2, H
 	public override int GetHashCode() => HashCode.Combine(Pivot, LeafCell1, LeafCell2, House1, House2, DigitsMask);
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <inheritdoc cref="ToString(CoordinateConverter)"/>
 	public string ToString(CultureInfo culture) => ToString(CoordinateConverter.GetInstance(culture));

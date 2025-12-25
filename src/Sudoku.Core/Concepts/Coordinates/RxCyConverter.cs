@@ -403,10 +403,6 @@ public sealed record RxCyConverter(
 		};
 
 
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
-
 	/// <summary>
 	/// Get the label of each house.
 	/// </summary>

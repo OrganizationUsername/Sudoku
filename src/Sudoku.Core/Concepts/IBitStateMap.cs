@@ -202,7 +202,7 @@ public interface IBitStateMap<TSelf, TElement> :
 	bool Equals(in TSelf other);
 
 	/// <inheritdoc cref="object.ToString"/>
-	string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation

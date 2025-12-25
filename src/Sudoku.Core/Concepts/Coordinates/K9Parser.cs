@@ -159,9 +159,4 @@ public sealed partial record K9Parser : CoordinateParser
 
 	[GeneratedRegex("""([a-k][1-9])\s*={2}\s*([a-k][1-9])\.([1-9])""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitConjugateGroupPattern { get; }
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateParser) ? this : null;
 }

@@ -85,12 +85,7 @@ public abstract record CoordinateConverter(
 
 
 	/// <inheritdoc/>
-	public static CoordinateConverter InvariantCultureInstance => new RxCyConverter();
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public abstract object? GetFormat(Type? formatType);
+	public static CoordinateConverter InvariantCulture => new RxCyConverter();
 
 
 	/// <inheritdoc/>
@@ -99,6 +94,6 @@ public abstract record CoordinateConverter(
 		{
 			{ IsChinese: true } => new K9Converter(true, CurrentCulture: culture),
 			{ IsEnglish: true } => new RxCyConverter(true, true, CurrentCulture: culture),
-			_ => InvariantCultureInstance
+			_ => InvariantCulture
 		};
 }

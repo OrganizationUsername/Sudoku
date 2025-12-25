@@ -171,7 +171,7 @@ public sealed class Node(in CandidateMap map, bool isOn, NodeSet? parents = null
 			};
 
 	/// <inheritdoc/>
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureInstance);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCulture);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation.

@@ -41,12 +41,7 @@ public abstract record CoordinateParser :
 
 
 	/// <inheritdoc/>
-	public static CoordinateParser InvariantCultureInstance => new RxCyParser();
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public abstract object? GetFormat(Type? formatType);
+	public static CoordinateParser InvariantCulture => new RxCyParser();
 
 
 	/// <inheritdoc/>
@@ -55,6 +50,6 @@ public abstract record CoordinateParser :
 		{
 			{ IsChinese: true } => new K9Parser(),
 			{ IsEnglish: true } => new RxCyParser(),
-			_ => InvariantCultureInstance
+			_ => InvariantCulture
 		};
 }

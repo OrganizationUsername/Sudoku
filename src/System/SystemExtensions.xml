@@ -2204,34 +2204,6 @@
             Indicates whether the culture is English.
             </summary>
         </member>
-        <member name="T:System.Globalization.FormatProviderExtensions">
-            <summary>
-            Provides extension methods on <see cref="T:System.IFormatProvider"/>.
-            </summary>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="M:System.Globalization.FormatProviderExtensions.get_IsChineseCulture(System.IFormatProvider)">
-            <inheritdoc cref="P:System.Globalization.FormatProviderExtensions.&lt;G&gt;$43309ABD7E0EC51A3B6F141506CB2F87.IsChineseCulture"/>
-        </member>
-        <member name="M:System.Globalization.FormatProviderExtensions.get_IsEnglishCulture(System.IFormatProvider)">
-            <inheritdoc cref="P:System.Globalization.FormatProviderExtensions.&lt;G&gt;$43309ABD7E0EC51A3B6F141506CB2F87.IsEnglishCulture"/>
-        </member>
-        <member name="T:System.Globalization.FormatProviderExtensions.&lt;G&gt;$43309ABD7E0EC51A3B6F141506CB2F87.&lt;M&gt;$52A7E2E46CCFBF6479693132E99EC3CB">
-            <summary>
-            Provides extension members on <see cref="T:System.IFormatProvider"/>.
-            </summary>
-            <param name="this">The instance.</param>
-        </member>
-        <member name="P:System.Globalization.FormatProviderExtensions.&lt;G&gt;$43309ABD7E0EC51A3B6F141506CB2F87.IsChineseCulture">
-            <summary>
-            Indicates whether the format provider is Chinese culture.
-            </summary>
-        </member>
-        <member name="P:System.Globalization.FormatProviderExtensions.&lt;G&gt;$43309ABD7E0EC51A3B6F141506CB2F87.IsEnglishCulture">
-            <summary>
-            Indicates whether the format provider is English culture.
-            </summary>
-        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf" />.

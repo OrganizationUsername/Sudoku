@@ -4009,22 +4009,22 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.ToString(Sudoku.Analytics.Factor,Sudoku.Analytics.Step,System.Decimal,System.IFormatProvider)">
-            <inheritdoc cref="M:SudokuStudio.Interaction.Conversions.Extensions.&lt;G&gt;$EB1323430AE283AAF1610D439170F7ED.ToString(Sudoku.Analytics.Step,System.Decimal,System.IFormatProvider)"/>
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.ToString(Sudoku.Analytics.Factor,Sudoku.Analytics.Step,System.Decimal,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:SudokuStudio.Interaction.Conversions.Extensions.&lt;G&gt;$EB1323430AE283AAF1610D439170F7ED.ToString(Sudoku.Analytics.Step,System.Decimal,System.Globalization.CultureInfo)"/>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.Extensions.&lt;G&gt;$EB1323430AE283AAF1610D439170F7ED.&lt;M&gt;$D1807C59820321B01F40B9FDA124C1E6">
             <summary>
             Provides extension members on <see cref="T:Sudoku.Analytics.Factor"/>.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.&lt;G&gt;$EB1323430AE283AAF1610D439170F7ED.ToString(Sudoku.Analytics.Step,System.Decimal,System.IFormatProvider)">
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.&lt;G&gt;$EB1323430AE283AAF1610D439170F7ED.ToString(Sudoku.Analytics.Step,System.Decimal,System.Globalization.CultureInfo)">
             <summary>
             Calculates the rating from the specified <see cref="T:Sudoku.Analytics.Step"/> instance, and return the string representation
             of the rating text.
             </summary>
             <param name="step">The step to be calculated.</param>
             <param name="scale">The scale value to be used.</param>
-            <param name="formatProvider">The culture to be used.</param>
+            <param name="culture">The culture to be used.</param>
             <returns>The string representation of final rating text.</returns>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">

@@ -32,7 +32,7 @@ public static class HodokuCompatibility
 		}
 
 		var conclusionConverter = new TripletCandidateMapConverter();
-		var coordinateConverter = CoordinateConverter.InvariantCultureInstance;
+		var coordinateConverter = CoordinateConverter.InvariantCulture;
 
 		var codeString = GetHodokuLibraryPrefix(step.Code) ?? DefaultLibraryFormatPrefix;
 		var digitsUsedString = step.DigitsUsed == 0

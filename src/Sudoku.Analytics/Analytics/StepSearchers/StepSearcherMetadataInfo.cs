@@ -66,20 +66,15 @@ public sealed class StepSearcherMetadataInfo(StepSearcher stepSearcher, StepSear
 	/// <summary>
 	/// Gets the name of the step searcher, using the specified culture.
 	/// </summary>
-	/// <param name="formatProvider">The culture information.</param>
+	/// <param name="culture">The culture information.</param>
 	/// <returns>The name.</returns>
-	public string GetName(IFormatProvider? formatProvider)
-	{
-		var culture = formatProvider as CultureInfo;
-		return _stepSearcher.GetType() switch
+	public string GetName(CultureInfo? culture)
+		=> _stepSearcher.GetType() switch
 		{
 			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
 			{
 				{ NameKey: { } r } => SR.Get(r, culture),
-				_ => SR.TryGet($"StepSearcherName_{typeName}", out var resource, culture ?? CultureInfo.CurrentUICulture)
-					? resource
-					: typeName
+				_ => SR.TryGet($"StepSearcherName_{typeName}", out var resource, culture) ? resource : typeName
 			}
 		};
-	}
 }

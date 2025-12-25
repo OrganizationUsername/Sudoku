@@ -336,9 +336,4 @@ public sealed partial record RxCyParser : CoordinateParser
 
 	[GeneratedRegex("""(\d+)([rcbn])(\d+)""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex SpaceSegmentPattern { get; }
-
-
-	/// <inheritdoc/>
-	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateParser) ? this : null;
 }

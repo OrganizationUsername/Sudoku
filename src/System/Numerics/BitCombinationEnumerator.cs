@@ -55,7 +55,7 @@ namespace System.Numerics;
 /// <b>Complexity</b>: O(1) — only a handful of machine-word bit-operations (AND, ADD, XOR, shifts, divide by power of two).
 /// </para>
 /// <para>
-/// Auto play (the first 3 steps, with values <paramref name="_bitCount"/> = 8, <paramref name="_oneCount"/> = 5):
+/// <b>Auto play</b> (the first 3 steps, with values <paramref name="_bitCount"/> = 8, <paramref name="_oneCount"/> = 5):
 /// <code><![CDATA[
 /// .------.----------------------------.------------------------------------.----------.   .-----------.-----------.
 /// | Step | Variable                   | Expression                         | Value    |   | _bitCount | _oneCount |

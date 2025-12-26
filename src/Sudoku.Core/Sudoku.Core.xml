@@ -2328,20 +2328,14 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.CandidateMapFormatter">
+        <member name="T:Sudoku.Concepts.Coordinates.BitStateMapFormatter`2">
             <summary>
-            Provides with a formatter object that convert the current <see cref="T:Sudoku.Concepts.CandidateMap"/> instance
+            Provides with a formatter object that convert the current map instance
             into a <see cref="T:System.String"/> representation equivalent to the current object.
             </summary>
-            <param name="candidates">The candidates to be converted.</param>
-            <returns>The string result.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.CellMapFormatter">
-            <summary>
-            Provides with a formatter object that convert the current <see cref="T:Sudoku.Concepts.CellMap"/> instance
-            into a <see cref="T:System.String"/> representation equivalent to the current object.
-            </summary>
-            <param name="cells">The cells to be converted.</param>
+            <typeparam name="T">The type of map.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <param name="map">The map to be converted.</param>
             <returns>The string result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateConverter">
@@ -2362,7 +2356,7 @@
             </param>
             <param name="EliminationToken">
             <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
-            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
+            <para>The value is <c>" &lt;&gt; "</c> by default.</para>
             </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
@@ -2400,7 +2394,7 @@
             </param>
             <param name="EliminationToken">
             <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
-            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
+            <para>The value is <c>" &lt;&gt; "</c> by default.</para>
             </param>
             <param name="NotationBracket">
             <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>
@@ -2441,7 +2435,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.EliminationToken">
             <summary>
             <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
-            <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
+            <para>The value is <c>" &lt;&gt; "</c> by default.</para>
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.NotationBracket">

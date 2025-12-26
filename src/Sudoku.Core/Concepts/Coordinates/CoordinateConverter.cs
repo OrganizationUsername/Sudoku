@@ -17,7 +17,7 @@ namespace Sudoku.Concepts.Coordinates;
 /// </param>
 /// <param name="EliminationToken">
 /// <para>Indicates the token that describes an elimination conclusion, connected with cell and digit.</para>
-/// <para>The value is <c>"<![CDATA[ <> ]]>"</c> by default.</para>
+/// <para>The value is <c>" &lt;&gt; "</c> by default.</para>
 /// </param>
 /// <param name="NotationBracket">
 /// <para>Indicates the bracket surrounding the multiple coordinate parts (especially for cell groups and candidate groups).</para>

@@ -57,3 +57,5 @@ global using static Sudoku.Concepts.Marshalling.CellMapMarshal;
 global using static Sudoku.Concepts.Marshalling.HouseMarshal;
 global using static Sudoku.Concepts.Marshalling.HouseMaskMarshal;
 global using static Sudoku.Concepts.Marshalling.MaskMarshal;
+global using CandidateMapFormatter = Sudoku.Concepts.Coordinates.BitStateMapFormatter<Sudoku.Concepts.CandidateMap, /*Candidate*/ int>;
+global using CellMapFormatter = Sudoku.Concepts.Coordinates.BitStateMapFormatter<Sudoku.Concepts.CellMap, /*Cell*/ int>;

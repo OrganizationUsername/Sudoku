@@ -8,7 +8,7 @@ public sealed class BivalueBilocationPlotChainConverter : IChainConverter
 	/// <summary>
 	/// The backing implementation instance.
 	/// </summary>
-	private readonly IChainConverter _impl = new CustomizedChainConverter
+	private readonly CustomizedChainConverter _impl = new()
 	{
 		InlineDigitsInLink = true,
 		DefaultSeparator = "|",

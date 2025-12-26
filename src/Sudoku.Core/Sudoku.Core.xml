@@ -3328,7 +3328,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitConclusionGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>r[1-9]+c[1-9]+(,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
+            <code>r[1-9]+c[1-9]+(?:,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3338,15 +3338,14 @@
             ○ Match a character in the set [Cc].<br/>
             ○ Match a character in the set [1-9] greedily at least once.<br/>
             ○ Loop greedily any number of times.<br/>
-                ○ 1st capture group.<br/>
-                    ○ Match ','.<br/>
-                    ○ Match a whitespace character atomically any number of times.<br/>
-                    ○ Match a character in the set [Rr].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
-                    ○ Match a character in the set [Cc].<br/>
-                    ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match ','.<br/>
+                ○ Match a whitespace character atomically any number of times.<br/>
+                ○ Match a character in the set [Rr].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
+                ○ Match a character in the set [Cc].<br/>
+                ○ Match a character in the set [1-9] atomically at least once.<br/>
             ○ Match a whitespace character atomically any number of times.<br/>
-            ○ 2nd capture group.<br/>
+            ○ 1st capture group.<br/>
                 ○ Match with 3 alternative expressions.<br/>
                     ○ Match '=' atomically at least 1 and at most 2 times.<br/>
                     ○ Match the string "!=".<br/>

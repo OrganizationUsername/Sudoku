@@ -21,7 +21,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = CellMap.Empty;
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var indexOfColumnLabel = s.IndexOfAny(['C', 'c']);
@@ -54,7 +54,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = CandidateMap.Empty;
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				if (s.Contains('('))
@@ -113,7 +113,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = 0;
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var label = s[0];
@@ -141,7 +141,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = new ConclusionSet();
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var indexOfEqualityOperatorCharacters = s.Split(["==", "<>", "=", "!="], 2, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -181,7 +181,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = new List<Chute>(6);
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				switch (match.Value)
 				{
@@ -215,7 +215,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = new List<Conjugate>();
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var split = s.Split("==", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
@@ -243,7 +243,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			}
 
 			var result = new List<Miniline>();
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var indexOfBlockLabel = s.IndexOfAny(['B', 'b']);

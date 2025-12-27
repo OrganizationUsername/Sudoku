@@ -21,7 +21,7 @@ public sealed partial record K9Parser : CoordinateParser
 			}
 
 			var result = CellMap.Empty;
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				var s = match.Value;
 				var indexOfTheFirstDigit = (-s).FindIndex(char.IsDigit);
@@ -54,7 +54,7 @@ public sealed partial record K9Parser : CoordinateParser
 			}
 
 			var result = CandidateMap.Empty;
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				if (match.Captures is not [{ Value: var rows }, { Value: var columns }, { Value: var digits }])
 				{
@@ -94,7 +94,7 @@ public sealed partial record K9Parser : CoordinateParser
 			}
 
 			var result = new ConclusionSet();
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				if (match.Captures is not [{ Value: var cells }, _, { Value: var equalityOperator }, { Value: var digits }])
 				{
@@ -134,7 +134,7 @@ public sealed partial record K9Parser : CoordinateParser
 			}
 
 			var result = new List<Conjugate>();
-			foreach (var match in matches.Cast<Match>())
+			foreach (var match in from match in matches select match)
 			{
 				if (match.Captures is [{ Value: var cell1 }, { Value: var cell2 }, { Value: [var digitChar] }])
 				{

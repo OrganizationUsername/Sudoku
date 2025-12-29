@@ -153,7 +153,7 @@
   * [三顺一逆现象](rank-theory/05-guardian-logic/03-rebellious-block-phenomenon.md)
   * [三值死环](rank-theory/05-guardian-logic/04-trivalue-oddagon.md)
   * [负秩结构和无解局面的区别](rank-theory/05-guardian-logic/05-difference-between-negative-rank-patterns-and-invalid-grids.md)
-* [网](rank-theory/06-multisector-locked-set/README.md)
+* [网（MSLS）](rank-theory/06-multisector-locked-set/README.md)
   * [从融合待定数组谈起](rank-theory/06-multisector-locked-set/01-starting-with-sue-de-coq.md)
   * [网的基本推理](rank-theory/06-multisector-locked-set/02-reasoning-of-multisector-locked-set.md)
   * [不规则网](rank-theory/06-multisector-locked-set/03-irregular-multisector-locked-set.md)
@@ -193,9 +193,14 @@
 * [退化飞鱼](exocet/08-sashimi-exocet.md)
 * [宫内飞鱼](exocet/09-franken-exocet.md)
 * [交叉飞鱼](exocet/10-mutant-exocet.md)
-* [飞鱼和多米诺环](exocet/11-exocet-with-domino-loop.md)
+* [飞鱼和多米诺环](exocet/11-exocet-with-domino-loop/README.md)
+  * [多米诺环的直观](exocet/11-exocet-with-domino-loop/01-direct-view-of-domino-loop.md)
+  * [模式四数组（PLQ）](exocet/11-exocet-with-domino-loop/02-pattern-locked-quadruple.md)
+  * [共轭四元节点（CQN）](exocet/11-exocet-with-domino-loop/03-conjugate-quadruple-node.md)
+  * [单真对（STP）](exocet/11-exocet-with-domino-loop/04-single-truth-pair.md)
 * [衰弱飞鱼](exocet/12-weak-exocet/README.md)
   * [初见衰弱飞鱼](exocet/12-weak-exocet/01-the-first-view-of-weak-exocet.md)
+  * [全衰飞鱼](exocet/12-weak-exocet/03-lame-weak-exocet.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

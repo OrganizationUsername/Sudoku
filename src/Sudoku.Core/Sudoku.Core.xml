@@ -8079,6 +8079,148 @@
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Segment">
+            <summary>
+            Indicates a segment (an intersection of 3 cells, by a block and a line).
+            </summary>
+            <param name="mask">The mask.</param>
+            <remarks>
+            For more information please visit <see href="http://sudopedia.enjoysudoku.com/Intersection.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.#ctor(System.Int32)">
+            <summary>
+            Indicates a segment (an intersection of 3 cells, by a block and a line).
+            </summary>
+            <param name="mask">The mask.</param>
+            <remarks>
+            For more information please visit <see href="http://sudopedia.enjoysudoku.com/Intersection.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Segment._mask">
+            <summary>
+            <para>Indicates the backing mask.</para>
+            <para>
+            The value contains 2 parts (block index and line index, both are in raw values),
+            and 10 of 16 bits used, with higher 5 bits represents row or column, lower 5 bits represents block.
+            </para>
+            <para>
+            Although a block index can be compressed by 4 bits instead, I don't adjust the storage rule on this,
+            in order to keep consistency of storage.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Segment"/> instance via the specified block index and line index.
+            </summary>
+            <param name="line">The line index.</param>
+            <param name="block">The block index.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.IsRow">
+            <summary>
+            Indicates whether the line is a row or not.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.Block">
+            <summary>
+            Indicates the block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.Line">
+            <summary>
+            Indicates the line (row or column).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Equals(Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.CompareTo(Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation, via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation, via the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.TryParse(System.String,Sudoku.Concepts.Segment@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Segment.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.Segment@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.Segment@)">
+            <summary>
+            Try to parse the specified string, converting it into target instance via the specified converter.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <param name="converter">The converter.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Concepts.Segment@)">
+            <summary>
+            Try to parse the specified string, converting it into target instance via the specified culture.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <param name="culture">The culture.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Parse(System.String)">
+            <inheritdoc cref="M:Sudoku.Concepts.Segment.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <summary>
+            Parses the specified string, converting it into target instance via the specified converter.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="converter">The converter.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Parse(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Parses the specified string, converting it into target instance via the specified culture.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="culture">The culture.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_Equality(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_Inequality(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_GreaterThan(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_LessThan(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_GreaterThanOrEqual(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_LessThanOrEqual(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>
             Represents a way to find a path that connects block cells.

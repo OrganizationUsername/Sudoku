@@ -15,7 +15,7 @@ public interface IValueConverter<T> where T : allows ref struct
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether operation is successfully done without any invalid cases encountered.
 	/// </returns>
-	bool TryParse(ReadOnlySpan<char> text, IFormatProvider? provider, [NotNullWhen(true)] out T? result);
+	bool TryParse(scoped ReadOnlySpan<char> text, IFormatProvider? provider, [NotNullWhen(true)] out T? result);
 
 	/// <summary>
 	/// Performs formatting operation.
@@ -26,5 +26,5 @@ public interface IValueConverter<T> where T : allows ref struct
 	/// <returns>
 	/// A <see cref="bool"/> result indicating whether operation is successfully done without any invalid cases encountered.
 	/// </returns>
-	bool TryFormat(ref readonly T value, IFormatProvider? provider, [NotNullWhen(true)] out string? result);
+	bool TryFormat(scoped ref readonly T value, IFormatProvider? provider, [NotNullWhen(true)] out string? result);
 }

@@ -8139,7 +8139,27 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Segment.CompareTo(Sudoku.Concepts.Segment)">
-            <inheritdoc/>
+            <summary>
+            Returns which one is greater. The method compares the absolute index in the whole segment set space.
+            </summary>
+            <param name="other">The other instance to compare.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value represents the result:
+            <list type="table">
+            <item>
+            <term>-1</term>
+            <description>The right is greater</description>
+            </item>
+            <item>
+            <term>0</term>
+            <description>They are same</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>The left is greater</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="M:Sudoku.Concepts.Segment.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
@@ -8219,6 +8239,330 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Segment.op_LessThanOrEqual(Sudoku.Concepts.Segment,Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_Explicit(Sudoku.Concepts.Segment)~System.Int32">
+            <summary>
+            Projects the value into the order of the whole segment set space.
+            </summary>
+            <param name="value">The value.</param>
+            <exception cref="T:System.OverflowException">Throws when the value is invalid.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.op_Explicit(System.Int32)~Sudoku.Concepts.Segment">
+            <summary>
+            Projects the order of whole segment set space into the target segment instance.
+            </summary>
+            <param name="value">The value.</param>
+            <exception cref="T:System.OverflowException">Throws when the value is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.SegmentCollection">
+            <summary>
+            Represents a set of <see cref="T:Sudoku.Concepts.Segment"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Segment"/>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection.FullMask">
+            <summary>
+            Indicates the full mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection.Full">
+            <summary>
+            Indicates the instance that contains all possible values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection._mask">
+            <summary>
+            Indicates the backing mask. The mask holds 54 of 64 bits indicating numbered segments.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentCollection.Count">
+            <summary>
+            Indicates the number of items stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ICollection{Sudoku#Concepts#Segment}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentCollection.Item(System.Int32)">
+            <summary>
+            Gets the item at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The segment instance at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Equals(Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Contains(Sudoku.Concepts.Segment)">
+            <summary>
+            Determine whether the specified value is in the collection or not.
+            </summary>
+            <param name="value">The value to check.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation, via the specified converter.
+            </summary>
+            <param name="converter">The converter.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.ToString(System.Globalization.CultureInfo)">
+            <summary>
+            Converts the current instance into <see cref="T:System.String"/> representation, via the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The string.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Clear">
+            <summary>
+            Clears the whole collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Add(Sudoku.Concepts.Segment)">
+            <summary>
+            Adds a new item into the current collection, and return a <see cref="T:System.Boolean"/> indicating
+            whether the value dpesn't exist in the collection or not.
+            </summary>
+            <param name="value">The value to add.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Remove(Sudoku.Concepts.Segment)">
+            <summary>
+            Removes the specified item out of the collection, and return a <see cref="T:System.Boolean"/> result indicating
+            whether the value exists in the collection or not.
+            </summary>
+            <param name="value">The value to remove.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ICollection{Sudoku#Concepts#Segment}#CopyTo(Sudoku.Concepts.Segment[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Segment}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Segment}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ICollection{Sudoku#Concepts#Segment}#Add(Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ICollection{Sudoku#Concepts#Segment}#Remove(Sudoku.Concepts.Segment)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#ExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#IntersectWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.System#Collections#Generic#ISet{Sudoku#Concepts#Segment}#UnionWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Segment})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.TryParse(System.String,Sudoku.Concepts.SegmentCollection@)">
+            <inheritdoc cref="M:Sudoku.Concepts.SegmentCollection.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.SegmentCollection@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.TryParse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser,Sudoku.Concepts.SegmentCollection@)">
+            <summary>
+            Try to parse the specified string, converting it into target instance via the specified converter.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <param name="converter">The converter.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.TryParse(System.String,System.Globalization.CultureInfo,Sudoku.Concepts.SegmentCollection@)">
+            <summary>
+            Try to parse the specified string, converting it into target instance via the specified culture.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <param name="culture">The culture.</param>
+            <param name="result">The result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Parse(System.String)">
+            <inheritdoc cref="M:Sudoku.Concepts.SegmentCollection.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Parse(System.String,Sudoku.Concepts.Coordinates.CoordinateParser)">
+            <summary>
+            Parses the specified string, converting it into target instance via the specified converter.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="converter">The converter.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Parse(System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Parses the specified string, converting it into target instance via the specified culture.
+            </summary>
+            <param name="s">The string.</param>
+            <param name="culture">The culture.</param>
+            <returns>The result.</returns>
+            <exception cref="T:System.FormatException">Throws when invalid characters encountered.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_AdditionAssignment(Sudoku.Concepts.Segment)">
+            <summary>
+            Adds the value into the current collection.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_SubtractionAssignment(Sudoku.Concepts.Segment)">
+            <summary>
+            Removes the value out of the current collection.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_BitwiseAndAssignment(Sudoku.Concepts.SegmentCollection)">
+            <summary>
+            Performs compound assignment operation of <see langword="operator"/> &amp;.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_BitwiseOrAssignment(Sudoku.Concepts.SegmentCollection)">
+            <summary>
+            Performs compound assignment operation of <see langword="operator"/> |.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_ExclusiveOrAssignment(Sudoku.Concepts.SegmentCollection)">
+            <summary>
+            Performs compound assignment operation of <see langword="operator"/> ^.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_LogicalNot(Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_True(Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_False(Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_Equality(Sudoku.Concepts.SegmentCollection,Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_Inequality(Sudoku.Concepts.SegmentCollection,Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_OnesComplement(Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_BitwiseAnd(Sudoku.Concepts.SegmentCollection,Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_BitwiseOr(Sudoku.Concepts.SegmentCollection,Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.op_ExclusiveOr(Sudoku.Concepts.SegmentCollection,Sudoku.Concepts.SegmentCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.SegmentCollection.Enumerator">
+            <summary>
+            Represents an enumerator of the current type.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Enumerator.#ctor(Sudoku.Concepts.SegmentCollection@)">
+            <summary>
+            Represents an enumerator of the current type.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection.Enumerator._mask">
+            <summary>
+            Indicates the mask of the value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SegmentCollection.Enumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentCollection.Enumerator.Current">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentCollection.Enumerator.System#Collections#IEnumerator#Current">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Enumerator.MoveNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Enumerator.System#IDisposable#Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentCollection.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">

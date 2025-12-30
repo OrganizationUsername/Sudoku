@@ -59,8 +59,28 @@ public readonly struct Segment(int mask) :
 	/// <inheritdoc/>
 	public bool Equals(Segment other) => _mask == other._mask;
 
-	/// <inheritdoc/>
-	public int CompareTo(Segment other) => _mask.CompareTo(other._mask);
+	/// <summary>
+	/// Returns which one is greater. The method compares the absolute index in the whole segment set space.
+	/// </summary>
+	/// <param name="other">The other instance to compare.</param>
+	/// <returns>
+	/// An <see cref="int"/> value represents the result:
+	/// <list type="table">
+	/// <item>
+	/// <term>-1</term>
+	/// <description>The right is greater</description>
+	/// </item>
+	/// <item>
+	/// <term>0</term>
+	/// <description>They are same</description>
+	/// </item>
+	/// <item>
+	/// <term>1</term>
+	/// <description>The left is greater</description>
+	/// </item>
+	/// </list>
+	/// </returns>
+	public int CompareTo(Segment other) => ((int)this).CompareTo((int)other);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	public override int GetHashCode() => _mask;
@@ -85,7 +105,7 @@ public readonly struct Segment(int mask) :
 
 
 	/// <inheritdoc cref="TryParse(string?, CoordinateParser, out Segment)"/>
-	public bool TryParse([NotNullWhen(true)] string? s, out Segment result)
+	public static bool TryParse([NotNullWhen(true)] string? s, out Segment result)
 		=> TryParse(s, CoordinateParser.InvariantCulture, out result);
 
 	/// <summary>
@@ -95,7 +115,7 @@ public readonly struct Segment(int mask) :
 	/// <param name="converter">The converter.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool TryParse([NotNullWhen(true)] string? s, CoordinateParser converter, out Segment result)
+	public static bool TryParse([NotNullWhen(true)] string? s, CoordinateParser converter, out Segment result)
 	{
 		try
 		{
@@ -122,11 +142,11 @@ public readonly struct Segment(int mask) :
 	/// <param name="culture">The culture.</param>
 	/// <param name="result">The result.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	public bool TryParse([NotNullWhen(true)] string? s, CultureInfo culture, out Segment result)
+	public static bool TryParse([NotNullWhen(true)] string? s, CultureInfo culture, out Segment result)
 		=> TryParse(s, CoordinateParser.GetInstance(culture), out result);
 
 	/// <inheritdoc cref="Parse(string, CoordinateParser)"/>
-	public Segment Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
+	public static Segment Parse(string s) => Parse(s, CoordinateParser.InvariantCulture);
 
 	/// <summary>
 	/// Parses the specified string, converting it into target instance via the specified converter.
@@ -135,7 +155,7 @@ public readonly struct Segment(int mask) :
 	/// <param name="converter">The converter.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public Segment Parse(string s, CoordinateParser converter)
+	public static Segment Parse(string s, CoordinateParser converter)
 	{
 		var chunks = s.Trim() / 2;
 		return new(TrailingZeroCount(converter.HouseParser(chunks[1])), TrailingZeroCount(converter.HouseParser(chunks[0])));
@@ -148,7 +168,7 @@ public readonly struct Segment(int mask) :
 	/// <param name="culture">The culture.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public Segment Parse(string s, CultureInfo culture) => Parse(s, CoordinateParser.GetInstance(culture));
+	public static Segment Parse(string s, CultureInfo culture) => Parse(s, CoordinateParser.GetInstance(culture));
 
 
 	/// <inheritdoc/>
@@ -168,4 +188,40 @@ public readonly struct Segment(int mask) :
 
 	/// <inheritdoc/>
 	public static bool operator <=(Segment left, Segment right) => left.CompareTo(right) <= 0;
+
+
+	/// <summary>
+	/// Projects the value into the order of the whole segment set space.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <exception cref="OverflowException">Throws when the value is invalid.</exception>
+	public static explicit operator int(Segment value)
+	{
+		var line = value.Line;
+		var block = value.Block;
+		return line < 18 ? line % 9 * 3 + block % 3 : 27 + line % 9 * 3 + block / 3;
+	}
+
+	/// <summary>
+	/// Projects the order of whole segment set space into the target segment instance.
+	/// </summary>
+	/// <param name="value">The value.</param>
+	/// <exception cref="OverflowException">Throws when the value is invalid.</exception>
+	public static explicit operator Segment(int value)
+	{
+		if (value < 27)
+		{
+			// In row.
+			var row = value / 3 + 9;
+			var block = (row - 9) / 3 * 3 + value % 3;
+			return new(row, block);
+		}
+		else
+		{
+			// In column.
+			var column = (value - 27) / 3 + 18;
+			var block = (column - 18) / 3 * 3 + (value - 27) / 3;
+			return new(column, block);
+		}
+	}
 }

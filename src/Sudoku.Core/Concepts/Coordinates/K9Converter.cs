@@ -318,40 +318,10 @@ public sealed record K9Converter(
 		};
 
 	/// <inheritdoc/>
-	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter
-		=> chutes =>
-		{
-			var megalines = new Dictionary<bool, byte>(2);
-			foreach (var (index, isRow, _) in chutes)
-			{
-				if (!megalines.TryAdd(isRow, (byte)(1 << index % 3)))
-				{
-					megalines[isRow] |= (byte)(1 << index % 3);
-				}
-			}
+	public override Func<SegmentCollection, string> SegmentConverter => throw new NotSupportedException();
 
-			var sb = new StringBuilder(12);
-			if (megalines.TryGetValue(true, out var megaRows))
-			{
-				sb.Append(MakeLettersUpperCase ? "Mega Row" : "mega row");
-				foreach (var megaRow in megaRows)
-				{
-					sb.Append(megaRow + 1);
-				}
-
-				sb.Append(DefaultSeparator);
-			}
-			if (megalines.TryGetValue(false, out var megaColumns))
-			{
-				sb.Append(MakeLettersUpperCase ? "Mega Column" : "mega column");
-				foreach (var megaColumn in megaColumns)
-				{
-					sb.Append(megaColumn + 1);
-				}
-			}
-
-			return sb.ToString();
-		};
+	/// <inheritdoc/>
+	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter => throw new NotSupportedException();
 
 	/// <inheritdoc/>
 	public override Func<ReadOnlySpan<Conjugate>, string> ConjugateConverter

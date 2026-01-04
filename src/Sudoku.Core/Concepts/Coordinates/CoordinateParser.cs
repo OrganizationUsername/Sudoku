@@ -12,6 +12,7 @@ public abstract record CoordinateParser :
 	IConclusionParsable,
 	IDigitParsable,
 	IIntersectionParsable,
+	ISegmentParsable,
 	IChuteParsable,
 	IConjuagtePairParsable
 {
@@ -32,6 +33,9 @@ public abstract record CoordinateParser :
 
 	/// <inheritdoc/>
 	public abstract Func<string, ReadOnlySpan<Miniline>> IntersectionParser { get; }
+
+	/// <inheritdoc/>
+	public abstract Func<string, SegmentCollection> SegmentParser { get; }
 
 	/// <inheritdoc/>
 	public abstract Func<string, ReadOnlySpan<Chute>> ChuteParser { get; }

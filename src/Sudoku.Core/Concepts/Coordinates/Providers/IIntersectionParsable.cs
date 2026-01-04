@@ -3,6 +3,7 @@ namespace Sudoku.Concepts.Coordinates.Providers;
 /// <summary>
 /// Represents an intersection parser.
 /// </summary>
+[Obsolete($"Use '{nameof(ISegmentParsable)}' instead.", false)]
 public interface IIntersectionParsable
 {
 	/// <summary>

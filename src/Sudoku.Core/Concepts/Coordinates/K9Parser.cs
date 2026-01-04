@@ -147,6 +147,9 @@ public sealed partial record K9Parser : CoordinateParser
 	/// <inheritdoc/>
 	public override Func<string, ReadOnlySpan<Miniline>> IntersectionParser => throw new NotSupportedException();
 
+	/// <inheritdoc/>
+	public override Func<string, SegmentCollection> SegmentParser => throw new NotSupportedException();
+
 
 	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitCellGroupPattern { get; }

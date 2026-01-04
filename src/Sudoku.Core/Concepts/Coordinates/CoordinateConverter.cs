@@ -51,6 +51,7 @@ public abstract record CoordinateConverter(
 	IConclusionConvertible,
 	IDigitConvertible,
 	IIntersectionConvertible,
+	ISegmentConvertible,
 	IChuteConvertible,
 	IConjugatePairConvertible
 {
@@ -71,6 +72,9 @@ public abstract record CoordinateConverter(
 
 	/// <inheritdoc/>
 	public abstract Func<ReadOnlySpan<Miniline>, string> IntersectionConverter { get; }
+
+	/// <inheritdoc/>
+	public abstract Func<SegmentCollection, string> SegmentConverter { get; }
 
 	/// <inheritdoc/>
 	public abstract Func<ReadOnlySpan<Chute>, string> ChuteConverter { get; }

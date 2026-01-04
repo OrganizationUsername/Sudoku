@@ -91,15 +91,7 @@ public partial struct SegmentCollection :
 	/// </summary>
 	/// <param name="converter">The converter.</param>
 	/// <returns>The string.</returns>
-	public readonly string ToString(CoordinateConverter converter)
-	{
-		var sb = new StringBuilder();
-		foreach (var element in this)
-		{
-			sb.Append(element.ToString(converter)).Append(' ');
-		}
-		return sb.RemoveFromEnd(1).ToString();
-	}
+	public readonly string ToString(CoordinateConverter converter) => converter.SegmentConverter(this);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation, via the specified culture.
@@ -324,16 +316,7 @@ public partial struct SegmentCollection :
 	/// <param name="converter">The converter.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public static SegmentCollection Parse(string s, CoordinateParser converter)
-	{
-		var chunks = s.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-		var result = Empty;
-		foreach (var chunk in chunks)
-		{
-			result += Segment.Parse(chunk, converter);
-		}
-		return result;
-	}
+	public static SegmentCollection Parse(string s, CoordinateParser converter) => converter.SegmentParser(s);
 
 	/// <summary>
 	/// Parses the specified string, converting it into target instance via the specified culture.

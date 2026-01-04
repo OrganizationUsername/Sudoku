@@ -265,6 +265,30 @@ public sealed partial record RxCyParser : CoordinateParser
 			return result.AsSpan();
 		};
 
+	/// <inheritdoc/>
+	public override Func<string, SegmentCollection> SegmentParser
+		=> static str =>
+		{
+			var split = str / ' ';
+			var result = SegmentCollection.Empty;
+			foreach (var element in split)
+			{
+				result += (element.Trim() / 2) switch
+				{
+					[
+						[var lineCh and ('R' or 'r' or 'C' or 'c'), var ch1 and >= '1' and <= '9'],
+						['B' or 'b', var ch2 and >= '1' and <= '9']
+					] => new Segment(ch1 - '1' + (lineCh is 'R' or 'r' ? 9 : 18), ch2 - '1'),
+					[
+						['B' or 'b', var ch2 and >= '1' and <= '9'],
+						[var lineCh and ('R' or 'r' or 'C' or 'c'), var ch1 and >= '1' and <= '9']
+					] => new Segment(ch1 - '1' + (lineCh is 'R' or 'r' ? 9 : 18), ch2 - '1'),
+					_ => throw new FormatException()
+				};
+			}
+			return result;
+		};
+
 	/// <summary>
 	/// The parser method that can creates a list of <see cref="Space"/> instances via the specified text to be parsed.
 	/// </summary>

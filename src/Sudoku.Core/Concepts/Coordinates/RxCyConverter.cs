@@ -275,6 +275,20 @@ public sealed record RxCyConverter(
 		};
 
 	/// <inheritdoc/>
+	public override Func<SegmentCollection, string> SegmentConverter
+		=> segments =>
+		{
+			var sb = new StringBuilder();
+			foreach (var segment in segments)
+			{
+				var line = segment.Line;
+				var block = segment.Block;
+				sb.Append($"{HouseConverter(1 << line)}{HouseConverter(1 << block)} ");
+			}
+			return sb.RemoveFromEnd(1).ToString();
+		};
+
+	/// <inheritdoc/>
 	public override Func<ReadOnlySpan<Chute>, string> ChuteConverter
 		=> chutes =>
 		{

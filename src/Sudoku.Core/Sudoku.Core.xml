@@ -2468,6 +2468,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.IntersectionConverter">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.SegmentConverter">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.ChuteConverter">
             <inheritdoc/>
         </member>
@@ -2507,6 +2510,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.SegmentParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.ChuteParser">
@@ -2615,6 +2621,11 @@
             <para>The value is <see langword="false"/> by default.</para>
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter._fallbackConverter">
+            <summary>
+            The fallback converter.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.CellConverter">
             <inheritdoc/>
         </member>
@@ -2631,6 +2642,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.SegmentConverter">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.ChuteConverter">
@@ -2761,6 +2775,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.IntersectionConverter">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Coordinates.K9Converter.SegmentConverter">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.ChuteConverter">
             <inheritdoc/>
         </member>
@@ -2795,6 +2812,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.K9Parser.SegmentParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitCellGroupPattern">
@@ -2916,6 +2936,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.IntersectionConverter">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.SegmentConverter">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.ChuteConverter">
@@ -3121,6 +3144,27 @@
             <seealso cref="T:Sudoku.Concepts.MinilineBase"/>
             <seealso cref="T:Sudoku.Concepts.MinilineResult"/>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Providers.ISegmentConvertible">
+            <summary>
+            Represents a segment converter.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Providers.ISegmentConvertible.SegmentConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified information for a segment list.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.Providers.ISegmentParsable">
+            <summary>
+            Represents a segment parser.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.Providers.ISegmentParsable.SegmentParser">
+            <summary>
+            The parser method that can creates a list of <see cref="T:Sudoku.Concepts.Segment"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Segment"/>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.RxCyConverter">
             <summary>
             Represents a coordinate converter using RxCy notation.
@@ -3231,6 +3275,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.IntersectionConverter">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.SegmentConverter">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.ChuteConverter">
             <inheritdoc/>
         </member>
@@ -3277,6 +3324,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.SegmentParser">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.SpaceParser">

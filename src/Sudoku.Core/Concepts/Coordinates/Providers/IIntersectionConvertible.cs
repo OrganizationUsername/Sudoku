@@ -3,6 +3,7 @@ namespace Sudoku.Concepts.Coordinates.Providers;
 /// <summary>
 /// Represents an intersection converter.
 /// </summary>
+[Obsolete($"Use '{nameof(ISegmentConvertible)}' instead.", false)]
 public interface IIntersectionConvertible
 {
 	/// <summary>

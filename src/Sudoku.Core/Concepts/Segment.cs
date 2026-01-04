@@ -32,7 +32,7 @@ public readonly struct Segment(int mask) :
 	/// </summary>
 	/// <param name="line">The line index.</param>
 	/// <param name="block">The block index.</param>
-	private Segment(House line, BlockIndex block) : this(line << 5 | block)
+	public Segment(House line, BlockIndex block) : this(line << 5 | block)
 	{
 	}
 
@@ -93,8 +93,7 @@ public readonly struct Segment(int mask) :
 	/// </summary>
 	/// <param name="converter">The converter.</param>
 	/// <returns>The string.</returns>
-	public string ToString(CoordinateConverter converter)
-		=> $"{converter.HouseConverter(1 << Line)}{converter.HouseConverter(1 << Block)}";
+	public string ToString(CoordinateConverter converter) => converter.SegmentConverter([this]);
 
 	/// <summary>
 	/// Converts the current instance into <see cref="string"/> representation, via the specified culture.
@@ -155,11 +154,7 @@ public readonly struct Segment(int mask) :
 	/// <param name="converter">The converter.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="FormatException">Throws when invalid characters encountered.</exception>
-	public static Segment Parse(string s, CoordinateParser converter)
-	{
-		var chunks = s.Trim() / 2;
-		return new(TrailingZeroCount(converter.HouseParser(chunks[1])), TrailingZeroCount(converter.HouseParser(chunks[0])));
-	}
+	public static Segment Parse(string s, CoordinateParser converter) => converter.SegmentParser(s)[0];
 
 	/// <summary>
 	/// Parses the specified string, converting it into target instance via the specified culture.

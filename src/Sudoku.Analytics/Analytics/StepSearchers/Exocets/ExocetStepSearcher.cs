@@ -137,7 +137,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							const int baseSize = 2;
 #endif
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
-							foreach (ref readonly var minilineBaseCells in Miniline.MinilinesGroupedByChuteIndex[i].AsReadOnlySpan())
+							foreach (ref readonly var minilineBaseCells in Segments.SegmentsGroupedByChuteIndex[i].AsReadOnlySpan())
 							{
 								// Set cancellation token handling logic here.
 								if (context.CancellationToken.IsCancellationRequested)
@@ -151,7 +151,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									continue;
 								}
 
-								// Iterate on each miniline, to get all possible cases.
+								// Iterate on each segment, to get all possible cases.
 								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated & baseSize)
 								{
 									if (housesEmptyCells & baseCells)
@@ -1420,7 +1420,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Iterate on each intersection to get the other side of base cells.
-		foreach (ref readonly var intersection in Miniline.MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
+		foreach (ref readonly var intersection in Segments.SegmentsGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
 		{
 			var theOtherBaseCells = intersection & lastCells;
 			if (theOtherBaseCells.Count != 2)
@@ -1832,7 +1832,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
 				if (!theOtherEmptyCells)
 				{
-					// The current miniline cannot contain any eliminations.
+					// The current segment cannot contain any eliminations.
 					continue;
 				}
 
@@ -2474,19 +2474,19 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Try to fetch the miniline of the current target cell located in.
-			var mirrorCells = GetMirrorCells(targetCell, chuteIndex, out var miniline);
+			// Try to fetch the segment of the current target cell located in.
+			var mirrorCells = GetMirrorCells(targetCell, chuteIndex, out var segment);
 			var mirrorEmptyCells = mirrorCells & EmptyCells;
 			if (!mirrorEmptyCells)
 			{
-				// The current miniline cannot contain any eliminations.
+				// The current segment cannot contain any eliminations.
 				continue;
 			}
 
-			// Now check for empty cells in this house, removing all cells located in the miniline that the target cell located in.
+			// Now check for empty cells in this house, removing all cells located in the segment that the target cell located in.
 			foreach (var coveredHouse in mirrorEmptyCells.SharedHouses)
 			{
-				var otherCells = HousesMap[coveredHouse] & EmptyCells & ~miniline;
+				var otherCells = HousesMap[coveredHouse] & EmptyCells & ~segment;
 				if (otherCells.Count < 2)
 				{
 					// The target house does not contain enough cells to form an AHS.
@@ -2824,17 +2824,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		void collectFor(List<Conclusion> conclusions, in Grid grid, Cell targetCell, Cell theOtherTargetCell)
 		{
-			Unsafe.SkipInit<CellMap>(out var miniline);
-			foreach (var tempMiniline in Miniline.MinilinesGroupedByChuteIndex[chuteIndex])
+			Unsafe.SkipInit<CellMap>(out var segment);
+			foreach (var tempSegment in Segments.SegmentsGroupedByChuteIndex[chuteIndex])
 			{
-				if (tempMiniline.Contains(theOtherTargetCell))
+				if (tempSegment.Contains(theOtherTargetCell))
 				{
-					miniline = tempMiniline;
+					segment = tempSegment;
 					break;
 				}
 			}
 
-			switch (miniline - theOtherTargetCell & EmptyCells)
+			switch (segment - theOtherTargetCell & EmptyCells)
 			{
 				case [var mirrorEmptyCellFromTheOtherTargetCell]:
 				{
@@ -4497,7 +4497,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var theOtherEmptyCells = theOtherTwoCells & EmptyCells;
 				if (!theOtherEmptyCells)
 				{
-					// The current miniline cannot contain any eliminations.
+					// The current segment cannot contain any eliminations.
 					continue;
 				}
 
@@ -4648,20 +4648,20 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="chuteIndex">The chute index (in range 0..6).</param>
 	/// <param name="targetCell">The target cell.</param>
-	/// <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
+	/// <param name="segment">The segment cells the target cell and mirror cells lie in.</param>
 	/// <returns>The mirror cells that may contain non-empty cells.</returns>
-	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap miniline)
+	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap segment)
 	{
-		Unsafe.SkipInit(out miniline);
-		foreach (ref readonly var temp in Miniline.MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
+		Unsafe.SkipInit(out segment);
+		foreach (ref readonly var temp in Segments.SegmentsGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
 		{
 			if (temp.Contains(targetCell))
 			{
-				miniline = temp;
+				segment = temp;
 				break;
 			}
 		}
-		return miniline - targetCell;
+		return segment - targetCell;
 	}
 
 	/// <summary>

@@ -60,7 +60,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
-		foreach (var ((bs, cs), (a, b, c, _)) in Miniline.Map)
+		foreach (var ((bs, cs), (a, b, c, _)) in Segments.Map)
 		{
 			if (!LockedCandidates.IsLockedCandidates(grid, a, b, c, emptyCells, out var m))
 			{

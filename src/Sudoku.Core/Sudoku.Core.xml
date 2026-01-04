@@ -7899,126 +7899,6 @@
         <member name="M:Sudoku.Concepts.MaximalEmptyArea.&lt;G&gt;$4B60D02A5F703296D232D9A415F3C20B.GetMaxEmptySquareArea(System.Int32@)">
             <inheritdoc cref="M:Sudoku.Concepts.MaximalEmptyArea.&lt;G&gt;$E25ADDC593CEDFD1EA006EC186C1D196.GetMaxEmptySquareArea(System.Int32@)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Miniline">
-            <summary>
-            Represents a miniline (mini-row or mini-column).
-            </summary>
-            <param name="Base">Indicates the base that describes the block and line index.</param>
-            <param name="Result">Indicates the result values.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Miniline.#ctor(Sudoku.Concepts.MinilineBase@,Sudoku.Concepts.MinilineResult@)">
-            <summary>
-            Represents a miniline (mini-row or mini-column).
-            </summary>
-            <param name="Base">Indicates the base that describes the block and line index.</param>
-            <param name="Result">Indicates the result values.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Miniline.Base">
-            <summary>Indicates the base that describes the block and line index.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Miniline.Result">
-            <summary>Indicates the result values.</summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Miniline.MinilinesGroupedByChuteIndex">
-            <summary>
-            Indicates the mini-lines to be iterated, grouped by chute index.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Miniline.Map">
-            <summary>
-            <para>
-            Indicates all maps that forms the each intersection. The pattern will be like:
-            <code><![CDATA[
-            .-------.-------.-------.
-            | C C C | A A A | A A A |
-            | B B B | . . . | . . . |
-            | B B B | . . . | . . . |
-            '-------'-------'-------'
-            ]]></code>
-            </para>
-            <para>
-            In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
-            </para>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Miniline.IntersectionBlockTable">
-            <summary>
-            Indicates the internal intersection block combinations.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Miniline.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="T:Sudoku.Concepts.MinilineBase">
-            <summary>
-            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
-            </summary>
-            <param name="Line">The index of the line.</param>
-            <param name="Block">The index of the block.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.MinilineBase.#ctor(System.Byte,System.Byte)">
-            <summary>
-            Defines a pair of houses that means the target pair can form an intersection by the specified line and block.
-            </summary>
-            <param name="Line">The index of the line.</param>
-            <param name="Block">The index of the block.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineBase.Line">
-            <summary>The index of the line.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineBase.Block">
-            <summary>The index of the block.</summary>
-        </member>
-        <member name="T:Sudoku.Concepts.MinilineResult">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Miniline.Map"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </param>
-            <seealso cref="F:Sudoku.Concepts.Miniline.Map"/>
-        </member>
-        <member name="M:Sudoku.Concepts.MinilineResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
-            <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Miniline.Map"/> property.
-            </summary>
-            <param name="LineMap">The map of the line.</param>
-            <param name="BlockMap">The map of the block.</param>
-            <param name="IntersectionMap">The map of the intersection.</param>
-            <param name="OtherBlocks">
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </param>
-            <seealso cref="F:Sudoku.Concepts.Miniline.Map"/>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.LineMap">
-            <summary>The map of the line.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.BlockMap">
-            <summary>The map of the block.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.IntersectionMap">
-            <summary>The map of the intersection.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.MinilineResult.OtherBlocks">
-            <summary>
-            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.NearestFarthestCell">
             <summary>
             Represents a pair of cells that defines the nearest and farthest cell to a certain cell.
@@ -8134,6 +8014,29 @@
             <summary>
             Indicates the line (row or column).
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.BlockMap">
+            <summary>
+            Indicates the cells used in the whole block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.LineMap">
+            <summary>
+            Indicates the cells used in the whole line.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Segment.Cells">
+            <summary>
+            Indicates 3 cells of the segment.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Segment.Deconstruct(System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
         <member name="M:Sudoku.Concepts.Segment.Equals(System.Object)">
             <inheritdoc/>
@@ -8567,6 +8470,92 @@
         </member>
         <member name="M:Sudoku.Concepts.SegmentCollection.Enumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.SegmentInfo">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
+            especially used by <see cref="F:Sudoku.Concepts.Segments.Map"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </param>
+            <seealso cref="F:Sudoku.Concepts.Segments.Map"/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentInfo.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
+            <summary>
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
+            especially used by <see cref="F:Sudoku.Concepts.Segments.Map"/> property.
+            </summary>
+            <param name="LineMap">The map of the line.</param>
+            <param name="BlockMap">The map of the block.</param>
+            <param name="IntersectionMap">The map of the intersection.</param>
+            <param name="OtherBlocks">
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </param>
+            <seealso cref="F:Sudoku.Concepts.Segments.Map"/>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentInfo.LineMap">
+            <summary>The map of the line.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentInfo.BlockMap">
+            <summary>The map of the block.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentInfo.IntersectionMap">
+            <summary>The map of the intersection.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.SegmentInfo.OtherBlocks">
+            <summary>
+            Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentInfo.Equals(Sudoku.Concepts.SegmentInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.SegmentInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Segments">
+            <summary>
+            Provides <see cref="T:Sudoku.Concepts.Segment"/>-based grouped information.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Segments.SegmentsGroupedByChuteIndex">
+            <summary>
+            Indicates the segments to be iterated, grouped by chute index.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Segments.Map">
+            <summary>
+            Indicates all maps that forms the each segment. The pattern will be like:
+            <code><![CDATA[
+            .-------.-------.-------.
+            | C C C | A A A | A A A |
+            | B B B | . . . | . . . |
+            | B B B | . . . | . . . |
+            '-------'-------'-------'
+            ]]></code>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Segments.IntersectionBlockTable">
+            <summary>
+            Indicates the internal intersection block combinations.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Segments.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
         </member>
         <member name="T:Sudoku.Concepts.Supersymmetry.BlockCellConnection">
             <summary>

@@ -152,7 +152,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 								&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)
 							{
 								// Elimination zone 3: Intersected cell for the leaf and one grouped node of cells
-								// in (grouped) strong link that they share in a same mini-line -> eliminate intersected digit.
+								// in (grouped) strong link that they share in a same segment -> eliminate intersected digit.
 								foreach (var cell in i & CandidatesMap[zDigit] & ~patternCells & ~cellsShouldBeCovered)
 								{
 									conclusions.Add(new(Elimination, cell, zDigit));

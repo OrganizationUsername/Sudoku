@@ -52,6 +52,24 @@ public readonly struct Segment(int mask) :
 	/// </summary>
 	public House Line => _mask >> 5 & 31;
 
+	/// <summary>
+	/// Indicates the cells used in the whole block.
+	/// </summary>
+	public ref readonly CellMap BlockMap => ref HousesMap[Block];
+
+	/// <summary>
+	/// Indicates the cells used in the whole line.
+	/// </summary>
+	public ref readonly CellMap LineMap => ref HousesMap[Line];
+
+	/// <summary>
+	/// Indicates 3 cells of the segment.
+	/// </summary>
+	public CellMap Cells => BlockMap & LineMap;
+
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	public void Deconstruct(out House line, out BlockIndex block) => (line, block) = (Line, Block);
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Segment comparer && Equals(comparer);

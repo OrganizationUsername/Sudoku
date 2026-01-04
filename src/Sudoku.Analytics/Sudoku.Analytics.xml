@@ -17290,9 +17290,9 @@
         <member name="M:Sudoku.Analytics.StepSearchers.BraidAnalysisStepSearcher.Collect(Sudoku.Analytics.StepAnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.BraidAnalysisStepSearcher.CheckWhetherEveryMinilineHasAtLeastTwoEmptyCells(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap**,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32[])">
+        <member name="M:Sudoku.Analytics.StepSearchers.BraidAnalysisStepSearcher.CheckWhetherEverySegmentHasAtLeastTwoEmptyCells(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap**,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32[])">
             <summary>
-            Check whether every miniline has enough cells to be iterated.
+            Check whether every segment has enough cells to be iterated.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cellsGroup">The cell groups.</param>
@@ -18115,7 +18115,7 @@
             </summary>
             <param name="chuteIndex">The chute index (in range 0..6).</param>
             <param name="targetCell">The target cell.</param>
-            <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
+            <param name="segment">The segment cells the target cell and mirror cells lie in.</param>
             <returns>The mirror cells that may contain non-empty cells.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetComplexHouses(System.Boolean,Sudoku.Concepts.CellMap@)">

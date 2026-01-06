@@ -86,7 +86,7 @@ description: Reversed Extended Rectangle
 
 ### 例子 2：还是类型 4，但比较好规约 <a href="#example-5" id="example-5"></a>
 
-<figure><img src="../../.gitbook/assets/image_0871.png" alt="" width="375"><figcaption><p>例子 2</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/images_0871.png" alt="" width="375"><figcaption><p>例子 2</p></figcaption></figure>
 
 如图所示。在这个例子里，我们发现，如果 `r1c46(4)` 同为假的话，`r1c46` 就只会留下 5 和 9，于是 `c46` 明数就都是 1、2、5、6、7、9 六种数字，且构成矩形的形态，左右可以交换的那种。这便构成了矛盾。所以结论就是 `r1c46(4)` 是区块，按区块删数。
 

@@ -45,17 +45,18 @@ public abstract class Step(ReadOnlyMemory<Conclusion> conclusions, View[]? views
 		};
 
 	/// <summary>
-	/// Indicates the English name of the technique.
+	/// Indicates the English name of technique represented by the current step.
 	/// </summary>
 	public virtual string EnglishName => Code.EnglishName;
 
 	/// <summary>
-	/// Indicates the difficulty of this technique step.
+	/// Indicates the difficulty of the current step.
 	/// </summary>
 	/// <remarks>
 	/// Generally this property holds the default and basic difficulty of the step.
-	/// If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-	/// as elementary and default rating value; other factors will be given in the other property <see cref="Factors"/>.
+	/// If difficulty rating of a step can be decided by multiple factors,
+	/// such factors will be given in the other property <see cref="Factors"/>;
+	/// this property value only holds basic rating of the current step.
 	/// </remarks>
 	/// <seealso cref="Factors"/>
 	public abstract int BaseDifficulty { get; }

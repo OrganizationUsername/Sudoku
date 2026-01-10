@@ -669,7 +669,10 @@ internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelpe
 		GetHighlightCells(grid, cellOffsets, mapping);
 
 		return new(
-			(from digit in nonselfPairedDigitsMask select new Conclusion(Elimination, 40, digit)).ToArray(),
+			(
+				from digit in (Mask)(grid.GetCandidates(40) & nonselfPairedDigitsMask)
+				select new Conclusion(Elimination, 40, digit)
+			).ToArray(),
 			[[.. cellOffsets]],
 			options,
 			SymmetricType.Central,

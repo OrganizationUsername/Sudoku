@@ -79,7 +79,7 @@ internal sealed class SymmetricalPlacementStepSearcherHelper : StepSearcherHelpe
 	/// <param name="symmetricType">The symmetric type.</param>
 	/// <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	internal static bool CheckAxesOrCenterPointForSymmetry(in Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
+	private static bool CheckAxesOrCenterPointForSymmetry(in Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
 	{
 		foreach (var cell in symmetricType.CellsInSymmetryAxis)
 		{

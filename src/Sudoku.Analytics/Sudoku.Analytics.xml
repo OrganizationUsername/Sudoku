@@ -17297,14 +17297,13 @@
             <param name="context">The context.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.SatisfyForAxis(Sudoku.Concepts.Grid@,System.Span{System.Nullable{System.Int32}},System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.AreAllDigitsPaired(Sudoku.Concepts.Grid@,System.Span{System.Nullable{System.Int32}})">
             <summary>
-            Checks for axes.
+            Check for mapping list, determining whether all digits are self-paired or non-self-paired.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="mapping">Mapping digits table.</param>
-            <param name="selfPairedDigitsMask">Self-paired digits.</param>
-            <returns>A <see cref="T:System.Boolean"/> mask.</returns>
+            <param name="mapping">Mapping digits.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueOddagonStepSearcher">
             <summary>

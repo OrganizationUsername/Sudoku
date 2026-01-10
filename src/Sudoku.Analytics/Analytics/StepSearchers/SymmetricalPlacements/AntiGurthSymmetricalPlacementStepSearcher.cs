@@ -30,7 +30,13 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		// Anti types.
+		// TODO: Check nullability of elements in 'mapping' defined in methods.
+		// TODO: Sync logic on checking max number of self-paired digits in variant types of symmetry.
+		//   0 - X / Y Axis
+		//   1 - Central
+		//   3 - Diagonal / Antidiagonal
+
+		// Do check.
 		foreach (var checker in AntiTypeCheckers)
 		{
 			if (checker(grid, ref context) is not { } antiTypeStep)
@@ -190,7 +196,7 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		if (!SatisfyForAxis(grid, mapping, out _))
+		if (!AreAllDigitsPaired(grid, mapping))
 		{
 			return null;
 		}
@@ -327,7 +333,7 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		if (!SatisfyForAxis(grid, mapping, out _))
+		if (!AreAllDigitsPaired(grid, mapping))
 		{
 			return null;
 		}
@@ -434,7 +440,7 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		if (!SatisfyForAxis(grid, mapping, out _))
+		if (!AreAllDigitsPaired(grid, mapping))
 		{
 			return null;
 		}
@@ -541,7 +547,7 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		if (!SatisfyForAxis(grid, mapping, out _))
+		if (!AreAllDigitsPaired(grid, mapping))
 		{
 			return null;
 		}
@@ -664,7 +670,7 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 			return null;
 		}
 
-		if (!SatisfyForAxis(grid, mapping, out _))
+		if (!AreAllDigitsPaired(grid, mapping))
 		{
 			return null;
 		}
@@ -691,26 +697,20 @@ public sealed unsafe partial class AntiGurthSymmetricalPlacementStepSearcher : S
 	}
 
 	/// <summary>
-	/// Checks for axes.
+	/// Check for mapping list, determining whether all digits are self-paired or non-self-paired.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="mapping">Mapping digits table.</param>
-	/// <param name="selfPairedDigitsMask">Self-paired digits.</param>
-	/// <returns>A <see cref="bool"/> mask.</returns>
-	private static bool SatisfyForAxis(in Grid grid, Span<Digit?> mapping, out Mask selfPairedDigitsMask)
+	/// <param name="mapping">Mapping digits.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	private static bool AreAllDigitsPaired(in Grid grid, Span<Digit?> mapping)
 	{
-		selfPairedDigitsMask = 0;
 		for (var digit = 0; digit < 9; digit++)
 		{
-			if (mapping[digit] is not { } currentDigit || currentDigit == digit)
+			if (mapping[digit] is null)
 			{
-				selfPairedDigitsMask |= (Mask)(1 << digit);
+				return false;
 			}
 		}
-		return SymmetricalPlacementStepSearcherHelper.CheckAxesOrCenterPointForSymmetry(
-			grid,
-			SymmetricType.Diagonal,
-			(Mask)(Grid.MaxCandidatesMask & ~selfPairedDigitsMask)
-		);
+		return true;
 	}
 }

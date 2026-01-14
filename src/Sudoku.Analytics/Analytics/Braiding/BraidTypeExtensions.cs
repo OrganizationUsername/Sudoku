@@ -48,17 +48,17 @@ public static class BraidTypeExtensions
 		/// <param name="type2">The second rotation type.</param>
 		/// <param name="type3">The third rotation type.</param>
 		/// <returns>The result braid type.</returns>
-		public static BraidType Create(RotationType type1, RotationType type2, RotationType type3)
+		public static BraidType Create(StrandType type1, StrandType type2, StrandType type3)
 			=> (type1, type2, type3) switch
 			{
-				(RotationType.Downside, RotationType.Downside, RotationType.Downside) => BraidType.NRope,
-				(RotationType.Downside, RotationType.Downside, RotationType.Upside) => BraidType.NBraid,
-				(RotationType.Downside, RotationType.Upside, RotationType.Downside) => BraidType.NBraid,
-				(RotationType.Upside, RotationType.Downside, RotationType.Downside) => BraidType.NBraid,
-				(RotationType.Downside, RotationType.Upside, RotationType.Upside) => BraidType.ZBraid,
-				(RotationType.Upside, RotationType.Downside, RotationType.Upside) => BraidType.ZBraid,
-				(RotationType.Upside, RotationType.Upside, RotationType.Downside) => BraidType.ZBraid,
-				(RotationType.Upside, RotationType.Upside, RotationType.Upside) => BraidType.ZRope,
+				(StrandType.Downside, StrandType.Downside, StrandType.Downside) => BraidType.NRope,
+				(StrandType.Downside, StrandType.Downside, StrandType.Upside) => BraidType.NBraid,
+				(StrandType.Downside, StrandType.Upside, StrandType.Downside) => BraidType.NBraid,
+				(StrandType.Upside, StrandType.Downside, StrandType.Downside) => BraidType.NBraid,
+				(StrandType.Downside, StrandType.Upside, StrandType.Upside) => BraidType.ZBraid,
+				(StrandType.Upside, StrandType.Downside, StrandType.Upside) => BraidType.ZBraid,
+				(StrandType.Upside, StrandType.Upside, StrandType.Downside) => BraidType.ZBraid,
+				(StrandType.Upside, StrandType.Upside, StrandType.Upside) => BraidType.ZRope,
 				_ => throw new ArgumentException($"Invalid type combination ({type1}, {type2}, {type3})")
 			};
 
@@ -67,7 +67,7 @@ public static class BraidTypeExtensions
 		/// </summary>
 		/// <param name="types">The types.</param>
 		/// <returns>The result braid type.</returns>
-		public static BraidType Create(params ReadOnlySpan<RotationType> types)
+		public static BraidType Create(params ReadOnlySpan<StrandType> types)
 		{
 			ArgumentException.Assert(types.Length == 3);
 			return BraidType.Create(types[0], types[1], types[2]);

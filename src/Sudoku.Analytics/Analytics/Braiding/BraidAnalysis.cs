@@ -6,24 +6,24 @@ namespace Sudoku.Analytics.Braiding;
 public static class BraidAnalysis
 {
 	/// <summary>
-	/// Represents the map of all rotation patterns, grouped by sequence index (0..3) and type.
-	/// </summary>
-	private static readonly FrozenDictionary<RotationMapKey, RotationMapValue> RotationMap;
-
-	/// <summary>
 	/// Indicates top-3 cells defined in the specified chute, sequence index and type.
 	/// </summary>
-	private static readonly FrozenDictionary<(int ChuteIndex, Digit SequenceIndex), CellMap> TopThreeCellsMap;
+	private static readonly CellMap[] TopThreeCellsMap;
+
+	/// <summary>
+	/// Represents the map of all rotation patterns, grouped by sequence index (0..3) and type.
+	/// </summary>
+	private static readonly FrozenDictionary<Strand, ChuteStrandMap> StrandsMap;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BraidAnalysis()
 	{
-		var rotationMap = new Dictionary<RotationMapKey, RotationMapValue>();
-		var topThreeCellsMap = new Dictionary<(int ChuteIndex, Digit SequenceIndex), CellMap>();
+		var strandsMap = new Dictionary<Strand, ChuteStrandMap>();
+		TopThreeCellsMap = new CellMap[Chute.MaxChuteIndex * 3];
 
 		// Iterate on each chute.
-		foreach (var (index, _, housesMask) in Chute.Chutes)
+		foreach (var (chuteIndex, _, housesMask) in Chute.Chutes)
 		{
 			// Get three houses of the chute.
 			var house1 = BitOperations.TrailingZeroCount(housesMask);
@@ -37,20 +37,21 @@ public static class BraidAnalysis
 				ref readonly var cellsFromHouse1 = ref HousesMap[sequenceIndex switch { 0 => house1, 1 => house2, _ => house3 }];
 				var cells1 = cellsFromHouse1[..3];
 				var otherCells1 = cellsFromHouse1 & ~cells1;
-				topThreeCellsMap.Add((index, sequenceIndex), cells1);
+				var globalIndex = (chuteIndex / 3 * 3 + chuteIndex % 3) * 3 + sequenceIndex;
+				TopThreeCellsMap[globalIndex] = cells1;
 
 				// Then do rotate-shifting with N or Z mode.
-				foreach (var mode in (RotationType.Downside, RotationType.Upside))
+				foreach (var mode in (StrandType.Downside, StrandType.Upside))
 				{
 					// Get the second segment.
 					ref readonly var cellsFromHouse2 = ref HousesMap[
 						(sequenceIndex, mode) switch
 						{
-							(0, RotationType.Downside) => house2,
+							(0, StrandType.Downside) => house2,
 							(0, _) => house3,
-							(1, RotationType.Downside) => house3,
+							(1, StrandType.Downside) => house3,
 							(1, _) => house1,
-							(2, RotationType.Downside) => house1,
+							(2, StrandType.Downside) => house1,
 							_ => house2
 						}
 					];
@@ -61,11 +62,11 @@ public static class BraidAnalysis
 					ref readonly var cellsFromHouse3 = ref HousesMap[
 						(sequenceIndex, mode) switch
 						{
-							(0, RotationType.Downside) => house3,
+							(0, StrandType.Downside) => house3,
 							(0, _) => house2,
-							(1, RotationType.Downside) => house1,
+							(1, StrandType.Downside) => house1,
 							(1, _) => house3,
-							(2, RotationType.Downside) => house2,
+							(2, StrandType.Downside) => house2,
 							_ => house1
 						}
 					];
@@ -77,14 +78,13 @@ public static class BraidAnalysis
 					var otherCellsFromChute = otherCells1 | otherCells2 | otherCells3;
 
 					// Add value into the dictionary.
-					var tuple = new RotationMapKey(index, sequenceIndex, mode);
-					rotationMap.Add(tuple, new(cellsFromChute, otherCellsFromChute));
+					var strand = new Strand(chuteIndex, sequenceIndex, mode);
+					strandsMap.Add(strand, new(cellsFromChute, otherCellsFromChute));
 				}
 			}
 		}
 
-		RotationMap = rotationMap.ToFrozenDictionary();
-		TopThreeCellsMap = topThreeCellsMap.ToFrozenDictionary();
+		StrandsMap = strandsMap.ToFrozenDictionary();
 	}
 
 
@@ -94,9 +94,16 @@ public static class BraidAnalysis
 	/// <param name="chuteIndex">The chute index (0..6).</param>
 	/// <param name="sequenceIndex">The sequence index (0..3).</param>
 	/// <param name="type">The type.</param>
-	/// <returns>A pair of cells indicating the result.</returns>
-	public static ref readonly RotationMapValue GetCellsAt(int chuteIndex, Digit sequenceIndex, RotationType type)
-		=> ref RotationMap[new(chuteIndex, sequenceIndex, type)];
+	/// <returns>The map of the strand.</returns>
+	public static ref readonly ChuteStrandMap GetCellsAt(int chuteIndex, Digit sequenceIndex, StrandType type)
+		=> ref GetCellsAt(new(chuteIndex, sequenceIndex, type));
+
+	/// <summary>
+	/// Get cells at the specified strand.
+	/// </summary>
+	/// <param name="label">The label of strand.</param>
+	/// <returns>The map of the strand.</returns>
+	public static ref readonly ChuteStrandMap GetCellsAt(Strand label) => ref StrandsMap[label];
 
 	/// <summary>
 	/// Gets the pattern type of three digits in the specified chute.
@@ -110,10 +117,11 @@ public static class BraidAnalysis
 	{
 		ArgumentException.Assert(solutionGrid.IsSolved);
 
-		ref readonly var topThreeCells = ref TopThreeCellsMap[(chuteIndex, sequenceIndex)];
+		var globalIndex = (chuteIndex / 3 * 3 + chuteIndex % 3) * 3 + sequenceIndex;
+		ref readonly var topThreeCells = ref TopThreeCellsMap[globalIndex];
 		var valuesMap = solutionGrid.ValuesMap;
 
-		var result = new List<RotationType>(3);
+		var result = new List<StrandType>(3);
 
 		// Iterate on each cell.
 		foreach (var cell in topThreeCells)
@@ -121,10 +129,10 @@ public static class BraidAnalysis
 			var digit = solutionGrid.GetDigit(cell);
 
 			// Check for two types of rotation.
-			foreach (var type in (RotationType.Downside, RotationType.Upside))
+			foreach (var type in (StrandType.Downside, StrandType.Upside))
 			{
-				var tuple = new RotationMapKey(chuteIndex, sequenceIndex, type);
-				ref readonly var cells = ref RotationMap[tuple].Containing;
+				var strand = new Strand(chuteIndex, sequenceIndex, type);
+				ref readonly var cells = ref StrandsMap[strand].Included;
 				if ((valuesMap[digit] & cells).Count == 3)
 				{
 					// Valid.

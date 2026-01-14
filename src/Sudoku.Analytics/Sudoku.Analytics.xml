@@ -1015,14 +1015,14 @@
             Provides an entry to analyze braiding of a chute in a pattern.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap">
-            <summary>
-            Represents the map of all rotation patterns, grouped by sequence index (0..3) and type.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Braiding.BraidAnalysis.TopThreeCellsMap">
             <summary>
             Indicates top-3 cells defined in the specified chute, sequence index and type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Braiding.BraidAnalysis.StrandsMap">
+            <summary>
+            Represents the map of all rotation patterns, grouped by sequence index (0..3) and type.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.#cctor">
@@ -1038,14 +1038,21 @@
 		</summary>
 	</static-constructor>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.GetCellsAt(System.Int32,System.Int32,Sudoku.Analytics.Braiding.RotationType)">
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.GetCellsAt(System.Int32,System.Int32,Sudoku.Analytics.Braiding.StrandType)">
             <summary>
             Get cells at the specified chute, sequence index and type.
             </summary>
             <param name="chuteIndex">The chute index (0..6).</param>
             <param name="sequenceIndex">The sequence index (0..3).</param>
             <param name="type">The type.</param>
-            <returns>A pair of cells indicating the result.</returns>
+            <returns>The map of the strand.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.GetCellsAt(Sudoku.Analytics.Braiding.Strand)">
+            <summary>
+            Get cells at the specified strand.
+            </summary>
+            <param name="label">The label of strand.</param>
+            <returns>The map of the strand.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.GetPattern(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
@@ -1114,11 +1121,11 @@
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.ToSimpleString(Sudoku.Analytics.Braiding.BraidType)">
             <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.ToSimpleString"/>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)">
-            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)"/>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)">
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.RotationType})">
-            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.RotationType})"/>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})">
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})"/>
         </member>
         <member name="T:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.&lt;M&gt;$F18BBD20497D6472D2834772CC34D519">
             <summary>
@@ -1144,7 +1151,7 @@
             <returns>A string of 3 characters, with each character either <c>'N'</c> or <c>'Z'</c>.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)">
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)">
             <summary>
             Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidType"/> field via 3 rotation types.
             </summary>
@@ -1153,82 +1160,101 @@
             <param name="type3">The third rotation type.</param>
             <returns>The result braid type.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.RotationType})">
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})">
             <summary>
             Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidType"/> field via 3 rotation types.
             </summary>
             <param name="types">The types.</param>
             <returns>The result braid type.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Braiding.RotationMapKey">
+        <member name="T:Sudoku.Analytics.Braiding.ChuteStrandMap">
             <summary>
-            Represents cells key of braiding, used by <see cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>.
+            Represents a pair of <see cref="T:Sudoku.Concepts.CellMap"/> indicating used and unused cells in a chute.
             </summary>
-            <param name="ChuteIndex">Indicates chute index (0..6).</param>
-            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
-            <param name="Type">Indicates type of rotation.</param>
-            <seealso cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>
+            <param name="included"><inheritdoc cref="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Included" path="/summary"/></param>
+            <param name="excluded"><inheritdoc cref="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Excluded" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.RotationMapKey.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Braiding.RotationType)">
+        <member name="M:Sudoku.Analytics.Braiding.ChuteStrandMap.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
-            Represents cells key of braiding, used by <see cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>.
+            Represents a pair of <see cref="T:Sudoku.Concepts.CellMap"/> indicating used and unused cells in a chute.
             </summary>
-            <param name="ChuteIndex">Indicates chute index (0..6).</param>
-            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
-            <param name="Type">Indicates type of rotation.</param>
-            <seealso cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>
+            <param name="included"><inheritdoc cref="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Included" path="/summary"/></param>
+            <param name="excluded"><inheritdoc cref="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Excluded" path="/summary"/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.ChuteIndex">
-            <summary>Indicates chute index (0..6).</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.SequenceIndex">
-            <summary>Indicates sequence index (0..3).</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.Type">
-            <summary>Indicates type of rotation.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Braiding.RotationMapValue">
-            <summary>
-            Represents cell information on braiding.
-            </summary>
-            <param name="containing"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing" path="/summary"/></param>
-            <param name="notContaining"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Braiding.RotationMapValue.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Represents cell information on braiding.
-            </summary>
-            <param name="containing"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing" path="/summary"/></param>
-            <param name="notContaining"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing">
+        <member name="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Included">
             <summary>
             Indicates cells contained for a certain type of braid mode in a chute.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining">
+        <member name="F:Sudoku.Analytics.Braiding.ChuteStrandMap.Excluded">
             <summary>
             Indicates cells not contained for a certain type of braid mode in a chute.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Braiding.RotationType">
+        <member name="M:Sudoku.Analytics.Braiding.ChuteStrandMap.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Braiding.Strand">
             <summary>
-            Represents a type of rotation.
+            <para>Represents a strand.</para>
+            <para>
+            A <b>Strand</b> is a distribution pattern for a single digit in 3 of the 9 intersections aligned in a chute.
+            There are 6 different strands in each chute.
+            </para>
+            </summary>
+            <param name="ChuteIndex">Indicates chute index (0..6).</param>
+            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="Type">Indicates type of rotation.</param>
+            <remarks>For more information, please visit <see href="http://sudopedia.enjoysudoku.com/Strand.html">this link</see>.</remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.Strand.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Braiding.StrandType)">
+            <summary>
+            <para>Represents a strand.</para>
+            <para>
+            A <b>Strand</b> is a distribution pattern for a single digit in 3 of the 9 intersections aligned in a chute.
+            There are 6 different strands in each chute.
+            </para>
+            </summary>
+            <param name="ChuteIndex">Indicates chute index (0..6).</param>
+            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="Type">Indicates type of rotation.</param>
+            <remarks>For more information, please visit <see href="http://sudopedia.enjoysudoku.com/Strand.html">this link</see>.</remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.ChuteIndex">
+            <summary>Indicates chute index (0..6).</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.SequenceIndex">
+            <summary>Indicates sequence index (0..3).</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.Type">
+            <summary>Indicates type of rotation.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.GlobalSequenceIndex">
+            <summary>
+            Indicates global sequence index.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.RotationType.None">
+        <member name="M:Sudoku.Analytics.Braiding.Strand.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Braiding.StrandType">
+            <summary>
+            Represents a type of a strand.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Braiding.StrandType.None">
             <summary>
             Represents none.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.RotationType.Downside">
+        <member name="F:Sudoku.Analytics.Braiding.StrandType.Downside">
             <summary>
-            Indicates the type is N (downside rotation).
+            Indicates the strand type is N (downside rotation).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.RotationType.Upside">
+        <member name="F:Sudoku.Analytics.Braiding.StrandType.Upside">
             <summary>
-            Indicates the type is Z (upside rotation).
+            Indicates the strand is Z (upside rotation).
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">

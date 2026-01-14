@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics.Braiding;
 
 /// <summary>
-/// Represents a type of rotation.
+/// Represents a type of a strand.
 /// </summary>
-public enum RotationType : byte
+public enum StrandType : byte
 {
 	/// <summary>
 	/// Represents none.
@@ -11,12 +11,12 @@ public enum RotationType : byte
 	None = 0,
 
 	/// <summary>
-	/// Indicates the type is N (downside rotation).
+	/// Indicates the strand type is N (downside rotation).
 	/// </summary>
 	Downside,
 
 	/// <summary>
-	/// Indicates the type is Z (upside rotation).
+	/// Indicates the strand is Z (upside rotation).
 	/// </summary>
 	Upside
 }

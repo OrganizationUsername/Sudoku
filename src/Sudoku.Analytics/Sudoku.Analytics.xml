@@ -1132,6 +1132,57 @@
             <param name="types">The types.</param>
             <returns>The result braid type.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Braiding.RotationMapKey">
+            <summary>
+            Represents cells key of braiding, used by <see cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>.
+            </summary>
+            <param name="ChuteIndex">Indicates chute index (0..6).</param>
+            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="Type">Indicates type of rotation.</param>
+            <seealso cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.RotationMapKey.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Braiding.RotationType)">
+            <summary>
+            Represents cells key of braiding, used by <see cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>.
+            </summary>
+            <param name="ChuteIndex">Indicates chute index (0..6).</param>
+            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="Type">Indicates type of rotation.</param>
+            <seealso cref="F:Sudoku.Analytics.Braiding.BraidAnalysis.RotationMap"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.ChuteIndex">
+            <summary>Indicates chute index (0..6).</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.SequenceIndex">
+            <summary>Indicates sequence index (0..3).</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.RotationMapKey.Type">
+            <summary>Indicates type of rotation.</summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Braiding.RotationMapValue">
+            <summary>
+            Represents cell information on braiding.
+            </summary>
+            <param name="containing"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing" path="/summary"/></param>
+            <param name="notContaining"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.RotationMapValue.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents cell information on braiding.
+            </summary>
+            <param name="containing"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing" path="/summary"/></param>
+            <param name="notContaining"><inheritdoc cref="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Analytics.Braiding.RotationMapValue.Containing">
+            <summary>
+            Indicates cells contained for a certain type of braid mode in a chute.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Braiding.RotationMapValue.NotContaining">
+            <summary>
+            Indicates cells not contained for a certain type of braid mode in a chute.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Braiding.RotationType">
             <summary>
             Represents a type of rotation.

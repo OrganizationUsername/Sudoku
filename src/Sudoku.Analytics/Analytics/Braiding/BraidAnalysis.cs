@@ -1,8 +1,5 @@
 namespace Sudoku.Analytics.Braiding;
 
-using BraidingCellsInfo = (CellMap Containing, CellMap NotContaining);
-using BraidingCellsKey = (int ChuteIndex, Digit SequenceIndex, RotationType Type);
-
 /// <summary>
 /// Provides an entry to analyze braiding of a chute in a pattern.
 /// </summary>
@@ -11,7 +8,7 @@ public static class BraidAnalysis
 	/// <summary>
 	/// Represents the map of all rotation patterns, grouped by sequence index (0..3) and type.
 	/// </summary>
-	private static readonly FrozenDictionary<BraidingCellsKey, BraidingCellsInfo> RotationMap;
+	private static readonly FrozenDictionary<RotationMapKey, RotationMapValue> RotationMap;
 
 	/// <summary>
 	/// Indicates top-3 cells defined in the specified chute, sequence index and type.
@@ -22,7 +19,7 @@ public static class BraidAnalysis
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static BraidAnalysis()
 	{
-		var rotationMap = new Dictionary<BraidingCellsKey, BraidingCellsInfo>();
+		var rotationMap = new Dictionary<RotationMapKey, RotationMapValue>();
 		var topThreeCellsMap = new Dictionary<(int ChuteIndex, Digit SequenceIndex), CellMap>();
 
 		// Iterate on each chute.
@@ -80,8 +77,8 @@ public static class BraidAnalysis
 					var otherCellsFromChute = otherCells1 | otherCells2 | otherCells3;
 
 					// Add value into the dictionary.
-					var tuple = (index, sequenceIndex, mode);
-					rotationMap.Add(tuple, (cellsFromChute, otherCellsFromChute));
+					var tuple = new RotationMapKey(index, sequenceIndex, mode);
+					rotationMap.Add(tuple, new(cellsFromChute, otherCellsFromChute));
 				}
 			}
 		}
@@ -98,8 +95,8 @@ public static class BraidAnalysis
 	/// <param name="sequenceIndex">The sequence index (0..3).</param>
 	/// <param name="type">The type.</param>
 	/// <returns>A pair of cells indicating the result.</returns>
-	public static ref readonly BraidingCellsInfo GetCellsAt(int chuteIndex, Digit sequenceIndex, RotationType type)
-		=> ref RotationMap[(chuteIndex, sequenceIndex, type)];
+	public static ref readonly RotationMapValue GetCellsAt(int chuteIndex, Digit sequenceIndex, RotationType type)
+		=> ref RotationMap[new(chuteIndex, sequenceIndex, type)];
 
 	/// <summary>
 	/// Gets the pattern type of three digits in the specified chute.
@@ -126,7 +123,7 @@ public static class BraidAnalysis
 			// Check for two types of rotation.
 			foreach (var type in (RotationType.Downside, RotationType.Upside))
 			{
-				var tuple = (chuteIndex, sequenceIndex, type);
+				var tuple = new RotationMapKey(chuteIndex, sequenceIndex, type);
 				ref readonly var cells = ref RotationMap[tuple].Containing;
 				if ((valuesMap[digit] & cells).Count == 3)
 				{

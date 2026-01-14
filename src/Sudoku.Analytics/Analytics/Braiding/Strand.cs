@@ -20,5 +20,6 @@ public readonly record struct Strand(int ChuteIndex, Digit SequenceIndex, Strand
 
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => $"{(ChuteIndex > 3 ? 'T' : 'F')}{GlobalSequenceIndex + 1}{(Type == StrandType.Upside ? 'Z' : 'N')}";
+	public override string ToString()
+		=> $"{(ChuteIndex > 3 ? 'T' : 'F')}{GlobalSequenceIndex + 1}{(Type == StrandType.Upside ? 'Z' : 'N')}";
 }

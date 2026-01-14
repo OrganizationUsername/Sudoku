@@ -24,6 +24,24 @@ public static class BraidTypeExtensions
 
 
 		/// <summary>
+		/// Converts the current field into the easy-to-read mode string of 3 characters,
+		/// with each character either <c>'N'</c> or <c>'Z'</c>.
+		/// </summary>
+		/// <returns>A string of 3 characters, with each character either <c>'N'</c> or <c>'Z'</c>.</returns>
+		/// <exception cref="ArgumentOutOfRangeException"></exception>
+		public string ToSimpleString()
+			=> @this switch
+			{
+				BraidType.None => string.Empty,
+				BraidType.NRope => nameof(BraidType.NNN),
+				BraidType.NBraid => nameof(BraidType.NNZ),
+				BraidType.ZBraid => nameof(BraidType.NZZ),
+				BraidType.ZRope => nameof(BraidType.ZZZ),
+				_ => throw new ArgumentOutOfRangeException(nameof(@this))
+			};
+
+
+		/// <summary>
 		/// Creates a <see cref="BraidType"/> field via 3 rotation types.
 		/// </summary>
 		/// <param name="type1">The first rotation type.</param>

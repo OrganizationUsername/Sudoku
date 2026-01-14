@@ -1111,6 +1111,9 @@
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_IsBraid(Sudoku.Analytics.Braiding.BraidType)">
             <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.IsBraid"/>
         </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.ToSimpleString(Sudoku.Analytics.Braiding.BraidType)">
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.ToSimpleString"/>
+        </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)">
             <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)"/>
         </member>
@@ -1132,6 +1135,14 @@
             <summary>
             Indicates whether the field can be defined as "braid".
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.ToSimpleString">
+            <summary>
+            Converts the current field into the easy-to-read mode string of 3 characters,
+            with each character either <c>'N'</c> or <c>'Z'</c>.
+            </summary>
+            <returns>A string of 3 characters, with each character either <c>'N'</c> or <c>'Z'</c>.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType,Sudoku.Analytics.Braiding.RotationType)">
             <summary>

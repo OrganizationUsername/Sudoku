@@ -263,11 +263,12 @@ public static class BraidAnalysis
 			{
 				if (BitOperations.IsPow2(mask))
 				{
+					// TODO: I've forgot to sync other places.
 					hasAnyChanges = updateAndCheckChanges(tempDictionary, strand, mask);
 				}
 			}
 
-			// TODO: Hidden pair and naked pair part.
+			// TODO: Naked pair part.
 
 			// Now we should update dictionary if worth, and infer braiding types.
 			if (hasAnyChanges)

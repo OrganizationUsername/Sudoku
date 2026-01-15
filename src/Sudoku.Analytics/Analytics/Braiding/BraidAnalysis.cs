@@ -178,12 +178,45 @@ public static class BraidAnalysis
 	}
 
 	/// <summary>
+	/// Reduces the full grid of digit distribution on braid analysis.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <returns>The result.</returns>
+	public static FrozenDictionary<Strand, Mask> Reduce(in Grid grid)
+	{
+		var originalMappedStrands = MapStrands(grid);
+		var result = new Dictionary<Strand, Mask>();
+		for (var chute = 0; chute < 6; chute++)
+		{
+			if (TryInferType(grid, chute, out _, out var reduced))
+			{
+				foreach (var kvp in reduced)
+				{
+					result.Add(kvp.Key, kvp.Value);
+				}
+			}
+			else
+			{
+				for (var sequenceIndex = 0; sequenceIndex < 3; sequenceIndex++)
+				{
+					foreach (var type in (StrandType.Downside, StrandType.Upside))
+					{
+						var strand = new Strand(chute, sequenceIndex, type);
+						result.Add(strand, originalMappedStrands[strand]);
+					}
+				}
+			}
+		}
+		return result.ToFrozenDictionary();
+	}
+
+	/// <summary>
 	/// Try to infer braiding type of the specified chute.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="chuteIndex">The chute index (0..6).</param>
 	/// <param name="result">The type inferred. If none found, <see cref="BraidingType.None"/> will be returned.</param>
-	/// <param name="singlesLookup">
+	/// <param name="resultLookup">
 	/// The result distribution of digits must be appeared in the specified strands.
 	/// The value is not <see langword="null"/> if and only if the return value is <see langword="true"/>.
 	/// </param>
@@ -193,7 +226,7 @@ public static class BraidAnalysis
 		in Grid grid,
 		int chuteIndex,
 		out BraidingType result,
-		[NotNullWhen(true)] out FrozenDictionary<Strand, Mask>? singlesLookup
+		[NotNullWhen(true)] out FrozenDictionary<Strand, Mask>? resultLookup
 	)
 	{
 		result = BraidingType.None;
@@ -201,29 +234,57 @@ public static class BraidAnalysis
 		// Define a result dictionary and initialize it with original values.
 		var resultDictionary = new Dictionary<Strand, Mask>(MapStrands(grid, chuteIndex));
 		var candidateBraidingTypes = BraidingType.NRope | BraidingType.NBraid | BraidingType.ZBraid | BraidingType.ZRope;
-
-		// Find hidden / naked single appeared in either N part or Z part.<br/>
-		// Here "hidden single" and "naked single" are not technique ones,
-		// they are special concepts describing cases that can be concluded:
-		// <list type="bullet">
-		// <item>
-		// <b>Hidden single</b> -
-		// If a digit can only appeared once in the only strand of all strands defined in <c>mappedStrands</c>,
-		// it must be correct.
-		// </item>
-		// <item>
-		// <b>Naked single</b> - If a digit is the only one satisifed in a single strand
-		// (others are not appeared), it must be correct.
-		// </item>
-		// </list>
-		var tempDictionary = new Dictionary<Strand, Mask>();
-		bool hasAnyChanges;
-		do
+		var previousResultDictionary = default(Dictionary<Strand, Mask>);
+		while (true)
 		{
-			tempDictionary.Clear();
-			hasAnyChanges = false;
+			// Refresh result dictionary via inferred braiding type.
+			if (candidateBraidingTypes.IsFlag)
+			{
+				var (nCount, zCount) = (candidateBraidingTypes.NCount, candidateBraidingTypes.ZCount);
+				bool localHasAnyChanges;
+				do
+				{
+					localHasAnyChanges = false;
 
-			// Hidden single part.
+					// Handle naked rule.
+					foreach (var strand in resultDictionary.Keys)
+					{
+						var (_, _, strandType) = strand;
+						var mask = resultDictionary[strand];
+						if (strandType == StrandType.Downside && BitOperations.PopCount((uint)mask) == nCount
+							|| strandType == StrandType.Upside && BitOperations.PopCount((uint)mask) == zCount)
+						{
+							// Eliminates other occurrences of such digits.
+							foreach (var otherStrand in resultDictionary.Keys)
+							{
+								if (strand != otherStrand)
+								{
+									// Clears digits appeared in 'strand'.
+									var original = resultDictionary[otherStrand];
+									localHasAnyChanges = localHasAnyChanges || original != (resultDictionary[otherStrand] &= (Mask)~mask);
+								}
+							}
+						}
+					}
+				} while (localHasAnyChanges);
+			}
+
+			// Find hidden / naked rules appeared in either N part or Z part.<br/>
+			// Here rules are ones describing cases that can be concluded:
+			// <list type="bullet">
+			// <item>
+			// <b>Hidden</b> -
+			// If a digit can only appeared once in the only strand of all strands defined in <c>mappedStrands</c>,
+			// it must be correct.
+			// </item>
+			// <item>
+			// <b>Naked</b> - If a digit is the only one satisifed in a single strand
+			// (others are not appeared), it must be correct.
+			// </item>
+			// </list>
+			var hiddenDictionary = new Dictionary<Strand, Mask>();
+
+			// Now find for hidden rules.
 			for (var digit = 0; digit < 9; digit++)
 			{
 				var lastAppearedStrand = default(Strand?);
@@ -252,94 +313,74 @@ public static class BraidAnalysis
 
 				// Add it into dictionary as "hidden single" rule.
 				var mask = (Mask)(1 << digit);
-				hasAnyChanges = updateAndCheckChanges(tempDictionary, onlyStrand, mask);
+				if (!hiddenDictionary.TryAdd(onlyStrand, mask))
+				{
+					hiddenDictionary[onlyStrand] |= mask;
+				}
 
 			NextDigit:
 				;
 			}
 
-			// Naked single part.
-			foreach (var (strand, mask) in resultDictionary)
+			// Infer braiding types.
+			// Check each strand in 'tempDictionary' to know whether any conclusions here.
+			foreach (var ((_, _, strandType), mask) in hiddenDictionary)
 			{
-				if (BitOperations.IsPow2(mask))
+				switch (BitOperations.PopCount((uint)mask))
 				{
-					// TODO: I've forgot to sync other places.
-					hasAnyChanges = updateAndCheckChanges(tempDictionary, strand, mask);
-				}
-			}
-
-			// TODO: Naked pair part.
-
-			// Now we should update dictionary if worth, and infer braiding types.
-			if (hasAnyChanges)
-			{
-				// Infer braiding types.
-				// Check each strand in 'tempDictionary' to know whether any conclusions here.
-				foreach (var ((_, _, strandType), mask) in tempDictionary)
-				{
-					switch (BitOperations.PopCount((uint)mask))
+					// Must be NNN or ZZZ.
+					case 3:
 					{
-						// Must be NNN or ZZZ.
-						case 3:
-						{
-							candidateBraidingTypes = strandType == StrandType.Downside ? BraidingType.NRope : BraidingType.ZRope;
-							break;
-						}
-
-						// N mode with <c>popcount == 2</c> <=> Not NZZ.
-						// Z mode with <c>popcount == 2</c> <=> Not NNZ.
-						case 2:
-						{
-							candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZBraid : BraidingType.NBraid);
-							goto case 1;
-						}
-
-						// N mode with <c>popcount >= 0</c> <=> Not ZZZ.
-						// Z mode with <c>popcount >= 0</c> <=> Not NNN.
-						case 1:
-						{
-							candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZRope : BraidingType.NRope);
-							break;
-						}
+						candidateBraidingTypes = strandType == StrandType.Downside ? BraidingType.NRope : BraidingType.ZRope;
+						break;
 					}
-				}
 
-				// Check and update result dictionary table.
-				if (candidateBraidingTypes.IsFlag)
-				{
-					result = candidateBraidingTypes;
-					(hasAnyChanges, var (nCount, zCount)) = (false, (result.NCount, result.ZCount));
-					foreach (var (strand, mask) in tempDictionary)
+					// N mode with <c>popcount == 2</c> <=> Not NZZ.
+					// Z mode with <c>popcount == 2</c> <=> Not NNZ.
+					case 2:
 					{
-						if (BitOperations.PopCount((uint)mask) == (strand.Type == StrandType.Downside ? nCount : zCount))
-						{
-							resultDictionary[strand] &= mask;
-							hasAnyChanges = true;
-						}
+						candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZBraid : BraidingType.NBraid);
+						goto case 1;
+					}
+
+					// N mode with <c>popcount >= 0</c> <=> Not ZZZ.
+					// Z mode with <c>popcount >= 0</c> <=> Not NNN.
+					case 1:
+					{
+						candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZRope : BraidingType.NRope);
+						break;
 					}
 				}
 			}
-		} while (hasAnyChanges);
+
+			// Handle hidden rule.
+			if (candidateBraidingTypes.IsFlag)
+			{
+				var (nCount, zCount) = (candidateBraidingTypes.NCount, candidateBraidingTypes.ZCount);
+				foreach (var (strand, mask) in hiddenDictionary)
+				{
+					if (BitOperations.PopCount((uint)mask) == (strand.Type == StrandType.Downside ? nCount : zCount))
+					{
+						// Clears all the other digits appeared in the current strand.
+						resultDictionary[strand] &= mask;
+					}
+				}
+			}
+
+			// Compare equality of result dictionary.
+			if (resultDictionary.DictionaryEquals(previousResultDictionary))
+			{
+				break;
+			}
+
+			// Replace variable.
+			previousResultDictionary = new(resultDictionary);
+		}
 
 		// Get values and return.
-		singlesLookup = result != BraidingType.None ? resultDictionary.ToFrozenDictionary() : null;
+		result = candidateBraidingTypes.IsFlag ? candidateBraidingTypes : BraidingType.None;
+		resultLookup = result != BraidingType.None ? resultDictionary.ToFrozenDictionary() : null;
 		return result != BraidingType.None;
-
-
-		static bool updateAndCheckChanges(Dictionary<Strand, Mask> dictionary, in Strand strand, Mask mask)
-		{
-			if (!dictionary.TryGetValue(strand, out var originalMask))
-			{
-				dictionary.Add(strand, mask);
-				return true;
-			}
-			if ((originalMask & mask) != mask)
-			{
-				dictionary[strand] |= mask;
-				return true;
-			}
-			return false;
-		}
 	}
 
 	/// <summary>
@@ -353,8 +394,8 @@ public static class BraidAnalysis
 		var digitsMap = grid.DigitsMap;
 		foreach (ref readonly var strand in Strand.Strands)
 		{
-			var ((c, sequenceIndex, _), mask) = (strand, (Mask)0);
-			if (chuteIndex != -1 && c != chuteIndex)
+			var ((currentChuteIndex, sequenceIndex, _), mask) = (strand, (Mask)0);
+			if (chuteIndex != -1 && currentChuteIndex != chuteIndex)
 			{
 				continue;
 			}
@@ -362,7 +403,7 @@ public static class BraidAnalysis
 			var includedSegments = StrandsMap[strand].IncludedSegments;
 
 			// Iterate on each digit appeared in this group of cells.
-			var globalIndex = ProjectGlobalIndex(chuteIndex, sequenceIndex);
+			var globalIndex = ProjectGlobalIndex(currentChuteIndex, sequenceIndex);
 			foreach (var digit in grid[TopThreeCellsMap[globalIndex], true])
 			{
 				var allSegmentsSatisfied = true;
@@ -382,6 +423,38 @@ public static class BraidAnalysis
 
 			// Add the target mask into dictionary.
 			value.Add(strand, mask);
+		}
+	}
+
+	/// <summary>
+	/// Provides extension members on <see cref="Dictionary{TKey, TValue}"/>.
+	/// </summary>
+	/// <param name="this">The dictionary.</param>
+	extension(Dictionary<Strand, Mask> @this)
+	{
+		/// <summary>
+		/// Compare two <see cref="Dictionary{TKey, TValue}"/> instances.
+		/// </summary>
+		/// <param name="other">The other instance to be compared.</param>
+		/// <returns>A <see cref="bool"/> result.</returns>
+		public bool DictionaryEquals(Dictionary<Strand, Mask>? other)
+		{
+			if (other is null)
+			{
+				return false;
+			}
+			if (@this.Count != other.Count)
+			{
+				return false;
+			}
+			foreach (var key in other.Keys)
+			{
+				if (@this[key] != (other.TryGetValue(key, out var m) ? m : -1))
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 	}
 }

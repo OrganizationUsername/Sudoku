@@ -1087,6 +1087,13 @@
             <param name="grid">The grid.</param>
             <returns>A dictionary of strands and the digits that can be categorized as this strand.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.Reduce(Sudoku.Concepts.Grid@)">
+            <summary>
+            Reduces the full grid of digit distribution on braid analysis.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.TryInferType(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Analytics.Braiding.BraidingType@,System.Collections.Frozen.FrozenDictionary{Sudoku.Analytics.Braiding.Strand,System.Int16}@)">
             <summary>
             Try to infer braiding type of the specified chute.
@@ -1094,7 +1101,7 @@
             <param name="grid">The grid.</param>
             <param name="chuteIndex">The chute index (0..6).</param>
             <param name="result">The type inferred. If none found, <see cref="F:Sudoku.Analytics.Braiding.BraidingType.None"/> will be returned.</param>
-            <param name="singlesLookup">
+            <param name="resultLookup">
             The result distribution of digits must be appeared in the specified strands.
             The value is not <see langword="null"/> if and only if the return value is <see langword="true"/>.
             </param>
@@ -1108,6 +1115,22 @@
             <param name="grid">The grid.</param>
             <param name="chuteIndex">The chute index (0..6). -1 for all chutes checking.</param>
             <param name="value">The value.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.DictionaryEquals(System.Collections.Generic.Dictionary{Sudoku.Analytics.Braiding.Strand,System.Int16},System.Collections.Generic.Dictionary{Sudoku.Analytics.Braiding.Strand,System.Int16})">
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidAnalysis.&lt;G&gt;$986C2E0E189C64C0FB1B0919AE00744A.DictionaryEquals(System.Collections.Generic.Dictionary{Sudoku.Analytics.Braiding.Strand,System.Int16})"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Braiding.BraidAnalysis.&lt;G&gt;$986C2E0E189C64C0FB1B0919AE00744A.&lt;M&gt;$79D28E2E4F0C687EFB967B0B418DFB72">
+            <summary>
+            Provides extension members on <see cref="T:System.Collections.Generic.Dictionary`2"/>.
+            </summary>
+            <param name="this">The dictionary.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.&lt;G&gt;$986C2E0E189C64C0FB1B0919AE00744A.DictionaryEquals(System.Collections.Generic.Dictionary{Sudoku.Analytics.Braiding.Strand,System.Int16})">
+            <summary>
+            Compare two <see cref="T:System.Collections.Generic.Dictionary`2"/> instances.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Braiding.BraidingType">
             <summary>
@@ -1409,7 +1432,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Braiding.StrandType.Upside">
             <summary>
-            Indicates the strand is Z (upside rotation).
+            Indicates the strand type is Z (upside rotation).
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Caching.ChainingComparers">

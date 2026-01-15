@@ -16,7 +16,7 @@ public enum StrandType : byte
 	Downside,
 
 	/// <summary>
-	/// Indicates the strand is Z (upside rotation).
+	/// Indicates the strand type is Z (upside rotation).
 	/// </summary>
 	Upside
 }

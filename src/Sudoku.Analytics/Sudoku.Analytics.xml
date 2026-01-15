@@ -1072,6 +1072,14 @@
             <returns>The first three digits from the segment, specified as <paramref name="sequenceIndex"/>.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument must be solved.</exception>
         </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.MapStrands(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Maps all digits in the specified grid that can be categorized as N or Z mode in the specified chute.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chuteIndex">The chute index (0..6).</param>
+            <returns>A dictionary of strands and the digits that can be categorized as this strand.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.MapStrands(Sudoku.Concepts.Grid@)">
             <summary>
             Maps all digits in the specified grid that can be categorized as N or Z mode.
@@ -1079,86 +1087,124 @@
             <param name="grid">The grid.</param>
             <returns>A dictionary of strands and the digits that can be categorized as this strand.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Braiding.BraidType">
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.TryInferType(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Analytics.Braiding.BraidingType@,System.Collections.Frozen.FrozenDictionary{Sudoku.Analytics.Braiding.Strand,System.Int16}@)">
             <summary>
-            Represents a braid type of a chute.
+            Try to infer braiding type of the specified chute.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chuteIndex">The chute index (0..6).</param>
+            <param name="result">The type inferred. If none found, <see cref="F:Sudoku.Analytics.Braiding.BraidingType.None"/> will be returned.</param>
+            <param name="singlesLookup">
+            The result distribution of digits must be appeared in the specified strands.
+            The value is not <see langword="null"/> if and only if the return value is <see langword="true"/>.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the type can be inferred with unique value.</returns>
+            <seealso cref="F:Sudoku.Analytics.Braiding.BraidingType.None"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.MapStrandsCore(Sudoku.Concepts.Grid@,System.Int32,System.Collections.Generic.Dictionary{Sudoku.Analytics.Braiding.Strand,System.Int16})">
+            <summary>
+            The core method of mapping strands.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chuteIndex">The chute index (0..6). -1 for all chutes checking.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:Sudoku.Analytics.Braiding.BraidingType">
+            <summary>
+            Represents a braiding type of a chute.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.None">
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.None">
             <summary>
-            Represents none.
+            Represents placeholder of this type.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.NRope">
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.NRope">
             <summary>
             Represents N-Rope pattern (NNN).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.NBraid">
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.NBraid">
             <summary>
             Represents N-Braid pattern (NNZ).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.ZBraid">
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.ZBraid">
             <summary>
             Represents Z-Braid pattern (NZZ).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.ZRope">
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.ZRope">
             <summary>
             Represents Z-Braid pattern (ZZZ).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.NNN">
-            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidType.NRope"/>
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.NNN">
+            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidingType.NRope"/>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.NNZ">
-            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidType.NBraid"/>
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.NNZ">
+            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidingType.NBraid"/>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.NZZ">
-            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidType.ZBraid"/>
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.NZZ">
+            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidingType.ZBraid"/>
         </member>
-        <member name="F:Sudoku.Analytics.Braiding.BraidType.ZZZ">
-            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidType.ZRope"/>
+        <member name="F:Sudoku.Analytics.Braiding.BraidingType.ZZZ">
+            <inheritdoc cref="F:Sudoku.Analytics.Braiding.BraidingType.ZRope"/>
         </member>
         <member name="T:Sudoku.Analytics.Braiding.BraidTypeExtensions">
             <summary>
-            Provides extension methods on <see cref="T:Sudoku.Analytics.Braiding.BraidType"/>.
+            Provides extension methods on <see cref="T:Sudoku.Analytics.Braiding.BraidingType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Braiding.BraidType"/>
+            <seealso cref="T:Sudoku.Analytics.Braiding.BraidingType"/>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_IsRope(Sudoku.Analytics.Braiding.BraidType)">
-            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.IsRope"/>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_IsRope(Sudoku.Analytics.Braiding.BraidingType)">
+            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.IsRope"/>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_IsBraid(Sudoku.Analytics.Braiding.BraidType)">
-            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.IsBraid"/>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_IsBraid(Sudoku.Analytics.Braiding.BraidingType)">
+            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.IsBraid"/>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.ToSimpleString(Sudoku.Analytics.Braiding.BraidType)">
-            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.ToSimpleString"/>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_NCount(Sudoku.Analytics.Braiding.BraidingType)">
+            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.NCount"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.get_ZCount(Sudoku.Analytics.Braiding.BraidingType)">
+            <inheritdoc cref="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.ZCount"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.ToSimpleString(Sudoku.Analytics.Braiding.BraidingType)">
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.ToSimpleString"/>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)">
-            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)"/>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})">
-            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})"/>
         </member>
-        <member name="T:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.&lt;M&gt;$F18BBD20497D6472D2834772CC34D519">
+        <member name="T:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.&lt;M&gt;$BE0DF1379EBE1109AE11312257A89A15">
             <summary>
-            Provides extension members on <see cref="T:Sudoku.Analytics.Braiding.BraidType"/>.
+            Provides extension members on <see cref="T:Sudoku.Analytics.Braiding.BraidingType"/>.
             </summary>
             <param name="this">The current field.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.IsRope">
+        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.IsRope">
             <summary>
             Indicates whether the field can be defined as "rope".
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.IsBraid">
+        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.IsBraid">
             <summary>
             Indicates whether the field can be defined as "braid".
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.ToSimpleString">
+        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.NCount">
+            <summary>
+            Indicates the number of N's.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.ZCount">
+            <summary>
+            Indicates the number of Z's.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.ToSimpleString">
             <summary>
             Converts the current field into the easy-to-read mode string of 3 characters,
             with each character either <c>'N'</c> or <c>'Z'</c>.
@@ -1166,18 +1212,18 @@
             <returns>A string of 3 characters, with each character either <c>'N'</c> or <c>'Z'</c>.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException"></exception>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)">
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.Create(Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType,Sudoku.Analytics.Braiding.StrandType)">
             <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidType"/> field via 3 rotation types.
+            Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidingType"/> field via 3 rotation types.
             </summary>
             <param name="type1">The first rotation type.</param>
             <param name="type2">The second rotation type.</param>
             <param name="type3">The third rotation type.</param>
             <returns>The result braid type.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$337A34F3ADFCA277CB4B6C156B9CFC9F.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})">
+        <member name="M:Sudoku.Analytics.Braiding.BraidTypeExtensions.&lt;G&gt;$F5A36766F37D79ED047F52C02ED174D6.Create(System.ReadOnlySpan{Sudoku.Analytics.Braiding.StrandType})">
             <summary>
-            Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidType"/> field via 3 rotation types.
+            Creates a <see cref="T:Sudoku.Analytics.Braiding.BraidingType"/> field via 3 rotation types.
             </summary>
             <param name="types">The types.</param>
             <returns>The result braid type.</returns>

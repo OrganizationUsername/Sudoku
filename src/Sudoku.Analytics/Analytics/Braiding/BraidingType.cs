@@ -1,34 +1,35 @@
 namespace Sudoku.Analytics.Braiding;
 
 /// <summary>
-/// Represents a braid type of a chute.
+/// Represents a braiding type of a chute.
 /// </summary>
-public enum BraidType
+[Flags]
+public enum BraidingType
 {
 	/// <summary>
-	/// Represents none.
+	/// Represents placeholder of this type.
 	/// </summary>
 	None = 0,
 
 	/// <summary>
 	/// Represents N-Rope pattern (NNN).
 	/// </summary>
-	NRope,
+	NRope = 1 << 0,
 
 	/// <summary>
 	/// Represents N-Braid pattern (NNZ).
 	/// </summary>
-	NBraid,
+	NBraid = 1 << 1,
 
 	/// <summary>
 	/// Represents Z-Braid pattern (NZZ).
 	/// </summary>
-	ZBraid,
+	ZBraid = 1 << 2,
 
 	/// <summary>
 	/// Represents Z-Braid pattern (ZZZ).
 	/// </summary>
-	ZRope,
+	ZRope = 1 << 3,
 
 	/// <inheritdoc cref="NRope"/>
 	NNN = NRope,

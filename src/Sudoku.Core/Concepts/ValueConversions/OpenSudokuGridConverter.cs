@@ -20,7 +20,7 @@ public sealed partial class OpenSudokuGridConverter : IGridConverter
 		const int length = 1 + (81 * 3 - 1 << 1);
 
 		// Creates a string instance as a buffer.
-		result = new string('\0', length);
+		result = new('\0', length);
 
 		// Modify the string value via pointers.
 		ref var pResult = ref Unsafe.AsRef(in result.Span[0]);

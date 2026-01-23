@@ -5,17 +5,40 @@ namespace Sudoku.Analytics.Braiding;
 /// A <b>Strand</b> is a distribution pattern for a single digit in 3 of the 9 intersections aligned in a chute.
 /// There are 6 different strands in each chute.
 /// </summary>
-/// <param name="ChuteIndex">Indicates chute index (0..6).</param>
-/// <param name="SequenceIndex">Indicates sequence index (0..3).</param>
-/// <param name="Type">Indicates type of rotation.</param>
+/// <param name="chuteIndex">Indicates chute index (0..6).</param>
+/// <param name="sequenceIndex">Indicates sequence index (0..3).</param>
+/// <param name="type">Indicates type of rotation.</param>
 /// <remarks>For more information, please visit <see href="http://sudopedia.enjoysudoku.com/Strand.html">this link</see>.</remarks>
-public readonly record struct Strand(int ChuteIndex, Digit SequenceIndex, StrandType Type) :
+public readonly struct Strand(int chuteIndex, Digit sequenceIndex, StrandType type) :
 	IComparable<Strand>,
 	IComparisonOperators<Strand, Strand, bool>,
+	IEquatable<Strand>,
 	IEqualityOperators<Strand, Strand, bool>
 {
 	/// <inheritdoc cref="Strands"/>
 	private static readonly Strand[] StrandsBackingField;
+
+
+	/// <summary>
+	/// Indicates the backing mask.
+	/// </summary>
+	private readonly byte _mask = (byte)(chuteIndex << 4 | sequenceIndex << 2 | (byte)type);
+
+
+	/// <summary>
+	/// Indicates chute index (0..6).
+	/// </summary>
+	public int ChuteIndex => _mask >> 4 & 15;
+
+	/// <summary>
+	/// Indicates sequence index (0..3).
+	/// </summary>
+	public int SequenceIndex => _mask >> 2 & 3;
+
+	/// <summary>
+	/// Indicates type of strand.
+	/// </summary>
+	public StrandType Type => (StrandType)(_mask & 3);
 
 
 	/// <summary>
@@ -47,10 +70,17 @@ public readonly record struct Strand(int ChuteIndex, Digit SequenceIndex, Strand
 	public Digit GlobalSequenceIndex => ChuteIndex % 3 * 3 + SequenceIndex;
 
 	/// <summary>
-	/// Indicates global index (0..18).
+	/// Indicates global index (0..36).
 	/// </summary>
 	private int GlobalIndex => (BraidAnalysis.ProjectGlobalIndex(ChuteIndex, SequenceIndex) << 1) + (int)(Type - 1);
 
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	public void Deconstruct(out int chuteIndex, out int sequenceIndex, out StrandType type)
+		=> (chuteIndex, sequenceIndex, type) = (ChuteIndex, SequenceIndex, Type);
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] object? obj) => obj is Strand comparer && Equals(comparer);
 
 	/// <inheritdoc/>
 	public bool Equals(Strand other) => GlobalIndex == other.GlobalIndex;
@@ -108,6 +138,12 @@ public readonly record struct Strand(int ChuteIndex, Digit SequenceIndex, Strand
 		);
 	}
 
+
+	/// <inheritdoc/>
+	public static bool operator ==(Strand left, Strand right) => left.Equals(right);
+
+	/// <inheritdoc/>
+	public static bool operator !=(Strand left, Strand right) => !(left == right);
 
 	/// <inheritdoc/>
 	public static bool operator >(Strand left, Strand right) => left.CompareTo(right) > 0;

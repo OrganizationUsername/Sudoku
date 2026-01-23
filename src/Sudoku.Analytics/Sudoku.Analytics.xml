@@ -1384,9 +1384,9 @@
             A <b>Strand</b> is a distribution pattern for a single digit in 3 of the 9 intersections aligned in a chute.
             There are 6 different strands in each chute.
             </summary>
-            <param name="ChuteIndex">Indicates chute index (0..6).</param>
-            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
-            <param name="Type">Indicates type of rotation.</param>
+            <param name="chuteIndex">Indicates chute index (0..6).</param>
+            <param name="sequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="type">Indicates type of rotation.</param>
             <remarks>For more information, please visit <see href="http://sudopedia.enjoysudoku.com/Strand.html">this link</see>.</remarks>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.Strand.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Braiding.StrandType)">
@@ -1395,22 +1395,33 @@
             A <b>Strand</b> is a distribution pattern for a single digit in 3 of the 9 intersections aligned in a chute.
             There are 6 different strands in each chute.
             </summary>
-            <param name="ChuteIndex">Indicates chute index (0..6).</param>
-            <param name="SequenceIndex">Indicates sequence index (0..3).</param>
-            <param name="Type">Indicates type of rotation.</param>
+            <param name="chuteIndex">Indicates chute index (0..6).</param>
+            <param name="sequenceIndex">Indicates sequence index (0..3).</param>
+            <param name="type">Indicates type of rotation.</param>
             <remarks>For more information, please visit <see href="http://sudopedia.enjoysudoku.com/Strand.html">this link</see>.</remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Braiding.Strand.ChuteIndex">
-            <summary>Indicates chute index (0..6).</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Braiding.Strand.SequenceIndex">
-            <summary>Indicates sequence index (0..3).</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Braiding.Strand.Type">
-            <summary>Indicates type of rotation.</summary>
         </member>
         <member name="F:Sudoku.Analytics.Braiding.Strand.StrandsBackingField">
             <inheritdoc cref="P:Sudoku.Analytics.Braiding.Strand.Strands"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Braiding.Strand._mask">
+            <summary>
+            Indicates the backing mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.ChuteIndex">
+            <summary>
+            Indicates chute index (0..6).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.SequenceIndex">
+            <summary>
+            Indicates sequence index (0..3).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Braiding.Strand.Type">
+            <summary>
+            Indicates type of strand.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Braiding.Strand.Strands">
             <summary>
@@ -1437,8 +1448,19 @@
         </member>
         <member name="P:Sudoku.Analytics.Braiding.Strand.GlobalIndex">
             <summary>
-            Indicates global index (0..18).
+            Indicates global index (0..36).
             </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.Strand.Deconstruct(System.Int32@,System.Int32@,Sudoku.Analytics.Braiding.StrandType@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.Strand.Equals(System.Object)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.Strand.Equals(Sudoku.Analytics.Braiding.Strand)">
             <inheritdoc/>
@@ -1457,6 +1479,12 @@
         </member>
         <member name="M:Sudoku.Analytics.Braiding.Strand.Parse(System.String)">
             <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.Strand.op_Equality(Sudoku.Analytics.Braiding.Strand,Sudoku.Analytics.Braiding.Strand)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Braiding.Strand.op_Inequality(Sudoku.Analytics.Braiding.Strand,Sudoku.Analytics.Braiding.Strand)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.Strand.op_GreaterThan(Sudoku.Analytics.Braiding.Strand,Sudoku.Analytics.Braiding.Strand)">
             <inheritdoc/>

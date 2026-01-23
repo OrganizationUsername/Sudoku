@@ -49,32 +49,4 @@ public static class DictionaryExtensions
 			return $"[{sb}]";
 		}
 	}
-
-	/// <summary>
-	/// Provides extension members on <see cref="Dictionary{TKey, TValue}"/>, where:<br/>
-	/// <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint, <br/>
-	/// <typeparamref name="TValue"/> satisfies <see cref="IEquatable{T}"/> constraint.
-	/// </summary>
-	extension<TKey, TValue>(Dictionary<TKey, TValue> @this)
-		where TKey : notnull
-		where TValue : IEquatable<TValue>
-	{
-		/// <summary>
-		/// Try to fetch the key whose cooresponding value is the specified one.
-		/// </summary>
-		/// <param name="value">The value to look up.</param>
-		/// <returns>The key.</returns>
-		/// <exception cref="InvalidOperationException">Throws when the dictionary has no valid value.</exception>
-		public TKey GetKey(TValue value)
-		{
-			foreach (var (k, v) in @this)
-			{
-				if (v.Equals(value))
-				{
-					return k;
-				}
-			}
-			throw new InvalidOperationException();
-		}
-	}
 }

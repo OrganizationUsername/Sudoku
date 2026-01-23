@@ -673,9 +673,6 @@
         <member name="M:System.Collections.Generic.DictionaryExtensions.ToDictionaryString``2(System.Collections.Generic.Dictionary{``0,``1},System.Func{``0,System.String},System.Func{``1,System.String})">
             <inheritdoc cref="M:System.Collections.Generic.DictionaryExtensions.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61`2.ToDictionaryString(System.Func{`0,System.String},System.Func{`1,System.String})"/>
         </member>
-        <member name="M:System.Collections.Generic.DictionaryExtensions.GetKey``2(System.Collections.Generic.Dictionary{``0,``1},``1)">
-            <inheritdoc cref="M:System.Collections.Generic.DictionaryExtensions.&lt;G&gt;$4AD8E8F06D32770B553EFA0908F33885`2.GetKey(`1)"/>
-        </member>
         <member name="T:System.Collections.Generic.DictionaryExtensions.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61`2.&lt;M&gt;$B7AA086048C0CF24EA037F7AFEDF34D8">
             <summary>
             Provides extension members on <see cref="T:System.Collections.Generic.Dictionary`2"/>,
@@ -703,21 +700,6 @@
             The key converter that converts <typeparamref name="TValue"/> instance into <see cref="T:System.String"/> representation.
             </param>
             <returns>The <see cref="T:System.String"/> representation.</returns>
-        </member>
-        <member name="T:System.Collections.Generic.DictionaryExtensions.&lt;G&gt;$4AD8E8F06D32770B553EFA0908F33885`2.&lt;M&gt;$064E727816D6C64157AD5339D0662ACA">
-            <summary>
-            Provides extension members on <see cref="T:System.Collections.Generic.Dictionary`2"/>, where:<br/>
-            <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint, <br/>
-            <typeparamref name="TValue"/> satisfies <see cref="T:System.IEquatable`1"/> constraint.
-            </summary>
-        </member>
-        <member name="M:System.Collections.Generic.DictionaryExtensions.&lt;G&gt;$4AD8E8F06D32770B553EFA0908F33885`2.GetKey(`1)">
-            <summary>
-            Try to fetch the key whose cooresponding value is the specified one.
-            </summary>
-            <param name="value">The value to look up.</param>
-            <returns>The key.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the dictionary has no valid value.</exception>
         </member>
         <member name="T:System.Collections.Generic.HashSetExtensions">
             <summary>

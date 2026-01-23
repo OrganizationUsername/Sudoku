@@ -5,7 +5,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
-public static class CellMapOrCandidateMapExtensions
+public static class BitStateMapExtensions
 {
 	/// <summary>
 	/// Provides extension members on <see cref="CellMap"/>.

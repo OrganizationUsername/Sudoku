@@ -26,7 +26,7 @@ public enum NotationBracket
 	Curly,
 
 	/// <summary>
-	/// Indicates there's an angle bracket <c><![CDATA[<>]]></c> that combines multiple parts, like <c><![CDATA[<r2c2, r2c3>]]></c>.
+	/// Indicates there's an angle bracket <c>&lt;&gt;</c> that combines multiple parts, like <c>&lt;r2c2, r2c3&gt;</c>.
 	/// </summary>
 	Angle
 }

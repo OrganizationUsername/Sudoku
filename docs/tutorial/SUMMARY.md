@@ -212,10 +212,11 @@
   * [宇宙法的基本推理](deadly-pattern-theory/03-gurth-symmetrical-placement/01-reasoning-of-gurth-symmtrical-placement.md)
   * [宇宙法的复合用法](deadly-pattern-theory/03-gurth-symmetrical-placement/02-cascading-gurth-symmetrical-placement.md)
   * [宇宙法反演](deadly-pattern-theory/03-gurth-symmetrical-placement/03-anti-gurth-symmetrical-placement.md)
-* [探长致命结构](deadly-pattern-theory/04-borescoper-deadly-pattern/README.md)
+* [探长致命结构（BDP）](deadly-pattern-theory/04-borescoper-deadly-pattern/README.md)
   * [三数探长致命结构的基本推理](deadly-pattern-theory/04-borescoper-deadly-pattern/01-reasoning-of-borescoper-deadly-pattern-using-3-digits.md)
   * [四数探长致命结构的基本推理](deadly-pattern-theory/04-borescoper-deadly-pattern/02-reasoning-of-borescoper-deadly-pattern-using-4-digits.md)
-* [唯一矩阵](deadly-pattern-theory/05-unique-matrix.md)
+* [唯一矩阵（UM）](deadly-pattern-theory/05-unique-matrix.md)
+* [唯一性提示数覆盖（UCC）](deadly-pattern-theory/06-uniqueness-clue-cover.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

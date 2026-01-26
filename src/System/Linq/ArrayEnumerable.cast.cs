@@ -2,9 +2,11 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="object"/>[].
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TResult">The type of each result value.</typeparam>
+	/// <param name="source">The source collection.</param>
 	extension<TResult>(object[] source)
 	{
 		/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>

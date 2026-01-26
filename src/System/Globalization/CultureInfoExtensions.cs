@@ -6,10 +6,10 @@ namespace System.Globalization;
 /// <seealso cref="CultureInfo"/>
 public static class CultureInfoExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="CultureInfo"/>.
-	/// </summary>
-	/// <param name="this">The instance.</param>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(CultureInfo @this)
 	{
 		/// <summary>

@@ -6,9 +6,10 @@ namespace System.Linq;
 /// <seealso cref="IEnumerable{T}"/>
 public static class EnumerableExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="IEnumerable{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
 	extension<T>(IEnumerable<T>)
 	{
 		/// <summary>

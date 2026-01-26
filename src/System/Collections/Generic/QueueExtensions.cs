@@ -6,9 +6,10 @@ namespace System.Collections.Generic;
 /// <seealso cref="Queue{T}"/>
 public static class QueueExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Queue{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<T>(Queue<T> @this)
 	{
 		/// <inheritdoc cref="Enumerable.Reverse{TSource}(IEnumerable{TSource})" />

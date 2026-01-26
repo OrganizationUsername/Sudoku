@@ -8,17 +8,19 @@ namespace System.Text.RegularExpressions;
 /// <seealso cref="GroupCollection"/>
 public static class RegularExpressionCollectionEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="MatchCollection"/>.
-	/// </summary>
-	extension<TResult>(MatchCollection @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TResult">The type of result elements.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TResult>(MatchCollection source)
 	{
 		/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 		public ReadOnlySpan<TResult> Select(Func<Match, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (Match element in @this)
+			foreach (Match element in source)
 			{
 				result[i++] = selector(element);
 			}
@@ -26,17 +28,19 @@ public static class RegularExpressionCollectionEnumerable
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="GroupCollection"/>.
-	/// </summary>
-	extension<TResult>(GroupCollection @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TResult">The type of result elements.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TResult>(GroupCollection source)
 	{
 		/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 		public ReadOnlySpan<TResult> Select(Func<Group, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (Group element in @this)
+			foreach (Group element in source)
 			{
 				result[i++] = selector(element);
 			}
@@ -44,17 +48,19 @@ public static class RegularExpressionCollectionEnumerable
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="CaptureCollection"/>.
-	/// </summary>
-	extension<TResult>(CaptureCollection @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TResult">The type of result elements.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TResult>(CaptureCollection source)
 	{
 		/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 		public ReadOnlySpan<TResult> Select(Func<Capture, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (Capture element in @this)
+			foreach (Capture element in source)
 			{
 				result[i++] = selector(element);
 			}

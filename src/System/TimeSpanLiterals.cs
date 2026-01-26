@@ -8,9 +8,10 @@ namespace System;
 [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 public static class TimeSpanLiterals
 {
-	/// <summary>
-	/// Provides extension members on <see cref="int"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(int @this)
 	{
 		/// <summary>
@@ -34,9 +35,10 @@ public static class TimeSpanLiterals
 		public TimeSpan h => TimeSpan.FromHours(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="double"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(double @this)
 	{
 		/// <summary>

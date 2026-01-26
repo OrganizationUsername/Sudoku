@@ -2,14 +2,14 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TOuter"/>.
-	/// </summary>
-	/// <typeparam name="TOuter">The type of the elements of the first sequence.</typeparam>
-	/// <typeparam name="TInner">The type of the elements of the second sequence.</typeparam>
-	/// <typeparam name="TKey">The type of the keys returned by the key selector functions.</typeparam>
-	/// <typeparam name="TResult">The type of the result elements.</typeparam>
-	/// <param name="outer">The first sequence to join.</param>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TOuter">The type of outer collection elements.</typeparam>
+	/// <typeparam name="TInner">The type of inner collection elements.</typeparam>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <typeparam name="TResult">The type of result elements.</typeparam>
+	/// <param name="outer">The source collection.</param>
 	extension<TOuter, TInner, TKey, TResult>(ReadOnlySpan<TOuter> outer) where TKey : notnull
 	{
 		/// <inheritdoc cref="IJoinMethod{TSelf, TSource}.Join{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>

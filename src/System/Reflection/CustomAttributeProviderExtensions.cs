@@ -6,11 +6,11 @@ namespace System.Reflection;
 /// <seealso cref="ICustomAttributeProvider"/>
 public static class CustomAttributeProviderExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TCustomAttributeProvider"/>,
-	/// where <typeparamref name="TCustomAttributeProvider"/> satisfies
-	/// <see langword="class"/> and <see cref="ICustomAttributeProvider"/> constraints.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TCustomAttributeProvider">The type of instance.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<TCustomAttributeProvider>(TCustomAttributeProvider @this)
 		where TCustomAttributeProvider : class, ICustomAttributeProvider
 	{
@@ -72,9 +72,10 @@ public static class CustomAttributeProviderExtensions
 			};
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="string"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(string @this)
 	{
 		/// <summary>

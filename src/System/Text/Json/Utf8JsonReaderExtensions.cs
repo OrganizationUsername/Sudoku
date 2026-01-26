@@ -6,9 +6,10 @@ namespace System.Text.Json;
 /// <seealso cref="Utf8JsonReader"/>
 public static class Utf8JsonReaderExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see langword="ref"/> <see cref="Utf8JsonReader"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ref Utf8JsonReader @this)
 	{
 		/// <summary>

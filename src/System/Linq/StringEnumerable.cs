@@ -5,9 +5,10 @@ namespace System.Linq;
 /// </summary>
 public static class StringEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="string"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(string @this)
 	{
 		/// <inheritdoc cref="Enumerable.Index{TSource}(IEnumerable{TSource})"/>

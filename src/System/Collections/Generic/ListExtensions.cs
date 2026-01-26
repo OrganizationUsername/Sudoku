@@ -6,9 +6,11 @@ namespace System.Collections.Generic;
 /// <seealso cref="List{T}"/>
 public static class ListExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each value.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(List<T> @this)
 	{
 		/// <summary>
@@ -133,10 +135,10 @@ public static class ListExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="IEquatable{T}"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<T>(List<T> @this) where T : IEquatable<T>
 	{
 		/// <summary>

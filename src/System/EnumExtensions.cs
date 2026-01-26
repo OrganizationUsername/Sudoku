@@ -6,10 +6,10 @@ namespace System;
 /// <seealso cref="Enum"/>
 public static class EnumExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>,
-	/// where <typeparamref name="T"/> satisfies <see langword="unmanaged"/>, <see cref="Enum"/> constraints.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<T>(T @this) where T : unmanaged, Enum
 	{
 		/// <summary>

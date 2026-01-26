@@ -6,9 +6,10 @@ namespace System.Reflection;
 /// <seealso cref="MemberInfo"/>
 public static class MemberInfoExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="PropertyInfo"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(PropertyInfo @this)
 	{
 		/// <summary>
@@ -51,9 +52,10 @@ public static class MemberInfoExtensions
 			};
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="MemberInfo"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(MemberInfo @this)
 	{
 		/// <inheritdoc cref="CustomAttributeExtensions.IsDefined(MemberInfo, Type)"/>

@@ -2,10 +2,11 @@ namespace System;
 
 public partial class FloatingPointExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="IFloatingPoint{TSelf}"/>, <see cref="IFloatingPointIeee754{TSelf}"/> constraints.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of value.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(T @this) where T : IFloatingPoint<T>, IFloatingPointIeee754<T>
 	{
 		/// <summary>

@@ -6,9 +6,11 @@ namespace System.Collections.Generic;
 /// <seealso cref="ICollection{T}"/>
 public static class ICollectionExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ICollection{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each value in this collection.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(ICollection<T> @this)
 	{
 		/// <summary>

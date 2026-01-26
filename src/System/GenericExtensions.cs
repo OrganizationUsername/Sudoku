@@ -7,10 +7,9 @@ namespace System;
 /// </summary>
 public static class GenericExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>?,
-	/// where <typeparamref name="T"/> satisfies <see langword="class"/>? constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension<T>(T?) where T : class?
 	{
 #if EXTENSION_OPEARTORS_SUPPORT_ON_NULLABLE_GENERIC_TYPES
@@ -38,10 +37,9 @@ public static class GenericExtensions
 #endif
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>? (i.e. <see cref="Nullable{T}"/>),
-	/// where <typeparamref name="T"/> satisfies <see langword="struct"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension<T>(T?) where T : struct
 	{
 #if EXTENSION_OPEARTORS_SUPPORT_ON_NULLABLE_GENERIC_TYPES
@@ -69,10 +67,9 @@ public static class GenericExtensions
 #endif
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>,
-	/// where <typeparamref name="T"/> satisfies <see langword="struct"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension<T>(T) where T : allows ref struct
 	{
 		/// <summary>

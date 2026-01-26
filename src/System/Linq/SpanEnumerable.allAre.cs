@@ -2,12 +2,12 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TBase"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="TBase">The type of the elements of source.</typeparam>
 	/// <typeparam name="TDerived">The derived type to be checked.</typeparam>
-	/// <param name="source">The collection to be used and checked.</param>
+	/// <param name="source">The source collection.</param>
 	extension<TBase, TDerived>(ReadOnlySpan<TBase> source) where TDerived : TBase?
 	{
 		/// <summary>

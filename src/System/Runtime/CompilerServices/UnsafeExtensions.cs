@@ -5,9 +5,9 @@ namespace System.Runtime.CompilerServices;
 /// </summary>
 public static class UnsafeExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Unsafe"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Unsafe)
 	{
 		/// <summary>

@@ -6,9 +6,9 @@ namespace System;
 /// <seealso cref="Activator"/>
 public static class ActivatorExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Activator"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Activator)
 	{
 		/// <summary>

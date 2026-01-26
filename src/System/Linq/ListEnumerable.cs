@@ -6,10 +6,12 @@ namespace System.Linq;
 /// <seealso cref="List{T}"/>
 public static class ListEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
-	extension<TSource>(List<TSource> @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TSource>(List<TSource> source)
 	{
 		/// <summary>
 		/// Totals up the number of elements that satisfy the specified condition.
@@ -19,7 +21,7 @@ public static class ListEnumerable
 		public int Count(Func<TSource, bool> predicate)
 		{
 			var result = 0;
-			foreach (var element in @this)
+			foreach (var element in source)
 			{
 				if (predicate(element))
 				{
@@ -33,7 +35,7 @@ public static class ListEnumerable
 		public unsafe int CountUnsafe(delegate*<TSource, bool> predicate)
 		{
 			var result = 0;
-			foreach (var element in @this)
+			foreach (var element in source)
 			{
 				if (predicate(element))
 				{
@@ -46,8 +48,8 @@ public static class ListEnumerable
 		/// <inheritdoc cref="Enumerable.Where{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 		public ReadOnlySpan<TSource> Where(Func<TSource, bool> condition)
 		{
-			var result = new List<TSource>(@this.Count);
-			foreach (var element in @this)
+			var result = new List<TSource>(source.Count);
+			foreach (var element in source)
 			{
 				if (condition(element))
 				{
@@ -65,9 +67,9 @@ public static class ListEnumerable
 		/// </remarks>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<TSource, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (var element in @this)
+			foreach (var element in source)
 			{
 				result[i++] = selector(element);
 			}
@@ -85,8 +87,8 @@ public static class ListEnumerable
 			Func<TSource, TCollection, TResult> resultSelector
 		)
 		{
-			var result = new List<TResult>(@this.Count << 1);
-			foreach (var element in @this)
+			var result = new List<TResult>(source.Count << 1);
+			foreach (var element in source)
 			{
 				foreach (ref readonly var collectionElement in collectionSelector(element))
 				{
@@ -107,8 +109,8 @@ public static class ListEnumerable
 			Func<TSource, TCollection, TResult> resultSelector
 		)
 		{
-			var result = new List<TResult>(@this.Count << 1);
-			foreach (var element in @this)
+			var result = new List<TResult>(source.Count << 1);
+			foreach (var element in source)
 			{
 				foreach (var collectionElement in collectionSelector(element))
 				{
@@ -119,17 +121,19 @@ public static class ListEnumerable
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="List{T}"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="IAdditiveIdentity{TSelf, TResult}"/>, <see cref="IAdditionOperators{TSelf, TOther, TResult}"/> constraints.
-	/// </summary>
-	extension<T>(List<T> @this) where T : IAdditiveIdentity<T, T>, IAdditionOperators<T, T, T>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TSource>(List<TSource> source)
+		where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 	{
 		/// <inheritdoc cref="Enumerable.Sum(IEnumerable{int})"/>
-		public T Sum()
+		public TSource Sum()
 		{
-			var result = T.AdditiveIdentity;
-			foreach (ref readonly var element in @this.AsSpan())
+			var result = TSource.AdditiveIdentity;
+			foreach (ref readonly var element in source.AsSpan())
 			{
 				result += element;
 			}

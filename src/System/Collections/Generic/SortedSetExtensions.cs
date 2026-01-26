@@ -6,9 +6,11 @@ namespace System.Collections.Generic;
 /// <seealso cref="SortedSet{T}"/>
 public static class SortedSetExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="SortedSet{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each value.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(SortedSet<T> @this)
 	{
 		/// <summary>

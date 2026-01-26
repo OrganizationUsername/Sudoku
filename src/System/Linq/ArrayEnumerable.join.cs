@@ -2,9 +2,14 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TOuter"/>[].
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TOuter">The type of each element from source collection.</typeparam>
+	/// <typeparam name="TInner">The type of each element from interim collection.</typeparam>
+	/// <typeparam name="TKey">The type of key chosen for both source and interim collection.</typeparam>
+	/// <typeparam name="TResult">The type of each element from result collection.</typeparam>
+	/// <param name="outer">The source collection.</param>
 	extension<TOuter, TInner, TKey, TResult>(TOuter[] outer) where TKey : notnull
 	{
 		/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>

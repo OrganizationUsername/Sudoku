@@ -6,9 +6,10 @@ namespace System.Text.RegularExpressions;
 /// <seealso cref="Regex"/>
 public static class RegexExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Regex"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(Regex @this)
 	{
 		/// <summary>

@@ -5,9 +5,9 @@ namespace System.Pipelines;
 /// </summary>
 public static class Pipeline
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T">The type of instance.</typeparam>
 	extension<T>(T) where T : notnull, IParsable<T>
 	{
@@ -53,9 +53,9 @@ public static class Pipeline
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T">The type of instance.</typeparam>
 	/// <typeparam name="TResult">The type of result.</typeparam>
 	extension<T, TResult>(T)
@@ -74,9 +74,9 @@ public static class Pipeline
 		public static unsafe TResult operator |(T left, delegate*<T, TResult> right) => right(left);
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T1"/> and <typeparamref name="T2"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T1">The type of parameter 1.</typeparam>
 	/// <typeparam name="T2">The type of parameter 2.</typeparam>
 	/// <typeparam name="TResult">The type of result.</typeparam>
@@ -95,9 +95,9 @@ public static class Pipeline
 			=> right(left.Item1, left.Item2);
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T1"/>, <typeparamref name="T2"/> and <typeparamref name="T3"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T1">The type of parameter 1.</typeparam>
 	/// <typeparam name="T2">The type of parameter 2.</typeparam>
 	/// <typeparam name="T3">The type of parameter 3.</typeparam>
@@ -118,9 +118,9 @@ public static class Pipeline
 			=> right(left.Item1, left.Item2, left.Item3);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Action{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T">The type of argument.</typeparam>
 	extension<T>(Action<T>) where T : notnull, IParsable<T>
 	{
@@ -149,6 +149,9 @@ public static class Pipeline
 		public static Stream operator >(Action<T> action, FileInfo file) => throw new NotSupportedException();
 	}
 
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension<T>(Func<T>) where T : notnull, IParsable<T>
 	{
 		/// <inheritdoc cref="extension{T}(T).op_LessThan(in T, string)"/>

@@ -5,10 +5,9 @@ namespace System;
 /// </summary>
 public static class ExceptionExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TException"/>,
-	/// where <typeparamref name="TException"/> satisfies <see cref="SystemException"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="TException">The type of exception.</typeparam>
 	extension<TException>(TException) where TException : SystemException
 	{

@@ -2,9 +2,9 @@ namespace System;
 
 public partial class DelegateExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Action"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Action)
 	{
 		/// <summary>

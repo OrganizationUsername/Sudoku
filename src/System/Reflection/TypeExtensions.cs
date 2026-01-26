@@ -6,9 +6,10 @@ namespace System.Reflection;
 /// <seealso cref="Type"/>
 public static class TypeExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Type"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(Type @this)
 	{
 		/// <summary>

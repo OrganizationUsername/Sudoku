@@ -6,10 +6,12 @@ namespace System.Linq;
 /// <seealso cref="LinkedList{T}"/>
 public static class LinkedListEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="LinkedList{T}"/> of <typeparamref name="T"/>.
-	/// </summary>
-	extension<T>(LinkedList<T> @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<T>(LinkedList<T> source)
 	{
 		/// <summary>
 		/// Projects each element into a new form.
@@ -19,9 +21,9 @@ public static class LinkedListEnumerable
 		/// <returns>The projected values.</returns>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<T, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (var element in @this)
+			foreach (var element in source)
 			{
 				result[i++] = selector(element);
 			}
@@ -32,20 +34,22 @@ public static class LinkedListEnumerable
 		/// Reverse the enumeration on <see cref="LinkedList{T}"/>.
 		/// </summary>
 		/// <returns>The reversed enumerator-provider instance.</returns>
-		public LinkedListReversed<T> Reverse() => new(@this);
+		public LinkedListReversed<T> Reverse() => new(source);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="LinkedListReversed{T}"/> of <typeparamref name="T"/>.
-	/// </summary>
-	extension<T>(LinkedListReversed<T> @this)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<T>(LinkedListReversed<T> source)
 	{
 		/// <inheritdoc cref="Select{T, TResult}(LinkedList{T}, Func{T, TResult})"/>
 		public ReadOnlySpan<TResult> Select<TResult>(Func<T, TResult> selector)
 		{
-			var result = new TResult[@this.Count];
+			var result = new TResult[source.Count];
 			var i = 0;
-			foreach (var element in @this)
+			foreach (var element in source)
 			{
 				result[i++] = selector(element);
 			}

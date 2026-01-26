@@ -2,11 +2,11 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TSource"/>[].
-	/// </summary>
-	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <param name="source">An array of <typeparamref name="TSource"/> instances to filter.</param>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <param name="source">The source collection.</param>
 	extension<TSource>(TSource[] source)
 	{
 		/// <summary>

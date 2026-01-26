@@ -6,16 +6,18 @@ namespace System.Linq;
 /// <seealso cref="SortedDictionary{TKey, TValue}"/>
 public static class SortedDictionaryEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="SortedDictionary{TKey, TValue}"/> of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
-	/// where <typeparamref name="TKey"/> satisfies <see langword="notnull"/>.
-	/// </summary>
-	extension<TKey, TValue>(SortedDictionary<TKey, TValue> @this) where TKey : notnull
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <typeparam name="TValue">The type of value.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TKey, TValue>(SortedDictionary<TKey, TValue> source) where TKey : notnull
 	{
 		/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
 		public KeyValuePair<TKey, TValue> First()
 		{
-			using var enumerator = @this.GetEnumerator();
+			using var enumerator = source.GetEnumerator();
 			if (enumerator.MoveNext())
 			{
 				return enumerator.Current;

@@ -29,9 +29,10 @@ public static partial class BitOperationsExtensions
 	}
 
 
-	/// <summary>
-	/// Provides extension members on <see cref="sbyte"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(sbyte @this)
 	{
 		/// <summary>
@@ -69,9 +70,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="byte"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(byte @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -160,9 +162,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="ref"/> <see cref="byte"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ref byte @this)
 	{
 		/// <summary>
@@ -177,9 +180,10 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="short"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(short @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -244,9 +248,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="ref"/> <see cref="short"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ref short @this)
 	{
 		/// <inheritdoc cref="ReverseBits(ref byte)"/>
@@ -259,9 +264,10 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ushort"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ushort @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -294,9 +300,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="int"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(int @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -361,9 +368,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="ref"/> <see cref="int"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ref int @this)
 	{
 		/// <inheritdoc cref="ReverseBits(ref byte)"/>
@@ -377,9 +385,10 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="uint"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(uint @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -429,9 +438,10 @@ public static partial class BitOperationsExtensions
 		public Int32Enumerator GetEnumerator() => new((int)@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="long"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(long @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -495,9 +505,10 @@ public static partial class BitOperationsExtensions
 		public Int64Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="ref"/> <see cref="long"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ref long @this)
 	{
 		/// <inheritdoc cref="ReverseBits(ref byte)"/>
@@ -512,9 +523,10 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ulong"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ulong @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -597,9 +609,10 @@ public static partial class BitOperationsExtensions
 		public Int64Enumerator GetEnumerator() => new((long)@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Int128"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(Int128 @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -642,9 +655,10 @@ public static partial class BitOperationsExtensions
 		public Int128Enumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="UInt128"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(UInt128 @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -687,9 +701,10 @@ public static partial class BitOperationsExtensions
 		public Int128Enumerator GetEnumerator() => new((Int128)@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="nint"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(nint @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -732,9 +747,10 @@ public static partial class BitOperationsExtensions
 		public NIntEnumerator GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="nuint"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(nuint @this)
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
@@ -777,20 +793,20 @@ public static partial class BitOperationsExtensions
 		public NIntEnumerator GetEnumerator() => new((nint)@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TNumber"/>,
-	/// where <typeparamref name="TNumber"/> satisfies multiple constraints.
-	/// </summary>
-	extension<TNumber>(TNumber @this)
-		where TNumber : IBitwiseOperators<TNumber, TNumber, TNumber>, INumber<TNumber>, IShiftOperators<TNumber, int, TNumber>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of instance.</typeparam>
+	/// <param name="this">The current instance.</param>
+	extension<T>(T @this) where T : IBitwiseOperators<T, T, T>, INumber<T>, IShiftOperators<T, int, T>
 	{
 		/// <inheritdoc cref="SetAt(byte, int)"/>
 		[OverloadResolutionPriority(1)]
 		public unsafe int SetAt(int order)
 		{
-			for (int i = 0, count = -1; i < sizeof(TNumber) << 3; i++, @this >>= 1)
+			for (int i = 0, count = -1; i < sizeof(T) << 3; i++, @this >>= 1)
 			{
-				if ((@this & TNumber.MultiplicativeIdentity) != TNumber.AdditiveIdentity && ++count == order)
+				if ((@this & T.MultiplicativeIdentity) != T.AdditiveIdentity && ++count == order)
 				{
 					return i;
 				}
@@ -799,48 +815,49 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TInteger"/>,
-	/// where <typeparamref name="TInteger"/> satisfies <see cref="IBinaryInteger{TSelf}"/> constraint.
-	/// </summary>
-	extension<TInteger>(TInteger @this) where TInteger : IBinaryInteger<TInteger>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of instance.</typeparam>
+	/// <param name="this">The current instance.</param>
+	extension<T>(T @this) where T : IBinaryInteger<T>
 	{
 		/// <inheritdoc cref="extension(sbyte).AllSets"/>
 		public ReadOnlySpan<int> AllSets
 		{
 			get
 			{
-				if (@this == TInteger.Zero)
+				if (@this == T.Zero)
 				{
 					return [];
 				}
 
-				var (result, p) = (new int[int.CreateChecked(TInteger.PopCount(@this))], 0);
-				while (@this != TInteger.Zero)
+				var (result, p) = (new int[int.CreateChecked(T.PopCount(@this))], 0);
+				while (@this != T.Zero)
 				{
-					result[p++] = int.CreateChecked(TInteger.TrailingZeroCount(@this));
-					@this &= @this - TInteger.One;
+					result[p++] = int.CreateChecked(T.TrailingZeroCount(@this));
+					@this &= @this - T.One;
 				}
 				return result;
 			}
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TInteger"/>,
-	/// where <typeparamref name="TInteger"/> satisfies <see cref="IBinaryInteger{TSelf}"/> constraint.
-	/// </summary>
-	extension<TInteger>(TInteger @this)
-		where TInteger : IBitwiseOperators<TInteger, TInteger, TInteger>, IBinaryInteger<TInteger>, IShiftOperators<TInteger, int, TInteger>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
+	extension<T>(T @this) where T : IBitwiseOperators<T, T, T>, IBinaryInteger<T>, IShiftOperators<T, int, T>
 	{
 		/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 		[OverloadResolutionPriority(1)]
-		public unsafe GenericIntegerEnumerator<TInteger> GetEnumerator() => new(@this, sizeof(TInteger) << 3);
+		public unsafe GenericIntegerEnumerator<T> GetEnumerator() => new(@this, sizeof(T) << 3);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="byte"/>[].
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(byte[] @this)
 	{
 		/// <summary>
@@ -928,9 +945,9 @@ public static partial class BitOperationsExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="BitOperations"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(BitOperations)
 	{
 		/// <summary>

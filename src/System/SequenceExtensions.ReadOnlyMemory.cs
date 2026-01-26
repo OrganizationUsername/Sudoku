@@ -2,9 +2,11 @@ namespace System;
 
 public partial class SequenceExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlyMemory{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(ReadOnlyMemory<T> @this)
 	{
 #if false

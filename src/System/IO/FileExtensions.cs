@@ -12,9 +12,9 @@ public static class FileExtensions
 	private static readonly SearchValues<char> InvalidCharacters = SearchValues.Create(""":\/?*<>"|""");
 
 
-	/// <summary>
-	/// Provides extension members on <see cref="File"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(File)
 	{
 		/// <summary>

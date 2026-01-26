@@ -2,9 +2,11 @@ namespace System;
 
 public partial class SequenceExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(ReadOnlySpan<T> @this)
 	{
 		/// <summary>
@@ -296,10 +298,11 @@ public partial class SequenceExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/>,
-	/// where <typeparamref name="T"/> satisfies <see langword="notnull"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(ReadOnlySpan<T> @this) where T : notnull
 	{
 		/// <summary>
@@ -315,9 +318,11 @@ public partial class SequenceExtensions
 			);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped"/> <see cref="ReadOnlySpan{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped ReadOnlySpan<T> @this)
 	{
 		/// <summary>

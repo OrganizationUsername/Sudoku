@@ -5,10 +5,10 @@ namespace System.Reflection;
 /// </summary>
 public static class EnumFieldExtensions
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TEnum"/>,
-	/// where <typeparamref name="TEnum"/> satisfies <see cref="Enum"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TEnum">The type of enumeration.</typeparam>
 	extension<TEnum>(TEnum) where TEnum : Enum
 	{
 		/// <summary>

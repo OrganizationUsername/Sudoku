@@ -6,9 +6,10 @@ namespace System.Text.Json;
 /// <seealso cref="Utf8JsonWriter"/>
 public static class Utf8JsonWriterExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Utf8JsonWriter"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(Utf8JsonWriter @this)
 	{
 		/// <summary>

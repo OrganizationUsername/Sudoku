@@ -2,11 +2,11 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
-	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <param name="source">The collection to be used and checked.</param>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <param name="source">The source collection.</param>
 	extension<TSource>(ReadOnlySpan<TSource> source)
 		where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 	{
@@ -22,14 +22,13 @@ public partial class SpanEnumerable
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
-	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <typeparam name="TKey">The type of key to add up.</typeparam>
-	/// <param name="source">The collection to be used and checked.</param>
-	extension<TSource, TKey>(ReadOnlySpan<TSource> source)
-		where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TSource, TKey>(ReadOnlySpan<TSource> source) where TKey : IAdditiveIdentity<TKey, TKey>, IAdditionOperators<TKey, TKey, TKey>
 	{
 		/// <summary>
 		/// Totals up all elements, and return the result of the sum by the specified property calculated from each element.

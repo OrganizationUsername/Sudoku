@@ -2,18 +2,19 @@ namespace System;
 
 public partial class SequenceExtensions
 {
-	/// <summary>
-	/// Provides extension members of <typeparamref name="T"/>[]? instances.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<T>(T[]? @this)
 	{
 		/// <inheritdoc cref="MemoryExtensions.AsSpan{T}(T[])"/>
 		public ReadOnlySpan<T> AsReadOnlySpan() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Array"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Array)
 	{
 		/// <summary>

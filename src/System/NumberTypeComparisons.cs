@@ -5,10 +5,9 @@ namespace System;
 /// </summary>
 public static class NumberTypeComparisons
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>,
-	/// where <typeparamref name="T"/> satisfies <see cref="INumber{TSelf}"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="T">The type of instance.</typeparam>
 	extension<T>(T) where T : INumber<T>
 	{

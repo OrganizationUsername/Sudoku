@@ -2,9 +2,10 @@ namespace System;
 
 public partial class DelegateExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Func{T, TResult}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of result value.</typeparam>
 	extension<T>(Func<T>) where T : allows ref struct
 	{
 		/// <summary>
@@ -25,10 +26,12 @@ public partial class DelegateExtensions
 		public static T SelfMethod(T instance) => instance;
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Func{T, TResult}"/>
-	/// of <see cref="Func{T, TResult}"/> and <see cref="Func{T, TResult}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of input value.</typeparam>
+	/// <typeparam name="TResult">The type of output value (result).</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T, TResult>(Func<Func<T, TResult>, Func<T, TResult>> @this)
 		where T : allows ref struct
 		where TResult : allows ref struct
@@ -38,21 +41,12 @@ public partial class DelegateExtensions
 		/// For example, this code snippet will calculate for factorial of the specified digit:
 		/// <code><![CDATA[
 		/// var factorial = Func<int, int>.YCombinator(
-		///     // Defines a lambda expression that is of type 'Func<int, int>'.
-		///     lambda =>
-		///         // Defines a parameter as input.
-		///         value => value switch
-		///         {
-		///             // Negative value (invalid).
-		///             < 0 => throw new ArgumentException("Invalid argument", nameof(value)),
-		///
-		///             // Recursion exit.
-		///             0 or 1 => 1,
-		///
-		///             // Otherwise, do calculation recursively.
-		///             // The core expression can use 'lambda' outside the lambda scope to invoke recursion.
-		///             _ => value * lambda(value - 1)
-		///         }
+		///     lambda => value => value switch
+		///     {
+		///         < 0 => throw new ArgumentException("Invalid argument", nameof(value)),
+		///         0 or 1 => 1,
+		///         _ => value * lambda(value - 1)
+		///     }
 		/// );
 		/// Console.WriteLine(factorial(5)); // 120
 		/// ]]></code>

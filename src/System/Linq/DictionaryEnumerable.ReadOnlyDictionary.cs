@@ -2,12 +2,13 @@ namespace System.Linq;
 
 public partial class DictionaryEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="IReadOnlyDictionary{TKey, TValue}"/>
-	/// of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>,
-	/// where <typeparamref name="TKey"/> satisfies <see langword="notnull"/> constraint.
-	/// </summary>
-	extension<TKey, TValue>(IReadOnlyDictionary<TKey, TValue> @this) where TKey : notnull
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <typeparam name="TValue">The type of value.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TKey, TValue>(IReadOnlyDictionary<TKey, TValue> source) where TKey : notnull
 	{
 		/// <summary>
 		/// Determine whether all keys in the dictionary satisfy the specified condition.
@@ -16,7 +17,7 @@ public partial class DictionaryEnumerable
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public bool AllKey(Func<TKey, bool> predicate)
 		{
-			foreach (var key in @this.Keys)
+			foreach (var key in source.Keys)
 			{
 				if (!predicate(key))
 				{
@@ -33,7 +34,7 @@ public partial class DictionaryEnumerable
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public bool AllValue(Func<TValue, bool> predicate)
 		{
-			foreach (var value in @this.Values)
+			foreach (var value in source.Values)
 			{
 				if (!predicate(value))
 				{
@@ -50,7 +51,7 @@ public partial class DictionaryEnumerable
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public bool AnyKey(Func<TKey, bool> predicate)
 		{
-			foreach (var key in @this.Keys)
+			foreach (var key in source.Keys)
 			{
 				if (predicate(key))
 				{
@@ -67,7 +68,7 @@ public partial class DictionaryEnumerable
 		/// <returns>A <see cref="bool"/> result indicating that.</returns>
 		public bool AnyValue(Func<TValue, bool> predicate)
 		{
-			foreach (var value in @this.Values)
+			foreach (var value in source.Values)
 			{
 				if (predicate(value))
 				{

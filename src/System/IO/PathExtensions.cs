@@ -6,9 +6,9 @@ namespace System.IO;
 /// <seealso cref="Path"/>
 public static class PathExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Path"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Path)
 	{
 		/// <summary>

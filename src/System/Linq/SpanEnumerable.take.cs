@@ -2,9 +2,6 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
 	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
 		/// <inheritdoc cref="ITakeMethod{TSelf, TSource}.Take(int)"/>

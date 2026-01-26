@@ -2,12 +2,6 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
-	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <typeparam name="TKey">The type of key.</typeparam>
-	/// <param name="source">The collection to be used and checked.</param>
 	extension<TSource, TKey>(ReadOnlySpan<TSource> source) where TKey : notnull
 	{
 		/// <inheritdoc cref="IGroupByMethod{TSelf, TSource}.GroupBy{TKey}(Func{TSource, TKey})"/>

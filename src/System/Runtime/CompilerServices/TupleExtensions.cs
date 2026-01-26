@@ -6,9 +6,10 @@ namespace System.Runtime.CompilerServices;
 /// <seealso cref="ITuple"/>
 public static class TupleExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ITuple"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ITuple @this)
 	{
 		/// <summary>
@@ -28,10 +29,11 @@ public static class TupleExtensions
 		}
 	}
 
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TTuple"/>,
-	/// where <typeparamref name="TTuple"/> satisfies <see cref="ITuple"/> constraint.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TTuple">The type of instance.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<TTuple>(TTuple @this) where TTuple : ITuple?, allows ref struct
 	{
 		/// <summary>

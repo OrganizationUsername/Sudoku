@@ -5,11 +5,11 @@ namespace System.Linq;
 /// </summary>
 public static class EnumFlagsEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="T"/>,
-	/// where <typeparamref name="T"/> satisfies <see langword="unmanaged"/> and <see cref="Enum"/> constraints.
-	/// </summary>
-	/// <param name="this">The enumeration type field.</param>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of enumeration field.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(T @this) where T : unmanaged, Enum
 	{
 		/// <summary>

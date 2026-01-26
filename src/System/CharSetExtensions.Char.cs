@@ -2,9 +2,10 @@ namespace System;
 
 public partial class CharSetExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="char"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(char @this)
 	{
 		/// <summary>
@@ -35,9 +36,10 @@ public partial class CharSetExtensions
 #endif
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <see cref="char"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ReadOnlySpan<char> @this)
 	{
 		/// <inheritdoc cref="op_UnaryPlus(ReadOnlySpan{char})"/>

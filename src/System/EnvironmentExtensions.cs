@@ -6,9 +6,9 @@ namespace System;
 /// <seealso cref="Environment"/>
 public static class EnvironmentExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Environment"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	extension(Environment)
 	{
 		/// <summary>

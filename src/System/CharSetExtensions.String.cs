@@ -2,9 +2,10 @@ namespace System;
 
 public partial class CharSetExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="string"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(string @this)
 	{
 		/// <summary>
@@ -106,9 +107,10 @@ public partial class CharSetExtensions
 		public static ReadOnlySpan<string> operator /(string value, string separator) => value.Split(separator);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <see cref="string"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(ReadOnlySpan<string> @this)
 	{
 		/// <inheritdoc cref="op_UnaryPlus(ReadOnlySpan{string})"/>

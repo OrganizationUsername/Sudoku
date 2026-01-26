@@ -2,11 +2,6 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TSource"/>[].
-	/// </summary>
-	/// <typeparam name="TSource">The type of each element.</typeparam>
-	/// <param name="source">The array to be filtered.</param>
 	extension<TSource>(ReadOnlySpan<TSource> source)
 	{
 		/// <summary>

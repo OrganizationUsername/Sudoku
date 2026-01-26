@@ -7,9 +7,10 @@ namespace System;
 /// <seealso cref="Range"/>
 public static class IndexRangeExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Index"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(Index @this)
 	{
 		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -40,9 +41,10 @@ public static class IndexRangeExtensions
 		public static Index operator -(Index left, int right) => left + -right;
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="Range"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(in Range @this)
 	{
 		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

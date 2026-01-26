@@ -5,9 +5,11 @@ namespace System;
 /// </summary>
 public static class ValueTupleExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T) @this)
 	{
 		/// <summary>
@@ -24,9 +26,11 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T, T) @this)
 	{
 		/// <inheritdoc cref="AsSpan{T}(in ValueTuple{T, T})"/>
@@ -40,9 +44,11 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3, T4}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T, T, T) @this)
 	{
 		/// <inheritdoc cref="AsSpan{T}(in ValueTuple{T, T})"/>
@@ -56,9 +62,11 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3, T4, T5}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T, T, T, T) @this)
 	{
 		/// <inheritdoc cref="AsSpan{T}(in ValueTuple{T, T})"/>
@@ -72,9 +80,11 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3, T4, T5, T6}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T, T, T, T, T) @this)
 	{
 		/// <inheritdoc cref="AsSpan{T}(in ValueTuple{T, T})"/>
@@ -88,9 +98,11 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7}"/> of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T>(scoped in (T, T, T, T, T, T, T) @this)
 	{
 		/// <inheritdoc cref="AsSpan{T}(in ValueTuple{T, T})"/>
@@ -105,10 +117,12 @@ public static class ValueTupleExtensions
 		public ValueTupleEnumerator<T> GetEnumerator() => new(@this);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see langword="scoped in"/> <see cref="ValueTuple{T1, T2, T3, T4, T5, T6, T7, TRest}"/>
-	/// of <typeparamref name="T"/> values.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="T">The type of each element in tuple.</typeparam>
+	/// <typeparam name="TRest">The type of value tuple, including rest elements in a tuple.</typeparam>
+	/// <param name="this">The current instance.</param>
 	extension<T, TRest>(scoped in ValueTuple<T, T, T, T, T, T, T, TRest> @this) where TRest : struct
 	{
 		/// <summary>

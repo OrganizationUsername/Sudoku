@@ -2,9 +2,6 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TOuter"/>[].
-	/// </summary>
 	extension<TOuter, TInner, TKey, TResult>(TOuter[] outer) where TKey : notnull
 	{
 		/// <inheritdoc cref="ILeftJoinMethod{TSelf, TSource}.LeftJoin{TInner, TKey, TResult}(IEnumerable{TInner}, Func{TSource, TKey}, Func{TInner, TKey}, Func{TSource, TInner, TResult})"/>

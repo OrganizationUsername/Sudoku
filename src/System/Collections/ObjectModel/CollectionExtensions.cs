@@ -6,9 +6,10 @@ namespace System.Collections.ObjectModel;
 /// <seealso cref="Collection{T}"/>
 public static class CollectionExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="Collection{T}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<T>(Collection<T> @this)
 	{
 		/// <inheritdoc cref="Collection{T}.RemoveAt(int)"/>

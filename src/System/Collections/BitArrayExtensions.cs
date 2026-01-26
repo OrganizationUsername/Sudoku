@@ -12,9 +12,10 @@ public static class BitArrayExtensions
 	private static readonly Vector128<byte> NibblePopCount = Vector128.Create((byte)0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4);
 
 
-	/// <summary>
-	/// Provides extension members on <see cref="BitArray"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(BitArray @this)
 	{
 		/// <summary>

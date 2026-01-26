@@ -6,9 +6,10 @@ namespace System.Collections.Generic;
 /// <seealso cref="KeyValuePair{TKey, TValue}"/>
 public static class KeyValuePairExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="KeyValuePair{TKey, TValue}"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension<TKey, TValue>(in KeyValuePair<TKey, TValue> @this)
 	{
 		/// <summary>
@@ -29,15 +30,14 @@ public static class KeyValuePairExtensions
 		public (TKey, TValue) ToTuple() => (@this.Key, @this.Value);
 	}
 
-	/// <summary>
-	/// Provides extension members on <see cref="KeyValuePair{TKey, TValue}"/>
-	/// of <typeparamref name="TKey"/> and <typeparamref name="TValue"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
 	/// <typeparam name="TKey">The type of key.</typeparam>
 	/// <typeparam name="TValue">The type of value.</typeparam>
 	/// <typeparam name="TKeyResult">The type of result key.</typeparam>
 	/// <typeparam name="TValueResult">The type of result value.</typeparam>
-	/// <param name="this">The instance.</param>
+	/// <param name="this">The current instance.</param>
 	extension<TKey, TValue, TKeyResult, TValueResult>(in KeyValuePair<TKey, TValue> @this)
 		where TKey : TKeyResult
 		where TValue : TValueResult

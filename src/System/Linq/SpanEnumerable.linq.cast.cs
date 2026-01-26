@@ -2,24 +2,24 @@ namespace System.Linq;
 
 public partial class SpanEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <see cref="ReadOnlySpan{T}"/> of <typeparamref name="TSource"/>.
-	/// </summary>
-	/// <typeparam name="TSource">The type of the elements of source.</typeparam>
-	/// <typeparam name="TDerived">The desired derived type.</typeparam>
-	/// <param name="source">The collection to be used and checked.</param>
-	extension<TSource, TDerived>(ReadOnlySpan<TSource> source)
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <typeparam name="TResult">The type of result elements.</typeparam>
+	/// <param name="source">The source collection.</param>
+	extension<TSource, TResult>(ReadOnlySpan<TSource> source)
 		where TSource : class
-		where TDerived : class, TSource
+		where TResult : class, TSource
 	{
 		/// <inheritdoc cref="ICastMethod{TSelf, TSource}.Cast{TResult}"/>
-		public ReadOnlySpan<TDerived> Cast()
+		public ReadOnlySpan<TResult> Cast()
 		{
-			var result = new TDerived[source.Length];
+			var result = new TResult[source.Length];
 			var i = 0;
 			foreach (ref readonly var element in source)
 			{
-				result[i++] = (TDerived)element;
+				result[i++] = (TResult)element;
 			}
 			return result;
 		}

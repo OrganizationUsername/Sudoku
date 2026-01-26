@@ -6,9 +6,10 @@ namespace System.Text;
 /// <seealso cref="StringBuilder"/>
 public static class StringBuilderExtensions
 {
-	/// <summary>
-	/// Provides extension members on <see cref="StringBuilder"/>.
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <param name="this">The current instance.</param>
 	extension(StringBuilder @this)
 	{
 		/// <summary>

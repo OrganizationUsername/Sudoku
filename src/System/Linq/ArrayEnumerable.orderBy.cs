@@ -2,9 +2,12 @@ namespace System.Linq;
 
 public partial class ArrayEnumerable
 {
-	/// <summary>
-	/// Provides extension members on <typeparamref name="TSource"/>[].
-	/// </summary>
+	/// <include
+	///     file="../../global-doc-comments.xml"
+	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
+	/// <typeparam name="TSource">The type of source elements.</typeparam>
+	/// <typeparam name="TKey">The type of key.</typeparam>
+	/// <param name="source">The source collection.</param>
 	extension<TSource, TKey>(TSource[] source)
 	{
 		/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>

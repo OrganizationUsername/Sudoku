@@ -1,7 +1,7 @@
 namespace System.Numerics;
 
 /// <summary>
-/// Represents an enumerator that can iterate bits on numeric type.
+/// Represents an enumerator that can iterate bits over an integer.
 /// </summary>
 public interface IBitEnumerator : IEnumerator<int>
 {

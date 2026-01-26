@@ -8776,7 +8776,7 @@
         </member>
         <member name="T:System.Numerics.IBitEnumerator">
             <summary>
-            Represents an enumerator that can iterate bits on numeric type.
+            Represents an enumerator that can iterate bits over an integer.
             </summary>
         </member>
         <member name="P:System.Numerics.IBitEnumerator.PopulationCount">
@@ -8800,13 +8800,13 @@
         </member>
         <member name="T:System.Numerics.Int128Enumerator">
             <summary>
-            Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
+            Represents an enumerator that iterates bits over a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int128Enumerator.#ctor(System.Int128)">
             <summary>
-            Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
+            Represents an enumerator that iterates bits over a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
@@ -8836,13 +8836,13 @@
         </member>
         <member name="T:System.Numerics.Int32Enumerator">
             <summary>
-            Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
+            Represents an enumerator that iterates bits over an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int32Enumerator.#ctor(System.Int32)">
             <summary>
-            Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
+            Represents an enumerator that iterates bits over an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
@@ -8872,13 +8872,13 @@
         </member>
         <member name="T:System.Numerics.Int64Enumerator">
             <summary>
-            Represents an enumerator that iterates a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
+            Represents an enumerator that iterates bits over a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.Int64Enumerator.#ctor(System.Int64)">
             <summary>
-            Represents an enumerator that iterates a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
+            Represents an enumerator that iterates bits over a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
@@ -8908,13 +8908,13 @@
         </member>
         <member name="T:System.Numerics.NIntEnumerator">
             <summary>
-            Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
+            Represents an enumerator that iterates bits over an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
         <member name="M:System.Numerics.NIntEnumerator.#ctor(System.IntPtr)">
             <summary>
-            Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
+            Represents an enumerator that iterates bits over an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>

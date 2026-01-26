@@ -1,7 +1,7 @@
 namespace System.Numerics;
 
 /// <summary>
-/// Represents an enumerator that iterates an <see cref="int"/> or <see cref="uint"/> value.
+/// Represents an enumerator that iterates bits over an <see cref="int"/> or <see cref="uint"/> value.
 /// </summary>
 /// <param name="_value">The value to be iterated.</param>
 public ref struct Int32Enumerator(int _value) : IBitEnumerator

@@ -1933,7 +1933,6 @@
             <summary>
             Indicates the minimal value of the current type.
             </summary>
-            <remarks><b><i>Bare reference: </i></b></remarks>
         </member>
         <member name="P:System.EnumExtensions.&lt;G&gt;$F7BAB7F8979284A7204DC29891C39285`1.MaxValue">
             <summary>

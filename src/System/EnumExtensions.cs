@@ -74,7 +74,6 @@ public static class EnumExtensions
 		/// <summary>
 		/// Indicates the minimal value of the current type.
 		/// </summary>
-		/// <remarks><b><i>Bare reference: </i></b></remarks>
 		public static T MinValue => (from value in get_AllValues<T>() orderby Convert.ToUInt64(value) select value)[0];
 
 		/// <summary>

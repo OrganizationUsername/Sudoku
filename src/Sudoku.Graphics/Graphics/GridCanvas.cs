@@ -6,7 +6,7 @@ namespace Sudoku.Graphics;
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="mapper"><inheritdoc cref="Mapper" path="/summary"/></param>
 public sealed class GridCanvas(in Grid grid, PointMapper mapper) :
-	IDisposable,
+	IGridCanvas,
 	IGridCanvasDrawBackground,
 	IGridCanvasDrawLine,
 	IGridCanvasExport
@@ -28,20 +28,17 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) :
 	private bool _isDisposed;
 
 
-	/// <summary>
-	/// Indicates the grid used.
-	/// </summary>
+	/// <inheritdoc/>
 	public ref readonly Grid Grid => ref _grid;
 
-	/// <summary>
-	/// Indicates the mapper.
-	/// </summary>
+	/// <inheritdoc/>
 	public PointMapper Mapper { get; } = mapper;
 
-	/// <summary>
-	/// Indicates the canvas that allows you drawing on it.
-	/// </summary>
+	/// <inheritdoc/>
 	public SKCanvas Canvas => _surface.Canvas;
+
+	/// <inheritdoc/>
+	bool IGridCanvas.IsDisposed => _isDisposed;
 
 
 	/// <inheritdoc/>

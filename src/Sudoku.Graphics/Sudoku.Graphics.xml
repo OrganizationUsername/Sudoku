@@ -35,19 +35,16 @@
             </summary>
         </member>
         <member name="P:Sudoku.Graphics.GridCanvas.Grid">
-            <summary>
-            Indicates the grid used.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Graphics.GridCanvas.Mapper">
-            <summary>
-            Indicates the mapper.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Graphics.GridCanvas.Canvas">
-            <summary>
-            Indicates the canvas that allows you drawing on it.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Graphics.GridCanvas.Sudoku#Graphics#Primitives#IGridCanvas#IsDisposed">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Graphics.GridCanvas.Dispose">
             <inheritdoc/>
@@ -272,6 +269,31 @@
             <param name="rowIndex">The row index.</param>
             <param name="columnIndex">The column index.</param>
             <returns>The point value.</returns>
+        </member>
+        <member name="T:Sudoku.Graphics.Primitives.IGridCanvas">
+            <summary>
+            Represents required members on a grid canvas.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.Primitives.IGridCanvas.IsDisposed">
+            <summary>
+            Indicates whether the object is disposed or not. This property should be explicitly-implemented.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.Primitives.IGridCanvas.Grid">
+            <summary>
+            Indicates the grid used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.Primitives.IGridCanvas.Mapper">
+            <summary>
+            Indicates the mapper.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.Primitives.IGridCanvas.Canvas">
+            <summary>
+            Indicates the canvas that allows you drawing on it.
+            </summary>
         </member>
         <member name="T:Sudoku.Graphics.Primitives.IGridCanvasDrawBackground">
             <summary>

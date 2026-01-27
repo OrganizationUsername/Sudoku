@@ -8,6 +8,7 @@ namespace Sudoku.Graphics;
 public sealed class GridImage(in Grid grid, PointMapper mapper) :
 	IDisposable,
 	IGridImageDrawBackground,
+	IGridImageDrawLines,
 	IGridImageExport
 {
 	/// <summary>
@@ -56,9 +57,52 @@ public sealed class GridImage(in Grid grid, PointMapper mapper) :
 	public void DrawBackground(SKColor color) => Canvas.Clear(color);
 
 	/// <inheritdoc/>
-	public void Export(string path, ImageExportOptions? options = null)
+	public void DrawGridLine(ImageDrawingOptions? options = null)
 	{
-		options ??= ImageExportOptions.Default;
+		options ??= new();
+
+		using var blockLinePaint = new SKPaint
+		{
+			Style = SKPaintStyle.Stroke,
+			StrokeWidth = options.BlockLineStrokeThickness,
+			Color = options.BlockLineStrokeColor,
+			IsAntialias = true,
+			PathEffect = options.BlockLineDashSequence.IsEmpty ? null : options.BlockLineDashSequence
+		};
+		using var cellLinePaint = new SKPaint
+		{
+			Style = SKPaintStyle.Stroke,
+			StrokeWidth = options.GridLineStrokeThickness,
+			Color = options.GridLineStrokeColor,
+			IsAntialias = true,
+			PathEffect = options.GridLineDashSequence.IsEmpty ? null : options.GridLineDashSequence
+		};
+		using var candidateAuxiliaryLinePaint = options.DrawCandidateAuxiliaryLines
+			? new SKPaint
+			{
+				Style = SKPaintStyle.Stroke,
+				StrokeWidth = options.CandidateAuxiliaryLineStrokeThickness,
+				Color = options.CandidateAuxiliaryLineStrokeColor,
+				IsAntialias = true,
+				PathEffect = options.CandidateAuxiliaryLineDashSequence.IsEmpty ? null : options.CandidateAuxiliaryLineDashSequence
+			}
+			: null;
+		for (var i = 0; i <= 27; i++)
+		{
+			if ((i % 9 == 0 ? blockLinePaint : i % 3 == 0 ? cellLinePaint : candidateAuxiliaryLinePaint) is not { } paintChosen)
+			{
+				continue;
+			}
+
+			Canvas.DrawLine(Mapper.GetCandidateAnchor(i, 0), Mapper.GetCandidateAnchor(i, 27), paintChosen);
+			Canvas.DrawLine(Mapper.GetCandidateAnchor(0, i), Mapper.GetCandidateAnchor(27, i), paintChosen);
+		}
+	}
+
+	/// <inheritdoc/>
+	public void Export(string path, ImageExportingOptions? options = null)
+	{
+		options ??= new();
 
 		var extension = Path.GetExtension(path);
 		using var image = _surface.Snapshot();

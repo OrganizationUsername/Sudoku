@@ -17,4 +17,39 @@ public sealed class PointMapper(int size, float margin)
 	/// Indicates margin of the picture.
 	/// </summary>
 	public float Margin { get; } = margin;
+
+	/// <summary>
+	/// Indicates size of grid.
+	/// </summary>
+	public float GridSize { get; } = size - 2 * margin;
+
+	/// <summary>
+	/// Indicates size of block.
+	/// </summary>
+	public float BlockSize { get; } = (size - 2 * margin) / 3;
+
+	/// <summary>
+	/// Indicates size of cell.
+	/// </summary>
+	public float CellSize { get; } = (size - 2 * margin) / 9;
+
+	/// <summary>
+	/// Indicates size of candidate.
+	/// </summary>
+	public float CandidateSize { get; } = (size - 2 * margin) / 27;
+
+
+	/// <summary>
+	/// Gets anchor point (top-left point) of a candidate, specified by row and column index (in range 0..28).
+	/// </summary>
+	/// <param name="rowIndex">The row index.</param>
+	/// <param name="columnIndex">The column index.</param>
+	/// <returns>The point value.</returns>
+	public SKPoint GetCandidateAnchor(int rowIndex, int columnIndex)
+	{
+		ArgumentOutOfRangeException.Assert(rowIndex is >= 0 and <= 27);
+		ArgumentOutOfRangeException.Assert(columnIndex is >= 0 and <= 27);
+
+		return new(CandidateSize * rowIndex + Margin, CandidateSize * columnIndex + Margin);
+	}
 }

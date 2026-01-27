@@ -3,7 +3,11 @@ namespace Sudoku.Graphics.Primitives;
 /// <summary>
 /// Represents required members on a grid canvas.
 /// </summary>
-public interface IGridCanvas : IDisposable
+public interface IGridCanvas :
+	IDisposable,
+	IGridCanvasDrawBackground,
+	IGridCanvasDrawLine,
+	IGridCanvasExport
 {
 	/// <summary>
 	/// Indicates whether the object is disposed or not. This property should be explicitly-implemented.

@@ -5,11 +5,7 @@ namespace Sudoku.Graphics;
 /// </summary>
 /// <param name="grid"><inheritdoc cref="Grid" path="/summary"/></param>
 /// <param name="mapper"><inheritdoc cref="Mapper" path="/summary"/></param>
-public sealed class GridCanvas(in Grid grid, PointMapper mapper) :
-	IGridCanvas,
-	IGridCanvasDrawBackground,
-	IGridCanvasDrawLine,
-	IGridCanvasExport
+public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 {
 	/// <summary>
 	/// The backing field of property <see cref="Grid"/>.

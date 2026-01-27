@@ -6,6 +6,12 @@ namespace Sudoku.Graphics;
 public sealed class ImageDrawingOptions
 {
 	/// <summary>
+	/// Indicates the default options.
+	/// </summary>
+	public static readonly ImageDrawingOptions Default = new();
+
+
+	/// <summary>
 	/// Indicates whether candidate auxiliary lines are also drawn or not. By default it's <see langword="false"/>.
 	/// </summary>
 	public bool DrawCandidateAuxiliaryLines { get; set; } = false;

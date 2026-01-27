@@ -48,12 +48,12 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 
 	/// <inheritdoc/>
 	public void DrawBackground(ImageDrawingOptions? options = null)
-		=> Canvas.Clear((options ?? new()).BackgroundColor);
+		=> Canvas.Clear((options ?? ImageDrawingOptions.Default).BackgroundColor);
 
 	/// <inheritdoc/>
 	public void DrawGridLine(ImageDrawingOptions? options = null)
 	{
-		options ??= new();
+		options ??= ImageDrawingOptions.Default;
 
 		using var blockLinePaint = new SKPaint
 		{
@@ -96,7 +96,7 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 	/// <inheritdoc/>
 	public void Export(string path, ImageExportingOptions? options = null)
 	{
-		options ??= new();
+		options ??= ImageExportingOptions.Default;
 
 		var extension = Path.GetExtension(path);
 		using var image = _surface.Snapshot();
@@ -117,7 +117,7 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 	/// <exception cref="OperationCanceledException">Throws when task is canceled.</exception>
 	public async Task ExportAsync(string path, ImageExportingOptions? options = null, CancellationToken cancellationToken = default)
 	{
-		options ??= new();
+		options ??= ImageExportingOptions.Default;
 
 		var extension = Path.GetExtension(path);
 		using var image = _surface.Snapshot();

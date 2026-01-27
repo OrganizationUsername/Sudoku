@@ -82,6 +82,11 @@
             Represents image drawing options.
             </summary>
         </member>
+        <member name="F:Sudoku.Graphics.ImageDrawingOptions.Default">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
         <member name="P:Sudoku.Graphics.ImageDrawingOptions.DrawCandidateAuxiliaryLines">
             <summary>
             Indicates whether candidate auxiliary lines are also drawn or not. By default it's <see langword="false"/>.
@@ -142,6 +147,11 @@
         <member name="T:Sudoku.Graphics.ImageExportingOptions">
             <summary>
             Represents image exporting options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Graphics.ImageExportingOptions.Default">
+            <summary>
+            Indicates the default options.
             </summary>
         </member>
         <member name="P:Sudoku.Graphics.ImageExportingOptions.Quality">

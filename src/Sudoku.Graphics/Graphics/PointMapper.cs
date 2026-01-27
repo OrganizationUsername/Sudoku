@@ -45,6 +45,9 @@ public sealed class PointMapper(int size, float margin)
 	/// <param name="rowIndex">The row index.</param>
 	/// <param name="columnIndex">The column index.</param>
 	/// <returns>The point value.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when either argument <paramref name="rowIndex"/> or <paramref name="columnIndex"/> isn't between 0 and 27.
+	/// </exception>
 	public SKPoint GetCandidateAnchor(int rowIndex, int columnIndex)
 	{
 		ArgumentOutOfRangeException.Assert(rowIndex is >= 0 and <= 27);

@@ -47,13 +47,13 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 	}
 
 	/// <inheritdoc/>
-	public void DrawBackground(ImageDrawingOptions? options = null)
-		=> Canvas.Clear((options ?? ImageDrawingOptions.Default).BackgroundColor);
+	public void DrawBackground(CanvasDrawingOptions? options = null)
+		=> Canvas.Clear((options ?? CanvasDrawingOptions.Default).BackgroundColor);
 
 	/// <inheritdoc/>
-	public void DrawGridLine(ImageDrawingOptions? options = null)
+	public void DrawGridLine(CanvasDrawingOptions? options = null)
 	{
-		options ??= ImageDrawingOptions.Default;
+		options ??= CanvasDrawingOptions.Default;
 
 		using var blockLinePaint = new SKPaint
 		{
@@ -94,9 +94,9 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 	}
 
 	/// <inheritdoc/>
-	public void Export(string path, ImageExportingOptions? options = null)
+	public void Export(string path, CanvasExportingOptions? options = null)
 	{
-		options ??= ImageExportingOptions.Default;
+		options ??= CanvasExportingOptions.Default;
 
 		var extension = Path.GetExtension(path);
 		using var image = _surface.Snapshot();
@@ -115,9 +115,9 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 	/// <returns>A <see cref="Task"/> object that allows you visiting states on asynchronous task.</returns>
 	/// <exception cref="NotSupportedException">Throws when the target file extension is not supported.</exception>
 	/// <exception cref="OperationCanceledException">Throws when task is canceled.</exception>
-	public async Task ExportAsync(string path, ImageExportingOptions? options = null, CancellationToken cancellationToken = default)
+	public async Task ExportAsync(string path, CanvasExportingOptions? options = null, CancellationToken cancellationToken = default)
 	{
-		options ??= ImageExportingOptions.Default;
+		options ??= CanvasExportingOptions.Default;
 
 		var extension = Path.GetExtension(path);
 		using var image = _surface.Snapshot();

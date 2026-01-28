@@ -1,6 +1,6 @@
 namespace Sudoku.Graphics;
 
-public partial class ImageDrawingOptions
+public partial class CanvasDrawingOptions
 {
 	/// <summary>
 	/// Represents <see cref="SKColor"/> JSON converter.

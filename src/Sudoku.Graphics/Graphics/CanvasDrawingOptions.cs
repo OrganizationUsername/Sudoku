@@ -1,14 +1,14 @@
 namespace Sudoku.Graphics;
 
 /// <summary>
-/// Represents image drawing options.
+/// Represents drawing options.
 /// </summary>
-public sealed partial class ImageDrawingOptions
+public sealed partial class CanvasDrawingOptions
 {
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	public static readonly ImageDrawingOptions Default = new();
+	public static readonly CanvasDrawingOptions Default = new();
 
 
 	/// <summary>
@@ -82,8 +82,8 @@ public sealed partial class ImageDrawingOptions
 	/// </summary>
 	/// <param name="filePath">The target file path.</param>
 	/// <returns>The options loaded.</returns>
-	public static ImageDrawingOptions? LoadFrom(string filePath)
-		=> File.Exists(filePath) ? JsonSerializer.Deserialize<ImageDrawingOptions>(File.ReadAllText(filePath)) : null;
+	public static CanvasDrawingOptions? LoadFrom(string filePath)
+		=> File.Exists(filePath) ? JsonSerializer.Deserialize<CanvasDrawingOptions>(File.ReadAllText(filePath)) : null;
 
 	/// <summary>
 	/// Saves the specified options, converting it into JSON string and save to the specified file.
@@ -92,7 +92,7 @@ public sealed partial class ImageDrawingOptions
 	/// </summary>
 	/// <param name="options">The instance.</param>
 	/// <param name="filePath">The target file path.</param>
-	public static void SaveTo(ImageDrawingOptions? options, string filePath)
+	public static void SaveTo(CanvasDrawingOptions? options, string filePath)
 	{
 		if (options is not null)
 		{

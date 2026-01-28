@@ -1,14 +1,14 @@
 namespace Sudoku.Graphics;
 
 /// <summary>
-/// Represents image exporting options.
+/// Represents exporting options.
 /// </summary>
-public sealed class ImageExportingOptions
+public sealed class CanvasExportingOptions
 {
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	public static readonly ImageExportingOptions Default = new();
+	public static readonly CanvasExportingOptions Default = new();
 
 
 	/// <summary>

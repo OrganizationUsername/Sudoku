@@ -4,6 +4,129 @@
         <name>Sudoku.Graphics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Graphics.CanvasDrawingOptions">
+            <summary>
+            Represents drawing options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Graphics.CanvasDrawingOptions.Default">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.DrawCandidateAuxiliaryLines">
+            <summary>
+            Indicates whether candidate auxiliary lines are also drawn or not. By default it's <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineStrokeThickness">
+            <summary>
+            Indicates stroke thickness of candidate auxiliary lines. By default it's 0.5.
+            The value should be consumed if <see cref="P:Sudoku.Graphics.CanvasDrawingOptions.DrawCandidateAuxiliaryLines"/> is <see langword="true"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Graphics.CanvasDrawingOptions.DrawCandidateAuxiliaryLines"/>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineStrokeThickness">
+            <summary>
+            Indicates stroke thickness of grid lines. By default it's 1.5.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineStrokeThickness">
+            <summary>
+            Indicates stroke thickness of block lines. By default it's 3.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineDashSequence">
+            <summary>
+            Indicates grid line dash sequence. By default it's empty array.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineDashSequence">
+            <summary>
+            Indicates cell line dash sequence. By default it's empty array.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineDashSequence">
+            <summary>
+            Indicates candidate auxiliary line dash sequence. By default it's empty array.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.BackgroundColor">
+            <summary>
+            Indicates background color.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineStrokeColor">
+            <summary>
+            Indicates stroke color of candidate auxiliary lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineStrokeColor">
+            <summary>
+            Indicates stroke color of grid lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineStrokeColor">
+            <summary>
+            Indicates stroke color of block lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.LoadFrom(System.String)">
+            <summary>
+            Loads configuration from JSON file, specified by its path.
+            If the specified file doesn't exist, <see langword="null"/> will be returned.
+            </summary>
+            <param name="filePath">The target file path.</param>
+            <returns>The options loaded.</returns>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.SaveTo(Sudoku.Graphics.CanvasDrawingOptions,System.String)">
+            <summary>
+            Saves the specified options, converting it into JSON string and save to the specified file.
+            If the specified file exists, truncated and overwritten;
+            if <paramref name="options"/> is <see langword="null"/>, do nothing.
+            </summary>
+            <param name="options">The instance.</param>
+            <param name="filePath">The target file path.</param>
+        </member>
+        <member name="T:Sudoku.Graphics.CanvasDrawingOptions.LineDashSequenceConverter">
+            <summary>
+            Represents <see cref="T:Sudoku.Graphics.LineDashSequence"/> JSON converter.
+            </summary>
+            <seealso cref="T:Sudoku.Graphics.LineDashSequence"/>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.LineDashSequenceConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.LineDashSequenceConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Graphics.LineDashSequence,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.CanvasDrawingOptions.SKColorConverter">
+            <summary>
+            Represents <see cref="T:SkiaSharp.SKColor"/> JSON converter.
+            </summary>
+            <seealso cref="T:SkiaSharp.SKColor"/>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.SKColorConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.CanvasDrawingOptions.SKColorConverter.Write(System.Text.Json.Utf8JsonWriter,SkiaSharp.SKColor,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.CanvasExportingOptions">
+            <summary>
+            Represents exporting options.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Graphics.CanvasExportingOptions.Default">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasExportingOptions.Quality">
+            <summary>
+            Indicates the quality. Range 0..100. Default 80.
+            </summary>
+        </member>
         <member name="T:Sudoku.Graphics.GridCanvas">
             <summary>
             Represents a canvas that allows you drawing sudoku-related items onto it.
@@ -49,16 +172,16 @@
         <member name="M:Sudoku.Graphics.GridCanvas.Dispose">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Graphics.GridCanvas.DrawBackground(Sudoku.Graphics.ImageDrawingOptions)">
+        <member name="M:Sudoku.Graphics.GridCanvas.DrawBackground(Sudoku.Graphics.CanvasDrawingOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Graphics.GridCanvas.DrawGridLine(Sudoku.Graphics.ImageDrawingOptions)">
+        <member name="M:Sudoku.Graphics.GridCanvas.DrawGridLine(Sudoku.Graphics.CanvasDrawingOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Graphics.GridCanvas.Export(System.String,Sudoku.Graphics.ImageExportingOptions)">
+        <member name="M:Sudoku.Graphics.GridCanvas.Export(System.String,Sudoku.Graphics.CanvasExportingOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Graphics.GridCanvas.ExportAsync(System.String,Sudoku.Graphics.ImageExportingOptions,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Graphics.GridCanvas.ExportAsync(System.String,Sudoku.Graphics.CanvasExportingOptions,System.Threading.CancellationToken)">
             <summary>
             Export image into target file, asynchronously.
             </summary>
@@ -76,129 +199,6 @@
             <param name="extension">The file extesnsion.</param>
             <returns>The target format.</returns>
             <exception cref="T:System.NotSupportedException">Throws when the target format is not supported.</exception>
-        </member>
-        <member name="T:Sudoku.Graphics.ImageDrawingOptions">
-            <summary>
-            Represents image drawing options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Graphics.ImageDrawingOptions.Default">
-            <summary>
-            Indicates the default options.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.DrawCandidateAuxiliaryLines">
-            <summary>
-            Indicates whether candidate auxiliary lines are also drawn or not. By default it's <see langword="false"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineStrokeThickness">
-            <summary>
-            Indicates stroke thickness of candidate auxiliary lines. By default it's 0.5.
-            The value should be consumed if <see cref="P:Sudoku.Graphics.ImageDrawingOptions.DrawCandidateAuxiliaryLines"/> is <see langword="true"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Graphics.ImageDrawingOptions.DrawCandidateAuxiliaryLines"/>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.GridLineStrokeThickness">
-            <summary>
-            Indicates stroke thickness of grid lines. By default it's 1.5.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineStrokeThickness">
-            <summary>
-            Indicates stroke thickness of block lines. By default it's 3.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.GridLineDashSequence">
-            <summary>
-            Indicates grid line dash sequence. By default it's empty array.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineDashSequence">
-            <summary>
-            Indicates cell line dash sequence. By default it's empty array.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineDashSequence">
-            <summary>
-            Indicates candidate auxiliary line dash sequence. By default it's empty array.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.BackgroundColor">
-            <summary>
-            Indicates background color.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineStrokeColor">
-            <summary>
-            Indicates stroke color of candidate auxiliary lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.GridLineStrokeColor">
-            <summary>
-            Indicates stroke color of grid lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineStrokeColor">
-            <summary>
-            Indicates stroke color of block lines. By default it's <see cref="F:SkiaSharp.SKColors.Black"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.LoadFrom(System.String)">
-            <summary>
-            Loads configuration from JSON file, specified by its path.
-            If the specified file doesn't exist, <see langword="null"/> will be returned.
-            </summary>
-            <param name="filePath">The target file path.</param>
-            <returns>The options loaded.</returns>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.SaveTo(Sudoku.Graphics.ImageDrawingOptions,System.String)">
-            <summary>
-            Saves the specified options, converting it into JSON string and save to the specified file.
-            If the specified file exists, truncated and overwritten;
-            if <paramref name="options"/> is <see langword="null"/>, do nothing.
-            </summary>
-            <param name="options">The instance.</param>
-            <param name="filePath">The target file path.</param>
-        </member>
-        <member name="T:Sudoku.Graphics.ImageDrawingOptions.LineDashSequenceConverter">
-            <summary>
-            Represents <see cref="T:Sudoku.Graphics.LineDashSequence"/> JSON converter.
-            </summary>
-            <seealso cref="T:Sudoku.Graphics.LineDashSequence"/>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.LineDashSequenceConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.LineDashSequenceConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Graphics.LineDashSequence,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Graphics.ImageDrawingOptions.SKColorConverter">
-            <summary>
-            Represents <see cref="T:SkiaSharp.SKColor"/> JSON converter.
-            </summary>
-            <seealso cref="T:SkiaSharp.SKColor"/>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.SKColorConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Graphics.ImageDrawingOptions.SKColorConverter.Write(System.Text.Json.Utf8JsonWriter,SkiaSharp.SKColor,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Graphics.ImageExportingOptions">
-            <summary>
-            Represents image exporting options.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Graphics.ImageExportingOptions.Default">
-            <summary>
-            Indicates the default options.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Graphics.ImageExportingOptions.Quality">
-            <summary>
-            Indicates the quality. Range 0..100. Default 80.
-            </summary>
         </member>
         <member name="T:Sudoku.Graphics.LineDashSequence">
             <summary>
@@ -353,11 +353,11 @@
             Provides background drawing method set.
             </summary>
         </member>
-        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasDrawBackground.DrawBackground(Sudoku.Graphics.ImageDrawingOptions)">
+        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasDrawBackground.DrawBackground(Sudoku.Graphics.CanvasDrawingOptions)">
             <summary>
             Draw background. Properties in <paramref name="options"/> used:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.BackgroundColor"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.BackgroundColor"/></item>
             </list>
             </summary>
             <param name="options">Indicates the options.</param>
@@ -367,19 +367,19 @@
             Provides line drawing method set.
             </summary>
         </member>
-        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasDrawLine.DrawGridLine(Sudoku.Graphics.ImageDrawingOptions)">
+        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasDrawLine.DrawGridLine(Sudoku.Graphics.CanvasDrawingOptions)">
             <summary>
             Draw grid lines. Properties in <paramref name="options"/> used:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineStrokeThickness"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineStrokeColor"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.BlockLineDashSequence"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.GridLineStrokeThickness"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.GridLineStrokeColor"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.GridLineDashSequence"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineStrokeThickness"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineStrokeColor"/></item>
-            <item><see cref="P:Sudoku.Graphics.ImageDrawingOptions.CandidateAuxiliaryLineDashSequence"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineStrokeThickness"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineStrokeColor"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.BlockLineDashSequence"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineStrokeThickness"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineStrokeColor"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.GridLineDashSequence"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineStrokeThickness"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineStrokeColor"/></item>
+            <item><see cref="P:Sudoku.Graphics.CanvasDrawingOptions.CandidateAuxiliaryLineDashSequence"/></item>
             </list>
             </summary>
             <param name="options">Indicates the options.</param>
@@ -389,7 +389,7 @@
             Represents export method set.
             </summary>
         </member>
-        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasExport.Export(System.String,Sudoku.Graphics.ImageExportingOptions)">
+        <member name="M:Sudoku.Graphics.Primitives.IGridCanvasExport.Export(System.String,Sudoku.Graphics.CanvasExportingOptions)">
             <summary>
             Export image into target file.
             </summary>

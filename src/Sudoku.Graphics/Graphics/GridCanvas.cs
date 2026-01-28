@@ -61,20 +61,11 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 		var factGivenDigitsSize = options.GivenDigitsFontSizeRatio.Measure(Mapper.CellSize);
 		var factModifiableDigitsSize = options.ModifiableDigitsFontSizeRatio.Measure(Mapper.CellSize);
 		var factCandidatesSize = options.CandidatesFontSizeRatio.Measure(Mapper.CellSize);
-		using var givenDigitsFont = new SKFont(givenDigitsTypeface, factGivenDigitsSize)
-		{
-			Subpixel = true
-		};
+		using var givenDigitsFont = new SKFont(givenDigitsTypeface, factGivenDigitsSize) { Subpixel = true };
 		using var givenDigitsPaint = new SKPaint { Color = options.GivenDigitsColor };
-		using var modifiableDigitsFont = new SKFont(modifiableDigitsTypeface, factModifiableDigitsSize)
-		{
-			Subpixel = true
-		};
+		using var modifiableDigitsFont = new SKFont(modifiableDigitsTypeface, factModifiableDigitsSize) { Subpixel = true };
 		using var modifiableDigitsPaint = new SKPaint { Color = options.ModifiableDigitsColor };
-		using var candidatesFont = new SKFont(candidatesTypeface, factCandidatesSize)
-		{
-			Subpixel = true
-		};
+		using var candidatesFont = new SKFont(candidatesTypeface, factCandidatesSize){ Subpixel = true };
 		using var candidatesPaint = new SKPaint { Color = options.CandidatesColor };
 
 		for (var cell = 0; cell < 81; cell++)
@@ -89,7 +80,9 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 						var offset = candidatesFont.MeasureText(text, candidatesPaint);
 						Canvas.DrawText(
 							text,
-							Mapper.GetCandidateCenterPoint(cell * 9 + digit) + new SKPoint(0, offset / 2),
+							Mapper.GetCandidateCenterPoint(cell * 9 + digit)
+								+ new SKPoint(0, offset / 2) // Offset adjustment
+								+ new SKPoint(0, Mapper.CandidateSize / 12), // Manual adjustment
 							SKTextAlign.Center,
 							candidatesFont,
 							candidatesPaint
@@ -105,7 +98,9 @@ public sealed class GridCanvas(in Grid grid, PointMapper mapper) : IGridCanvas
 					var offset = targetFont.MeasureText(text, targetPaint);
 					Canvas.DrawText(
 						text,
-						Mapper.GetCellCenterPoint(cell) + new SKPoint(0, offset / 2),
+						Mapper.GetCellCenterPoint(cell)
+							+ new SKPoint(0, offset / 2) // Offset adjustment
+							+ new SKPoint(0, Mapper.CellSize / 12), // Manual adjustment
 						SKTextAlign.Center,
 						targetFont,
 						targetPaint

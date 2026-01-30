@@ -284,6 +284,18 @@
             Indicates the quality. Range 0..100. Default 80.
             </summary>
         </member>
+        <member name="T:Sudoku.Graphics.ColorDescriptorCollection">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Descriptors.ColorDescriptor"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Descriptors.ColorDescriptor"/>
+        </member>
+        <member name="M:Sudoku.Graphics.ColorDescriptorCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Graphics.ColorDescriptorCollection.System#Linq#Providers#ISliceMethod{Sudoku#Graphics#ColorDescriptorCollection,Sudoku#Descriptors#ColorDescriptor}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Graphics.ColorDescriptorConverter">
             <summary>
             Represents converter method on <see cref="T:Sudoku.Descriptors.ColorDescriptor"/> instance.

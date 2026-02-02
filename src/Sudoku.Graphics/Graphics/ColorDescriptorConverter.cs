@@ -29,8 +29,7 @@ internal static class ColorDescriptorConverter
 				}
 				case (_, int paletteId):
 				{
-					// TODO: Not implemented.
-					throw new NotImplementedException();
+					return options.UserDefinedColorPalette[paletteId].AsSKColor();
 				}
 				case (_, ColorDescriptorAlias item):
 				{
@@ -38,9 +37,9 @@ internal static class ColorDescriptorConverter
 					return item switch
 					{
 						ColorDescriptorAlias.Normal => throw new NotImplementedException(),
-						ColorDescriptorAlias.Auxiliary1 => throw new NotImplementedException(),
-						ColorDescriptorAlias.Auxiliary2 => throw new NotImplementedException(),
-						ColorDescriptorAlias.Auxiliary3 => throw new NotImplementedException(),
+						ColorDescriptorAlias.Auxiliary1 => options.AuxiliaryColors[0].AsSKColor(),
+						ColorDescriptorAlias.Auxiliary2 => options.AuxiliaryColors[1].AsSKColor(),
+						ColorDescriptorAlias.Auxiliary3 => options.AuxiliaryColors[2].AsSKColor(),
 						ColorDescriptorAlias.Assignment => throw new NotImplementedException(),
 						ColorDescriptorAlias.OverlappedAssignment => throw new NotImplementedException(),
 						ColorDescriptorAlias.Elimination => throw new NotImplementedException(),
@@ -48,14 +47,14 @@ internal static class ColorDescriptorConverter
 						ColorDescriptorAlias.Exofin => throw new NotImplementedException(),
 						ColorDescriptorAlias.Endofin => throw new NotImplementedException(),
 						ColorDescriptorAlias.Link => throw new NotImplementedException(),
-						ColorDescriptorAlias.AlmostLockedSet1 => throw new NotImplementedException(),
-						ColorDescriptorAlias.AlmostLockedSet2 => throw new NotImplementedException(),
-						ColorDescriptorAlias.AlmostLockedSet3 => throw new NotImplementedException(),
-						ColorDescriptorAlias.AlmostLockedSet4 => throw new NotImplementedException(),
-						ColorDescriptorAlias.AlmostLockedSet5 => throw new NotImplementedException(),
-						ColorDescriptorAlias.Rectangle1 => throw new NotImplementedException(),
-						ColorDescriptorAlias.Rectangle2 => throw new NotImplementedException(),
-						ColorDescriptorAlias.Rectangle3 => throw new NotImplementedException(),
+						ColorDescriptorAlias.AlmostLockedSet1 => options.AlmostLockedSetColors[0].AsSKColor(),
+						ColorDescriptorAlias.AlmostLockedSet2 => options.AlmostLockedSetColors[1].AsSKColor(),
+						ColorDescriptorAlias.AlmostLockedSet3 => options.AlmostLockedSetColors[2].AsSKColor(),
+						ColorDescriptorAlias.AlmostLockedSet4 => options.AlmostLockedSetColors[3].AsSKColor(),
+						ColorDescriptorAlias.AlmostLockedSet5 => options.AlmostLockedSetColors[4].AsSKColor(),
+						ColorDescriptorAlias.Rectangle1 => options.RectangleColors[0].AsSKColor(),
+						ColorDescriptorAlias.Rectangle2 => options.RectangleColors[1].AsSKColor(),
+						ColorDescriptorAlias.Rectangle3 => options.RectangleColors[2].AsSKColor(),
 						_ => throw new InvalidOperationException($"The value '{nameof(@this.AliasedItem)}' is invalid.")
 					};
 				}

@@ -143,37 +143,87 @@ public sealed class CanvasDrawingOptions
 	/// <summary>
 	/// Indicates background color. By default it's white (#FFFFFFFF).
 	/// </summary>
-	public ColorDescriptor BackgroundColor { get; set; } = (255, 255, 255, 255);
+	public SerializableColor BackgroundColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.White)];
 
 	/// <summary>
 	/// Indicates stroke color of candidate auxiliary lines. By default it's black (#FF000000).
 	/// </summary>
-	public ColorDescriptor CandidateAuxiliaryLineStrokeColor { get; set; } = (255, 0, 0, 0);
+	public SerializableColor CandidateAuxiliaryLineStrokeColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.Black)];
 
 	/// <summary>
 	/// Indicates stroke color of grid lines. By default it's black (#FF000000).
 	/// </summary>
-	public ColorDescriptor GridLineStrokeColor { get; set; } = (255, 0, 0, 0);
+	public SerializableColor GridLineStrokeColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.Black)];
 
 	/// <summary>
 	/// Indicates stroke color of block lines. By default it's black (#FF000000).
 	/// </summary>
-	public ColorDescriptor BlockLineStrokeColor { get; set; } = (255, 0, 0, 0);
+	public SerializableColor BlockLineStrokeColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.Black)];
 
 	/// <summary>
 	/// Indicates color of given digits. By default it's black (#FF000000).
 	/// </summary>
-	public ColorDescriptor GivenDigitsColor { get; set; } = (255, 0, 0, 0);
+	public SerializableColor GivenDigitsColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.Black)];
 
 	/// <summary>
 	/// Indicates color of modifiable digits. By default it's blue (#FF0000FF).
 	/// </summary>
-	public ColorDescriptor ModifiableDigitsColor { get; set; } = (255, 0, 0, 255);
+	public SerializableColor ModifiableDigitsColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.Blue)];
 
 	/// <summary>
 	/// Indicates color of candidates. By default it's dim gray (#FF696969).
 	/// </summary>
-	public ColorDescriptor CandidatesColor { get; set; } = (255, 105, 105, 105);
+	public SerializableColor CandidatesColor { get; set; } = SerializableColor.WellKnownColors[nameof(SKColors.DimGray)];
+
+	/// <summary>
+	/// Indicates the auxiliary color set.
+	/// </summary>
+	public SerializableColorCollection AuxiliaryColors { get; set; } = [
+		new(255, 192, 89), // Orange
+		new(127, 187, 255), // Skyblue
+		new(216, 178, 255) // Purple
+	];
+
+	/// <summary>
+	/// Indicates the almost locked set color set.
+	/// </summary>
+	public SerializableColorCollection AlmostLockedSetColors { get; set; } = [
+		new(220, 212, 252), // Purple
+		new(255, 118, 132), // Red
+		new(206, 251, 237), // Light skyblue
+		new(215, 255, 215), // Light green
+		new(192, 192, 192) // Gray
+	];
+
+	/// <summary>
+	/// Indicates the almost rectangle color set.
+	/// </summary>
+	public SerializableColorCollection RectangleColors { get; set; } = [
+		new(216, 178, 255), // Purple
+		new(204, 150, 248), // Purple
+		new(114, 82, 170), // Dark purple
+	];
+
+	/// <summary>
+	/// Indicates the user-defined color palette.
+	/// </summary>
+	public SerializableColorCollection UserDefinedColorPalette { get; set; } = [
+		new(63, 218, 101), // Green
+		new(255, 192, 89), // Orange
+		new(127, 187, 255), // Skyblue
+		new(216, 178, 255), // Purple
+		new(197, 232, 140), // Yellowish green
+		new(255, 203, 203), // Light red
+		new(178, 223, 223), // Blue green
+		new(252, 220, 165), // Light orange
+		new(255, 255, 150), // Yellow
+		new(247, 222, 143), // Golden yellow
+		new(220, 212, 252), // Purple
+		new(255, 118, 132), // Red
+		new(206, 251, 237), // Light skyblue
+		new(215, 255, 215), // Light green
+		new(192, 192, 192) // Gray
+	];
 
 
 	/// <summary>

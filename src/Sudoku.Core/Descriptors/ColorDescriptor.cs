@@ -192,6 +192,13 @@ public readonly struct ColorDescriptor(long mask) :
 	public static implicit operator ColorDescriptor(int id) => new(id);
 
 	/// <summary>
+	/// Implicit cast from (<see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>) to <see cref="ColorDescriptor"/>.
+	/// </summary>
+	/// <param name="tuple">The tuple or ARGB values.</param>
+	public static implicit operator ColorDescriptor((byte Red, byte Green, byte Blue) tuple)
+		=> new(255, tuple.Red, tuple.Green, tuple.Blue);
+
+	/// <summary>
 	/// Implicit cast from (<see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>, <see cref="byte"/>)
 	/// to <see cref="ColorDescriptor"/>.
 	/// </summary>
@@ -219,6 +226,15 @@ public readonly struct ColorDescriptor(long mask) :
 	public static explicit operator (byte Alpha, byte Red, byte Green, byte Blue)(ColorDescriptor descriptor)
 		=> descriptor.Type == ColorDescriptorType.Argb
 			? (descriptor.Alpha, descriptor.Red, descriptor.Green, descriptor.Blue)
+			: throw new InvalidCastException();
+
+	/// <summary>
+	/// Explicit cast from <see cref="ColorDescriptor"/> into ARGB quadruple.
+	/// </summary>
+	/// <param name="descriptor">The descriptor.</param>
+	public static explicit operator (byte Red, byte Green, byte Blue)(ColorDescriptor descriptor)
+		=> descriptor.Type == ColorDescriptorType.Argb
+			? (descriptor.Red, descriptor.Green, descriptor.Blue)
 			: throw new InvalidCastException();
 
 	/// <summary>

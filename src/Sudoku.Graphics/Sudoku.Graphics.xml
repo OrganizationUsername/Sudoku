@@ -252,6 +252,26 @@
             Indicates color of candidates. By default it's dim gray (#FF696969).
             </summary>
         </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.AuxiliaryColors">
+            <summary>
+            Indicates the auxiliary color set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.AlmostLockedSetColors">
+            <summary>
+            Indicates the almost locked set color set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.RectangleColors">
+            <summary>
+            Indicates the almost rectangle color set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.CanvasDrawingOptions.UserDefinedColorPalette">
+            <summary>
+            Indicates the user-defined color palette.
+            </summary>
+        </member>
         <member name="M:Sudoku.Graphics.CanvasDrawingOptions.LoadFrom(System.String)">
             <summary>
             Loads configuration from JSON file, specified by its path.
@@ -283,18 +303,6 @@
             <summary>
             Indicates the quality. Range 0..100. Default 80.
             </summary>
-        </member>
-        <member name="T:Sudoku.Graphics.ColorDescriptorCollection">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Descriptors.ColorDescriptor"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Descriptors.ColorDescriptor"/>
-        </member>
-        <member name="M:Sudoku.Graphics.ColorDescriptorCollection.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Graphics.ColorDescriptorCollection.System#Linq#Providers#ISliceMethod{Sudoku#Graphics#ColorDescriptorCollection,Sudoku#Descriptors#ColorDescriptor}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Graphics.ColorDescriptorConverter">
             <summary>
@@ -664,6 +672,181 @@
         </member>
         <member name="M:Sudoku.Graphics.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Graphics.Ratio,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.SerializableColor">
+            <summary>
+            Represents a serializable color value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Graphics.SerializableColor.WellKnownColors">
+            <summary>
+            Represents all well-known colors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Graphics.SerializableColor._value">
+            <summary>
+            Indicates the mask.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Graphics.SerializableColor"/> instance via the specified alpha, red, green and blue values.
+            </summary>
+            <param name="alpha">The alpha value.</param>
+            <param name="red">The red value.</param>
+            <param name="green">The green value.</param>
+            <param name="blue">The blue value.</param>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.#ctor(System.Byte,System.Byte,System.Byte)">
+            <inheritdoc cref="M:Sudoku.Graphics.SerializableColor.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.#ctor(SkiaSharp.SKColor)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Graphics.SerializableColor"/> instance via the specified <see cref="T:SkiaSharp.SKColor"/> instance.
+            </summary>
+            <param name="skColor">The <see cref="T:SkiaSharp.SKColor"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.#ctor(System.UInt32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Graphics.SerializableColor"/> instance via the specified mask value.
+            </summary>
+            <param name="value">The mask value.</param>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Graphics.SerializableColor.Alpha">
+            <summary>
+            Indicates alpha value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.SerializableColor.Red">
+            <summary>
+            Indicates red value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.SerializableColor.Green">
+            <summary>
+            Indicates green value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Graphics.SerializableColor.Blue">
+            <summary>
+            Indicates blue value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.Deconstruct(System.Byte@,System.Byte@,System.Byte@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.Equals(System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.Equals(Sudoku.Graphics.SerializableColor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.AsSKColor">
+            <summary>
+            Converts the current instance as an <see cref="T:SkiaSharp.SKColor"/> instance.
+            </summary>
+            <returns>An <see cref="T:SkiaSharp.SKColor"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.TryParse(System.String,Sudoku.Graphics.SerializableColor@)">
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.Parse(System.String)">
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.op_Equality(Sudoku.Graphics.SerializableColor,Sudoku.Graphics.SerializableColor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColor.op_Inequality(Sudoku.Graphics.SerializableColor,Sudoku.Graphics.SerializableColor)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.Converter">
+            <summary>
+            Represents a JSON converter of type <see cref="T:Sudoku.Graphics.SerializableColor"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Graphics.SerializableColor"/>
+        </member>
+        <member name="M:Sudoku.Graphics.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Graphics.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Graphics.SerializableColor,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.SerializableColorCollection">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Graphics.SerializableColor"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Graphics.SerializableColor"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColorCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SerializableColorCollection.System#Linq#Providers#ISliceMethod{Sudoku#Graphics#SerializableColorCollection,Sudoku#Graphics#SerializableColor}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Graphics.SKColorExtensions">
+            <summary>
+            Provides extension members on <see cref="T:SkiaSharp.SKColor"/> instances.
+            </summary>
+            <seealso cref="T:SkiaSharp.SKColor"/>
+        </member>
+        <member name="M:Sudoku.Graphics.SKColorExtensions.Deconstruct(SkiaSharp.SKColor,System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <inheritdoc cref="M:Sudoku.Graphics.SKColorExtensions.&lt;G&gt;$0B54FF251BFEADD611570DC7AF079F1E.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)"/>
+        </member>
+        <member name="T:Sudoku.Graphics.SKColorExtensions.&lt;G&gt;$0B54FF251BFEADD611570DC7AF079F1E.&lt;M&gt;$3BA8A7E9893FD68B511A567BE4CF244F">
+            <target name="container">
+				<summary>
+					<para>
+						Represents a nested <see langword="extension" /> block that includes extension members
+						that allows you using instance or static member reference syntax to visit them, avoiding some verbose referencing syntax
+						like <c>BlahBlahExtension.Method(InstanceMember)</c>, extending from extension methods introduced in C# 3.
+					</para>
+					<para>
+						Different with extension methods, an <see langword="extension" /> block can declare multiple different kinds of members,
+						rather than only methods, instance methods. C# 14 has already brought properties, methods and operators.
+					</para>
+				</summary>
+			</target>
+            <param name="this">The current instance.</param>
+        </member>
+        <member name="M:Sudoku.Graphics.SKColorExtensions.&lt;G&gt;$0B54FF251BFEADD611570DC7AF079F1E.Deconstruct(System.Byte@,System.Byte@,System.Byte@,System.Byte@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
         </member>
     </members>
 </doc>

@@ -365,16 +365,16 @@ public static class BraidAnalysis
 						break;
 					}
 
-					// N mode with <c>popcount == 2</c> <=> Not NZZ.
-					// Z mode with <c>popcount == 2</c> <=> Not NNZ.
+					// N mode with popcount == 2 <=> Not NZZ.
+					// Z mode with popcount == 2 <=> Not NNZ.
 					case 2:
 					{
 						candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZBraid : BraidingType.NBraid);
 						goto case 1;
 					}
 
-					// N mode with <c>popcount >= 0</c> <=> Not ZZZ.
-					// Z mode with <c>popcount >= 0</c> <=> Not NNN.
+					// N mode with popcount >= 0 <=> Not ZZZ.
+					// Z mode with popcount >= 0 <=> Not NNN.
 					case 1:
 					{
 						candidateBraidingTypes &= ~(strandType == StrandType.Downside ? BraidingType.ZRope : BraidingType.NRope);
@@ -399,7 +399,7 @@ public static class BraidAnalysis
 					//   * T6N (NNZ), [1, 2, 3]
 					//   * T6Z (NNZ), [6]
 					// In T6N, digits 2 and 3 in [1, 2, 3] cannot be eliminated
-					// because we cannot keep the second digit appeared in strand T6N, because this chute is inferred as NNZ mode,
+					// because we cannot keep the second digit appeared in strand T6N because of NNZ having been inferred,
 					// meaning there're 2 N's digits.
 					if (BitOperations.PopCount((uint)mask) == (strand.Type == StrandType.Downside ? nCount : zCount))
 					{

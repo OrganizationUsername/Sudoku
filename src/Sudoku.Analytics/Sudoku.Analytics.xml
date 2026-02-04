@@ -1164,7 +1164,7 @@
             <summary>
             Get cells at the specified strand.
             </summary>
-            <param name="label">The label of strand.</param>
+            <param name="strand">The strand.</param>
             <returns>The map of the strand.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Braiding.BraidAnalysis.GetPattern(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">

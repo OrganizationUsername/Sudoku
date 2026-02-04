@@ -109,9 +109,9 @@ public static class BraidAnalysis
 	/// <summary>
 	/// Get cells at the specified strand.
 	/// </summary>
-	/// <param name="label">The label of strand.</param>
+	/// <param name="strand">The strand.</param>
 	/// <returns>The map of the strand.</returns>
-	public static ref readonly ChuteStrandMap GetCellsAt(Strand label) => ref StrandsMap[label];
+	public static ref readonly ChuteStrandMap GetCellsAt(Strand strand) => ref StrandsMap[strand];
 
 	/// <summary>
 	/// Gets the pattern type of three digits in the specified chute.

@@ -2645,8 +2645,10 @@
         <member name="M:System.IndexRangeExtensions.&lt;G&gt;$884281F282080FCB4345EB7F01A5EF3F.Deconstruct(System.Int32@,System.Boolean@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -2675,8 +2677,10 @@
         <member name="M:System.IndexRangeExtensions.&lt;G&gt;$2BED71C534053B53AEFDCE16BD914EC5.Deconstruct(System.Index@,System.Index@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>

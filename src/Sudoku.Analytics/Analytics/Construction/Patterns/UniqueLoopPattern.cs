@@ -30,7 +30,7 @@ public sealed class UniqueLoopPattern(in CellMap loop, Cell[] path, Mask digitsM
 	public Mask DigitsMask { get; } = digitsMask;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap loop, out Cell[] path, out Mask digitsMask)
 		=> (loop, path, digitsMask) = (Loop, Path, DigitsMask);
 

@@ -12,10 +12,10 @@ public static class ColorExtensions
 	/// <param name="this">The current instance.</param>
 	extension(Color @this)
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out byte r, out byte g, out byte b) => (r, g, b) = (@this.R, @this.G, @this.B);
 
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out byte a, out byte r, out byte g, out byte b)
 			=> (a, r, g, b) = (@this.A, @this.R, @this.G, @this.B);
 

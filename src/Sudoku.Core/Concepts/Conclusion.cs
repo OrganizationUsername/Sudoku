@@ -79,11 +79,11 @@ public readonly struct Conclusion(Mask mask) :
 	public ConclusionType ConclusionType => (ConclusionType)(_mask / 729);
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ConclusionType conclusionType, out Candidate candidate)
 		=> (conclusionType, candidate) = (ConclusionType, Candidate);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ConclusionType conclusionType, out Cell cell, out Digit digit)
 		=> ((conclusionType, _), cell, digit) = (this, Cell, Digit);
 

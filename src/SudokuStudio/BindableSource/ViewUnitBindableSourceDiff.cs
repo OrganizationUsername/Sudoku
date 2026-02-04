@@ -23,7 +23,7 @@ public readonly ref struct ViewUnitBindableSourceDiff
 	public readonly required ReadOnlySpan<IDrawableItem> Negatives { get; init; }
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ReadOnlySpan<IDrawableItem> negatives, out ReadOnlySpan<IDrawableItem> positives)
 	{
 		negatives = Negatives;

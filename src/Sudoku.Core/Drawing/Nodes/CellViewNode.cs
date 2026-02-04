@@ -14,7 +14,7 @@ public sealed class CellViewNode(ColorDescriptor identifier, Cell cell) : BasicV
 	public Cell Cell { get; } = cell;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out Cell cell) => (identifier, cell) = (Identifier, Cell);
 
 	/// <inheritdoc/>

@@ -75,7 +75,7 @@ public readonly struct Strand(int chuteIndex, Digit sequenceIndex, StrandType ty
 	private int GlobalIndex => (BraidAnalysis.ProjectGlobalIndex(ChuteIndex, SequenceIndex) << 1) + (int)(Type - 1);
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out int chuteIndex, out int sequenceIndex, out StrandType type)
 		=> (chuteIndex, sequenceIndex, type) = (ChuteIndex, SequenceIndex, Type);
 

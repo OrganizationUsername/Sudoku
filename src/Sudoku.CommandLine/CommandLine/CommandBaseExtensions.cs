@@ -12,14 +12,14 @@ public static class CommandBaseExtensions
 	/// <param name="this">The current instance.</param>
 	extension<TCommand>(TCommand @this) where TCommand : CommandBase
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out SymbolList<Option> options, out SymbolList<Argument> arguments)
 		{
 			options = @this.OptionsCore;
 			arguments = @this.ArgumentsCore;
 		}
 
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(
 			out SymbolList<Option> options,
 			out SymbolList<Argument> arguments,

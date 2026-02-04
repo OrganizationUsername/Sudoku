@@ -26,10 +26,10 @@ public readonly struct ChuteStrandMap(CellMap[] includedSegments, in CellMap exc
 	public ReadOnlySpan<CellMap> IncludedSegments => includedSegments;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap included, out CellMap excluded) => (included, excluded) = (Included, Excluded);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap included, out CellMap excluded, out ReadOnlySpan<CellMap> includedSegments)
 	{
 		(included, excluded) = this;

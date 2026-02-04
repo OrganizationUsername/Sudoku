@@ -19,7 +19,7 @@ internal sealed record IttoryuPathNode(in Grid Grid, House House, Candidate Cand
 	public Cell Cell => Candidate / 9;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Grid grid, out House house, out Cell cell, out Digit digit)
 		=> ((grid, house, _), cell, digit) = (this, Candidate / 9, Candidate % 9);
 

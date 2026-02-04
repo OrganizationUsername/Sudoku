@@ -165,7 +165,7 @@ public sealed class ExtendedRectanglePattern(bool isFat, in CellMap patternCells
 	public override PatternType Type => PatternType.ExtendedRectangle;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out bool isFat, out CellMap patternCells, out (Cell Left, Cell Right)[] pairCells, out int size)
 		=> (isFat, patternCells, pairCells, size) = (IsFat, PatternCells, PairCells, Size);
 

@@ -12,7 +12,7 @@ public static class Vector2Extensions
 	/// <param name="this">The current instance.</param>
 	extension(Vector2 @this)
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out float width, out float height) => (width, height) = (@this.X, @this.Y);
 	}
 }

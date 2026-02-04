@@ -81,10 +81,10 @@ public sealed class Node(in CandidateMap map, bool isOn, NodeSet? parents = null
 	private int IsOnPropertyValue => IsOn ? 1 : 0;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out bool isGroupedNode, out CandidateMap map) => (isGroupedNode, map) = (IsGroupedNode, _map);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out bool isGroupedNode, out CandidateMap map, out NodeSet? parents)
 		=> ((isGroupedNode, map), parents) = (this, Parents);
 

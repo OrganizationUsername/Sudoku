@@ -4,7 +4,7 @@ namespace System.Numerics;
 /// Represents an enumerator that iterates bits over an <see cref="nint"/> or <see cref="nuint"/> value.
 /// </summary>
 /// <param name="_value">The value to be iterated.</param>
-public ref struct NIntEnumerator(nint _value) : IBitEnumerator
+public ref struct NumericIntPtrEnumerator(nint _value) : IBitEnumerator
 {
 	/// <inheritdoc/>
 	public readonly int PopulationCount => PopCount((nuint)_value);

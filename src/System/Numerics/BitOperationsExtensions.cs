@@ -744,7 +744,7 @@ public static partial class BitOperationsExtensions
 
 		/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 		[OverloadResolutionPriority(2)]
-		public NIntEnumerator GetEnumerator() => new(@this);
+		public NumericIntPtrEnumerator GetEnumerator() => new(@this);
 	}
 
 	/// <include
@@ -790,7 +790,7 @@ public static partial class BitOperationsExtensions
 
 		/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 		[OverloadResolutionPriority(2)]
-		public NIntEnumerator GetEnumerator() => new((nint)@this);
+		public NumericIntPtrEnumerator GetEnumerator() => new((nint)@this);
 	}
 
 	/// <include

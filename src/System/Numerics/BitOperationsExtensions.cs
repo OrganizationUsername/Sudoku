@@ -12,19 +12,19 @@ public static partial class BitOperationsExtensions
 	private static readonly byte[] BitCountLut = new byte[256];
 
 
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	/// <include file="../../global-doc-comments.xml" path="g/static-constructor"/>
 	static BitOperationsExtensions()
 	{
 		for (var i = 0; i < 256; i++)
 		{
-			var n = i;
-			var c = (byte)0;
-			while (n != 0)
+			var value = i;
+			var count = (byte)0;
+			while (value != 0)
 			{
-				c++;
-				n &= n - 1;
+				count++;
+				value &= value - 1;
 			}
-			BitCountLut[i] = c;
+			BitCountLut[i] = count;
 		}
 	}
 
@@ -744,7 +744,7 @@ public static partial class BitOperationsExtensions
 
 		/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 		[OverloadResolutionPriority(2)]
-		public NIntEnumerator GetEnumerator() => new(@this);
+		public NumericIntPtrEnumerator GetEnumerator() => new(@this);
 	}
 
 	/// <include
@@ -790,7 +790,7 @@ public static partial class BitOperationsExtensions
 
 		/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 		[OverloadResolutionPriority(2)]
-		public NIntEnumerator GetEnumerator() => new((nint)@this);
+		public NumericIntPtrEnumerator GetEnumerator() => new((nint)@this);
 	}
 
 	/// <include

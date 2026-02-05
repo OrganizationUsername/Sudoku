@@ -24,7 +24,7 @@ public sealed class LockedMember(in CellMap lockedCells, House lockedBlock) :
 	ComponentType IComponent.Type => ComponentType.LockedMember;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap lockedCells, out House lockedBlock)
 		=> (lockedCells, lockedBlock) = (LockedCells, LockedBlock);
 

@@ -138,10 +138,10 @@ public readonly struct Space(Mask mask) :
 	private Digit Secondary => _mask >> 4 & 15;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out int primary, out int secondary) => (primary, secondary) = (Primary, Secondary);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out SpaceType type, out int primary, out int secondary) => (type, (primary, secondary)) = (Type, this);
 
 	/// <inheritdoc/>

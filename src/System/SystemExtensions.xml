@@ -2645,8 +2645,10 @@
         <member name="M:System.IndexRangeExtensions.&lt;G&gt;$884281F282080FCB4345EB7F01A5EF3F.Deconstruct(System.Int32@,System.Boolean@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -2675,8 +2677,10 @@
         <member name="M:System.IndexRangeExtensions.&lt;G&gt;$2BED71C534053B53AEFDCE16BD914EC5.Deconstruct(System.Index@,System.Index@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -8906,40 +8910,40 @@
         <member name="M:System.Numerics.Int64Enumerator.System#IDisposable#Dispose">
             <inheritdoc/>
         </member>
-        <member name="T:System.Numerics.NIntEnumerator">
+        <member name="T:System.Numerics.NumericIntPtrEnumerator">
             <summary>
             Represents an enumerator that iterates bits over an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
-        <member name="M:System.Numerics.NIntEnumerator.#ctor(System.IntPtr)">
+        <member name="M:System.Numerics.NumericIntPtrEnumerator.#ctor(System.IntPtr)">
             <summary>
             Represents an enumerator that iterates bits over an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="_value">The value to be iterated.</param>
         </member>
-        <member name="P:System.Numerics.NIntEnumerator.PopulationCount">
+        <member name="P:System.Numerics.NumericIntPtrEnumerator.PopulationCount">
             <inheritdoc/>
         </member>
-        <member name="P:System.Numerics.NIntEnumerator.Bits">
+        <member name="P:System.Numerics.NumericIntPtrEnumerator.Bits">
             <inheritdoc/>
         </member>
-        <member name="P:System.Numerics.NIntEnumerator.Current">
+        <member name="P:System.Numerics.NumericIntPtrEnumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="P:System.Numerics.NIntEnumerator.System#Collections#IEnumerator#Current">
+        <member name="P:System.Numerics.NumericIntPtrEnumerator.System#Collections#IEnumerator#Current">
             <inheritdoc/>
         </member>
-        <member name="P:System.Numerics.NIntEnumerator.Item(System.Int32)">
+        <member name="P:System.Numerics.NumericIntPtrEnumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
-        <member name="M:System.Numerics.NIntEnumerator.MoveNext">
+        <member name="M:System.Numerics.NumericIntPtrEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="M:System.Numerics.NIntEnumerator.System#Collections#IEnumerator#Reset">
+        <member name="M:System.Numerics.NumericIntPtrEnumerator.System#Collections#IEnumerator#Reset">
             <inheritdoc/>
         </member>
-        <member name="M:System.Numerics.NIntEnumerator.System#IDisposable#Dispose">
+        <member name="M:System.Numerics.NumericIntPtrEnumerator.System#IDisposable#Dispose">
             <inheritdoc/>
         </member>
         <member name="T:System.Pipelines.Pipeline">

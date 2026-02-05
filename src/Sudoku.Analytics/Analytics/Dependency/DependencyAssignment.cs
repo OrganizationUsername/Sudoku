@@ -71,7 +71,7 @@ public readonly struct DependencyAssignment :
 	}
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Digit digit, out CellMap cells) => (digit, cells) = (Digit, Cells);
 
 	/// <inheritdoc/>

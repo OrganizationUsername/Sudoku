@@ -30,7 +30,7 @@ public sealed class BivalueOddagonPattern(in CellMap loopCells, in CellMap extra
 	public Mask DigitsMask { get; } = digitsMask;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap loopCells, out CellMap extraCells, out Mask digitsMask)
 		=> (loopCells, extraCells, digitsMask) = (LoopCells, ExtraCells, DigitsMask);
 

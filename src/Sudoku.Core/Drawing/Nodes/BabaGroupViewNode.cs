@@ -37,11 +37,11 @@ public sealed class BabaGroupViewNode(ColorDescriptor identifier, Cell cell, cha
 	public Mask DigitsMask { get; } = digitsMask;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out Cell cell, out char unknownValueChar)
 		=> (identifier, cell, unknownValueChar) = (Identifier, Cell, UnknownValueChar);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out Cell cell, out Mask digitsMask, out char unknownValueChar)
 		=> ((identifier, cell, unknownValueChar), digitsMask) = (this, DigitsMask);
 

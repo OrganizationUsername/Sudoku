@@ -13,7 +13,7 @@ public abstract class IconViewNode(ColorDescriptor identifier, Cell cell) : View
 	public Cell Cell { get; } = cell;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Cell cell) => cell = Cell;
 
 	/// <inheritdoc/>

@@ -131,11 +131,13 @@ result ^= expression;
 
 	<!-- C# 7 -->
 	<csharp7>
-		<feature name="deconstruction-method">
+		<feature name="deconstruct-method">
 			<target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
 		</feature>

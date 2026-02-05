@@ -14,7 +14,7 @@ public sealed class HouseViewNode(ColorDescriptor identifier, House house) : Bas
 	public House House { get; } = house;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out House house) => (identifier, house) = (Identifier, House);
 
 	/// <inheritdoc/>

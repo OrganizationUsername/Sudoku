@@ -37,7 +37,7 @@ public sealed class ChainLinkViewNode(ColorDescriptor identifier, CandidateMap s
 	LinkShape ILinkViewNode.Shape => LinkShape.Chain;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out CandidateMap start, out CandidateMap end, out bool isStrongLink)
 		=> (identifier, start, end, isStrongLink) = (Identifier, Start, End, IsStrongLink);
 

@@ -30,7 +30,7 @@ public sealed class GuardianPattern(in CellMap loopCells, in CellMap guardians, 
 	public Digit Digit { get; } = digit;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out CellMap loopCells, out CellMap guardians, out Digit digit)
 		=> (loopCells, guardians, digit) = (LoopCells, Guardians, Digit);
 

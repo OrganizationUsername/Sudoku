@@ -29,7 +29,7 @@ public sealed class CellLinkViewNode(ColorDescriptor identifier, Cell start, Cel
 	LinkShape ILinkViewNode.Shape => LinkShape.Cell;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out Cell start, out Cell end)
 		=> (identifier, start, end) = (Identifier, Start, End);
 

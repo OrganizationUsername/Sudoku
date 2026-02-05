@@ -89,7 +89,7 @@ public readonly struct HouseDigitIdentifier(House house, Digit digit) :
 	static HouseDigitIdentifier IAdditiveIdentity<HouseDigitIdentifier, HouseDigitIdentifier>.AdditiveIdentity => MinValue;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out House house, out Digit digit) => (house, digit) = (House, Digit);
 
 	/// <inheritdoc/>

@@ -75,7 +75,7 @@ public sealed class BorescoperDeadlyPatternPattern(long mask) : Pattern
 	private readonly long _mask = mask;
 
 
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	/// <include file="../../global-doc-comments.xml" path="g/static-constructor"/>
 	static BorescoperDeadlyPatternPattern()
 	{
 		var count = 0;
@@ -291,7 +291,7 @@ public sealed class BorescoperDeadlyPatternPattern(long mask) : Pattern
 	/// <inheritdoc/>
 	public override BorescoperDeadlyPatternPattern Clone() => new(_mask);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	internal void Deconstruct(out (Cell A, Cell B) pair1, out (Cell A, Cell B) pair2, out (Cell A, Cell B, Cell C, Cell D) centerCells)
 		=> (pair1, pair2, centerCells) = (Pair1, Pair2, CenterCells);
 }

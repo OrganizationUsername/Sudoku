@@ -14,7 +14,7 @@ public static class SizeOrSizeFExtensions
 	extension(Size @this)
 	{
 #if !COMPATIBLE_EXTENSION_DECONSTRUCT_METHOD
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out int width, out int height) => (width, height) = (@this.Width, @this.Height);
 #endif
 	}
@@ -32,16 +32,16 @@ public static class SizeOrSizeFExtensions
 		public Size Truncate() => new((int)@this.Width, (int)@this.Height);
 
 #if !COMPATIBLE_EXTENSION_DECONSTRUCT_METHOD
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out float width, out float height) => (width, height) = (@this.Width, @this.Height);
 #endif
 	}
 
 #if COMPATIBLE_EXTENSION_DECONSTRUCT_METHOD
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public static void Deconstruct(this Size @this, out int width, out int height) => (width, height) = (@this.Width, @this.Height);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public static void Deconstruct(this SizeF @this, out float width, out float height)
 		=> (width, height) = (@this.Width, @this.Height);
 #endif

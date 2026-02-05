@@ -1543,16 +1543,20 @@
         <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -2253,8 +2257,10 @@
         <member name="M:Sudoku.Concepts.Conjugate.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -4537,24 +4543,30 @@
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Deconstruct(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap}@,System.ReadOnlySpan{Sudoku.Concepts.CellMap}@,System.ReadOnlySpan{Sudoku.Concepts.CellMap}@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -5272,8 +5284,10 @@
         <member name="M:Sudoku.Concepts.HouseDigitIdentifier.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -6763,6 +6777,115 @@
             <returns>The reference to the element.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.Limits">
+            <summary>
+            Provides an easy entry to visit limits of types.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.Candidate">
+            <summary>
+            Indicates candidate-related limits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Candidate.Min">
+            <summary>
+            Indicates min value of candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Candidate.Max">
+            <summary>
+            Indicates max value of candidate.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.Cell">
+            <summary>
+            Indicates cell-related limits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Cell.Min">
+            <summary>
+            Indicates min value of cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Cell.Max">
+            <summary>
+            Indicates max value of cell.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.Chute">
+            <summary>
+            Indicates chute-related limits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Chute.Min">
+            <summary>
+            Indicates min value of chute index.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Chute.Max">
+            <summary>
+            Indicates max value of chute index.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.ChuteCellsCount">
+            <summary>
+            Indicates limits on chute cells count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.ChuteCellsCount.Min">
+            <summary>
+            Indicates min value of chute cells count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.ChuteCellsCount.Max">
+            <summary>
+            Indicates max value of chute cells count.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Limits.GetMin``1">
+            <summary>
+            Returns min value of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type.</typeparam>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Limits.GetMax``1">
+            <summary>
+            Returns max value of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type.</typeparam>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.HouseCellsCount">
+            <summary>
+            Indicates limits on house cells count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.HouseCellsCount.Min">
+            <summary>
+            Indicates min value of house cells count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.HouseCellsCount.Max">
+            <summary>
+            Indicates max value of house cells count.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Limits.Segment">
+            <summary>
+            Indicates segment-related limits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Segment.Min">
+            <summary>
+            Indicates min value of segment index.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Limits.Segment.Max">
+            <summary>
+            Indicates max value of segment index.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.LogicalPosition">
             <summary>
             Represents logical position between cells.
@@ -8234,8 +8357,10 @@
         <member name="M:Sudoku.Concepts.Segment.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -8984,16 +9109,20 @@
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.Deconstruct(System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.Supersymmetry.Space.Deconstruct(Sudoku.Concepts.Supersymmetry.SpaceType@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -10758,6 +10887,10 @@
             <param name="r">The red value.</param>
             <param name="g">The green value.</param>
             <param name="b">The blue value.</param>
+            <remarks>
+            We should explicitly cast from bit-merged value into <see cref="T:System.UInt32"/> to prevent negative-bit extension,
+            which is unexpected behavior.
+            </remarks>
         </member>
         <member name="M:Sudoku.Descriptors.ColorDescriptor.#ctor(Sudoku.Descriptors.ColorDescriptorAlias)">
             <summary>
@@ -10789,16 +10922,16 @@
             The value becomes unsafe when <see cref="P:Sudoku.Descriptors.ColorDescriptor.Type"/> is not <see cref="F:Sudoku.Descriptors.ColorDescriptorType.Argb"/> but no exceptions thrown.
             </summary>
         </member>
-        <member name="P:Sudoku.Descriptors.ColorDescriptor.ArgbMask">
-            <summary>
-            Indicates an integer that represents ARGB values.
-            The value becomes unsafe when <see cref="P:Sudoku.Descriptors.ColorDescriptor.Type"/> is not <see cref="F:Sudoku.Descriptors.ColorDescriptorType.Argb"/> but no exceptions thrown.
-            </summary>
-        </member>
         <member name="P:Sudoku.Descriptors.ColorDescriptor.Id">
             <summary>
             Indicates an integer that describes the palette ID that a user has chosen.
             The value becomes unsafe when <see cref="P:Sudoku.Descriptors.ColorDescriptor.Type"/> is not <see cref="F:Sudoku.Descriptors.ColorDescriptorType.Id"/> but no exceptions thrown.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Descriptors.ColorDescriptor.ArgbMask">
+            <summary>
+            Indicates an integer that represents ARGB values.
+            The value becomes unsafe when <see cref="P:Sudoku.Descriptors.ColorDescriptor.Type"/> is not <see cref="F:Sudoku.Descriptors.ColorDescriptorType.Argb"/> but no exceptions thrown.
             </summary>
         </member>
         <member name="P:Sudoku.Descriptors.ColorDescriptor.ValueMask">
@@ -10870,6 +11003,12 @@
             </summary>
             <param name="id">The ID.</param>
         </member>
+        <member name="M:Sudoku.Descriptors.ColorDescriptor.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte})~Sudoku.Descriptors.ColorDescriptor">
+            <summary>
+            Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>) to <see cref="T:Sudoku.Descriptors.ColorDescriptor"/>.
+            </summary>
+            <param name="tuple">The tuple or ARGB values.</param>
+        </member>
         <member name="M:Sudoku.Descriptors.ColorDescriptor.op_Implicit(System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte})~Sudoku.Descriptors.ColorDescriptor">
             <summary>
             Implicit cast from (<see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>, <see cref="T:System.Byte"/>)
@@ -10890,6 +11029,12 @@
             <param name="descriptor">The descriptor.</param>
         </member>
         <member name="M:Sudoku.Descriptors.ColorDescriptor.op_Explicit(Sudoku.Descriptors.ColorDescriptor)~System.ValueTuple{System.Byte,System.Byte,System.Byte,System.Byte}">
+            <summary>
+            Explicit cast from <see cref="T:Sudoku.Descriptors.ColorDescriptor"/> into ARGB quadruple.
+            </summary>
+            <param name="descriptor">The descriptor.</param>
+        </member>
+        <member name="M:Sudoku.Descriptors.ColorDescriptor.op_Explicit(Sudoku.Descriptors.ColorDescriptor)~System.ValueTuple{System.Byte,System.Byte,System.Byte}">
             <summary>
             Explicit cast from <see cref="T:Sudoku.Descriptors.ColorDescriptor"/> into ARGB quadruple.
             </summary>
@@ -12050,16 +12195,20 @@
         <member name="M:Sudoku.Drawing.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@,System.Char@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.Drawing.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@,System.Int16@,System.Char@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12161,8 +12310,10 @@
         <member name="M:Sudoku.Drawing.Nodes.CellLinkViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12200,8 +12351,10 @@
         <member name="M:Sudoku.Drawing.Nodes.CellViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12262,8 +12415,10 @@
         <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12319,8 +12474,10 @@
         <member name="M:Sudoku.Drawing.Nodes.ChuteViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12403,8 +12560,10 @@
         <member name="M:Sudoku.Drawing.Nodes.ConjugateLinkViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@,System.Int32@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12493,8 +12652,10 @@
         <member name="M:Sudoku.Drawing.Nodes.HouseViewNode.Deconstruct(Sudoku.Descriptors.ColorDescriptor@,System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -12532,8 +12693,10 @@
         <member name="M:Sudoku.Drawing.Nodes.IconViewNode.Deconstruct(System.Int32@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
@@ -14190,8 +14353,10 @@
         <member name="M:Sudoku.Linq.BitStateMapGrouping`3.Deconstruct(`2@,`0@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>

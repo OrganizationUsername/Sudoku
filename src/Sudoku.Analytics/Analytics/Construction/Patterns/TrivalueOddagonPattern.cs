@@ -40,7 +40,7 @@ public sealed class TrivalueOddagonPattern(Cell[] block1Cells, Cell[] block2Cell
 	private static readonly Cell[][] AntidiagonalCases = [[0, 11, 19], [1, 9, 20], [2, 10, 18]];
 
 
-	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
+	/// <include file="../../global-doc-comments.xml" path="g/static-constructor"/>
 	static TrivalueOddagonPattern()
 	{
 		var patternOffsetsList = new List<TrivalueOddagonPattern>();
@@ -117,7 +117,7 @@ public sealed class TrivalueOddagonPattern(Cell[] block1Cells, Cell[] block2Cell
 	public CellMap Map => [.. Block1Cells, .. Block2Cells, .. Block3Cells, .. Block4Cells];
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Cell[] block1Cells, out Cell[] block2Cells, out Cell[] block3Cells, out Cell[] block4Cells)
 		=> (block1Cells, block2Cells, block3Cells, block4Cells) = (Block1Cells, Block2Cells, Block3Cells, Block4Cells);
 

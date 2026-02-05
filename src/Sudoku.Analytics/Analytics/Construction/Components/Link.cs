@@ -69,14 +69,14 @@ public sealed class Link(Node firstNode, Node secondNode, bool isStrong, Pattern
 	ComponentType IComponent.Type => ComponentType.ChainLink;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Node firstNode, out Node secondNode) => (firstNode, secondNode) = (FirstNode, SecondNode);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Node firstNode, out Node secondNode, out bool isStrong)
 		=> ((firstNode, secondNode), isStrong) = (this, IsStrong);
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Node firstNode, out Node secondNode, out bool isStrong, out Pattern? groupedLinkPattern)
 		=> ((firstNode, secondNode, isStrong), groupedLinkPattern) = (this, GroupedLinkPattern);
 

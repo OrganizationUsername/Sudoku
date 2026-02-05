@@ -13,7 +13,7 @@ public static class IndexRangeExtensions
 	/// <param name="this">The current instance.</param>
 	extension(Index @this)
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out int value, out bool isFromEnd) => (value, isFromEnd) = (@this.Value, @this.IsFromEnd);
 
 
@@ -30,7 +30,7 @@ public static class IndexRangeExtensions
 	/// <param name="this">The current instance.</param>
 	extension(in Range @this)
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out Index start, out Index end) => (start, end) = (@this.Start, @this.End);
 
 

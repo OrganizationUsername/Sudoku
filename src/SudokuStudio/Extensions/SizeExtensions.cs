@@ -12,7 +12,7 @@ public static class SizeExtensions
 	/// <param name="this">The current instance.</param>
 	extension(Size @this)
 	{
-		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+		/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 		public void Deconstruct(out float width, out float height) => (width, height) = (@this._width, @this._height);
 	}
 }

@@ -62,7 +62,7 @@ public readonly struct Conjugate(int _mask) : IEquatable<Conjugate>, IEqualityOp
 	public CellMap Map => [From, To];
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out Candidate fromCand, out Candidate toCand) => (fromCand, toCand) = (From * 9 + Digit, To * 9 + Digit);
 
 	/// <inheritdoc cref="object.Equals(object?)"/>

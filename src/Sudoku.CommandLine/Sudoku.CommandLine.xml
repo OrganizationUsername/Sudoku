@@ -130,16 +130,20 @@
         <member name="M:Sudoku.CommandLine.CommandBaseExtensions.&lt;G&gt;$6418958A46DF5F6DD9A84F71F50FF749`1.Deconstruct(Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>
         <member name="M:Sudoku.CommandLine.CommandBaseExtensions.&lt;G&gt;$6418958A46DF5F6DD9A84F71F50FF749`1.Deconstruct(Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Argument}@,Sudoku.CommandLine.SymbolList{System.CommandLine.Option}@)">
             <target name="method">
 				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+					Deconstructs the current instance into its individual components,
+					enabling the use of tuple deconstruction syntax in C# 7 and later.
+					This method allows the object to be unpacked into separate variables
+					using assignment or deconstruction patterns.
 				</summary>
 			</target>
         </member>

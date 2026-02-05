@@ -42,7 +42,7 @@ public sealed class ConjugateLinkViewNode(ColorDescriptor identifier, Cell start
 	LinkShape ILinkViewNode.Shape => LinkShape.ConjugatePair;
 
 
-	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruct-method']/target[@name='method']"/>
 	public void Deconstruct(out ColorDescriptor identifier, out Cell start, out Cell end, out Digit digit)
 		=> (identifier, start, end, digit) = (Identifier, Start, End, Digit);
 

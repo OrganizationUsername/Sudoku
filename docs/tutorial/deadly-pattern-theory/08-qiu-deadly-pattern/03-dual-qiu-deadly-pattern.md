@@ -26,7 +26,7 @@ description: Dual Qiu's Deadly Pattern
 
 我们把这个结构称为**双淑芬致命结构**（Dual Qiu's Deadly Pattern），将原本传统的两个单元格替换为两个行列，使结构变为四个区域（两行、两列）。
 
-## 简要证明 <a href="#simple-prove" id="simple-prove"></a>
+## 证明 <a href="#prove" id="prove"></a>
 
 证明这个技巧也不是难事，但需要带点传递的感觉。
 

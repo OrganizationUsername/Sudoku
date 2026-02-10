@@ -35,3 +35,25 @@ description: Rank of Deadly Pattern
 <figure><img src="../../.gitbook/assets/images_1007.png" alt="" width="375"><figcaption><p>另外一个例子，示意图</p></figcaption></figure>
 
 想必我不用多重复什么吧。
+
+## 致命结构和虚拟区域 <a href="#deadly-pattern-and-virtual-set" id="deadly-pattern-and-virtual-set"></a>
+
+想必你已经发现了，致命结构大多都只是延伸数字的方式引出强链或弱链关系。从这个角度来说，它等效于虚拟区域。致命结构不存在秩一说，但它可以抽取强链，使结构可以在填充次数上做文章。
+
+<figure><img src="../../.gitbook/assets/images_1008.png" alt="" width="375"><figcaption><p>上面的例子，用虚拟强区域的方式表示</p></figcaption></figure>
+
+如图所示。当我们将逻辑形成的强链关系按虚拟强区域改写后，链路改成这个显示方式。当然，删数是照样有的，只是换了画法罢了。
+
+从这个角度来说，这个结构的秩是等于 1 的，因为有 4 个弱区域和 3 个强区域，所有数字也都是精确覆盖的。所以，我们也可以说，原本致命结构的画法下，那个结构的秩也为 1；但是，如果你使用 XSudo 软件获取信息的时候，它会这么告诉你致命结构的强弱区域情况：
+
+{% code lineNumbers="true" fullWidth="false" %}
+```
+12 N [0,20] 20 Candidates 
+     9 Truths = {245N1 1N2 56N4 146N9}
+     4 Links = {9r1 4c9 5c1 9b1}
+     AUR points {aur 1r4c1 2r4c1 1r4c9 2r4c9 1r5c1 2r5c1 1r5c4 2r5c4 1r6c4 2r6c4 1r6c9 2r6c9 }
+     1 Elimination, 1 Assignment --> [1N2] => r1c2=6, (1N2*9r1*9b1) => r1c2<>9
+```
+{% endcode %}
+
+可以看到，它会完整告诉你这个结构有 9 个强区域和 4 个弱区域。弱区域不用多说，但强区域为什么是 9 个呢？我们先留着这个问题，之后我们再说。

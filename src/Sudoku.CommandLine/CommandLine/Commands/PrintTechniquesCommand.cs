@@ -32,20 +32,14 @@ internal sealed class PrintTechniquesCommand : CommandBase
 		var result = context.ParseResult;
 		var category = result.GetValueForOption(o1);
 		var culture = result.GetValueForOption(o2);
-		scoped ReadOnlySpan<string> cultures;
-		if (culture is null)
+		var cultures = culture switch
 		{
-			cultures = ["zh-CN", "en-US"];
-		}
-		else if (culture.Equals("zh-CN", StringComparison.OrdinalIgnoreCase))
-		{
-			cultures = ["zh-CN"];
-		}
-		else if (culture.Equals("en-US", StringComparison.OrdinalIgnoreCase))
-		{
-			cultures = ["en-US"];
-		}
-		else
+			null => ["zh-CN", "en-US"],
+			_ when culture.Equals("zh-CN", StringComparison.OrdinalIgnoreCase) => ["zh-CN"],
+			_ when culture.Equals("en-US", StringComparison.OrdinalIgnoreCase) => ["en-US"],
+			_ => default(ReadOnlySpan<string>)
+		};
+		if (cultures.IsEmpty)
 		{
 			Console.WriteLine("\e[31mSpecified culture value is invalid. The value must be either 'en-US' or 'zh-CN'.\e[0m");
 			return;

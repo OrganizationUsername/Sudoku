@@ -105,7 +105,7 @@ public ref struct Generator : IGenerator<Grid>
 	{
 		_stack.Fill(new());
 
-		ArgumentException.Assert(symmetricType.IsFlag);
+		ArgumentException.Assert(symmetricType.IsFlag || symmetricType == SymmetricType.None);
 		ArgumentException.Assert(cluesCount is >= 17 and <= 80 or -1);
 
 		// 2024/10/25: Add this if block to skip initialization for templates.

@@ -200,7 +200,7 @@
   * [单真对（STP）](exocet/11-exocet-with-domino-loop/04-single-truth-pair.md)
 * [衰弱飞鱼](exocet/12-weak-exocet/README.md)
   * [初见衰弱飞鱼](exocet/12-weak-exocet/01-the-first-view-of-weak-exocet.md)
-  * [全衰飞鱼](exocet/12-weak-exocet/03-lame-weak-exocet.md)
+  * [全衰飞鱼](exocet/12-weak-exocet/02-lame-weak-exocet.md)
 
 ## 致命结构理论 <a href="#deadly-pattern-theory" id="deadly-pattern-theory"></a>
 
@@ -229,6 +229,7 @@
   * [双淑芬致命结构](deadly-pattern-theory/08-qiu-deadly-pattern/03-dual-qiu-deadly-pattern.md)
 * [秩理论里的致命结构](deadly-pattern-theory/09-deadly-pattern-in-rank-theory/README.md)
   * [致命结构的秩](deadly-pattern-theory/09-deadly-pattern-in-rank-theory/01-rank-of-deadly-pattern.md)
+  * [隐性致命结构](deadly-pattern-theory/09-deadly-pattern-in-rank-theory/02-hidden-deadly-pattern.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

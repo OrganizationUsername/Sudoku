@@ -4,8 +4,6 @@ description: Reasoning of Broken Loop
 
 # 全强链死环的基本推理
 
-为了给后面的内容作铺垫，我们先介绍一个技巧。
-
 ## 全强链死环类型 1（Broken Loop Type 1） <a href="#type-1" id="type-1"></a>
 
 <figure><img src="../../.gitbook/assets/images_0956.png" alt="" width="375"><figcaption><p>全强链死环类型 1</p></figcaption></figure>

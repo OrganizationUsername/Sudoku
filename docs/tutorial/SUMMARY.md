@@ -234,6 +234,7 @@
   * [隐性致命结构](deadly-pattern-theory/10-deadly-pattern-in-rank-theory/02-hidden-deadly-pattern.md)
 * [条件致命结构](deadly-pattern-theory/11-conditional-deadly-pattern/README.md)
   * [旋转致命结构的基本推理](deadly-pattern-theory/11-conditional-deadly-pattern/01-reasoning-of-rotating-deadly-pattern.md)
+  * [拐角模式](deadly-pattern-theory/11-conditional-deadly-pattern/03-corner-pattern.md)
 
 ## 附录 <a href="#appendix" id="appendix"></a>
 

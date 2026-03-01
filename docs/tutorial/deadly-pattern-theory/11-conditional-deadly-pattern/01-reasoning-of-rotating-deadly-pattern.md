@@ -1,5 +1,5 @@
 ---
-description: Reasoning of Rotating Deadly Pattern
+description: Rotating Deadly Pattern
 ---
 
 # 旋转致命结构的基本推理

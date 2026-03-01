@@ -768,7 +768,11 @@ public sealed partial class AnonymousDeadlyPatternStepSearcher : StepSearcher
 			truths += Space.RowColumn(cell / 9, cell % 9);
 		}
 
-		var result = DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(emptyGrid, truths);
+		var result = DeadlyPatternChecker.CheckWhetherFormsDeadlyPattern(
+			emptyGrid,
+			truths,
+			new() { IgnorePotentialSinglePositionInHouse = true }
+		);
 		c = result.PatternCandidates;
 		return result.IsDeadlyPattern;
 	}

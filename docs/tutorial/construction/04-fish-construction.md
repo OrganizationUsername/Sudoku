@@ -49,7 +49,7 @@ description: Fish Construction
 
 <figure><img src="../.gitbook/assets/images_0482.png" alt="" width="375"><figcaption><p>毛刺鱼类型 1，另一个例子，鱼结构部分</p></figcaption></figure>
 
-如图所示。这个题有一个鱼鳍和一个毛刺，鱼鳍是 `r7c6(2)`，而毛刺是 `r7c8(2)`。当毛刺为假的时候，那么二阶鳍鱼成立，于是删数是可以删的；而如果毛刺为真时，我们需要引出强制链。
+如图所示。这个题有一个鱼鳍和一个毛刺，鱼鳍是 `r8c6(2)`，而毛刺是 `r8c8(2)`。当毛刺为假的时候，那么二阶鳍鱼成立，于是删数是可以删的；而如果毛刺为真时，我们需要引出强制链。
 
 <figure><img src="../.gitbook/assets/images_0483.png" alt="" width="375"><figcaption><p>毛刺鱼类型 1，另一个例子，强制链部分</p></figcaption></figure>
 

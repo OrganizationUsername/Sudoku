@@ -2,7 +2,7 @@
 description: Unique Matrix
 ---
 
-# 唯一矩阵
+# 唯一矩阵（UM）
 
 下面我们来看另外一种需要多种数字组合使用的致命结构形式。
 
@@ -82,7 +82,7 @@ description: Unique Matrix
 
 <figure><img src="../.gitbook/assets/images_0927.png" alt="" width="375"><figcaption><p>情况 3，子情况 2，假设 r5c9</p></figcaption></figure>
 
-如图所示。现在我们没办法继续了。但是我们发现，如果 `r6c1` 填 $$b$$ 的话，`r56c15` 会构成 $$b$$ 和 $$c$$ 的唯一矩形的矛盾，所以 `r6c1` 只能填 $$b$$；同理，如果 `r4c9` 填 $$b$$ 的话，`r45c59` 会构成 $$a$$ 和 $$b$$ 的唯一矩形的矛盾，所以 `r4c9` 安排填 $$c$$。
+如图所示。现在我们没办法继续了。但是我们发现，如果 `r6c1` 填 $$b$$ 的话，`r56c15` 会构成 $$b$$ 和 $$c$$ 的唯一矩形的矛盾，所以 `r6c1` 只能填 $$a$$；同理，如果 `r4c9` 填 $$b$$ 的话，`r45c59` 会构成 $$a$$ 和 $$b$$ 的唯一矩形的矛盾，所以 `r4c9` 安排填 $$c$$。
 
 <figure><img src="../.gitbook/assets/images_0928.png" alt="" width="375"><figcaption><p>情况 3，子情况 2，假设 r4c9 和 r6c1</p></figcaption></figure>
 

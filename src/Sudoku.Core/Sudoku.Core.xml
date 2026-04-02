@@ -2846,7 +2846,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitCandidateGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>([a-k]+)([1-9]+)\\.([1-9]+)</code><br/>
+            <code>([a-k]+)([1-9]+)\.([1-9]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -2864,7 +2864,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitConclusionGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>([a-k]+[1-9]+(,\\s*[a-k]+[1-9]+)*)\\s*(==?|!=|&lt;&gt;)\\s*([1-9]+)</code><br/>
+            <code>([a-k]+[1-9]+(,\s*[a-k]+[1-9]+)*)\s*(==?|!=|&lt;&gt;)\s*([1-9]+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -2893,7 +2893,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.UnitConjugateGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>([a-k][1-9])\\s*={2}\\s*([a-k][1-9])\\.([1-9])</code><br/>
+            <code>([a-k][1-9])\s*={2}\s*([a-k][1-9])\.([1-9])</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3333,7 +3333,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitCandidateGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
+            <code>r[1-9]+c[1-9]+\([1-9]+\)|[1-9]+r[1-9]+c[1-9]+</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3359,7 +3359,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitConclusionGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>r[1-9]+c[1-9]+(?:,\\s*r[1-9]+c[1-9]+)*\\s*(==?|!=|&lt;&gt;)\\s*[1-9]+</code><br/>
+            <code>r[1-9]+c[1-9]+(?:,\s*r[1-9]+c[1-9]+)*\s*(==?|!=|&lt;&gt;)\s*[1-9]+</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3431,7 +3431,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.UnitConjugateGroupPattern">
             <remarks>
             Pattern:<br/>
-            <code>r[1-9]c[1-9]\\s*={2}\\s*r[1-9]c[1-9]\\([1-9]\\)</code><br/>
+            <code>r[1-9]c[1-9]\s*={2}\s*r[1-9]c[1-9]\([1-9]\)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3471,7 +3471,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.DigitPattern">
             <remarks>
             Pattern:<br/>
-            <code>\\d</code><br/>
+            <code>\d</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -3483,7 +3483,7 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.SpaceSegmentPattern">
             <remarks>
             Pattern:<br/>
-            <code>(\\d+)([rcbn])(\\d+)</code><br/>
+            <code>(\d+)([rcbn])(\d+)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10173,7 +10173,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.InlineSusserGridConverter.GridSusserPattern">
             <remarks>
             Pattern:<br/>
-            <code>(\\+?[\\d\\.]|\\[[1-9]{1,9}\\])</code><br/>
+            <code>(\+?[\d\.]|\[[1-9]{1,9}\])</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10289,7 +10289,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.GridSusserDigitPattern">
             <remarks>
             Pattern:<br/>
-            <code>(\\+?\\d|\\.)</code><br/>
+            <code>(\+?\d|\.)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10306,7 +10306,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.MultilineGridConverter.GridSimpleMultilinePattern">
             <remarks>
             Pattern:<br/>
-            <code>([\\d\\.\\+]{9}(\\r|\\n|\\r\\n)){8}[\\d\\.\\+]{9}</code><br/>
+            <code>([\d\.\+]{9}(\r|\n|\r\n)){8}[\d\.\+]{9}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10420,7 +10420,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.OpenSudokuGridConverter.GridOpenSudokuPattern">
             <remarks>
             Pattern:<br/>
-            <code>\\d(?:\\|\\d){242}</code><br/>
+            <code>\d(?:\|\d){242}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10464,7 +10464,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.GridPencilmarkPattern">
             <remarks>
             Pattern:<br/>
-            <code>\\&lt;\\d\\&gt;|\\*\\d\\*|\\d*[\\+\\-]?\\d+</code><br/>
+            <code>\&lt;\d\&gt;|\*\d\*|\d*[\+\-]?\d+</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10488,7 +10488,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.PencilmarkGridConverter.ValueCellPattern">
             <remarks>
             Pattern:<br/>
-            <code>[1-9\\+\\-]{1,9}</code><br/>
+            <code>[1-9\+\-]{1,9}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10527,7 +10527,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.SukakuGridConverter.GridSukakuSegmentPattern">
             <remarks>
             Pattern:<br/>
-            <code>\\d*[\\-\\+]?\\d+</code><br/>
+            <code>\d*[\-\+]?\d+</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10699,7 +10699,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.GridSusserPattern">
             <remarks>
             Pattern:<br/>
-            <code>[\\d\\.\\+]{80,}(\\:(\\d{3}\\s+)*\\d{3})?</code><br/>
+            <code>[\d\.\+]{80,}(\:(\d{3}\s+)*\d{3})?</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10719,7 +10719,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.GridShortenedSusserPattern">
             <remarks>
             Pattern:<br/>
-            <code>[\\d\\.\\*]{1,9}(,[\\d\\.\\*]{1,9}){8}</code><br/>
+            <code>[\d\.\*]{1,9}(,[\d\.\*]{1,9}){8}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -10735,7 +10735,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.SusserGridConverter.EliminationPattern">
             <remarks>
             Pattern:<br/>
-            <code>(?&lt;=\\:)(\\d{3}\\s+)*\\d{3}</code><br/>
+            <code>(?&lt;=\:)(\d{3}\s+)*\d{3}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -12000,7 +12000,7 @@
         <member name="P:Sudoku.Drawing.Parsing.HouseArgumentParser.HouseWithDigitPattern">
             <remarks>
             Pattern:<br/>
-            <code>.+\\([1-9]+\\)</code><br/>
+            <code>.+\([1-9]+\)</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>

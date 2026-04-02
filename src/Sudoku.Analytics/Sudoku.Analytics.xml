@@ -11443,7 +11443,7 @@
         <member name="P:Sudoku.Analytics.Hub.Excluder.SubtypeTextPattern">
             <remarks>
             Pattern:<br/>
-            <code>(Row|Column)HiddenSingle\\d{3}</code><br/>
+            <code>(Row|Column)HiddenSingle\d{3}</code><br/>
             Options:<br/>
             <code>RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -28886,7 +28886,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.StandardFormatPattern">
             <remarks>
             Pattern:<br/>
-            <code>r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)(?:\\s*--?\\s*r[1-9]+c[1-9]+\\([1-9]+\\)\\s*==?\\s*r[1-9]+c[1-9]+\\([1-9]+\\))+</code><br/>
+            <code>r[1-9]+c[1-9]+\([1-9]+\)\s*==?\s*r[1-9]+c[1-9]+\([1-9]+\)(?:\s*--?\s*r[1-9]+c[1-9]+\([1-9]+\)\s*==?\s*r[1-9]+c[1-9]+\([1-9]+\))+</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -28935,7 +28935,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.EurekaFormatPattern">
             <remarks>
             Pattern:<br/>
-            <code>(?:\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+(?:\\s*[-=]\\s*(?:\\([1-9]+\\)|\\([1-9]+\\s*[-=]\\s*[1-9]+\\)|[1-9])r[1-9]+c[1-9]+)+</code><br/>
+            <code>(?:\([1-9]+\)|\([1-9]+\s*[-=]\s*[1-9]+\)|[1-9])r[1-9]+c[1-9]+(?:\s*[-=]\s*(?:\([1-9]+\)|\([1-9]+\s*[-=]\s*[1-9]+\)|[1-9])r[1-9]+c[1-9]+)+</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>
@@ -29002,7 +29002,7 @@
         <member name="P:Sudoku.Concepts.ValueConversions.CustomizedChainConverter.CandidatePattern">
             <remarks>
             Pattern:<br/>
-            <code>(?:\\([1-9]+([=-][1-9]+)?\\)|[1-9]+)r[1-9]+c[1-9]+|r[1-9]+c[1-9]+\\([1-9]+\\)</code><br/>
+            <code>(?:\([1-9]+([=-][1-9]+)?\)|[1-9]+)r[1-9]+c[1-9]+|r[1-9]+c[1-9]+\([1-9]+\)</code><br/>
             Options:<br/>
             <code>RegexOptions.IgnoreCase | RegexOptions.Compiled</code><br/>
             Explanation:<br/>

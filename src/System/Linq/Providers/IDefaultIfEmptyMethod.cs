@@ -6,7 +6,6 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface IDefaultIfEmptyMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
 	where TSelf : IDefaultIfEmptyMethod<TSelf, TSource>, allows ref struct
-	where TSource : allows ref struct
 {
 	/// <inheritdoc cref="Enumerable.DefaultIfEmpty{TSource}(IEnumerable{TSource})"/>
 	IEnumerable<TSource?> DefaultIfEmpty() => Any() ? this : [default];

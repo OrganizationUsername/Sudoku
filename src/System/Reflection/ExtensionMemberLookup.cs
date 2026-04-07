@@ -6,6 +6,13 @@ namespace System.Reflection;
 public static class ExtensionMemberLookup
 {
 	/// <summary>
+	/// By design, we should find members and types marked <see langword="public"/> and <see langword="static"/>,
+	/// and it shouldn't be a member overwritten from its base type or ancestor types.
+	/// </summary>
+	internal const BindingFlags DefaultBindingFlags = BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly;
+
+
+	/// <summary>
 	/// Extends <see cref="Type"/> instances.
 	/// </summary>
 	extension(Type type)
@@ -23,10 +30,6 @@ public static class ExtensionMemberLookup
 		/// </returns>
 		public IEnumerable<ExtensionContainerMetadata> GetExtensionContainers(Assembly[]? assemblies)
 		{
-			// By design, we should find members and types marked <see langword="public"/> and <see langword="static"/>,
-			// and it shouldn't be a member overwritten from its base type or ancestor types.
-			const BindingFlags defaultBindingFlags = BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly;
-
 			// Iterate on each assembly.
 			foreach (var assembly in assemblies is { Length: not 0 } ? assemblies : [Assembly.GetExecutingAssembly()])
 			{
@@ -51,7 +54,7 @@ public static class ExtensionMemberLookup
 					// This type is a static class.
 
 					// Iterate on all possible types defined in it.
-					foreach (var extensionGrouperType in staticClassType.GetMembers(defaultBindingFlags).OfType<Type>())
+					foreach (var extensionGrouperType in staticClassType.GetMembers(DefaultBindingFlags).OfType<Type>())
 					{
 						// The name of this type must be started with '<G>$'.
 						if (!extensionGrouperType.Name.StartsWith("<G>$"))
@@ -89,7 +92,7 @@ public static class ExtensionMemberLookup
 
 						// This type is also a static class.
 						var correspondingExtensionMarkerType = default(Type);
-						foreach (var extensionMarkerType in extensionGrouperType.GetMembers(defaultBindingFlags).OfType<Type>())
+						foreach (var extensionMarkerType in extensionGrouperType.GetMembers(DefaultBindingFlags).OfType<Type>())
 						{
 							// The name of this type must be started with <M>$.
 							if (!extensionMarkerType.Name.StartsWith("<M>$"))
@@ -110,10 +113,10 @@ public static class ExtensionMemberLookup
 							}
 
 							// This type must contain one and only one member - a 'static' method, with name '<Extension>$'.
-							var possibleMethodInfos = extensionMarkerType.GetMembers(defaultBindingFlags)
+							var possibleMethodInfos = extensionMarkerType.GetMembers(DefaultBindingFlags)
 								.OfType<MethodInfo>()
 								.ToArray();
-							if (possibleMethodInfos is not [{ Name: "<Extension>$", ReturnType: var returnType } extensionStaticMethodMember]
+							if (possibleMethodInfos is not [{ IsGenericMethod: false, Name: "<Extension>$", ReturnType: var returnType } extensionStaticMethodMember]
 								|| extensionStaticMethodMember.GetParameters() is not [{ ParameterType: var parameterType, Name: _ }]
 								|| parameterType != type
 								|| returnType != typeof(void)

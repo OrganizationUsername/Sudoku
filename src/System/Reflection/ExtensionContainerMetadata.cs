@@ -52,6 +52,13 @@ namespace System.Reflection;
 public sealed record ExtensionContainerMetadata(Type ExtensionGrouper, Type ExtensionMarker, Type ContainingStaticClass)
 {
 	/// <summary>
+	/// Indicates the name of container instance parameter.
+	/// </summary>
+	public ParameterInfo ContainerParameter
+		=> ExtensionMarker.GetMethod("<Extension>$", ExtensionMemberLookup.DefaultBindingFlags)!.GetParameters()[0];
+
+
+	/// <summary>
 	/// Try to enumerate all members defined in this extension container.
 	/// </summary>
 	/// <returns>A sequence of extension members.</returns>

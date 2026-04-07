@@ -9597,6 +9597,11 @@
         <member name="P:System.Reflection.ExtensionContainerMetadata.ContainingStaticClass">
             <summary>Indicates the containing static class type.</summary>
         </member>
+        <member name="P:System.Reflection.ExtensionContainerMetadata.ContainerParameter">
+            <summary>
+            Indicates the name of container instance parameter.
+            </summary>
+        </member>
         <member name="M:System.Reflection.ExtensionContainerMetadata.EnumerateExtensionMembers">
             <summary>
             Try to enumerate all members defined in this extension container.
@@ -9606,6 +9611,12 @@
         <member name="T:System.Reflection.ExtensionMemberLookup">
             <summary>
             Provides a way to find for extension members that are introduced in C# 14.
+            </summary>
+        </member>
+        <member name="F:System.Reflection.ExtensionMemberLookup.DefaultBindingFlags">
+            <summary>
+            By design, we should find members and types marked <see langword="public"/> and <see langword="static"/>,
+            and it shouldn't be a member overwritten from its base type or ancestor types.
             </summary>
         </member>
         <member name="M:System.Reflection.ExtensionMemberLookup.GetExtensionContainers(System.Type,System.Reflection.Assembly[])">

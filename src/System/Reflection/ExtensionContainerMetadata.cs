@@ -56,19 +56,13 @@ public sealed record ExtensionContainerMetadata(Type ExtensionGrouper, Type Exte
 	/// </summary>
 	/// <remarks>
 	/// A container may be like this:
-	/// <code><![CDATA[
-	/// extension(int @this)
-	/// {
-	///     // ...
-	///     // Members
-	///     // ...
-	/// }
-	/// ]]></code>
-	/// This property returns a <see cref="ParameterInfo"/> that represents parameter <c><see cref="int"/> @this</c>
-	/// defined in <c><see langword="extension"/>(<see cref="int"/> @this)</c>.
-	/// If unnamed, <see langword="null"/> will be returned.
+	/// <code>
+	/// <see langword="extension"/>(<see cref="int"/> @this);
+	/// </code>
+	/// This property returns a <see cref="ParameterInfo"/> that represents parameter <c>@this</c>,
+	/// no matter whether the parameter is named or not.
 	/// </remarks>
-	public ParameterInfo? ContainerParameter
+	public ParameterInfo ContainerParameter
 		=> ExtensionMarker.GetMethod("<Extension>$", ExtensionMemberLookup.DefaultBindingFlags)!.GetParameters()[0];
 
 

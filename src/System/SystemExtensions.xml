@@ -9691,39 +9691,21 @@
             Defines binding flags that will match skeleton members defined in extesion grouper types.
             </summary>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.GetExtensionContainers(System.Type,System.Boolean,System.Reflection.Assembly[])">
-            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Boolean,System.Reflection.Assembly[])"/>
+        <member name="M:System.Reflection.ExtensionMemberLookup.GetExtensionContainers(System.Type,System.Reflection.Assembly[])">
+            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Reflection.Assembly[])"/>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.FindExtensionMembers(System.Type,System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])">
-            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])"/>
-        </member>
-        <member name="P:System.Reflection.ExtensionMemberLookup.FileLocalTypeNamePattern">
-            <remarks>
-            Pattern:<br/>
-            <code>\&lt;.+\&gt;F[\dA-F]{64}__.+</code><br/>
-            Options:<br/>
-            <code>RegexOptions.Compiled | RegexOptions.Singleline</code><br/>
-            Explanation:<br/>
-            <code>
-            ○ Match '&lt;'.<br/>
-            ○ Match any character greedily at least once.<br/>
-            ○ Match the string "&gt;F".<br/>
-            ○ Match a character in the set [A-F\d] exactly 64 times.<br/>
-            ○ Match the string "__".<br/>
-            ○ Match any character atomically at least once.<br/>
-            </code>
-            </remarks>
+        <member name="M:System.Reflection.ExtensionMemberLookup.FindExtensionMembers(System.Type,System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])">
+            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])"/>
         </member>
         <member name="T:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.&lt;M&gt;$8377F7E7F2B49410D74D1097D20FDAD7">
             <summary>
             Extends <see cref="T:System.Type"/> instances.
             </summary>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Boolean,System.Reflection.Assembly[])">
+        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Reflection.Assembly[])">
             <summary>
             Try to enumerates for all possible extension containers that represents extension members for the current type.
             </summary>
-            <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
             <param name="assemblies">
             The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
             this method will defaultly find for extension members in the current-executing assembly.
@@ -9733,13 +9715,12 @@
             and the containing static class type.
             </returns>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])">
+        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])">
             <summary>
             Try to find for all possible members (properties, methods and operators) of the specified type,
             representing as a <see cref="T:System.Type"/> instance, defined as extension members inside the specified assemblies.
             </summary>
             <param name="memberTypes">The types of members you want to get.</param>
-            <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
             <param name="assemblies">
             The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
             this method will defaultly find for extension members in the current-executing assembly.
@@ -10001,11 +9982,31 @@
             </summary>
             <seealso cref="T:System.Type"/>
         </member>
+        <member name="P:System.Reflection.TypeExtensions.FileLocalTypeNamePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\&lt;.+\&gt;F[\dA-F]{64}__.+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled | RegexOptions.Singleline</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match '&lt;'.<br/>
+            ○ Match any character greedily at least once.<br/>
+            ○ Match the string "&gt;F".<br/>
+            ○ Match a character in the set [A-F\d] exactly 64 times.<br/>
+            ○ Match the string "__".<br/>
+            ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
+        </member>
         <member name="M:System.Reflection.TypeExtensions.get_HasParameterlessConstructor(System.Type)">
             <inheritdoc cref="P:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.HasParameterlessConstructor"/>
         </member>
         <member name="M:System.Reflection.TypeExtensions.get_IsStatic(System.Type)">
             <inheritdoc cref="P:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsStatic"/>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.get_IsFileLocal(System.Type)">
+            <inheritdoc cref="P:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsFileLocal"/>
         </member>
         <member name="M:System.Reflection.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
             <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsGenericAssignableTo(System.Type)"/>
@@ -10037,6 +10038,11 @@
         <member name="P:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsStatic">
             <summary>
             Indicates whether the type is <see langword="static"/> or not.
+            </summary>
+        </member>
+        <member name="P:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsFileLocal">
+            <summary>
+            Indicates whether the type is a <see langword="file"/>-local type.
             </summary>
         </member>
         <member name="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsGenericAssignableTo(System.Type)">

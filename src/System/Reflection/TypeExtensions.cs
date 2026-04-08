@@ -4,8 +4,12 @@ namespace System.Reflection;
 /// Provides with extension methods on <see cref="Type"/>.
 /// </summary>
 /// <seealso cref="Type"/>
-public static class TypeExtensions
+public static partial class TypeExtensions
 {
+	[GeneratedRegex("""\<.+\>F[\dA-F]{64}__.+""", RegexOptions.Compiled | RegexOptions.Singleline)]
+	private static partial Regex FileLocalTypeNamePattern { get; }
+
+
 	/// <include
 	///     file="../../global-doc-comments.xml"
 	///     path="/g/csharp14/feature[@name='extension-container']/target[@name='container']"/>
@@ -31,6 +35,11 @@ public static class TypeExtensions
 				return @this.IsAbstract && @this.IsSealed && @this.GetConstructors(instanceConstructorFlags).Length == 0;
 			}
 		}
+
+		/// <summary>
+		/// Indicates whether the type is a <see langword="file"/>-local type.
+		/// </summary>
+		public bool IsFileLocal => FileLocalTypeNamePattern.IsMatch(@this.Name);
 
 
 		/// <summary>

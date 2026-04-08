@@ -50,5 +50,64 @@ public static class TypeExtensions
 
 			return baseType.IsGenericAssignableTo(targetType);
 		}
+
+		/// <summary>
+		/// Determine whether two <see cref="Type"/> instances are exactly same, with type arguments also checked.
+		/// </summary>
+		/// <param name="left">The first instance to be checked.</param>
+		/// <param name="right">The second instance to be checked.</param>
+		/// <param name="ignoreByRef">Indicates whether this method ignores <see langword="ref"/> modifier or not.</param>
+		/// <param name="skipUnboundTypeParameters">Indicates whether this method skips unbound type parameters or not.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public static bool IsExactlySame(Type left, Type right, bool ignoreByRef, bool skipUnboundTypeParameters)
+		{
+			if (left == right)
+			{
+				return true;
+			}
+
+			if (!ignoreByRef && left.IsByRef ^ right.IsByRef)
+			{
+				return false;
+			}
+
+			if (skipUnboundTypeParameters && left.IsGenericParameter && right.IsGenericParameter)
+			{
+				return true;
+			}
+			if (!skipUnboundTypeParameters && left.IsGenericParameter)
+			{
+				return false;
+			}
+
+			if (left.IsGenericType != right.IsGenericType)
+			{
+				return false;
+			}
+			if (!left.IsGenericType)
+			{
+				return false;
+			}
+			if (left.GetGenericTypeDefinition() != right.GetGenericTypeDefinition())
+			{
+				return false;
+			}
+
+			var typeargs1 = left.GetGenericArguments();
+			var typeargs2 = right.GetGenericArguments();
+			if (typeargs1.Length != typeargs2.Length)
+			{
+				return false;
+			}
+
+			for (var i = 0; i < typeargs1.Length; i++)
+			{
+				if (!IsExactlySame(typeargs1[i], typeargs2[i], ignoreByRef, skipUnboundTypeParameters))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
 	}
 }

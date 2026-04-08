@@ -7142,6 +7142,47 @@
             <param name="originalString">The original string.</param>
             <returns>The target string.</returns>
         </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the FileLocalTypeNamePattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.FileLocalTypeNamePattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
+        </member>
         <member name="T:System.Text.Json.CultureInfoConverter">
             <summary>
             Represents a JSON convetrer that serializes and deserializes a <see cref="T:System.Globalization.CultureInfo"/> object.
@@ -9610,6 +9651,9 @@
             no matter whether the parameter is named or not.
             </remarks>
         </member>
+        <member name="M:System.Reflection.ExtensionContainerMetadata.ToString">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Reflection.ExtensionContainerMetadata.EnumerateExtensionMembers">
             <summary>
             Try to enumerate all members defined in this extension container.
@@ -9627,21 +9671,39 @@
             and it shouldn't be a member overwritten from its base type or ancestor types.
             </summary>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.GetExtensionContainers(System.Type,System.Reflection.Assembly[])">
-            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Reflection.Assembly[])"/>
+        <member name="M:System.Reflection.ExtensionMemberLookup.GetExtensionContainers(System.Type,System.Boolean,System.Reflection.Assembly[])">
+            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Boolean,System.Reflection.Assembly[])"/>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.FindExtensionMembers(System.Type,System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])">
-            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])"/>
+        <member name="M:System.Reflection.ExtensionMemberLookup.FindExtensionMembers(System.Type,System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])">
+            <inheritdoc cref="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])"/>
+        </member>
+        <member name="P:System.Reflection.ExtensionMemberLookup.FileLocalTypeNamePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\&lt;.+\&gt;F[\dA-F]{64}__.+</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled | RegexOptions.Singleline</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match '&lt;'.<br/>
+            ○ Match any character greedily at least once.<br/>
+            ○ Match the string "&gt;F".<br/>
+            ○ Match a character in the set [A-F\d] exactly 64 times.<br/>
+            ○ Match the string "__".<br/>
+            ○ Match any character atomically at least once.<br/>
+            </code>
+            </remarks>
         </member>
         <member name="T:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.&lt;M&gt;$8377F7E7F2B49410D74D1097D20FDAD7">
             <summary>
             Extends <see cref="T:System.Type"/> instances.
             </summary>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Reflection.Assembly[])">
+        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.GetExtensionContainers(System.Boolean,System.Reflection.Assembly[])">
             <summary>
             Try to enumerates for all possible extension containers that represents extension members for the current type.
             </summary>
+            <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
             <param name="assemblies">
             The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
             this method will defaultly find for extension members in the current-executing assembly.
@@ -9651,12 +9713,13 @@
             and the containing static class type.
             </returns>
         </member>
-        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Reflection.Assembly[])">
+        <member name="M:System.Reflection.ExtensionMemberLookup.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.FindExtensionMembers(System.Reflection.ExtensionMemberTypes,System.Boolean,System.Reflection.Assembly[])">
             <summary>
             Try to find for all possible members (properties, methods and operators) of the specified type,
             representing as a <see cref="T:System.Type"/> instance, defined as extension members inside the specified assemblies.
             </summary>
             <param name="memberTypes">The types of members you want to get.</param>
+            <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
             <param name="assemblies">
             The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
             this method will defaultly find for extension members in the current-executing assembly.
@@ -9788,6 +9851,52 @@
         <member name="M:System.Reflection.MemberInfoExtensions.&lt;G&gt;$9DB10D0E7CAA88E7E81DFBF03450ED00.IsDefined``1">
             <inheritdoc cref="M:System.Reflection.CustomAttributeExtensions.IsDefined(System.Reflection.MemberInfo,System.Type)"/>
         </member>
+        <member name="T:System.Reflection.ParameterInfoExtensions">
+            <summary>
+            Provides extension members on <see cref="T:System.Reflection.ParameterInfo"/> instances.
+            </summary>
+            <seealso cref="T:System.Reflection.ParameterInfo"/>
+        </member>
+        <member name="M:System.Reflection.ParameterInfoExtensions.get_IsRef(System.Reflection.ParameterInfo)">
+            <inheritdoc cref="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsRef"/>
+        </member>
+        <member name="M:System.Reflection.ParameterInfoExtensions.get_IsRefReadOnly(System.Reflection.ParameterInfo)">
+            <inheritdoc cref="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsRefReadOnly"/>
+        </member>
+        <member name="M:System.Reflection.ParameterInfoExtensions.get_IsParams(System.Reflection.ParameterInfo)">
+            <inheritdoc cref="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsParams"/>
+        </member>
+        <member name="T:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.&lt;M&gt;$39CCD401ED4C2BA20137546F6EB15598">
+            <target name="container">
+				<summary>
+					<para>
+						Represents a nested <see langword="extension" /> block that includes extension members
+						that allows you using instance or static member reference syntax to visit them, avoiding some verbose referencing syntax
+						like <c>BlahBlahExtension.Method(InstanceMember)</c>, extending from extension methods introduced in C# 3.
+					</para>
+					<para>
+						Different with extension methods, an <see langword="extension" /> block can declare multiple different kinds of members,
+						rather than only methods, instance methods. C# 14 has already brought properties, methods and operators.
+					</para>
+				</summary>
+			</target>
+            <param name="this">The current instance.</param>
+        </member>
+        <member name="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsRef">
+            <summary>
+            Indicates whether the parameter is by-reference (has modifier <see langword="ref"/>) or not.
+            </summary>
+        </member>
+        <member name="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsRefReadOnly">
+            <summary>
+            Indicates whether the parameter is by-read-only-reference (has modifiers <see langword="ref readonly"/>) or not.
+            </summary>
+        </member>
+        <member name="P:System.Reflection.ParameterInfoExtensions.&lt;G&gt;$248DBFF30607091B4958CD8CD757152A.IsParams">
+            <summary>
+            Indicates whether the parameter has modifier <see langword="params"/> or not.
+            </summary>
+        </member>
         <member name="T:System.Reflection.TypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Type"/>.
@@ -9799,6 +9908,9 @@
         </member>
         <member name="M:System.Reflection.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
             <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsGenericAssignableTo(System.Type)"/>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)">
+            <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)"/>
         </member>
         <member name="T:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.&lt;M&gt;$DE732B1B288F314962E014BBF26F8C77">
             <target name="container">
@@ -9831,6 +9943,16 @@
             <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
             Question: How to detect if type is another generic type
             </seealso>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)">
+            <summary>
+            Determine whether two <see cref="T:System.Type"/> instances are exactly same, with type arguments also checked.
+            </summary>
+            <param name="left">The first instance to be checked.</param>
+            <param name="right">The second instance to be checked.</param>
+            <param name="ignoreByRef">Indicates whether this method ignores <see langword="ref"/> modifier or not.</param>
+            <param name="skipUnboundTypeParameters">Indicates whether this method skips unbound type parameters or not.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:System.Resources.DynamicResource">
             <summary>

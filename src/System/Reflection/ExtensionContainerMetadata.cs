@@ -66,6 +66,24 @@ public sealed record ExtensionContainerMetadata(Type ExtensionGrouper, Type Exte
 		=> ExtensionMarker.GetMethod("<Extension>$", ExtensionMemberLookup.DefaultBindingFlags)!.GetParameters()[0];
 
 
+	/// <inheritdoc/>
+	public override string ToString()
+	{
+		var sb = new StringBuilder();
+		sb.AppendLine(
+			$"""
+			Container - {ContainingStaticClass}:
+			Parameter - {ContainerParameter}
+			Members:
+			"""
+		);
+		foreach (var (_, skeleton) in EnumerateExtensionMembers())
+		{
+			sb.AppendLine($"{new(' ', 4)}{skeleton}");
+		}
+		return sb.ToString();
+	}
+
 	/// <summary>
 	/// Try to enumerate all members defined in this extension container.
 	/// </summary>
@@ -74,19 +92,31 @@ public sealed record ExtensionContainerMetadata(Type ExtensionGrouper, Type Exte
 	{
 		// Find for all possible signatures of members defined in this type.
 		// Such types cannot be callable but we should use its names to make a final lookup.
-		var targetMemberNames = new List<(string Name, bool IsProperty)>();
+		var targetMemberNames = new List<(string Name, bool IsProperty, bool IsStatic)>();
 		foreach (var member in ExtensionGrouper.GetMembers())
 		{
-			// Only extension properties, methods, operators and indexers (introduced in C# 15)
-			// will be supported.
+			// Only extension properties, methods, operators and indexers (introduced in C# 15) will be supported.
 			if (member is { Name: var memberName } and (PropertyInfo or MethodInfo))
 			{
-				targetMemberNames.Add((memberName, member is PropertyInfo));
+				targetMemberNames.Add(
+					(
+						memberName,
+						member is PropertyInfo,
+						member switch
+						{
+							PropertyInfo { GetMethod.IsStatic: true } => true,
+							PropertyInfo { SetMethod.IsStatic: true } => true,
+							PropertyInfo => false,
+							MethodInfo { IsStatic: var isStatic } => isStatic,
+							_ => throw new NotSupportedException()
+						}
+					)
+				);
 			}
 		}
 
-		// Then find for matched members in the static class by names collected in the previous step.
-		foreach (var (memberName, isProperty) in targetMemberNames)
+		// Then find for matched members in the static class by names collected.
+		foreach (var (memberName, isProperty, isStatic) in targetMemberNames)
 		{
 			// There's no possible members exists here due to mismatched of name.
 			// Although, the name may not be same (which is more intuitive, especially for properties),
@@ -122,9 +152,41 @@ public sealed record ExtensionContainerMetadata(Type ExtensionGrouper, Type Exte
 					{
 						['o', 'p', '_', ..] => ExtensionGrouper.GetMethod(methodName)!,
 						['g' or 's', 'e', 't', '_', ..] => ExtensionGrouper.GetProperty(methodName[4..])!,
-						_ => ExtensionGrouper.GetMember(methodName)![0]
+						_ => getSkeleton(methodInfo, ExtensionGrouper.GetMember(methodName)!.OfType<MethodInfo>())
 					}
 				);
+			}
+
+
+			MemberInfo getSkeleton(MethodInfo methodInfo, IEnumerable<MethodInfo> possibleMethodsInfo)
+			{
+				var parametersInfo = methodInfo.GetParameters()[isStatic ? .. : 1..];
+				foreach (var possibleMethodInfo in possibleMethodsInfo)
+				{
+					var possibleMethodParametersInfo = possibleMethodInfo.GetParameters();
+					if (possibleMethodParametersInfo.Length != parametersInfo.Length)
+					{
+						continue;
+					}
+
+					var isMatched = true;
+					for (var i = 0; i < parametersInfo.Length; i++)
+					{
+						var a = parametersInfo[i];
+						var b = possibleMethodParametersInfo[i];
+						if (!Type.IsExactlySame(a.ParameterType, b.ParameterType, false, true)
+							|| a.IsIn != b.IsIn || a.IsOut != b.IsOut)
+						{
+							isMatched = false;
+							break;
+						}
+					}
+					if (isMatched)
+					{
+						return possibleMethodInfo;
+					}
+				}
+				throw new UnreachableException("The target member cannot be found.");
 			}
 		}
 	}

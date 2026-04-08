@@ -3,7 +3,7 @@ namespace System.Reflection;
 /// <summary>
 /// Provides a way to find for extension members that are introduced in C# 14.
 /// </summary>
-public static class ExtensionMemberLookup
+public static partial class ExtensionMemberLookup
 {
 	/// <summary>
 	/// By design, we should find members and types marked <see langword="public"/> and <see langword="static"/>,
@@ -20,6 +20,7 @@ public static class ExtensionMemberLookup
 		/// <summary>
 		/// Try to enumerates for all possible extension containers that represents extension members for the current type.
 		/// </summary>
+		/// <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
 		/// <param name="assemblies">
 		/// The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
 		/// this method will defaultly find for extension members in the current-executing assembly.
@@ -28,7 +29,7 @@ public static class ExtensionMemberLookup
 		/// A sequence of tuple of <see cref="Type"/> instances: extension grouper, extension marker
 		/// and the containing static class type.
 		/// </returns>
-		public IEnumerable<ExtensionContainerMetadata> GetExtensionContainers(params Assembly[]? assemblies)
+		public IEnumerable<ExtensionContainerMetadata> GetExtensionContainers(bool includingFileLocalTypes, params Assembly[]? assemblies)
 		{
 			// Iterate on each assembly.
 			foreach (var assembly in assemblies is { Length: not 0 } ? assemblies : [Assembly.GetExecutingAssembly()])
@@ -46,6 +47,12 @@ public static class ExtensionMemberLookup
 
 					// This type must be marked as [Extension].
 					if (!staticClassType.IsDefined(typeof(ExtensionAttribute), false))
+					{
+						continue;
+					}
+
+					// Skip for file-local types if 'includingFileLocalTypes' is false.
+					if (!includingFileLocalTypes && FileLocalTypeNamePattern.IsMatch(staticClassType.Name))
 					{
 						continue;
 					}
@@ -158,14 +165,15 @@ public static class ExtensionMemberLookup
 		/// representing as a <see cref="Type"/> instance, defined as extension members inside the specified assemblies.
 		/// </summary>
 		/// <param name="memberTypes">The types of members you want to get.</param>
+		/// <param name="includingFileLocalTypes">Indicates whether <see langword="file"/> types are included or not.</param>
 		/// <param name="assemblies">
 		/// The assemblies that you want to find. If specify <see langword="null"/> or an empty array,
 		/// this method will defaultly find for extension members in the current-executing assembly.
 		/// </param>
 		/// <returns>All possible extension members found.</returns>
-		public IEnumerable<MemberInfo> FindExtensionMembers(ExtensionMemberTypes memberTypes, params Assembly[]? assemblies)
+		public IEnumerable<MemberInfo> FindExtensionMembers(ExtensionMemberTypes memberTypes, bool includingFileLocalTypes, params Assembly[]? assemblies)
 		{
-			foreach (var metadata in type.GetExtensionContainers(assemblies))
+			foreach (var metadata in type.GetExtensionContainers(includingFileLocalTypes, assemblies))
 			{
 				foreach (var (callable, skeleton) in metadata.EnumerateExtensionMembers())
 				{
@@ -218,4 +226,8 @@ public static class ExtensionMemberLookup
 			}
 		}
 	}
+
+
+	[GeneratedRegex("""\<.+\>F[\dA-F]{64}__.+""", RegexOptions.Compiled | RegexOptions.Singleline)]
+	private static partial Regex FileLocalTypeNamePattern { get; }
 }

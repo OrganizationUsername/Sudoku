@@ -9,7 +9,7 @@ public sealed class NodeSet : IComponent, IReadOnlyList<Node>, IReadOnlyCollecti
 	/// <summary>
 	/// Indicates the internal list of nodes.
 	/// </summary>
-	private readonly List<Node> _nodes = new(6);
+	private readonly List<Node> _nodes = [with(6)];
 
 
 	/// <summary>

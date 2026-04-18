@@ -1085,6 +1085,7 @@ file sealed class Converter : JsonConverter<CandidateMap>
 
 
 	/// <inheritdoc/>
+	[SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>")]
 	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 

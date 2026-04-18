@@ -79,8 +79,8 @@ internal sealed class BivalueUniversalGraveForcingChainsStepSearcherHelper : For
 			nodesSupposedOffGrouped.Add(candidate, nodesSupposedOff);
 			if (resultNodesSupposedOn is null)
 			{
-				resultNodesSupposedOn = new(ChainingComparers.NodeMapComparer);
-				resultNodesSupposedOff = new(ChainingComparers.NodeMapComparer);
+				resultNodesSupposedOn = [with(ChainingComparers.NodeMapComparer)];
+				resultNodesSupposedOff = [with(ChainingComparers.NodeMapComparer)];
 				resultNodesSupposedOn.UnionWith(nodesSupposedOn);
 				resultNodesSupposedOff.UnionWith(nodesSupposedOff);
 			}

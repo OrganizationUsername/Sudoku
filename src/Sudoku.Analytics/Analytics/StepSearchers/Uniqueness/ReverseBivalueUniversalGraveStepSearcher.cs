@@ -673,7 +673,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				static obj => obj.GetHashCode(HamiltonianCycleComparison.IgnoreDirection)
 			);
 			var paths = new HashSet<HamiltonianCycle[]>();
-			dfs(originalCells, originalCells[1..], originalCells[0], [originalCells[0]], new(comparer), paths);
+			dfs(originalCells, originalCells[1..], originalCells[0], [originalCells[0]], [with(comparer)], paths);
 			return paths.ToArray();
 		}
 		return [];

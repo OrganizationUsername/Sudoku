@@ -85,8 +85,8 @@ internal sealed class MultipleForcingChainsStepSearcherHelper : ForcingChainsSte
 				nodesSupposedOff_GroupedByDigit.Add(cell * 9 + digit, nodesSupposedOff);
 				if (nodesSupposedOn_InCell is null)
 				{
-					nodesSupposedOn_InCell = new(ChainingComparers.NodeMapComparer);
-					nodesSupposedOff_InCell = new(ChainingComparers.NodeMapComparer);
+					nodesSupposedOn_InCell = [with(ChainingComparers.NodeMapComparer)];
+					nodesSupposedOff_InCell = [with(ChainingComparers.NodeMapComparer)];
 					nodesSupposedOn_InCell.UnionWith(nodesSupposedOn);
 					nodesSupposedOff_InCell.UnionWith(nodesSupposedOff);
 				}

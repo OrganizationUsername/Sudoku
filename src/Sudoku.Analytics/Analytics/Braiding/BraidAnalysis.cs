@@ -402,7 +402,7 @@ public static class BraidAnalysis
 			}
 
 			// Replace variable.
-			previousResultDictionary = new(resultDictionary);
+			previousResultDictionary = [with(resultDictionary)];
 		}
 
 		// Get values and return.

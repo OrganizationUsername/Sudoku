@@ -62,7 +62,7 @@ public readonly partial struct CellGraph :
 	{
 		_cells = cells;
 		_invalidCells = invalidCells;
-		_directlyConnectedCellsDictionary = new(cells.Count);
+		_directlyConnectedCellsDictionary = [with(cells.Count)];
 		foreach (var cell in cells)
 		{
 			_directlyConnectedCellsDictionary.Add(cell, cells & Peer.PeersMap[cell]);

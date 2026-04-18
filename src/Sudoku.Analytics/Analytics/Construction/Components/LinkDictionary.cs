@@ -9,17 +9,19 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>, IComponent
 	/// <summary>
 	/// The backing pool storing link and patterns.
 	/// </summary>
-	private readonly Dictionary<Link, Pattern> _groupedLinkPool = new(
-		EqualityComparer<Link>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(null, null) => true,
-				(not null, not null) => left.Equals(right, LinkComparison.Directed),
-				_ => false
-			},
-			static obj => obj.GetHashCode(LinkComparison.Directed)
+	private readonly Dictionary<Link, Pattern> _groupedLinkPool = [
+		with(
+			EqualityComparer<Link>.Create(
+				static (left, right) => (left, right) switch
+				{
+					(null, null) => true,
+					(not null, not null) => left.Equals(right, LinkComparison.Directed),
+					_ => false
+				},
+				static obj => obj.GetHashCode(LinkComparison.Directed)
+			)
 		)
-	);
+	];
 
 
 	/// <summary>

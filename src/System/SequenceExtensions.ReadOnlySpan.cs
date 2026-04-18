@@ -142,7 +142,7 @@ public partial class SequenceExtensions
 			var used = (stackalloc bool[@this.Length]);
 			used.Clear();
 
-			getPermutationsCore(new(count), @this, used, count, result);
+			getPermutationsCore([with(count)], @this, used, count, result);
 			return result.AsSpan();
 
 

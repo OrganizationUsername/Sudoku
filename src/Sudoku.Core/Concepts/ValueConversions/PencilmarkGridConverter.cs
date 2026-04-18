@@ -182,7 +182,7 @@ public sealed partial class PencilmarkGridConverter : IGridConverter
 				.AppendLine();
 
 		static Dictionary<Digit, List<Mask>> createTempDictionary()
-			=> new(from digit in Enumerable.Range(0, 9) select KeyValuePair.Create(digit, new List<Mask>()));
+			=> [with(from digit in Enumerable.Range(0, 9) select KeyValuePair.Create(digit, new List<Mask>()))];
 	}
 
 	/// <inheritdoc/>

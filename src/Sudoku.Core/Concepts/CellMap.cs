@@ -1152,6 +1152,7 @@ file sealed class Converter : JsonConverter<CellMap>
 
 
 	/// <inheritdoc/>
+	[SuppressMessage("Style", "IDE0028:Simplify collection initialization", Justification = "<Pending>")]
 	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 

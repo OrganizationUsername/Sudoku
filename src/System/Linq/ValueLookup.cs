@@ -78,7 +78,7 @@ public readonly partial struct ValueLookup<TKey, TElement>(Dictionary<TKey, TEle
 	/// Converts the current instance into a <see cref="Dictionary{TKey, TValue}"/> instance.
 	/// </summary>
 	/// <returns>The converted <see cref="Dictionary{TKey, TValue}"/> instance.</returns>
-	public Dictionary<TKey, TElement[]> AsDictionary() => new(_groups);
+	public Dictionary<TKey, TElement[]> AsDictionary() => [with(_groups)];
 
 	/// <inheritdoc/>
 	bool ILookup<TKey, TElement>.Contains(TKey key) => _groups.ContainsKey(key);

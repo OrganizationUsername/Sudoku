@@ -81,11 +81,11 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 		};
 
 
-		static ReadOnlySpan<IDrawableItem> f(ViewUnitBindableSource value)
+		static ReadOnlySpan<DrawableConcept> f(ViewUnitBindableSource value)
 		{
-			var result = new List<IDrawableItem>();
-			result.AddRange(from conclusion in value.Conclusions.Span select (IDrawableItem)conclusion);
-			result.AddRange(value.View);
+			var result = new List<DrawableConcept>();
+			result.AddRange(from conclusion in value.Conclusions.Span select (DrawableConcept)conclusion);
+			result.AddRange(from node in value.View select (DrawableConcept)node);
 
 			foreach (var node in value.View.OfType<ChainLinkViewNode>())
 			{
@@ -103,7 +103,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 
 		static ViewUnitBindableSourceDiff g(ViewUnitBindableSource left, ViewUnitBindableSource right)
 		{
-			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
+			var (positives, negatives) = (new List<DrawableConcept>(), new List<DrawableConcept>());
 			getDeltaConclusions(
 				left,
 				right,
@@ -114,18 +114,18 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			);
 			negatives.AddRange(negativeConclusions);
 			positives.AddRange(positiveConclusions);
-			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (IDrawableItem)node);
-			positives.AddRange(from node in right.View.ExceptWith(left.View) select (IDrawableItem)node);
-			negatives.AddRange(from node in negativeGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
-			positives.AddRange(from node in positiveGroupedNodes select (IDrawableItem)new GroupedNodeInfo(node));
+			negatives.AddRange(from node in left.View.ExceptWith(right.View) select (DrawableConcept)node);
+			positives.AddRange(from node in right.View.ExceptWith(left.View) select (DrawableConcept)node);
+			negatives.AddRange(from node in negativeGroupedNodes select (DrawableConcept)new GroupedNodeInfo(node));
+			positives.AddRange(from node in positiveGroupedNodes select (DrawableConcept)new GroupedNodeInfo(node));
 			return new() { Negatives = negatives.AsSpan(), Positives = positives.AsSpan() };
 		}
 
 		static void getDeltaConclusions(
 			ViewUnitBindableSource left,
 			ViewUnitBindableSource right,
-			out ReadOnlySpan<IDrawableItem> negativeConclusions,
-			out ReadOnlySpan<IDrawableItem> positiveConclusions,
+			out ReadOnlySpan<DrawableConcept> negativeConclusions,
+			out ReadOnlySpan<DrawableConcept> positiveConclusions,
 			out ReadOnlySpan<CandidateMap> negativeGroupedNodes,
 			out ReadOnlySpan<CandidateMap> positiveGroupedNodes
 		)
@@ -135,7 +135,7 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 			//   2) Check the state on conclusion overlapping cases.
 			// If and only if the conclusion will be appeared in both collections, and its state has been changed,
 			// it will be updated from both negatives and positives; otherwise, don't change anything.
-			var (positives, negatives) = (new List<IDrawableItem>(), new List<IDrawableItem>());
+			var (positives, negatives) = (new List<DrawableConcept>(), new List<DrawableConcept>());
 			handleConclusions();
 			handlePassedThroughDiffers();
 			handleGroupedNodes(out negativeGroupedNodes, out positiveGroupedNodes);

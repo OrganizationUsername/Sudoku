@@ -12073,14 +12073,6 @@
             Indicates the view collection that represents <see cref="T:Sudoku.Drawing.ViewNode"/> data, used by rendering APIs.
             </summary>
         </member>
-        <member name="T:Sudoku.Drawing.IDrawableItem">
-            <summary>
-            Represents a drawable item (<see cref="T:Sudoku.Drawing.ViewNode"/>, <see cref="T:Sudoku.Concepts.CandidateMap"/> or <see cref="T:Sudoku.Concepts.Conclusion"/>).
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.ViewNode"/>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
         <member name="T:Sudoku.Drawing.IPointCalculator">
             <summary>
             Represents a base type of pointer calculator.

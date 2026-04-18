@@ -24,7 +24,6 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(LinkSpaceViewNode), 21)]
 public abstract class ViewNode(ColorDescriptor identifier) :
 	ICloneable,
-	IDrawableItem,
 	IEquatable<ViewNode>,
 	IEqualityOperators<ViewNode, ViewNode, bool>
 {

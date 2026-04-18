@@ -842,10 +842,10 @@
         </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff">
             <summary>
-            Represents a list of <see cref="T:Sudoku.Drawing.IDrawableItem"/> instances to indicate diff items
+            Represents a list of <see cref="T:SudokuStudio.Drawing.DrawableConcept"/> instances to indicate diff items
             (which items are added, and which items are removed).
             </summary>
-            <seealso cref="T:Sudoku.Drawing.IDrawableItem"/>
+            <seealso cref="T:SudokuStudio.Drawing.DrawableConcept"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.IsEmpty">
             <summary>
@@ -862,7 +862,7 @@
             Indicates the negatives.
             </summary>
         </member>
-        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Deconstruct(System.ReadOnlySpan{Sudoku.Drawing.IDrawableItem}@,System.ReadOnlySpan{Sudoku.Drawing.IDrawableItem}@)">
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSourceDiff.Deconstruct(System.ReadOnlySpan{SudokuStudio.Drawing.DrawableConcept}@,System.ReadOnlySpan{SudokuStudio.Drawing.DrawableConcept}@)">
             <target name="method">
 				<summary>
 					Deconstructs the current instance into its individual components,
@@ -3206,6 +3206,14 @@
             </summary>
             <param name="nodes">The link view nodes.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="T:SudokuStudio.Drawing.DrawableConcept">
+            <summary>
+            Provides a type that supports drawing.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableConcept.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:SudokuStudio.Drawing.DrawableFactory">
             <summary>

@@ -75,6 +75,46 @@ public static partial class TypeExtensions
 		}
 
 		/// <summary>
+		/// Determine whether the current type is assignable to the specified type that is a union.
+		/// </summary>
+		/// <param name="type">The union type.</param>
+		/// <returns>A <see cref="bool"/> result indicating that.</returns>
+		public bool IsAssignableToUnion([NotNullWhen(true)] Type? type)
+		{
+			if (@this == type)
+			{
+				return true;
+			}
+
+			if (type is null || !type.IsDefined(typeof(UnionAttribute)))
+			{
+				return false;
+			}
+
+			var candidateTypes = new List<Type>();
+			foreach (var constructorInfo in type.GetConstructors(BindingFlags.Instance | BindingFlags.Public))
+			{
+				if (constructorInfo.GetParameters() is [
+					{
+						ParameterType: var singleParameterType,
+						IsRef: false,
+						IsIn: false,
+						IsOut: false,
+						IsOptional: false,
+						IsParams: false
+					}
+				])
+				{
+					candidateTypes.Add(singleParameterType);
+				}
+			}
+
+			// The current type must be assignable to such candidate types.
+			return candidateTypes.Exists(@this.IsAssignableTo);
+		}
+
+
+		/// <summary>
 		/// Determine whether two <see cref="Type"/> instances are exactly same, with type arguments also checked.
 		/// </summary>
 		/// <param name="left">The first instance to be checked.</param>

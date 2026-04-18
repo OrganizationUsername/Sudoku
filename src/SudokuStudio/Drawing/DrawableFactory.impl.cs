@@ -613,7 +613,7 @@ internal partial class DrawableFactory
 
 		static Brush getFillBrush(Color color) => new SolidColorBrush(color);
 
-		IDrawableItem c()
+		DrawableConcept c()
 			=> candidateNode is not null
 				? candidateNode
 				: new Conclusion(isForElimination ? Elimination : Assignment, candidate);

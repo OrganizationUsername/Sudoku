@@ -13,7 +13,6 @@ namespace Sudoku.Concepts;
 [JsonConverter(typeof(Converter))]
 public readonly struct Conclusion(Mask mask) :
 	IComparable<Conclusion>,
-	IDrawableItem,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>
 {

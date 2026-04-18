@@ -11,7 +11,7 @@ using CandidateMapBase = IBitStateMap<CandidateMap, Candidate>;
 [JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
-public partial struct CandidateMap : CandidateMapBase, IDrawableItem
+public partial struct CandidateMap : CandidateMapBase
 {
 	/// <summary>
 	/// Indicates the length of the backing buffer.

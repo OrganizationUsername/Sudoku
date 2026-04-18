@@ -10020,6 +10020,9 @@
         <member name="M:System.Reflection.TypeExtensions.IsGenericAssignableTo(System.Type,System.Type)">
             <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsGenericAssignableTo(System.Type)"/>
         </member>
+        <member name="M:System.Reflection.TypeExtensions.IsAssignableToUnion(System.Type,System.Type)">
+            <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsAssignableToUnion(System.Type)"/>
+        </member>
         <member name="M:System.Reflection.TypeExtensions.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)">
             <inheritdoc cref="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)"/>
         </member>
@@ -10064,6 +10067,13 @@
             <seealso href="https://stackoverflow.com/questions/74616/how-to-detect-if-type-is-another-generic-type/1075059#1075059">
             Question: How to detect if type is another generic type
             </seealso>
+        </member>
+        <member name="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsAssignableToUnion(System.Type)">
+            <summary>
+            Determine whether the current type is assignable to the specified type that is a union.
+            </summary>
+            <param name="type">The union type.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:System.Reflection.TypeExtensions.&lt;G&gt;$6B6159A298CA62A8C577E514BE40E3DD.IsExactlySame(System.Type,System.Type,System.Boolean,System.Boolean)">
             <summary>
@@ -10360,6 +10370,11 @@
              * Culture: &apos;{2}&apos;.
             </summary>
         </member>
+        <member name="T:System.Runtime.CompilerServices.IUnion">
+            <summary>
+            Indicates the type is a union.
+            </summary>
+        </member>
         <member name="T:System.Runtime.CompilerServices.LibraryIdentifiers">
             <summary>
             Represents some item names used by .NET library APIs.
@@ -10504,6 +10519,11 @@
         </member>
         <member name="M:System.Runtime.CompilerServices.TupleExtensions.&lt;G&gt;$E85C647F95A925158767E727F66EDA21`1.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.UnionAttribute">
+            <summary>
+            Indicates the type is a union.
+            </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.UnsafeExtensions">
             <summary>

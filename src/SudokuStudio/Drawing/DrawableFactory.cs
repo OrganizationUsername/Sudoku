@@ -34,23 +34,50 @@ internal static partial class DrawableFactory
 			{
 				switch (z.Tag)
 				{
-					case ViewNode v when negatives.Any(n => n is ViewNode p && p == v): { child.Remove(z); break; }
-					case GroupedNodeInfo g when negatives.Any(n => n is GroupedNodeInfo p && p == g): { child.Remove(z); break; }
-					case CandidateMap c when negatives.Any(n => n is CandidateMap p && p == c): { child.Remove(z); break; }
-					case Conclusion c when negatives.Any(n => n is Conclusion p && p == c): { child.Remove(z); break; }
+					case DrawableConcept { Value: { } value }:
+					{
+						checkObject(value, negatives);
+						break;
+					}
+					case { } value:
+					{
+						checkObject(value, negatives);
+						break;
+					}
 				}
+
+
+				void checkObject(object? value, ReadOnlySpan<DrawableConcept> negatives)
+				{
+					switch (value)
+					{
+						case ViewNode v when negatives.Any(n => n is ViewNode p && p == v): { child.Remove(z); break; }
+						case GroupedNodeInfo g when negatives.Any(n => n is GroupedNodeInfo p && p == g): { child.Remove(z); break; }
+						case CandidateMap c when negatives.Any(n => n is CandidateMap p && p == c): { child.Remove(z); break; }
+						case Conclusion c when negatives.Any(n => n is Conclusion p && p == c): { child.Remove(z); break; }
+					}
+				}
+			}
+		}
+
+		var tempConclusions = new List<Conclusion>();
+		var tempViewNodes = new List<ViewNode>();
+		var tempGroupNodes = new List<GroupedNodeInfo>();
+		foreach (var p in positives)
+		{
+			switch (p)
+			{
+				case Conclusion c: { tempConclusions.Add(c); break; }
+				case ViewNode v: { tempViewNodes.Add(v); break; }
+				case GroupedNodeInfo g: { tempGroupNodes.Add(g); break; }
 			}
 		}
 
 		// Then add controls.
 		AddViewUnitControls(
 			pane,
-			new()
-			{
-				Conclusions = (from p in positives where p is Conclusion select (Conclusion)p).ToArray(),
-				View = [.. from p in positives where p is ViewNode select (ViewNode)p]
-			},
-			from p in positives where p is GroupedNodeInfo select (GroupedNodeInfo)p
+			new() { Conclusions = tempConclusions.AsMemory(), View = [.. tempViewNodes] },
+			tempGroupNodes.AsSpan()
 		);
 	}
 
@@ -232,7 +259,7 @@ file static class Extensions
 		public IEnumerable<FrameworkElement> FindDrawableControls()
 			=> (
 				from child in @this.OfType<FrameworkElement>()
-				where child.Tag is IDrawableItem and (ViewNode or GroupedNodeInfo or CandidateMap or Conclusion)
+				where child.Tag?.GetType().IsAssignableToUnion(typeof(DrawableConcept)) ?? false
 				select child
 			).ToArray();
 	}

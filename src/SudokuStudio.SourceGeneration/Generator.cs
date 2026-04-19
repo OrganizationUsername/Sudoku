@@ -14,20 +14,6 @@ public sealed class Generator : IIncrementalGenerator
 				.ForAttributeWithMetadataName(
 					"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
 					static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
-						&& m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
-					AttachedPropertyHandler.Transform
-				)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			AttachedPropertyHandler.Output
-		);
-
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(
-					"SudokuStudio.ComponentModel.DependencyPropertyAttribute",
-					static (n, _) => n is PropertyDeclarationSyntax { Modifiers: var m and not [] }
 						&& !m.Any(SyntaxKind.StaticKeyword) && m.Any(SyntaxKind.PartialKeyword),
 					DependencyPropertyHandler.Transform
 				)

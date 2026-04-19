@@ -9,7 +9,7 @@ namespace SudokuStudio.Views.Attached;
 /// </remarks>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Analyzer"/>
-public static partial class AnalyzerProperties
+public static class AnalyzerProperties
 {
 	/// <summary>
 	/// Indicates the anonymous name for getters.
@@ -17,163 +17,811 @@ public static partial class AnalyzerProperties
 	private const string GetSetterName = "Get";
 
 
-	[Default]
-	private static readonly List<Technique> IttoryuSupportedTechniquesDefaultValue = [
-		Technique.FullHouse,
-		Technique.HiddenSingleBlock,
-		Technique.HiddenSingleRow,
-		Technique.HiddenSingleColumn,
-		Technique.NakedSingle
-	];
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AnalyzerIsFullApplyingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AnalyzerIsFullApplyingProperty =
+		DependencyProperty.RegisterAttached("AnalyzerIsFullApplying", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
 
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="IttoryuSupportedTechniquesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty IttoryuSupportedTechniquesProperty =
+		DependencyProperty.RegisterAttached(
+			"IttoryuSupportedTechniques",
+			typeof(List<Technique>),
+			typeof(AnalyzerProperties),
+			new PropertyMetadata(
+				(List<Technique>)[
+					Technique.FullHouse,
+					Technique.HiddenSingleBlock,
+					Technique.HiddenSingleRow,
+					Technique.HiddenSingleColumn,
+					Technique.NakedSingle
+				]
+			)
+		);
 
-	/// <inheritdoc cref="Analyzer.IsFullApplying"/>
-	[DependencyProperty]
-	public static partial bool AnalyzerIsFullApplying { get; set; }
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="EnableFullHouseProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty EnableFullHouseProperty =
+		DependencyProperty.RegisterAttached("EnableFullHouse", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="EnableLastDigitProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty EnableLastDigitProperty =
+		DependencyProperty.RegisterAttached("EnableLastDigit", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="HiddenSinglesInBlockFirstProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty HiddenSinglesInBlockFirstProperty =
+		DependencyProperty.RegisterAttached("HiddenSinglesInBlockFirst", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="EnableOrderingStepsByLastingValueProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty EnableOrderingStepsByLastingValueProperty =
+		DependencyProperty.RegisterAttached("EnableOrderingStepsByLastingValue", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectPointingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectPointingProperty =
+		DependencyProperty.RegisterAttached("AllowDirectPointing", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectClaimingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectClaimingProperty =
+		DependencyProperty.RegisterAttached("AllowDirectClaiming", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectLockedSubsetProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectLockedSubsetProperty =
+		DependencyProperty.RegisterAttached("AllowDirectLockedSubset", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectNakedSubsetProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectNakedSubsetProperty =
+		DependencyProperty.RegisterAttached("AllowDirectNakedSubset", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectLockedHiddenSubsetProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectLockedHiddenSubsetProperty =
+		DependencyProperty.RegisterAttached("AllowDirectLockedHiddenSubset", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowDirectHiddenSubsetProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowDirectHiddenSubsetProperty =
+		DependencyProperty.RegisterAttached("AllowDirectHiddenSubset", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="DirectNakedSubsetMaxSizeProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty DirectNakedSubsetMaxSizeProperty =
+		DependencyProperty.RegisterAttached("DirectNakedSubsetMaxSize", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)2));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="DirectHiddenSubsetMaxSizeProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty DirectHiddenSubsetMaxSizeProperty =
+		DependencyProperty.RegisterAttached("DirectHiddenSubsetMaxSize", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)2));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="NakedSubsetMaxSizeInComplexSingleProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty NakedSubsetMaxSizeInComplexSingleProperty =
+		DependencyProperty.RegisterAttached("NakedSubsetMaxSizeInComplexSingle", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)4));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="HiddenSubsetMaxSizeInComplexSingleProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty HiddenSubsetMaxSizeInComplexSingleProperty =
+		DependencyProperty.RegisterAttached("HiddenSubsetMaxSizeInComplexSingle", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)4));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="DisableFinnedOrSashimiXWingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty DisableFinnedOrSashimiXWingProperty =
+		DependencyProperty.RegisterAttached("DisableFinnedOrSashimiXWing", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="DisableGroupedTurbotFishProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty DisableGroupedTurbotFishProperty =
+		DependencyProperty.RegisterAttached("DisableGroupedTurbotFish", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowSiameseNormalFishProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowSiameseNormalFishProperty =
+		DependencyProperty.RegisterAttached("AllowSiameseNormalFish", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowSiameseComplexFishProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowSiameseComplexFishProperty =
+		DependencyProperty.RegisterAttached("AllowSiameseComplexFish", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="MaxSizeOfComplexFishProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty MaxSizeOfComplexFishProperty =
+		DependencyProperty.RegisterAttached("MaxSizeOfComplexFish", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata(5));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="MaxSizeOfRegularWingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty MaxSizeOfRegularWingProperty =
+		DependencyProperty.RegisterAttached("MaxSizeOfRegularWing", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata(5));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowIncompleteUniqueRectanglesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowIncompleteUniqueRectanglesProperty =
+		DependencyProperty.RegisterAttached("AllowIncompleteUniqueRectangles", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="SearchForExtendedUniqueRectanglesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty SearchForExtendedUniqueRectanglesProperty =
+		DependencyProperty.RegisterAttached("SearchForExtendedUniqueRectangles", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="SearchExtendedBivalueUniversalGraveTypesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty SearchExtendedBivalueUniversalGraveTypesProperty =
+		DependencyProperty.RegisterAttached("SearchExtendedBivalueUniversalGraveTypes", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AlmostLockedCandidatesCheckValueTypesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AlmostLockedCandidatesCheckValueTypesProperty =
+		DependencyProperty.RegisterAttached("AlmostLockedCandidatesCheckValueTypes", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="CheckAlmostLockedQuadrupleProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty CheckAlmostLockedQuadrupleProperty =
+		DependencyProperty.RegisterAttached("CheckAlmostLockedQuadruple", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="MakeConclusionAroundBackdoorsNormalChainProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty MakeConclusionAroundBackdoorsNormalChainProperty =
+		DependencyProperty.RegisterAttached("MakeConclusionAroundBackdoorsNormalChain", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)false));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="MakeConclusionAroundBackdoorsGroupedChainProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty MakeConclusionAroundBackdoorsGroupedChainProperty =
+		DependencyProperty.RegisterAttached("MakeConclusionAroundBackdoorsGroupedChain", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)false));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="SearchExtendedDeathBlossomTypesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty SearchExtendedDeathBlossomTypesProperty =
+		DependencyProperty.RegisterAttached("SearchExtendedDeathBlossomTypes", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="SearchForReverseBugPartiallyUsedTypesProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty SearchForReverseBugPartiallyUsedTypesProperty =
+		DependencyProperty.RegisterAttached("SearchForReverseBugPartiallyUsedTypes", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="ReverseBugMaxSearchingEmptyCellsCountProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty ReverseBugMaxSearchingEmptyCellsCountProperty =
+		DependencyProperty.RegisterAttached("ReverseBugMaxSearchingEmptyCellsCount", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)2));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AllowSiameseXyzRingProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AllowSiameseXyzRingProperty =
+		DependencyProperty.RegisterAttached("AllowSiameseXyzRing", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AlignedExclusionMaxSearchingSizeProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AlignedExclusionMaxSearchingSizeProperty =
+		DependencyProperty.RegisterAttached("AlignedExclusionMaxSearchingSize", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)3));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="BowmanBingoMaxLengthProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty BowmanBingoMaxLengthProperty =
+		DependencyProperty.RegisterAttached("BowmanBingoMaxLength", typeof(int), typeof(AnalyzerProperties), new PropertyMetadata((int)64));
+
+	/// <summary>
+	/// Defines a attached property that binds with setter and getter methods <see cref="AnalyzerUseIttoryuModeProperty"/>.
+	/// </summary>
+	public static readonly DependencyProperty AnalyzerUseIttoryuModeProperty =
+		DependencyProperty.RegisterAttached("AnalyzerUseIttoryuMode", typeof(bool), typeof(AnalyzerProperties), new PropertyMetadata(default(bool)));
 
 
 	/// <summary>
-	/// <inheritdoc cref="DisorderedIttoryuFinder(TechniqueSet)" path="/param[@name='_supportedTechniques']"/>
+	/// Sets the attached property <see cref="AnalyzerIsFullApplyingProperty"/> with the specified value.
 	/// </summary>
-	[DependencyProperty]
-	public static partial List<Technique> IttoryuSupportedTechniques { get; set; }
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAnalyzerIsFullApplying(DependencyObject obj, bool value)
+		=> obj.SetValue(AnalyzerIsFullApplyingProperty, value);
 
+	/// <summary>
+	/// Gets the attached property <see cref="AnalyzerIsFullApplyingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAnalyzerIsFullApplying(DependencyObject obj)
+		=> (bool)obj.GetValue(AnalyzerIsFullApplyingProperty);
 
-	/// <inheritdoc cref="SingleStepSearcher.EnableFullHouse"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool EnableFullHouse { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="IttoryuSupportedTechniquesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetIttoryuSupportedTechniques(DependencyObject obj, List<Technique> value)
+		=> obj.SetValue(IttoryuSupportedTechniquesProperty, value);
 
-	/// <inheritdoc cref="SingleStepSearcher.EnableLastDigit"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool EnableLastDigit { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="IttoryuSupportedTechniquesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static List<Technique> GetIttoryuSupportedTechniques(DependencyObject obj)
+		=> (List<Technique>)obj.GetValue(IttoryuSupportedTechniquesProperty);
 
-	/// <inheritdoc cref="SingleStepSearcher.HiddenSinglesInBlockFirst"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool HiddenSinglesInBlockFirst { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="EnableFullHouseProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetEnableFullHouse(DependencyObject obj, bool value)
+		=> obj.SetValue(EnableFullHouseProperty, value);
 
-	/// <inheritdoc cref="SingleStepSearcher.EnableOrderingStepsByLastingValue"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool EnableOrderingStepsByLastingValue { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="EnableFullHouseProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetEnableFullHouse(DependencyObject obj)
+		=> (bool)obj.GetValue(EnableFullHouseProperty);
 
-	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectPointing { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="EnableLastDigitProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetEnableLastDigit(DependencyObject obj, bool value)
+		=> obj.SetValue(EnableLastDigitProperty, value);
 
-	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectClaiming"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectClaiming { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="EnableLastDigitProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetEnableLastDigit(DependencyObject obj)
+		=> (bool)obj.GetValue(EnableLastDigitProperty);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectLockedSubset { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="HiddenSinglesInBlockFirstProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetHiddenSinglesInBlockFirst(DependencyObject obj, bool value)
+		=> obj.SetValue(HiddenSinglesInBlockFirstProperty, value);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectNakedSubset { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="HiddenSinglesInBlockFirstProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetHiddenSinglesInBlockFirst(DependencyObject obj)
+		=> (bool)obj.GetValue(HiddenSinglesInBlockFirstProperty);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectLockedHiddenSubset { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="EnableOrderingStepsByLastingValueProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetEnableOrderingStepsByLastingValue(DependencyObject obj, bool value)
+		=> obj.SetValue(EnableOrderingStepsByLastingValueProperty, value);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowDirectHiddenSubset { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="EnableOrderingStepsByLastingValueProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetEnableOrderingStepsByLastingValue(DependencyObject obj)
+		=> (bool)obj.GetValue(EnableOrderingStepsByLastingValueProperty);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
-	[DependencyProperty(DefaultValue = 2)]
-	public static partial int DirectNakedSubsetMaxSize { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectPointingProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectPointing(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectPointingProperty, value);
 
-	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
-	[DependencyProperty(DefaultValue = 2)]
-	public static partial int DirectHiddenSubsetMaxSize { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectPointingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectPointing(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectPointingProperty);
 
-	/// <inheritdoc cref="ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
-	[DependencyProperty(DefaultValue = 4)]
-	public static partial int NakedSubsetMaxSizeInComplexSingle { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectClaimingProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectClaiming(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectClaimingProperty, value);
 
-	/// <inheritdoc cref="ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
-	[DependencyProperty(DefaultValue = 4)]
-	public static partial int HiddenSubsetMaxSizeInComplexSingle { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectClaimingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectClaiming(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectClaimingProperty);
 
-	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool DisableFinnedOrSashimiXWing { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectLockedSubsetProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectLockedSubset(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectLockedSubsetProperty, value);
 
-	/// <inheritdoc cref="GroupedTwoStrongLinksStepSearcher.DisableGroupedTurbotFish"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool DisableGroupedTurbotFish { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectLockedSubsetProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectLockedSubset(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectLockedSubsetProperty);
 
-	/// <inheritdoc cref="NormalFishStepSearcher.AllowSiamese"/>
-	[DependencyProperty]
-	public static partial bool AllowSiameseNormalFish { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectNakedSubsetProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectNakedSubset(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectNakedSubsetProperty, value);
 
-	/// <inheritdoc cref="ComplexFishStepSearcher.AllowSiamese"/>
-	[DependencyProperty]
-	public static partial bool AllowSiameseComplexFish { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectNakedSubsetProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectNakedSubset(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectNakedSubsetProperty);
 
-	/// <inheritdoc cref="ComplexFishStepSearcher.MaxSize"/>
-	[DependencyProperty(DefaultValue = 5)]
-	public static partial int MaxSizeOfComplexFish { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectLockedHiddenSubsetProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectLockedHiddenSubset(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectLockedHiddenSubsetProperty, value);
 
-	/// <inheritdoc cref="RegularWingStepSearcher.MaxSearchingPivotsCount"/>
-	[DependencyProperty(DefaultValue = 5)]
-	public static partial int MaxSizeOfRegularWing { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectLockedHiddenSubsetProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectLockedHiddenSubset(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectLockedHiddenSubsetProperty);
 
-	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool AllowIncompleteUniqueRectangles { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="AllowDirectHiddenSubsetProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowDirectHiddenSubset(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowDirectHiddenSubsetProperty, value);
 
-	/// <inheritdoc cref="UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool SearchForExtendedUniqueRectangles { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="AllowDirectHiddenSubsetProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowDirectHiddenSubset(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowDirectHiddenSubsetProperty);
 
-	/// <inheritdoc cref="BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool SearchExtendedBivalueUniversalGraveTypes { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="DirectNakedSubsetMaxSizeProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetDirectNakedSubsetMaxSize(DependencyObject obj, int value)
+		=> obj.SetValue(DirectNakedSubsetMaxSizeProperty, value);
 
-	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
-	[DependencyProperty]
-	public static partial bool AlmostLockedCandidatesCheckValueTypes { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="DirectNakedSubsetMaxSizeProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetDirectNakedSubsetMaxSize(DependencyObject obj)
+		=> (int)obj.GetValue(DirectNakedSubsetMaxSizeProperty);
 
-	/// <inheritdoc cref="AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
-	[DependencyProperty]
-	public static partial bool CheckAlmostLockedQuadruple { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="DirectHiddenSubsetMaxSizeProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetDirectHiddenSubsetMaxSize(DependencyObject obj, int value)
+		=> obj.SetValue(DirectHiddenSubsetMaxSizeProperty, value);
 
-	/// <inheritdoc cref="ChainStepSearcher.MakeConclusionAroundBackdoors"/>
-	[DependencyProperty(DefaultValue = false)]
-	public static partial bool MakeConclusionAroundBackdoorsNormalChain { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="DirectHiddenSubsetMaxSizeProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetDirectHiddenSubsetMaxSize(DependencyObject obj)
+		=> (int)obj.GetValue(DirectHiddenSubsetMaxSizeProperty);
 
-	/// <inheritdoc cref="GroupedChainStepSearcher.MakeConclusionAroundBackdoors"/>
-	[DependencyProperty(DefaultValue = false)]
-	public static partial bool MakeConclusionAroundBackdoorsGroupedChain { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="NakedSubsetMaxSizeInComplexSingleProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetNakedSubsetMaxSizeInComplexSingle(DependencyObject obj, int value)
+		=> obj.SetValue(NakedSubsetMaxSizeInComplexSingleProperty, value);
 
-	/// <inheritdoc cref="DeathBlossomStepSearcher.SearchExtendedTypes"/>
-	[DependencyProperty]
-	public static partial bool SearchExtendedDeathBlossomTypes { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="NakedSubsetMaxSizeInComplexSingleProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetNakedSubsetMaxSizeInComplexSingle(DependencyObject obj)
+		=> (int)obj.GetValue(NakedSubsetMaxSizeInComplexSingleProperty);
 
-	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
-	[DependencyProperty(DefaultValue = true)]
-	public static partial bool SearchForReverseBugPartiallyUsedTypes { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="HiddenSubsetMaxSizeInComplexSingleProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetHiddenSubsetMaxSizeInComplexSingle(DependencyObject obj, int value)
+		=> obj.SetValue(HiddenSubsetMaxSizeInComplexSingleProperty, value);
 
-	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
-	[DependencyProperty(DefaultValue = 2)]
-	public static partial int ReverseBugMaxSearchingEmptyCellsCount { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="HiddenSubsetMaxSizeInComplexSingleProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetHiddenSubsetMaxSizeInComplexSingle(DependencyObject obj)
+		=> (int)obj.GetValue(HiddenSubsetMaxSizeInComplexSingleProperty);
 
-	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
-	[DependencyProperty]
-	public static partial bool AllowSiameseXyzRing { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="DisableFinnedOrSashimiXWingProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetDisableFinnedOrSashimiXWing(DependencyObject obj, bool value)
+		=> obj.SetValue(DisableFinnedOrSashimiXWingProperty, value);
 
-	/// <inheritdoc cref="AlignedExclusionStepSearcher.MaxSearchingSize"/>
-	[DependencyProperty(DefaultValue = 3)]
-	public static partial int AlignedExclusionMaxSearchingSize { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="DisableFinnedOrSashimiXWingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetDisableFinnedOrSashimiXWing(DependencyObject obj)
+		=> (bool)obj.GetValue(DisableFinnedOrSashimiXWingProperty);
 
-	/// <inheritdoc cref="BowmanBingoStepSearcher.MaxLength"/>
-	[DependencyProperty(DefaultValue = 64)]
-	public static partial int BowmanBingoMaxLength { get; set; }
+	/// <summary>
+	/// Sets the attached property <see cref="DisableGroupedTurbotFishProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetDisableGroupedTurbotFish(DependencyObject obj, bool value)
+		=> obj.SetValue(DisableGroupedTurbotFishProperty, value);
 
-	/// <inheritdoc cref="StepGathererOptions.UseIttoryuMode"/>
-	[DependencyProperty]
-	public static partial bool AnalyzerUseIttoryuMode { get; set; }
+	/// <summary>
+	/// Gets the attached property <see cref="DisableGroupedTurbotFishProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetDisableGroupedTurbotFish(DependencyObject obj)
+		=> (bool)obj.GetValue(DisableGroupedTurbotFishProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AllowSiameseNormalFishProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowSiameseNormalFish(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowSiameseNormalFishProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AllowSiameseNormalFishProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowSiameseNormalFish(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowSiameseNormalFishProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AllowSiameseComplexFishProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowSiameseComplexFish(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowSiameseComplexFishProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AllowSiameseComplexFishProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowSiameseComplexFish(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowSiameseComplexFishProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="MaxSizeOfComplexFishProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetMaxSizeOfComplexFish(DependencyObject obj, int value)
+		=> obj.SetValue(MaxSizeOfComplexFishProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="MaxSizeOfComplexFishProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetMaxSizeOfComplexFish(DependencyObject obj)
+		=> (int)obj.GetValue(MaxSizeOfComplexFishProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="MaxSizeOfRegularWingProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetMaxSizeOfRegularWing(DependencyObject obj, int value)
+		=> obj.SetValue(MaxSizeOfRegularWingProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="MaxSizeOfRegularWingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetMaxSizeOfRegularWing(DependencyObject obj)
+		=> (int)obj.GetValue(MaxSizeOfRegularWingProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AllowIncompleteUniqueRectanglesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowIncompleteUniqueRectangles(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowIncompleteUniqueRectanglesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AllowIncompleteUniqueRectanglesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowIncompleteUniqueRectangles(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowIncompleteUniqueRectanglesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="SearchForExtendedUniqueRectanglesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetSearchForExtendedUniqueRectangles(DependencyObject obj, bool value)
+		=> obj.SetValue(SearchForExtendedUniqueRectanglesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="SearchForExtendedUniqueRectanglesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetSearchForExtendedUniqueRectangles(DependencyObject obj)
+		=> (bool)obj.GetValue(SearchForExtendedUniqueRectanglesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="SearchExtendedBivalueUniversalGraveTypesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetSearchExtendedBivalueUniversalGraveTypes(DependencyObject obj, bool value)
+		=> obj.SetValue(SearchExtendedBivalueUniversalGraveTypesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="SearchExtendedBivalueUniversalGraveTypesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetSearchExtendedBivalueUniversalGraveTypes(DependencyObject obj)
+		=> (bool)obj.GetValue(SearchExtendedBivalueUniversalGraveTypesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AlmostLockedCandidatesCheckValueTypesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAlmostLockedCandidatesCheckValueTypes(DependencyObject obj, bool value)
+		=> obj.SetValue(AlmostLockedCandidatesCheckValueTypesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AlmostLockedCandidatesCheckValueTypesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAlmostLockedCandidatesCheckValueTypes(DependencyObject obj)
+		=> (bool)obj.GetValue(AlmostLockedCandidatesCheckValueTypesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="CheckAlmostLockedQuadrupleProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetCheckAlmostLockedQuadruple(DependencyObject obj, bool value)
+		=> obj.SetValue(CheckAlmostLockedQuadrupleProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="CheckAlmostLockedQuadrupleProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetCheckAlmostLockedQuadruple(DependencyObject obj)
+		=> (bool)obj.GetValue(CheckAlmostLockedQuadrupleProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="MakeConclusionAroundBackdoorsNormalChainProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetMakeConclusionAroundBackdoorsNormalChain(DependencyObject obj, bool value)
+		=> obj.SetValue(MakeConclusionAroundBackdoorsNormalChainProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="MakeConclusionAroundBackdoorsNormalChainProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetMakeConclusionAroundBackdoorsNormalChain(DependencyObject obj)
+		=> (bool)obj.GetValue(MakeConclusionAroundBackdoorsNormalChainProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="MakeConclusionAroundBackdoorsGroupedChainProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetMakeConclusionAroundBackdoorsGroupedChain(DependencyObject obj, bool value)
+		=> obj.SetValue(MakeConclusionAroundBackdoorsGroupedChainProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="MakeConclusionAroundBackdoorsGroupedChainProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetMakeConclusionAroundBackdoorsGroupedChain(DependencyObject obj)
+		=> (bool)obj.GetValue(MakeConclusionAroundBackdoorsGroupedChainProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="SearchExtendedDeathBlossomTypesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetSearchExtendedDeathBlossomTypes(DependencyObject obj, bool value)
+		=> obj.SetValue(SearchExtendedDeathBlossomTypesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="SearchExtendedDeathBlossomTypesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetSearchExtendedDeathBlossomTypes(DependencyObject obj)
+		=> (bool)obj.GetValue(SearchExtendedDeathBlossomTypesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="SearchForReverseBugPartiallyUsedTypesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetSearchForReverseBugPartiallyUsedTypes(DependencyObject obj, bool value)
+		=> obj.SetValue(SearchForReverseBugPartiallyUsedTypesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="SearchForReverseBugPartiallyUsedTypesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetSearchForReverseBugPartiallyUsedTypes(DependencyObject obj)
+		=> (bool)obj.GetValue(SearchForReverseBugPartiallyUsedTypesProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="ReverseBugMaxSearchingEmptyCellsCountProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetReverseBugMaxSearchingEmptyCellsCount(DependencyObject obj, int value)
+		=> obj.SetValue(ReverseBugMaxSearchingEmptyCellsCountProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="ReverseBugMaxSearchingEmptyCellsCountProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetReverseBugMaxSearchingEmptyCellsCount(DependencyObject obj)
+		=> (int)obj.GetValue(ReverseBugMaxSearchingEmptyCellsCountProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AllowSiameseXyzRingProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAllowSiameseXyzRing(DependencyObject obj, bool value)
+		=> obj.SetValue(AllowSiameseXyzRingProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AllowSiameseXyzRingProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAllowSiameseXyzRing(DependencyObject obj)
+		=> (bool)obj.GetValue(AllowSiameseXyzRingProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AlignedExclusionMaxSearchingSizeProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAlignedExclusionMaxSearchingSize(DependencyObject obj, int value)
+		=> obj.SetValue(AlignedExclusionMaxSearchingSizeProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AlignedExclusionMaxSearchingSizeProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetAlignedExclusionMaxSearchingSize(DependencyObject obj)
+		=> (int)obj.GetValue(AlignedExclusionMaxSearchingSizeProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="BowmanBingoMaxLengthProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetBowmanBingoMaxLength(DependencyObject obj, int value)
+		=> obj.SetValue(BowmanBingoMaxLengthProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="BowmanBingoMaxLengthProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static int GetBowmanBingoMaxLength(DependencyObject obj)
+		=> (int)obj.GetValue(BowmanBingoMaxLengthProperty);
+
+	/// <summary>
+	/// Sets the attached property <see cref="AnalyzerUseIttoryuModeProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetAnalyzerUseIttoryuMode(DependencyObject obj, bool value)
+		=> obj.SetValue(AnalyzerUseIttoryuModeProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="AnalyzerUseIttoryuModeProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static bool GetAnalyzerUseIttoryuMode(DependencyObject obj)
+		=> (bool)obj.GetValue(AnalyzerUseIttoryuModeProperty);
 
 
 	/// <include

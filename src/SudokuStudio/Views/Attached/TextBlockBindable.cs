@@ -4,17 +4,30 @@ namespace SudokuStudio.Views.Attached;
 /// Defines a bind behaviors on <see cref="TextBlock"/> instances.
 /// </summary>
 /// <seealso cref="TextBlock"/>
-public static partial class TextBlockBindable
+public static class TextBlockBindable
 {
 	/// <summary>
-	/// Gets or sets the inline values of a <see cref="TextBlock"/> instance.
+	/// Defines a attached property that binds with setter and getter methods <see cref="InlinesProperty"/>.
 	/// </summary>
-	/// <seealso cref="TextBlock"/>
-	[DependencyProperty]
-	public static partial IEnumerable<Inline> Inlines { get; set; }
+	public static readonly DependencyProperty InlinesProperty =
+		DependencyProperty.RegisterAttached("Inlines", typeof(IEnumerable<Inline>), typeof(TextBlockBindable), new PropertyMetadata(default(IEnumerable<Inline>), InlinesPropertyCallback));
 
 
-	[Callback]
+	/// <summary>
+	/// Sets the attached property <see cref="InlinesProperty"/> with the specified value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <param name="value">The value to be set.</param>
+	public static void SetInlines(DependencyObject obj, IEnumerable<Inline> value) => obj.SetValue(InlinesProperty, value);
+
+	/// <summary>
+	/// Gets the attached property <see cref="InlinesProperty"/> of its containing value.
+	/// </summary>
+	/// <param name="obj">The containing object of the property.</param>
+	/// <returns>The value returned.</returns>
+	public static IEnumerable<Inline> GetInlines(DependencyObject obj) => (IEnumerable<Inline>)obj.GetValue(InlinesProperty);
+
+
 	private static void InlinesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is not (TextBlock target, { NewValue: IEnumerable<Inline> inlines }))

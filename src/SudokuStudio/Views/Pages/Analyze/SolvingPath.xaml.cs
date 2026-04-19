@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Pages.Analyze;
 public sealed partial class SolvingPath : Page, IAnalyzerTab
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AnalysisResult"/>.
+	/// </summary>
+	/// <seealso cref="AnalysisResult"/>
+	public static readonly DependencyProperty AnalysisResultProperty =
+		DependencyProperty.Register(nameof(AnalysisResult), typeof(AnalysisResult), typeof(SolvingPath), new PropertyMetadata(default(AnalysisResult), AnalysisResultPropertyCallback));
+
+
+	/// <summary>
 	/// Initializes a <see cref="SolvingPath"/> instance.
 	/// </summary>
 	public SolvingPath() => InitializeComponent();
@@ -17,11 +25,14 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 	/// <summary>
 	/// Indicates the analysis result.
 	/// </summary>
-	[DependencyProperty]
-	public partial AnalysisResult? AnalysisResult { get; set; }
+	public AnalysisResult? AnalysisResult
+	{
+		get => (AnalysisResult?)GetValue(AnalysisResultProperty);
+
+		set => SetValue(AnalysisResultProperty, value);
+	}
 
 
-	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView }, { NewValue: var value and (null or Sudoku.Analytics.AnalysisResult) }))

@@ -18,6 +18,14 @@ public sealed partial class TechniqueInfoModifierPage : Page
 
 
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CurrentIndex"/>.
+	/// </summary>
+	/// <seealso cref="CurrentIndex"/>
+	internal static readonly DependencyProperty CurrentIndexProperty =
+		DependencyProperty.Register(nameof(CurrentIndex), typeof(int), typeof(TechniqueInfoModifierPage), new PropertyMetadata(-1, CurrentIndexPropertyCallback));
+
+
+	/// <summary>
 	/// Indicates the default grid row height.
 	/// </summary>
 	private static readonly GridLength DefaultHeight = new(50, GridUnitType.Pixel);
@@ -42,11 +50,14 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	/// <summary>
 	/// Indicates the current index used.
 	/// </summary>
-	[DependencyProperty(DefaultValue = -1)]
-	internal partial int CurrentIndex { get; set; }
+	internal int CurrentIndex
+	{
+		get => (int)GetValue(CurrentIndexProperty);
+
+		set => SetValue(CurrentIndexProperty, value);
+	}
 
 
-	[Callback]
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 	private static async void CurrentIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{

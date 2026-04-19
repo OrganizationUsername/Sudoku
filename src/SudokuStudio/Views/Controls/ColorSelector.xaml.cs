@@ -5,8 +5,15 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class ColorSelector : UserControl
 {
-	[Default]
 	private static readonly Color SelectedColorDefaultValue = Colors.Transparent;
+
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedColor"/>.
+	/// </summary>
+	/// <seealso cref="SelectedColor"/>
+	public static readonly DependencyProperty SelectedColorProperty =
+		DependencyProperty.Register(nameof(SelectedColor), typeof(Color), typeof(ColorSelector), new PropertyMetadata(SelectedColorDefaultValue));
 
 
 	/// <summary>
@@ -18,8 +25,12 @@ public sealed partial class ColorSelector : UserControl
 	/// <summary>
 	/// Indicates the inner color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color SelectedColor { get; set; }
+	public Color SelectedColor
+	{
+		get => (Color)GetValue(SelectedColorProperty);
+
+		set => SetValue(SelectedColorProperty, value);
+	}
 
 
 	/// <summary>

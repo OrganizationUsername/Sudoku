@@ -7,51 +7,115 @@ namespace SudokuStudio.BindableSource;
 /// <seealso cref="LibrarySimpleBindableSource"/>
 public sealed partial class LibraryBindableSource : DependencyObject
 {
-	[Default]
 	internal static readonly string NameDefaultValue = SR.Get("NoName", App.CurrentCulture);
 
-	[Default]
 	internal static readonly string AuthorDefaultValue = SR.Get("Anonymous", App.CurrentCulture);
 
-	[Default]
 	internal static readonly string DescriptionDefaultValue = SR.Get("NoDescription", App.CurrentCulture);
+
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsActive"/>.
+	/// </summary>
+	/// <seealso cref="IsActive"/>
+	public static readonly DependencyProperty IsActiveProperty =
+		DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(LibraryBindableSource), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Name"/>.
+	/// </summary>
+	/// <seealso cref="Name"/>
+	public static readonly DependencyProperty NameProperty =
+		DependencyProperty.Register(nameof(Name), typeof(string), typeof(LibraryBindableSource), new PropertyMetadata(NameDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FileId"/>.
+	/// </summary>
+	/// <seealso cref="FileId"/>
+	public static readonly DependencyProperty FileIdProperty =
+		DependencyProperty.Register(nameof(FileId), typeof(string), typeof(LibraryBindableSource), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Author"/>.
+	/// </summary>
+	/// <seealso cref="Author"/>
+	public static readonly DependencyProperty AuthorProperty =
+		DependencyProperty.Register(nameof(Author), typeof(string), typeof(LibraryBindableSource), new PropertyMetadata(AuthorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Description"/>.
+	/// </summary>
+	/// <seealso cref="Description"/>
+	public static readonly DependencyProperty DescriptionProperty =
+		DependencyProperty.Register(nameof(Description), typeof(string), typeof(LibraryBindableSource), new PropertyMetadata(DescriptionDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Tags"/>.
+	/// </summary>
+	/// <seealso cref="Tags"/>
+	public static readonly DependencyProperty TagsProperty =
+		DependencyProperty.Register(nameof(Tags), typeof(string[]), typeof(LibraryBindableSource), new PropertyMetadata(default(string[])));
 
 
 	/// <summary>
 	/// Indicates whether the current library is loading, updating, etc..
 	/// </summary>
-	[DependencyProperty]
-	public partial bool IsActive { get; set; }
+	public bool IsActive
+	{
+		get => (bool)GetValue(IsActiveProperty);
+
+		set => SetValue(IsActiveProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the name of the library.
 	/// </summary>
-	[DependencyProperty]
-	public partial string Name { get; set; }
+	public string Name
+	{
+		get => (string)GetValue(NameProperty);
+
+		set => SetValue(NameProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the unique file name of the library.
 	/// </summary>
-	[DependencyProperty]
-	public partial string FileId { get; set; }
+	public string FileId
+	{
+		get => (string)GetValue(FileIdProperty);
+
+		set => SetValue(FileIdProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the author of the library.
 	/// </summary>
-	[DependencyProperty]
-	public partial string Author { get; set; }
+	public string Author
+	{
+		get => (string)GetValue(AuthorProperty);
+
+		set => SetValue(AuthorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the description to the library.
 	/// </summary>
-	[DependencyProperty]
-	public partial string Description { get; set; }
+	public string Description
+	{
+		get => (string)GetValue(DescriptionProperty);
+
+		set => SetValue(DescriptionProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
-	[DependencyProperty]
-	public partial string[] Tags { get; set; }
+	public string[] Tags
+	{
+		get => (string[])GetValue(TagsProperty);
+
+		set => SetValue(TagsProperty, value);
+	}
 
 
 	/// <summary>

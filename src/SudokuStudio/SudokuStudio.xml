@@ -333,6 +333,42 @@
             </summary>
             <seealso cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
         </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.IsActiveProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.NameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.AuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.DescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.TagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>
+        </member>
         <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive">
             <summary>
             Indicates whether the current library is loading, updating, etc..
@@ -374,42 +410,6 @@
             Try to create <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/> instances from local path.
             </summary>
             <returns>A list of <see cref="T:SudokuStudio.BindableSource.LibraryBindableSource"/> instances.</returns>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.IsActiveProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.IsActive"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.NameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Name"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.FileIdProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.FileId"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.AuthorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Author"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.DescriptionProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Description"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.LibraryBindableSource.TagsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Tags"/>
         </member>
         <member name="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource">
             <summary>
@@ -12218,6 +12218,12 @@
             Represents a color selector.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.ColorSelector.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.ColorSelector"/> instance.
@@ -12268,12 +12274,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.ColorSelector.SelectedColorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.ColorSelector.SelectedColor"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.DashArrayTextBox">
             <summary>
@@ -12600,6 +12600,12 @@
             Represents a star mark.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Star.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.Shapes.Star.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.Star"/> instance.
@@ -12624,12 +12630,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Star.StrokeThicknessProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Star.StrokeThickness"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.Triangle">
             <summary>
@@ -14653,6 +14653,12 @@
             Defines the solving path page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResultProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.SolvingPath.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.SolvingPath"/> instance.
@@ -14680,12 +14686,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResultProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.StepCollecting">
             <summary>
@@ -14756,6 +14756,12 @@
             Defines a summary page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResultProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.Summary.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.Summary"/> instance.
@@ -14783,12 +14789,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResultProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.Summary.AnalysisResult"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.CommandBasedDrawingPage">
             <summary>
@@ -15089,26 +15089,6 @@
             Represents a library modifiy properties page.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.LibraryNameProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.LibraryName"/>.
@@ -15132,6 +15112,26 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.LibraryTags"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.LibraryTags"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.LibraryModifyPropertiesDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.LibraryPropertiesDialogContent">
             <summary>
@@ -17335,6 +17335,12 @@
             Represents step searcher sorter page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcherProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.StepSearcherSorterPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.StepSearcherSorterPage"/> instance.
@@ -17359,12 +17365,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcherProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.StepSearcherSorterPage.CurrentSelectedStepSearcher"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.TechniqueGalleryPage">
             <summary>
@@ -17412,6 +17412,12 @@
             Indicates the default with for rating control.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndexProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.DefaultHeight">
             <summary>
             Indicates the default grid row height.
@@ -17451,12 +17457,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndexProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>

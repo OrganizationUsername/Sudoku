@@ -5,131 +5,90 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 {
-	[Default]
 	private static readonly decimal HighlightCandidateCircleScaleDefaultValue = .9M;
 
-	[Default]
 	private static readonly decimal HighlightBackgroundOpacityDefaultValue = .15M;
 
-	[Default]
 	private static readonly decimal ChainStrokeThicknessDefaultValue = 2.0M;
 
-	[Default]
 	private static readonly decimal GivenFontScaleDefaultValue = 1.0M;
 
-	[Default]
 	private static readonly decimal ModifiableFontScaleDefaultValue = 1.0M;
 
-	[Default]
 	private static readonly decimal PencilmarkFontScaleDefaultValue = .33M;
 
-	[Default]
 	private static readonly decimal BabaGroupLabelFontScaleDefaultValue = .6M;
 
-	[Default]
 	private static readonly decimal CoordinateLabelFontScaleDefaultValue = .4M;
 
-	[Default]
 	private static readonly Color GivenColorDefaultValue = Colors.Black;
 
-	[Default]
 	private static readonly Color DeltaCandidateColorDefaultValue = Color.FromArgb(255, 255, 185, 185);
 
-	[Default]
 	private static readonly Color BorderColorDefaultValue = Colors.Black;
 
-	[Default]
 	private static readonly Color CursorBackgroundColorDefaultValue = Colors.Blue with { A = 32 };
 
-	[Default]
 	private static readonly Color LinkColorDefaultValue = Colors.Red;
 
-	[Default]
 	private static readonly Color NormalColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[Default]
 	private static readonly Color AssignmentColorDefaultValue = Color.FromArgb(255, 63, 218, 101);
 
-	[Default]
 	private static readonly Color OverlappedAssignmentColorDefaultValue = Color.FromArgb(255, 0, 255, 204);
 
-	[Default]
 	private static readonly Color EliminationColorDefaultValue = Color.FromArgb(255, 255, 118, 132);
 
-	[Default]
 	private static readonly Color CannibalismColorDefaultValue = new() { A = 255, R = 235 };
 
-	[Default]
 	private static readonly Color ExofinColorDefaultValue = Color.FromArgb(255, 127, 187, 255);
 
-	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
-	[Default]
 	private static readonly Color GroupedNodeStrokeColorDefaultValue = Colors.Yellow with { A = 64 };
 
-	[Default]
 	private static readonly Color GroupedNodeBackgroundColorDefaultValue = Colors.Orange;
 
-	[Default]
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
-	[Default]
 	private static readonly Color CellTruthColorDefaultValue = Color.FromArgb(255, 64, 128, 192);
 
-	[Default]
 	private static readonly Color RowTruthColorDefaultValue = Color.FromArgb(255, 187, 62, 125);
 
-	[Default]
 	private static readonly Color ColumnTruthColorDefaultValue = Color.FromArgb(255, 46, 138, 92);
 
-	[Default]
 	private static readonly Color BlockTruthColorDefaultValue = Color.FromArgb(255, 172, 126, 113);
 
-	[Default]
 	private static readonly Color LineOrCellLinkColorDefaultValue = Color.FromArgb(86, 128, 128, 128);
 
-	[Default]
 	private static readonly Color BlockLinkColorDefaultValue = Color.FromArgb(86, 172, 126, 113);
 
-	[Default]
 	private static readonly Color RankSetBoundCandidatesColorDefaultValue = Color.FromArgb(255, 129, 192, 255);
 
-	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
 
-	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
 
-	[Default]
 	private static readonly Thickness CellsInnerPaddingDefaultValue = new(6);
 
-	[Default]
 	private static readonly CornerRadius CellsInnerCornerRadiusDefaultValue = new(6);
 
-	[Default]
 	private static readonly FontFamily GivenFontDefaultValue = new("Tahoma");
 
-	[Default]
 	private static readonly FontFamily ModifiableFontDefaultValue = new("Tahoma");
 
-	[Default]
 	private static readonly FontFamily PencilmarkFontDefaultValue = new("Tahoma");
 
-	[Default]
 	private static readonly FontFamily CoordinateLabelFontDefaultValue = new("Tahoma");
 
-	[Default]
 	private static readonly FontFamily BabaGroupLabelFontDefaultValue = new("Times New Roman");
 
-	[Default]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = [
 		Color.FromArgb(255, 255, 192, 89),
 		Color.FromArgb(255, 127, 187, 255),
 		Color.FromArgb(255, 216, 178, 255)
 	];
 
-	[Default]
 	private static readonly ColorPalette DifficultyLevelForegroundsDefaultValue = [
 		Color.FromArgb(255, 0, 51, 204),
 		Color.FromArgb(255, 0, 102, 0),
@@ -139,7 +98,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Colors.Black
 	];
 
-	[Default]
 	private static readonly ColorPalette DifficultyLevelBackgroundsDefaultValue = [
 		Color.FromArgb(255, 204, 204, 255),
 		Color.FromArgb(255, 100, 255, 100),
@@ -149,7 +107,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 220, 220, 220)
 	];
 
-	[Default]
 	private static readonly ColorPalette UserDefinedColorPaletteDefaultValue = [
 		Color.FromArgb(255, 63, 218, 101), // Green
 		Color.FromArgb(255, 255, 192, 89), // Orange
@@ -168,7 +125,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 192, 192, 192) // Gray
 	];
 
-	[Default]
 	private static readonly ColorPalette AlmostLockedSetsColorsDefaultValue = [
 		Color.FromArgb(255, 255, 203, 203),
 		Color.FromArgb(255, 178, 223, 223),
@@ -177,12 +133,494 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		Color.FromArgb(255, 247, 222, 143)
 	];
 
-	[Default]
 	private static readonly ColorPalette RectangleColorsDefaultValue = [
 		Color.FromArgb(255, 216, 178, 255), // Purple
 		Color.FromArgb(255, 204, 150, 248), // Purple
 		Color.FromArgb(255, 114, 82, 170), // Dark purple
 	];
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DisplayCandidates"/>.
+	/// </summary>
+	/// <seealso cref="DisplayCandidates"/>
+	public static readonly DependencyProperty DisplayCandidatesProperty =
+		DependencyProperty.Register(nameof(DisplayCandidates), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true, DisplayCandidatesPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DisplayCursors"/>.
+	/// </summary>
+	/// <seealso cref="DisplayCursors"/>
+	public static readonly DependencyProperty DisplayCursorsProperty =
+		DependencyProperty.Register(nameof(DisplayCursors), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="UseDifferentColorToDisplayDeltaDigits"/>.
+	/// </summary>
+	/// <seealso cref="UseDifferentColorToDisplayDeltaDigits"/>
+	public static readonly DependencyProperty UseDifferentColorToDisplayDeltaDigitsProperty =
+		DependencyProperty.Register(nameof(UseDifferentColorToDisplayDeltaDigits), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DisableFlyout"/>.
+	/// </summary>
+	/// <seealso cref="DisableFlyout"/>
+	public static readonly DependencyProperty DisableFlyoutProperty =
+		DependencyProperty.Register(nameof(DisableFlyout), typeof(bool), typeof(SudokuPane), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="PreventConflictingInput"/>.
+	/// </summary>
+	/// <seealso cref="PreventConflictingInput"/>
+	public static readonly DependencyProperty PreventConflictingInputProperty =
+		DependencyProperty.Register(nameof(PreventConflictingInput), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EnableUndoRedoStacking"/>.
+	/// </summary>
+	/// <seealso cref="EnableUndoRedoStacking"/>
+	public static readonly DependencyProperty EnableUndoRedoStackingProperty =
+		DependencyProperty.Register(nameof(EnableUndoRedoStacking), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EnableDoubleTapFilling"/>.
+	/// </summary>
+	/// <seealso cref="EnableDoubleTapFilling"/>
+	public static readonly DependencyProperty EnableDoubleTapFillingProperty =
+		DependencyProperty.Register(nameof(EnableDoubleTapFilling), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EnableRightTapRemoving"/>.
+	/// </summary>
+	/// <seealso cref="EnableRightTapRemoving"/>
+	public static readonly DependencyProperty EnableRightTapRemovingProperty =
+		DependencyProperty.Register(nameof(EnableRightTapRemoving), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EnableAnimationFeedback"/>.
+	/// </summary>
+	/// <seealso cref="EnableAnimationFeedback"/>
+	public static readonly DependencyProperty EnableAnimationFeedbackProperty =
+		DependencyProperty.Register(nameof(EnableAnimationFeedback), typeof(bool), typeof(SudokuPane), new PropertyMetadata((bool)true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="TransparentBackground"/>.
+	/// </summary>
+	/// <seealso cref="TransparentBackground"/>
+	public static readonly DependencyProperty TransparentBackgroundProperty =
+		DependencyProperty.Register(nameof(TransparentBackground), typeof(bool), typeof(SudokuPane), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HighlightCandidateCircleScale"/>.
+	/// </summary>
+	/// <seealso cref="HighlightCandidateCircleScale"/>
+	public static readonly DependencyProperty HighlightCandidateCircleScaleProperty =
+		DependencyProperty.Register(nameof(HighlightCandidateCircleScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(HighlightCandidateCircleScaleDefaultValue, HighlightCandidateCircleScalePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HighlightBackgroundOpacity"/>.
+	/// </summary>
+	/// <seealso cref="HighlightBackgroundOpacity"/>
+	public static readonly DependencyProperty HighlightBackgroundOpacityProperty =
+		DependencyProperty.Register(nameof(HighlightBackgroundOpacity), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(HighlightBackgroundOpacityDefaultValue, HighlightBackgroundOpacityPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ChainStrokeThickness"/>.
+	/// </summary>
+	/// <seealso cref="ChainStrokeThickness"/>
+	public static readonly DependencyProperty ChainStrokeThicknessProperty =
+		DependencyProperty.Register(nameof(ChainStrokeThickness), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(ChainStrokeThicknessDefaultValue, ChainStrokeThicknessPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="GivenFontScale"/>.
+	/// </summary>
+	/// <seealso cref="GivenFontScale"/>
+	public static readonly DependencyProperty GivenFontScaleProperty =
+		DependencyProperty.Register(nameof(GivenFontScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(GivenFontScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ModifiableFontScale"/>.
+	/// </summary>
+	/// <seealso cref="ModifiableFontScale"/>
+	public static readonly DependencyProperty ModifiableFontScaleProperty =
+		DependencyProperty.Register(nameof(ModifiableFontScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(ModifiableFontScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="PencilmarkFontScale"/>.
+	/// </summary>
+	/// <seealso cref="PencilmarkFontScale"/>
+	public static readonly DependencyProperty PencilmarkFontScaleProperty =
+		DependencyProperty.Register(nameof(PencilmarkFontScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(PencilmarkFontScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BabaGroupLabelFontScale"/>.
+	/// </summary>
+	/// <seealso cref="BabaGroupLabelFontScale"/>
+	public static readonly DependencyProperty BabaGroupLabelFontScaleProperty =
+		DependencyProperty.Register(nameof(BabaGroupLabelFontScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(BabaGroupLabelFontScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CoordinateLabelFontScale"/>.
+	/// </summary>
+	/// <seealso cref="CoordinateLabelFontScale"/>
+	public static readonly DependencyProperty CoordinateLabelFontScaleProperty =
+		DependencyProperty.Register(nameof(CoordinateLabelFontScale), typeof(decimal), typeof(SudokuPane), new PropertyMetadata(CoordinateLabelFontScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HouseCompletedFeedbackDuration"/>.
+	/// </summary>
+	/// <seealso cref="HouseCompletedFeedbackDuration"/>
+	public static readonly DependencyProperty HouseCompletedFeedbackDurationProperty =
+		DependencyProperty.Register(nameof(HouseCompletedFeedbackDuration), typeof(int), typeof(SudokuPane), new PropertyMetadata((int)800, HouseCompletedFeedbackDurationPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CoordinateLabelDisplayKind"/>.
+	/// </summary>
+	/// <seealso cref="CoordinateLabelDisplayKind"/>
+	public static readonly DependencyProperty CoordinateLabelDisplayKindProperty =
+		DependencyProperty.Register(nameof(CoordinateLabelDisplayKind), typeof(CoordinateType), typeof(SudokuPane), new PropertyMetadata((CoordinateType)1, CoordinateLabelDisplayKindPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CoordinateLabelDisplayMode"/>.
+	/// </summary>
+	/// <seealso cref="CoordinateLabelDisplayMode"/>
+	public static readonly DependencyProperty CoordinateLabelDisplayModeProperty =
+		DependencyProperty.Register(nameof(CoordinateLabelDisplayMode), typeof(CoordinateLabelDisplay), typeof(SudokuPane), new PropertyMetadata((CoordinateLabelDisplay)1));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CandidateViewNodeDisplayMode"/>.
+	/// </summary>
+	/// <seealso cref="CandidateViewNodeDisplayMode"/>
+	public static readonly DependencyProperty CandidateViewNodeDisplayModeProperty =
+		DependencyProperty.Register(nameof(CandidateViewNodeDisplayMode), typeof(CandidateViewNodeDisplay), typeof(SudokuPane), new PropertyMetadata((CandidateViewNodeDisplay)0, CandidateViewNodeDisplayModePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AssignmentDisplayMode"/>.
+	/// </summary>
+	/// <seealso cref="AssignmentDisplayMode"/>
+	public static readonly DependencyProperty AssignmentDisplayModeProperty =
+		DependencyProperty.Register(nameof(AssignmentDisplayMode), typeof(AssignmentDisplay), typeof(SudokuPane), new PropertyMetadata((AssignmentDisplay)0, AssignmentDisplayModePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EliminationDisplayMode"/>.
+	/// </summary>
+	/// <seealso cref="EliminationDisplayMode"/>
+	public static readonly DependencyProperty EliminationDisplayModeProperty =
+		DependencyProperty.Register(nameof(EliminationDisplayMode), typeof(EliminationDisplay), typeof(SudokuPane), new PropertyMetadata((EliminationDisplay)0, EliminationDisplayModePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CandidateRotating"/>.
+	/// </summary>
+	/// <seealso cref="CandidateRotating"/>
+	public static readonly DependencyProperty CandidateRotatingProperty =
+		DependencyProperty.Register(nameof(CandidateRotating), typeof(GridCandidateRotating), typeof(SudokuPane), new PropertyMetadata((GridCandidateRotating)0, CandidateRotatingPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedCell"/>.
+	/// </summary>
+	/// <seealso cref="SelectedCell"/>
+	public static readonly DependencyProperty SelectedCellProperty =
+		DependencyProperty.Register(nameof(SelectedCell), typeof(int), typeof(SudokuPane), new PropertyMetadata(default(int)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CellsInnerCornerRadius"/>.
+	/// </summary>
+	/// <seealso cref="CellsInnerCornerRadius"/>
+	public static readonly DependencyProperty CellsInnerCornerRadiusProperty =
+		DependencyProperty.Register(nameof(CellsInnerCornerRadius), typeof(CornerRadius), typeof(SudokuPane), new PropertyMetadata(CellsInnerCornerRadiusDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="GivenColor"/>.
+	/// </summary>
+	/// <seealso cref="GivenColor"/>
+	public static readonly DependencyProperty GivenColorProperty =
+		DependencyProperty.Register(nameof(GivenColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(GivenColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ModifiableColor"/>.
+	/// </summary>
+	/// <seealso cref="ModifiableColor"/>
+	public static readonly DependencyProperty ModifiableColorProperty =
+		DependencyProperty.Register(nameof(ModifiableColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(default(Color)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="PencilmarkColor"/>.
+	/// </summary>
+	/// <seealso cref="PencilmarkColor"/>
+	public static readonly DependencyProperty PencilmarkColorProperty =
+		DependencyProperty.Register(nameof(PencilmarkColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(default(Color)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CoordinateLabelColor"/>.
+	/// </summary>
+	/// <seealso cref="CoordinateLabelColor"/>
+	public static readonly DependencyProperty CoordinateLabelColorProperty =
+		DependencyProperty.Register(nameof(CoordinateLabelColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(default(Color)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BabaGroupLabelColor"/>.
+	/// </summary>
+	/// <seealso cref="BabaGroupLabelColor"/>
+	public static readonly DependencyProperty BabaGroupLabelColorProperty =
+		DependencyProperty.Register(nameof(BabaGroupLabelColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(default(Color), BabaGroupLabelColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DeltaCandidateColor"/>.
+	/// </summary>
+	/// <seealso cref="DeltaCandidateColor"/>
+	public static readonly DependencyProperty DeltaCandidateColorProperty =
+		DependencyProperty.Register(nameof(DeltaCandidateColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(DeltaCandidateColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DeltaCellColor"/>.
+	/// </summary>
+	/// <seealso cref="DeltaCellColor"/>
+	public static readonly DependencyProperty DeltaCellColorProperty =
+		DependencyProperty.Register(nameof(DeltaCellColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(default(Color)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BorderColor"/>.
+	/// </summary>
+	/// <seealso cref="BorderColor"/>
+	public static readonly DependencyProperty BorderColorProperty =
+		DependencyProperty.Register(nameof(BorderColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(BorderColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CursorBackgroundColor"/>.
+	/// </summary>
+	/// <seealso cref="CursorBackgroundColor"/>
+	public static readonly DependencyProperty CursorBackgroundColorProperty =
+		DependencyProperty.Register(nameof(CursorBackgroundColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(CursorBackgroundColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LinkColor"/>.
+	/// </summary>
+	/// <seealso cref="LinkColor"/>
+	public static readonly DependencyProperty LinkColorProperty =
+		DependencyProperty.Register(nameof(LinkColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(LinkColorDefaultValue, LinkColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="NormalColor"/>.
+	/// </summary>
+	/// <seealso cref="NormalColor"/>
+	public static readonly DependencyProperty NormalColorProperty =
+		DependencyProperty.Register(nameof(NormalColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(NormalColorDefaultValue, NormalColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AssignmentColor"/>.
+	/// </summary>
+	/// <seealso cref="AssignmentColor"/>
+	public static readonly DependencyProperty AssignmentColorProperty =
+		DependencyProperty.Register(nameof(AssignmentColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(AssignmentColorDefaultValue, AssignmentColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="OverlappedAssignmentColor"/>.
+	/// </summary>
+	/// <seealso cref="OverlappedAssignmentColor"/>
+	public static readonly DependencyProperty OverlappedAssignmentColorProperty =
+		DependencyProperty.Register(nameof(OverlappedAssignmentColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(OverlappedAssignmentColorDefaultValue, OverlappedAssignmentColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EliminationColor"/>.
+	/// </summary>
+	/// <seealso cref="EliminationColor"/>
+	public static readonly DependencyProperty EliminationColorProperty =
+		DependencyProperty.Register(nameof(EliminationColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(EliminationColorDefaultValue, EliminationColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CannibalismColor"/>.
+	/// </summary>
+	/// <seealso cref="CannibalismColor"/>
+	public static readonly DependencyProperty CannibalismColorProperty =
+		DependencyProperty.Register(nameof(CannibalismColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(CannibalismColorDefaultValue, CannibalismColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ExofinColor"/>.
+	/// </summary>
+	/// <seealso cref="ExofinColor"/>
+	public static readonly DependencyProperty ExofinColorProperty =
+		DependencyProperty.Register(nameof(ExofinColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(ExofinColorDefaultValue, ExofinColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="EndofinColor"/>.
+	/// </summary>
+	/// <seealso cref="EndofinColor"/>
+	public static readonly DependencyProperty EndofinColorProperty =
+		DependencyProperty.Register(nameof(EndofinColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(EndofinColorDefaultValue, EndofinColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="GroupedNodeStrokeColor"/>.
+	/// </summary>
+	/// <seealso cref="GroupedNodeStrokeColor"/>
+	public static readonly DependencyProperty GroupedNodeStrokeColorProperty =
+		DependencyProperty.Register(nameof(GroupedNodeStrokeColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(GroupedNodeStrokeColorDefaultValue, GroupedNodeStrokeColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="GroupedNodeBackgroundColor"/>.
+	/// </summary>
+	/// <seealso cref="GroupedNodeBackgroundColor"/>
+	public static readonly DependencyProperty GroupedNodeBackgroundColorProperty =
+		DependencyProperty.Register(nameof(GroupedNodeBackgroundColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(GroupedNodeBackgroundColorDefaultValue, GroupedNodeBackgroundColorPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HouseCompletedFeedbackColor"/>.
+	/// </summary>
+	/// <seealso cref="HouseCompletedFeedbackColor"/>
+	public static readonly DependencyProperty HouseCompletedFeedbackColorProperty =
+		DependencyProperty.Register(nameof(HouseCompletedFeedbackColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(HouseCompletedFeedbackColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CellTruthColor"/>.
+	/// </summary>
+	/// <seealso cref="CellTruthColor"/>
+	public static readonly DependencyProperty CellTruthColorProperty =
+		DependencyProperty.Register(nameof(CellTruthColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(CellTruthColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="RowTruthColor"/>.
+	/// </summary>
+	/// <seealso cref="RowTruthColor"/>
+	public static readonly DependencyProperty RowTruthColorProperty =
+		DependencyProperty.Register(nameof(RowTruthColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(RowTruthColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ColumnTruthColor"/>.
+	/// </summary>
+	/// <seealso cref="ColumnTruthColor"/>
+	public static readonly DependencyProperty ColumnTruthColorProperty =
+		DependencyProperty.Register(nameof(ColumnTruthColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(ColumnTruthColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BlockTruthColor"/>.
+	/// </summary>
+	/// <seealso cref="BlockTruthColor"/>
+	public static readonly DependencyProperty BlockTruthColorProperty =
+		DependencyProperty.Register(nameof(BlockTruthColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(BlockTruthColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LineOrCellLinkColor"/>.
+	/// </summary>
+	/// <seealso cref="LineOrCellLinkColor"/>
+	public static readonly DependencyProperty LineOrCellLinkColorProperty =
+		DependencyProperty.Register(nameof(LineOrCellLinkColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(LineOrCellLinkColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BlockLinkColor"/>.
+	/// </summary>
+	/// <seealso cref="BlockLinkColor"/>
+	public static readonly DependencyProperty BlockLinkColorProperty =
+		DependencyProperty.Register(nameof(BlockLinkColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(BlockLinkColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="RankSetBoundCandidatesColor"/>.
+	/// </summary>
+	/// <seealso cref="RankSetBoundCandidatesColor"/>
+	public static readonly DependencyProperty RankSetBoundCandidatesColorProperty =
+		DependencyProperty.Register(nameof(RankSetBoundCandidatesColor), typeof(Color), typeof(SudokuPane), new PropertyMetadata(RankSetBoundCandidatesColorDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="StrongLinkDashStyle"/>.
+	/// </summary>
+	/// <seealso cref="StrongLinkDashStyle"/>
+	public static readonly DependencyProperty StrongLinkDashStyleProperty =
+		DependencyProperty.Register(nameof(StrongLinkDashStyle), typeof(DashArray), typeof(SudokuPane), new PropertyMetadata(StrongLinkDashStyleDefaultValue, StrongLinkDashStylePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="WeakLinkDashStyle"/>.
+	/// </summary>
+	/// <seealso cref="WeakLinkDashStyle"/>
+	public static readonly DependencyProperty WeakLinkDashStyleProperty =
+		DependencyProperty.Register(nameof(WeakLinkDashStyle), typeof(DashArray), typeof(SudokuPane), new PropertyMetadata(WeakLinkDashStyleDefaultValue, WeakLinkDashStylePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CellsInnerPadding"/>.
+	/// </summary>
+	/// <seealso cref="CellsInnerPadding"/>
+	public static readonly DependencyProperty CellsInnerPaddingProperty =
+		DependencyProperty.Register(nameof(CellsInnerPadding), typeof(Thickness), typeof(SudokuPane), new PropertyMetadata(CellsInnerPaddingDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="GivenFont"/>.
+	/// </summary>
+	/// <seealso cref="GivenFont"/>
+	public static readonly DependencyProperty GivenFontProperty =
+		DependencyProperty.Register(nameof(GivenFont), typeof(FontFamily), typeof(SudokuPane), new PropertyMetadata(GivenFontDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ModifiableFont"/>.
+	/// </summary>
+	/// <seealso cref="ModifiableFont"/>
+	public static readonly DependencyProperty ModifiableFontProperty =
+		DependencyProperty.Register(nameof(ModifiableFont), typeof(FontFamily), typeof(SudokuPane), new PropertyMetadata(ModifiableFontDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="PencilmarkFont"/>.
+	/// </summary>
+	/// <seealso cref="PencilmarkFont"/>
+	public static readonly DependencyProperty PencilmarkFontProperty =
+		DependencyProperty.Register(nameof(PencilmarkFont), typeof(FontFamily), typeof(SudokuPane), new PropertyMetadata(PencilmarkFontDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CoordinateLabelFont"/>.
+	/// </summary>
+	/// <seealso cref="CoordinateLabelFont"/>
+	public static readonly DependencyProperty CoordinateLabelFontProperty =
+		DependencyProperty.Register(nameof(CoordinateLabelFont), typeof(FontFamily), typeof(SudokuPane), new PropertyMetadata(CoordinateLabelFontDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BabaGroupLabelFont"/>.
+	/// </summary>
+	/// <seealso cref="BabaGroupLabelFont"/>
+	public static readonly DependencyProperty BabaGroupLabelFontProperty =
+		DependencyProperty.Register(nameof(BabaGroupLabelFont), typeof(FontFamily), typeof(SudokuPane), new PropertyMetadata(BabaGroupLabelFontDefaultValue, BabaGroupLabelFontPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ViewUnit"/>.
+	/// </summary>
+	/// <seealso cref="ViewUnit"/>
+	public static readonly DependencyProperty ViewUnitProperty =
+		DependencyProperty.Register(nameof(ViewUnit), typeof(ViewUnitBindableSource), typeof(SudokuPane), new PropertyMetadata(default(ViewUnitBindableSource), ViewUnitPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AuxiliaryColors"/>.
+	/// </summary>
+	/// <seealso cref="AuxiliaryColors"/>
+	public static readonly DependencyProperty AuxiliaryColorsProperty =
+		DependencyProperty.Register(nameof(AuxiliaryColors), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(AuxiliaryColorsDefaultValue, AuxiliaryColorsPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DifficultyLevelForegrounds"/>.
+	/// </summary>
+	/// <seealso cref="DifficultyLevelForegrounds"/>
+	public static readonly DependencyProperty DifficultyLevelForegroundsProperty =
+		DependencyProperty.Register(nameof(DifficultyLevelForegrounds), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(DifficultyLevelForegroundsDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DifficultyLevelBackgrounds"/>.
+	/// </summary>
+	/// <seealso cref="DifficultyLevelBackgrounds"/>
+	public static readonly DependencyProperty DifficultyLevelBackgroundsProperty =
+		DependencyProperty.Register(nameof(DifficultyLevelBackgrounds), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(DifficultyLevelBackgroundsDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="UserDefinedColorPalette"/>.
+	/// </summary>
+	/// <seealso cref="UserDefinedColorPalette"/>
+	public static readonly DependencyProperty UserDefinedColorPaletteProperty =
+		DependencyProperty.Register(nameof(UserDefinedColorPalette), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(UserDefinedColorPaletteDefaultValue, UserDefinedColorPalettePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AlmostLockedSetsColors"/>.
+	/// </summary>
+	/// <seealso cref="AlmostLockedSetsColors"/>
+	public static readonly DependencyProperty AlmostLockedSetsColorsProperty =
+		DependencyProperty.Register(nameof(AlmostLockedSetsColors), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(AlmostLockedSetsColorsDefaultValue, AlmostLockedSetsColorsPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="RectangleColors"/>.
+	/// </summary>
+	/// <seealso cref="RectangleColors"/>
+	public static readonly DependencyProperty RectangleColorsProperty =
+		DependencyProperty.Register(nameof(RectangleColors), typeof(ColorPalette), typeof(SudokuPane), new PropertyMetadata(RectangleColorsDefaultValue));
 
 
 	/// <summary>
@@ -238,27 +676,43 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates whether the pane displays for candidates.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool DisplayCandidates { get; set; }
+	public bool DisplayCandidates
+	{
+		get => (bool)GetValue(DisplayCandidatesProperty);
+
+		set => SetValue(DisplayCandidatesProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the pane displays cursors that uses different colors to highlight some cells as peers
 	/// of the target cell that is the one your mouse points to.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool DisplayCursors { get; set; }
+	public bool DisplayCursors
+	{
+		get => (bool)GetValue(DisplayCursorsProperty);
+
+		set => SetValue(DisplayCursorsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the pane displays for delta Digits using different colors.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool UseDifferentColorToDisplayDeltaDigits { get; set; }
+	public bool UseDifferentColorToDisplayDeltaDigits
+	{
+		get => (bool)GetValue(UseDifferentColorToDisplayDeltaDigitsProperty);
+
+		set => SetValue(UseDifferentColorToDisplayDeltaDigitsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the pane disable flyout open.
 	/// </summary>
-	[DependencyProperty]
-	public partial bool DisableFlyout { get; set; }
+	public bool DisableFlyout
+	{
+		get => (bool)GetValue(DisableFlyoutProperty);
+
+		set => SetValue(DisableFlyoutProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the pane prevent the simple conflict, which means,
@@ -266,99 +720,163 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// this pane will do nothing by this value being <see langword="true"/>.
 	/// If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool PreventConflictingInput { get; set; }
+	public bool PreventConflictingInput
+	{
+		get => (bool)GetValue(PreventConflictingInputProperty);
+
+		set => SetValue(PreventConflictingInputProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the pane enables for undoing and redoing operation.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
 	[MemberNotNullWhen(true, nameof(_redoStack), nameof(_undoStack))]
-	public partial bool EnableUndoRedoStacking { get; set; }
+	public bool EnableUndoRedoStacking
+	{
+		get => (bool)GetValue(EnableUndoRedoStackingProperty);
+
+		set => SetValue(EnableUndoRedoStackingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the digit will be automatically input by double tapping a candidate.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool EnableDoubleTapFilling { get; set; }
+	public bool EnableDoubleTapFilling
+	{
+		get => (bool)GetValue(EnableDoubleTapFillingProperty);
+
+		set => SetValue(EnableDoubleTapFillingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool EnableRightTapRemoving { get; set; }
+	public bool EnableRightTapRemoving
+	{
+		get => (bool)GetValue(EnableRightTapRemovingProperty);
+
+		set => SetValue(EnableRightTapRemovingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether sudoku pane enables for animation feedback.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool EnableAnimationFeedback { get; set; }
+	public bool EnableAnimationFeedback
+	{
+		get => (bool)GetValue(EnableAnimationFeedbackProperty);
+
+		set => SetValue(EnableAnimationFeedbackProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
 	/// </summary>
-	[DependencyProperty]
-	public partial bool TransparentBackground { get; set; }
+	public bool TransparentBackground
+	{
+		get => (bool)GetValue(TransparentBackgroundProperty);
+
+		set => SetValue(TransparentBackgroundProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal HighlightCandidateCircleScale { get; set; }
+	public decimal HighlightCandidateCircleScale
+	{
+		get => (decimal)GetValue(HighlightCandidateCircleScaleProperty);
+
+		set => SetValue(HighlightCandidateCircleScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal HighlightBackgroundOpacity { get; set; }
+	public decimal HighlightBackgroundOpacity
+	{
+		get => (decimal)GetValue(HighlightBackgroundOpacityProperty);
+
+		set => SetValue(HighlightBackgroundOpacityProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the chain stroke thickness.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal ChainStrokeThickness { get; set; }
+	public decimal ChainStrokeThickness
+	{
+		get => (decimal)GetValue(ChainStrokeThicknessProperty);
+
+		set => SetValue(ChainStrokeThicknessProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the font scale of given Digits. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal GivenFontScale { get; set; }
+	public decimal GivenFontScale
+	{
+		get => (decimal)GetValue(GivenFontScaleProperty);
+
+		set => SetValue(GivenFontScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal ModifiableFontScale { get; set; }
+	public decimal ModifiableFontScale
+	{
+		get => (decimal)GetValue(ModifiableFontScaleProperty);
+
+		set => SetValue(ModifiableFontScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal PencilmarkFontScale { get; set; }
+	public decimal PencilmarkFontScale
+	{
+		get => (decimal)GetValue(PencilmarkFontScaleProperty);
+
+		set => SetValue(PencilmarkFontScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the font scale of baba group characters. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal BabaGroupLabelFontScale { get; set; }
+	public decimal BabaGroupLabelFontScale
+	{
+		get => (decimal)GetValue(BabaGroupLabelFontScaleProperty);
+
+		set => SetValue(BabaGroupLabelFontScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the coordinate label font scale. The value should generally be below 1.0.
 	/// </summary>
-	[DependencyProperty]
-	public partial decimal CoordinateLabelFontScale { get; set; }
+	public decimal CoordinateLabelFontScale
+	{
+		get => (decimal)GetValue(CoordinateLabelFontScaleProperty);
+
+		set => SetValue(CoordinateLabelFontScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the duration of feedback when a house is completed.
 	/// </summary>
-	[DependencyProperty(DefaultValue = 800)]
-	public partial int HouseCompletedFeedbackDuration { get; set; }
+	public int HouseCompletedFeedbackDuration
+	{
+		get => (int)GetValue(HouseCompletedFeedbackDurationProperty);
+
+		set => SetValue(HouseCompletedFeedbackDurationProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the displaying kind of coordinate labels.
 	/// </summary>
-	[DependencyProperty(DefaultValue = CoordinateType.RxCy)]
-	public partial CoordinateType CoordinateLabelDisplayKind { get; set; }
+	public CoordinateType CoordinateLabelDisplayKind
+	{
+		get => (CoordinateType)GetValue(CoordinateLabelDisplayKindProperty);
+
+		set => SetValue(CoordinateLabelDisplayKindProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the displaying mode of coordinate labels.
@@ -367,38 +885,62 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// For more information please visit <see cref="CoordinateLabelDisplay"/>.
 	/// </remarks>
 	/// <seealso cref="CoordinateLabelDisplay"/>
-	[DependencyProperty(DefaultValue = CoordinateLabelDisplay.UpperAndLeft)]
-	public partial CoordinateLabelDisplay CoordinateLabelDisplayMode { get; set; }
+	public CoordinateLabelDisplay CoordinateLabelDisplayMode
+	{
+		get => (CoordinateLabelDisplay)GetValue(CoordinateLabelDisplayModeProperty);
+
+		set => SetValue(CoordinateLabelDisplayModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the displaying mode of candidate view nodes.
 	/// </summary>
-	[DependencyProperty(DefaultValue = CandidateViewNodeDisplay.CircleSolid)]
-	public partial CandidateViewNodeDisplay CandidateViewNodeDisplayMode { get; set; }
+	public CandidateViewNodeDisplay CandidateViewNodeDisplayMode
+	{
+		get => (CandidateViewNodeDisplay)GetValue(CandidateViewNodeDisplayModeProperty);
+
+		set => SetValue(CandidateViewNodeDisplayModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the displaying mode of an assignment.
 	/// </summary>
-	[DependencyProperty(DefaultValue = AssignmentDisplay.CircleSolid)]
-	public partial AssignmentDisplay AssignmentDisplayMode { get; set; }
+	public AssignmentDisplay AssignmentDisplayMode
+	{
+		get => (AssignmentDisplay)GetValue(AssignmentDisplayModeProperty);
+
+		set => SetValue(AssignmentDisplayModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the displaying mode of an elimination.
 	/// </summary>
-	[DependencyProperty(DefaultValue = EliminationDisplay.CircleSolid)]
-	public partial EliminationDisplay EliminationDisplayMode { get; set; }
+	public EliminationDisplay EliminationDisplayMode
+	{
+		get => (EliminationDisplay)GetValue(EliminationDisplayModeProperty);
+
+		set => SetValue(EliminationDisplayModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the rotating mode of candidates.
 	/// </summary>
-	[DependencyProperty(DefaultValue = GridCandidateRotating.None)]
-	public partial GridCandidateRotating CandidateRotating { get; set; }
+	public GridCandidateRotating CandidateRotating
+	{
+		get => (GridCandidateRotating)GetValue(CandidateRotatingProperty);
+
+		set => SetValue(CandidateRotatingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the currently selected cell.
 	/// </summary>
-	[DependencyProperty]
-	public partial Cell SelectedCell { get; set; }
+	public Cell SelectedCell
+	{
+		get => (Cell)GetValue(SelectedCellProperty);
+
+		set => SetValue(SelectedCellProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the core-operating sudoku puzzle.
@@ -417,260 +959,432 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <summary>
 	/// Indicates the value that describes corner radius for displaying cell view nodes.
 	/// </summary>
-	[DependencyProperty]
-	public partial CornerRadius CellsInnerCornerRadius { get; set; }
+	public CornerRadius CellsInnerCornerRadius
+	{
+		get => (CornerRadius)GetValue(CellsInnerCornerRadiusProperty);
+
+		set => SetValue(CellsInnerCornerRadiusProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the given color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color GivenColor { get; set; }
+	public Color GivenColor
+	{
+		get => (Color)GetValue(GivenColorProperty);
+
+		set => SetValue(GivenColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the modifiable color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color ModifiableColor { get; set; }
+	public Color ModifiableColor
+	{
+		get => (Color)GetValue(ModifiableColorProperty);
+
+		set => SetValue(ModifiableColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the pencilmark color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color PencilmarkColor { get; set; }
+	public Color PencilmarkColor
+	{
+		get => (Color)GetValue(PencilmarkColorProperty);
+
+		set => SetValue(PencilmarkColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the coordinate label color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color CoordinateLabelColor { get; set; }
+	public Color CoordinateLabelColor
+	{
+		get => (Color)GetValue(CoordinateLabelColorProperty);
+
+		set => SetValue(CoordinateLabelColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the baba group label color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color BabaGroupLabelColor { get; set; }
+	public Color BabaGroupLabelColor
+	{
+		get => (Color)GetValue(BabaGroupLabelColorProperty);
+
+		set => SetValue(BabaGroupLabelColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the color that is used for displaying candidates that are wrongly removed, but correct.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color DeltaCandidateColor { get; set; }
+	public Color DeltaCandidateColor
+	{
+		get => (Color)GetValue(DeltaCandidateColorProperty);
+
+		set => SetValue(DeltaCandidateColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the color that is used for displaying cell Digits that are wrongly filled.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color DeltaCellColor { get; set; }
+	public Color DeltaCellColor
+	{
+		get => (Color)GetValue(DeltaCellColorProperty);
+
+		set => SetValue(DeltaCellColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the border color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color BorderColor { get; set; }
+	public Color BorderColor
+	{
+		get => (Color)GetValue(BorderColorProperty);
+
+		set => SetValue(BorderColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the cursor background color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color CursorBackgroundColor { get; set; }
+	public Color CursorBackgroundColor
+	{
+		get => (Color)GetValue(CursorBackgroundColorProperty);
+
+		set => SetValue(CursorBackgroundColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the link color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color LinkColor { get; set; }
+	public Color LinkColor
+	{
+		get => (Color)GetValue(LinkColorProperty);
+
+		set => SetValue(LinkColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the normal color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color NormalColor { get; set; }
+	public Color NormalColor
+	{
+		get => (Color)GetValue(NormalColorProperty);
+
+		set => SetValue(NormalColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the assignment color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color AssignmentColor { get; set; }
+	public Color AssignmentColor
+	{
+		get => (Color)GetValue(AssignmentColorProperty);
+
+		set => SetValue(AssignmentColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the overlapped assignment color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color OverlappedAssignmentColor { get; set; }
+	public Color OverlappedAssignmentColor
+	{
+		get => (Color)GetValue(OverlappedAssignmentColorProperty);
+
+		set => SetValue(OverlappedAssignmentColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color EliminationColor { get; set; }
+	public Color EliminationColor
+	{
+		get => (Color)GetValue(EliminationColorProperty);
+
+		set => SetValue(EliminationColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color CannibalismColor { get; set; }
+	public Color CannibalismColor
+	{
+		get => (Color)GetValue(CannibalismColorProperty);
+
+		set => SetValue(CannibalismColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the exofin color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color ExofinColor { get; set; }
+	public Color ExofinColor
+	{
+		get => (Color)GetValue(ExofinColorProperty);
+
+		set => SetValue(ExofinColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the endofin color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color EndofinColor { get; set; }
+	public Color EndofinColor
+	{
+		get => (Color)GetValue(EndofinColorProperty);
+
+		set => SetValue(EndofinColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the grouped node stroke color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color GroupedNodeStrokeColor { get; set; }
+	public Color GroupedNodeStrokeColor
+	{
+		get => (Color)GetValue(GroupedNodeStrokeColorProperty);
+
+		set => SetValue(GroupedNodeStrokeColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the grouped node background color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color GroupedNodeBackgroundColor { get; set; }
+	public Color GroupedNodeBackgroundColor
+	{
+		get => (Color)GetValue(GroupedNodeBackgroundColorProperty);
+
+		set => SetValue(GroupedNodeBackgroundColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the feedback color when a house is completed.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color HouseCompletedFeedbackColor { get; set; }
+	public Color HouseCompletedFeedbackColor
+	{
+		get => (Color)GetValue(HouseCompletedFeedbackColorProperty);
+
+		set => SetValue(HouseCompletedFeedbackColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the cell truth color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color CellTruthColor { get; set; }
+	public Color CellTruthColor
+	{
+		get => (Color)GetValue(CellTruthColorProperty);
+
+		set => SetValue(CellTruthColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the row truth color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color RowTruthColor { get; set; }
+	public Color RowTruthColor
+	{
+		get => (Color)GetValue(RowTruthColorProperty);
+
+		set => SetValue(RowTruthColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the column truth color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color ColumnTruthColor { get; set; }
+	public Color ColumnTruthColor
+	{
+		get => (Color)GetValue(ColumnTruthColorProperty);
+
+		set => SetValue(ColumnTruthColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the block truth color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color BlockTruthColor { get; set; }
+	public Color BlockTruthColor
+	{
+		get => (Color)GetValue(BlockTruthColorProperty);
+
+		set => SetValue(BlockTruthColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the line or cell link color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color LineOrCellLinkColor { get; set; }
+	public Color LineOrCellLinkColor
+	{
+		get => (Color)GetValue(LineOrCellLinkColorProperty);
+
+		set => SetValue(LineOrCellLinkColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the block link color.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color BlockLinkColor { get; set; }
+	public Color BlockLinkColor
+	{
+		get => (Color)GetValue(BlockLinkColorProperty);
+
+		set => SetValue(BlockLinkColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the bound candidates color on rank sets.
 	/// </summary>
-	[DependencyProperty]
-	public partial Color RankSetBoundCandidatesColor { get; set; }
+	public Color RankSetBoundCandidatesColor
+	{
+		get => (Color)GetValue(RankSetBoundCandidatesColorProperty);
+
+		set => SetValue(RankSetBoundCandidatesColorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the dash style of the strong links.
 	/// </summary>
-	[DependencyProperty]
-	public partial DashArray StrongLinkDashStyle { get; set; }
+	public DashArray StrongLinkDashStyle
+	{
+		get => (DashArray)GetValue(StrongLinkDashStyleProperty);
+
+		set => SetValue(StrongLinkDashStyleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the dash style of the weak links.
 	/// </summary>
-	[DependencyProperty]
-	public partial DashArray WeakLinkDashStyle { get; set; }
+	public DashArray WeakLinkDashStyle
+	{
+		get => (DashArray)GetValue(WeakLinkDashStyleProperty);
+
+		set => SetValue(WeakLinkDashStyleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the value that describes the padding value displaying cell view nodes.
 	/// </summary>
-	[DependencyProperty]
-	public partial Thickness CellsInnerPadding { get; set; }
+	public Thickness CellsInnerPadding
+	{
+		get => (Thickness)GetValue(CellsInnerPaddingProperty);
+
+		set => SetValue(CellsInnerPaddingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the given font.
 	/// </summary>
-	[DependencyProperty]
-	public partial FontFamily GivenFont { get; set; }
+	public FontFamily GivenFont
+	{
+		get => (FontFamily)GetValue(GivenFontProperty);
+
+		set => SetValue(GivenFontProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the modifiable font.
 	/// </summary>
-	[DependencyProperty]
-	public partial FontFamily ModifiableFont { get; set; }
+	public FontFamily ModifiableFont
+	{
+		get => (FontFamily)GetValue(ModifiableFontProperty);
+
+		set => SetValue(ModifiableFontProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the candidate font.
 	/// </summary>
-	[DependencyProperty]
-	public partial FontFamily PencilmarkFont { get; set; }
+	public FontFamily PencilmarkFont
+	{
+		get => (FontFamily)GetValue(PencilmarkFontProperty);
+
+		set => SetValue(PencilmarkFontProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the coordinate label font.
 	/// </summary>
-	[DependencyProperty]
-	public partial FontFamily CoordinateLabelFont { get; set; }
+	public FontFamily CoordinateLabelFont
+	{
+		get => (FontFamily)GetValue(CoordinateLabelFontProperty);
+
+		set => SetValue(CoordinateLabelFontProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the baba group label font.
 	/// </summary>
-	[DependencyProperty]
-	public partial FontFamily BabaGroupLabelFont { get; set; }
+	public FontFamily BabaGroupLabelFont
+	{
+		get => (FontFamily)GetValue(BabaGroupLabelFontProperty);
+
+		set => SetValue(BabaGroupLabelFontProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the view unit used.
 	/// </summary>
-	[DependencyProperty]
-	public partial ViewUnitBindableSource? ViewUnit { get; set; }
+	public ViewUnitBindableSource? ViewUnit
+	{
+		get => (ViewUnitBindableSource?)GetValue(ViewUnitProperty);
+
+		set => SetValue(ViewUnitProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the auxiliary colors.
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette AuxiliaryColors { get; set; }
+	public ColorPalette AuxiliaryColors
+	{
+		get => (ColorPalette)GetValue(AuxiliaryColorsProperty);
+
+		set => SetValue(AuxiliaryColorsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the foreground colors of all 6 kinds of difficulty levels.
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette DifficultyLevelForegrounds { get; set; }
+	public ColorPalette DifficultyLevelForegrounds
+	{
+		get => (ColorPalette)GetValue(DifficultyLevelForegroundsProperty);
+
+		set => SetValue(DifficultyLevelForegroundsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the background colors of all 6 kinds of difficulty levels.
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette DifficultyLevelBackgrounds { get; set; }
+	public ColorPalette DifficultyLevelBackgrounds
+	{
+		get => (ColorPalette)GetValue(DifficultyLevelBackgroundsProperty);
+
+		set => SetValue(DifficultyLevelBackgroundsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the user-defined colors used by customized views.
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette UserDefinedColorPalette { get; set; }
+	public ColorPalette UserDefinedColorPalette
+	{
+		get => (ColorPalette)GetValue(UserDefinedColorPaletteProperty);
+
+		set => SetValue(UserDefinedColorPaletteProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the colors applied to technique pattern Almost Locked Sets.
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette AlmostLockedSetsColors { get; set; }
+	public ColorPalette AlmostLockedSetsColors
+	{
+		get => (ColorPalette)GetValue(AlmostLockedSetsColorsProperty);
+
+		set => SetValue(AlmostLockedSetsColorsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the colors applied to technique pattern Rectangles (URs and ARs).
 	/// </summary>
-	[DependencyProperty]
-	public partial ColorPalette RectangleColors { get; set; }
+	public ColorPalette RectangleColors
+	{
+		get => (ColorPalette)GetValue(RectangleColorsProperty);
+
+		set => SetValue(RectangleColorsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the approximately-measured width and height value of a cell.
@@ -990,7 +1704,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	}
 
 
-	[Callback]
 	private static void DisplayCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (d is SudokuPane pane)
@@ -1000,7 +1713,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	[Callback]
 	private static void ViewUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (d is SudokuPane pane)
@@ -1010,99 +1722,75 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	[Callback]
 	private static void BabaGroupLabelColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void NormalColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void AssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void OverlappedAssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void EliminationColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void CannibalismColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void ExofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void GroupedNodeStrokeColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void GroupedNodeBackgroundColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void BabaGroupLabelFontPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void AuxiliaryColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void UserDefinedColorPalettePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void AlmostLockedSetsColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void StrongLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void WeakLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void HighlightCandidateCircleScalePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void HighlightBackgroundOpacityPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void ChainStrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void CandidateViewNodeDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void EliminationDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void AssignmentDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d);
 
-	[Callback]
 	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		foreach (var element in ((SudokuPane)d)._children)
@@ -1111,7 +1799,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	[Callback]
 	private static void CoordinateLabelDisplayKindPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (e.NewValue is not CoordinateType value)
@@ -1132,7 +1819,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 	}
 
-	[Callback]
 	private static void CandidateRotatingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if (d is not SudokuPane pane || e.NewValue is not GridCandidateRotating rotating)

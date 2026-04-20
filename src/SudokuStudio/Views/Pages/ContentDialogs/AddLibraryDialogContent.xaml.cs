@@ -5,8 +5,56 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// </summary>
 public sealed partial class AddLibraryDialogContent : Page
 {
-	[Default]
 	private static readonly ObservableCollection<string> LibraryTagsDefaultValue = [];
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsNameValidAsFileId"/>.
+	/// </summary>
+	/// <seealso cref="IsNameValidAsFileId"/>
+	internal static readonly DependencyProperty IsNameValidAsFileIdProperty =
+		DependencyProperty.Register(nameof(IsNameValidAsFileId), typeof(bool), typeof(AddLibraryDialogContent), new PropertyMetadata(default(bool), IsNameValidAsFileIdPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FileId"/>.
+	/// </summary>
+	/// <seealso cref="FileId"/>
+	internal static readonly DependencyProperty FileIdProperty =
+		DependencyProperty.Register(nameof(FileId), typeof(string), typeof(AddLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FilePath"/>.
+	/// </summary>
+	/// <seealso cref="FilePath"/>
+	internal static readonly DependencyProperty FilePathProperty =
+		DependencyProperty.Register(nameof(FilePath), typeof(string), typeof(AddLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryName"/>.
+	/// </summary>
+	/// <seealso cref="LibraryName"/>
+	internal static readonly DependencyProperty LibraryNameProperty =
+		DependencyProperty.Register(nameof(LibraryName), typeof(string), typeof(AddLibraryDialogContent), new PropertyMetadata(default(string), LibraryNamePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryAuthor"/>.
+	/// </summary>
+	/// <seealso cref="LibraryAuthor"/>
+	internal static readonly DependencyProperty LibraryAuthorProperty =
+		DependencyProperty.Register(nameof(LibraryAuthor), typeof(string), typeof(AddLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryDescription"/>.
+	/// </summary>
+	/// <seealso cref="LibraryDescription"/>
+	internal static readonly DependencyProperty LibraryDescriptionProperty =
+		DependencyProperty.Register(nameof(LibraryDescription), typeof(string), typeof(AddLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryTags"/>.
+	/// </summary>
+	/// <seealso cref="LibraryTags"/>
+	internal static readonly DependencyProperty LibraryTagsProperty =
+		DependencyProperty.Register(nameof(LibraryTags), typeof(ObservableCollection<string>), typeof(AddLibraryDialogContent), new PropertyMetadata(LibraryTagsDefaultValue));
 
 
 	/// <summary>
@@ -15,27 +63,55 @@ public sealed partial class AddLibraryDialogContent : Page
 	public AddLibraryDialogContent() => InitializeComponent();
 
 
+	internal bool IsNameValidAsFileId
+	{
+		get => (bool)GetValue(IsNameValidAsFileIdProperty);
 
-	[DependencyProperty]
-	internal partial bool IsNameValidAsFileId { get; set; }
+		set => SetValue(IsNameValidAsFileIdProperty, value);
+	}
 
-	[DependencyProperty]
-	internal partial string FileId { get; set; }
+	internal string FileId
+	{
+		get => (string)GetValue(FileIdProperty);
 
-	[DependencyProperty]
-	internal partial string FilePath { get; set; }
+		set => SetValue(FileIdProperty, value);
+	}
 
-	[DependencyProperty]
-	internal partial string? LibraryName { get; set; }
+	internal string FilePath
+	{
+		get => (string)GetValue(FilePathProperty);
 
-	[DependencyProperty]
-	internal partial string? LibraryAuthor { get; set; }
+		set => SetValue(FilePathProperty, value);
+	}
 
-	[DependencyProperty]
-	internal partial string? LibraryDescription { get; set; }
+	internal string? LibraryName
+	{
+		get => (string?)GetValue(LibraryNameProperty);
 
-	[DependencyProperty]
-	internal partial ObservableCollection<string> LibraryTags { get; set; }
+		set => SetValue(LibraryNameProperty, value);
+	}
+
+	internal string? LibraryAuthor
+	{
+		get => (string?)GetValue(LibraryAuthorProperty);
+
+		set => SetValue(LibraryAuthorProperty, value);
+	}
+
+	internal string? LibraryDescription
+	{
+		get => (string?)GetValue(LibraryDescriptionProperty);
+
+		set => SetValue(LibraryDescriptionProperty, value);
+	}
+
+	internal ObservableCollection<string> LibraryTags
+	{
+		get => (ObservableCollection<string>)GetValue(LibraryTagsProperty);
+
+		set => SetValue(LibraryTagsProperty, value);
+	}
+
 
 
 	/// <summary>
@@ -78,7 +154,6 @@ public sealed partial class AddLibraryDialogContent : Page
 	}
 
 
-	[Callback]
 	private static void IsNameValidAsFileIdPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is (AddLibraryDialogContent instance, { NewValue: bool value }))
@@ -96,7 +171,6 @@ public sealed partial class AddLibraryDialogContent : Page
 		}
 	}
 
-	[Callback]
 	private static void LibraryNamePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
 		if ((d, e) is (AddLibraryDialogContent instance, { NewValue: string fileId }))

@@ -6,6 +6,42 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsGeneratorLaunched"/>.
+	/// </summary>
+	/// <seealso cref="IsGeneratorLaunched"/>
+	internal static readonly DependencyProperty IsGeneratorLaunchedProperty =
+		DependencyProperty.Register(nameof(IsGeneratorLaunched), typeof(bool), typeof(PatternBasedPuzzleGeneratingPage), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ProgressPercent"/>.
+	/// </summary>
+	/// <seealso cref="ProgressPercent"/>
+	internal static readonly DependencyProperty ProgressPercentProperty =
+		DependencyProperty.Register(nameof(ProgressPercent), typeof(double), typeof(PatternBasedPuzzleGeneratingPage), new PropertyMetadata(default(double)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="MissingDigit"/>.
+	/// </summary>
+	/// <seealso cref="MissingDigit"/>
+	internal static readonly DependencyProperty MissingDigitProperty =
+		DependencyProperty.Register(nameof(MissingDigit), typeof(int), typeof(PatternBasedPuzzleGeneratingPage), new PropertyMetadata(default(int), MissingDigitPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedCells"/>.
+	/// </summary>
+	/// <seealso cref="SelectedCells"/>
+	internal static readonly DependencyProperty SelectedCellsProperty =
+		DependencyProperty.Register(nameof(SelectedCells), typeof(CellMap), typeof(PatternBasedPuzzleGeneratingPage), new PropertyMetadata(default(CellMap), SelectedCellsPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FixedCandidates"/>.
+	/// </summary>
+	/// <seealso cref="FixedCandidates"/>
+	internal static readonly DependencyProperty FixedCandidatesProperty =
+		DependencyProperty.Register(nameof(FixedCandidates), typeof(CandidateMap), typeof(PatternBasedPuzzleGeneratingPage), new PropertyMetadata(default(CandidateMap), FixedCandidatesPropertyCallback));
+
+
+	/// <summary>
 	/// Defines a user-defined view that will be used.
 	/// </summary>
 	private readonly ViewUnitBindableSource _userColoringView = new();
@@ -40,32 +76,52 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// <summary>
 	/// Indicates whether the generator is running.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsGeneratorLaunched { get; set; }
+	internal bool IsGeneratorLaunched
+	{
+		get => (bool)GetValue(IsGeneratorLaunchedProperty);
+
+		set => SetValue(IsGeneratorLaunchedProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the progress.
 	/// </summary>
-	[DependencyProperty]
-	internal partial double ProgressPercent { get; set; }
+	internal double ProgressPercent
+	{
+		get => (double)GetValue(ProgressPercentProperty);
+
+		set => SetValue(ProgressPercentProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the missing digit.
 	/// </summary>
-	[DependencyProperty]
-	internal partial Digit MissingDigit { get; set; }
+	internal int MissingDigit
+	{
+		get => (int)GetValue(MissingDigitProperty);
+
+		set => SetValue(MissingDigitProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates all selected cells.
 	/// </summary>
-	[DependencyProperty]
-	internal partial CellMap SelectedCells { get; set; }
+	internal CellMap SelectedCells
+	{
+		get => (CellMap)GetValue(SelectedCellsProperty);
+
+		set => SetValue(SelectedCellsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the fixed candidates.
 	/// </summary>
-	[DependencyProperty]
-	internal partial CandidateMap FixedCandidates { get; set; }
+	internal CandidateMap FixedCandidates
+	{
+		get => (CandidateMap)GetValue(FixedCandidatesProperty);
+
+		set => SetValue(FixedCandidatesProperty, value);
+	}
 
 
 	/// <inheritdoc/>

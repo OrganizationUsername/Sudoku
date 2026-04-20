@@ -5,25 +5,46 @@ namespace SudokuStudio.Configuration;
 /// </summary>
 public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 {
-	[Default]
 	private static readonly decimal RatingScaleDefaultValue = 10M;
 
-	[Default]
 	private static readonly Dictionary<Technique, TechniqueData> CustomizedTechniqueDataDefaultValue = [];
+
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="RatingScale"/>.
+	/// </summary>
+	/// <seealso cref="RatingScale"/>
+	public static readonly DependencyProperty RatingScaleProperty =
+		DependencyProperty.Register(nameof(RatingScale), typeof(decimal), typeof(TechniqueInfoPreferenceGroup), new PropertyMetadata(RatingScaleDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CustomizedTechniqueData"/>.
+	/// </summary>
+	/// <seealso cref="CustomizedTechniqueData"/>
+	public static readonly DependencyProperty CustomizedTechniqueDataProperty =
+		DependencyProperty.Register(nameof(CustomizedTechniqueData), typeof(Dictionary<Technique, TechniqueData>), typeof(TechniqueInfoPreferenceGroup), new PropertyMetadata(CustomizedTechniqueDataDefaultValue));
 
 
 	/// <summary>
 	/// Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref="CustomizedTechniqueData"/>.
 	/// </summary>
 	/// <seealso cref="CustomizedTechniqueData"/>
-	[DependencyProperty]
-	public partial decimal RatingScale { get; set; }
+	public decimal RatingScale
+	{
+		get => (decimal)GetValue(RatingScaleProperty);
+
+		set => SetValue(RatingScaleProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the customized technique Data.
 	/// </summary>
-	[DependencyProperty]
-	public partial Dictionary<Technique, TechniqueData> CustomizedTechniqueData { get; set; }
+	public Dictionary<Technique, TechniqueData> CustomizedTechniqueData
+	{
+		get => (Dictionary<Technique, TechniqueData>)GetValue(CustomizedTechniqueDataProperty);
+
+		set => SetValue(CustomizedTechniqueDataProperty, value);
+	}
 
 
 	/// <summary>

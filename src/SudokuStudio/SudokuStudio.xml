@@ -1827,6 +1827,18 @@
             Represents a preference group that defines the custom difficulty level and rating values for the techniques.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScale"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueDataProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScale">
             <summary>
             Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
@@ -1888,18 +1900,6 @@
             </summary>
             <param name="technique">The technique.</param>
             <returns>The difficulty level.</returns>
-        </member>
-        <member name="F:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScaleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScale"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.RatingScale"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueDataProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
@@ -12367,6 +12367,24 @@
             Represents a font picker.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.FontPicker._fontTextBlocks">
             <summary>
             Indicates the <see cref="T:Microsoft.UI.Xaml.Controls.TextBlock"/> list that represents with fonts.
@@ -12421,24 +12439,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontScaleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontScale"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFont"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.FontPicker.SelectedFontColorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.FontPicker.SelectedFontColor"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.IntegerBox">
             <summary>
@@ -14897,37 +14897,6 @@
             Represents an "add library" page.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.#ctor">
-            <summary>
-            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetAvailbleFileId(System.String)">
-            <summary>
-            <para>Determines whether the specified file ID is available and stored in local, as the real file name.</para>
-            <para>
-            If the local path doesn't contain the same-name file, the file ID will be returned; otherwise,
-            add a suffix to prevent same name.
-            </para>
-            </summary>
-            <param name="fileId">The file ID.</param>
-            <returns>An expected available file ID.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileIdProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.IsNameValidAsFileId"/>.
@@ -14969,6 +14938,37 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.LibraryTags"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetAvailbleFileId(System.String)">
+            <summary>
+            <para>Determines whether the specified file ID is available and stored in local, as the real file name.</para>
+            <para>
+            If the local path doesn't contain the same-name file, the file ID will be returned; otherwise,
+            add a suffix to prevent same name.
+            </para>
+            </summary>
+            <param name="fileId">The file ID.</param>
+            <returns>An expected available file ID.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.ContentDialogs.AddLibraryDialogContent.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.ContentDialogs.AddOnePuzzleDialogContent">
             <summary>
@@ -15964,6 +15964,36 @@
             Represents a page that generates for pattern-based puzzles.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunchedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercentProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigitProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCellsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidatesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._userColoringView">
             <summary>
             Defines a user-defined view that will be used.
@@ -16074,36 +16104,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunchedProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercentProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigitProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCellsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidatesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">
             <summary>

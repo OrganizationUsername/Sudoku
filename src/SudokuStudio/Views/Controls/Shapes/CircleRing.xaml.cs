@@ -6,10 +6,22 @@ namespace SudokuStudio.Views.Controls.Shapes;
 public sealed partial class CircleRing : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="StrokeThickness"/>.
+	/// </summary>
+	/// <seealso cref="StrokeThickness"/>
+	public static readonly DependencyProperty StrokeThicknessProperty =
+		DependencyProperty.Register(nameof(StrokeThickness), typeof(double), typeof(CircleRing), new PropertyMetadata(6D));
+
+
+	/// <summary>
 	/// Indicates the stroke thickness.
 	/// </summary>
-	[DependencyProperty(DefaultValue = 6D)]
-	public partial double StrokeThickness { get; set; }
+	public double StrokeThickness
+	{
+		get => (double)GetValue(StrokeThicknessProperty);
+
+		set => SetValue(StrokeThicknessProperty, value);
+	}
 
 
 	/// <summary>

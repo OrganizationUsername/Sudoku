@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class DashArrayTextBox : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="DashArray"/>.
+	/// </summary>
+	/// <seealso cref="DashArray"/>
+	public static readonly DependencyProperty DashArrayProperty =
+		DependencyProperty.Register(nameof(DashArray), typeof(DashArray), typeof(DashArrayTextBox), new PropertyMetadata(default(DashArray)));
+
+
+	/// <summary>
 	/// Initializes a <see cref="DashArrayTextBox"/> instance.
 	/// </summary>
 	public DashArrayTextBox() => InitializeComponent();
@@ -14,8 +22,12 @@ public sealed partial class DashArrayTextBox : UserControl
 	/// <summary>
 	/// Indicates the dash array input.
 	/// </summary>
-	[DependencyProperty]
-	public partial DashArray DashArray { get; set; }
+	public DashArray DashArray
+	{
+		get => (DashArray)GetValue(DashArrayProperty);
+
+		set => SetValue(DashArrayProperty, value);
+	}
 
 
 	/// <summary>

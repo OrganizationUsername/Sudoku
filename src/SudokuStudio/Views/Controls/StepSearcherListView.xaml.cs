@@ -7,6 +7,14 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class StepSearcherListView : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="StepSearchers"/>.
+	/// </summary>
+	/// <seealso cref="StepSearchers"/>
+	public static readonly DependencyProperty StepSearchersProperty =
+		DependencyProperty.Register(nameof(StepSearchers), typeof(ObservableCollection<StepSearcherInfo>), typeof(StepSearcherListView), new PropertyMetadata(default(ObservableCollection<StepSearcherInfo>)));
+
+
+	/// <summary>
 	/// Initializes a <see cref="StepSearcherListView"/> instance.
 	/// </summary>
 	public StepSearcherListView() => InitializeComponent();
@@ -15,8 +23,12 @@ public sealed partial class StepSearcherListView : UserControl
 	/// <summary>
 	/// Indicates the step searchers.
 	/// </summary>
-	[DependencyProperty]
-	public partial ObservableCollection<StepSearcherInfo> StepSearchers { get; set; }
+	public ObservableCollection<StepSearcherInfo> StepSearchers
+	{
+		get => (ObservableCollection<StepSearcherInfo>)GetValue(StepSearchersProperty);
+
+		set => SetValue(StepSearchersProperty, value);
+	}
 
 
 	/// <summary>

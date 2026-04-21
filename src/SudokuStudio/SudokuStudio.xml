@@ -12280,6 +12280,12 @@
             Represents a dash array text box.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.DashArrayTextBox.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.DashArrayTextBox"/> instance.
@@ -12310,16 +12316,16 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.DashArrayTextBox.DashArray"/>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.DigitSet">
             <summary>
             Represents a digit set control.
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DigitSet.SelectedDigitProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>
         </member>
         <member name="F:SudokuStudio.Views.Controls.DigitSet._itemsSource">
             <summary>
@@ -12355,12 +12361,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.DigitSet.SelectedDigitProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.FontPicker">
             <summary>
@@ -12470,6 +12470,12 @@
             Represents a circle ring.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>
+        </member>
         <member name="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness">
             <summary>
             Indicates the stroke thickness.
@@ -12494,12 +12500,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThicknessProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.CircleRing.StrokeThickness"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.Cross">
             <summary>
@@ -12636,6 +12636,12 @@
             Represents a triangle control.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.Shapes.Triangle.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.Triangle"/> instance.
@@ -12661,17 +12667,17 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThicknessProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Triangle.StrokeThickness"/>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.StepSearcherListView">
             <summary>
             Represents a <see cref="T:Microsoft.UI.Xaml.Controls.ListView"/> control that displays for <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchersProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>
         </member>
         <member name="M:SudokuStudio.Views.Controls.StepSearcherListView.#ctor">
             <summary>
@@ -12702,12 +12708,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchersProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.StepSearcherListView.StepSearchers"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.SudokuPane">
             <summary>
@@ -13738,6 +13738,24 @@
             </summary>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell._internalDigitDisplayers">
             <summary>
             Indicates the internal digit displayers.
@@ -13807,24 +13825,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDurationProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.HouseCompletedFeedbackDuration"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMaskProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.CandidatesMask"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPaneCell.StateProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPaneCell.State"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TechniqueGroupSelector">
             <summary>
@@ -13959,6 +13959,36 @@
             Represents for a technique view.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.ShowModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectionModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.TechniqueView._tokenViews">
             <summary>
             Indicates the internal token views.
@@ -14046,36 +14076,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.HorizontalSpacing"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueView.ShowModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectionModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniquesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectedTechniques"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TokenItem">
             <summary>

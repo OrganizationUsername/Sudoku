@@ -5,8 +5,42 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 public sealed partial class TechniqueView : UserControl
 {
-	[Default]
 	private static readonly TechniqueSet SelectedTechniquesDefaultValue = TechniqueSet.None;
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HorizontalSpacing"/>.
+	/// </summary>
+	/// <seealso cref="HorizontalSpacing"/>
+	public static readonly DependencyProperty HorizontalSpacingProperty =
+		DependencyProperty.Register(nameof(HorizontalSpacing), typeof(double), typeof(TechniqueView), new PropertyMetadata(default(double)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="VerticalSpacing"/>.
+	/// </summary>
+	/// <seealso cref="VerticalSpacing"/>
+	public static readonly DependencyProperty VerticalSpacingProperty =
+		DependencyProperty.Register(nameof(VerticalSpacing), typeof(double), typeof(TechniqueView), new PropertyMetadata(default(double)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ShowMode"/>.
+	/// </summary>
+	/// <seealso cref="ShowMode"/>
+	public static readonly DependencyProperty ShowModeProperty =
+		DependencyProperty.Register(nameof(ShowMode), typeof(TechniqueViewShowMode), typeof(TechniqueView), new PropertyMetadata((TechniqueViewShowMode)3, ShowModePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectionMode"/>.
+	/// </summary>
+	/// <seealso cref="SelectionMode"/>
+	public static readonly DependencyProperty SelectionModeProperty =
+		DependencyProperty.Register(nameof(SelectionMode), typeof(TechniqueViewSelectionMode), typeof(TechniqueView), new PropertyMetadata((TechniqueViewSelectionMode)1, SelectionModePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedTechniques"/>.
+	/// </summary>
+	/// <seealso cref="SelectedTechniques"/>
+	public static readonly DependencyProperty SelectedTechniquesProperty =
+		DependencyProperty.Register(nameof(SelectedTechniques), typeof(TechniqueSet), typeof(TechniqueView), new PropertyMetadata(SelectedTechniquesDefaultValue, SelectedTechniquesPropertyCallback));
 
 
 	/// <summary>
@@ -34,7 +68,7 @@ public sealed partial class TechniqueView : UserControl
 	/// The entry that can traverse for all tokens.
 	/// </summary>
 	private Dictionary<Technique, TokenItem> TokenItems
-		=> new([
+		=> [with([
 			..
 			from view in _tokenViews
 			from item in view.ItemsPanelRoot.Children
@@ -42,38 +76,58 @@ public sealed partial class TechniqueView : UserControl
 			where tokenItem is not null
 			let content = (TechniqueViewBindableSource)tokenItem.Content
 			select new KeyValuePair<Technique, TokenItem>(content.TechniqueField, tokenItem)
-		]);
+		])];
 
 
 	/// <summary>
 	/// Indicates the horizontal spacing.
 	/// </summary>
-	[DependencyProperty]
-	public partial double HorizontalSpacing { get; set; }
+	public double HorizontalSpacing
+	{
+		get => (double)GetValue(HorizontalSpacingProperty);
+
+		set => SetValue(HorizontalSpacingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the vertical spacing.
 	/// </summary>
-	[DependencyProperty]
-	public partial double VerticalSpacing { get; set; }
+	public double VerticalSpacing
+	{
+		get => (double)GetValue(VerticalSpacingProperty);
+
+		set => SetValue(VerticalSpacingProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates which techniques whose conclusion types are specified will be shown.
 	/// </summary>
-	[DependencyProperty(DefaultValue = TechniqueViewShowMode.Both)]
-	public partial TechniqueViewShowMode ShowMode { get; set; }
+	public TechniqueViewShowMode ShowMode
+	{
+		get => (TechniqueViewShowMode)GetValue(ShowModeProperty);
+
+		set => SetValue(ShowModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the selection mode.
 	/// </summary>
-	[DependencyProperty(DefaultValue = TechniqueViewSelectionMode.Single)]
-	public partial TechniqueViewSelectionMode SelectionMode { get; set; }
+	public TechniqueViewSelectionMode SelectionMode
+	{
+		get => (TechniqueViewSelectionMode)GetValue(SelectionModeProperty);
+
+		set => SetValue(SelectionModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the final selected techniques.
 	/// </summary>
-	[DependencyProperty]
-	public partial TechniqueSet SelectedTechniques { get; set; }
+	public TechniqueSet SelectedTechniques
+	{
+		get => (TechniqueSet)GetValue(SelectedTechniquesProperty);
+
+		set => SetValue(SelectedTechniquesProperty, value);
+	}
 
 
 	/// <summary>

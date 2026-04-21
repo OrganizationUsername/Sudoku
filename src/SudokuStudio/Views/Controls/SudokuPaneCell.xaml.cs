@@ -7,6 +7,28 @@ namespace SudokuStudio.Views.Controls;
 internal sealed partial class SudokuPaneCell : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HouseCompletedFeedbackDuration"/>.
+	/// </summary>
+	/// <seealso cref="HouseCompletedFeedbackDuration"/>
+	public static readonly DependencyProperty HouseCompletedFeedbackDurationProperty =
+		DependencyProperty.Register(nameof(HouseCompletedFeedbackDuration), typeof(int), typeof(SudokuPaneCell), new PropertyMetadata(800, HouseCompletedFeedbackDurationPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CandidatesMask"/>.
+	/// </summary>
+	/// <seealso cref="CandidatesMask"/>
+	public static readonly DependencyProperty CandidatesMaskProperty =
+		DependencyProperty.Register(nameof(CandidatesMask), typeof(Mask), typeof(SudokuPaneCell), new PropertyMetadata(Grid.MaxCandidatesMask));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="State"/>.
+	/// </summary>
+	/// <seealso cref="State"/>
+	public static readonly DependencyProperty StateProperty =
+		DependencyProperty.Register(nameof(State), typeof(CellState), typeof(SudokuPaneCell), new PropertyMetadata(CellState.Empty));
+
+
+	/// <summary>
 	/// Indicates the internal digit displayers.
 	/// </summary>
 	internal List<UIElement> _internalDigitDisplayers;
@@ -25,8 +47,12 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the duration time of fthe feedback on house completed.
 	/// </summary>
-	[DependencyProperty(DefaultValue = 800)]
-	public partial int HouseCompletedFeedbackDuration { get; set; }
+	public int HouseCompletedFeedbackDuration
+	{
+		get => (int)GetValue(HouseCompletedFeedbackDurationProperty);
+
+		set => SetValue(HouseCompletedFeedbackDurationProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the base pane.
@@ -41,14 +67,22 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <summary>
 	/// Indicates the candidates mask.
 	/// </summary>
-	[DependencyProperty(DefaultValue = Grid.MaxCandidatesMask)]
-	public partial Mask CandidatesMask { get; set; }
+	public Mask CandidatesMask
+	{
+		get => (Mask)GetValue(CandidatesMaskProperty);
+
+		set => SetValue(CandidatesMaskProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the cell state.
 	/// </summary>
-	[DependencyProperty(DefaultValue = CellState.Empty)]
-	public partial CellState State { get; set; }
+	public CellState State
+	{
+		get => (CellState)GetValue(StateProperty);
+
+		set => SetValue(StateProperty, value);
+	}
 
 
 	/// <summary>
@@ -115,7 +149,6 @@ internal sealed partial class SudokuPaneCell : UserControl
 	}
 
 
-	[Callback]
 	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((SudokuPaneCell)d).ValueSurrounder.BackgroundTransition.Duration = TimeSpan.FromMilliseconds((int)e.NewValue);
 

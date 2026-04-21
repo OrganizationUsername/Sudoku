@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class DigitSet : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedDigit"/>.
+	/// </summary>
+	/// <seealso cref="SelectedDigit"/>
+	public static readonly DependencyProperty SelectedDigitProperty =
+		DependencyProperty.Register(nameof(SelectedDigit), typeof(Digit), typeof(DigitSet), new PropertyMetadata(-1));
+
+
+	/// <summary>
 	/// Indicates the items source.
 	/// </summary>
 	private readonly Digit[] _itemsSource = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -20,8 +28,12 @@ public sealed partial class DigitSet : UserControl
 	/// <summary>
 	/// Indicates the selected digit.
 	/// </summary>
-	[DependencyProperty(DefaultValue = -1)]
-	public partial Digit SelectedDigit { get; set; }
+	public Digit SelectedDigit
+	{
+		get => (Digit)GetValue(SelectedDigitProperty);
+
+		set => SetValue(SelectedDigitProperty, value);
+	}
 
 
 	/// <summary>

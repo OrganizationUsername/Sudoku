@@ -4,7 +4,8 @@ namespace Sudoku.Theories.SetTheory;
 /// Represents rank result for a pattern.
 /// </summary>
 [DebuggerDisplay($$"""{{{nameof(ToString)}}(),nq}""")]
-public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, bool>
+[Union]
+public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, bool>, IUnion
 {
 	/// <summary>
 	/// Represents illegal logic rank.
@@ -24,23 +25,23 @@ public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, b
 
 
 	/// <summary>
-	/// Initializes a <see cref="Rank"/> for a sequence of rank values.
-	/// </summary>
-	/// <param name="values">A sequence of rank values.</param>
-	private Rank(int[] values)
-	{
-		IsConsistent = false;
-		_inconsistentRank = values;
-	}
-
-	/// <summary>
 	/// Initializes a <see cref="Rank"/> for a rank value.
 	/// </summary>
 	/// <param name="value">A rank value.</param>
-	private Rank(int value)
+	public Rank(int value)
 	{
 		IsConsistent = true;
 		_consistentRank = value;
+	}
+
+	/// <summary>
+	/// Initializes a <see cref="Rank"/> for a sequence of rank values.
+	/// </summary>
+	/// <param name="values">A sequence of rank values.</param>
+	public Rank(int[] values)
+	{
+		IsConsistent = false;
+		_inconsistentRank = values;
 	}
 
 
@@ -50,6 +51,9 @@ public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, b
 	[MemberNotNullWhen(true, nameof(_consistentRank))]
 	[MemberNotNullWhen(false, nameof(_inconsistentRank), nameof(InconsistentRanksOrdered))]
 	public bool IsConsistent { get; }
+
+	/// <inheritdoc/>
+	object? IUnion.Value => IsConsistent ? _consistentRank.Value : _inconsistentRank;
 
 	/// <summary>
 	/// Represents ordered collection of inconsistent rank values.
@@ -68,6 +72,38 @@ public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, b
 				? _consistentRank == other._consistentRank
 				: InconsistentRanksOrdered.SetEquals(other.InconsistentRanksOrdered!)
 		);
+
+	/// <summary>
+	/// Check whether the current type holds consistent rank or not.
+	/// </summary>
+	/// <param name="value">The target rank value.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool TryGetValue(out int value)
+	{
+		if (IsConsistent)
+		{
+			value = _consistentRank.Value;
+			return true;
+		}
+		value = default;
+		return false;
+	}
+
+	/// <summary>
+	/// Check whether the current type holds inconsistent rank or not.
+	/// </summary>
+	/// <param name="value">The target rank value.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public bool TryGetValue([NotNullWhen(true)] out int[]? value)
+	{
+		if (IsConsistent)
+		{
+			value = default;
+			return false;
+		}
+		value = _inconsistentRank[..];
+		return true;
+	}
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
@@ -103,17 +139,4 @@ public readonly struct Rank : IEquatable<Rank>, IEqualityOperators<Rank, Rank, b
 
 	/// <inheritdoc/>
 	public static bool operator !=(Rank left, Rank right) => !(left == right);
-
-
-	/// <summary>
-	/// Implicit cast from <see cref="int"/> to <see cref="Rank"/>.
-	/// </summary>
-	/// <param name="value">The value.</param>
-	public static implicit operator Rank(int value) => new(value);
-
-	/// <summary>
-	/// Implicit cast from <see cref="int"/>[] to <see cref="Rank"/>.
-	/// </summary>
-	/// <param name="values">The values.</param>
-	public static implicit operator Rank(int[] values) => new(values);
 }

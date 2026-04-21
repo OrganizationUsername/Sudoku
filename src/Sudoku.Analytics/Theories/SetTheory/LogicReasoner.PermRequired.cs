@@ -107,7 +107,7 @@ public partial class LogicReasoner
 					max = count;
 				}
 			}
-			return (min, max) is ( >= 0, >= 0) ? new(min, max) : new();
+			return (min, max) is ( >= 0, >= 0) ? min == max ? min : (min, max) : default;
 		}
 
 		/// <inheritdoc cref="LogicReasoner.GetConclusions(ref readonly Logic)"/>

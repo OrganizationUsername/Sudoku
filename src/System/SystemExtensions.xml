@@ -10375,6 +10375,11 @@
             Indicates the type is a union.
             </summary>
         </member>
+        <member name="P:System.Runtime.CompilerServices.IUnion.Value">
+            <summary>
+            Indicates the result value.
+            </summary>
+        </member>
         <member name="T:System.Runtime.CompilerServices.LibraryIdentifiers">
             <summary>
             Represents some item names used by .NET library APIs.
@@ -10522,7 +10527,7 @@
         </member>
         <member name="T:System.Runtime.CompilerServices.UnionAttribute">
             <summary>
-            Indicates the type is a union.
+            Indicates the type is a union type.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.UnsafeExtensions">

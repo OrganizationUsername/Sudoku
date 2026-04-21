@@ -12,6 +12,27 @@ public sealed partial class SingleCountingPracticingPage : Page
 
 
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedMode"/>.
+	/// </summary>
+	/// <seealso cref="SelectedMode"/>
+	public static readonly DependencyProperty SelectedModeProperty =
+		DependencyProperty.Register(nameof(SelectedMode), typeof(int), typeof(SingleCountingPracticingPage), new PropertyMetadata((int)-1));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="TestedPuzzlesCount"/>.
+	/// </summary>
+	/// <seealso cref="TestedPuzzlesCount"/>
+	public static readonly DependencyProperty TestedPuzzlesCountProperty =
+		DependencyProperty.Register(nameof(TestedPuzzlesCount), typeof(int), typeof(SingleCountingPracticingPage), new PropertyMetadata((int)10));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsRunning"/>.
+	/// </summary>
+	/// <seealso cref="IsRunning"/>
+	internal static readonly DependencyProperty IsRunningProperty =
+		DependencyProperty.Register(nameof(IsRunning), typeof(bool), typeof(SingleCountingPracticingPage), new PropertyMetadata(default(bool), IsRunningPropertyCallback));
+
+	/// <summary>
 	/// The internal sync root.
 	/// </summary>
 	private static readonly Lock SyncRootOnChangingPuzzles = new();
@@ -74,20 +95,32 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// </item>
 	/// </list>
 	/// </summary>
-	[DependencyProperty(DefaultValue = -1)]
-	public partial int SelectedMode { get; set; }
+	public int SelectedMode
+	{
+		get => (int)GetValue(SelectedModeProperty);
+
+		set => SetValue(SelectedModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the tested puzzles count.
 	/// </summary>
-	[DependencyProperty(DefaultValue = 10)]
-	public partial int TestedPuzzlesCount { get; set; }
+	public int TestedPuzzlesCount
+	{
+		get => (int)GetValue(TestedPuzzlesCountProperty);
+
+		set => SetValue(TestedPuzzlesCountProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the game is running.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsRunning { get; set; }
+	internal bool IsRunning
+	{
+		get => (bool)GetValue(IsRunningProperty);
+
+		set => SetValue(IsRunningProperty, value);
+	}
 
 
 	/// <summary>
@@ -96,8 +129,8 @@ public sealed partial class SingleCountingPracticingPage : Page
 	[MemberNotNull(nameof(_targetResultData), nameof(_answeredData))]
 	private void InitializeFields()
 	{
-		_targetResultData = new(MaxPuzzlesCountSupported);
-		_answeredData = new(MaxPuzzlesCountSupported);
+		_targetResultData = [with(MaxPuzzlesCountSupported)];
+		_answeredData = [with(MaxPuzzlesCountSupported)];
 		_targetResultData.Refresh(MaxPuzzlesCountSupported);
 		_answeredData.Refresh(MaxPuzzlesCountSupported);
 	}

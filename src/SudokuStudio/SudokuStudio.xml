@@ -712,6 +712,24 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButtonProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ItemsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>
+        </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton">
             <summary>
             Indicates whether the "Select all" button should be shown.
@@ -742,28 +760,22 @@
             Indicates the items belonging to the group.
             </summary>
         </member>
-        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButtonProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ItemsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>
-        </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSource">
             <summary>
             Represents a type that can be used for binding as source, for a view unit.
             </summary>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ConclusionsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ViewProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>
         </member>
         <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor">
             <summary>
@@ -807,18 +819,6 @@
             <summary>
             Make subtraction to get delta items.
             </summary>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ConclusionsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.Conclusions"/>
-        </member>
-        <member name="F:SudokuStudio.BindableSource.ViewUnitBindableSource.ViewProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.BindableSource.ViewUnitBindableSource.View"/>
         </member>
         <member name="T:SudokuStudio.BindableSource.ConclusionInfo">
             <summary>
@@ -1584,16 +1584,16 @@
             Represents a constraint preference group.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints">
-            <summary>
-            Indicates the constraints created.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Configuration.ConstraintPreferenceGroup.ConstraintsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints">
+            <summary>
+            Indicates the constraints created.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.GridInfo">
             <summary>
@@ -1765,16 +1765,16 @@
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder">
-            <summary>
-            Indicates the order of step searchers.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrder">
+            <summary>
+            Indicates the order of step searchers.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.TechniqueData">
             <summary>
@@ -12166,6 +12166,12 @@
             Represents a candidate picker.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.CandidatePicker.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.CandidatePicker"/> instance.
@@ -12206,12 +12212,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.ColorSelector">
             <summary>
@@ -12506,6 +12506,24 @@
             Represents a cross-sign shape.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThicknessProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibilityProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibilityProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.Shapes.Cross.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.Shapes.Cross"/> instance.
@@ -12540,24 +12558,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThicknessProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.StrokeThickness"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibilityProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.ForwardLineVisibility"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibilityProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.Shapes.Cross.BackwardLineVisibility"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.Diamond">
             <summary>
@@ -14112,6 +14112,18 @@
             The name of the token item remove button in the template.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IsRemoveableProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.TokenItem.IconProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.TokenItem._tokenItemRemoveButton">
             <summary>
             The target remove button control.
@@ -14171,18 +14183,6 @@
             <summary>
             Call this method when <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/> is changed.
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TokenItem.IsRemoveableProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.IsRemoveable"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.TokenItem.IconProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.TokenItem.Icon"/>
         </member>
         <member name="T:SudokuStudio.Views.Controls.TokenView">
             <summary>
@@ -14335,6 +14335,66 @@
             <summary>
             Indicates the default thickness.
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunchedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunchedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunchedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndexProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInputProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.SelectedModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.LinkKindProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.VisualUnitProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._ctsForAnalyzingRelatedOperations">
             <summary>
@@ -14587,66 +14647,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunchedProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsAnalyzerLaunched"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunchedProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGathererLaunched"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunchedProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.IsGeneratorLaunched"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercentProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.ProgressPercent"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndexProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInputProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.BabaGroupNameInput"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.SelectedModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.LinkKindProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.LinkKind"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCacheProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.AnalysisResultCache"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.VisualUnitProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.AnalyzePage.VisualUnit"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
@@ -15229,6 +15229,66 @@
             Represents "save to library" page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibraryProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibrary"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibrary"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileId"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileIdProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileId"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileId"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePathProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePath"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePath"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryNameProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryName"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryName"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescriptionProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescription"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescription"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTagsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTags"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTags"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibraries"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibraries"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent"/> instance.
@@ -15309,66 +15369,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibraryProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibrary"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedLibrary"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileIdProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.IsNameValidAsFileId"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.SelectedMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileIdProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileId"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FileId"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePathProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePath"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.FilePath"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryName"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthorProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthor"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryAuthor"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescriptionProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescription"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryDescription"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTagsProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTags"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.LibraryTags"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibraries"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibraries"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage">
             <summary>
@@ -17107,6 +17107,24 @@
             Indicates the maximum possible supported number of puzzles.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunningProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SyncRootOnChangingPuzzles">
             <summary>
             The internal sync root.
@@ -17203,24 +17221,6 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedModeProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.SelectedMode"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCountProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.TestedPuzzlesCount"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunningProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.SingleCountingPracticingPage.IsRunning"/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Extensions">
             <target name="class" when="extension">

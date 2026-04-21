@@ -43,6 +43,21 @@ public partial class TokenItem : ListViewItem
 
 
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsRemoveable"/>.
+	/// </summary>
+	/// <seealso cref="IsRemoveable"/>
+	public static readonly DependencyProperty IsRemoveableProperty =
+		DependencyProperty.Register(nameof(IsRemoveable), typeof(bool), typeof(TokenItem), new PropertyMetadata(default(bool), IsRemoveablePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Icon"/>.
+	/// </summary>
+	/// <seealso cref="Icon"/>
+	public static readonly DependencyProperty IconProperty =
+		DependencyProperty.Register(nameof(Icon), typeof(IconElement), typeof(TokenItem), new PropertyMetadata(default(IconElement), IconPropertyCallback));
+
+
+	/// <summary>
 	/// The target remove button control.
 	/// </summary>
 	internal ButtonBase? _tokenItemRemoveButton;
@@ -57,14 +72,22 @@ public partial class TokenItem : ListViewItem
 	/// <summary>
 	/// Gets or sets a value indicating whether the tab can be closed by the user with the close button.
 	/// </summary>
-	[DependencyProperty]
-	public partial bool IsRemoveable { get; set; }
+	public bool IsRemoveable
+	{
+		get => (bool)GetValue(IsRemoveableProperty);
+
+		set => SetValue(IsRemoveableProperty, value);
+	}
 
 	/// <summary>
 	/// Gets or sets the icon.
 	/// </summary>
-	[DependencyProperty]
-	public partial IconElement Icon { get; set; }
+	public IconElement Icon
+	{
+		get => (IconElement)GetValue(IconProperty);
+
+		set => SetValue(IconProperty, value);
+	}
 
 
 	/// <summary>
@@ -127,11 +150,9 @@ public partial class TokenItem : ListViewItem
 		=> VisualStateManager.GoToState(this, IsRemoveable ? RemoveButtonVisibleState : RemoveButtonNotVisibleState, true);
 
 
-	[Callback]
 	private static void IsRemoveablePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((TokenItem)d).OnIsRemoveablePropertyChanged((bool)e.OldValue, (bool)e.NewValue);
 
-	[Callback]
 	private static void IconPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((TokenItem)d).OnIconPropertyChanged((IconElement)e.OldValue, (IconElement)e.NewValue);
 

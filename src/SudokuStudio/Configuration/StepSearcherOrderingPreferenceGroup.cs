@@ -7,8 +7,7 @@ namespace SudokuStudio.Configuration;
 /// <seealso cref="StepSearcher"/>
 public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGroup
 {
-	[Default]
-	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = new(
+	private static readonly ObservableCollection<StepSearcherInfo> StepSearchersOrderDefaultValue = [with(
 		(
 			from searcher in StepSearcher.StepSearchers
 			select new StepSearcherInfo
@@ -17,17 +16,27 @@ public sealed partial class StepSearcherOrderingPreferenceGroup : PreferenceGrou
 				TypeName = searcher.GetType().Name
 			}
 		).ToArray()
-	);
+	)];
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="StepSearchersOrder"/>.
+	/// </summary>
+	/// <seealso cref="StepSearchersOrder"/>
+	public static readonly DependencyProperty StepSearchersOrderProperty =
+		DependencyProperty.Register(nameof(StepSearchersOrder), typeof(ObservableCollection<StepSearcherInfo>), typeof(StepSearcherOrderingPreferenceGroup), new PropertyMetadata(StepSearchersOrderDefaultValue, StepSearchersOrderPropertyCallback));
 
 
 	/// <summary>
 	/// Indicates the order of step searchers.
 	/// </summary>
-	[DependencyProperty]
-	public partial ObservableCollection<StepSearcherInfo> StepSearchersOrder { get; set; }
+	public ObservableCollection<StepSearcherInfo> StepSearchersOrder
+	{
+		get => (ObservableCollection<StepSearcherInfo>)GetValue(StepSearchersOrderProperty);
+
+		set => SetValue(StepSearchersOrderProperty, value);
+	}
 
 
-	[Callback]
 	private static void StepSearchersOrderPropertyCallback(DependencyObject obj, DependencyPropertyChangedEventArgs e)
 	{
 		if (e is not { NewValue: ObservableCollection<StepSearcherInfo> stepSearchers })

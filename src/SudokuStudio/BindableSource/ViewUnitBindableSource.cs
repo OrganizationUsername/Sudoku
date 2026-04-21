@@ -6,6 +6,21 @@ namespace SudokuStudio.BindableSource;
 public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneable, IDrawable
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="Conclusions"/>.
+	/// </summary>
+	/// <seealso cref="Conclusions"/>
+	public static readonly DependencyProperty ConclusionsProperty =
+		DependencyProperty.Register(nameof(Conclusions), typeof(ReadOnlyMemory<Conclusion>), typeof(ViewUnitBindableSource), new PropertyMetadata(default(ReadOnlyMemory<Conclusion>)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="View"/>.
+	/// </summary>
+	/// <seealso cref="View"/>
+	public static readonly DependencyProperty ViewProperty =
+		DependencyProperty.Register(nameof(View), typeof(View), typeof(ViewUnitBindableSource), new PropertyMetadata(default(View)));
+
+
+	/// <summary>
 	/// Initializes a <see cref="ViewUnitBindableSource"/> instance.
 	/// </summary>
 	public ViewUnitBindableSource() : this(ReadOnlyMemory<Conclusion>.Empty, [])
@@ -23,14 +38,22 @@ public sealed partial class ViewUnitBindableSource : DependencyObject, ICloneabl
 	/// <summary>
 	/// Indicates the candidates as conclusions in a single <see cref="Step"/>.
 	/// </summary>
-	[DependencyProperty]
-	public partial ReadOnlyMemory<Conclusion> Conclusions { get; set; }
+	public ReadOnlyMemory<Conclusion> Conclusions
+	{
+		get => (ReadOnlyMemory<Conclusion>)GetValue(ConclusionsProperty);
+
+		set => SetValue(ConclusionsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates a view of highlight elements.
 	/// </summary>
-	[DependencyProperty]
-	public partial View View { get; set; }
+	public View View
+	{
+		get => (View)GetValue(ViewProperty);
+
+		set => SetValue(ViewProperty, value);
+	}
 
 	/// <inheritdoc/>
 	ReadOnlyMemory<View> IDrawable.Views => (View[])[View];

@@ -10,6 +10,76 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	private static readonly Thickness DefaultMarginForAnalyzerPages = new(10);
 
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsAnalyzerLaunched"/>.
+	/// </summary>
+	/// <seealso cref="IsAnalyzerLaunched"/>
+	internal static readonly DependencyProperty IsAnalyzerLaunchedProperty =
+		DependencyProperty.Register(nameof(IsAnalyzerLaunched), typeof(bool), typeof(AnalyzePage), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsGathererLaunched"/>.
+	/// </summary>
+	/// <seealso cref="IsGathererLaunched"/>
+	internal static readonly DependencyProperty IsGathererLaunchedProperty =
+		DependencyProperty.Register(nameof(IsGathererLaunched), typeof(bool), typeof(AnalyzePage), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsGeneratorLaunched"/>.
+	/// </summary>
+	/// <seealso cref="IsGeneratorLaunched"/>
+	internal static readonly DependencyProperty IsGeneratorLaunchedProperty =
+		DependencyProperty.Register(nameof(IsGeneratorLaunched), typeof(bool), typeof(AnalyzePage), new PropertyMetadata(default(bool)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="ProgressPercent"/>.
+	/// </summary>
+	/// <seealso cref="ProgressPercent"/>
+	internal static readonly DependencyProperty ProgressPercentProperty =
+		DependencyProperty.Register(nameof(ProgressPercent), typeof(double), typeof(AnalyzePage), new PropertyMetadata(default(double)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CurrentViewIndex"/>.
+	/// </summary>
+	/// <seealso cref="CurrentViewIndex"/>
+	internal static readonly DependencyProperty CurrentViewIndexProperty =
+		DependencyProperty.Register(nameof(CurrentViewIndex), typeof(int), typeof(AnalyzePage), new PropertyMetadata((int)-1, CurrentViewIndexPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="BabaGroupNameInput"/>.
+	/// </summary>
+	/// <seealso cref="BabaGroupNameInput"/>
+	internal static readonly DependencyProperty BabaGroupNameInputProperty =
+		DependencyProperty.Register(nameof(BabaGroupNameInput), typeof(string), typeof(AnalyzePage), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedMode"/>.
+	/// </summary>
+	/// <seealso cref="SelectedMode"/>
+	internal static readonly DependencyProperty SelectedModeProperty =
+		DependencyProperty.Register(nameof(SelectedMode), typeof(DrawingMode), typeof(AnalyzePage), new PropertyMetadata((DrawingMode)1));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LinkKind"/>.
+	/// </summary>
+	/// <seealso cref="LinkKind"/>
+	internal static readonly DependencyProperty LinkKindProperty =
+		DependencyProperty.Register(nameof(LinkKind), typeof(Inference), typeof(AnalyzePage), new PropertyMetadata((Inference)0));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AnalysisResultCache"/>.
+	/// </summary>
+	/// <seealso cref="AnalysisResultCache"/>
+	internal static readonly DependencyProperty AnalysisResultCacheProperty =
+		DependencyProperty.Register(nameof(AnalysisResultCache), typeof(AnalysisResult), typeof(AnalyzePage), new PropertyMetadata(default(AnalysisResult)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="VisualUnit"/>.
+	/// </summary>
+	/// <seealso cref="VisualUnit"/>
+	internal static readonly DependencyProperty VisualUnitProperty =
+		DependencyProperty.Register(nameof(VisualUnit), typeof(IDrawable), typeof(AnalyzePage), new PropertyMetadata(default(IDrawable), VisualUnitPropertyCallback));
+
 
 	/// <summary>
 	/// Indicates the cancellation token source used by analyzing-related operations.
@@ -57,63 +127,103 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// Indicates whether the analyzer is launched.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsAnalyzerLaunched { get; set; }
+	internal bool IsAnalyzerLaunched
+	{
+		get => (bool)GetValue(IsAnalyzerLaunchedProperty);
+
+		set => SetValue(IsAnalyzerLaunchedProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the collector is launched.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsGathererLaunched { get; set; }
+	internal bool IsGathererLaunched
+	{
+		get => (bool)GetValue(IsGathererLaunchedProperty);
+
+		set => SetValue(IsGathererLaunchedProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the generator is launched.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsGeneratorLaunched { get; set; }
+	internal bool IsGeneratorLaunched
+	{
+		get => (bool)GetValue(IsGeneratorLaunchedProperty);
+
+		set => SetValue(IsGeneratorLaunchedProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the progress percent value.
 	/// </summary>
-	[DependencyProperty]
-	internal partial double ProgressPercent { get; set; }
+	internal double ProgressPercent
+	{
+		get => (double)GetValue(ProgressPercentProperty);
+
+		set => SetValue(ProgressPercentProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the current index of the view of property <see cref="IDrawable.Views"/> displayed.
 	/// </summary>
 	/// <seealso cref="IDrawable.Views"/>
-	[DependencyProperty(DefaultValue = -1)]
-	internal partial int CurrentViewIndex { get; set; }
+	internal int CurrentViewIndex
+	{
+		get => (int)GetValue(CurrentViewIndexProperty);
+
+		set => SetValue(CurrentViewIndexProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the input character that is used as a baba group variable.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string? BabaGroupNameInput { get; set; }
+	internal string? BabaGroupNameInput
+	{
+		get => (string?)GetValue(BabaGroupNameInputProperty);
+
+		set => SetValue(BabaGroupNameInputProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the selected drawing mode.
 	/// </summary>
-	[DependencyProperty(DefaultValue = DrawingMode.Cell)]
-	internal partial DrawingMode SelectedMode { get; set; }
+	internal DrawingMode SelectedMode
+	{
+		get => (DrawingMode)GetValue(SelectedModeProperty);
+
+		set => SetValue(SelectedModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the link type.
 	/// </summary>
-	[DependencyProperty(DefaultValue = Inference.Strong)]
-	internal partial Inference LinkKind { get; set; }
+	internal Inference LinkKind
+	{
+		get => (Inference)GetValue(LinkKindProperty);
+
+		set => SetValue(LinkKindProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the analysis result cache.
 	/// </summary>
-	[DependencyProperty]
-	internal partial AnalysisResult? AnalysisResultCache { get; set; }
+	internal AnalysisResult? AnalysisResultCache
+	{
+		get => (AnalysisResult?)GetValue(AnalysisResultCacheProperty);
+
+		set => SetValue(AnalysisResultCacheProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the visual unit.
 	/// </summary>
-	[DependencyProperty]
-	internal partial IDrawable? VisualUnit { get; set; }
+	internal IDrawable? VisualUnit
+	{
+		get => (IDrawable?)GetValue(VisualUnitProperty);
+
+		set => SetValue(VisualUnitProperty, value);
+	}
 
 
 	/// <summary>

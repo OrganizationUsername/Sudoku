@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class CandidatePicker : UserControl
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedCandidate"/>.
+	/// </summary>
+	/// <seealso cref="SelectedCandidate"/>
+	public static readonly DependencyProperty SelectedCandidateProperty =
+		DependencyProperty.Register(nameof(SelectedCandidate), typeof(Candidate), typeof(CandidatePicker), new PropertyMetadata(-1, SelectedCandidatePropertyCallback));
+
+
+	/// <summary>
 	/// Initializes a <see cref="CandidatePicker"/> instance.
 	/// </summary>
 	public CandidatePicker()
@@ -18,8 +26,12 @@ public sealed partial class CandidatePicker : UserControl
 	/// <summary>
 	/// Indicates the selected candidate.
 	/// </summary>
-	[DependencyProperty(DefaultValue = -1)]
-	public partial Candidate SelectedCandidate { get; set; }
+	public Candidate SelectedCandidate
+	{
+		get => (Candidate)GetValue(SelectedCandidateProperty);
+
+		set => SetValue(SelectedCandidateProperty, value);
+	}
 
 
 	/// <summary>
@@ -53,7 +65,6 @@ public sealed partial class CandidatePicker : UserControl
 	public event EventHandler<CandidatePicker, CandidatePickerSelectedCandidateChangedEventArgs>? SelectedCandidateChanged;
 
 
-	[Callback]
 	private static void SelectedCandidatePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((CandidatePicker)d).UpdateControlViaSelectedCandidate((Candidate)e.NewValue);
 

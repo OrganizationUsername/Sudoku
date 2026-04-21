@@ -5,11 +5,79 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 /// </summary>
 public sealed partial class SaveToLibraryDialogContent : Page
 {
-	[Default]
 	private static readonly ObservableCollection<string> LibraryTagsDefaultValue = [];
 
-	[Default]
 	private static readonly ObservableCollection<LibraryBindableSource> AvailableLibrariesDefaultValue = [];
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedLibrary"/>.
+	/// </summary>
+	/// <seealso cref="SelectedLibrary"/>
+	internal static readonly DependencyProperty SelectedLibraryProperty =
+		DependencyProperty.Register(nameof(SelectedLibrary), typeof(object), typeof(SaveToLibraryDialogContent), new PropertyMetadata(null));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsNameValidAsFileId"/>.
+	/// </summary>
+	/// <seealso cref="IsNameValidAsFileId"/>
+	internal static readonly DependencyProperty IsNameValidAsFileIdProperty =
+		DependencyProperty.Register(nameof(IsNameValidAsFileId), typeof(bool), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(bool), IsNameValidAsFileIdPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="SelectedMode"/>.
+	/// </summary>
+	/// <seealso cref="SelectedMode"/>
+	internal static readonly DependencyProperty SelectedModeProperty =
+		DependencyProperty.Register(nameof(SelectedMode), typeof(int), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(int)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FileId"/>.
+	/// </summary>
+	/// <seealso cref="FileId"/>
+	internal static readonly DependencyProperty FileIdProperty =
+		DependencyProperty.Register(nameof(FileId), typeof(string), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="FilePath"/>.
+	/// </summary>
+	/// <seealso cref="FilePath"/>
+	internal static readonly DependencyProperty FilePathProperty =
+		DependencyProperty.Register(nameof(FilePath), typeof(string), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryName"/>.
+	/// </summary>
+	/// <seealso cref="LibraryName"/>
+	internal static readonly DependencyProperty LibraryNameProperty =
+		DependencyProperty.Register(nameof(LibraryName), typeof(string), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(string), LibraryNamePropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryAuthor"/>.
+	/// </summary>
+	/// <seealso cref="LibraryAuthor"/>
+	internal static readonly DependencyProperty LibraryAuthorProperty =
+		DependencyProperty.Register(nameof(LibraryAuthor), typeof(string), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryDescription"/>.
+	/// </summary>
+	/// <seealso cref="LibraryDescription"/>
+	internal static readonly DependencyProperty LibraryDescriptionProperty =
+		DependencyProperty.Register(nameof(LibraryDescription), typeof(string), typeof(SaveToLibraryDialogContent), new PropertyMetadata(default(string)));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryTags"/>.
+	/// </summary>
+	/// <seealso cref="LibraryTags"/>
+	internal static readonly DependencyProperty LibraryTagsProperty =
+		DependencyProperty.Register(nameof(LibraryTags), typeof(ObservableCollection<string>), typeof(SaveToLibraryDialogContent), new PropertyMetadata(LibraryTagsDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="AvailableLibraries"/>.
+	/// </summary>
+	/// <seealso cref="AvailableLibraries"/>
+	internal static readonly DependencyProperty AvailableLibrariesProperty =
+		DependencyProperty.Register(nameof(AvailableLibraries), typeof(ObservableCollection<LibraryBindableSource>), typeof(SaveToLibraryDialogContent), new PropertyMetadata(AvailableLibrariesDefaultValue));
 
 
 	/// <summary>
@@ -21,62 +89,102 @@ public sealed partial class SaveToLibraryDialogContent : Page
 	/// <summary>
 	/// Indicates the selected library.
 	/// </summary>
-	[DependencyProperty]
-	internal partial object SelectedLibrary { get; set; }
+	internal object SelectedLibrary
+	{
+		get => GetValue(SelectedLibraryProperty);
+
+		set => SetValue(SelectedLibraryProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates whether the name is valid as a file ID.
 	/// </summary>
-	[DependencyProperty]
-	internal partial bool IsNameValidAsFileId { get; set; }
+	internal bool IsNameValidAsFileId
+	{
+		get => (bool)GetValue(IsNameValidAsFileIdProperty);
+
+		set => SetValue(IsNameValidAsFileIdProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the selected mode.
 	/// </summary>
-	[DependencyProperty]
-	internal partial int SelectedMode { get; set; }
+	internal int SelectedMode
+	{
+		get => (int)GetValue(SelectedModeProperty);
+
+		set => SetValue(SelectedModeProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the file ID.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string FileId { get; set; }
+	internal string FileId
+	{
+		get => (string)GetValue(FileIdProperty);
+
+		set => SetValue(FileIdProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the target file path.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string FilePath { get; set; }
+	internal string FilePath
+	{
+		get => (string)GetValue(FilePathProperty);
+
+		set => SetValue(FilePathProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the name of the library.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string? LibraryName { get; set; }
+	internal string? LibraryName
+	{
+		get => (string?)GetValue(LibraryNameProperty);
+
+		set => SetValue(LibraryNameProperty, value);
+	}
 
 	/// <summary>
 	/// Indicatdes the author of the library.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string? LibraryAuthor { get; set; }
+	internal string? LibraryAuthor
+	{
+		get => (string?)GetValue(LibraryAuthorProperty);
+
+		set => SetValue(LibraryAuthorProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the description to the library.
 	/// </summary>
-	[DependencyProperty]
-	internal partial string? LibraryDescription { get; set; }
+	internal string? LibraryDescription
+	{
+		get => (string?)GetValue(LibraryDescriptionProperty);
+
+		set => SetValue(LibraryDescriptionProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the tags of the library.
 	/// </summary>
-	[DependencyProperty]
-	internal partial ObservableCollection<string> LibraryTags { get; set; }
+	internal ObservableCollection<string> LibraryTags
+	{
+		get => (ObservableCollection<string>)GetValue(LibraryTagsProperty);
+
+		set => SetValue(LibraryTagsProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates all available libraries.
 	/// </summary>
-	[DependencyProperty]
-	internal partial ObservableCollection<LibraryBindableSource> AvailableLibraries { get; set; }
+	internal ObservableCollection<LibraryBindableSource> AvailableLibraries
+	{
+		get => (ObservableCollection<LibraryBindableSource>)GetValue(AvailableLibrariesProperty);
+
+		set => SetValue(AvailableLibrariesProperty, value);
+	}
 
 
 	/// <summary>

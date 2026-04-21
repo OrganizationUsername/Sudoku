@@ -29,6 +29,21 @@ public partial class TokenView : ListViewBase
 
 
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsWrapped"/>.
+	/// </summary>
+	/// <seealso cref="IsWrapped"/>
+	public static readonly DependencyProperty IsWrappedProperty =
+		DependencyProperty.Register(nameof(IsWrapped), typeof(bool), typeof(TokenView), new PropertyMetadata(default(bool), IsWrappedPropertyCallback));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CanRemoveTokens"/>.
+	/// </summary>
+	/// <seealso cref="CanRemoveTokens"/>
+	public static readonly DependencyProperty CanRemoveTokensProperty =
+		DependencyProperty.Register(nameof(CanRemoveTokens), typeof(bool), typeof(TokenView), new PropertyMetadata(default(bool), CanRemoveTokensPropertyCallback));
+
+
+	/// <summary>
 	/// The field that records the currently-selected index.
 	/// </summary>
 	private int _selectedIndex = -1;
@@ -70,14 +85,22 @@ public partial class TokenView : ListViewBase
 	/// <summary>
 	/// Gets or sets if tokens are wrapped.
 	/// </summary>
-	[DependencyProperty]
-	public partial bool IsWrapped { get; set; }
+	public bool IsWrapped
+	{
+		get => (bool)GetValue(IsWrappedProperty);
+
+		set => SetValue(IsWrappedProperty, value);
+	}
 
 	/// <summary>
 	/// Gets or sets if tokens can be removed.
 	/// </summary>
-	[DependencyProperty]
-	public partial bool CanRemoveTokens { get; set; }
+	public bool CanRemoveTokens
+	{
+		get => (bool)GetValue(CanRemoveTokensProperty);
+
+		set => SetValue(CanRemoveTokensProperty, value);
+	}
 
 	/// <summary>
 	/// Triggers when an item is removing.
@@ -176,11 +199,9 @@ public partial class TokenView : ListViewBase
 	}
 
 
-	[Callback]
 	private static void IsWrappedPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((TokenView)d).OnIsWrappedPropertyChanged((bool)e.OldValue, (bool)e.NewValue);
 
-	[Callback]
 	private static void CanRemoveTokensPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((TokenView)d).OnCanRemoveTokensPropertyChanged((bool)e.OldValue, (bool)e.NewValue);
 
@@ -235,19 +256,9 @@ public partial class TokenView : ListViewBase
 
 	private void ScrollViewer_Loaded(object sender, RoutedEventArgs e)
 	{
-		if (_tokenViewScroller is not null)
-		{
-			_tokenViewScroller.Loaded -= ScrollViewer_Loaded;
-		}
-		if (_tokenViewScrollBackButton is not null)
-		{
-			_tokenViewScrollBackButton.Click -= ScrollTabBackButton_Click;
-		}
-
-		if (_tokenViewScrollForwardButton is not null)
-		{
-			_tokenViewScrollForwardButton.Click -= ScrollTabForwardButton_Click;
-		}
+		_tokenViewScroller?.Loaded -= ScrollViewer_Loaded;
+		_tokenViewScrollBackButton?.Click -= ScrollTabBackButton_Click;
+		_tokenViewScrollForwardButton?.Click -= ScrollTabForwardButton_Click;
 
 		if (_tokenViewScroller is not null)
 		{
@@ -256,15 +267,8 @@ public partial class TokenView : ListViewBase
 			_tokenViewScrollForwardButton = _tokenViewScroller.FindDescendant(TokenViewScrollForwardButtonName) as ButtonBase;
 		}
 
-		if (_tokenViewScrollBackButton is not null)
-		{
-			_tokenViewScrollBackButton.Click += ScrollTabBackButton_Click;
-		}
-
-		if (_tokenViewScrollForwardButton is not null)
-		{
-			_tokenViewScrollForwardButton.Click += ScrollTabForwardButton_Click;
-		}
+		_tokenViewScrollBackButton?.Click += ScrollTabBackButton_Click;
+		_tokenViewScrollForwardButton?.Click += ScrollTabForwardButton_Click;
 
 		UpdateScrollButtonsVisibility();
 	}

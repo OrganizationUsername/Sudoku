@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Pages.Analyze;
 public sealed partial class StepCollecting : Page, IAnalyzerTab
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="TreeViewItemsSource"/>.
+	/// </summary>
+	/// <seealso cref="TreeViewItemsSource"/>
+	internal static readonly DependencyProperty TreeViewItemsSourceProperty =
+		DependencyProperty.Register(nameof(TreeViewItemsSource), typeof(ObservableCollection<CollectedStepBindableSource>), typeof(StepCollecting), new PropertyMetadata(default(ObservableCollection<CollectedStepBindableSource>)));
+
+
+	/// <summary>
 	/// A collection sorted by technique.
 	/// </summary>
 	private ObservableCollection<CollectedStepBindableSource>? _nodesSortedByTechnique;
@@ -33,8 +41,12 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	/// <summary>
 	/// Indicates the tree view items source.
 	/// </summary>
-	[DependencyProperty]
-	internal partial ObservableCollection<CollectedStepBindableSource>? TreeViewItemsSource { get; set; }
+	internal ObservableCollection<CollectedStepBindableSource>? TreeViewItemsSource
+	{
+		get => (ObservableCollection<CollectedStepBindableSource>?)GetValue(TreeViewItemsSourceProperty);
+
+		set => SetValue(TreeViewItemsSourceProperty, value);
+	}
 
 	/// <inheritdoc/>
 	AnalysisResult? IAnalyzerTab.AnalysisResult { get; set; }

@@ -6,6 +6,13 @@ namespace SudokuStudio.Views.Pages;
 internal sealed partial class MainNavigationPage : Page
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="HeaderBarItems"/>.
+	/// </summary>
+	/// <seealso cref="HeaderBarItems"/>
+	public static readonly DependencyProperty HeaderBarItemsProperty =
+		DependencyProperty.Register(nameof(HeaderBarItems), typeof(ObservableCollection<PageNavigationBindableSource>), typeof(MainNavigationPage), new PropertyMetadata(default(ObservableCollection<PageNavigationBindableSource>)));
+
+	/// <summary>
 	/// The navigating data. This dictionary stores the routing data that can be used and controlled
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
@@ -58,8 +65,12 @@ internal sealed partial class MainNavigationPage : Page
 	/// <summary>
 	/// Indicates the header bar items.
 	/// </summary>
-	[DependencyProperty]
-	public partial ObservableCollection<PageNavigationBindableSource> HeaderBarItems { get; set; }
+	public ObservableCollection<PageNavigationBindableSource> HeaderBarItems
+	{
+		get => (ObservableCollection<PageNavigationBindableSource>)GetValue(HeaderBarItemsProperty);
+
+		set => SetValue(HeaderBarItemsProperty, value);
+	}
 
 	/// <summary>
 	/// Sets the navigated page type with custom data.

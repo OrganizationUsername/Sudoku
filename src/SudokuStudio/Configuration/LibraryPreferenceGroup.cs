@@ -5,19 +5,40 @@ namespace SudokuStudio.Configuration;
 /// </summary>
 public sealed partial class LibraryPreferenceGroup : PreferenceGroup
 {
-	[Default]
 	private static readonly LibraryCandidatesVisibility LibraryCandidatesVisibilityDefaultValue = LibraryCandidatesVisibility.AlwaysShown;
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryCandidatesVisibility"/>.
+	/// </summary>
+	/// <seealso cref="LibraryCandidatesVisibility"/>
+	public static readonly DependencyProperty LibraryCandidatesVisibilityProperty =
+		DependencyProperty.Register(nameof(LibraryCandidatesVisibility), typeof(LibraryCandidatesVisibility), typeof(LibraryPreferenceGroup), new PropertyMetadata(LibraryCandidatesVisibilityDefaultValue));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="LibraryPuzzleTransformations"/>.
+	/// </summary>
+	/// <seealso cref="LibraryPuzzleTransformations"/>
+	public static readonly DependencyProperty LibraryPuzzleTransformationsProperty =
+		DependencyProperty.Register(nameof(LibraryPuzzleTransformations), typeof(TransformType), typeof(LibraryPreferenceGroup), new PropertyMetadata((TransformType)0));
 
 
 	/// <summary>
 	/// Indicates whether the candidates in a puzzle defined in puzzle libraries should be shown.
 	/// </summary>
-	[DependencyProperty]
-	public partial LibraryCandidatesVisibility LibraryCandidatesVisibility { get; set; }
+	public LibraryCandidatesVisibility LibraryCandidatesVisibility
+	{
+		get => (LibraryCandidatesVisibility)GetValue(LibraryCandidatesVisibilityProperty);
+
+		set => SetValue(LibraryCandidatesVisibilityProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the transforming kinds for library puzzles.
 	/// </summary>
-	[DependencyProperty(DefaultValue = 0)]
-	public partial TransformType LibraryPuzzleTransformations { get; set; }
+	public TransformType LibraryPuzzleTransformations
+	{
+		get => (TransformType)GetValue(LibraryPuzzleTransformationsProperty);
+
+		set => SetValue(LibraryPuzzleTransformationsProperty, value);
+	}
 }

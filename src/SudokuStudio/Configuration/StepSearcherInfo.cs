@@ -6,6 +6,21 @@ namespace SudokuStudio.Configuration;
 public sealed partial class StepSearcherInfo : DependencyObject
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="IsEnabled"/>.
+	/// </summary>
+	/// <seealso cref="IsEnabled"/>
+	public static readonly DependencyProperty IsEnabledProperty =
+		DependencyProperty.Register(nameof(IsEnabled), typeof(bool), typeof(StepSearcherInfo), new PropertyMetadata(true));
+
+	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="TypeName"/>.
+	/// </summary>
+	/// <seealso cref="TypeName"/>
+	public static readonly DependencyProperty TypeNameProperty =
+		DependencyProperty.Register(nameof(TypeName), typeof(string), typeof(StepSearcherInfo), new PropertyMetadata(default(string)));
+
+
+	/// <summary>
 	/// Indicates whether the technique option is not fixed and can be used for drag-and-drop operation.
 	/// </summary>
 	[JsonIgnore]
@@ -17,12 +32,15 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	[JsonIgnore]
 	public bool CanToggle => !CreateStepSearcher().Metadata.IsReadOnly;
 
-
 	/// <summary>
 	/// Indicates whether the step searcher is enabled.
 	/// </summary>
-	[DependencyProperty(DefaultValue = true)]
-	public partial bool IsEnabled { get; set; }
+	public bool IsEnabled
+	{
+		get => (bool)GetValue(IsEnabledProperty);
+
+		set => SetValue(IsEnabledProperty, value);
+	}
 
 	/// <summary>
 	/// Indicates the name of the step searcher.
@@ -35,8 +53,12 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// This property can be used for creating instances via reflection using getMetaProperties <see cref="Activator.CreateInstance(Type)"/>.
 	/// </summary>
 	/// <seealso cref="Activator.CreateInstance(Type)"/>
-	[DependencyProperty]
-	public partial string TypeName { get; set; }
+	public string TypeName
+	{
+		get => (string)GetValue(TypeNameProperty);
+
+		set => SetValue(TypeNameProperty, value);
+	}
 
 
 	/// <inheritdoc/>

@@ -6,6 +6,14 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class TechniqueGalleryPage : Page
 {
 	/// <summary>
+	/// Defines a dependency property that binds with property <see cref="CurrentSelectedTechnique"/>.
+	/// </summary>
+	/// <seealso cref="CurrentSelectedTechnique"/>
+	internal static readonly DependencyProperty CurrentSelectedTechniqueProperty =
+		DependencyProperty.Register(nameof(CurrentSelectedTechnique), typeof(Technique), typeof(TechniqueGalleryPage), new PropertyMetadata(default(Technique)));
+
+
+	/// <summary>
 	/// Initializes a <see cref="TechniqueGalleryPage"/> instance.
 	/// </summary>
 	public TechniqueGalleryPage() => InitializeComponent();
@@ -14,8 +22,12 @@ public sealed partial class TechniqueGalleryPage : Page
 	/// <summary>
 	/// Indicates the currently selected technique.
 	/// </summary>
-	[DependencyProperty]
-	internal partial Technique CurrentSelectedTechnique { get; set; }
+	internal Technique CurrentSelectedTechnique
+	{
+		get => (Technique)GetValue(CurrentSelectedTechniqueProperty);
+
+		set => SetValue(CurrentSelectedTechniqueProperty, value);
+	}
 
 
 	private void TechniqueCoreView_CurrentSelectedTechniqueChanged(TechniqueView sender, TechniqueViewCurrentSelectedTechniqueChangedEventArgs e)
